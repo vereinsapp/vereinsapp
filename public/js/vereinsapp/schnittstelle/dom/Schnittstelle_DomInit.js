@@ -1,7 +1,6 @@
 const STATUS_SPINNER_CLASS = "spinner-border";
 const STATUS_SPINNER_HTML =
     '<span class="' + STATUS_SPINNER_CLASS + ' spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></span>';
-const STATUS_STANDARD_HTML = $("#status").html();
 
 const TOASTS = new Object();
 const MODALS = new Object();
@@ -93,8 +92,9 @@ function Schnittstelle_DomInit() {
         $("#status").html(STATUS_SPINNER_HTML);
     });
 
+    const status_standard_html = $("#status").html();
     $(document).ajaxStop(function () {
-        $("#status").html(STATUS_STANDARD_HTML);
+        $("#status").html(status_standard_html);
     });
 
     $(document).ajaxSuccess(function () {
