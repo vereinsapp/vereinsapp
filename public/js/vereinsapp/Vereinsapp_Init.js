@@ -68,6 +68,7 @@ Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 Link zu Github neben die Version
 
 SOFTWARE
+Funktion zur Erstellung eines Verzeichnisses, inkl. Kopieren von index.html aus dem übergeordneten Verzeichnis
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
 Schnittstelle_EventElementReduzieren einführen
 Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel) und weiches Löschen für abhängige Tabellen einführen

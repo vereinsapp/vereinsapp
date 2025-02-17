@@ -62,6 +62,11 @@ class Termine extends BaseController {
                 'farbe' => 'danger',
             );
 
+            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['csv_export'] = array(
+                'klasse_id' => array('btn_termine_csv_export', 'bestaetigung_einfordern'),
+                'title' => 'Termine als CSV-Datei exportieren',
+            );
+
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['erstellen'] = array(
                 'klasse_id' => array('btn_termin_erstellen', 'formular_oeffnen'),
                 'title' => 'Termin erstellen',
@@ -199,9 +204,7 @@ class Termine extends BaseController {
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         );
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( Time::parse( $this->request->getpost()['start'], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin') ) ) $ajax_antwort['validation'] = array(
-            'start' => 'Der Termin darf nicht in der Vergangenheit liegen.',
-        );
+        else if( Time::parse( $this->request->getpost()['start'], 'Europe/Berlin' )->isBefore( JETZT ) ) $ajax_antwort['validation'] = array( 'start' => 'Der Termin darf nicht in der Vergangenheit liegen.' );
         else if( !auth()->user()->can( 'termine.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $termine_Model = model(Termin_Model::class);
@@ -232,6 +235,32 @@ class Termine extends BaseController {
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'termine.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else model(Termin_Model::class)->delete( $this->request->getPost()['id'] );
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
+
+    public function ajax_termine_csv_export() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+            'element_ids' => [ 'label' => 'Element-IDs', 'rules' => [ 'permit_empty' ] ],
+            'element_ids.*' => [ 'label' => 'Element-ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else if( !( array_key_exists('element_ids', $this->request->getpost() ) AND is_array( $this->request->getpost()['element_ids'] ) AND count( $this->request->getpost()['element_ids'] ) > 0 ) ) $ajax_antwort['validation'] = array( 'element_ids' => 'Die Liste muss mindestens ein Element enthalten.' );
+        else {
+            $termine = model(Termin_Model::class)->find( $this->request->getpost()['element_ids'] );
+            foreach( $termine as $id => $termin ) $termine[ $id ]['link'] = site_url().'termine/'.$termin['id'];
+
+            if( !is_dir( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS ) ) mkdir( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS, 0777, true );
+            if( !is_file( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS.'/index.html') AND is_file( DATEI_UPLOAD_VERZEICHNIS.'/index.html') ) copy( DATEI_UPLOAD_VERZEICHNIS.'/index.html', DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS.'/index.html' );
+            $csv_export_datei = fopen( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS.'/'.TERMINE_CSV_EXPORT_DATEINAME, 'w' );
+            if ( !$csv_export_datei ) $ajax_antwort['validation'] = 'Fehler beim Öffnen der Datei!';
+
+            foreach( $termine as $termin ) if( isset( $termin['start'], $termin['titel'], $termin['ort'], $termin['link'] ) )
+                fputcsv( $csv_export_datei, [ $termin['start'], $termin['titel'], $termin['ort'], $termin['link'] ] );
+
+            fclose( $csv_export_datei );
+        }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
