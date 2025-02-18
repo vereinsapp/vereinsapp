@@ -44,6 +44,16 @@ class Termine extends BaseController {
             'title' => 'Anwesenheiten dokumentieren',
         );
 
+        $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+        $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+        $this->viewdata['liste']['zugeordnete_aufgaben']['vorschau'] = array("zugeordnetes_element");
+        $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
+
+        $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['zugeordnete_aufgaben_anzeigen'] = array(
+            'klasse_id' => array('btn_zugeordnete_aufgaben_anzeigen'),
+            'title' => 'Zugeordnete Aufgaben anzeigen',
+        );
+
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
 
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_handle'] = TRUE;

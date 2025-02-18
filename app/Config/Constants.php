@@ -301,6 +301,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     // 'info' => array( 'bootstrap' => 'info-circle' ),
 
     'anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
+    'zugeordnete_aufgaben_anzeigen' => array( 'bootstrap' => 'award' ),
     'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),
     'kassenbuch' => array( 'bootstrap' => 'journal-bookmark' ),
 

@@ -12,4 +12,6 @@
         view( 'Termine/termin_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?= view( 'Templates/modal', array( 'id' => 'termine_anwesenheiten_dokumentieren', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ) ) ); ?>
+<?= view( 'Templates/modal', array( 'id' => 'zugeordnete_aufgaben_modal', 'modal' =>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['zugeordnete_aufgaben'] ) ) ) ); ?>
 <?= $this->endSection() ?>

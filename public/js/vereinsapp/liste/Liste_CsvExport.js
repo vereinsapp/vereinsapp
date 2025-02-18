@@ -1,6 +1,4 @@
 function Liste_CsvExport(bestaetigung_einfordern, dom, title, instanz, liste) {
-    if (typeof instanz === "undefined") instanz = dom.$btn_ausloesend.closest(".container").find(".liste[id]").attr("id");
-
     if (bestaetigung_einfordern)
         Schnittstelle_DomBestaetigungEinfordern(
             'Willst du wirklich die Liste "' +
@@ -15,7 +13,7 @@ function Liste_CsvExport(bestaetigung_einfordern, dom, title, instanz, liste) {
 
         const data = { element_ids: new Array() };
         $.each($('.liste[id="' + instanz + '"]').find(".element"), function () {
-            Number(data.element_ids.push($(this).attr("data-element_id")));
+            data.element_ids.push(Number($(this).attr("data-element_id")));
         });
 
         const ajax_dom = dom;
