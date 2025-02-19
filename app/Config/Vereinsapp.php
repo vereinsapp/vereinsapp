@@ -108,7 +108,7 @@ class Vereinsapp extends BaseConfig
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion' ),
             // 'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
-            'zusatzsymbole' => array('geburtstag'),
+            'zusatzsymbol' => array('geburtstag'),
             // 'checkliste' => 'vergebene_rechte',
             // 'gegen_liste' => 'termine',
             // 'gegen_element_id' => 42,
@@ -158,7 +158,7 @@ class Vereinsapp extends BaseConfig
                 array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            'zusatzsymbole' => array('kategorie'),
+            'zusatzsymbol' => array('kategorie'),
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Termine filtern', ),
                 'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Termine sortieren', ),
@@ -197,7 +197,7 @@ class Vereinsapp extends BaseConfig
                 array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
             ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            'zusatzsymbole' => array('offen_erledigt'),
+            'zusatzsymbol' => array('offen_erledigt'),
             'bedingte_formatierung' => array( 'klasse' => array( 'text-danger' => array( 'operator' => '<=', 'eigenschaft' => 'wert', 'wert' => 0 ), ), 'eigenschaft' => 'wert', ),
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Kassenbuch filtern', ),

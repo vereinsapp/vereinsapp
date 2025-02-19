@@ -22,7 +22,7 @@ function Aufgaben_AufgabeAktualisieren($aufgabe) {
             .removeClass("btn-success")
             .removeClass("disabled");
         $btn_aufgabe_mitglied_ausplanen.appendTo($unsichtbar);
-        $btn_aufgabe_erledigen.appendTo($unsichtbar);
+        $btn_aufgabe_erledigen.html('<i class="bi bi-' + SYMBOLE["offen_erledigt_markieren"]["bootstrap"] + '"></i>').appendTo($unsichtbar);
 
         $btn_aufgabe_mitglied_einplanen.html('<i class="bi bi-' + SYMBOLE["erstellen"]["bootstrap"] + '"></i>');
     } else {
@@ -39,7 +39,11 @@ function Aufgaben_AufgabeAktualisieren($aufgabe) {
                     .addClass("btn-success")
                     .addClass("disabled");
                 $btn_aufgabe_mitglied_ausplanen.appendTo($unsichtbar);
-                $btn_aufgabe_erledigen.removeClass("btn-outline-success").addClass("btn-success").appendTo($sichtbar);
+                $btn_aufgabe_erledigen
+                    .html('<i class="bi bi-' + SYMBOLE["erledigt"]["bootstrap"] + '"></i>')
+                    .removeClass("btn-outline-success")
+                    .addClass("btn-success")
+                    .appendTo($sichtbar);
             } else {
                 // Wenn die Aufgabe nicht erledigt ist
                 $btn_aufgabe_mitglied_einplanen
@@ -50,7 +54,11 @@ function Aufgaben_AufgabeAktualisieren($aufgabe) {
                 if (Mitglieder_MitgliedBesitztRechtZurueck("aufgaben.verwaltung", ICH["id"])) $btn_aufgabe_mitglied_einplanen.removeClass("disabled");
                 else $btn_aufgabe_mitglied_einplanen.addClass("disabled");
                 $btn_aufgabe_mitglied_ausplanen.appendTo($sichtbar);
-                $btn_aufgabe_erledigen.addClass("btn-outline-success").removeClass("btn-success").appendTo($sichtbar);
+                $btn_aufgabe_erledigen
+                    .html('<i class="bi bi-' + SYMBOLE["offen_erledigt_markieren"]["bootstrap"] + '"></i>')
+                    .addClass("btn-outline-success")
+                    .removeClass("btn-success")
+                    .appendTo($sichtbar);
             }
         } else {
             // Wenn das Recht zur Verwaltung der Aufgaben nicht erteilt ist und ich nicht eingeplant bin
@@ -61,7 +69,7 @@ function Aufgaben_AufgabeAktualisieren($aufgabe) {
                 .removeClass("btn-success")
                 .addClass("disabled");
             $btn_aufgabe_mitglied_ausplanen.appendTo($unsichtbar);
-            $btn_aufgabe_erledigen.appendTo($unsichtbar);
+            $btn_aufgabe_erledigen.html('<i class="bi bi-' + SYMBOLE["offen_erledigt_markieren"]["bootstrap"] + '"></i>').appendTo($unsichtbar);
         }
 
         $btn_aufgabe_mitglied_einplanen.text(Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder"));

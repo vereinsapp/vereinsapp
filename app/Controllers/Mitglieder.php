@@ -160,7 +160,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['title'] = 'Kassenbucheintrag als offen/erledigt markieren';
             $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>';
             $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['vorschau'] = array( 'erstellung', 'wert' );
-            $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['zusatzsymbole'] = array( 'offen_erledigt_markieren' );
+            $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['zusatzsymbol'] = array( 'offen_erledigt_markieren' );
 
             $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
                 'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_einfordern'),
@@ -180,7 +180,7 @@ class Mitglieder extends BaseController {
 
         if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
-            $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
+            $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
 
             $this->viewdata['liste']['aufgaben_offen_mitglied_geplant'] = HAUPTINSTANZEN['aufgaben'];
             unset($this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['werkzeugkasten']);

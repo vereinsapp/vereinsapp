@@ -12,6 +12,15 @@ class Aufgaben extends BaseController {
         $this->viewdata['liste']['alle_aufgaben']['vorschau'] = array( 'erstellung', 'zugeordnetes_element' );
         $this->viewdata['liste']['alle_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
 
+        $this->viewdata['liste']['alle_aufgaben']['werkzeugkasten']['mitglieder_statistiken_anzeigen'] = array(
+            'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
+            'title' => 'Erledigte Aufgaben',
+        );
+
+        $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
+        $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
+        $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
+
         if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
             $this->viewdata['liste']['alle_aufgaben']['werkzeugkasten_handle'] = TRUE;
