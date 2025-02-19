@@ -42,7 +42,7 @@ $(document).ready(function () {
             Schnittstelle_DomModalOeffnen(AJAX.antwort.html);
             $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
                 Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DateTime.now());
-                Schnittstelle_DomModalSchliessen($("#datenschutz_richtlinie_modal"));
+                Schnittstelle_DomModalSchliessen($("#datenschutz_richtlinie_anzeigen"));
             });
         });
 });

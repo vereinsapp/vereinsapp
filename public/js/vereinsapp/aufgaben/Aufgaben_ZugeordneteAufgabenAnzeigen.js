@@ -6,7 +6,7 @@ function Aufgaben_ZugeordneteAufgabenAnzeigen(dom, title) {
         element_ids.push(Number($(this).attr("data-element_id")));
     });
 
-    const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "zugeordnete_aufgaben_modal");
+    const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "zugeordnete_aufgaben_anzeigen");
     $zugeordnete_aufgaben = $neues_modal.find("#zugeordnete_aufgaben.liste");
 
     // TABELLE FILTERN
