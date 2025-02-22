@@ -51,11 +51,6 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE[typ]["bootstrap"] + ' text-primary"></i>');
             break;
 
-        // Zusatzsymbol für Verzeichnis
-        case "verzeichnis":
-            $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["verzeichnis"]["bootstrap"] + ' text-primary"></i>');
-            break;
-
         // Zusatzsymbol für Ändern-Werkzeug
         case "aendern":
             $zusatzsymbol.html(

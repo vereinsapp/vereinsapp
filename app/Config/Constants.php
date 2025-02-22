@@ -301,8 +301,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     // 'info' => array( 'bootstrap' => 'info-circle' ),
 
     'anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
-    'zugeordnete_aufgaben_anzeigen' => array( 'bootstrap' => 'award' ),
-    'mitglieder_statistiken_anzeigen' => array( 'bootstrap' => 'person-vcard' ),
+    'statistiken' => array( 'bootstrap' => 'graph-up-arrow' ),
     'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),
     'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),
     'einmal_link_email' => array( 'bootstrap' => 'envelope' ),

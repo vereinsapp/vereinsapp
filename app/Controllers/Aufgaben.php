@@ -12,7 +12,7 @@ class Aufgaben extends BaseController {
         $this->viewdata['liste']['alle_aufgaben']['vorschau'] = array( 'erstellung', 'zugeordnetes_element' );
         $this->viewdata['liste']['alle_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
 
-        $this->viewdata['liste']['alle_aufgaben']['werkzeugkasten']['mitglieder_statistiken_anzeigen'] = array(
+        $this->viewdata['liste']['alle_aufgaben']['werkzeugkasten']['statistiken'] = array(
             'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
             'title' => 'Erledigte Aufgaben',
         );

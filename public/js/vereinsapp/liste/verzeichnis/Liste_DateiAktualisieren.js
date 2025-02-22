@@ -41,7 +41,7 @@ function Liste_DateiAktualisieren($datei, liste) {
     });
 
     // ZUSATZINFO AKTUALISIEREN
-    $element.find(".zusatzinfo").each(function () {
+    $datei.find(".zusatzinfo").each(function () {
         Liste_ElementZusatzinfoAktualisieren($(this), $datei);
     });
 }

@@ -62,13 +62,21 @@ abstract class BaseController extends Controller
         $this->validation  = \Config\Services::validation();
         $this->session = \Config\Services::session();
 
-        if( str_contains( strtolower( (string) $this->request->getUserAgent() ), "whatsapp" ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-
         foreach( get_object_vars( config('Vereinsapp') ) as $eigenschaft => $wert ) {
             if( config('Vereinsapp_env') !== NULL AND property_exists( config('Vereinsapp_env'), $eigenschaft ) )
                 defined( strtoupper($eigenschaft) ) OR define( strtoupper($eigenschaft), config('Vereinsapp_env')->$eigenschaft );
             else defined( strtoupper($eigenschaft) ) OR define( strtoupper($eigenschaft), config('Vereinsapp')->$eigenschaft );
         }
+
+        defined('AKTIVER_CONTROLLER') OR define( 'AKTIVER_CONTROLLER', lcfirst(
+            explode( '\\', $this->router->controllerName() )[ array_key_last(
+              explode( '\\', $this->router->controllerName() )
+              ) ]
+            ) );
+          defined('METHOD') OR define( 'METHOD', $this->router->methodName() );
+        if( !array_key_exists( AKTIVER_CONTROLLER, CONTROLLERS ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+
+        if( str_contains( strtolower( (string) $this->request->getUserAgent() ), "whatsapp" ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 
         $verfuegbare_rechte = array(); $id = 1;
         foreach( config('AuthGroups')->permissions as $permission => $titel ) if( strtok( $permission, '.' ) == "global" OR array_key_exists( strtok( $permission, '.' ), CONTROLLERS ) ) {
@@ -85,13 +93,6 @@ abstract class BaseController extends Controller
         defined('ICH') OR define( 'ICH', $this->session->user );
 
         defined('VERSION') OR define( 'VERSION', preg_replace('/\s+/', '', file_get_contents( ROOTPATH.'/README.md', FALSE, NULL, 13 ) ) );
-
-        defined('AKTIVER_CONTROLLER') OR define( 'AKTIVER_CONTROLLER', lcfirst(
-          explode( '\\', $this->router->controllerName() )[ array_key_last(
-            explode( '\\', $this->router->controllerName() )
-            ) ]
-          ) );
-        defined('METHOD') OR define( 'METHOD', $this->router->methodName() );
 
         defined('HEAD_STYLESHEET') OR define( 'HEAD_STYLESHEET', array( 
           array( 'href' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css', 'integrity' => 'sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH', 'crossorigin' => 'anonymous', ),
