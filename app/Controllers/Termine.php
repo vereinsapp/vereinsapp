@@ -44,6 +44,29 @@ class Termine extends BaseController {
             'title' => 'Anwesenheiten dokumentieren',
         );
 
+        if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
+
+            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['aufgaben'] = array(
+                'klasse_id' => array('btn_zugeordnete_aufgaben_anzeigen'),
+                'title' => 'Zugeordnete Aufgaben anzeigen',
+            );
+
+            $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+            $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+            $this->viewdata['liste']['zugeordnete_aufgaben']['vorschau'] = array("zugeordnetes_element");
+            $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
+
+            $this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']['statistiken'] = array(
+                'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
+                'title' => 'Eingeplante und erledigte Aufgaben',
+            );
+
+            $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
+            $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
+            $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
+
+        }
+
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
 
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_handle'] = TRUE;
@@ -60,6 +83,11 @@ class Termine extends BaseController {
                 'klasse_id' => array('btn_termin_loeschen', 'bestaetigung_einfordern'),
                 'title' => 'Termin löschen',
                 'farbe' => 'danger',
+            );
+
+            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['csv_export'] = array(
+                'klasse_id' => array('btn_termine_csv_export', 'bestaetigung_einfordern'),
+                'title' => 'Termine als CSV-Datei exportieren',
             );
 
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['erstellen'] = array(
@@ -142,17 +170,21 @@ class Termine extends BaseController {
             'title' => 'Anwesenheiten dokumentieren',
         );
 
-        $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-        unset($this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']);
-        $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
-            array( 'eigenschaft' => 'zugeordnete_liste', 'operator' => '==', 'wert' => "termine", ),
-            array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $termin_id, ),
-        ), ), );
-        $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-        $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/aufgabe' ), );
+        if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
-        if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
-            $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
+            $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+            unset($this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']);
+            $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
+                array( 'eigenschaft' => 'zugeordnete_liste', 'operator' => '==', 'wert' => "termine", ),
+                array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $termin_id, ),
+            ), ), );
+            $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+            $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
+
+            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
+                $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
+
+        }
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
@@ -196,12 +228,10 @@ class Termine extends BaseController {
             'ort' => [ 'label' => EIGENSCHAFTEN['termine']['ort']['beschriftung'], 'rules' => [ 'required' ] ],
             'kategorie' => [ 'label' => EIGENSCHAFTEN['termine']['kategorie']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['termine']['kategorie'] ) ).']', ] ],
             'filtern_mitglieder' => [ 'label' => EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung'], 'rules' => [ 'required', 'valid_json' ] ],
-            'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         );
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( Time::parse( $this->request->getpost()['start'], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin') ) ) $ajax_antwort['validation'] = array(
-            'start' => 'Der Termin darf nicht in der Vergangenheit liegen.',
-        );
+        else if( Time::parse( $this->request->getpost()['start'], 'Europe/Berlin' )->isBefore( JETZT ) ) $ajax_antwort['validation'] = array( 'start' => 'Der Termin darf nicht in der Vergangenheit liegen.' );
         else if( !auth()->user()->can( 'termine.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $termine_Model = model(Termin_Model::class);
@@ -237,6 +267,32 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
+    public function ajax_termine_csv_export() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+            'element_ids' => [ 'label' => 'Element-IDs', 'rules' => [ 'permit_empty' ] ],
+            'element_ids.*' => [ 'label' => 'Element-ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else if( !( array_key_exists('element_ids', $this->request->getpost() ) AND is_array( $this->request->getpost()['element_ids'] ) AND count( $this->request->getpost()['element_ids'] ) > 0 ) ) $ajax_antwort['validation'] = array( 'element_ids' => 'Die Liste muss mindestens ein Element enthalten.' );
+        else {
+            $termine = model(Termin_Model::class)->find( $this->request->getpost()['element_ids'] );
+            foreach( $termine as $id => $termin ) $termine[ $id ]['link'] = site_url().'termine/'.$termin['id'];
+
+            if( !is_dir( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS ) ) mkdir( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS, 0777, true );
+            if( !is_file( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS.'/index.html') AND is_file( DATEI_UPLOAD_VERZEICHNIS.'/index.html') ) copy( DATEI_UPLOAD_VERZEICHNIS.'/index.html', DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS.'/index.html' );
+            $csv_export_datei = fopen( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS.'/'.TERMINE_CSV_EXPORT_DATEINAME, 'w' );
+            if ( !$csv_export_datei ) $ajax_antwort['validation'] = 'Fehler beim Öffnen der Datei!';
+
+            foreach( $termine as $termin ) if( isset( $termin['start'], $termin['titel'], $termin['ort'], $termin['link'] ) )
+                fputcsv( $csv_export_datei, [ $termin['start'], $termin['titel'], $termin['ort'], $termin['link'] ] );
+
+            fclose( $csv_export_datei );
+        }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
+
     //------------------------------------------------------------------------------------------------------------------
     public function ajax_rueckmeldung_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
@@ -244,7 +300,7 @@ class Termine extends BaseController {
             'termin_id' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'status' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'bemerkung' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !(array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( Time::parse( model(Termin_Model::class)->find(

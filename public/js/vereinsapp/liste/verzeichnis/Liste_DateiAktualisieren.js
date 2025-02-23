@@ -35,8 +35,13 @@ function Liste_DateiAktualisieren($datei, liste) {
     //                 '" type="audio/mpeg"></audio>'
     //         );
 
-    // ZUSATZSYMBOLE AKTUALISIEREN
+    // ZUSATZSYMBOL AKTUALISIEREN
     $datei.find(".zusatzsymbol").each(function () {
-        Liste_ElementZusatzsymbolAktualisieren($(this), $datei, liste);
+        Liste_ElementZusatzsymbolAktualisieren($(this), $datei);
+    });
+
+    // ZUSATZINFO AKTUALISIEREN
+    $datei.find(".zusatzinfo").each(function () {
+        Liste_ElementZusatzinfoAktualisieren($(this), $datei);
     });
 }

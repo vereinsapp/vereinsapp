@@ -149,7 +149,7 @@ function Aufgaben_Init() {
 
     // AUFGABE ALS OFEN/ERLEDIGT MARKIEREN
     $(document).on("click", ".btn_aufgabe_offen_erledigt_markieren", function () {
-        Aufgabe_AufgabeOffenErledigtMarkieren(
+        Aufgaben_AufgabeOffenErledigtMarkieren(
             $(this).hasClass("bestaetigung_einfordern"),
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
             $(this).attr("data-title"),
@@ -166,6 +166,14 @@ function Aufgaben_Init() {
             $(this).attr("data-title"),
             $(this).attr("data-element_id"),
             "aufgaben"
+        );
+    });
+
+    // ZUGEORDNETE AUFGABEN ANZEIGEN
+    $(document).on("click", ".btn_zugeordnete_aufgaben_anzeigen", function () {
+        Aufgaben_ZugeordneteAufgabenAnzeigen(
+            { $btn_ausloesend: $(this), $liste: $('.liste[id="' + $(this).attr("data-instanz") + '"]') },
+            $(this).attr("data-title")
         );
     });
 }

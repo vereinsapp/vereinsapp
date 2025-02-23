@@ -2,7 +2,7 @@ function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, dom, data, titl
     if (typeof kassenbucheintrag_id !== "undefined") kassenbucheintrag_id = Number(kassenbucheintrag_id);
 
     if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "kassenbuch_basiseigenschaften");
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "kassenbucheintrag_basiseigenschaften");
         Schnittstelle_DomModalOeffnen($neues_modal);
         Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "aendern", kassenbucheintrag_id, "kassenbuch");
     } else {

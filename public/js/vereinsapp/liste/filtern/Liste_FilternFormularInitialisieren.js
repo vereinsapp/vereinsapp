@@ -25,7 +25,6 @@ function Liste_FilternFormularInitialisieren($formular, instanz, liste) {
     let filtern_value = Schnittstelle_DomLetztesModalZurueck()
         .find(".btn_filtern_modal_oeffnen[data-liste='" + liste + "']")
         .val();
-    if (filtern_value == "") filtern_value = "[]";
 
     if (isJson(filtern_value))
         $formular

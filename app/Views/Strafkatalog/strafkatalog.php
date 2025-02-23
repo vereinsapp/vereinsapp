@@ -11,7 +11,7 @@
 </div>
 
 <?php if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'id' => 'strafkatalog_basiseigenschaften', 'modal' =>
+    view( 'Templates/modal', array( 'id' => 'strafe_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'strafkatalog' ), 'btn' => array( 'klasse_id' => 'btn_strafe_aktion' ), 'formular' =>
     view( 'Strafkatalog/strafe_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?= $this->endSection() ?>

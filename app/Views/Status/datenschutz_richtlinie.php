@@ -1,4 +1,4 @@
-<div class="modal fade" id="datenschutz_richtlinie_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+<div class="modal fade" id="datenschutz_richtlinie_anzeigen" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-body">

@@ -62,13 +62,21 @@ abstract class BaseController extends Controller
         $this->validation  = \Config\Services::validation();
         $this->session = \Config\Services::session();
 
-        if( str_contains( strtolower( (string) $this->request->getUserAgent() ), "whatsapp" ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-
         foreach( get_object_vars( config('Vereinsapp') ) as $eigenschaft => $wert ) {
             if( config('Vereinsapp_env') !== NULL AND property_exists( config('Vereinsapp_env'), $eigenschaft ) )
                 defined( strtoupper($eigenschaft) ) OR define( strtoupper($eigenschaft), config('Vereinsapp_env')->$eigenschaft );
             else defined( strtoupper($eigenschaft) ) OR define( strtoupper($eigenschaft), config('Vereinsapp')->$eigenschaft );
         }
+
+        defined('AKTIVER_CONTROLLER') OR define( 'AKTIVER_CONTROLLER', lcfirst(
+            explode( '\\', $this->router->controllerName() )[ array_key_last(
+              explode( '\\', $this->router->controllerName() )
+              ) ]
+            ) );
+          defined('METHOD') OR define( 'METHOD', $this->router->methodName() );
+        if( !array_key_exists( AKTIVER_CONTROLLER, CONTROLLERS ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+
+        if( str_contains( strtolower( (string) $this->request->getUserAgent() ), "whatsapp" ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 
         $verfuegbare_rechte = array(); $id = 1;
         foreach( config('AuthGroups')->permissions as $permission => $titel ) if( strtok( $permission, '.' ) == "global" OR array_key_exists( strtok( $permission, '.' ), CONTROLLERS ) ) {
@@ -86,16 +94,11 @@ abstract class BaseController extends Controller
 
         defined('VERSION') OR define( 'VERSION', preg_replace('/\s+/', '', file_get_contents( ROOTPATH.'/README.md', FALSE, NULL, 13 ) ) );
 
-        defined('AKTIVER_CONTROLLER') OR define( 'AKTIVER_CONTROLLER', lcfirst(
-          explode( '\\', $this->router->controllerName() )[ array_key_last(
-            explode( '\\', $this->router->controllerName() )
-            ) ]
-          ) );
-        defined('METHOD') OR define( 'METHOD', $this->router->methodName() );
-
         defined('HEAD_STYLESHEET') OR define( 'HEAD_STYLESHEET', array( 
           array( 'href' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css', 'integrity' => 'sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH', 'crossorigin' => 'anonymous', ),
           array( 'href' => 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css'),
+        //   array( 'href' => 'http://localhost/lib_extern/css/bootstrap.min.css', 'integrity' => 'sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH', 'crossorigin' => 'anonymous', ),
+        //   array( 'href' => 'http://localhost/lib_extern/css/bootstrap-icons.css'),
           array( 'href' => base_url('css/vereinsapp.css?v='.VERSION), ),
         ) );
         $head_script = array();
@@ -106,6 +109,12 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js', 'integrity' => 'sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz', 'crossorigin' => 'anonymous', );
         $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js', );
         $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js', );
+        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/jquery-3.7.1.js', 'integrity' => 'sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=', 'crossorigin' => 'anonymous', );
+        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/jquery-ui.js', 'integrity' => 'sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=', 'crossorigin' => 'anonymous', );
+        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/jquery.ui.touch-punch.min.js', );
+        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/bootstrap.bundle.min.js', 'integrity' => 'sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz', 'crossorigin' => 'anonymous', );
+        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/luxon.min.js', );
+        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/clipboard.min.js', );
         $head_script[] = array( 'src' => base_url('js/lib/sha256.min.js?v='.VERSION), ); // https://www.npmjs.com/package/js-sha256
         $head_script[] = array( 'src' => base_url('js/lib/ajaxqueue.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/isJson.js?v='.VERSION), );
@@ -126,6 +135,7 @@ abstract class BaseController extends Controller
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Init.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_Aktualisieren.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/Liste_CsvExport.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementFormularInitialisieren.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementFormularEigenschaftenWerteZurueck.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementFormularValidationAktualisieren.js?v='.VERSION), );
@@ -133,6 +143,7 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementAktualisieren.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_WertFormatiertZurueck.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementZusatzsymbolAktualisieren.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementZusatzinfoAktualisieren.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementNavigationAktualisieren.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementBeschriftungZurueck.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/element/Liste_ElementAuswahlEinfordern.js?v='.VERSION), );
@@ -224,6 +235,7 @@ abstract class BaseController extends Controller
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_PasswortFestlegen.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_EinmalLinkErstellen.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_MitgliedBesitztRechtZurueck.js?v='.VERSION), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/mitglieder/Mitglieder_MitgliederAufgabenErledigtAnzeigen.js?v='.VERSION), );
 
             $head_script[] = array( 'src' => base_url('js/vereinsapp/aufgaben/Aufgaben_Init.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/aufgaben/Aufgaben_AufgabeAktualisieren.js?v='.VERSION), );
@@ -233,7 +245,8 @@ abstract class BaseController extends Controller
             $head_script[] = array( 'src' => base_url('js/vereinsapp/aufgaben/Aufgaben_AufgabeZugeordnetesElementLoeschen.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/aufgaben/Aufgaben_AufgabeMitgliedEinplanen.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/aufgaben/Aufgaben_AufgabeMitgliedAusplanen.js?v='.VERSION), );
-            $head_script[] = array( 'src' => base_url('js/vereinsapp/aufgaben/Aufgabe_AufgabeOffenErledigtMarkieren.js?v='.VERSION), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/aufgaben/Aufgaben_AufgabeOffenErledigtMarkieren.js?v='.VERSION), );
+            $head_script[] = array( 'src' => base_url('js/vereinsapp/aufgaben/Aufgaben_ZugeordneteAufgabenAnzeigen.js?v='.VERSION), );
 
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_Init.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_TerminErstellen.js?v='.VERSION), );
@@ -243,7 +256,7 @@ abstract class BaseController extends Controller
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_RueckmeldungDetaillieren.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_RueckmeldungAktualisieren.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/termine/Termine_RueckmeldungEinAusblenden.js?v='.VERSION), );
-            
+
             $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_Init.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_StrafeErstellen.js?v='.VERSION), );
             $head_script[] = array( 'src' => base_url('js/vereinsapp/strafkatalog/Strafkatalog_StrafeAendern.js?v='.VERSION), );

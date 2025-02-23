@@ -90,9 +90,14 @@ function Liste_ElementAktualisieren($element, liste) {
     // WERKZEUGKASTEN AKTUALISIEREN
     $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-liste", liste).attr("data-element_id", element_id);
 
-    // ZUSATZSYMBOLE AKTUALISIEREN
+    // ZUSATZSYMBOL AKTUALISIEREN
     $element.find(".zusatzsymbol").each(function () {
-        Liste_ElementZusatzsymbolAktualisieren($(this), $element, liste);
+        Liste_ElementZusatzsymbolAktualisieren($(this), $element);
+    });
+
+    // ZUSATZINFO AKTUALISIEREN
+    $element.find(".zusatzinfo").each(function () {
+        Liste_ElementZusatzinfoAktualisieren($(this), $element);
     });
 
     // VORSCHAU-EIGENSCHAFT UND ZUGEHÖRIGEN SPACER IN DER VORSCHAU AUSBLENDEN

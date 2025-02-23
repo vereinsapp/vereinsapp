@@ -12,7 +12,7 @@ class Aufgaben extends Migration
             'zugeordnete_liste'         => ['type' => 'varchar',    'constraint' => 50,                         'null' => true],
             'zugeordnete_element_id'    => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => true],
             'titel'                     => ['type' => 'varchar',    'constraint' => 100,                        'null' => false],
-            'mitglied_id'               => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => false],
+            'mitglied_id'               => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => true],
             'erledigt'                  => ['type' => 'datetime',                                               'null' => true],
             'bemerkung'                 => ['type' => 'varchar',    'constraint' => 100,                        'null' => false],
             'created_at'                => ['type' => 'datetime',                                               'null' => true],

@@ -55,9 +55,13 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
 <?php if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) { ?>
             <i class="bi bi-<?= SYMBOLE['sortable']['bootstrap']; ?> text-primary float-end ms-2 stretched-link-unwirksam sortable_handle" role="button"></i>
 <?php } ?>
-            <div class="float-end zusatzsymbole"><span class="zusatzsymbol ms-2" data-zusatzsymbol="bemerkung"></span><?php
-                if( array_key_exists( 'zusatzsymbole', $liste ) ) foreach( $liste['zusatzsymbole'] as $zusatzsymbol ) echo '<span class="zusatzsymbol ms-2" data-zusatzsymbol="'.$zusatzsymbol.'"></span>';
-            ?></div>
+<?php if( array_key_exists( 'zusatzsymbol', $liste ) AND is_array( $liste['zusatzsymbol'] ) ) foreach( $liste['zusatzsymbol'] as $zusatzsymbol ) { ?>
+            <span class="zusatzsymbol float-end ms-2" data-zusatzsymbol="<?= $zusatzsymbol ?>"></span>
+<?php } ?>
+            <span class="zusatzsymbol float-end ms-2" data-zusatzsymbol="bemerkung"></span>
+<?php if( array_key_exists( 'zusatzinfo', $liste ) AND is_array( $liste['zusatzinfo'] ) ) foreach( $liste['zusatzinfo'] as $zusatzinfo ) { ?>
+            <span class="zusatzinfo float-end ms-2" data-zusatzinfo="<?= $zusatzinfo ?>"></span>
+<?php } ?>
 <?php if( array_key_exists( 'link', $liste ) AND $liste['link'] ) { ?>
             <a class="stretched-link"></a>
 <?php }?>

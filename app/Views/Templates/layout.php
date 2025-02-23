@@ -46,7 +46,7 @@
     view( 'Mitglieder/mitglied_passwort_festlegen_formular' ) ) ) ) ); ?>
     </div>
 
-    <div id="hauptinstanzen">
+    <div id="hauptinstanzen" class="invisible">
 <?php foreach( HAUPTINSTANZEN as $liste => $eigenschaften ) { $eigenschaften['id'] = 'HAUPTINSTANZ'; echo view( 'Templates/Liste/liste', array( 'liste' => $eigenschaften ) ); } ?>
     </div>
 

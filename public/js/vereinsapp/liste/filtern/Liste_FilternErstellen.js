@@ -21,7 +21,7 @@ function Liste_FilternErstellen($filtern_definition, instanz, liste) {
     else if ($filtern.find(".filtern_kind").length > 0) $filtern.find(".filtern_kind").first().append($filtern_knoten);
     else {
         const $filtern_zwischenspeicher = $filtern.children().clone();
-        $filtern.empty().append(Liste_Filtern2$FilternZurueck([{ verknuepfung: "&&", filtern: new Array() }], instanz, liste));
+        $filtern.empty().append(Liste_Filtern2$FilternZurueck([{ verknuepfung: "||", filtern: new Array() }], instanz, liste));
         $filtern.find(".filtern_kind").first().append($filtern_zwischenspeicher).append($filtern_knoten);
     }
 

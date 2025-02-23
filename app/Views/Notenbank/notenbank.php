@@ -11,7 +11,7 @@
 </div>
 
 <?php if( auth()->user()->can( 'notenbank.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'id' => 'notenbank_basiseigenschaften', 'modal' =>
+    view( 'Templates/modal', array( 'id' => 'titel_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'notenbank' ), 'btn' => array( 'klasse_id' => 'btn_titel_aktion' ), 'formular' =>
     view( 'Notenbank/titel_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?= $this->endSection() ?>

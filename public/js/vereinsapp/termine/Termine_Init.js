@@ -91,6 +91,17 @@ function Termine_Init() {
         );
     });
 
+    // TERMINE ALS CSV-DATEI EXPORTIEREN
+    $(document).on("click", ".btn_termine_csv_export", function () {
+        Liste_CsvExport(
+            $(this).hasClass("bestaetigung_einfordern"),
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
+            $(this).attr("data-title"),
+            $(this).attr("data-instanz"),
+            "termine"
+        );
+    });
+
     // RÜCKMELDUNG ERSTELLEN
     $(document).on("click", ".btn_rueckmeldung_erstellen", function () {
         Termine_RueckmeldungErstellen(

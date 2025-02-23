@@ -70,6 +70,7 @@ class Vereinsapp extends BaseConfig
         'notenbank' => array ( 'beschriftung' => 'Notenbank', 'symbol' => SYMBOLE['notenbank']['bootstrap'] ),
         'startseite' => array ( 'beschriftung' => 'Willkommen', 'symbol' => SYMBOLE['startseite']['bootstrap'] ),
         'status' => array ( 'beschriftung' => 'Status', 'symbol' => SYMBOLE['einstellungen']['bootstrap'] ),
+        'loginController' => array ( 'beschriftung' => 'Login', 'symbol' => SYMBOLE['einstellungen']['bootstrap'] ),
     );
 
     /**
@@ -108,7 +109,7 @@ class Vereinsapp extends BaseConfig
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion' ),
             // 'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
-            'zusatzsymbole' => array('geburtstag'),
+            'zusatzsymbol' => array('geburtstag'),
             // 'checkliste' => 'vergebene_rechte',
             // 'gegen_liste' => 'termine',
             // 'gegen_element_id' => 42,
@@ -158,7 +159,7 @@ class Vereinsapp extends BaseConfig
                 array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            'zusatzsymbole' => array('kategorie'),
+            'zusatzsymbol' => array('kategorie'),
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Termine filtern', ),
                 'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Termine sortieren', ),
@@ -197,7 +198,7 @@ class Vereinsapp extends BaseConfig
                 array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
             ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            'zusatzsymbole' => array('offen_erledigt'),
+            'zusatzsymbol' => array('offen_erledigt'),
             'bedingte_formatierung' => array( 'klasse' => array( 'text-danger' => array( 'operator' => '<=', 'eigenschaft' => 'wert', 'wert' => 0 ), ), 'eigenschaft' => 'wert', ),
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Kassenbuch filtern', ),
@@ -714,6 +715,16 @@ class Vereinsapp extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
+     * CSV-Export der Termine
+     * --------------------------------------------------------------------------
+     *
+     * Name der Datei, die beim Export der Termine
+     * in ein csv-Format verwendet bzw. erstellt wird
+     */
+    public $termine_csv_export_dateiname = 'termine.csv';
+
+    /**
+     * --------------------------------------------------------------------------
      * Notenbank Verzeichnis Anzahl Ziffern
      * --------------------------------------------------------------------------
      *
@@ -785,6 +796,25 @@ class Vereinsapp extends BaseConfig
      * Kasten "Weiter zur Website von ..." auf der Startseite aktivieren
      */
     public $kasten_weiter_zur_website_von_startseite = FALSE;
+
+    /**
+     * --------------------------------------------------------------------------
+     * CSV-Export Verzeichnis
+     * --------------------------------------------------------------------------
+     *
+     * Verzeichnis, das beim Export einer Liste
+     * in ein csv-Format verwendet bzw. erstellt wird
+     */
+    public $csv_export_verzeichnis = 'csv_export';
+
+    /**
+     * --------------------------------------------------------------------------
+     * Datei-Upload Verzeichnis
+     * --------------------------------------------------------------------------
+     *
+     * Verzeichnis, das beim Datei-Upload verwendet bzw. erstellt wird
+     */
+    public $datei_upload_verzeichnis = WRITEPATH.'uploads';
 
     /**
      * --------------------------------------------------------------------------

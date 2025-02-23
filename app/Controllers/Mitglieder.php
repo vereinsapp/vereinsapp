@@ -20,33 +20,38 @@ class Mitglieder extends BaseController {
         $this->viewdata['liste']['alle_mitglieder']['link'] = TRUE;
         $this->viewdata['liste']['alle_mitglieder']['vorschau'] = MITGLIEDER_EIGENSCHAFTEN_VORSCHAU;
 
-        $disabled_filtern = array();
-        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['termine'];
-        unset($this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern']);
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['beschriftung'] = '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>';
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine', 'filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'rueckmeldungen', 'klasse' => array(
-            'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-            'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
-        ), );
+        if( array_key_exists( LISTEN['anwesenheiten']['controller'], CONTROLLERS ) ) {
 
-        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
-            $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
-                'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
-                'title' => 'Alle abwählen',
+            $disabled_filtern = array();
+            if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
+            $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['termine'];
+            unset($this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern']);
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['beschriftung'] = '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>';
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine', 'filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), );
+            if( array_key_exists( LISTEN['rueckmeldungen']['controller'], CONTROLLERS ) )
+                $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'rueckmeldungen', 'klasse' => array(
+                    'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
+                    'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
+                ), );
+
+            if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
+                $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
+                    'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
+                    'title' => 'Alle abwählen',
+                );
+                $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
+                    'klasse_id' => array('btn_alle_checks_anwaehlen', 'bestaetigung_einfordern'),
+                    'title' => 'Alle anwählen',
+                );
+            }
+
+            $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
+                'klasse_id' => 'btn_anwesenheiten_dokumentieren',
+                'title' => 'Anwesenheiten dokumentieren',
             );
-            $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
-                'klasse_id' => array('btn_alle_checks_anwaehlen', 'bestaetigung_einfordern'),
-                'title' => 'Alle anwählen',
-            );
+
         }
-
-        $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
-            'klasse_id' => 'btn_anwesenheiten_dokumentieren',
-            'title' => 'Anwesenheiten dokumentieren',
-        );
         
         if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
@@ -100,33 +105,38 @@ class Mitglieder extends BaseController {
 
         $this->viewdata['element_id'] = $mitglied_id;
 
-        $disabled_filtern = array();
-        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['termine'];
-        unset($this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern']);
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['beschriftung'] = '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>';
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine', 'filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'rueckmeldungen', 'klasse' => array(
-            'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-            'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
-        ), );
+        if( array_key_exists( LISTEN['anwesenheiten']['controller'], CONTROLLERS ) ) {
 
-        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
-            $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
-                'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
-                'title' => 'Alle abwählen',
+            $disabled_filtern = array();
+            if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
+            $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['termine'];
+            unset($this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern']);
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['beschriftung'] = '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>';
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine', 'filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), );
+            if( array_key_exists( LISTEN['rueckmeldungen']['controller'], CONTROLLERS ) )
+                $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'rueckmeldungen', 'klasse' => array(
+                    'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
+                    'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
+                ), );
+
+            if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
+                $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
+                    'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
+                    'title' => 'Alle abwählen',
+                );
+                $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
+                    'klasse_id' => array('btn_alle_checks_anwaehlen', 'bestaetigung_einfordern'),
+                    'title' => 'Alle anwählen',
+                );
+            }
+
+            $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
+                'klasse_id' => 'btn_anwesenheiten_dokumentieren',
+                'title' => 'Anwesenheiten dokumentieren',
             );
-            $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
-                'klasse_id' => array('btn_alle_checks_anwaehlen', 'bestaetigung_einfordern'),
-                'title' => 'Alle anwählen',
-            );
+
         }
-
-        $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
-            'klasse_id' => 'btn_anwesenheiten_dokumentieren',
-            'title' => 'Anwesenheiten dokumentieren',
-        );
 
         if( auth()->user()->can( 'mitglieder.rechte' ) ) {
             $disabled_filtern = array();
@@ -160,7 +170,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['title'] = 'Kassenbucheintrag als offen/erledigt markieren';
             $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>';
             $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['vorschau'] = array( 'erstellung', 'wert' );
-            $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['zusatzsymbole'] = array( 'offen_erledigt_markieren' );
+            $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['zusatzsymbol'] = array( 'offen_erledigt_markieren' );
 
             $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
                 'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_einfordern'),
@@ -169,28 +179,31 @@ class Mitglieder extends BaseController {
 
         }
 
-        $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-        unset($this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']);
-        $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
-            array( 'eigenschaft' => 'zugeordnete_liste', 'operator' => '==', 'wert' => "mitglieder", ),
-            array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $mitglied_id, ),
-        ), ), );
-        $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-        $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/aufgabe' ), );
+        if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
-        if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-
-            $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
-
-            $this->viewdata['liste']['aufgaben_offen_mitglied_geplant'] = HAUPTINSTANZEN['aufgaben'];
-            unset($this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['werkzeugkasten']);
-                $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
-                array( 'eigenschaft' => 'mitglied_id', 'operator' => '==', 'wert' => $mitglied_id, ),
-                array( 'eigenschaft' => 'erledigt_janein', 'operator' => '==', 'wert' => false ),
+            $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+            unset($this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']);
+            $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
+                array( 'eigenschaft' => 'zugeordnete_liste', 'operator' => '==', 'wert' => "mitglieder", ),
+                array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $mitglied_id, ),
             ), ), );
-            $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-            $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['vorschau'] = array( 'zugeordnetes_element' );
-            $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['views'] = array( array( 'view' => 'Aufgaben/aufgabe' ), );
+            $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+            $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
+
+            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+                $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
+
+                $this->viewdata['liste']['aufgaben_offen_mitglied_geplant'] = HAUPTINSTANZEN['aufgaben'];
+                unset($this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['werkzeugkasten']);
+                    $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
+                    array( 'eigenschaft' => 'mitglied_id', 'operator' => '==', 'wert' => $mitglied_id, ),
+                    array( 'eigenschaft' => 'erledigt_janein', 'operator' => '==', 'wert' => false ),
+                ), ), );
+                $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+                $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['vorschau'] = array( 'zugeordnetes_element' );
+                $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
+
+            }
 
         }
 
@@ -472,7 +485,7 @@ class Mitglieder extends BaseController {
             'ajax_id' => 'required|is_natural',
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'verfuegbares_recht_id' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['verfuegbares_recht_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'status' => [ 'label' => EIGENSCHAFTEN['anwesenheiten']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
+            'status' => [ 'label' => 'Status', 'rules' => [ 'required', 'is_natural' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.rechte' ) AND
                  !( auth()->user()->can( 'global.einstellungen' ) AND VERFUEGBARE_RECHTE['mitglieder.rechte']['id'] == $this->request->getPost()['verfuegbares_recht_id'] )

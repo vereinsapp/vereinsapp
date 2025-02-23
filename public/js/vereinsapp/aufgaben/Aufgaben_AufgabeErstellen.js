@@ -2,7 +2,7 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
     if (typeof aufgabe_id !== "undefined") aufgabe_id = Number(aufgabe_id);
 
     if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "aufgaben_basiseigenschaften");
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "aufgabe_basiseigenschaften");
         Schnittstelle_DomModalOeffnen($neues_modal);
         Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "erstellen", aufgabe_id, "aufgaben");
     } else {

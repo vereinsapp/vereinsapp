@@ -268,8 +268,11 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'aufgaben' => array ( 'bootstrap' => 'award' ),
     'termine' => array ( 'bootstrap' => 'calendar-event' ),
     'strafkatalog' => array ( 'bootstrap' => 'bank' ),
+    'kassenbuch' => array( 'bootstrap' => 'journal-bookmark' ),
     'notenbank' => array ( 'bootstrap' => 'file-earmark-music' ),
     'startseite' => array ( 'bootstrap' => '' ),
+    'status' => array( 'bootstrap' => 'circle-fill' ),
+    'logout' => array( 'bootstrap' => 'door-open' ),
 
     'werkzeuge' => array( 'bootstrap' => 'tools' ),
     'erstellen' => array( 'bootstrap' => 'plus-lg' ),
@@ -279,6 +282,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'auswaehlen' => array( 'bootstrap' => 'box-arrow-in-down-left' ),
     'offen_erledigt_markieren' => array ( 'bootstrap' => 'check2-circle' ),
     'strafe_zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
+    'csv_export' => array ( 'bootstrap' => 'filetype-csv' ),
 
     'sortable' => array( 'bootstrap' => 'arrow-down-up' ),
     'collapse_oeffnen' => array( 'bootstrap' => 'caret-right' ),
@@ -293,21 +297,21 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'alle_checks_abwaehlen' => array( 'bootstrap' => 'toggle-off' ),
     'pfeil_links' => array( 'bootstrap' => 'arrow-left' ),
     'pfeil_rechts' => array( 'bootstrap' => 'arrow-right' ),
-
-    'mitglied' => array ( 'bootstrap' => 'person' ),
     'spacer' => array ( 'bootstrap' => 'dot' ),
-    'bemerkung' => array( 'bootstrap' => 'chat-dots' ),
     // 'info' => array( 'bootstrap' => 'info-circle' ),
 
     'anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
+    'statistiken' => array( 'bootstrap' => 'graph-up-arrow' ),
     'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),
-    'kassenbuch' => array( 'bootstrap' => 'journal-bookmark' ),
+    'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),
+    'einmal_link_email' => array( 'bootstrap' => 'envelope' ),
 
     'geburtstag' => array( 'bootstrap' => 'cake2' ),
+    'bemerkung' => array( 'bootstrap' => 'chat-dots' ),
 
+    'zahlenraum' => array( 'bootstrap' => '123' ),
     'zeitraum' => array( 'bootstrap' => 'calendar-range' ),
     'ort' => array( 'bootstrap' => 'geo-alt-fill' ),
-    'zahlenraum' => array( 'bootstrap' => '123' ),
 
     'sichtbar' => array( 'bootstrap' => 'eye' ),
     'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),
@@ -322,12 +326,6 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'm4a' => array( 'bootstrap' => 'file-play' ),
     'noten' => array( 'bootstrap' => 'file-earmark-music' ),
     'audio' => array( 'bootstrap' => 'play-btn' ),
-
-    'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),
-    'einmal_link_email' => array( 'bootstrap' => 'envelope' ),
-
-    'status' => array( 'bootstrap' => 'circle-fill' ),
-    'logout' => array( 'bootstrap' => 'door-open' ),
 ) );
 
 // enum ZUSTAND

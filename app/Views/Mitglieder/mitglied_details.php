@@ -49,23 +49,24 @@
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['aufgaben_offen_mitglied_geplant'] ) ); ?>
 </div><?php } ?>
 
-<div class="container mb-3">
+<?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) { ?><div class="container mb-3">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="aufgaben" data-instanz="zugeordnete_aufgaben">Zugeordnete Aufgaben</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['zugeordnete_aufgaben'] ) ); ?>
 <?php if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'id' => 'aufgaben_basiseigenschaften', 'modal' =>
+    view( 'Templates/modal', array( 'id' => 'aufgabe_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'aufgaben' ), 'btn' => array( 'klasse_id' => 'btn_aufgabe_aktion' ), 'formular' =>
     view( 'Aufgaben/aufgabe_basiseigenschaften_formular' ) ) ) ) ); ?>
-</div>
+</div><?php } ?>
 
-<?= view( 'Templates/modal', array( 'id' => 'mitglieder_anwesenheiten_dokumentieren', 'modal' =>
+<?php if( array_key_exists( LISTEN['anwesenheiten']['controller'], CONTROLLERS ) ) echo
+    view( 'Templates/modal', array( 'id' => 'mitglieder_anwesenheiten_dokumentieren', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ) ) ); ?>
 <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'id' => 'mitglieder_basiseigenschaften', 'modal' =>
+    view( 'Templates/modal', array( 'id' => 'mitglied_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_aktion' ), 'formular' =>
     view( 'Mitglieder/mitglied_basiseigenschaften_formular' ) ) ) ) ); 
       elseif( $element_id == ICH['id'] ) echo
-    view( 'Templates/modal', array( 'id' => 'mitglieder_basiseigenschaften', 'modal' =>
+    view( 'Templates/modal', array( 'id' => 'mitglied_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder', 'element_id' => ICH['id'] ), 'btn' => array( 'klasse_id' => 'btn_mitglied_aendern', 'beschriftung' => 'Meine Daten ändern' ), 'formular' =>
     view( 'Mitglieder/mitglied_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
@@ -73,5 +74,5 @@
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_einmal_link_anzeigen', 'beschriftung' => 'Einmal-Link anzeigen' ), 'formular' =>
     view( 'Mitglieder/mitglied_einmal_link_anzeigen_formular' ) ) ) ) ); ?>  
 
-<?= view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'mitglieder', 'element_id' => $element_id ) ); ?>
+<?php if( isset( $werkzeugkasten ) AND is_array( $werkzeugkasten ) AND count( $werkzeugkasten ) > 0 ) echo view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'mitglieder', 'element_id' => $element_id ) ); ?>
 <?= $this->endSection() ?>

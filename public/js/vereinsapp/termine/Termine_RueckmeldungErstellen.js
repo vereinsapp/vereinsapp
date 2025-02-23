@@ -2,7 +2,7 @@ function Termine_RueckmeldungErstellen(formular_oeffnen, dom, data, title, rueck
     if (typeof rueckmeldung_id !== "undefined") rueckmeldung_id = Number(rueckmeldung_id);
 
     if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "rueckmeldungen_basiseigenschaften");
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "rueckmeldung_basiseigenschaften");
         Schnittstelle_DomModalOeffnen($neues_modal);
         Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "erstellen", rueckmeldung_id, "rueckmeldungen");
     } else {

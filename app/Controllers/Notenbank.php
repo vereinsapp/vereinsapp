@@ -46,22 +46,26 @@ class Notenbank extends BaseController {
     //------------------------------------------------------------------------------------------------------------------
     public function details( $titel_id ) {
         if( empty( model(Titel_Model::class)->find( $titel_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-    
+
         $this->viewdata['element_id'] = $titel_id;
 
         $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array( 'liste' => 'notenbank', 'link' => TRUE, 'element_id' => $titel_id, );
 
-        $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-        unset($this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']);
-        $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
-            array( 'eigenschaft' => 'zugeordnete_liste', 'operator' => '==', 'wert' => "notenbank", ),
-            array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $titel_id, ),
-        ), ), );
-        $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-        $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/aufgabe' ), );
+        if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
-        if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
-            $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbole'] = array( 'aendern', 'duplizieren', 'loeschen', );
+            $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+            unset($this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']);
+            $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
+                array( 'eigenschaft' => 'zugeordnete_liste', 'operator' => '==', 'wert' => "notenbank", ),
+                array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $titel_id, ),
+            ), ), );
+            $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+            $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
+
+            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
+                $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
+
+        }
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(

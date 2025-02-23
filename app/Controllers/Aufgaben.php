@@ -10,7 +10,16 @@ class Aufgaben extends BaseController {
         $this->viewdata['liste']['alle_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
         $this->viewdata['liste']['alle_aufgaben']['group-flush'] = TRUE;
         $this->viewdata['liste']['alle_aufgaben']['vorschau'] = array( 'erstellung', 'zugeordnetes_element' );
-        $this->viewdata['liste']['alle_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/aufgabe' ), );
+        $this->viewdata['liste']['alle_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
+
+        $this->viewdata['liste']['alle_aufgaben']['werkzeugkasten']['statistiken'] = array(
+            'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
+            'title' => 'Erledigte Aufgaben',
+        );
+
+        $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
+        $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
+        $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
 
         if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
@@ -51,15 +60,15 @@ class Aufgaben extends BaseController {
             'titel' => [ 'label' => EIGENSCHAFTEN['aufgaben']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['mitglied_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero', 'permit_empty' ] ],
             'erledigt' => [ 'label' => EIGENSCHAFTEN['aufgaben']['erledigt']['beschriftung'], 'rules' => [ 'if_exist', 'valid_date', 'permit_empty' ] ],
-            'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben']['bemerkung']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         );
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         // Die Aufgabe darf nicht erstellt oder geändert werden, wenn das Recht zur Verwaltung der Aufgaben nicht vergeben ist
         else if( !auth()->user()->can( 'aufgaben.verwaltung' )
         // und man die Aufgabe sich nicht zuweisen will bzw. sich nicht mehr zuweisen will
             AND  !( array_key_exists( 'id', $this->request->getpost() ) AND array_key_exists( 'mitglied_id', $this->request->getpost() )
-                AND (  ( $this->request->getpost()['mitglied_id'] == ICH['id'] AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] === NULL )
-                    OR ( $this->request->getpost()['mitglied_id'] === NULL      AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == ICH['id'] ) ) )
+                AND (  ( $this->request->getpost()['mitglied_id'] == ICH['id']  AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] === NULL )
+                    OR ( $this->request->getpost()['mitglied_id'] == ''         AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == ICH['id'] ) ) )
         // und man die Aufgabe nicht als erledigt markieren will
             AND  !( array_key_exists( 'id', $this->request->getpost() ) AND array_key_exists( 'erledigt', $this->request->getpost() )
                 AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == ICH['id'] )

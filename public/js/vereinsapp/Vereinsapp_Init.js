@@ -42,7 +42,7 @@ $(document).ready(function () {
             Schnittstelle_DomModalOeffnen(AJAX.antwort.html);
             $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
                 Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DateTime.now());
-                Schnittstelle_DomModalSchliessen($("#datenschutz_richtlinie_modal"));
+                Schnittstelle_DomModalSchliessen($("#datenschutz_richtlinie_anzeigen"));
             });
         });
 });
@@ -50,9 +50,11 @@ $(document).ready(function () {
 /* TODO
 
 FEATURES
-Filtern auf eine Ebene beschränken und die Oberfläche optimieren
-Sortieren auf einen Wert beschränken (analog zu gruppieren)
+Filtern auf eine Ebene beschränken und sortieren auf einen Wert beschränken (analog zu gruppieren) und die Oberflächen optimieren
+    Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
+    Wozu braucht es LISTEN[liste].instanz[instanz].filtern und .sortieren?
 Batch über filtern- und sortieren-Button legen
+Setlist mit Links zu den Titeln einführen
 Liste unformatiert in die Zwischenablage kopieren
 Termin mit Ende erweitern
 Mitglied einplanen bereits bei der Erstellung einer Aufgabe
@@ -66,6 +68,7 @@ Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 Link zu Github neben die Version
 
 SOFTWARE
+Funktion zur Erstellung eines Verzeichnisses, inkl. Kopieren von index.html aus dem übergeordneten Verzeichnis
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
 Schnittstelle_EventElementReduzieren einführen
 Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel) und weiches Löschen für abhängige Tabellen einführen
@@ -92,9 +95,7 @@ AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 Rekursion-Problem Rückmeldungen vs. Termine auflösen
+eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
-Form validation für bemerkung mit Regel field_exists durchführen?
-Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
-Wozu braucht es LISTEN[liste].instanz[instanz].filtern und .sortieren?
 
 */
