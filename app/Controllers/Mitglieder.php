@@ -240,11 +240,7 @@ class Mitglieder extends BaseController {
 
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'alle_mitglieder',
-            'sortieren' => array(
-                array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),                
-                array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),                
-            ),
+            'sortieren' => array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
         );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;

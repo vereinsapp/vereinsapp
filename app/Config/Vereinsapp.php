@@ -96,11 +96,7 @@ class Vereinsapp extends BaseConfig
         'mitglieder' => array(
             'liste' => 'mitglieder',
             // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
-            'sortieren' => array(
-                array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),
-            ),
+            'sortieren' => array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
             // 'group-flush' => TRUE,
             // 'sortable' => TRUE,
             // 'link' => TRUE,
@@ -141,7 +137,7 @@ class Vereinsapp extends BaseConfig
 
         'aufgaben' => array(
             'liste' => 'aufgaben',
-            'sortieren' => array( array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ), ),
+            'sortieren' => array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Aufgaben filtern', ),
@@ -155,9 +151,7 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(
                 array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => HEUTE ),
             ),
-            'sortieren' => array(
-                array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
-            ),
+            'sortieren' => array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'zusatzsymbol' => array('kategorie'),
             'werkzeugkasten' => array(
@@ -177,11 +171,7 @@ class Vereinsapp extends BaseConfig
 
         'strafkatalog' => array(
             'liste' => 'strafkatalog',
-            'sortieren' => array(
-                array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
-            ),
+            'sortieren' => array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Strafkatalog filtern', ),
@@ -192,11 +182,7 @@ class Vereinsapp extends BaseConfig
 
         'kassenbuch' => array(
             'liste' => 'kassenbuch',
-            'sortieren' => array(
-                array( 'eigenschaft' => 'erstellung', 'richtung' => SORT_DESC, ),
-                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
-            ),
+            'sortieren' => array( 'eigenschaft' => 'erstellung', 'richtung' => SORT_DESC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'zusatzsymbol' => array('offen_erledigt'),
             'bedingte_formatierung' => array( 'klasse' => array( 'text-danger' => array( 'operator' => '<=', 'eigenschaft' => 'wert', 'wert' => 0 ), ), 'eigenschaft' => 'wert', ),
@@ -209,11 +195,7 @@ class Vereinsapp extends BaseConfig
 
         'notenbank' => array(
             'liste' => 'notenbank',
-            'sortieren' => array(
-                array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
-            ),
+            'sortieren' => array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
             'beschriftung' => '[<span class="eigenschaft" data-eigenschaft="titel_nr"></span>] <span class="eigenschaft" data-eigenschaft="titel"></span>',
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Notenbank filtern', ),

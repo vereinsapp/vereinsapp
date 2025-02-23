@@ -13,7 +13,7 @@ class Startseite extends BaseController {
         unset($this->viewdata['liste']['anstehende_geburtstage']['werkzeugkasten']);
         unset($this->viewdata['liste']['anstehende_geburtstage']['listenstatistik']);
         $this->viewdata['liste']['anstehende_geburtstage']['filtern'] = array( array( 'operator' => '<=', 'eigenschaft' => 'geburtstag', 'wert' => Time::today( 'Europe/Berlin' )->addDays(14)->toDateTimeString() ), );
-        $this->viewdata['liste']['anstehende_geburtstage']['sortieren'] > array( array( 'eigenschaft' => 'geburtstag', 'richtung' => SORT_ASC, ), );
+        $this->viewdata['liste']['anstehende_geburtstage']['sortieren'] = array( 'eigenschaft' => 'geburtstag', 'richtung' => SORT_ASC, );
         $this->viewdata['liste']['anstehende_geburtstage']['link'] = TRUE;
         $this->viewdata['liste']['anstehende_geburtstage']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['geburtstag']['bootstrap'].' me-2"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
         $this->viewdata['liste']['anstehende_geburtstage']['vorschau'] = array( 'geburtstag', 'alter_geburtstag' );

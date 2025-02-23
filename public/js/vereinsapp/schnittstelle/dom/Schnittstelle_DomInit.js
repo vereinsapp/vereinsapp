@@ -68,9 +68,6 @@ function Schnittstelle_DomInit() {
                 if ("$blanko_filtern_definition" in FILTERN && !(typ in FILTERN.$blanko_filtern_definition))
                     FILTERN.$blanko_filtern_definition[typ] = $blanko;
             }
-            // Wenn .blanko ein .sortieren_element ist
-            else if ($blanko.hasClass("sortieren_element") && !("$blanko_sortieren_element" in SORTIEREN))
-                SORTIEREN.$blanko_sortieren_element = $blanko;
         })
         .remove();
     $("#hauptinstanzen").remove();

@@ -38,10 +38,7 @@ function Schnittstelle_EventLocalstorageUpdVariable(folgendes_event, data) {
         LOC_upd_VAR_filtern(LISTEN[liste].instanz[instanz].filtern, liste);
 
         // sortieren wird aus dem Localstorage geholt und in der Variable gespeichert
-        let sortieren_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren");
-        if (typeof sortieren_LocalStorage === "undefined") sortieren_LocalStorage = new Array();
-        LISTEN[liste].instanz[instanz].sortieren = sortieren_LocalStorage;
-
+        LISTEN[liste].instanz[instanz].sortieren = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren");
         // gruppieren wird aus dem Localstorage geholt und in der Variable gespeichert
         LISTEN[liste].instanz[instanz].gruppieren = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_gruppieren");
     });

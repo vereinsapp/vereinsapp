@@ -86,11 +86,7 @@ class Notenbank extends BaseController {
 
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'aktuelles_verzeichnis',
-            'sortieren' => array(
-                array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
-            ),
+            'sortieren' => array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
         );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;

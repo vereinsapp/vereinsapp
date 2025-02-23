@@ -1,4 +1,26 @@
 function Liste_ArraySortiertZurueck(array, sortieren) {
+    if (isObject(sortieren) && "eigenschaft" in sortieren && "richtung" in sortieren)
+        return array.sort((a, b) => {
+            // Sortierrichtung berücksichtigen
+            const valA = sortieren.richtung === SORT_DESC ? b[sortieren.eigenschaft] : a[sortieren.eigenschaft];
+            const valB = sortieren.richtung === SORT_DESC ? a[sortieren.eigenschaft] : b[sortieren.eigenschaft];
+
+            // Luxon DateTime-Objekte vergleichen
+            if (DateTime.isDateTime(valA) && DateTime.isDateTime(valB)) return valA.toMillis() - valB.toMillis();
+
+            // Zahlen vergleichen
+            if (typeof valA === "number" && typeof valB === "number") return valA - valB;
+
+            // Strings vergleichen mit localeCompare
+            if (typeof valA === "string" && typeof valB === "string") return valA.localeCompare(valB, undefined, { sensitivity: "base" });
+
+            // Fallback für andere Typen
+            return 0;
+        });
+    else return array;
+}
+
+function Liste_MultiArraySortiertZurueck(array, sortieren) {
     // https://bithacker.dev/javascript-object-multi-property-sort
     if (array.length === 0 || sortieren.length === 0) return array;
     else

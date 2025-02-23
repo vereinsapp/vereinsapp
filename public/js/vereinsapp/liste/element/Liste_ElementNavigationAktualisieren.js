@@ -33,13 +33,11 @@ function Liste_ElementNavigationAktualisieren($element_navigation, $element, lis
     // sortieren aus data
     let sortieren_data = $element_navigation.attr("data-sortieren");
     if (typeof sortieren_data !== "undefined") sortieren_data = JSON.parse(sortieren_data);
-    else sortieren_data = new Array();
     // sortieren aus LocalStorage (Problem: LISTEN[liste].instanz[instanz].sortieren existiert nicht, weil keine .liste mit dieser instanz existiert)
-    let sortieren_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren");
-    if (typeof sortieren_LocalStorage === "undefined") sortieren_LocalStorage = new Array();
+    const sortieren_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren");
     // data und LocalStorage kombinieren
     let sortieren_kombiniert;
-    if (sortieren_LocalStorage.length === 0) sortieren_kombiniert = sortieren_data;
+    if (typeof sortieren_LocalStorage === "undefined") sortieren_kombiniert = sortieren_data;
     else sortieren_kombiniert = sortieren_LocalStorage;
     const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(tabelle_gefiltert, sortieren_kombiniert);
 

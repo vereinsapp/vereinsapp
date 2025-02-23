@@ -33,7 +33,7 @@ function Liste_ElementAuswahlEinfordern(dom, title, liste, klasse_id, data) {
             $blanko_element.attr("data-" + eigenschaft, wert);
         });
 
-    LISTEN[liste].instanz[instanz] = { filtern: [], sortieren: [], $blanko_element: $blanko_element };
+    LISTEN[liste].instanz[instanz] = { filtern: [], sortieren: undefined, $blanko_element: $blanko_element };
 
     Schnittstelle_DomModalOeffnen($neues_auswahl_modal);
     Schnittstelle_EventAusfuehren([Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom], { liste: liste });

@@ -2,7 +2,7 @@ function Liste_Init() {
     $.each(LISTEN, function (liste) {
         LISTEN[liste].instanz = new Object();
         $('.liste[data-liste="' + liste + '"]').each(function () {
-            LISTEN[liste].instanz[$(this).attr("id")] = { filtern: [], sortieren: [] };
+            LISTEN[liste].instanz[$(this).attr("id")] = { filtern: [], sortieren: undefined };
         });
     });
 

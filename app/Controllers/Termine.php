@@ -208,9 +208,7 @@ class Termine extends BaseController {
             'filtern' => array(
                 array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
             ),
-            'sortieren' => array(
-                array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
-            ),
+            'sortieren' => array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
         );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;

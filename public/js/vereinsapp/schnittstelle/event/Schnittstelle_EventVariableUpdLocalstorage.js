@@ -35,7 +35,7 @@ function Schnittstelle_EventVariableUpdLocalstorage(folgendes_event, data) {
         // sortieren wird vorbereitet
         const LOC_sortieren = LISTEN[liste].instanz[instanz].sortieren;
         // sortieren wird im Localstorage gespeichert
-        if (LOC_sortieren.length > 0) Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_sortieren", LOC_sortieren);
+        if (typeof LOC_sortieren !== "undefined") Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_sortieren", LOC_sortieren);
         else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_sortieren");
 
         // gruppieren wird vorbereitet

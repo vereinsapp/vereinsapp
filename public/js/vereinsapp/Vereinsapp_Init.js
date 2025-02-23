@@ -51,8 +51,9 @@ $(document).ready(function () {
 
 FEATURES
 Filtern auf eine Ebene beschränken und sortieren auf einen Wert beschränken (analog zu gruppieren) und die Oberflächen optimieren
-    Braucht es FILTERN, SORTIEREN und GRUPPIEREN überhaupt?
+    Braucht es FILTERN überhaupt?
     Wozu braucht es LISTEN[liste].instanz[instanz].filtern und .sortieren?
+    Vordefinierte Filter: Beginn Kalenderjahr, Beginn Aktionszeitraum
 Batch über filtern- und sortieren-Button legen
 Setlist mit Links zu den Titeln einführen
 Liste unformatiert in die Zwischenablage kopieren
@@ -97,5 +98,6 @@ zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stre
 Rekursion-Problem Rückmeldungen vs. Termine auflösen
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
+Liste für element_navigation überarbeiten (Pfeile zum "scrollen" immer einblenden)
 
 */
