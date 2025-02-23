@@ -13,10 +13,10 @@
 <?= view( 'Templates/modal', array( 'id' => 'termine_anwesenheiten_dokumentieren', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ) ) ); ?>
     
-<?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) )
+<?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) echo
     view( 'Templates/modal', array( 'id' => 'zugeordnete_aufgaben_anzeigen', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['zugeordnete_aufgaben'] ) ) ) ); ?>
-<?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) )
+<?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) echo
     view( 'Templates/modal', array( 'id' => 'mitglieder_aufgaben_erledigt_anzeigen', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['mitglieder_aufgaben_erledigt'] ) ) ) ); ?>
 <?= $this->endSection() ?>
