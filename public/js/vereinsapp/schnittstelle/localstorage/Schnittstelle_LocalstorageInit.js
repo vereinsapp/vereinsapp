@@ -7,7 +7,7 @@ function Schnittstelle_LocalstorageInit() {
                 "Willst du wirklich deinen LocalStorage leeren?",
                 $btn_localstorage_leeren.attr("data-title"),
                 "btn_localstorage_leeren",
-                {},
+                new Object(),
                 "danger"
             );
         else {

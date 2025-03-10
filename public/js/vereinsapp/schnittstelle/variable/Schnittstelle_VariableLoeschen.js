@@ -20,7 +20,7 @@ function Schnittstelle_VariableLoeschen(element_id, liste) {
                         "zugeordnete_element_id" in element &&
                         element.zugeordnete_element_id == Number(element_id)
                     )
-                        Liste_ElementLoeschen(false, {}, {}, undefined, element.id, verlinkte_liste);
+                        Liste_ElementLoeschen(false, new Object(), new Object(), undefined, element.id, verlinkte_liste);
                 });
         });
     }

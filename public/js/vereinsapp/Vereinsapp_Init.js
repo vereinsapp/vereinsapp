@@ -38,7 +38,7 @@ $(document).ready(function () {
 
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
     if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM) === "undefined")
-        Schnittstelle_AjaxInDieSchlange("status/ajax_datenschutz_richtlinie", {}, {}, function (AJAX) {
+        Schnittstelle_AjaxInDieSchlange("status/ajax_datenschutz_richtlinie", new Object(), new Object(), function (AJAX) {
             Schnittstelle_DomModalOeffnen(AJAX.antwort.html);
             $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
                 Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DateTime.now());
@@ -50,11 +50,14 @@ $(document).ready(function () {
 /* TODO
 
 FEATURES
-Filtern auf eine Ebene beschränken und sortieren auf einen Wert beschränken (analog zu gruppieren) und die Oberflächen optimieren
-    Braucht es FILTERN überhaupt?
-    Wozu braucht es LISTEN[liste].instanz[instanz].filtern und .sortieren?
+Filtern auf eine Ebene beschränken und die Oberflächen optimieren
+    Info: LISTEN[liste].instanz[instanz] wird initialisiert in Aufgabe_Init, Liste_ElementAuswahlEinfordern, Liste_Init
+    Braucht es Schnittstelle_VariableObjektBereinigtZurueck für filtern?
+    Schnittstelle_VariableObjektBereinigtZurueck und Schnittstelle_VariableArrayBereinigtZurueck in Schnittstelle_VariableWertBereinigtZurueck vereinigen und anschließend entfernen
+    Bei Auswertungen data-liste.filtern dynamisch erzeugen (bspw. Kombination aus allgemeinem und spezifischem Mitglieder-Filter und bestehendem dynamischem Mitglieder-Filter)
     Vordefinierte Filter: Beginn Kalenderjahr, Beginn Aktionszeitraum
-Batch über filtern- und sortieren-Button legen
+    Batch über filtern- und sortieren-Button legen
+    Verzeichnis filtern und sortieren
 Setlist mit Links zu den Titeln einführen
 Liste unformatiert in die Zwischenablage kopieren
 Termin mit Ende erweitern
@@ -63,7 +66,6 @@ Mitglieder Lebenslauf
 Terminserie / Regeltermine
 Termin als ics exportieren
 Meta-Infos für Unterverzeichnisse und Dateien anzeigen
-Verzeichnis filtern und sortieren
 Abwesenheiten wieder einführen
 Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 Link zu Github neben die Version
@@ -82,8 +84,6 @@ title ändern in beschriftung?
 anwesenheiten_dokumentieren für checkliste verallgemeinern (analog zu Schnittstelle_DomNeuesModalInitialisiertZurueck)
 Braucht es noch data-farbe an den Werkzeugen (generell an allen Buttons)?
 Sortierung nicht mehr case sensitive machen
-Bei Auswertungen data-liste.filtern dynamisch erzeugen (bspw. Kombination aus allgemeinem und spezifischem Mitglieder-Filter und bestehendem dynamischem Mitglieder-Filter)
-Schnittstelle_VariableObjektBereinigtZurueck und Schnittstelle_VariableArrayBereinigtZurueck in Schnittstelle_VariableWertBereinigtZurueck vereinigen und anschließend entfernen
 Schnittstellen-Funktionen einen Standardwert für undefined mitgeben um den anschließenden else-Pfad zu vermeiden
 Zustandsautomat für den Zustand der Vereinsapp einführen
 Auswertung unabhängig machen von Auswertungen (dann muss das Ergebnis aber für jede Auswertung bestimmt werden)
@@ -100,4 +100,8 @@ eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
 Liste für element_navigation überarbeiten (Pfeile zum "scrollen" immer einblenden)
 
+ich_rueckgemeldet umbenennen in ich_rueckmeldung_janein
+Time::now vs. Time::today klären
+Warum wird Liste_AuswertungenAktualisieren in den Termin-Details so oft aufgerufen?
+Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit den Werten?
 */

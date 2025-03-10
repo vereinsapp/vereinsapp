@@ -6,7 +6,7 @@
     <div class="card-body">Aktuell finden Wartungsarbeiten statt. Bitte hab etwas Geduld und versuche es später nochmal!</div>
 </div></div>
 
-<?php if ( KASTEN_WEITER_ZUR_WEBSITE_VON_LOGIN ) : ?>
+<?php if( KASTEN_WEITER_ZUR_WEBSITE_VON_LOGIN ) : ?>
 <div class="container mt-5" style="max-width: 36rem;"><div class="card">
     <div class="card-body">
         <div class="mb-2">Du wolltest eigentlich zur öffentlichen Website von <?= VEREIN_NAME ?>?</div>

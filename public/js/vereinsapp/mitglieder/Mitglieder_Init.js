@@ -86,7 +86,7 @@ function Mitglieder_Init() {
                 $modal: $(this).closest(".modal"),
                 $formular: $(this).closest(".formular"),
             },
-            {},
+            new Object(),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
         );

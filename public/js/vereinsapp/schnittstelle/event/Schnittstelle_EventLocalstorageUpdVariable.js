@@ -27,15 +27,9 @@ function Schnittstelle_EventLocalstorageUpdVariable(folgendes_event, data) {
     $.each(LISTEN[liste].instanz, function (instanz) {
         // filtern wird aus dem Localstorage geholt und in der Variable gespeichert
         let filtern_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_filtern");
-        if (typeof filtern_LocalStorage === "undefined") filtern_LocalStorage = new Array();
+        if (typeof filtern_LocalStorage !== "undefined") Schnittstelle_VariableObjektBereinigtZurueck(filtern_LocalStorage);
+        else filtern_LocalStorage = new Object();
         LISTEN[liste].instanz[instanz].filtern = filtern_LocalStorage;
-        function LOC_upd_VAR_filtern(filtern, liste) {
-            $.each(filtern, function (index, knoten) {
-                if ("verknuepfung" in knoten) LOC_upd_VAR_filtern(knoten.filtern, liste);
-                else if ("operator" in knoten) knoten.wert = Schnittstelle_VariableWertBereinigtZurueck(knoten.wert);
-            });
-        }
-        LOC_upd_VAR_filtern(LISTEN[liste].instanz[instanz].filtern, liste);
 
         // sortieren wird aus dem Localstorage geholt und in der Variable gespeichert
         LISTEN[liste].instanz[instanz].sortieren = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren");

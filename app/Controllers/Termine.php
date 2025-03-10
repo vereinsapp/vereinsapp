@@ -17,16 +17,18 @@ class Termine extends BaseController {
         $this->viewdata['liste']['bevorstehende_termine']['vorschau'] = array( 'start', 'ort' );
         $this->viewdata['liste']['bevorstehende_termine']['views'] = array( array( 'view' => 'Termine/rueckmeldung_basiseigenschaften', 'data' => array( 'mitglied_id' => ICH['id'] ) ) );
 
-        $disabled_filtern = array();
-        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
-        // $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = $this->termin_filtern_mitglieder_kombiniert( $termin_id );
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = array();
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'mitglieder', 'filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), );
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'rueckmeldungen', 'klasse' => array(
-            'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-            'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
+            'text-success' => array( 'status' => array( 'start' => array( 1 ), 'ende' => array( 1 ), ), ),
+            'text-danger' => array( 'status' => array( 'start' => array( 2 ), 'ende' => array( 2 ), ), ),
         ), );
+
+        $disabled_ids = array();
+        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) )
+            foreach( model(Termin_Model::class)->findAll() as $termin )$disabled_ids[] = $termin['id'];
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine','filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), );
 
         if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
@@ -53,7 +55,7 @@ class Termine extends BaseController {
 
             $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
             $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-            $this->viewdata['liste']['zugeordnete_aufgaben']['vorschau'] = array("zugeordnetes_element");
+            $this->viewdata['liste']['zugeordnete_aufgaben']['vorschau'] = array('zugeordnetes_element');
             $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
 
             $this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']['statistiken'] = array(
@@ -109,7 +111,7 @@ class Termine extends BaseController {
 
         $this->viewdata['auswertungen'][ 'rueckmeldungen_termin' ] = array(
             'auswertungen' => 'rueckmeldungen',
-            'status_auswahl' => array( 1 => "ZUSAGEN", 2 => "ABSAGEN" ),
+            'status_auswahl' => array( 1 => 'ZUSAGEN', 2 => 'ABSAGEN' ),
             'liste' => array( 'liste' => 'mitglieder', 'gruppieren' => 'register', 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ), ),
             'gegen_liste' => 'termine',
             'gegen_element_id' => $termin_id,
@@ -127,7 +129,7 @@ class Termine extends BaseController {
 
         $this->viewdata['auswertungen'][ 'anwesenheiten_termin' ] = array(
             'auswertungen' => 'anwesenheiten',
-            'status_auswahl' => array( 1 => "ANWESEND" ),
+            'status_auswahl' => array( 1 => 'ANWESEND' ),
             'liste' => array( 'liste' => 'mitglieder', 'gruppieren' => 'register', 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ), ),
             'gegen_liste' => 'termine',
             'gegen_element_id' => $termin_id,
@@ -143,16 +145,18 @@ class Termine extends BaseController {
             'title' => 'Auswertung filtern',
         );
 
-        $disabled_filtern = array();
-        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) ) foreach( model(Termin_Model::class)->findAll() as $termin ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $termin['id'] );
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = $this->termin_filtern_mitglieder_kombiniert( $termin_id );
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'mitglieder', 'filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), );
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'rueckmeldungen', 'klasse' => array(
-            'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-            'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
+            'text-success' => array( 'status' => array( 'start' => array( 1 ), 'ende' => array( 1 ), ), ),
+            'text-danger' => array( 'status' => array( 'start' => array( 2 ), 'ende' => array( 2 ), ), ),
         ), );
+
+        $disabled_ids = array();
+        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) )
+            foreach( model(Termin_Model::class)->findAll() as $termin )$disabled_ids[] = $termin['id'];
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine','filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), );
 
         if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
@@ -171,19 +175,13 @@ class Termine extends BaseController {
         );
 
         if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
-
             $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
             unset($this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']);
-            $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
-                array( 'eigenschaft' => 'zugeordnete_liste', 'operator' => '==', 'wert' => "termine", ),
-                array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $termin_id, ),
-            ), ), );
+            $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( 'zugeordnete_liste' => array( 'termine' => array( 'notenbank' ), ), 'zugeordnete_element_id' => array( 'inklusiv' => array( $termin_id ), ), );
             $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
             $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
-
             if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
                 $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
-
         }
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
@@ -205,10 +203,8 @@ class Termine extends BaseController {
 
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'bevorstehende_termine',
-            'filtern' => array(
-                array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => Time::today( 'Europe/Berlin' )->toDateTimeString() ),
-            ),
-            'sortieren' => array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
+            'filtern' => HAUPTINSTANZEN['termine']['filtern'],
+            'sortieren' => HAUPTINSTANZEN['termine']['sortieren'],
         );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
@@ -279,7 +275,7 @@ class Termine extends BaseController {
             if( !is_dir( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS ) ) mkdir( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS, 0777, true );
             if( !is_file( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS.'/index.html') AND is_file( DATEI_UPLOAD_VERZEICHNIS.'/index.html') ) copy( DATEI_UPLOAD_VERZEICHNIS.'/index.html', DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS.'/index.html' );
             $csv_export_datei = fopen( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS.'/'.TERMINE_CSV_EXPORT_DATEINAME, 'w' );
-            if ( !$csv_export_datei ) $ajax_antwort['validation'] = 'Fehler beim Öffnen der Datei!';
+            if( !$csv_export_datei ) $ajax_antwort['validation'] = 'Fehler beim Öffnen der Datei!';
 
             foreach( $termine as $termin ) if( isset( $termin['start'], $termin['titel'], $termin['ort'], $termin['link'] ) )
                 fputcsv( $csv_export_datei, [ $termin['start'], $termin['titel'], $termin['ort'], $termin['link'] ] );
@@ -356,14 +352,60 @@ class Termine extends BaseController {
 
     protected function termin_filtern_mitglieder_kombiniert( $termin_id ) {
         $termin = model(Termin_Model::class)->find( $termin_id );
-        $filtern_mitglieder = json_decode( $termin["filtern_mitglieder"] );
-        $kategorie = $termin["kategorie"];
-        if ( array_key_exists( $kategorie, TERMINE_KATEGORIE_FILTERN_MITGLIEDER ) && !empty( TERMINE_KATEGORIE_FILTERN_MITGLIEDER[ $kategorie ] ) )
-            $filtern_mitglieder_kategorie = TERMINE_KATEGORIE_FILTERN_MITGLIEDER[ $kategorie ];
+        $filtern_mitglieder = json_decode( $termin['filtern_mitglieder'] );
+        if( array_key_exists( $termin['kategorie'], TERMINE_KATEGORIE_FILTERN_MITGLIEDER ) AND !empty( TERMINE_KATEGORIE_FILTERN_MITGLIEDER[ $termin['kategorie'] ] ) )
+            $filtern_mitglieder_kategorie = TERMINE_KATEGORIE_FILTERN_MITGLIEDER[ $termin['kategorie'] ];
         else $filtern_mitglieder_kategorie = array();
-        if( empty( $filtern_mitglieder ) ) return $filtern_mitglieder_kategorie;
-        elseif( empty( $filtern_mitglieder_kategorie ) ) return $filtern_mitglieder;
-        else return array( array ( 'verknuepfung' => "&&", 'filtern' => array_merge( $filtern_mitglieder, $filtern_mitglieder_kategorie ) ) );
+
+        return $this->filtern_mit_prio_kombiniert( $filtern_mitglieder_kategorie, $filtern_mitglieder, 'termine' );
+    }
+
+    protected function filtern_mit_prio_kombiniert( $filtern, $filtern_prio, $liste )  {
+        if( !is_array( $filtern ) ) $filtern = array();
+        if( !is_array( $filtern_prio ) ) $filtern_prio = array();
+
+        if( count( array_keys( $filtern ) ) === 0 AND count( array_keys( $filtern_prio ) ) > 0 ) $filtern_kombiniert = $filtern_prio;
+        else if( count( array_keys( $filtern_prio ) ) === 0  AND count( array_keys( $filtern ) ) > 0 ) $filtern_kombiniert = $filtern;
+        else {
+            $filtern_kombiniert = array();
+            foreach( $filtern as $eigenschaft => $filtern_nicht_verwendet ) {
+                if( array_key_exists( $eigenschaft, $filtern_prio ) ) {
+                    switch( EIGENSCHAFTEN[$liste][$eigenschaft]['typ'] ) {
+                        case 'text':
+                            // (noch) kein filtern möglich
+                            break;
+                        case 'zahl':
+                        case 'zeitpunkt':
+                            if( array_key_exists( 'start', $filtern_prio[$eigenschaft] ) ) $filtern_kombiniert[$eigenschaft]['start'] = $filtern_prio[$eigenschaft]['start'];
+                            else $filtern_kombiniert[$eigenschaft]['start'] = $filtern[$eigenschaft]['start'];
+                            if( array_key_exists( 'ende', $filtern_prio[$eigenschaft] ) ) $filtern_kombiniert[$eigenschaft]['ende'] = $filtern_prio[$eigenschaft]['ende'];
+                            else $filtern_kombiniert[$eigenschaft]['ende'] = $filtern[$eigenschaft]['ende'];
+                            break;
+                        case 'vorgegebene_werte':
+                        case 'liste':
+                        case 'element_id':
+                            if( !array_key_exists( 'inklusiv', $filtern[$eigenschaft] ) ) $filtern[$eigenschaft]['inklusiv'] = array();
+                            if( !array_key_exists( 'inklusiv', $filtern_prio[$eigenschaft] ) ) $filtern_prio[$eigenschaft]['inklusiv'] = array();
+                            $filtern_kombiniert[$eigenschaft]['inklusiv'] = array_merge( $filtern[$eigenschaft]['inklusiv'], $filtern_prio[$eigenschaft]['inklusiv'] );
+                            if( !array_key_exists( 'exklusiv', $filtern[$eigenschaft] ) ) $filtern[$eigenschaft]['exklusiv'] = array();
+                            if( !array_key_exists( 'exklusiv', $filtern_prio[$eigenschaft] ) ) $filtern_prio[$eigenschaft]['exklusiv'] = array();
+                            $filtern_kombiniert[$eigenschaft]['exklusiv'] = array_merge( $filtern[$eigenschaft]['exklusiv'], $filtern_prio[$eigenschaft]['exklusiv'] );
+                            break;
+                    }
+                    unset( $filtern[$eigenschaft] );
+                    unset( $filtern_prio[$eigenschaft] );
+                } else {
+                    $filtern_kombiniert[$eigenschaft] = $filtern[$eigenschaft];
+                    unset( $filtern[$eigenschaft] );
+                }
+            }
+            foreach( array_keys( $filtern_prio ) as $eigenschaft ) {
+                $filtern_kombiniert[$eigenschaft] = $filtern[$eigenschaft];
+                unset( $filtern_prio[$eigenschaft] );
+            }
+        }
+    
+        return $filtern_kombiniert;
     }
 
 }

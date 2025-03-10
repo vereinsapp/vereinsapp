@@ -95,7 +95,7 @@ class Vereinsapp extends BaseConfig
 
         'mitglieder' => array(
             'liste' => 'mitglieder',
-            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
+            'filtern' => array( 'aktiv' => array( 'inklusiv' => array( 1 ), ) ),
             'sortieren' => array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
             // 'group-flush' => TRUE,
             // 'sortable' => TRUE,
@@ -109,10 +109,10 @@ class Vereinsapp extends BaseConfig
             // 'checkliste' => 'vergebene_rechte',
             // 'gegen_liste' => 'termine',
             // 'gegen_element_id' => 42,
-            // 'disabled' => array( 'liste' => 'liste','filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), ),
+            // 'disabled' => array( 'liste' => 'liste','filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), ),
             // 'bedingte_formatierung' => array( 'liste' => 'liste', 'klasse' => array(
-            //     'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-            //     'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
+            //     'text-success' => array( 'status' => array( 'inklusiv' => array( 1 ), ), ),
+            //     'text-danger' => array( 'status' => array( 'inklusiv' => array( 2 ), ), ),
             // ), ),
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
@@ -123,6 +123,8 @@ class Vereinsapp extends BaseConfig
 
         'verfuegbare_rechte' => array(
             'liste' => 'verfuegbare_rechte',
+            'filtern' => array(),
+            'sortieren' => array(),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             // 'werkzeugkasten' => array(
             //     'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Verfügbare Rechte filtern', ),
@@ -133,10 +135,13 @@ class Vereinsapp extends BaseConfig
 
         'vergebene_rechte' => array(
             'liste' => 'vergebene_rechte',
+            'filtern' => array(),
+            'sortieren' => array(),
         ),
 
         'aufgaben' => array(
             'liste' => 'aufgaben',
+            'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'werkzeugkasten' => array(
@@ -148,9 +153,7 @@ class Vereinsapp extends BaseConfig
 
         'termine' => array(
             'liste' => 'termine',
-            'filtern' => array(
-                array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => HEUTE ),
-            ),
+            'filtern' => array( 'start' => array( 'start' => HEUTE ), ),
             'sortieren' => array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'zusatzsymbol' => array('kategorie'),
@@ -163,14 +166,19 @@ class Vereinsapp extends BaseConfig
 
         'rueckmeldungen' => array(
             'liste' => 'rueckmeldungen',
+            'filtern' => array(),
+            'sortieren' => array(),
         ),
 
         'anwesenheiten' => array(
             'liste' => 'anwesenheiten',
+            'filtern' => array(),
+            'sortieren' => array(),
         ),
 
         'strafkatalog' => array(
             'liste' => 'strafkatalog',
+            'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'werkzeugkasten' => array(
@@ -182,10 +190,11 @@ class Vereinsapp extends BaseConfig
 
         'kassenbuch' => array(
             'liste' => 'kassenbuch',
+            'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'erstellung', 'richtung' => SORT_DESC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'zusatzsymbol' => array('offen_erledigt'),
-            'bedingte_formatierung' => array( 'klasse' => array( 'text-danger' => array( 'operator' => '<=', 'eigenschaft' => 'wert', 'wert' => 0 ), ), 'eigenschaft' => 'wert', ),
+            'bedingte_formatierung' => array( 'eigenschaft' => 'wert', 'klasse' => array( 'text-danger' => array( 'wert' => array( 'ende' =>  0, ), ), ), ),
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Kassenbuch filtern', ),
                 'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Kassenbuch sortieren', ),
@@ -195,6 +204,7 @@ class Vereinsapp extends BaseConfig
 
         'notenbank' => array(
             'liste' => 'notenbank',
+            'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
             'beschriftung' => '[<span class="eigenschaft" data-eigenschaft="titel_nr"></span>] <span class="eigenschaft" data-eigenschaft="titel"></span>',
             'werkzeugkasten' => array(
@@ -217,7 +227,7 @@ class Vereinsapp extends BaseConfig
     public $eigenschaften = array(
 
         'mitglieder' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'email' => array( 'beschriftung' => 'Email', 'typ' => 'text' ), // PHP
             'vorname' => array( 'beschriftung' => 'Vorname', 'typ' => 'text' ),
             'nachname' => array( 'beschriftung' => 'Nachname', 'typ' => 'text' ),
@@ -241,24 +251,24 @@ class Vereinsapp extends BaseConfig
         ),
 
         'verfuegbare_rechte' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),               // PHP
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),         // PHP
             'permission' => array( 'beschriftung' => 'Recht', 'typ' => 'text' ),    // PHP
-            'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),  // PHP
+            'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),         // PHP
         ),
 
         'vergebene_rechte' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),                                      // PHP
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),                     // PHP
-            'verfuegbares_recht_id' => array( 'beschriftung' => 'Verfuegbares-Recht-ID', 'typ' => 'zahl' ), // PHP
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),                                         // PHP
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),                       // PHP
+            'verfuegbares_recht_id' => array( 'beschriftung' => 'Verfuegbares-Recht-ID', 'typ' => 'element_id' ),   // PHP
         ),
 
         'aufgaben' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'zugeordnete_liste' => array( 'beschriftung' => 'Zugeordnete Liste', 'typ' => 'vorgegebene_werte' ),
-            'zugeordnete_element_id' => array( 'beschriftung' => 'Zugeordnete Element-ID', 'typ' => 'zahl' ),
+            'zugeordnete_element_id' => array( 'beschriftung' => 'Zugeordnete Element-ID', 'typ' => 'element_id' ),
             'zugeordnetes_element' => array( 'beschriftung' => 'Zugeordnetes Element', 'typ' => 'text' ), // JAVA
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),
             'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'vorgegebene_werte' ),       // JAVA
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
@@ -266,7 +276,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'termine' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'start' => array( 'beschriftung' => 'Beginn', 'typ' => 'zeitpunkt' ),
             'ort' => array( 'beschriftung' => 'Ort', 'typ' => 'text' ),
@@ -274,28 +284,28 @@ class Vereinsapp extends BaseConfig
             'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'ich_rueckgemeldet' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'vorgegebene_werte' ), // JAVA
-            'ich_rueckmeldung_id' => array( 'beschriftung' => 'Meine RÜckmeldung-ID', 'typ' => 'zahl' ),                    // JAVA
+            'ich_rueckmeldung_id' => array( 'beschriftung' => 'Meine RÜckmeldung-ID', 'typ' => 'element_id' ),              // JAVA
             'ich_eingeladen' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'vorgegebene_werte' ),              // JAVA
         ),
 
         'rueckmeldungen' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
-            'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'zahl' ),
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
+            'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'element_id' ),
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
         ),
 
         'anwesenheiten' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
-            'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'zahl' ),
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
+            'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'element_id' ),
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
         ),
 
         'strafkatalog' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'wert' => array( 'beschriftung' => 'Wert (in Euro)', 'typ' => 'zahl' ),
             'kategorie' => array( 'beschriftung' => 'Kapitel', 'typ' => 'vorgegebene_werte' ),
@@ -303,10 +313,10 @@ class Vereinsapp extends BaseConfig
         ),
 
         'kassenbuch' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'wert' => array( 'beschriftung' => 'Wert (in Euro)', 'typ' => 'zahl' ),
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),
             'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'vorgegebene_werte' ),   // JAVA
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
@@ -314,7 +324,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'notenbank' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'titel_nr' => array( 'beschriftung' => 'Titel-Nr.', 'typ' => 'zahl' ),
             'kategorie' => array( 'beschriftung' => 'Genre', 'typ' => 'vorgegebene_werte' ),
@@ -466,7 +476,7 @@ class Vereinsapp extends BaseConfig
     public $filterbare_eigenschaften = array(
 
         'mitglieder' => array(
-            'geburt',
+            // 'geburt',
             'geburtstag',
             'alter',
             'geschlecht',
@@ -680,9 +690,9 @@ class Vereinsapp extends BaseConfig
      * entsprechend dem Standard-Schema für Filtern
      */
     public $termine_kategorie_filtern_mitglieder = array(
-        'probe' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
-        'auftritt' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
-        'vorstandschaftssitzung' => array( array( 'operator' => '==', 'eigenschaft' => 'vorstandschaft', 'wert' => '1' ), ),
+        'probe' => array( 'aktiv' => array( 'inklusiv' => array( 1 ), ), ),
+        'auftritt' => array( 'aktiv' => array( 'inklusiv' => array( 1 ), ), ),
+        'vorstandschaftssitzung' => array( 'vorstandschaft' => array( 'inklusiv' => array( 1 ), ), ),
     );
 
     /**

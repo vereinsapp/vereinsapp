@@ -58,15 +58,13 @@ function Schnittstelle_DomInit() {
                 if (liste in LISTEN && instanz in LISTEN[liste].verzeichnis && !("$blanko_datei" in LISTEN[liste].verzeichnis[instanz]))
                     LISTEN[liste].verzeichnis[instanz].$blanko_datei = $blanko;
             }
-            // Wenn .blanko eine .filtern_sammlung ist
-            else if ($blanko.hasClass("filtern_sammlung") && !("$blanko_filtern_sammlung" in FILTERN)) FILTERN.$blanko_filtern_sammlung = $blanko;
             // Wenn .blanko ein .filtern_element ist
             else if ($blanko.hasClass("filtern_element") && !("$blanko_filtern_element" in FILTERN)) FILTERN.$blanko_filtern_element = $blanko;
-            // Wenn .blanko eine .filtern_definition ist
-            else if ($blanko.hasClass("filtern_definition")) {
+            // Wenn .blanko eine .filtern_eigenschaft ist
+            else if ($blanko.hasClass("filtern_eigenschaft")) {
                 const typ = $blanko.attr("data-typ");
-                if ("$blanko_filtern_definition" in FILTERN && !(typ in FILTERN.$blanko_filtern_definition))
-                    FILTERN.$blanko_filtern_definition[typ] = $blanko;
+                if ("$blanko_filtern_eigenschaft" in FILTERN && !(typ in FILTERN.$blanko_filtern_eigenschaft))
+                    FILTERN.$blanko_filtern_eigenschaft[typ] = $blanko;
             }
         })
         .remove();

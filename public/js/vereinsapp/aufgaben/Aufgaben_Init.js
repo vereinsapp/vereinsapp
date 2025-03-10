@@ -43,7 +43,7 @@ EIGENSCHAFTEN.aufgaben.zugeordnete_element_id.change_aktion = function ($zugeord
             if (typeof zugeordnete_liste !== "undefined")
                 $zugeordnetes_element
                     .attr("data-liste", zugeordnete_liste)
-                    .attr("data-filtern", JSON.stringify([{ operator: "==", eigenschaft: "id", wert: zugeordnete_element_id }]));
+                    .attr("data-filtern", JSON.stringify({ id: { inklusiv: [zugeordnete_element_id] } }));
             else $zugeordnetes_element.removeAttr("data-liste").removeAttr("data-filtern");
 
             if (
@@ -59,8 +59,8 @@ EIGENSCHAFTEN.aufgaben.zugeordnetes_element.change_aktion = function ($zugeordne
 
     if (typeof zugeordnete_liste !== "undefined") {
         LISTEN[zugeordnete_liste].instanz["zugeordnetes_element"] = {
-            filtern: [],
-            sortieren: [],
+            filtern: new Object(),
+            sortieren: undefined,
             $blanko_element: LISTEN[zugeordnete_liste].instanz.HAUPTINSTANZ.$blanko_element.clone(),
         };
         Schnittstelle_EventAusfuehren(Schnittstelle_EventVariableUpdDom, { liste: zugeordnete_liste });

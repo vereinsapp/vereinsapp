@@ -2,23 +2,18 @@ function Liste_ElementAktualisieren($element, liste) {
     const element_id = Number($element.attr("data-element_id"));
 
     // ELEMENTE DISABLED
-    let disabled = $element.attr("data-disabled");
-    if (typeof disabled !== "undefined") {
-        disabled = JSON.parse(disabled);
-        if (
-            Liste_TabelleGefiltertZurueck(
-                [
-                    {
-                        verknuepfung: "&&",
-                        filtern: [{ operator: "==", eigenschaft: "id", wert: element_id }, disabled.filtern[0]],
-                    },
-                ],
-                disabled.liste
-            ).length > 0
-        )
-            disabled = true;
-        else disabled = false;
-    } else disabled = false;
+    let disabled = false;
+    let disabled_data = $element.attr("data-disabled");
+    if (typeof disabled_data !== "undefined") {
+        disabled_data = JSON.parse(disabled_data);
+        $.each(Liste_TabelleGefiltertZurueck(disabled_data.filtern, LISTEN[disabled_data.liste].tabelle, disabled_data.liste), function () {
+            const element = this;
+            if ("id" in element && element.id == element_id) {
+                disabled = true;
+                return;
+            }
+        });
+    }
 
     // ACTION UND ROLE FORMATIEREN (ACHTUNG: REIHENFOLGE!)
     if ($element.find(".check").exists() || $element.find("a.stretched-link").exists() || $element.is("[class*=btn_]")) {
@@ -50,20 +45,16 @@ function Liste_ElementAktualisieren($element, liste) {
 
     if ("klasse" in bedingte_formatierung)
         $.each(bedingte_formatierung.klasse, function (klasse, filtern) {
-            const bedingte_formatierung_filtern = [{ operator: filtern.operator, eigenschaft: filtern.eigenschaft, wert: filtern.wert }];
+            const filtern_ergaenzung = new Object();
             if (typeof gegen_liste !== "undefined" && typeof gegen_element_id !== "undefined") {
-                bedingte_formatierung_filtern.push({ operator: "==", eigenschaft: LISTEN[gegen_liste].element + "_id", wert: gegen_element_id });
-                bedingte_formatierung_filtern.push({ operator: "==", eigenschaft: LISTEN[liste].element + "_id", wert: element_id });
-            } else bedingte_formatierung_filtern.push({ operator: "==", eigenschaft: "id", wert: element_id });
+                filtern_ergaenzung[LISTEN[gegen_liste].element + "_id"] = { inklusiv: [Number(gegen_element_id)] };
+                filtern_ergaenzung[LISTEN[liste].element + "_id"] = { inklusiv: [element_id] };
+            } else filtern_ergaenzung.id = { inklusiv: [element_id] };
 
             if (
                 Liste_TabelleGefiltertZurueck(
-                    [
-                        {
-                            verknuepfung: "&&",
-                            filtern: bedingte_formatierung_filtern,
-                        },
-                    ],
+                    Liste_FilternMitPrioKombiniertZurueck(filtern, filtern_ergaenzung, bedingte_formatierung.liste),
+                    LISTEN[bedingte_formatierung.liste].tabelle,
                     bedingte_formatierung.liste
                 ).length > 0
             )

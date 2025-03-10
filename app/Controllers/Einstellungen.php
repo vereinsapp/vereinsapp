@@ -15,15 +15,18 @@ class Einstellungen extends BaseController {
 
     public function einstellungen() {
 
-        $disabled_filtern = array();
-        $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
-        if( !auth()->user()->can( 'global.einstellungen' ) ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => VERFUEGBARE_RECHTE['mitglieder.rechte']['id'] );
-        if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['permission'] != 'global.einstellungen' AND $verfuegbares_recht['permission'] != 'mitglieder.rechte' ) $disabled_filtern[] = array( 'operator' => '==', 'eigenschaft' => 'id', 'wert' => $verfuegbares_recht['id'] );
         $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
         $this->viewdata['liste']['rechte_vergeben']['checkliste'] = 'vergebene_rechte';
         $this->viewdata['liste']['rechte_vergeben']['gegen_liste'] = 'mitglieder';
         $this->viewdata['liste']['rechte_vergeben']['gegen_element_id'] = ICH['id'];
-        $this->viewdata['liste']['rechte_vergeben']['disabled'] = array( 'liste' => 'verfuegbare_rechte', 'filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), );
+
+        $disabled_ids = array();
+        $disabled_ids[] = VERFUEGBARE_RECHTE['global.einstellungen']['id'];
+        if( !auth()->user()->can( 'global.einstellungen' ) ) $disabled_ids[] = VERFUEGBARE_RECHTE['mitglieder.rechte']['id'];
+        if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht )
+            if( $verfuegbares_recht['permission'] != 'global.einstellungen' AND $verfuegbares_recht['permission'] != 'mitglieder.rechte' )
+                $disabled_ids[] = $verfuegbares_recht['id'];
+        $this->viewdata['liste']['rechte_vergeben']['disabled'] = array( 'liste' => 'verfuegbare_rechte','filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         echo view( 'Einstellungen/einstellungen', $this->viewdata );

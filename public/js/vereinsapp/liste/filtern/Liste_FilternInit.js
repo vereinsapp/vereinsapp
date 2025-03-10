@@ -1,28 +1,27 @@
 const FILTERN = new Object();
-FILTERN.$blanko_filtern_definition = new Object();
+FILTERN.$blanko_filtern_eigenschaft = new Object();
+// FILTERN.$blanko_filtern_element für vorgegebene_werte?
 
 function Liste_FilternInit() {
-    // MODAL ÖFFNEN
+    // FILTERN MODAL ÖFFNEN
     $(document).on("click", ".btn_filtern_modal_oeffnen", function () {
-        Liste_FilternModalOeffnen($(this).attr("data-title"), $(this).attr("data-instanz"), $(this).attr("data-liste"));
-    });
-
-    // ERSTELLEN
-    $(document).on("click", ".btn_filtern_erstellen", function () {
-        Liste_FilternErstellen($(this).closest(".filtern_definition"), $(this).attr("data-instanz"), $(this).attr("data-liste"));
-    });
-
-    // ÄNDERN (VERKNÜPFUNG)
-    $(document).on("click", ".btn_filtern_aendern", function () {
-        Liste_FilternVerknuepfungAendern(
-            $(this).closest(".filtern_sammlung").find(".verknuepfung").first(),
+        Liste_FilternAendern(
+            true,
+            { $modal: undefined, $formular: undefined, $filtern_eigenschaft: undefined },
+            $(this).attr("data-title"),
             $(this).attr("data-instanz"),
             $(this).attr("data-liste")
         );
     });
 
-    // LÖSCHEN
-    $(document).on("click", ".btn_filtern_loeschen", function () {
-        Liste_FilternLoeschen($(this).closest(".filtern_element, .filtern_sammlung"), $(this).attr("data-instanz"), $(this).attr("data-liste"));
+    // FILTERN ÄNDERN
+    $(document).on("change", ".filtern_eigenschaft", function () {
+        Liste_FilternAendern(
+            false,
+            { $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular"), $filtern_eigenschaft: $(this) },
+            undefined,
+            $(this).closest(".formular").attr("data-instanz"),
+            $(this).closest(".formular").attr("data-liste")
+        );
     });
 }

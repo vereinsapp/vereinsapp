@@ -12,23 +12,23 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
     }
 
     termin["ich_eingeladen"] = false;
-    if ("filtern_mitglieder" in termin) termin["filtern_mitglieder"] = Schnittstelle_VariableArrayBereinigtZurueck(termin["filtern_mitglieder"]);
-    else termin["filtern_mitglieder"] = new Array();
+    if ("filtern_mitglieder" in termin) termin["filtern_mitglieder"] = Schnittstelle_VariableObjektBereinigtZurueck(termin["filtern_mitglieder"]);
+    else termin["filtern_mitglieder"] = new Object();
     let termin_kategorie_filtern_mitglieder;
     if (termin["kategorie"] in TERMINE_KATEGORIE_FILTERN_MITGLIEDER)
-        termin_kategorie_filtern_mitglieder = Schnittstelle_VariableArrayBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin["kategorie"]]);
-    else termin_kategorie_filtern_mitglieder = new Array();
-    let filtern_mitglieder_kombiniert;
-    if (termin_kategorie_filtern_mitglieder.length > 0)
-        if (termin["filtern_mitglieder"].length === 0) filtern_mitglieder_kombiniert = termin_kategorie_filtern_mitglieder;
-        else
-            filtern_mitglieder_kombiniert = [
-                { verknuepfung: "&&", filtern: [termin["filtern_mitglieder"][0], termin_kategorie_filtern_mitglieder[0]] },
-            ];
-    else filtern_mitglieder_kombiniert = termin["filtern_mitglieder"];
-    $.each(Liste_TabelleGefiltertZurueck(filtern_mitglieder_kombiniert, "mitglieder"), function () {
-        if (this["id"] == ICH["id"]) termin["ich_eingeladen"] = true;
-    });
+        termin_kategorie_filtern_mitglieder = Schnittstelle_VariableObjektBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin["kategorie"]]);
+    else termin_kategorie_filtern_mitglieder = new Object();
+    $.each(
+        Liste_TabelleGefiltertZurueck(
+            Liste_FilternMitPrioKombiniertZurueck(termin_kategorie_filtern_mitglieder, termin["filtern_mitglieder"], "mitglieder"),
+            LISTEN.mitglieder.tabelle,
+            "mitglieder"
+        ),
+        function () {
+            if (this["id"] == ICH["id"]) termin["ich_eingeladen"] = true;
+            return;
+        }
+    );
 };
 
 function Termine_Init() {

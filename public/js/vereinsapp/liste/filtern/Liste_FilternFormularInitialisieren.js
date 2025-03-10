@@ -1,34 +1,35 @@
 function Liste_FilternFormularInitialisieren($formular, instanz, liste) {
-    const $filtern_definitionen = $formular.find(".filtern_definitionen");
+    const $filtern_eigenschaft = $formular.find(".filtern_eigenschaft");
+
+    $formular.attr("data-liste", liste).attr("data-instanz", instanz);
+
     $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
         const typ = EIGENSCHAFTEN[liste][eigenschaft].typ;
         const beschriftung = EIGENSCHAFTEN[liste][eigenschaft].beschriftung;
 
-        const $neue_filtern_definition = FILTERN.$blanko_filtern_definition[typ].clone().removeClass("blanko invisible");
+        const $neue_filtern_eigenschaft = FILTERN.$blanko_filtern_eigenschaft[typ].clone().removeClass("blanko invisible");
 
-        $neue_filtern_definition.attr("data-eigenschaft", eigenschaft);
-        $neue_filtern_definition.find(".beschriftung").text(beschriftung);
-        $neue_filtern_definition.find(".btn_filtern_erstellen").attr("data-liste", liste).attr("data-instanz", instanz);
+        $neue_filtern_eigenschaft.attr("data-eigenschaft", eigenschaft);
+        $neue_filtern_eigenschaft.find(".beschriftung").text(beschriftung);
 
         if (typ == "vorgegebene_werte") {
-            $neue_filtern_definition.find(".filtern_wert").empty();
+            $neue_filtern_eigenschaft.find(".filtern_wert").empty();
             $.each(VORGEGEBENE_WERTE[liste][eigenschaft], function (wert, eigenschaften) {
                 $('<option value="' + wert + '">' + eigenschaften.beschriftung + "</option>").appendTo(
-                    $neue_filtern_definition.find(".filtern_wert")
+                    $neue_filtern_eigenschaft.find(".filtern_wert")
                 );
             });
         }
 
-        $neue_filtern_definition.appendTo($filtern_definitionen);
+        $neue_filtern_eigenschaft.appendTo($formular);
     });
 
-    let filtern_value = Schnittstelle_DomLetztesModalZurueck()
-        .find(".btn_filtern_modal_oeffnen[data-liste='" + liste + "']")
-        .val();
+    let filtern = LISTEN[liste].instanz[instanz].filtern;
+    if (typeof filtern === "undefined") {
+        filtern = $("#" + instanz + ".liste").attr("data-filtern");
+        if (typeof filtern !== "undefined") filtern = JSON.parse(filtern);
+    }
 
-    if (isJson(filtern_value))
-        $formular
-            .find(".filtern")
-            .append(Liste_Filtern2$FilternZurueck(Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(filtern_value)), undefined, liste));
-    else $formular.find(".filtern").append(Liste_Filtern2$FilternZurueck(LISTEN[liste].instanz[instanz].filtern, instanz, liste));
+    if (typeof filtern !== "undefined") {
+    }
 }

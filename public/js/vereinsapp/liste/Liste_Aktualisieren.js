@@ -4,20 +4,16 @@ function Liste_Aktualisieren($liste, liste) {
     // TABELLE FILTERN
     // filtern aus data
     let filtern_data = $liste.attr("data-filtern");
-    if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(filtern_data));
-    else filtern_data = new Array();
+    if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableObjektBereinigtZurueck(JSON.parse(filtern_data));
+    else filtern_data = new Object();
     // filtern aus LocalStorage
     const filtern_LocalStorage = LISTEN[liste].instanz[instanz].filtern;
     // data und LocalStorage kombinieren
-    let filtern_kombiniert;
-    if (filtern_LocalStorage.length === 0) filtern_kombiniert = filtern_data;
-    else if (filtern_data.length === 0) filtern_kombiniert = filtern_LocalStorage;
-    else {
-        if (liste == "termine" && Liste_FilternEigenschaftPositionZurueck(filtern_LocalStorage, "start").length > 1)
-            filtern_kombiniert = filtern_LocalStorage;
-        else filtern_kombiniert = [{ verknuepfung: "&&", filtern: [filtern_data[0], filtern_LocalStorage[0]] }];
-    }
-    const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(filtern_kombiniert, liste);
+    const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
+        Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_LocalStorage, liste),
+        LISTEN[liste].tabelle,
+        liste
+    );
 
     // TABELLE SORTIEREN
     // sortieren aus data

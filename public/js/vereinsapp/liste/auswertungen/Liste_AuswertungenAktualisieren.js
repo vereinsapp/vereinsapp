@@ -25,16 +25,16 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     if (typeof gruppieren_LocalStorage === "undefined") gruppieren = gruppieren_data;
     else gruppieren = gruppieren_LocalStorage;
     // filtern aus liste_data
-    let liste_filtern_data = new Array();
-    if ("filtern" in liste_data) liste_filtern_data = Schnittstelle_VariableArrayBereinigtZurueck(liste_data.filtern);
+    let liste_filtern_data = new Object();
+    if ("filtern" in liste_data) liste_filtern_data = Schnittstelle_VariableObjektBereinigtZurueck(liste_data.filtern);
     // filtern aus LocalStorage
     const liste_filtern_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].filtern;
-    // liste_filtern_data und liste_filtern_LocalStorage kombinieren
-    let liste_filtern;
-    if (liste_filtern_LocalStorage.length === 0) liste_filtern = liste_filtern_data;
-    else if (liste_filtern_data.length === 0) liste_filtern = liste_filtern_LocalStorage;
-    else liste_filtern = [{ verknuepfung: "&&", filtern: [liste_filtern_data[0], liste_filtern_LocalStorage[0]] }];
-    const liste_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(liste_filtern, liste);
+    // liste_filtern_data und liste_filtern_LocalStorage kombinieren und tabelle filtern
+    const liste_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
+        Liste_FilternMitPrioKombiniertZurueck(liste_filtern_data, liste_filtern_LocalStorage, liste),
+        LISTEN[liste].tabelle,
+        liste
+    );
 
     // GEGEN_LISTE DEFINIEREN
     // gegen_liste aus data
@@ -44,23 +44,16 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     // gegen_element_id aus data
     let gegen_element_id = undefined;
     const gegen_element_id_data = $auswertungen.attr("data-gegen_element_id");
-    if (typeof gegen_element_id_data !== "undefined") gegen_element_id = gegen_element_id_data;
+    if (typeof gegen_element_id_data !== "undefined") gegen_element_id = Number(gegen_element_id_data);
 
     // AUSWERTUNGEN FILTERN
-    // filtern für liste definieren
-    const auswertungen_liste_filtern = [{ verknuepfung: "||", filtern: new Array() }];
+    const auswertungen_filtern = new Object();
+    auswertungen_filtern[LISTEN[liste].element + "_id"] = { inklusiv: new Array() };
     $.each(liste_tabelle_gefiltert, function () {
-        auswertungen_liste_filtern[0].filtern.push({ operator: "==", eigenschaft: LISTEN[liste].element + "_id", wert: this.id });
+        auswertungen_filtern[LISTEN[liste].element + "_id"].inklusiv.push(Number(this.id));
     });
-    // filtern für gegen_liste definieren
-    const auswertungen_gegen_liste_filtern = [
-        { verknuepfung: "||", filtern: [{ operator: "==", eigenschaft: LISTEN[gegen_liste].element + "_id", wert: gegen_element_id }] },
-    ];
-    // filtern für liste und filtern für gegen_liste kombinieren und damit auswertungen filtern
-    const auswertungen_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
-        [{ verknuepfung: "&&", filtern: [auswertungen_liste_filtern[0], auswertungen_gegen_liste_filtern[0]] }],
-        auswertungen
-    );
+    auswertungen_filtern[LISTEN[gegen_liste].element + "_id"] = { inklusiv: [gegen_element_id] };
+    const auswertungen_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(auswertungen_filtern, LISTEN[auswertungen].tabelle, auswertungen);
 
     // WERTE ZU GRUPPIEREN SORTIEREN
     const gruppieren_werte = Object.keys(Liste_ArrayGruppiertZurueck(liste_tabelle_gefiltert, gruppieren));

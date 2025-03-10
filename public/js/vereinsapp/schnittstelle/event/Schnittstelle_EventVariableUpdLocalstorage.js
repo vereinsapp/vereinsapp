@@ -19,17 +19,9 @@ function Schnittstelle_EventVariableUpdLocalstorage(folgendes_event, data) {
 
     $.each(LISTEN[liste].instanz, function (instanz) {
         // filtern wird vorbereitet
-        const LOC_filtern = new Array();
-        if (LISTEN[liste].instanz[instanz].filtern.length >= 1) LOC_filtern.push(LISTEN[liste].instanz[instanz].filtern[0]);
-        function VAR_upd_LOC_filtern(filtern, liste) {
-            $.each(filtern, function (index, knoten) {
-                if ("verknuepfung" in knoten) VAR_upd_LOC_filtern(knoten.filtern, liste);
-                else if ("operator" in knoten) knoten.wert = Schnittstelle_LocalstorageWertBereinigtZurueck(knoten.wert);
-            });
-        }
-        VAR_upd_LOC_filtern(LOC_filtern, liste);
+        const LOC_filtern = Schnittstelle_VariableObjektBereinigtZurueck(LISTEN[liste].instanz[instanz].filtern);
         // filtern wird im Localstorage gespeichert
-        if (LOC_filtern.length > 0) Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_filtern", LOC_filtern);
+        if (Object.keys(LOC_filtern).length > 0) Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_filtern", LOC_filtern);
         else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_filtern");
 
         // sortieren wird vorbereitet
