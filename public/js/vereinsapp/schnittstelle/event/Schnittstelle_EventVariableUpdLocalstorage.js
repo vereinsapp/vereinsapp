@@ -19,19 +19,19 @@ function Schnittstelle_EventVariableUpdLocalstorage(folgendes_event, data) {
 
     $.each(LISTEN[liste].instanz, function (instanz) {
         // filtern wird vorbereitet
-        const LOC_filtern = Schnittstelle_VariableObjektBereinigtZurueck(LISTEN[liste].instanz[instanz].filtern);
+        const LOC_filtern = Schnittstelle_VariableWertBereinigtZurueck(LISTEN[liste].instanz[instanz].filtern);
         // filtern wird im Localstorage gespeichert
         if (Object.keys(LOC_filtern).length > 0) Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_filtern", LOC_filtern);
         else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_filtern");
 
         // sortieren wird vorbereitet
-        const LOC_sortieren = LISTEN[liste].instanz[instanz].sortieren;
+        const LOC_sortieren = Schnittstelle_VariableWertBereinigtZurueck(LISTEN[liste].instanz[instanz].sortieren);
         // sortieren wird im Localstorage gespeichert
         if (typeof LOC_sortieren !== "undefined") Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_sortieren", LOC_sortieren);
         else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_sortieren");
 
         // gruppieren wird vorbereitet
-        const LOC_gruppieren = LISTEN[liste].instanz[instanz].gruppieren;
+        const LOC_gruppieren = Schnittstelle_VariableWertBereinigtZurueck(LISTEN[liste].instanz[instanz].gruppieren);
         // gruppieren wird im Localstorage gespeichert
         if (typeof LOC_gruppieren !== "undefined") Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_gruppieren", LOC_gruppieren);
         else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_gruppieren");

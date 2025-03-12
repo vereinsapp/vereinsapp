@@ -46,6 +46,7 @@ function Liste_FilternMitPrioKombiniertZurueck(filtern, filtern_prio, liste) {
         });
     }
 
+    // todo:
     // if (Object.keys(filtern).length !== 0 || Object.keys(filtern_prio).length !== 0)
     //     Schnittstelle_LogInDieKonsole("Liste_FilternMitPrioKombiniertZurueck", filtern, filtern_prio, liste);
 

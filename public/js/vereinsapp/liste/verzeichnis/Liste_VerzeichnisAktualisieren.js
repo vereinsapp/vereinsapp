@@ -5,7 +5,7 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
     if (typeof instanz === "undefined") instanz = $verzeichnis.attr("id");
 
     let basis = $verzeichnis.attr("data-basis");
-    if (typeof basis !== "undefined") basis = JSON.parse(basis);
+    if (typeof basis !== "undefined") basis = Schnittstelle_VariableWertBereinigtZurueck(basis);
     else basis = new Array();
 
     if (basis.length > 0)
@@ -63,7 +63,7 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
                 .find(".verzeichnis")
                 .attr("data-instanz", instanz)
                 .attr("data-element_id", element_id)
-                .attr("data-basis", JSON.stringify(neue_basis));
+                .attr("data-basis", JsonStringifiedZurueck(neue_basis));
 
             // Unterverzeichnis wird hinzugefügt (je nachdem, wo es im Verzeichnis positioniert ist)
             if (position === 0) $neues_unterverzeichnis.appendTo($verzeichnis);

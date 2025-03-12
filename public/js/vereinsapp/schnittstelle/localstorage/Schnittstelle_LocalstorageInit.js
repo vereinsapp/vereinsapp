@@ -20,7 +20,7 @@ function Schnittstelle_LocalstorageInit() {
     // LOCALSTORAGE LEEREN ERZWINGEN
     if (
         typeof Schnittstelle_LocalstorageRausZurueck("localstorage_reset") === "undefined" ||
-        DateTime.fromISO(Schnittstelle_LocalstorageRausZurueck("localstorage_reset")) < DateTime.fromISO(FORCE_LOCALSTORAGE_RESET_ZEITPUNKT)
+        Schnittstelle_LocalstorageRausZurueck("localstorage_reset") < DateTime.fromISO(FORCE_LOCALSTORAGE_RESET_ZEITPUNKT)
     ) {
         localstorage_leeren();
         Schnittstelle_LogInDieKonsole("LocalStorage wurde erzwungenermaßen geleert.");

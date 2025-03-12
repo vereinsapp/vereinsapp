@@ -52,8 +52,6 @@ $(document).ready(function () {
 FEATURES
 Filtern auf eine Ebene beschränken und die Oberflächen optimieren
     Info: LISTEN[liste].instanz[instanz] wird initialisiert in Aufgabe_Init, Liste_ElementAuswahlEinfordern, Liste_Init
-    Braucht es Schnittstelle_VariableObjektBereinigtZurueck für filtern?
-    Schnittstelle_VariableObjektBereinigtZurueck und Schnittstelle_VariableArrayBereinigtZurueck in Schnittstelle_VariableWertBereinigtZurueck vereinigen und anschließend entfernen
     Bei Auswertungen data-liste.filtern dynamisch erzeugen (bspw. Kombination aus allgemeinem und spezifischem Mitglieder-Filter und bestehendem dynamischem Mitglieder-Filter)
     Vordefinierte Filter: Beginn Kalenderjahr, Beginn Aktionszeitraum
     Batch über filtern- und sortieren-Button legen
@@ -104,4 +102,8 @@ ich_rueckgemeldet umbenennen in ich_rueckmeldung_janein
 Time::now vs. Time::today klären
 Warum wird Liste_AuswertungenAktualisieren in den Termin-Details so oft aufgerufen?
 Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit den Werten?
+Schnittstelle_VariableWertBereinigtZurueck erweitern mit einem zweiten Parameter für einen Wert, der zurückgegeben wird im Fall von undefined
+Zeiträume (bspw. 14 Tage) müssen mit -1 Sekunde enden
+auswertung gruppieren wirft error
+
 */

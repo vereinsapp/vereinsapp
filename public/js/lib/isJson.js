@@ -17,8 +17,7 @@ function isJson(json) {
         // but... JSON.parse(null) returns null, and typeof null === "object",
         // so we must check for that, too. Thankfully, null is falsey, so this suffices:
         if (o && typeof o === "object") {
-            // return o;
-            return o; // geändert am 27.12.2023
+            return o;
         }
     } catch (e) {}
 

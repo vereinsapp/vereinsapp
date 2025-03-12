@@ -14,9 +14,10 @@ function Liste_ElementAuswahlEinfordern(dom, title, liste, klasse_id, data) {
 
     const $liste = $neues_auswahl_modal.find("#AUSWAHLLISTE.liste");
     $liste.attr("id", instanz).attr("data-liste", liste);
-    if (liste in HAUPTINSTANZEN && "filtern" in HAUPTINSTANZEN[liste]) $liste.attr("data-filtern", JSON.stringify(HAUPTINSTANZEN[liste].filtern));
+    if (liste in HAUPTINSTANZEN && "filtern" in HAUPTINSTANZEN[liste])
+        $liste.attr("data-filtern", JsonStringifiedZurueck(HAUPTINSTANZEN[liste].filtern));
     if (liste in HAUPTINSTANZEN && "sortieren" in HAUPTINSTANZEN[liste])
-        $liste.attr("data-sortieren", JSON.stringify(HAUPTINSTANZEN[liste].sortieren));
+        $liste.attr("data-sortieren", JsonStringifiedZurueck(HAUPTINSTANZEN[liste].sortieren));
 
     $neues_auswahl_modal.find('.werkzeug[data-instanz="AUSWAHLLISTE"]').each(function () {
         const $werkzeug = $(this);

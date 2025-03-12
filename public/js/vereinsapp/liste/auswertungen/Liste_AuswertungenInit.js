@@ -8,7 +8,7 @@ function Liste_AuswertungenInit() {
 
             // liste_data aus data
             let liste_data = $auswertungen.attr("data-liste");
-            if (typeof liste_data !== "undefined") liste_data = JSON.parse(liste_data);
+            if (typeof liste_data !== "undefined") liste_data = Schnittstelle_VariableWertBereinigtZurueck(liste_data);
             else liste_data = new Object();
             // liste aus liste_data
             let liste = undefined;

@@ -10,7 +10,7 @@ function Aufgaben_ZugeordneteAufgabenAnzeigen(dom, title) {
     // TABELLE FILTERN
     // filtern aus data
     let filtern_data = $zugeordnete_aufgaben.attr("data-filtern");
-    if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableObjektBereinigtZurueck(JSON.parse(filtern_data));
+    if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableWertBereinigtZurueck(filtern_data);
     else filtern_data = new Object();
     // filtern aus element_ids
     const filtern_element_ids = { id: { inklusiv: new Array() } };
@@ -24,7 +24,10 @@ function Aufgaben_ZugeordneteAufgabenAnzeigen(dom, title) {
             filtern_element_ids.id.inklusiv.push(Number(aufgabe.id));
     });
     // data und LocalStorage kombinieren
-    $zugeordnete_aufgaben.attr("data-filtern", JSON.stringify(Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_element_ids, "aufgaben")));
+    $zugeordnete_aufgaben.attr(
+        "data-filtern",
+        JsonStringifiedZurueck(Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_element_ids, "aufgaben"))
+    );
 
     Schnittstelle_DomModalOeffnen($neues_modal);
     Schnittstelle_EventAusfuehren(Schnittstelle_EventVariableUpdDom, { liste: "aufgaben" });

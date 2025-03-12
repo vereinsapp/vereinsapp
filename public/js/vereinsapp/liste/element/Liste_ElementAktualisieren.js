@@ -5,7 +5,7 @@ function Liste_ElementAktualisieren($element, liste) {
     let disabled = false;
     let disabled_data = $element.attr("data-disabled");
     if (typeof disabled_data !== "undefined") {
-        disabled_data = JSON.parse(disabled_data);
+        disabled_data = Schnittstelle_VariableWertBereinigtZurueck(disabled_data);
         $.each(Liste_TabelleGefiltertZurueck(disabled_data.filtern, LISTEN[disabled_data.liste].tabelle, disabled_data.liste), function () {
             const element = this;
             if ("id" in element && element.id == element_id) {
@@ -34,7 +34,7 @@ function Liste_ElementAktualisieren($element, liste) {
     const gegen_element_id = $element.attr("data-gegen_element_id");
 
     let bedingte_formatierung = $element.attr("data-bedingte_formatierung");
-    if (typeof bedingte_formatierung !== "undefined") bedingte_formatierung = JSON.parse(bedingte_formatierung);
+    if (typeof bedingte_formatierung !== "undefined") bedingte_formatierung = Schnittstelle_VariableWertBereinigtZurueck(bedingte_formatierung);
     else bedingte_formatierung = new Object();
 
     if (!("liste" in bedingte_formatierung)) bedingte_formatierung.liste = liste;

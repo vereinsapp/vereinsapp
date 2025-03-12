@@ -43,7 +43,7 @@ EIGENSCHAFTEN.aufgaben.zugeordnete_element_id.change_aktion = function ($zugeord
             if (typeof zugeordnete_liste !== "undefined")
                 $zugeordnetes_element
                     .attr("data-liste", zugeordnete_liste)
-                    .attr("data-filtern", JSON.stringify({ id: { inklusiv: [zugeordnete_element_id] } }));
+                    .attr("data-filtern", JsonStringifiedZurueck({ id: { inklusiv: [zugeordnete_element_id] } }));
             else $zugeordnetes_element.removeAttr("data-liste").removeAttr("data-filtern");
 
             if (

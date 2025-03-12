@@ -27,10 +27,8 @@ function Schnittstelle_EventLocalstorageUpdVariable(folgendes_event, data) {
     $.each(LISTEN[liste].instanz, function (instanz) {
         // filtern wird aus dem Localstorage geholt und in der Variable gespeichert
         let filtern_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_filtern");
-        if (typeof filtern_LocalStorage !== "undefined") Schnittstelle_VariableObjektBereinigtZurueck(filtern_LocalStorage);
-        else filtern_LocalStorage = new Object();
+        if (typeof filtern_LocalStorage === "undefined") filtern_LocalStorage = new Object();
         LISTEN[liste].instanz[instanz].filtern = filtern_LocalStorage;
-
         // sortieren wird aus dem Localstorage geholt und in der Variable gespeichert
         LISTEN[liste].instanz[instanz].sortieren = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren");
         // gruppieren wird aus dem Localstorage geholt und in der Variable gespeichert

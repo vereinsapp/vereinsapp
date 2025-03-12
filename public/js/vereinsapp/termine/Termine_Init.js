@@ -12,11 +12,11 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
     }
 
     termin["ich_eingeladen"] = false;
-    if ("filtern_mitglieder" in termin) termin["filtern_mitglieder"] = Schnittstelle_VariableObjektBereinigtZurueck(termin["filtern_mitglieder"]);
+    if ("filtern_mitglieder" in termin) termin["filtern_mitglieder"] = Schnittstelle_VariableWertBereinigtZurueck(termin["filtern_mitglieder"]);
     else termin["filtern_mitglieder"] = new Object();
     let termin_kategorie_filtern_mitglieder;
     if (termin["kategorie"] in TERMINE_KATEGORIE_FILTERN_MITGLIEDER)
-        termin_kategorie_filtern_mitglieder = Schnittstelle_VariableObjektBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin["kategorie"]]);
+        termin_kategorie_filtern_mitglieder = Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin["kategorie"]]);
     else termin_kategorie_filtern_mitglieder = new Object();
     $.each(
         Liste_TabelleGefiltertZurueck(
@@ -108,9 +108,9 @@ function Termine_Init() {
             false,
             { $btn_ausloesend: $(this) },
             {
-                termin_id: JSON.parse($(this).attr("data-werte")).termin_id,
-                mitglied_id: JSON.parse($(this).attr("data-werte")).mitglied_id,
-                status: JSON.parse($(this).attr("data-werte")).status,
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte")).termin_id,
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte")).mitglied_id,
+                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte")).status,
                 bemerkung: "",
             },
             $(this).attr("data-title"),
@@ -124,7 +124,7 @@ function Termine_Init() {
             false,
             { $btn_ausloesend: $(this) },
             {
-                status: JSON.parse($(this).attr("data-werte")).status,
+                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte")).status,
                 bemerkung: "",
             },
             $(this).attr("data-title"),

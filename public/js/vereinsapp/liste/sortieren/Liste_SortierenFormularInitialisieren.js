@@ -10,7 +10,7 @@ function Liste_SortierenFormularInitialisieren($formular, instanz, liste) {
     let sortieren = LISTEN[liste].instanz[instanz].sortieren;
     if (typeof sortieren === "undefined") {
         sortieren = $("#" + instanz + ".liste").attr("data-sortieren");
-        if (typeof sortieren !== "undefined") sortieren = JSON.parse(sortieren);
+        if (typeof sortieren !== "undefined") sortieren = Schnittstelle_VariableWertBereinigtZurueck(sortieren);
     }
 
     if (typeof sortieren !== "undefined") {

@@ -10,7 +10,7 @@ function Mitglieder_MitgliederAufgabenErledigtAnzeigen(dom, title) {
     // TABELLE FILTERN
     // filtern aus data
     let filtern_data = $mitglieder_aufgaben_erledigt.attr("data-filtern");
-    if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableObjektBereinigtZurueck(JSON.parse(filtern_data));
+    if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableWertBereinigtZurueck(filtern_data);
     else filtern_data = new Object();
     // filtern aus mitglied_ids
     const filtern_mitglied_ids = { id: { inklusiv: new Array() } };
@@ -21,7 +21,7 @@ function Mitglieder_MitgliederAufgabenErledigtAnzeigen(dom, title) {
     // data und LocalStorage kombinieren
     $mitglieder_aufgaben_erledigt.attr(
         "data-filtern",
-        JSON.stringify(Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_mitglied_ids, "mitglieder"))
+        JsonStringifiedZurueck(Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_mitglied_ids, "mitglieder"))
     );
 
     Schnittstelle_DomModalOeffnen($neues_modal);

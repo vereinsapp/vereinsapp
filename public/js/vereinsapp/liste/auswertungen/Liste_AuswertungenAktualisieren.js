@@ -3,14 +3,14 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
 
     // STATUS_AUSWAHL DEFINIEREN
     let status_auswahl = $auswertungen.attr("data-status_auswahl");
-    if (typeof status_auswahl !== "undefined") status_auswahl = JSON.parse(status_auswahl);
+    if (typeof status_auswahl !== "undefined") status_auswahl = Schnittstelle_VariableWertBereinigtZurueck(status_auswahl);
     else status_auswahl = new Object();
     status_auswahl[0] = undefined;
 
     // LISTE DEFINIEREN
     // liste_data aus data
     let liste_data = $auswertungen.attr("data-liste");
-    if (typeof liste_data !== "undefined") liste_data = JSON.parse(liste_data);
+    if (typeof liste_data !== "undefined") liste_data = Schnittstelle_VariableWertBereinigtZurueck(liste_data);
     else liste_data = new Object();
     // liste aus liste_data
     let liste = undefined;
@@ -25,8 +25,9 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     if (typeof gruppieren_LocalStorage === "undefined") gruppieren = gruppieren_data;
     else gruppieren = gruppieren_LocalStorage;
     // filtern aus liste_data
-    let liste_filtern_data = new Object();
-    if ("filtern" in liste_data) liste_filtern_data = Schnittstelle_VariableObjektBereinigtZurueck(liste_data.filtern);
+    let liste_filtern_data;
+    if ("filtern" in liste_data) liste_filtern_data = Schnittstelle_VariableWertBereinigtZurueck(liste_data.filtern);
+    else liste_filtern_data = new Object();
     // filtern aus LocalStorage
     const liste_filtern_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].filtern;
     // liste_filtern_data und liste_filtern_LocalStorage kombinieren und tabelle filtern

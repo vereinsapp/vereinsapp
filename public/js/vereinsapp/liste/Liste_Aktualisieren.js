@@ -4,7 +4,7 @@ function Liste_Aktualisieren($liste, liste) {
     // TABELLE FILTERN
     // filtern aus data
     let filtern_data = $liste.attr("data-filtern");
-    if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableObjektBereinigtZurueck(JSON.parse(filtern_data));
+    if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableWertBereinigtZurueck(filtern_data);
     else filtern_data = new Object();
     // filtern aus LocalStorage
     const filtern_LocalStorage = LISTEN[liste].instanz[instanz].filtern;
@@ -18,7 +18,7 @@ function Liste_Aktualisieren($liste, liste) {
     // TABELLE SORTIEREN
     // sortieren aus data
     let sortieren_data = $liste.attr("data-sortieren");
-    if (typeof sortieren_data !== "undefined") sortieren_data = JSON.parse(sortieren_data);
+    if (typeof sortieren_data !== "undefined") sortieren_data = Schnittstelle_VariableWertBereinigtZurueck(sortieren_data);
     // sortieren aus LocalStorage
     const sortieren_LocalStorage = LISTEN[liste].instanz[instanz].sortieren;
     // data und LocalStorage kombinieren

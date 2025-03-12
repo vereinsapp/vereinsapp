@@ -51,7 +51,7 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
         $.each(alle_element_ids_mit_status[$ergebnis.attr("data-status")], function (position, id) {
             filtern.id.inklusiv.push(Number(id));
         });
-        $ergebnis.attr("data-filtern", JSON.stringify(filtern));
+        $ergebnis.attr("data-filtern", JsonStringifiedZurueck(filtern));
     });
 
     // BEINHALTETE LISTE AKTUALISIEREN

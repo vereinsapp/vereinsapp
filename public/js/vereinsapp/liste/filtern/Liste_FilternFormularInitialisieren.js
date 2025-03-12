@@ -27,7 +27,7 @@ function Liste_FilternFormularInitialisieren($formular, instanz, liste) {
     let filtern = LISTEN[liste].instanz[instanz].filtern;
     if (typeof filtern === "undefined") {
         filtern = $("#" + instanz + ".liste").attr("data-filtern");
-        if (typeof filtern !== "undefined") filtern = JSON.parse(filtern);
+        if (typeof filtern !== "undefined") filtern = Schnittstelle_VariableWertBereinigtZurueck(filtern);
     }
 
     if (typeof filtern !== "undefined") {

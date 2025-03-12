@@ -7,7 +7,7 @@ function Liste_DateiAktualisieren($datei, liste) {
     // const typ = datei.slice(punkt + 1);
 
     let basis = $verzeichnis.attr("data-basis");
-    if (typeof basis !== "undefined") basis = JSON.parse(basis);
+    if (typeof basis !== "undefined") basis = Schnittstelle_VariableWertBereinigtZurueck(basis);
     else basis = new Array();
 
     link = BASE_URL + "storage/" + liste + "/" + Schnittstelle_VariableRausZurueck("verzeichnis_basis", element_id, liste);
