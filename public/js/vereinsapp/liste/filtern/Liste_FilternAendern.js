@@ -6,25 +6,27 @@ function Liste_FilternAendern(formular_oeffnen, dom, title, instanz, liste) {
     } else {
         Schnittstelle_LogInDieKonsole("filtern wird jetzt gespeichert");
 
-        // const eigenschaft = dom.$filtern_eigenschaft.attr("data-eigenschaft");
+        const $eigenschaft = dom.$filtern_eigenschaft;
+        const eigenschaft = $eigenschaft.attr("data-eigenschaft");
 
-        // todo: abhängig machen von eigenschaft!
-        // const filtern_eigenschaft = {
-        //     verknuepfung: "&&",
-        //     filtern: new Object(),
-        // };
+        const filtern_eigenschaft = new Object();
+        switch (EIGENSCHAFTEN[liste][eigenschaft].typ) {
+            case "text":
+                // (noch) kein filtern möglich
+                break;
+            case "zahl":
+            case "zeitpunkt":
+                const filtern_start = $eigenschaft.find(".filtern_start").val();
+                if (filtern_start != "") filtern_eigenschaft.start = filtern_start;
+                const filtern_ende = $eigenschaft.find(".filtern_ende").val();
+                if (filtern_ende != "") filtern_eigenschaft.ende = filtern_ende;
+                break;
+            case "vorgegebene_werte":
+            case "element_id":
+                break;
+        }
 
-        // $.each(dom.$filtern_eigenschaft.find(".filtern_wert"), function () {
-        //     const $filtern_wert = $(this);
-
-        //     if ($filtern_wert.val() != "")
-        //         filtern_eigenschaft.filtern.push({
-        //             operator: $filtern_wert.attr("data-operator"),
-        //             wert: Schnittstelle_VariableWertBereinigtZurueck($filtern_wert.val()),
-        //         });
-        // });
-
-        // LISTEN[liste].instanz[instanz].filtern[eigenschaft] = filtern_eigenschaft;
+        LISTEN[liste].instanz[instanz].filtern[eigenschaft] = Schnittstelle_VariableWertBereinigtZurueck(filtern_eigenschaft);
 
         Schnittstelle_EventAusfuehren(
             [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],

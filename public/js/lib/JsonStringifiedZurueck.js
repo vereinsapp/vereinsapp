@@ -1,5 +1,7 @@
 function JsonStringifiedZurueck(wert) {
-    return JSON.stringify(wert, (key, value) => {
-        return value instanceof DateTime ? value.toSQL() : value;
+    return JSON.stringify(wert, (schluessel, wert) => {
+        if (isNumber(wert)) return Number(wert);
+        // else if (isLuxonDateTime(wert)) return wert.toFormat("yyyy-MM-dd HH:mm:ss");
+        else return wert;
     });
 }

@@ -12,7 +12,7 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
         const ajax_data = data;
         ajax_data.id = termin_id;
         if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", termin_id, "termine");
-        if (!("start" in data)) data.start = Schnittstelle_VariableRausZurueck("start", termin_id, "termine").toISO();
+        if (!("start" in data)) data.start = Schnittstelle_VariableRausZurueck("start", termin_id, "termine").toISO(); // todo: JsonStringifiedZurueck verwenden
         if (!("ort" in data)) data.ort = Schnittstelle_VariableRausZurueck("ort", termin_id, "termine");
         if (!("kategorie" in data)) data.kategorie = Schnittstelle_VariableRausZurueck("kategorie", termin_id, "termine");
         if (!("filtern_mitglieder" in data)) data.filtern_mitglieder = Schnittstelle_VariableRausZurueck("filtern_mitglieder", termin_id, "termine");

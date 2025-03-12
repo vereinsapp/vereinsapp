@@ -290,7 +290,7 @@ class Mitglieder extends BaseController {
             if( array_key_exists( 'funktion', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['funktion'] = $this->request->getpost()['funktion'];
             if( array_key_exists( 'vorstandschaft', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['vorstandschaft'] = $this->request->getpost()['vorstandschaft'];
             if( array_key_exists( 'aktiv', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['aktiv'] = $this->request->getpost()['aktiv'];
-    
+
             if( !empty( $this->request->getPost()['id'] ) ) {
                 $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);
                 $mitglieder_Model->save( $mitglied );

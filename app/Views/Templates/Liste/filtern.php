@@ -3,11 +3,11 @@
     <div class="input-group blanko filtern_eigenschaft invisible mb-1" data-typ="zeitpunkt">
         <span class="input-group-text"><i class="bi bi-<?= SYMBOLE['zeitraum']['bootstrap']; ?>"></i></span>
         <div class="form-floating">
-            <input type="date" class="form-control filtern_wert" data-operator=">=" />
+            <input type="date" class="form-control filtern_start" />
             <label><span class="beschriftung"></span> von</label>
         </div>
         <div class="form-floating">
-            <input type="date" class="form-control filtern_wert" data-operator="<=" />
+            <input type="date" class="form-control filtern_ende" />
             <label><span class="beschriftung"></span> bis</label>
         </div>
     </div>

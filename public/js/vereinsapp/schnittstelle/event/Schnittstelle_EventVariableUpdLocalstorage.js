@@ -5,14 +5,8 @@ function Schnittstelle_EventVariableUpdLocalstorage(folgendes_event, data) {
     // tabelle wird vorbereitet
     const LOC_tabelle = new Array();
     $.each(LISTEN[liste].tabelle, function () {
-        const element = this;
-        if ("id" in element) {
-            // if ("alter" in element) delete element["alter"];
-            $.each(element, function (eigenschaft, wert) {
-                element[eigenschaft] = Schnittstelle_LocalstorageWertBereinigtZurueck(wert);
-            });
-            LOC_tabelle.push(element);
-        }
+        const element = this; // if ("alter" in element) delete element["alter"];
+        if ("id" in element) LOC_tabelle.push(element);
     });
     // tabelle wird im Localstorage gespeichert
     Schnittstelle_LocalstorageRein(liste + "_tabelle", LOC_tabelle);
@@ -39,11 +33,4 @@ function Schnittstelle_EventVariableUpdLocalstorage(folgendes_event, data) {
 
     if (typeof folgendes_event === "function" || (isArray(folgendes_event) && folgendes_event.length > 0))
         Schnittstelle_EventAusfuehren(folgendes_event, data);
-}
-
-function Schnittstelle_LocalstorageWertBereinigtZurueck(wert) {
-    if (isLuxonDateTime(wert)) wert = wert.toSQL();
-    else if (isNumber(wert)) wert = Number(wert);
-
-    return wert;
 }

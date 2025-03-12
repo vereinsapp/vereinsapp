@@ -95,7 +95,6 @@ Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rü
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 Rekursion-Problem Rückmeldungen vs. Termine auflösen
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
-Schnittstelle_LocalstorageWertBereinigtZurueck in Schnittstelle_LocalstorageRein integrieren
 Liste für element_navigation überarbeiten (Pfeile zum "scrollen" immer einblenden)
 
 ich_rueckgemeldet umbenennen in ich_rueckmeldung_janein
@@ -105,5 +104,6 @@ Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit de
 Schnittstelle_VariableWertBereinigtZurueck erweitern mit einem zweiten Parameter für einen Wert, der zurückgegeben wird im Fall von undefined
 Zeiträume (bspw. 14 Tage) müssen mit -1 Sekunde enden
 auswertung gruppieren wirft error
+todo: JsonStringifiedZurueck verwenden
 
 */

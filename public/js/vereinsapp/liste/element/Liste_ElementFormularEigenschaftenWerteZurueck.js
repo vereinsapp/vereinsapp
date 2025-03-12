@@ -10,7 +10,7 @@ function Liste_ElementFormularEigenschaftenWerteZurueck($formular) {
         if (["date", "time", "datetime-local"].includes($eingabe.attr("type"))) {
             wert = DateTime.fromISO(wert);
             if (eingabe == "ende") wert = wert.plus({ days: 1 }).minus({ seconds: 1 });
-            wert = wert.toSQL();
+            wert = wert.toSQL(); // todo: JsonStringifiedZurueck verwenden
         }
         // Wenn aber die Eigenschaft eine Zahl ist
         else if (isNumber(wert)) wert = Number(wert);

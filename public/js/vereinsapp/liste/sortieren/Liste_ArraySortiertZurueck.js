@@ -6,7 +6,7 @@ function Liste_ArraySortiertZurueck(array, sortieren) {
             const valB = sortieren.richtung === SORT_DESC ? a[sortieren.eigenschaft] : b[sortieren.eigenschaft];
 
             // Luxon DateTime-Objekte vergleichen
-            if (DateTime.isDateTime(valA) && DateTime.isDateTime(valB)) return valA.toMillis() - valB.toMillis();
+            if (isLuxonDateTime(valA) && isLuxonDateTime(valB)) return valA.toMillis() - valB.toMillis();
 
             // Zahlen vergleichen
             if (typeof valA === "number" && typeof valB === "number") return valA - valB;
