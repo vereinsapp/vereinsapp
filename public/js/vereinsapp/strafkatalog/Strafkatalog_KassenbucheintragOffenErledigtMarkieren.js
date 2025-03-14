@@ -18,7 +18,7 @@ function Strafkatalog_KassenbucheintragOffenErledigtMarkieren(bestaetigung_einfo
             { kassenbucheintrag_id: kassenbucheintrag_id }
         );
     } else {
-        if (erledigt === null) erledigt = DateTime.now().toSQL(); // todo: JsonStringifiedZurueck verwenden
+        if (erledigt === null) erledigt = DateTime.now();
         else erledigt = null;
         Strafkatalog_KassenbucheintragAendern(false, dom, { erledigt: erledigt }, title, kassenbucheintrag_id);
     }

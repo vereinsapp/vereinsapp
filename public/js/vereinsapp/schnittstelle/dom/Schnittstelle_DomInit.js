@@ -261,10 +261,7 @@ function Schnittstelle_CheckWartenEnde($check) {
 }
 
 function Schnittstelle_JetztAktualisieren($jetzt) {
-    let format = "dd.MM.yyyy HH:mm:ss";
-    const data_format = $jetzt.attr("data-format");
-    if (typeof data_format !== "undefined") format = $jetzt.attr("data-format");
-    $jetzt.text(DateTime.now().toFormat(format));
+    $jetzt.text(DateTime.now().toFormat("dd.MM.yyyy HH:mm:ss"));
 }
 
 function Schnittstelle_ToggleSymbol($symbol) {

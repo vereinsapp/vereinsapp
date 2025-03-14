@@ -6,7 +6,7 @@ function Liste_CheckAendern(dom, data) {
     Schnittstelle_CheckWartenStart(dom.$check);
 
     const ajax_dom = dom;
-    const ajax_data = data;
+    const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
     ajax_data[LISTEN[data.liste].element + "_id"] = data.element_id;
     ajax_data[LISTEN[data.gegen_liste].element + "_id"] = data.gegen_element_id;
 

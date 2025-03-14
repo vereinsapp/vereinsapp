@@ -17,7 +17,7 @@ function Liste_CsvExport(bestaetigung_einfordern, dom, title, instanz, liste) {
         });
 
         const ajax_dom = dom;
-        const ajax_data = data;
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
 
         Schnittstelle_AjaxInDieSchlange(
             LISTEN[liste].controller + "/ajax_" + liste + "_csv_export",

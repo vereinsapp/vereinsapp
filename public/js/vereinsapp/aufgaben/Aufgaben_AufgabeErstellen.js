@@ -9,11 +9,14 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
         if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
-        const ajax_data = data;
+
         if ("zugeordnete_liste" in data && (typeof data.zugeordnete_liste === "undefined" || data.zugeordnete_liste == ""))
             data.zugeordnete_liste = null;
         if (("zugeordnete_element_id" in data && typeof data.zugeordnete_element_id === "undefined") || data.zugeordnete_element_id == "")
             data.zugeordnete_element_id = null;
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+        ajax_data.id = aufgabe_id;
+        if ("erledigt" in ajax_data && isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();
 
         Schnittstelle_AjaxInDieSchlange(
             "aufgaben/ajax_aufgabe_speichern",

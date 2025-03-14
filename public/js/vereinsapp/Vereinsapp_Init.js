@@ -104,6 +104,5 @@ Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit de
 Schnittstelle_VariableWertBereinigtZurueck erweitern mit einem zweiten Parameter für einen Wert, der zurückgegeben wird im Fall von undefined
 Zeiträume (bspw. 14 Tage) müssen mit -1 Sekunde enden
 auswertung gruppieren wirft error
-todo: JsonStringifiedZurueck verwenden
 
 */
