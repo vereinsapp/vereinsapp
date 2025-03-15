@@ -291,6 +291,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'filtern' => array( 'bootstrap' => 'funnel' ),
     'sortieren' => array( 'bootstrap' => 'sort-down' ),
     'gruppieren' => array( 'bootstrap' => 'hdd-stack' ),
+    'inklusiv_exklusiv' => array( 'bootstrap' => 'transparency' ),
     'asc' => array( 'bootstrap' => 'sort-alpha-down' ),
     'desc' => array( 'bootstrap' => 'sort-alpha-up' ),
     'alle_checks_anwaehlen' => array( 'bootstrap' => 'toggle-on' ),

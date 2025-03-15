@@ -13,10 +13,10 @@ function Liste_FilternFormularInitialisieren($formular, instanz, liste) {
         $neue_filtern_eigenschaft.find(".beschriftung").text(beschriftung);
 
         if (typ == "vorgegebene_werte") {
-            $neue_filtern_eigenschaft.find(".filtern_wert").empty();
+            $neue_filtern_eigenschaft.find(".filtern_auswahl").empty();
             $.each(VORGEGEBENE_WERTE[liste][eigenschaft], function (wert, eigenschaften) {
                 $('<option value="' + wert + '">' + eigenschaften.beschriftung + "</option>").appendTo(
-                    $neue_filtern_eigenschaft.find(".filtern_wert")
+                    $neue_filtern_eigenschaft.find(".filtern_auswahl")
                 );
             });
         }
@@ -65,6 +65,7 @@ function Liste_FilternFormularInitialisieren($formular, instanz, liste) {
                     });
                     break;
                 case "vorgegebene_werte":
+                    break;
                 case "element_id":
                     break;
             }

@@ -24,13 +24,25 @@
         </div>
     </div>
 
-    <div class="input-group blanko filtern_eigenschaft invisible mb-1" data-typ="vorgegebene_werte">
-        <div class="form-floating">
-            <select class="form-select filtern_wert" data-operator="==">
-            </select>
-            <label><span class="beschriftung"></span></label>
+    <div class="card sichtbar blanko filtern_eigenschaft invisible mb-1" data-typ="vorgegebene_werte">
+        <div class="card-body">
+            <span class="filtern_inklusiv">
+
+                <div class="input-group input-group-sm blanko filtern_wert" role="group">
+                    <span class="input-group-text"></span>
+                    <button type="button" class="btn btn_filtern_wert_inklusiv_exklusiv btn-sm btn-outline-primary"><i class="bi bi-<?= SYMBOLE['inklusiv_exklusiv']['bootstrap'] ?>"></i></button>
+                    <button type="button" class="btn btn_filtern_wert_loeschen btn-sm btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap'] ?>"></i></button>
+                </div>
+
+            </span><span class="filtern_exklusiv"></span>
         </div>
-        <button type="button" class="btn_filtern_erstellen btn btn-outline-success"><i class="bi bi-<?= SYMBOLE['erstellen']['bootstrap']; ?>"></i></button>
+        <div class="card-body p-1">
+            <div class="form-floating">
+                <select class="form-select filtern_auswahl">
+                </select>
+                <label><span class="beschriftung"></span></label>
+            </div>
+        </div>
     </div>
 
 </div>
