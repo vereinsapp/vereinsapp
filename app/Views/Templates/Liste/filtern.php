@@ -15,14 +15,13 @@
     <div class="input-group blanko filtern_eigenschaft invisible mb-1" data-typ="zahl">
         <span class="input-group-text"><i class="bi bi-<?= SYMBOLE['zahlenraum']['bootstrap']; ?>"></i></span>
         <div class="form-floating">
-            <input type="number" class="form-control filtern_wert" data-operator=">=" />
+            <input type="number" class="form-control filtern_start" />
             <label><span class="beschriftung"></span> von</label>
         </div>
         <div class="form-floating">
-            <input type="number" class="form-control filtern_wert" data-operator="<=" />
+            <input type="number" class="form-control filtern_ende" />
             <label><span class="beschriftung"></span> bis</label>
         </div>
-        <button type="button" class="btn_filtern_erstellen btn btn-outline-success"><i class="bi bi-<?= SYMBOLE['erstellen']['bootstrap']; ?>"></i></button>
     </div>
 
     <div class="input-group blanko filtern_eigenschaft invisible mb-1" data-typ="vorgegebene_werte">

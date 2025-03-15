@@ -10,5 +10,5 @@ function Liste_GruppierenFormularInitialisieren($formular, instanz, liste) {
     let gruppieren = LISTEN[liste].instanz[instanz].gruppieren;
     if (typeof gruppieren === "undefined") gruppieren = $("#" + instanz + ".liste").attr("data-gruppieren");
 
-    if (typeof gruppieren !== "undefined") $gruppieren_eigenschaft.val(Schnittstelle_VariableWertBereinigtZurueck(gruppieren));
+    if (typeof gruppieren !== "undefined") $gruppieren_eigenschaft.val(gruppieren);
 }

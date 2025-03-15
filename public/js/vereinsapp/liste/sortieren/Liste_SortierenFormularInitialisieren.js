@@ -14,7 +14,7 @@ function Liste_SortierenFormularInitialisieren($formular, instanz, liste) {
     }
 
     if (typeof sortieren !== "undefined") {
-        $sortieren_eigenschaft.val(Schnittstelle_VariableWertBereinigtZurueck(sortieren.eigenschaft));
+        $sortieren_eigenschaft.val(sortieren.eigenschaft);
         $formular.find(".sortieren_richtung").attr("checked", false);
         $formular.find(".sortieren_richtung[value=" + sortieren.richtung + "]").attr("checked", true);
     }
