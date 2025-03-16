@@ -1,6 +1,6 @@
 const FILTERN = new Object();
 FILTERN.$blanko_filtern_eigenschaft = new Object();
-// FILTERN.$blanko_filtern_element für vorgegebene_werte?
+FILTERN.$blanko_filtern_wert = new Object();
 
 function Liste_FilternInit() {
     // FILTERN MODAL ÖFFNEN
