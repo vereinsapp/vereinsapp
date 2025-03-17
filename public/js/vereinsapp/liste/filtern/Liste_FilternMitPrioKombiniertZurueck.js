@@ -22,13 +22,16 @@ function Liste_FilternMitPrioKombiniertZurueck(filtern, filtern_prio, liste) {
                 case "vorgegebene_werte":
                 case "element_id":
                     $.each(["inklusiv", "exklusiv"], function (position, filtern_klasse) {
-                        if (!(eigenschaft in filtern)) filtern[eigenschaft] = { [filtern_klasse]: new Array() };
-                        else if (!(filtern_klasse in filtern[eigenschaft])) filtern[eigenschaft][filtern_klasse] = new Array();
-                        if (!(eigenschaft in filtern_prio)) filtern_prio[eigenschaft] = { [filtern_klasse]: new Array() };
-                        else if (!(filtern_klasse in filtern_prio[eigenschaft])) filtern_prio[eigenschaft][filtern_klasse] = new Array();
-                        filtern_kombiniert[eigenschaft][filtern_klasse] = filtern[eigenschaft][filtern_klasse].concat(
-                            filtern_prio[eigenschaft][filtern_klasse]
-                        );
+                        let filtern_eigenschaft_filtern_klasse = new Array();
+                        let filtern_prio_eigenschaft_filtern_klasse = new Array();
+                        if (eigenschaft in filtern && filtern_klasse in filtern[eigenschaft])
+                            filtern_eigenschaft_filtern_klasse = filtern[eigenschaft][filtern_klasse];
+                        if (eigenschaft in filtern_prio && filtern_klasse in filtern_prio[eigenschaft])
+                            filtern_prio_eigenschaft_filtern_klasse = filtern_prio[eigenschaft][filtern_klasse];
+                        if (filtern_eigenschaft_filtern_klasse.length > 0 || filtern_prio_eigenschaft_filtern_klasse.length > 0)
+                            filtern_kombiniert[eigenschaft][filtern_klasse] = filtern_eigenschaft_filtern_klasse.concat(
+                                filtern_prio_eigenschaft_filtern_klasse
+                            );
                     });
                     break;
             }

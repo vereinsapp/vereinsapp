@@ -61,6 +61,7 @@ function Schnittstelle_DomInit() {
             // Wenn .blanko eine .filtern_eigenschaft ist
             else if ($blanko.hasClass("filtern_eigenschaft")) {
                 const typ = $blanko.attr("data-typ");
+                $blanko.removeAttr("data-typ");
                 if ("$blanko_filtern_eigenschaft" in FILTERN && !(typ in FILTERN.$blanko_filtern_eigenschaft))
                     FILTERN.$blanko_filtern_eigenschaft[typ] = $blanko;
             }

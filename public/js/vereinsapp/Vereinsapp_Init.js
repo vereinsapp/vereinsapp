@@ -97,12 +97,11 @@ Rekursion-Problem Rückmeldungen vs. Termine auflösen
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 Liste für element_navigation überarbeiten (Pfeile zum "scrollen" immer einblenden)
 
-ich_rueckgemeldet umbenennen in ich_rueckmeldung_janein
 Time::now vs. Time::today klären
 Warum wird Liste_AuswertungenAktualisieren in den Termin-Details so oft aufgerufen?
 Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit den Werten?
 Schnittstelle_VariableWertBereinigtZurueck erweitern mit einem zweiten Parameter für einen Wert, der zurückgegeben wird im Fall von undefined
-Zeiträume (bspw. 14 Tage) müssen mit -1 Sekunde enden
-auswertung gruppieren wirft error
+JANEIN in TRUE/FALSE konvertieren (vorstandschaft, aktiv, erledigt_janein, ich_rueckgemeldet, ich_eingeladen, erledigt_janein)
+    ich_rueckgemeldet umbenennen in ich_rueckmeldung_janein
 
 */

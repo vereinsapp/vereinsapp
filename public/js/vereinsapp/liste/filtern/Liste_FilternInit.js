@@ -24,4 +24,22 @@ function Liste_FilternInit() {
             $(this).closest(".formular").attr("data-liste")
         );
     });
+
+    // FILTERN WERT ZWISCHEN INKLUSIV UND EXKLUSIV VERSCHIEBEN
+    $(document).on("click", ".btn_filtern_wert_inklusiv_exklusiv", function () {
+        Liste_FilternWertInExklusivVerschieben(
+            { $filtern_wert: $(this).closest(".filtern_wert") },
+            $(this).closest(".formular").attr("data-instanz"),
+            $(this).closest(".formular").attr("data-liste")
+        );
+    });
+
+    // FILTERN WERT LOESCHEN
+    $(document).on("click", ".btn_filtern_wert_loeschen", function () {
+        Liste_FilternWertLoeschen(
+            { $filtern_wert: $(this).closest(".filtern_wert") },
+            $(this).closest(".formular").attr("data-instanz"),
+            $(this).closest(".formular").attr("data-liste")
+        );
+    });
 }

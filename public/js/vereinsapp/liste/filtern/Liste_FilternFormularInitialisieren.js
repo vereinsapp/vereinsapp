@@ -13,7 +13,8 @@ function Liste_FilternFormularInitialisieren($formular, instanz, liste) {
         $neue_filtern_eigenschaft.find(".beschriftung").text(beschriftung);
 
         if (typ == "vorgegebene_werte") {
-            $neue_filtern_eigenschaft.find(".filtern_auswahl, .filtern_inklusiv, .filtern_exklusiv").empty();
+            $neue_filtern_eigenschaft.find(".filtern_auswahl, .filtern_werte").empty();
+            $("<option selected></option>").appendTo($neue_filtern_eigenschaft.find(".filtern_auswahl"));
             $.each(VORGEGEBENE_WERTE[liste][eigenschaft], function (wert, eigenschaften) {
                 $('<option value="' + wert + '">' + eigenschaften.beschriftung + "</option>").appendTo(
                     $neue_filtern_eigenschaft.find(".filtern_auswahl")
@@ -69,7 +70,7 @@ function Liste_FilternFormularInitialisieren($formular, instanz, liste) {
                         const $neuer_filtern_wert = FILTERN.$blanko_filtern_wert.clone().removeClass("blanko invisible");
                         $neuer_filtern_wert.attr("data-wert", filtern_wert);
                         $neuer_filtern_wert.find(".beschriftung").text(VORGEGEBENE_WERTE[liste][eigenschaft][filtern_wert].beschriftung);
-                        $neuer_filtern_wert.appendTo($eigenschaft.find(".filtern_" + filtern_klasse));
+                        $neuer_filtern_wert.appendTo($eigenschaft.find(".filtern_werte"));
                     });
                 });
                 break;

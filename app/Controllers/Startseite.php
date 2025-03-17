@@ -12,7 +12,7 @@ class Startseite extends BaseController {
         $this->viewdata['liste']['anstehende_geburtstage'] = HAUPTINSTANZEN['mitglieder'];
         unset($this->viewdata['liste']['anstehende_geburtstage']['werkzeugkasten']);
         unset($this->viewdata['liste']['anstehende_geburtstage']['listenstatistik']);
-        $this->viewdata['liste']['anstehende_geburtstage']['filtern'] = array( 'geburtstag' => array( 'start' => Time::today( 'Europe/Berlin' )->toDateTimeString(), 'ende' => Time::today( 'Europe/Berlin' )->addDays(14)->toDateTimeString(), ), );
+        $this->viewdata['liste']['anstehende_geburtstage']['filtern'] = array( 'geburtstag' => array( 'start' => Time::today( 'Europe/Berlin' )->toDateTimeString(), 'ende' => Time::today( 'Europe/Berlin' )->addDays(14)->subSecond()->toDateTimeString(), ), );
         $this->viewdata['liste']['anstehende_geburtstage']['sortieren'] = array( 'eigenschaft' => 'geburtstag', 'richtung' => SORT_ASC, );
         $this->viewdata['liste']['anstehende_geburtstage']['link'] = TRUE;
         $this->viewdata['liste']['anstehende_geburtstage']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['geburtstag']['bootstrap'].' me-2"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
@@ -23,7 +23,7 @@ class Startseite extends BaseController {
             unset($this->viewdata['liste']['bevorstehende_termine_startseite']['werkzeugkasten']);
             unset($this->viewdata['liste']['bevorstehende_termine_startseite']['listenstatistik']);
             $this->viewdata['liste']['bevorstehende_termine_startseite']['filtern'] = array(
-                'start' => array( 'start' => Time::today( 'Europe/Berlin' )->toDateTimeString(), 'ende' => Time::today( 'Europe/Berlin' )->addDays(14)->toDateTimeString(), ),
+                'start' => array( 'start' => Time::today( 'Europe/Berlin' )->toDateTimeString(), 'ende' => Time::today( 'Europe/Berlin' )->addDays(14)->subSecond()->toDateTimeString(), ),
                 'ich_eingeladen' => array( 'inklusiv' => array( TRUE ), ),
             );
             $this->viewdata['liste']['bevorstehende_termine_startseite']['link'] = TRUE;
@@ -49,7 +49,7 @@ class Startseite extends BaseController {
             unset($this->viewdata['liste']['termine_ausstehende_rueckmeldung']['werkzeugkasten']);
             unset($this->viewdata['liste']['termine_ausstehende_rueckmeldung']['listenstatistik']);
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['filtern'] = array(
-                'start' => array( 'start' => Time::now( 'Europe/Berlin' )->addSeconds(TERMINE_RUECKMELDUNG_FRIST)->toDateTimeString(), ),
+                'start' => array( 'start' => Time::now( 'Europe/Berlin' )->addSeconds(TERMINE_RUECKMELDUNG_FRIST)->subSecond()->toDateTimeString(), ),
                 'ich_rueckgemeldet' => array( 'inklusiv' => array( FALSE ), ),
                 'ich_eingeladen' => array( 'inklusiv' => array( TRUE ), ),
             );

@@ -25,11 +25,10 @@
     </div>
 
     <div class="card sichtbar blanko filtern_eigenschaft invisible mb-1" data-typ="vorgegebene_werte">
-        <div class="card-body">
-            <span class="filtern_inklusiv">
+        <div class="card-body filtern_werte p-2">
 
-                <div class="input-group input-group-sm blanko filtern_wert" role="group">
-                    <span class="input-group-text beschriftung"></span>
+                <div class="btn-group btn-group-sm blanko filtern_wert me-1 mb-1" role="group">
+                    <button type="button" class="btn beschriftung btn-sm btn-outline-body disabled"></button>
                     <button type="button" class="btn btn_filtern_wert_inklusiv_exklusiv btn-sm btn-outline-primary"><i class="bi bi-<?= SYMBOLE['inklusiv_exklusiv']['bootstrap'] ?>"></i></button>
                     <button type="button" class="btn btn_filtern_wert_loeschen btn-sm btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap'] ?>"></i></button>
                 </div>
