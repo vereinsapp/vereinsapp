@@ -42,4 +42,13 @@ function Liste_FilternInit() {
             $(this).closest(".formular").attr("data-liste")
         );
     });
+
+    // FILTERN LOESCHEN
+    $(document).on("click", ".btn_filtern_loeschen", function () {
+        Liste_FilternLoeschen(
+            { $formular: $(this).closest(".formular"), $filtern_eigenschaft: $(this).closest(".filtern_eigenschaft") },
+            $(this).closest(".formular").attr("data-instanz"),
+            $(this).closest(".formular").attr("data-liste")
+        );
+    });
 }

@@ -10,6 +10,7 @@
             <input type="date" class="form-control filtern_ende" />
             <label><span class="beschriftung"></span> bis</label>
         </div>
+        <button type="button" class="btn_filtern_loeschen btn btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
     </div>
 
     <div class="input-group blanko filtern_eigenschaft invisible mb-1" data-typ="zahl">
@@ -22,6 +23,7 @@
             <input type="number" class="form-control filtern_ende" />
             <label><span class="beschriftung"></span> bis</label>
         </div>
+        <button type="button" class="btn_filtern_loeschen btn btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
     </div>
 
     <div class="card sichtbar blanko filtern_eigenschaft invisible mb-1" data-typ="vorgegebene_werte">
@@ -35,13 +37,14 @@
 
             </span><span class="filtern_exklusiv"></span>
         </div>
-        <div class="card-body p-1">
+        <div class="card-body input-group p-1">
             <div class="form-floating">
                 <select class="form-select filtern_auswahl">
                 </select>
                 <label><span class="beschriftung"></span></label>
             </div>
-        </div>
+            <button type="button" class="btn_filtern_loeschen btn btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
+            </div>
     </div>
 
 </div>
