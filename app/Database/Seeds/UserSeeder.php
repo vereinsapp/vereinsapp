@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
         $mitglieder = [
             [ 'vorname'  => 'John', 'nachname' => 'Doe',
                 'geburt' => '2024-01-01', 'postleitzahl' => 12345, 'wohnort' => 'Musterstadt',
-                'geschlecht' => 'd', 'register' => 'ohne', 'auto' => 'ohne', 'funktion' => 'ohne', 'vorstandschaft' => 0, 'aktiv' => 1, ],
+                'geschlecht' => 'd', 'register' => 'ohne', 'auto' => 'ohne', 'funktion' => 'ohne', 'vorstandschaft_janein' => FALSE, 'aktiv_janein' => TRUE, ],
         ];
         $this->db->table('mitglieder')->insertBatch($mitglieder);
         

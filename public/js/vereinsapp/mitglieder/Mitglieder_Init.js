@@ -1,4 +1,9 @@
 ELEMENTE.mitglied.ergaenzen_aktion = function (mitglied) {
+    if ("vorstandschaft_janein" in mitglied && mitglied["vorstandschaft_janein"] == 1) mitglied["vorstandschaft_janein"] = true;
+    else mitglied["vorstandschaft_janein"] = false;
+    if ("aktiv_janein" in mitglied && mitglied["aktiv_janein"] == 1) mitglied["aktiv_janein"] = true;
+    else mitglied["aktiv_janein"] = false;
+
     if ("geburt" in mitglied) {
         mitglied["alter"] = -1 * mitglied["geburt"].diffNow("years").years;
 

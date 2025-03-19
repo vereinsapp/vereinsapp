@@ -102,6 +102,5 @@ Warum wird Liste_AuswertungenAktualisieren in den Termin-Details so oft aufgeruf
 Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit den Werten?
 Schnittstelle_VariableWertBereinigtZurueck erweitern mit einem zweiten Parameter für einen Wert, der zurückgegeben wird im Fall von undefined
 JANEIN in TRUE/FALSE konvertieren (vorstandschaft, aktiv, erledigt_janein, ich_rueckgemeldet, ich_eingeladen, erledigt_janein)
-    ich_rueckgemeldet umbenennen in ich_rueckmeldung_janein
 
 */

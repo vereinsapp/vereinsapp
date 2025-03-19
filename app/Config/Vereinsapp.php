@@ -95,7 +95,7 @@ class Vereinsapp extends BaseConfig
 
         'mitglieder' => array(
             'liste' => 'mitglieder',
-            'filtern' => array( 'aktiv' => array( 'inklusiv' => array( 1 ), ) ),
+            'filtern' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ) ),
             'sortieren' => array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
             // 'group-flush' => TRUE,
             // 'sortable' => TRUE,
@@ -241,8 +241,8 @@ class Vereinsapp extends BaseConfig
             'register' => array( 'beschriftung' => 'Instrument', 'typ' => 'vorgegebene_werte' ),
             'auto' => array( 'beschriftung' => 'Auto', 'typ' => 'vorgegebene_werte' ),
             'funktion' => array( 'beschriftung' => 'Funktion', 'typ' => 'vorgegebene_werte' ),
-            'vorstandschaft' => array( 'beschriftung' => 'Vorstandschaft', 'typ' => 'vorgegebene_werte' ),
-            'aktiv' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
+            'vorstandschaft_janein' => array( 'beschriftung' => 'Vorstandschaft', 'typ' => 'vorgegebene_werte' ),
+            'aktiv_janein' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
             'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),                  // PHP
             'letzte_aktivitaet' => array( 'beschriftung' => 'Letzte Aktivität', 'typ' => 'zeitpunkt' ),     // PHP
             'passwort_alt' => array( 'beschriftung' => 'Altes Passwort', 'typ' => 'text' ),                 // PHP
@@ -283,9 +283,9 @@ class Vereinsapp extends BaseConfig
             'kategorie' => array( 'beschriftung' => 'Typ', 'typ' => 'vorgegebene_werte' ),
             'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'ich_rueckgemeldet' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'vorgegebene_werte' ), // JAVA
-            'ich_rueckmeldung_id' => array( 'beschriftung' => 'Meine RÜckmeldung-ID', 'typ' => 'element_id' ),              // JAVA
-            'ich_eingeladen' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'vorgegebene_werte' ),              // JAVA
+            'ich_rueckgemeldet_janein' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'vorgegebene_werte' ),  // JAVA
+            'ich_rueckmeldung_id' => array( 'beschriftung' => 'Meine RÜckmeldung-ID', 'typ' => 'element_id' ),                      // JAVA
+            'ich_eingeladen_janein' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'vorgegebene_werte' ),               // JAVA
         ),
 
         'rueckmeldungen' => array(
@@ -393,9 +393,9 @@ class Vereinsapp extends BaseConfig
                 'noten' => array( 'beschriftung' => 'Notenwart', ),
             ),
 
-            'vorstandschaft' => JANEIN,
+            'vorstandschaft_janein' => JANEIN,
 
-            'aktiv' => JANEIN,
+            'aktiv_janein' => JANEIN,
 
         ),
 
@@ -424,9 +424,9 @@ class Vereinsapp extends BaseConfig
                 'vorstandschaftssitzung' => array( 'beschriftung' => 'Vorstandschaftssitzung', 'symbol' => '&#128186' ),
             ),
 
-            'ich_rueckgemeldet' => JANEIN,
+            'ich_rueckgemeldet_janein' => JANEIN,
 
-            'ich_eingeladen' => JANEIN,
+            'ich_eingeladen_janein' => JANEIN,
         ),
 
         'rueckmeldungen' => array(
@@ -483,8 +483,8 @@ class Vereinsapp extends BaseConfig
             'register',
             'auto',
             'funktion',
-            'vorstandschaft',
-            'aktiv',
+            'vorstandschaft_janein',
+            'aktiv_janein',
         ),
 
         'vergebene_rechte' => array(
@@ -502,8 +502,8 @@ class Vereinsapp extends BaseConfig
         'termine' => array(
             'start',
             'kategorie',
-            'ich_rueckgemeldet',
-            'ich_eingeladen',
+            'ich_rueckgemeldet_janein',
+            'ich_eingeladen_janein',
         ),
 
         'rueckmeldungen' => array(
@@ -555,8 +555,8 @@ class Vereinsapp extends BaseConfig
             'register',
             'auto',
             'funktion',
-            'vorstandschaft',
-            'aktiv',
+            'vorstandschaft_janein',
+            'aktiv_janein',
         ),
 
         'vergebene_rechte' => array(
@@ -625,8 +625,8 @@ class Vereinsapp extends BaseConfig
             'register',
             'auto',
             'funktion',
-            'vorstandschaft',
-            'aktiv',
+            'vorstandschaft_janein',
+            'aktiv_janein',
         ),
 
         'vergebene_rechte' => array(
@@ -690,9 +690,9 @@ class Vereinsapp extends BaseConfig
      * entsprechend dem Standard-Schema für Filtern
      */
     public $termine_kategorie_filtern_mitglieder = array(
-        'probe' => array( 'aktiv' => array( 'inklusiv' => array( 1 ), ), ),
-        'auftritt' => array( 'aktiv' => array( 'inklusiv' => array( 1 ), ), ),
-        'vorstandschaftssitzung' => array( 'vorstandschaft' => array( 'inklusiv' => array( 1 ), ), ),
+        'probe' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), ),
+        'auftritt' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), ),
+        'vorstandschaftssitzung' => array( 'vorstandschaft_janein' => array( 'inklusiv' => array( TRUE ), ), ),
     );
 
     /**

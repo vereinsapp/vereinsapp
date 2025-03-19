@@ -7,11 +7,11 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
             ],
             "rueckmeldungen"
         );
-        if (typeof termin["ich_rueckmeldung_id"] === "undefined") termin["ich_rueckgemeldet"] = false;
-        else termin["ich_rueckgemeldet"] = true;
+        if (typeof termin["ich_rueckmeldung_id"] === "undefined") termin["ich_rueckgemeldet_janein"] = false;
+        else termin["ich_rueckgemeldet_janein"] = true;
     }
 
-    termin["ich_eingeladen"] = false;
+    termin["ich_eingeladen_janein"] = false;
     if ("filtern_mitglieder" in termin) termin["filtern_mitglieder"] = Schnittstelle_VariableWertBereinigtZurueck(termin["filtern_mitglieder"]);
     else termin["filtern_mitglieder"] = new Object();
     let termin_kategorie_filtern_mitglieder;
@@ -25,7 +25,7 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
             "mitglieder"
         ),
         function () {
-            if (this["id"] == ICH["id"]) termin["ich_eingeladen"] = true;
+            if (this["id"] == ICH["id"]) termin["ich_eingeladen_janein"] = true;
             return;
         }
     );
