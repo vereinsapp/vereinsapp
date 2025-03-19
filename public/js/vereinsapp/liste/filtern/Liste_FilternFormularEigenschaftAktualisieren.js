@@ -46,6 +46,18 @@ function Liste_FilternFormularEigenschaftAktualisieren($eigenschaft, filtern_eig
                 });
             });
             break;
+        case "janein":
+            const $filtern_werte_janein = $eigenschaft.find(".filtern_werte").empty();
+
+            $.each(Object.keys(filtern_eigenschaft), function (position, filtern_klasse) {
+                $.each(filtern_eigenschaft[filtern_klasse], function (position, filtern_wert) {
+                    const $neuer_filtern_wert_janein = FILTERN.$blanko_filtern_wert.clone().removeClass("blanko invisible");
+                    $neuer_filtern_wert_janein.attr("data-wert", Number(filtern_wert));
+                    $neuer_filtern_wert_janein.find(".beschriftung").text(JANEIN[Number(filtern_wert)].beschriftung);
+                    $neuer_filtern_wert_janein.appendTo($filtern_werte_janein);
+                });
+            });
+            break;
         case "element_id":
             break;
     }

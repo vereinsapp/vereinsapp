@@ -241,8 +241,8 @@ class Vereinsapp extends BaseConfig
             'register' => array( 'beschriftung' => 'Instrument', 'typ' => 'vorgegebene_werte' ),
             'auto' => array( 'beschriftung' => 'Auto', 'typ' => 'vorgegebene_werte' ),
             'funktion' => array( 'beschriftung' => 'Funktion', 'typ' => 'vorgegebene_werte' ),
-            'vorstandschaft_janein' => array( 'beschriftung' => 'Vorstandschaft', 'typ' => 'vorgegebene_werte' ),
-            'aktiv_janein' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
+            'vorstandschaft_janein' => array( 'beschriftung' => 'Vorstandschaft', 'typ' => 'janein' ),
+            'aktiv_janein' => array( 'beschriftung' => 'Aktiv', 'typ' => 'janein' ),
             'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),                  // PHP
             'letzte_aktivitaet' => array( 'beschriftung' => 'Letzte Aktivität', 'typ' => 'zeitpunkt' ),     // PHP
             'passwort_alt' => array( 'beschriftung' => 'Altes Passwort', 'typ' => 'text' ),                 // PHP
@@ -266,11 +266,11 @@ class Vereinsapp extends BaseConfig
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'zugeordnete_liste' => array( 'beschriftung' => 'Zugeordnete Liste', 'typ' => 'vorgegebene_werte' ),
             'zugeordnete_element_id' => array( 'beschriftung' => 'Zugeordnete Element-ID', 'typ' => 'element_id' ),
-            'zugeordnetes_element' => array( 'beschriftung' => 'Zugeordnetes Element', 'typ' => 'text' ), // JAVA
+            'zugeordnetes_element' => array( 'beschriftung' => 'Zugeordnetes Element', 'typ' => 'text' ),   // JAVA
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),
-            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'vorgegebene_werte' ),       // JAVA
+            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'janein' ),                  // JAVA
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),                  // PHP
         ),
@@ -283,9 +283,9 @@ class Vereinsapp extends BaseConfig
             'kategorie' => array( 'beschriftung' => 'Typ', 'typ' => 'vorgegebene_werte' ),
             'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'ich_rueckgemeldet_janein' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'vorgegebene_werte' ),  // JAVA
-            'ich_rueckmeldung_id' => array( 'beschriftung' => 'Meine RÜckmeldung-ID', 'typ' => 'element_id' ),                      // JAVA
-            'ich_eingeladen_janein' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'vorgegebene_werte' ),               // JAVA
+            'ich_rueckgemeldet_janein' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'janein' ), // JAVA
+            'ich_rueckmeldung_id' => array( 'beschriftung' => 'Meine RÜckmeldung-ID', 'typ' => 'element_id' ),          // JAVA
+            'ich_eingeladen_janein' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'janein' ),              // JAVA
         ),
 
         'rueckmeldungen' => array(
@@ -318,9 +318,9 @@ class Vereinsapp extends BaseConfig
             'wert' => array( 'beschriftung' => 'Wert (in Euro)', 'typ' => 'zahl' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),
-            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'vorgegebene_werte' ),   // JAVA
+            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'janein' ),  // JAVA
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),              // PHP
+            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),  // PHP
         ),
 
         'notenbank' => array(
@@ -393,10 +393,6 @@ class Vereinsapp extends BaseConfig
                 'noten' => array( 'beschriftung' => 'Notenwart', ),
             ),
 
-            'vorstandschaft_janein' => JANEIN,
-
-            'aktiv_janein' => JANEIN,
-
         ),
 
         'vergebene_rechte' => array(
@@ -411,8 +407,6 @@ class Vereinsapp extends BaseConfig
                 'notenbank' => array( 'beschriftung' => LISTEN['notenbank']['beschriftung'] ),
             ),
 
-            'erledigt_janein' => JANEIN,
-
         ),
 
         'termine' => array(
@@ -424,9 +418,6 @@ class Vereinsapp extends BaseConfig
                 'vorstandschaftssitzung' => array( 'beschriftung' => 'Vorstandschaftssitzung', 'symbol' => '&#128186' ),
             ),
 
-            'ich_rueckgemeldet_janein' => JANEIN,
-
-            'ich_eingeladen_janein' => JANEIN,
         ),
 
         'rueckmeldungen' => array(
@@ -447,9 +438,6 @@ class Vereinsapp extends BaseConfig
         ),
 
         'kassenbuch' => array(
-
-            'erledigt_janein' => JANEIN,
-
         ),
 
         'notenbank' => array(

@@ -23,6 +23,7 @@ function Liste_TabelleGefiltertZurueck(filtern, tabelle, liste) {
                         }
                         break;
                     case "vorgegebene_werte":
+                    case "janein":
                     case "element_id":
                         if ("inklusiv" in filtern[eigenschaft]) {
                             filtern_ergebnis_inklusiv = false;

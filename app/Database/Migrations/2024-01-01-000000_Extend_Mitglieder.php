@@ -18,7 +18,7 @@ class Extend_Mitglieder extends Migration
             'auto'                  => ['type' => 'varchar',    'constraint' => 50,                         'null' => false,    'default' => 'ohne'],
             'funktion'              => ['type' => 'varchar',    'constraint' => 50,                         'null' => false,    'default' => 'ohne'],
             'vorstandschaft_janein' => ['type' => 'int',        'constraint' => 1,      'unsigned' => true, 'null' => false,    'default' => 0],
-            'aktiv_janein'                 => ['type' => 'int',        'constraint' => 1,      'unsigned' => true, 'null' => false,    'default' => 1],
+            'aktiv_janein'          => ['type' => 'int',        'constraint' => 1,      'unsigned' => true, 'null' => false,    'default' => 1],
         ]);
     }
 

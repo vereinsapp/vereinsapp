@@ -35,6 +35,8 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
                 suppressSeconds: true,
                 suppressMilliseconds: true,
             });
+        // Oder wenn aber die Eigenschaft ein janein ist
+        else if (EIGENSCHAFTEN[liste][eingabe].typ == "janein") wert_formatiert = Number(wert);
         // Oder wenn aber die Eigenschaft ein Objekt oder ein Array ist
         else if (isObject(wert) || isArray(wert)) wert_formatiert = JsonStringifiedZurueck(wert);
 

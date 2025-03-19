@@ -1,6 +1,6 @@
 function Liste_FilternWertInExklusivVerschieben(dom, instanz, liste) {
     const $filtern_wert = dom.$filtern_wert;
-    const filtern_wert = Schnittstelle_VariableWertBereinigtZurueck($filtern_wert.attr("data-wert"));
+    let filtern_wert = Schnittstelle_VariableWertBereinigtZurueck($filtern_wert.attr("data-wert"));
     const eigenschaft = $filtern_wert.closest(".filtern_eigenschaft").attr("data-eigenschaft");
 
     const filtern_eigenschaft = LISTEN[liste].instanz[instanz].filtern[eigenschaft];
@@ -14,7 +14,10 @@ function Liste_FilternWertInExklusivVerschieben(dom, instanz, liste) {
             // (noch) keine Vielzahl an Werten
             break;
         case "vorgegebene_werte":
+        case "janein":
         case "element_id":
+            if (EIGENSCHAFTEN[liste][eigenschaft].typ == "janein") filtern_wert = JANEIN[filtern_wert].wert;
+
             let filtern_klasse_alt, filtern_wert_position;
             $.each(["inklusiv", "exklusiv"], function (position, filtern_klasse) {
                 if (filtern_klasse in filtern_eigenschaft && filtern_eigenschaft[filtern_klasse].includes(filtern_wert)) {

@@ -6,7 +6,6 @@ foreach( $liste['werkzeugkasten'] as $symbol => $werkzeug) { ?><button type="but
         else echo ' '.$werkzeug['klasse_id'];
     } ?>" data-title="<?= $werkzeug['title']; ?>" data-instanz="<?= $liste['id']; ?>"<?php
     if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
-    if( array_key_exists( 'farbe', $werkzeug ) ) { ?> data-farbe="<?= $werkzeug['farbe']; ?>"<?php }
     if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php }
     ?>><i class="bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?>"></i></button><?php }
 ?></div><?php } ?>

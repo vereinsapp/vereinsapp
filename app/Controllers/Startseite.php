@@ -49,7 +49,7 @@ class Startseite extends BaseController {
             unset($this->viewdata['liste']['termine_ausstehende_rueckmeldung']['werkzeugkasten']);
             unset($this->viewdata['liste']['termine_ausstehende_rueckmeldung']['listenstatistik']);
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['filtern'] = array(
-                'start' => array( 'start' => Time::now( 'Europe/Berlin' )->addSeconds(TERMINE_RUECKMELDUNG_FRIST)->subSeconds(1)->toDateTimeString(), ),
+                'start' => array( 'start' => Time::now( 'Europe/Berlin' )->addSeconds(TERMINE_RUECKMELDUNG_FRIST)->toDateTimeString(), ),
                 'ich_rueckgemeldet_janein' => array( 'inklusiv' => array( FALSE ), ),
                 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ), ),
             );

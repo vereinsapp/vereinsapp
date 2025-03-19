@@ -20,6 +20,7 @@ function Liste_FilternMitPrioKombiniertZurueck(filtern, filtern_prio, liste) {
                     });
                     break;
                 case "vorgegebene_werte":
+                case "janein":
                 case "element_id":
                     $.each(["inklusiv", "exklusiv"], function (position, filtern_klasse) {
                         let filtern_eigenschaft_filtern_klasse = new Array();

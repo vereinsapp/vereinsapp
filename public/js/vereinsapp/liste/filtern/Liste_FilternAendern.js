@@ -23,6 +23,24 @@ function Liste_FilternAendern(formular_oeffnen, dom, title, instanz, liste) {
                     else delete filtern_eigenschaft[filtern_klasse];
                 });
                 break;
+            case "janein":
+                let neuer_filtern_wert_janein = $eigenschaft.find(".filtern_auswahl").val();
+                if (neuer_filtern_wert_janein != "") {
+                    neuer_filtern_wert_janein = Schnittstelle_VariableWertBereinigtZurueck(neuer_filtern_wert_janein);
+
+                    if (!("inklusiv" in filtern_eigenschaft)) filtern_eigenschaft.inklusiv = new Array();
+                    if (!filtern_eigenschaft.inklusiv.includes(JANEIN[neuer_filtern_wert_janein].wert)) {
+                        filtern_eigenschaft.inklusiv.push(JANEIN[neuer_filtern_wert_janein].wert);
+
+                        const $neuer_filtern_wert = FILTERN.$blanko_filtern_wert.clone().removeClass("blanko invisible");
+                        $neuer_filtern_wert.attr("data-wert", neuer_filtern_wert_janein);
+                        $neuer_filtern_wert
+                            .find(".beschriftung")
+                            .text(Liste_WertFormatiertZurueck(JANEIN[neuer_filtern_wert_janein].wert, eigenschaft, liste));
+                        $neuer_filtern_wert.appendTo($eigenschaft.find(".filtern_werte"));
+                    }
+                }
+                break;
             case "vorgegebene_werte":
             case "element_id":
                 let neuer_filtern_wert = $eigenschaft.find(".filtern_auswahl").val();

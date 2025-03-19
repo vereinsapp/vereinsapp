@@ -368,40 +368,37 @@ class Termine extends BaseController {
         else if( count( array_keys( $filtern_prio ) ) === 0  AND count( array_keys( $filtern ) ) > 0 ) $filtern_kombiniert = $filtern;
         else {
             $filtern_kombiniert = array();
-            foreach( $filtern as $eigenschaft => $filtern_nicht_verwendet ) {
-                if( array_key_exists( $eigenschaft, $filtern_prio ) ) {
-                    switch( EIGENSCHAFTEN[$liste][$eigenschaft]['typ'] ) {
-                        case 'text':
-                            // (noch) kein filtern möglich
-                            break;
-                        case 'zahl':
-                        case 'zeitpunkt':
-                            if( array_key_exists( 'start', $filtern_prio[$eigenschaft] ) ) $filtern_kombiniert[$eigenschaft]['start'] = $filtern_prio[$eigenschaft]['start'];
-                            else $filtern_kombiniert[$eigenschaft]['start'] = $filtern[$eigenschaft]['start'];
-                            if( array_key_exists( 'ende', $filtern_prio[$eigenschaft] ) ) $filtern_kombiniert[$eigenschaft]['ende'] = $filtern_prio[$eigenschaft]['ende'];
-                            else $filtern_kombiniert[$eigenschaft]['ende'] = $filtern[$eigenschaft]['ende'];
-                            break;
-                        case 'vorgegebene_werte':
-                        case 'liste':
-                        case 'element_id':
-                            if( !array_key_exists( 'inklusiv', $filtern[$eigenschaft] ) ) $filtern[$eigenschaft]['inklusiv'] = array();
-                            if( !array_key_exists( 'inklusiv', $filtern_prio[$eigenschaft] ) ) $filtern_prio[$eigenschaft]['inklusiv'] = array();
-                            $filtern_kombiniert[$eigenschaft]['inklusiv'] = array_merge( $filtern[$eigenschaft]['inklusiv'], $filtern_prio[$eigenschaft]['inklusiv'] );
-                            if( !array_key_exists( 'exklusiv', $filtern[$eigenschaft] ) ) $filtern[$eigenschaft]['exklusiv'] = array();
-                            if( !array_key_exists( 'exklusiv', $filtern_prio[$eigenschaft] ) ) $filtern_prio[$eigenschaft]['exklusiv'] = array();
-                            $filtern_kombiniert[$eigenschaft]['exklusiv'] = array_merge( $filtern[$eigenschaft]['exklusiv'], $filtern_prio[$eigenschaft]['exklusiv'] );
-                            break;
-                    }
-                    unset( $filtern[$eigenschaft] );
-                    unset( $filtern_prio[$eigenschaft] );
-                } else {
-                    $filtern_kombiniert[$eigenschaft] = $filtern[$eigenschaft];
-                    unset( $filtern[$eigenschaft] );
+    
+            foreach( array_merge( array_keys( $filtern ), array_keys( $filtern_prio ) ) as $eigenschaft ) {
+                $filtern_kombiniert[$eigenschaft] = array();
+                switch( EIGENSCHAFTEN[$liste][$eigenschaft]['typ'] ) {
+                    case "text":
+                        // (noch) kein filtern möglich
+                        break;
+                    case "zahl":
+                    case "zeitpunkt":
+                        foreach( array( "start", "ende" ) as $filtern_klasse ) {
+                            if( array_key_exists( $eigenschaft, $filtern_prio ) AND array_key_exists( $filtern_klasse, $filtern_prio[$eigenschaft] ) )
+                                $filtern_kombiniert[$eigenschaft][$filtern_klasse] = $filtern_prio[$eigenschaft][$filtern_klasse];
+                            else if( array_key_exists( $eigenschaft, $filtern ) AND array_key_exists( $filtern_klasse, $filtern[$eigenschaft] ) )
+                                $filtern_kombiniert[$eigenschaft][$filtern_klasse] = $filtern[$eigenschaft][$filtern_klasse];
+                        }
+                        break;
+                    case "vorgegebene_werte":
+                    case "janein":
+                    case "element_id":
+                        foreach( array( "inklusiv", "exklusiv" ) as $filtern_klasse ) {
+                            $filtern_eigenschaft_filtern_klasse = array();
+                            $filtern_prio_eigenschaft_filtern_klasse = array();
+                            if( array_key_exists( $eigenschaft, $filtern ) AND array_key_exists( $filtern_klasse AND $filtern[$eigenschaft] ) )
+                                $filtern_eigenschaft_filtern_klasse = $filtern[$eigenschaft][$filtern_klasse];
+                            if( array_key_exists( $eigenschaft, $filtern_prio ) AND array_key_exists( $filtern_klasse, $filtern_prio[$eigenschaft] ) )
+                                $filtern_prio_eigenschaft_filtern_klasse = $filtern_prio[$eigenschaft][$filtern_klasse];
+                            if( count( $filtern_eigenschaft_filtern_klasse ) > 0 OR count( $filtern_prio_eigenschaft_filtern_klasse ) > 0 )
+                                $filtern_kombiniert[$eigenschaft][$filtern_klasse] = array_merge( $filtern_eigenschaft_filtern_klasse, $filtern_prio_eigenschaft_filtern_klasse );
+                        }
+                        break;
                 }
-            }
-            foreach( array_keys( $filtern_prio ) as $eigenschaft ) {
-                $filtern_kombiniert[$eigenschaft] = $filtern[$eigenschaft];
-                unset( $filtern_prio[$eigenschaft] );
             }
         }
     

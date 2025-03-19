@@ -69,16 +69,16 @@
 <?php if( array_key_exists( 'vorstandschaft_janein', EIGENSCHAFTEN['mitglieder'] ) AND array_key_exists( 'aktiv_janein', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="row g-2"><?php } ?>
     <?php if( array_key_exists( 'vorstandschaft_janein', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="col form-floating mb-2">
         <select class="form-select eingabe" data-eingabe="vorstandschaft_janein">
-        <?php foreach ( VORGEGEBENE_WERTE['mitglieder']['vorstandschaft_janein'] as $vorstandschaft_janein => $eigenschaften ): ?>
-            <option value="<?= $vorstandschaft_janein; ?>"><?= $eigenschaften['beschriftung']; ?></option>
+        <?php foreach ( JANEIN as $janein => $eigenschaften ): ?>
+            <option value="<?= $janein; ?>"><?= $eigenschaften['beschriftung']; ?></option>
         <?php endforeach; ?>
         </select>
         <label><?= EIGENSCHAFTEN['mitglieder']['vorstandschaft_janein']['beschriftung']; ?></label>
     </div><?php } ?>
     <?php if( array_key_exists( 'aktiv_janein', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="col form-floating mb-2">
         <select class="form-select eingabe" data-eingabe="aktiv_janein">
-        <?php foreach ( VORGEGEBENE_WERTE['mitglieder']['aktiv_janein'] as $aktiv_janein => $eigenschaften ): ?>
-            <option value="<?= $aktiv_janein; ?>"><?= $eigenschaften['beschriftung']; ?></option>
+        <?php foreach ( JANEIN as $janein => $eigenschaften ): ?>
+            <option value="<?= $janein; ?>"><?= $eigenschaften['beschriftung']; ?></option>
         <?php endforeach; ?>
         </select>
         <label><?= EIGENSCHAFTEN['mitglieder']['aktiv_janein']['beschriftung']; ?></label>

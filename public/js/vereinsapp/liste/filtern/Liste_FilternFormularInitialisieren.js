@@ -18,6 +18,14 @@ function Liste_FilternFormularInitialisieren($formular, instanz, liste) {
                     $neue_filtern_eigenschaft.find(".filtern_auswahl")
                 );
             });
+        } else if (typ == "janein") {
+            $neue_filtern_eigenschaft.find(".filtern_auswahl, .filtern_werte").empty();
+            $("<option selected></option>").appendTo($neue_filtern_eigenschaft.find(".filtern_auswahl"));
+            $.each(JANEIN, function (wert, eigenschaften) {
+                $('<option value="' + wert + '">' + eigenschaften.beschriftung + "</option>").appendTo(
+                    $neue_filtern_eigenschaft.find(".filtern_auswahl")
+                );
+            });
         }
 
         $neue_filtern_eigenschaft.appendTo($formular);

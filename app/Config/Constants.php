@@ -238,8 +238,8 @@ defined('ELEMENTE') OR define( 'ELEMENTE', array(
 ) );
 
 defined('JANEIN') OR define( 'JANEIN', array(
-	0 => array( 'beschriftung' => 'Nein' ),
-	1 => array( 'beschriftung' => 'Ja' ),
+	0 => array( 'beschriftung' => 'Nein', 'wert' => FALSE ),
+	1 => array( 'beschriftung' => 'Ja', 'wert' => TRUE ),
 ) );
 
 defined('WOCHENTAGE_KURZ') OR define( 'WOCHENTAGE_KURZ', array(

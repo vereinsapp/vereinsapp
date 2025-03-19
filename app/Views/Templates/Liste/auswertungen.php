@@ -6,7 +6,6 @@ foreach( $auswertungen['werkzeugkasten'] as $symbol => $werkzeug) { ?><button ty
         else echo ' '.$werkzeug['klasse_id'];
     } ?>" data-title="<?= $werkzeug['title']; ?>" data-instanz="<?= $auswertungen['id']; ?>"<?php
     if( array_key_exists( 'liste', $auswertungen ) AND array_key_exists( 'liste', $auswertungen['liste'] )) { ?> data-liste="<?= $auswertungen['liste']['liste']; ?>"<?php }
-    if( array_key_exists( 'farbe', $werkzeug ) ) { ?> data-farbe="<?= $werkzeug['farbe']; ?>"<?php }
     if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php }
     ?>><i class=" bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?>"></i></button><?php }
 ?></div><?php } ?>
