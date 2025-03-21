@@ -1,5 +1,5 @@
 function Liste_SortierenFormularInitialisieren($formular, instanz, liste) {
-    const $sortieren_eigenschaft = $formular.find(".sortieren_eigenschaft");
+    const $sortieren_eigenschaft = $formular.find(".sortieren_eigenschaft").empty();
 
     $formular.attr("data-liste", liste).attr("data-instanz", instanz);
 

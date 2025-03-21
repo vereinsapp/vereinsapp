@@ -51,7 +51,9 @@ $(document).ready(function () {
 
 FEATURES
 Filtern auf eine Ebene beschränken und die Oberflächen optimieren
+    Kommunikation zwischen Hauptebene und Modals mit Hilfe von random ids machen, ähnlich wie auswahl
     BUGFIX zahlen, zeitaeume, vorgegebene_werte, janein, element_id aus data-filtern im filtern-Modal bearbeitbar machen (bspw. entfernbar machen, sodass alle_mitglieder nicht nur aktive anzeigt)
+    Eine Vorschau der Auswahl anzeigen und Einträge deselektierbar machen (im Hintergrund wird dann die inverse gespeichert, also die deselektierten, dann id != ...)
     Vordefinierte Filter: Beginn Kalenderjahr, Beginn Aktionszeitraum
     Batch über filtern- und sortieren-Button legen
     Verzeichnis filtern und sortieren
@@ -59,6 +61,7 @@ Auswertungen überarbeiten
     Auswertung unabhängig machen von Auswertungen (dann muss das Ergebnis aber für jede Auswertung bestimmt werden)
     Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit den Werten?
     Warum wird Liste_AuswertungenAktualisieren in den Termin-Details so oft aufgerufen?
+Mehrere element_ids und mehrere mitglied_ids pro Aufgabe
 Setlist mit Links zu den Titeln einführen
 Liste unformatiert in die Zwischenablage kopieren
 Termin mit Ende erweitern
@@ -85,6 +88,7 @@ Zustandsautomat für den Zustand der Vereinsapp einführen
 Select JANEIN als check umbauen
 Wartungsarbeiten per Filter handlen
 .btn in .formular mit ENTER betätigbar machen
+Details loswerden und stattdessen den Singular der Liste verwenden
 
 AKUT
 Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
@@ -92,5 +96,6 @@ zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stre
 Rekursion-Problem Rückmeldungen vs. Termine auflösen
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 Liste für element_navigation überarbeiten (Pfeile zum "scrollen" immer einblenden)
+Offene Kassenbucheinträge auf die Startseite
 
 */

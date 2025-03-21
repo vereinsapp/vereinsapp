@@ -20,4 +20,13 @@ function Liste_SortierenInit() {
             $(this).closest(".formular").attr("data-liste")
         );
     });
+
+    // SORTIEREN LOESCHEN
+    $(document).on("click", ".btn_sortieren_loeschen", function () {
+        Liste_SortierenLoeschen(
+            { $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            $(this).closest(".formular").attr("data-instanz"),
+            $(this).closest(".formular").attr("data-liste")
+        );
+    });
 }

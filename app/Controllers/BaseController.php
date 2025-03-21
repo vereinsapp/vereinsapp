@@ -161,11 +161,13 @@ abstract class BaseController extends Controller
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_SortierenInit.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_SortierenAendern.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_SortierenLoeschen.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_SortierenFormularInitialisieren.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_ArraySortiertZurueck.js?v='.VERSION), );
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/gruppieren/Liste_GruppierenInit.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/gruppieren/Liste_GruppierenAendern.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/gruppieren/Liste_GruppierenLoeschen.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/gruppieren/Liste_GruppierenFormularInitialisieren.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/gruppieren/Liste_ArrayGruppiertZurueck.js?v='.VERSION), );
 

@@ -1,5 +1,5 @@
 function Liste_GruppierenFormularInitialisieren($formular, instanz, liste) {
-    const $gruppieren_eigenschaft = $formular.find(".gruppieren_eigenschaft");
+    const $gruppieren_eigenschaft = $formular.find(".gruppieren_eigenschaft").empty();
 
     $formular.attr("data-liste", liste).attr("data-instanz", instanz);
 
@@ -8,7 +8,7 @@ function Liste_GruppierenFormularInitialisieren($formular, instanz, liste) {
     });
 
     let gruppieren = LISTEN[liste].instanz[instanz].gruppieren;
-    if (typeof gruppieren === "undefined") gruppieren = $("#" + instanz + ".liste").attr("data-gruppieren");
+    if (typeof gruppieren === "undefined") gruppieren = $('[data-instanz="' + instanz + '"].auswertung').attr("data-gruppieren");
 
     if (typeof gruppieren !== "undefined") $gruppieren_eigenschaft.val(gruppieren);
 }

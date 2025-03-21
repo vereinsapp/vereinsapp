@@ -20,4 +20,13 @@ function Liste_GruppierenInit() {
             $(this).closest(".formular").attr("data-liste")
         );
     });
+
+    // GRUPPIEREN LOESCHEN
+    $(document).on("click", ".btn_gruppieren_loeschen", function () {
+        Liste_GruppierenLoeschen(
+            { $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            $(this).closest(".formular").attr("data-instanz"),
+            $(this).closest(".formular").attr("data-liste")
+        );
+    });
 }

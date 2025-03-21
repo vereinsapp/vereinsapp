@@ -1,0 +1,10 @@
+function Liste_SortierenLoeschen(dom, instanz, liste) {
+    LISTEN[liste].instanz[instanz].sortieren = undefined;
+
+    Schnittstelle_EventAusfuehren(
+        [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
+        { liste: liste }
+    );
+
+    Schnittstelle_DomModalSchliessen(dom.$modal);
+}
