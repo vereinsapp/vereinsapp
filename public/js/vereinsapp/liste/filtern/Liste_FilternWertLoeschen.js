@@ -1,9 +1,18 @@
-function Liste_FilternWertLoeschen(dom, instanz, liste) {
+function Liste_FilternWertLoeschen(dom, ziel_id, instanz, liste) {
     const $filtern_wert = dom.$filtern_wert;
     let filtern_wert = Schnittstelle_VariableWertBereinigtZurueck($filtern_wert.attr("data-wert"));
     const eigenschaft = $filtern_wert.closest(".filtern_eigenschaft").attr("data-eigenschaft");
 
-    const filtern_eigenschaft = LISTEN[liste].instanz[instanz].filtern[eigenschaft];
+    let filtern;
+    if (typeof instanz !== "undefined") filtern = LISTEN[liste].instanz[instanz].filtern; // Liste filtern
+    else if (typeof ziel_id !== "undefined") {
+        // Personenkreis beschränken
+        filtern = $("#" + ziel_id).val();
+        if (typeof filtern !== "undefined" && isJson(filtern)) filtern = JSON.parse(filtern);
+        else filtern = new Object();
+    }
+
+    const filtern_eigenschaft = filtern[eigenschaft];
 
     switch (EIGENSCHAFTEN[liste][eigenschaft].typ) {
         case "text":
@@ -34,7 +43,10 @@ function Liste_FilternWertLoeschen(dom, instanz, liste) {
             break;
     }
 
-    if (Object.keys(filtern_eigenschaft).length === 0) delete LISTEN[liste].instanz[instanz].filtern[eigenschaft];
+    if (Object.keys(filtern_eigenschaft).length === 0) delete filtern[eigenschaft];
+
+    if (typeof instanz !== "undefined") LISTEN[liste].instanz[instanz].filtern = filtern; // Liste filtern
+    else if (typeof ziel_id !== "undefined") $("#" + ziel_id).val(JsonStringifiedZurueck(filtern)); // Personenkreis beschränken
 
     Schnittstelle_EventAusfuehren(
         [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],

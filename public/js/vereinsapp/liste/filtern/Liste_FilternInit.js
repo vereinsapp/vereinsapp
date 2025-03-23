@@ -9,6 +9,7 @@ function Liste_FilternInit() {
             true,
             { $modal: undefined, $formular: undefined, $filtern_eigenschaft: undefined },
             $(this).attr("data-title"),
+            $(this).attr("id"),
             $(this).attr("data-instanz"),
             $(this).attr("data-liste")
         );
@@ -20,6 +21,7 @@ function Liste_FilternInit() {
             false,
             { $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular"), $filtern_eigenschaft: $(this) },
             undefined,
+            $(this).closest(".formular").attr("data-ziel_id"),
             $(this).closest(".formular").attr("data-instanz"),
             $(this).closest(".formular").attr("data-liste")
         );
@@ -29,6 +31,7 @@ function Liste_FilternInit() {
     $(document).on("click", ".btn_filtern_wert_inklusiv_exklusiv", function () {
         Liste_FilternWertInExklusivVerschieben(
             { $filtern_wert: $(this).closest(".filtern_wert") },
+            $(this).closest(".formular").attr("data-ziel_id"),
             $(this).closest(".formular").attr("data-instanz"),
             $(this).closest(".formular").attr("data-liste")
         );
@@ -38,6 +41,7 @@ function Liste_FilternInit() {
     $(document).on("click", ".btn_filtern_wert_loeschen", function () {
         Liste_FilternWertLoeschen(
             { $filtern_wert: $(this).closest(".filtern_wert") },
+            $(this).closest(".formular").attr("data-ziel_id"),
             $(this).closest(".formular").attr("data-instanz"),
             $(this).closest(".formular").attr("data-liste")
         );
@@ -47,6 +51,7 @@ function Liste_FilternInit() {
     $(document).on("click", ".btn_filtern_loeschen", function () {
         Liste_FilternLoeschen(
             { $formular: $(this).closest(".formular"), $filtern_eigenschaft: $(this).closest(".filtern_eigenschaft") },
+            $(this).closest(".formular").attr("data-ziel_id"),
             $(this).closest(".formular").attr("data-instanz"),
             $(this).closest(".formular").attr("data-liste")
         );

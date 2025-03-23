@@ -290,7 +290,7 @@ CREATE TABLE `vereinsapp_termine` (
   `ende` datetime NOT NULL,
   `ort` varchar(100) NOT NULL,
   `kategorie` varchar(50) NOT NULL,
-  `filtern_mitglieder` varchar(9999) NOT NULL,
+  `filtern_mitglieder` longtext NOT NULL CHECK (json_valid(`filtern_mitglieder`)),
   `bemerkung` varchar(100) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,

@@ -51,7 +51,9 @@ $(document).ready(function () {
 
 FEATURES
 Filtern auf eine Ebene beschränken und die Oberflächen optimieren
-    Kommunikation zwischen Hauptebene und Modals mit Hilfe von random ids machen, ähnlich wie auswahl
+    auswahl.liste wird noch nicht richtig gefiltert
+    auswahl anpassen an filtern bzgl. ziel_id
+    Werden Auswertungen und Anwesenheiten tatsächlich gefiltern?
     BUGFIX zahlen, zeitaeume, vorgegebene_werte, janein, element_id aus data-filtern im filtern-Modal bearbeitbar machen (bspw. entfernbar machen, sodass alle_mitglieder nicht nur aktive anzeigt)
     Eine Vorschau der Auswahl anzeigen und Einträge deselektierbar machen (im Hintergrund wird dann die inverse gespeichert, also die deselektierten, dann id != ...)
     Vordefinierte Filter: Beginn Kalenderjahr, Beginn Aktionszeitraum
@@ -95,7 +97,6 @@ Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rü
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 Rekursion-Problem Rückmeldungen vs. Termine auflösen
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
-Liste für element_navigation überarbeiten (Pfeile zum "scrollen" immer einblenden)
 Offene Kassenbucheinträge auf die Startseite
 
 */

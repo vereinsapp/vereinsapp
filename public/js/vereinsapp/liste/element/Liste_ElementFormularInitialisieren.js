@@ -6,8 +6,7 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
         const eingabe = $eingabe.attr("data-eingabe");
 
         // Wenn element_id definiert ist und es gerade um einen Button geht
-        if (typeof element_id !== "undefined" && $eingabe.attr("type") == "button") $eingabe.attr("data-element_id", element_id);
-        // else $eingabe.removeAttr("data-element_id");
+        if ($eingabe.attr("type") == "button") $eingabe.attr("id", zufaelligeZeichenketteZurueck(8));
 
         let wert = Schnittstelle_VariableRausZurueck(eingabe, element_id, liste);
         // Wenn aber nichts definiert ist, dann nimm den Standard-Wert (je nach Typ)

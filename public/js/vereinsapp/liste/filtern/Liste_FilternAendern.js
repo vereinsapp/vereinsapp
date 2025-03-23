@@ -1,13 +1,21 @@
-function Liste_FilternAendern(formular_oeffnen, dom, title, instanz, liste) {
+function Liste_FilternAendern(formular_oeffnen, dom, title, ziel_id, instanz, liste) {
     if (formular_oeffnen) {
         const $neues_filtern_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "FILTERN");
         Schnittstelle_DomModalOeffnen($neues_filtern_modal);
-        Liste_FilternFormularInitialisieren($neues_filtern_modal.find(".formular"), instanz, liste);
+        Liste_FilternFormularInitialisieren($neues_filtern_modal.find(".formular"), ziel_id, instanz, liste);
     } else {
         const $eigenschaft = dom.$filtern_eigenschaft;
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
 
-        const filtern = LISTEN[liste].instanz[instanz].filtern;
+        let filtern;
+        if (typeof instanz !== "undefined") filtern = LISTEN[liste].instanz[instanz].filtern; // Liste filtern
+        else if (typeof ziel_id !== "undefined") {
+            // Personenkreis beschränken
+            filtern = $("#" + ziel_id).val();
+            if (typeof filtern !== "undefined" && isJson(filtern)) filtern = JSON.parse(filtern);
+            else filtern = new Object();
+        }
+
         if (!(eigenschaft in filtern)) filtern[eigenschaft] = new Object();
         const filtern_eigenschaft = filtern[eigenschaft];
 
@@ -61,6 +69,9 @@ function Liste_FilternAendern(formular_oeffnen, dom, title, instanz, liste) {
         }
 
         if (Object.keys(filtern_eigenschaft).length === 0) delete filtern[eigenschaft];
+
+        if (typeof instanz !== "undefined") LISTEN[liste].instanz[instanz].filtern = filtern; // Liste filtern
+        else if (typeof ziel_id !== "undefined") $("#" + ziel_id).val(JsonStringifiedZurueck(filtern)); // Personenkreis beschränken
 
         Schnittstelle_EventAusfuehren(
             [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],

@@ -1,7 +1,7 @@
-function Liste_FilternFormularInitialisieren($formular, instanz, liste) {
-    $formular.attr("data-liste", liste).attr("data-instanz", instanz);
+function Liste_FilternFormularInitialisieren($formular, ziel_id, instanz, liste) {
+    $formular.attr("data-liste", liste).attr("data-ziel_id", ziel_id).attr("data-instanz", instanz);
 
-    $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
+    $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (position, eigenschaft) {
         const typ = EIGENSCHAFTEN[liste][eigenschaft].typ;
         const beschriftung = EIGENSCHAFTEN[liste][eigenschaft].beschriftung;
 
@@ -31,13 +31,30 @@ function Liste_FilternFormularInitialisieren($formular, instanz, liste) {
         $neue_filtern_eigenschaft.appendTo($formular);
     });
 
-    let filtern_data = $("#" + instanz + ".liste").attr("data-filtern");
-    if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableWertBereinigtZurueck(filtern_data);
-    else filtern_data = new Object();
-    // filtern aus LocalStorage
-    const filtern_LocalStorage = LISTEN[liste].instanz[instanz].filtern;
+    let filtern_prio_niedrig, filtern_prio_hoch;
+    if (typeof instanz !== "undefined") {
+        // Liste filtern
+        filtern_prio_niedrig = $("#" + instanz + ".liste").attr("data-filtern");
+        if (typeof filtern_prio_niedrig !== "undefined") filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck(filtern_prio_niedrig);
+        else filtern_prio_niedrig = new Object();
 
-    $.each(Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_LocalStorage, liste), function (eigenschaft, filtern_eigenschaft) {
+        filtern_prio_hoch = LISTEN[liste].instanz[instanz].filtern;
+    } else if (typeof ziel_id !== "undefined") {
+        // Personenkreis beschränken
+        const $ziel = $("#" + ziel_id);
+
+        /* speziell für filtern_mitglieder bei termine */
+        const kategorie = $ziel.closest('.formular[data-liste="termine"]').find('.eingabe[data-eingabe="kategorie"]').val();
+        if (typeof kategorie !== "undefined" && kategorie in TERMINE_KATEGORIE_FILTERN_MITGLIEDER)
+            filtern_prio_niedrig = TERMINE_KATEGORIE_FILTERN_MITGLIEDER[kategorie];
+        else filtern_prio_niedrig = new Object();
+
+        filtern_prio_hoch = $ziel.val();
+        if (typeof filtern_prio_hoch !== "undefined" && isJson(filtern_prio_hoch)) filtern_prio_hoch = JSON.parse(filtern_prio_hoch);
+        else filtern_prio_hoch = new Object();
+    }
+
+    $.each(Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_prio_hoch, liste), function (eigenschaft, filtern_eigenschaft) {
         Liste_FilternFormularEigenschaftAktualisieren(
             $formular.find('.filtern_eigenschaft[data-eigenschaft="' + eigenschaft + '"]'),
             filtern_eigenschaft,
