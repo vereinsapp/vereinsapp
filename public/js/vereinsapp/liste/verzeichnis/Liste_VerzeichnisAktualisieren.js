@@ -46,16 +46,13 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
 
             $neues_unterverzeichnis.attr("data-unterverzeichnis", unterverzeichnis);
 
-            const neue_id = zufaelligeZeichenketteZurueck(8);
+            const ziel_id = zufaelligeZeichenketteZurueck(8);
             $neues_unterverzeichnis
                 .find('[data-bs-toggle="collapse"]')
                 .first()
-                .attr("data-bs-target", "#target_" + neue_id);
-            $neues_unterverzeichnis.find(".toggle_symbol").attr("data-bs-target", "#target_" + neue_id);
-            $neues_unterverzeichnis
-                .find(".collapse")
-                .first()
-                .attr("id", "target_" + neue_id);
+                .attr("data-bs-target", "#" + ziel_id);
+            $neues_unterverzeichnis.find(".toggle_symbol").attr("data-bs-target", "#" + ziel_id);
+            $neues_unterverzeichnis.find(".collapse").first().attr("id", ziel_id);
 
             const neue_basis = JSON.parse(JSON.stringify(basis));
             neue_basis.push(unterverzeichnis);

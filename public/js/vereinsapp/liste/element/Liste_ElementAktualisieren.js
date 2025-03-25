@@ -39,9 +39,10 @@ function Liste_ElementAktualisieren($element, liste) {
 
     if (!("liste" in bedingte_formatierung)) bedingte_formatierung.liste = liste;
 
+    let $dom_bedingt_formatiert;
     if ("eigenschaft" in bedingte_formatierung)
-        bedingte_formatierung.$ziel = $element.find('.eigenschaft[data-eigenschaft="' + bedingte_formatierung.eigenschaft + '"');
-    else bedingte_formatierung.$ziel = $element.find(".beschriftung");
+        $dom_bedingt_formatiert = $element.find('.eigenschaft[data-eigenschaft="' + bedingte_formatierung.eigenschaft + '"]');
+    else $dom_bedingt_formatiert = $element.find(".beschriftung");
 
     if ("klasse" in bedingte_formatierung)
         $.each(bedingte_formatierung.klasse, function (klasse, filtern) {
@@ -58,8 +59,8 @@ function Liste_ElementAktualisieren($element, liste) {
                     bedingte_formatierung.liste
                 ).length > 0
             )
-                bedingte_formatierung.$ziel.addClass(klasse);
-            else bedingte_formatierung.$ziel.removeClass(klasse);
+                $dom_bedingt_formatiert.addClass(klasse);
+            else $dom_bedingt_formatiert.removeClass(klasse);
         });
 
     // EIGENSCHAFTEN AKTUALISIEREN

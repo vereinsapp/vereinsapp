@@ -90,10 +90,10 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
                 .attr("data-gruppieren", gruppieren)
                 .attr("data-wert", wert);
 
-            const neue_id = zufaelligeZeichenketteZurueck(8);
-            $neue_auswertung.find('[data-bs-toggle="collapse"]').attr("data-bs-target", "#target_" + neue_id);
-            $neue_auswertung.find(".toggle_symbol").attr("data-bs-target", "#target_" + neue_id);
-            $neue_auswertung.find(".collapse").attr("id", "target_" + neue_id);
+            const ziel_id = zufaelligeZeichenketteZurueck(8);
+            $neue_auswertung.find('[data-bs-toggle="collapse"]').attr("data-bs-target", "#" + ziel_id);
+            $neue_auswertung.find(".toggle_symbol").attr("data-bs-target", "#" + ziel_id);
+            $neue_auswertung.find(".collapse").attr("id", ziel_id);
 
             if (position === 0) $neue_auswertung.appendTo($auswertungen);
             else
