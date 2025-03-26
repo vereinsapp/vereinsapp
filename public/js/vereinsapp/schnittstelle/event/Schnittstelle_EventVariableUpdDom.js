@@ -28,6 +28,10 @@ function Schnittstelle_EventVariableUpdDom(folgendes_event, data) {
         const instanz = $werkzeug.attr("data-instanz");
         if ($werkzeug.hasClass("btn_filtern_modal_oeffnen"))
             $werkzeug.attr("data-filtern_prio_niedrig", $("#" + instanz + ".liste").attr("data-filtern"));
+        else if ($werkzeug.hasClass("btn_sortieren_modal_oeffnen"))
+            $werkzeug.attr("data-sortieren_prio_niedrig", $("#" + instanz + ".liste").attr("data-sortieren"));
+        else if ($werkzeug.hasClass("btn_gruppieren_modal_oeffnen"))
+            $werkzeug.attr("data-gruppieren_prio_niedrig", $("#" + instanz + ".liste").attr("data-gruppieren"));
     });
 
     // LISTENSTATISTIK AKTUALISIEREN

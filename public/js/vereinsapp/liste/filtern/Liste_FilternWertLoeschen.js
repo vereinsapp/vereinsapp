@@ -51,7 +51,7 @@ function Liste_FilternWertLoeschen($filtern_wert, ziel_id, liste) {
         else filtern_prio_niedrig = new Object();
 
         filtern_prio_hoch = $("#" + ziel_id).val();
-        if (typeof filtern_prio_hoch !== "undefined" && isJson(filtern_prio_hoch)) filtern_prio_hoch = JSON.parse(filtern_prio_hoch);
+        if (filtern_prio_hoch != "") filtern_prio_hoch = Schnittstelle_VariableWertBereinigtZurueck(filtern_prio_hoch);
         else filtern_prio_hoch = new Object();
     } else {
         filtern_prio_niedrig = new Object();

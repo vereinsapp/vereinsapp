@@ -1,16 +1,20 @@
-function Liste_GruppierenAendern(formular_oeffnen, dom, title, instanz, liste) {
+function Liste_GruppierenAendern(formular_oeffnen, $quelle_ziel, title, ziel_id, liste) {
     if (formular_oeffnen) {
+        const $ziel = $quelle_ziel;
+        const ziel_id = zufaelligeZeichenketteZurueck(8);
+
+        $ziel.attr("id", ziel_id);
+
         const $neues_gruppieren_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "GRUPPIEREN");
         Schnittstelle_DomModalOeffnen($neues_gruppieren_modal);
-        Liste_GruppierenFormularInitialisieren($neues_gruppieren_modal.find(".formular"), instanz, liste);
+        Liste_GruppierenFormularInitialisieren($neues_gruppieren_modal.find(".formular"), ziel_id, liste);
     } else {
-        const gruppieren = dom.$formular.find(".gruppieren_eigenschaft").val();
-        LISTEN[liste].instanz[instanz].gruppieren = gruppieren;
-        Schnittstelle_EventAusfuehren(
-            [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
-            { liste: liste }
-        );
+        const $formular = $quelle_ziel.closest(".formular");
 
-        Schnittstelle_DomModalSchliessen(dom.$modal);
+        const gruppieren = $formular.find(".gruppieren_wert").val();
+
+        if (typeof ziel_id !== "undefined") $("#" + ziel_id).val(JsonStringifiedZurueck(gruppieren));
+
+        Schnittstelle_DomModalSchliessen($quelle_ziel.closest(".modal"));
     }
 }
