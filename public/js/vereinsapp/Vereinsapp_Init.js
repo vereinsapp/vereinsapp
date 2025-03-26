@@ -51,11 +51,9 @@ $(document).ready(function () {
 
 FEATURES
 Filtern auf eine Ebene beschränken und die Oberflächen optimieren
-    filtern vom $ziel im LocalStorage speichern
     auswahl anpassen an filtern bzgl. ziel_id
-    auswahl.liste wird noch nicht richtig gefiltert
-    Filtern, sortieren und gruppieren bei Auswertungen überarbeiten
-    BUGFIX zahlen, zeitaeume, vorgegebene_werte, janein, element_id aus data-filtern im filtern-Modal bearbeitbar machen (bspw. entfernbar machen, sodass alle_mitglieder nicht nur aktive anzeigt)
+    Filtern, sortieren und gruppieren bei auswertungen steckt in einem JSON
+    BUGFIX zahlen, zeitaeume, vorgegebene_werte, janein, element_id aus data-filtern_prio_niedrig im filtern-Modal bearbeitbar machen (bspw. entfernbar machen, sodass alle_mitglieder nicht nur aktive anzeigt)
     Eine Vorschau der Auswahl anzeigen und Einträge deselektierbar machen (im Hintergrund wird dann die inverse gespeichert, also die deselektierten, dann id != ...)
     Vordefinierte Filter: Beginn Kalenderjahr, Beginn Aktionszeitraum
     Badge über filtern- und sortieren-Button legen (https://getbootstrap.com/docs/5.3/components/badge/)

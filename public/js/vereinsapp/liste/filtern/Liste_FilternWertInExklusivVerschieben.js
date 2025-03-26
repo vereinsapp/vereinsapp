@@ -49,7 +49,10 @@ function Liste_FilternWertInExklusivVerschieben($filtern_wert, ziel_id, liste) {
 
     if (Object.keys(filtern_eigenschaft).length === 0) delete filtern[eigenschaft];
 
-    if (typeof ziel_id !== "undefined") $("#" + ziel_id).val(JsonStringifiedZurueck(filtern));
+    if (typeof ziel_id !== "undefined")
+        $("#" + ziel_id)
+            .val(JsonStringifiedZurueck(filtern))
+            .trigger("change");
 
     let filtern_prio_niedrig, filtern_prio_hoch;
     if (typeof ziel_id !== "undefined") {

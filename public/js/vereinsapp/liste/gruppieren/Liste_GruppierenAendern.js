@@ -13,7 +13,10 @@ function Liste_GruppierenAendern(formular_oeffnen, $quelle_ziel, title, ziel_id,
 
         const gruppieren = $formular.find(".gruppieren_wert").val();
 
-        if (typeof ziel_id !== "undefined") $("#" + ziel_id).val(JsonStringifiedZurueck(gruppieren));
+        if (typeof ziel_id !== "undefined")
+            $("#" + ziel_id)
+                .val(JsonStringifiedZurueck(gruppieren))
+                .trigger("change");
 
         Schnittstelle_DomModalSchliessen($quelle_ziel.closest(".modal"));
     }

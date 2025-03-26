@@ -27,11 +27,17 @@ function Schnittstelle_EventVariableUpdDom(folgendes_event, data) {
         const $werkzeug = $(this);
         const instanz = $werkzeug.attr("data-instanz");
         if ($werkzeug.hasClass("btn_filtern_modal_oeffnen"))
-            $werkzeug.attr("data-filtern_prio_niedrig", $("#" + instanz + ".liste").attr("data-filtern"));
+            $werkzeug
+                .attr("data-filtern_prio_niedrig", $("#" + instanz + ".liste").attr("data-filtern"))
+                .val(JsonStringifiedZurueck(LISTEN[liste].instanz[instanz].filtern));
         else if ($werkzeug.hasClass("btn_sortieren_modal_oeffnen"))
-            $werkzeug.attr("data-sortieren_prio_niedrig", $("#" + instanz + ".liste").attr("data-sortieren"));
+            $werkzeug
+                .attr("data-sortieren_prio_niedrig", $("#" + instanz + ".liste").attr("data-sortieren"))
+                .val(JsonStringifiedZurueck(LISTEN[liste].instanz[instanz].sortieren));
         else if ($werkzeug.hasClass("btn_gruppieren_modal_oeffnen"))
-            $werkzeug.attr("data-gruppieren_prio_niedrig", $("#" + instanz + ".liste").attr("data-gruppieren"));
+            $werkzeug
+                .attr("data-gruppieren_prio_niedrig", $("#" + instanz + ".liste").attr("data-gruppieren"))
+                .val(JsonStringifiedZurueck(LISTEN[liste].instanz[instanz].gruppieren));
     });
 
     // LISTENSTATISTIK AKTUALISIEREN

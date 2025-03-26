@@ -10,7 +10,10 @@ function Liste_FilternEigenschaftLoeschen($filtern_eigenschaft, ziel_id, liste) 
 
     delete filtern[eigenschaft];
 
-    if (typeof ziel_id !== "undefined") $("#" + ziel_id).val(JsonStringifiedZurueck(filtern));
+    if (typeof ziel_id !== "undefined")
+        $("#" + ziel_id)
+            .val(JsonStringifiedZurueck(filtern))
+            .trigger("change");
 
     let filtern_prio_niedrig;
     if (typeof ziel_id !== "undefined") {

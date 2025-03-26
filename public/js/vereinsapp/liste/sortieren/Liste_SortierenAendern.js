@@ -16,7 +16,10 @@ function Liste_SortierenAendern(formular_oeffnen, $quelle_ziel, title, ziel_id, 
             eigenschaft: $formular.find(".sortieren_wert").val(),
         };
 
-        if (typeof ziel_id !== "undefined") $("#" + ziel_id).val(JsonStringifiedZurueck(sortieren));
+        if (typeof ziel_id !== "undefined")
+            $("#" + ziel_id)
+                .val(JsonStringifiedZurueck(sortieren))
+                .trigger("change");
 
         Schnittstelle_DomModalSchliessen($quelle_ziel.closest(".modal"));
     }

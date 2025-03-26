@@ -3,6 +3,11 @@ FILTERN.$blanko_filtern_eigenschaft = new Object();
 FILTERN.$blanko_filtern_wert = new Object();
 
 function Liste_FilternInit() {
+    // FILTERN IM LOCALSTORAGE SPEICHERN
+    $(document).on("change", ".filtern_localstorage_speichern", function () {
+        Liste_FilternLocalStorageSpeichern($(this), $(this).attr("data-instanz"), $(this).attr("data-liste"));
+    });
+
     // FILTERN MODAL ÖFFNEN
     $(document).on("click", ".btn_filtern_modal_oeffnen", function () {
         Liste_FilternAendern(true, $(this), $(this).attr("data-title"), undefined, $(this).attr("data-liste"));

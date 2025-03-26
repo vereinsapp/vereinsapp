@@ -34,6 +34,14 @@ function Liste_FilternAendern(formular_oeffnen, $quelle_ziel, title, ziel_id, li
                     else delete filtern_eigenschaft[filtern_klasse];
                 });
                 break;
+            case "vorgegebene_werte":
+                let neuer_filtern_wert = $filtern_eigenschaft.find(".filtern_auswahl").val();
+                if (neuer_filtern_wert != "") {
+                    neuer_filtern_wert = Schnittstelle_VariableWertBereinigtZurueck(neuer_filtern_wert);
+                    if (!("inklusiv" in filtern_eigenschaft)) filtern_eigenschaft.inklusiv = new Array();
+                    if (!filtern_eigenschaft.inklusiv.includes(neuer_filtern_wert)) filtern_eigenschaft.inklusiv.push(neuer_filtern_wert);
+                }
+                break;
             case "janein":
                 let neuer_filtern_wert_janein = $filtern_eigenschaft.find(".filtern_auswahl").val();
                 if (neuer_filtern_wert_janein != "") {
@@ -43,20 +51,22 @@ function Liste_FilternAendern(formular_oeffnen, $quelle_ziel, title, ziel_id, li
                         filtern_eigenschaft.inklusiv.push(JANEIN[neuer_filtern_wert_janein].wert);
                 }
                 break;
-            case "vorgegebene_werte":
             case "element_id":
-                let neuer_filtern_wert = $filtern_eigenschaft.find(".filtern_auswahl").val();
-                if (neuer_filtern_wert != "") {
-                    neuer_filtern_wert = Schnittstelle_VariableWertBereinigtZurueck(neuer_filtern_wert);
+                let neuer_filtern_wert_id = $filtern_eigenschaft.find(".filtern_auswahl").val();
+                if (neuer_filtern_wert_id != "") {
+                    neuer_filtern_wert_id = Schnittstelle_VariableWertBereinigtZurueck(neuer_filtern_wert_id);
                     if (!("inklusiv" in filtern_eigenschaft)) filtern_eigenschaft.inklusiv = new Array();
-                    if (!filtern_eigenschaft.inklusiv.includes(neuer_filtern_wert)) filtern_eigenschaft.inklusiv.push(neuer_filtern_wert);
+                    if (!filtern_eigenschaft.inklusiv.includes(neuer_filtern_wert_id)) filtern_eigenschaft.inklusiv.push(neuer_filtern_wert_id);
                 }
                 break;
         }
 
         if (Object.keys(filtern_eigenschaft).length === 0) delete filtern[eigenschaft];
 
-        if (typeof ziel_id !== "undefined") $("#" + ziel_id).val(JsonStringifiedZurueck(filtern));
+        if (typeof ziel_id !== "undefined")
+            $("#" + ziel_id)
+                .val(JsonStringifiedZurueck(filtern))
+                .trigger("change");
 
         let filtern_prio_niedrig, filtern_prio_hoch;
         if (typeof ziel_id !== "undefined") {

@@ -47,6 +47,8 @@ function Liste_FilternFormular$EigenschaftAktualisieren($eigenschaft, filtern_ei
                     $neuer_filtern_wert.appendTo($filtern_werte);
                 });
             });
+
+            $eigenschaft.find(".filtern_auswahl").val("");
             break;
         case "janein":
             const $filtern_werte_janein = $eigenschaft.find(".filtern_werte").empty();
@@ -64,6 +66,8 @@ function Liste_FilternFormular$EigenschaftAktualisieren($eigenschaft, filtern_ei
                     $neuer_filtern_wert_janein.appendTo($filtern_werte_janein);
                 });
             });
+
+            $eigenschaft.find(".filtern_auswahl").val("");
             break;
         case "element_id":
             break;
