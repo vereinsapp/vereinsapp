@@ -57,7 +57,7 @@ Filtern auf eine Ebene beschränken und die Oberflächen optimieren
     BUGFIX zahlen, zeitaeume, vorgegebene_werte, janein, element_id aus data-filtern im filtern-Modal bearbeitbar machen (bspw. entfernbar machen, sodass alle_mitglieder nicht nur aktive anzeigt)
     Eine Vorschau der Auswahl anzeigen und Einträge deselektierbar machen (im Hintergrund wird dann die inverse gespeichert, also die deselektierten, dann id != ...)
     Vordefinierte Filter: Beginn Kalenderjahr, Beginn Aktionszeitraum
-    Batch über filtern- und sortieren-Button legen
+    Badge über filtern- und sortieren-Button legen (https://getbootstrap.com/docs/5.3/components/badge/)
     Verzeichnis filtern und sortieren
 Auswertungen überarbeiten
     Auswertung unabhängig machen von Auswertungen (dann muss das Ergebnis aber für jede Auswertung bestimmt werden)

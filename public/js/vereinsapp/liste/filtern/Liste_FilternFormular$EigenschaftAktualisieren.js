@@ -1,4 +1,4 @@
-function Liste_FilternFormularEigenschaftAktualisieren($eigenschaft, filtern_eigenschaft, liste) {
+function Liste_FilternFormular$EigenschaftAktualisieren($eigenschaft, filtern_eigenschaft, liste) {
     const eigenschaft = $eigenschaft.attr("data-eigenschaft");
 
     switch (EIGENSCHAFTEN[liste][eigenschaft].typ) {
@@ -41,7 +41,9 @@ function Liste_FilternFormularEigenschaftAktualisieren($eigenschaft, filtern_eig
                 $.each(filtern_eigenschaft[filtern_klasse], function (position, filtern_wert) {
                     const $neuer_filtern_wert = FILTERN.$blanko_filtern_wert.clone().removeClass("blanko invisible");
                     $neuer_filtern_wert.attr("data-wert", filtern_wert);
-                    $neuer_filtern_wert.find(".beschriftung").text(VORGEGEBENE_WERTE[liste][eigenschaft][filtern_wert].beschriftung);
+                    $neuer_filtern_wert.find(".beschriftung").text(Liste_WertFormatiertZurueck(filtern_wert, eigenschaft, liste));
+                    if (filtern_klasse == "exklusiv") $neuer_filtern_wert.find(".beschriftung").addClass("text-decoration-line-through");
+                    else if (filtern_klasse == "inklusiv") $neuer_filtern_wert.find(".beschriftung").removeClass("text-decoration-line-through");
                     $neuer_filtern_wert.appendTo($filtern_werte);
                 });
             });
@@ -50,10 +52,15 @@ function Liste_FilternFormularEigenschaftAktualisieren($eigenschaft, filtern_eig
             const $filtern_werte_janein = $eigenschaft.find(".filtern_werte").empty();
 
             $.each(Object.keys(filtern_eigenschaft), function (position, filtern_klasse) {
-                $.each(filtern_eigenschaft[filtern_klasse], function (position, filtern_wert) {
+                $.each(filtern_eigenschaft[filtern_klasse], function (position, filtern_wert_janein) {
                     const $neuer_filtern_wert_janein = FILTERN.$blanko_filtern_wert.clone().removeClass("blanko invisible");
-                    $neuer_filtern_wert_janein.attr("data-wert", Number(filtern_wert));
-                    $neuer_filtern_wert_janein.find(".beschriftung").text(JANEIN[Number(filtern_wert)].beschriftung);
+                    $neuer_filtern_wert_janein.attr("data-wert", Number(filtern_wert_janein));
+                    $neuer_filtern_wert_janein
+                        .find(".beschriftung")
+                        .text(Liste_WertFormatiertZurueck(JANEIN[Number(filtern_wert_janein)].wert, eigenschaft, liste));
+                    if (filtern_klasse == "exklusiv") $neuer_filtern_wert_janein.find(".beschriftung").addClass("text-decoration-line-through");
+                    else if (filtern_klasse == "inklusiv")
+                        $neuer_filtern_wert_janein.find(".beschriftung").removeClass("text-decoration-line-through");
                     $neuer_filtern_wert_janein.appendTo($filtern_werte_janein);
                 });
             });

@@ -1,16 +1,14 @@
-function Liste_FilternWertLoeschen(dom, ziel_id, instanz, liste) {
-    const $filtern_wert = dom.$filtern_wert;
+function Liste_FilternWertLoeschen($filtern_wert, ziel_id, liste) {
     let filtern_wert = Schnittstelle_VariableWertBereinigtZurueck($filtern_wert.attr("data-wert"));
-    const eigenschaft = $filtern_wert.closest(".filtern_eigenschaft").attr("data-eigenschaft");
+    const $filtern_eigenschaft = $filtern_wert.closest(".filtern_eigenschaft");
+    const eigenschaft = $filtern_eigenschaft.attr("data-eigenschaft");
 
     let filtern;
-    if (typeof instanz !== "undefined") filtern = LISTEN[liste].instanz[instanz].filtern; // Liste filtern
-    else if (typeof ziel_id !== "undefined") {
-        // Personenkreis beschränken
+    if (typeof ziel_id !== "undefined") {
         filtern = $("#" + ziel_id).val();
         if (typeof filtern !== "undefined" && isJson(filtern)) filtern = JSON.parse(filtern);
         else filtern = new Object();
-    }
+    } else filtern = new Object();
 
     const filtern_eigenschaft = filtern[eigenschaft];
 
@@ -39,17 +37,31 @@ function Liste_FilternWertLoeschen(dom, ziel_id, instanz, liste) {
             filtern_eigenschaft[filtern_klasse_alt].splice(filtern_wert_position, 1);
             if (filtern_eigenschaft[filtern_klasse_alt].length === 0) delete filtern_eigenschaft[filtern_klasse_alt];
 
-            $filtern_wert.remove();
             break;
     }
 
     if (Object.keys(filtern_eigenschaft).length === 0) delete filtern[eigenschaft];
 
-    if (typeof instanz !== "undefined") LISTEN[liste].instanz[instanz].filtern = filtern; // Liste filtern
-    else if (typeof ziel_id !== "undefined") $("#" + ziel_id).val(JsonStringifiedZurueck(filtern)); // Personenkreis beschränken
+    if (typeof ziel_id !== "undefined") $("#" + ziel_id).val(JsonStringifiedZurueck(filtern));
 
-    Schnittstelle_EventAusfuehren(
-        [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
-        { liste: liste }
-    );
+    let filtern_prio_niedrig, filtern_prio_hoch;
+    if (typeof ziel_id !== "undefined") {
+        filtern_prio_niedrig = $("#" + ziel_id).attr("data-filtern_prio_niedrig");
+        if (typeof filtern_prio_niedrig !== "undefined") filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck(filtern_prio_niedrig);
+        else filtern_prio_niedrig = new Object();
+
+        filtern_prio_hoch = $("#" + ziel_id).val();
+        if (typeof filtern_prio_hoch !== "undefined" && isJson(filtern_prio_hoch)) filtern_prio_hoch = JSON.parse(filtern_prio_hoch);
+        else filtern_prio_hoch = new Object();
+    } else {
+        filtern_prio_niedrig = new Object();
+        filtern_prio_hoch = new Object();
+    }
+
+    const filtern_kombiniert = Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_prio_hoch, liste);
+    let filtern_kombiniert_eigenschaft;
+    if (eigenschaft in filtern_kombiniert) filtern_kombiniert_eigenschaft = filtern_kombiniert[eigenschaft];
+    else filtern_kombiniert_eigenschaft = new Object();
+
+    Liste_FilternFormular$EigenschaftAktualisieren($filtern_eigenschaft, filtern_kombiniert_eigenschaft, liste);
 }

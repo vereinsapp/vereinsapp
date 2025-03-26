@@ -10,7 +10,7 @@
             <input type="date" class="form-control filtern_ende" />
             <label><span class="beschriftung"></span> bis</label>
         </div>
-        <button type="button" class="btn_filtern_loeschen btn btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
+        <button type="button" class="btn_filtern_eigenschaft_loeschen btn btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
     </div>
 
     <div class="input-group blanko filtern_eigenschaft invisible mb-1" data-typ="zahl">
@@ -23,7 +23,7 @@
             <input type="number" class="form-control filtern_ende" />
             <label><span class="beschriftung"></span> bis</label>
         </div>
-        <button type="button" class="btn_filtern_loeschen btn btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
+        <button type="button" class="btn_filtern_eigenschaft_loeschen btn btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
     </div>
 
     <div class="card sichtbar blanko filtern_eigenschaft invisible mb-1" data-typ="vorgegebene_werte">
@@ -43,7 +43,7 @@
                 </select>
                 <label><span class="beschriftung"></span></label>
             </div>
-            <button type="button" class="btn_filtern_loeschen btn btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
+            <button type="button" class="btn_filtern_eigenschaft_loeschen btn btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
             </div>
     </div>
 
@@ -64,7 +64,7 @@
                 </select>
                 <label><span class="beschriftung"></span></label>
             </div>
-            <button type="button" class="btn_filtern_loeschen btn btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
+            <button type="button" class="btn_filtern_eigenschaft_loeschen btn btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
             </div>
     </div>
 

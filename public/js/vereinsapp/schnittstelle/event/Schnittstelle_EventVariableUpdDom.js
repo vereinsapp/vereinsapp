@@ -22,6 +22,14 @@ function Schnittstelle_EventVariableUpdDom(folgendes_event, data) {
         else $ueberschrift.removeClass("invisible");
     });
 
+    // WERKZEUG AKTUALISIEREN
+    $('.werkzeug[data-liste="' + liste + '"]').each(function () {
+        const $werkzeug = $(this);
+        const instanz = $werkzeug.attr("data-instanz");
+        if ($werkzeug.hasClass("btn_filtern_modal_oeffnen"))
+            $werkzeug.attr("data-filtern_prio_niedrig", $("#" + instanz + ".liste").attr("data-filtern"));
+    });
+
     // LISTENSTATISTIK AKTUALISIEREN
     $('.listenstatistik[data-liste="' + liste + '"]').each(function () {
         const $listenstatistik = $(this);
