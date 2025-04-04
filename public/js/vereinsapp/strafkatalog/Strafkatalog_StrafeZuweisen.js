@@ -14,7 +14,7 @@ function Strafkatalog_StrafeZuweisen(auswahl_einfordern, bestaetigung_einfordern
     }
 
     if (auswahl_einfordern)
-        Liste_ElementAuswahlEinfordern(new Object(), title, data.gegen_liste, "btn_strafe_zuweisen", {
+        Liste_ElementAuswahlEinfordern($(), title, data.gegen_liste, "btn_strafe_zuweisen", {
             gegen_liste: liste,
             gegen_element_id: element_id,
         });

@@ -6,7 +6,7 @@ function Aufgaben_AufgabeMitgliedEinplanen(auswahl_einfordern, bestaetigung_einf
     if ("mitglied_id" in data && typeof data.mitglied_id !== "undefined") mitglied_id = Number(data.mitglied_id);
 
     if (auswahl_einfordern)
-        Liste_ElementAuswahlEinfordern(new Object(), title, "mitglieder", "btn_aufgabe_mitglied_einplanen", {
+        Liste_ElementAuswahlEinfordern($(), title, "mitglieder", "btn_aufgabe_mitglied_einplanen", {
             gegen_liste: "aufgaben",
             gegen_element_id: aufgabe_id,
         });

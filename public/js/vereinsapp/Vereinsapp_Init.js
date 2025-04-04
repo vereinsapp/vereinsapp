@@ -50,26 +50,20 @@ $(document).ready(function () {
 /* TODO
 
 FEATURES
-Filtern auf eine Ebene beschränken und die Oberflächen optimieren
-    auswahl anpassen an filtern bzgl. ziel_id
-    Filtern, sortieren und gruppieren bei auswertungen steckt in einem JSON
-    BUGFIX zahlen, zeitaeume, vorgegebene_werte, janein, element_id aus data-filtern_prio_niedrig im filtern-Modal bearbeitbar machen (bspw. entfernbar machen, sodass alle_mitglieder nicht nur aktive anzeigt)
-    Eine Vorschau der Auswahl anzeigen und Einträge deselektierbar machen (im Hintergrund wird dann die inverse gespeichert, also die deselektierten, dann id != ...)
-    Vordefinierte Filter: Beginn Kalenderjahr, Beginn Aktionszeitraum
-    Badge über filtern- und sortieren-Button legen (https://getbootstrap.com/docs/5.3/components/badge/)
-    Verzeichnis filtern und sortieren
 Auswertungen überarbeiten
+    Filtern, sortieren und gruppieren bei auswertungen steckt in einem JSON (data-filtern_prio_niedrig kann also nicht im Modal angezeigt oder bearbeitet werden)
     Auswertung unabhängig machen von Auswertungen (dann muss das Ergebnis aber für jede Auswertung bestimmt werden)
     Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit den Werten?
     Warum wird Liste_AuswertungenAktualisieren in den Termin-Details so oft aufgerufen?
 Mehrere element_ids und mehrere mitglied_ids pro Aufgabe
+Mitglied einplanen bereits bei der Erstellung einer Aufgabe
 Setlist mit Links zu den Titeln einführen
 Liste unformatiert in die Zwischenablage kopieren
+Termin als ics exportieren (export in csv wurde schon gemacht)
 Termin mit Ende erweitern
-Mitglied einplanen bereits bei der Erstellung einer Aufgabe
-Mitglieder Lebenslauf
 Terminserie / Regeltermine
-Termin als ics exportieren
+Mitglieder Lebenslauf
+Verzeichnis filtern und sortieren
 Meta-Infos für Unterverzeichnisse und Dateien anzeigen
 Abwesenheiten wieder einführen
 Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
@@ -90,12 +84,15 @@ Select JANEIN als check umbauen
 Wartungsarbeiten per Filter handlen
 .btn in .formular mit ENTER betätigbar machen
 Details loswerden und stattdessen den Singular der Liste verwenden
+Rekursion-Problem Rückmeldungen vs. Termine auflösen
 
 AKUT
-Bei iPhone verschwindet der Termin auf der Startseite nicht sofort, wenn man Rückmeldung gibt.
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
-Rekursion-Problem Rückmeldungen vs. Termine auflösen
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 Offene Kassenbucheinträge auf die Startseite
+0.65.3.4 in neuem Branch implementieren
+Vordefinierte Filter: Beginn Kalenderjahr, Beginn Aktionszeitraum
+Badge über filtern- und sortieren-Button legen (https://getbootstrap.com/docs/5.3/components/badge/)
+BUGFIX zahlen, zeitaeume, vorgegebene_werte, janein, element_id aus data-filtern_prio_niedrig im filtern-Modal bearbeitbar machen (bspw. entfernbar machen, sodass alle_mitglieder nicht nur aktive anzeigt)
 
 */

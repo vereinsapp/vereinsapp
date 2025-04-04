@@ -2,8 +2,7 @@ function Liste_FilternAendern(formular_oeffnen, $quelle_ziel, title, ziel_id, li
     if (formular_oeffnen) {
         const $ziel = $quelle_ziel;
         const ziel_id = zufaelligeZeichenketteZurueck(8);
-
-        $ziel.attr("id", ziel_id);
+        if ($ziel.exists()) $ziel.attr("id", ziel_id);
 
         const $neues_filtern_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "FILTERN");
         Schnittstelle_DomModalOeffnen($neues_filtern_modal);

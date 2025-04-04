@@ -31,6 +31,26 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
     );
 };
 
+EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
+    if ($kategorie.val() in TERMINE_KATEGORIE_FILTERN_MITGLIEDER)
+        $kategorie
+            .closest(".formular")
+            .find('.eingabe[data-eingabe="filtern_mitglieder"]')
+            .each(function () {
+                $(this).attr(
+                    "data-filtern_prio_niedrig",
+                    JsonStringifiedZurueck(Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()]))
+                );
+            });
+    else
+        $kategorie
+            .closest(".formular")
+            .find('.eingabe[data-eingabe="filtern_mitglieder"]')
+            .each(function () {
+                $(this).removeAttr("data-filtern_prio_niedrig");
+            });
+};
+
 function Termine_Init() {
     EVENT_VARIABLE_UPD_DOM_MODULE["rueckmeldungen"] = [
         function () {
