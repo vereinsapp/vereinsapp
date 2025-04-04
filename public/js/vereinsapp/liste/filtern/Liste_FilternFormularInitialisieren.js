@@ -43,7 +43,14 @@ function Liste_FilternFormularInitialisieren($formular, ziel_id, liste) {
         filtern_prio_hoch = new Object();
     }
 
-    $.each(Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_prio_hoch, liste), function (eigenschaft, filtern_eigenschaft) {
+    const filtern_kombiniert = Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_prio_hoch, liste);
+
+    if (typeof ziel_id !== "undefined")
+        $("#" + ziel_id)
+            .val(JsonStringifiedZurueck(filtern_kombiniert))
+            .trigger("change");
+
+    $.each(filtern_kombiniert, function (eigenschaft, filtern_eigenschaft) {
         Liste_FilternFormular$EigenschaftAktualisieren(
             $formular.find('.filtern_eigenschaft[data-eigenschaft="' + eigenschaft + '"]'),
             filtern_eigenschaft,

@@ -23,16 +23,13 @@ function Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_pri
                 case "janein":
                 case "element_id":
                     $.each(["inklusiv", "exklusiv"], function (position, filtern_klasse) {
-                        let filtern_eigenschaft_filtern_klasse = new Array();
-                        let filtern_prio_hoch_eigenschaft_filtern_klasse = new Array();
-                        if (eigenschaft in filtern_prio_niedrig && filtern_klasse in filtern_prio_niedrig[eigenschaft])
-                            filtern_eigenschaft_filtern_klasse = filtern_prio_niedrig[eigenschaft][filtern_klasse];
-                        if (eigenschaft in filtern_prio_hoch && filtern_klasse in filtern_prio_hoch[eigenschaft])
-                            filtern_prio_hoch_eigenschaft_filtern_klasse = filtern_prio_hoch[eigenschaft][filtern_klasse];
-                        if (filtern_eigenschaft_filtern_klasse.length > 0 || filtern_prio_hoch_eigenschaft_filtern_klasse.length > 0)
-                            filtern_kombiniert[eigenschaft][filtern_klasse] = filtern_eigenschaft_filtern_klasse.concat(
-                                filtern_prio_hoch_eigenschaft_filtern_klasse
-                            );
+                        if (eigenschaft in filtern_prio_hoch) {
+                            if (filtern_klasse in filtern_prio_hoch[eigenschaft])
+                                filtern_kombiniert[eigenschaft][filtern_klasse] = filtern_prio_hoch[eigenschaft][filtern_klasse];
+                        } else if (eigenschaft in filtern_prio_niedrig) {
+                            if (filtern_klasse in filtern_prio_niedrig[eigenschaft])
+                                filtern_kombiniert[eigenschaft][filtern_klasse] = filtern_prio_niedrig[eigenschaft][filtern_klasse];
+                        }
                     });
                     break;
             }

@@ -37,17 +37,17 @@ EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
             .closest(".formular")
             .find('.eingabe[data-eingabe="filtern_mitglieder"]')
             .each(function () {
-                $(this).attr(
-                    "data-filtern_prio_niedrig",
-                    JsonStringifiedZurueck(Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()]))
+                const filtern = JsonStringifiedZurueck(
+                    Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()])
                 );
+                $(this).attr("data-filtern_prio_niedrig", filtern).val(filtern);
             });
     else
         $kategorie
             .closest(".formular")
             .find('.eingabe[data-eingabe="filtern_mitglieder"]')
             .each(function () {
-                $(this).removeAttr("data-filtern_prio_niedrig");
+                $(this).removeAttr("data-filtern_prio_niedrig").val("");
             });
 };
 

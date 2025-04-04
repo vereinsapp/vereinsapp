@@ -47,8 +47,6 @@ function Liste_FilternWertInExklusivVerschieben($filtern_wert, ziel_id, liste) {
             break;
     }
 
-    if (Object.keys(filtern_eigenschaft).length === 0) delete filtern[eigenschaft];
-
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
             .val(JsonStringifiedZurueck(filtern))

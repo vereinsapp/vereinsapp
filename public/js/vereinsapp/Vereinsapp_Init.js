@@ -92,7 +92,9 @@ eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 Offene Kassenbucheinträge auf die Startseite
 0.65.3.4 in neuem Branch implementieren
 Vordefinierte Filter: Beginn Kalenderjahr, Beginn Aktionszeitraum
-Badge über filtern- und sortieren-Button legen (https://getbootstrap.com/docs/5.3/components/badge/)
-BUGFIX zahlen, zeitaeume, vorgegebene_werte, janein, element_id aus data-filtern_prio_niedrig im filtern-Modal bearbeitbar machen (bspw. entfernbar machen, sodass alle_mitglieder nicht nur aktive anzeigt)
+Badge über filtern- und sortieren-Button legen (https://getbootstrap.com/docs/5.3/components/badge/) (nicht prüfen, ob ein prio_hoch-filter existiert, sondern ob prio_hoch- und prio_niedrig identisch sind)
+Sortieren und Gruppieren an Filtern angleichen
+EigenschaftLoeschen umbenennen in EigenschaftZuruecksetzen
+Bugs beheben wenn Eigenschaft leer ist
 
 */

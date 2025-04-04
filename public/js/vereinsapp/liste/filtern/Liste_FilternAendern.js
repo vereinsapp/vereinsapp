@@ -60,8 +60,6 @@ function Liste_FilternAendern(formular_oeffnen, $quelle_ziel, title, ziel_id, li
                 break;
         }
 
-        if (Object.keys(filtern_eigenschaft).length === 0) delete filtern[eigenschaft];
-
         if (typeof ziel_id !== "undefined")
             $("#" + ziel_id)
                 .val(JsonStringifiedZurueck(filtern))
