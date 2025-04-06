@@ -16,7 +16,7 @@ function Liste_GruppierenInit() {
 
     // GRUPPIEREN LOESCHEN
     $(document).on("click", ".btn_gruppieren_eigenschaft_loeschen", function () {
-        Liste_GruppierenEigenschaftLoeschen(
+        Liste_GruppierenEigenschaftZuruecksetzen(
             $(this).closest(".gruppieren_eigenschaft"),
             $(this).closest(".gruppieren_eigenschaft").attr("data-ziel_id"),
             $(this).closest(".gruppieren_eigenschaft").attr("data-liste")

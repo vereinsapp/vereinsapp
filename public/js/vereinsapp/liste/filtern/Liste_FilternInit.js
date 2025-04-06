@@ -38,7 +38,7 @@ function Liste_FilternInit() {
 
     // FILTERN LOESCHEN
     $(document).on("click", ".btn_filtern_eigenschaft_loeschen", function () {
-        Liste_FilternEigenschaftLoeschen(
+        Liste_FilternEigenschaftZuruecksetzen(
             $(this).closest(".filtern_eigenschaft"),
             $(this).closest(".filtern_eigenschaft").attr("data-ziel_id"),
             $(this).closest(".filtern_eigenschaft").attr("data-liste")

@@ -16,7 +16,7 @@ function Liste_SortierenInit() {
 
     // SORTIEREN LOESCHEN
     $(document).on("click", ".btn_sortieren_eigenschaft_loeschen", function () {
-        Liste_SortierenEigenschaftLoeschen(
+        Liste_SortierenEigenschaftZuruecksetzen(
             $(this).closest(".sortieren_eigenschaft"),
             $(this).closest(".sortieren_eigenschaft").attr("data-ziel_id"),
             $(this).closest(".sortieren_eigenschaft").attr("data-liste")

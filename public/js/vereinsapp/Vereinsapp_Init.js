@@ -91,10 +91,10 @@ zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stre
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 Offene Kassenbucheinträge auf die Startseite
 0.65.3.4 in neuem Branch implementieren
+Sortieren und Gruppieren an Filtern angleichen
 Vordefinierte Filter: Beginn Kalenderjahr, Beginn Aktionszeitraum
 Badge über filtern- und sortieren-Button legen (https://getbootstrap.com/docs/5.3/components/badge/) (nicht prüfen, ob ein prio_hoch-filter existiert, sondern ob prio_hoch- und prio_niedrig identisch sind)
 Sortieren und Gruppieren an Filtern angleichen
-EigenschaftLoeschen umbenennen in EigenschaftZuruecksetzen
 Bugs beheben wenn Eigenschaft leer ist
 
 */

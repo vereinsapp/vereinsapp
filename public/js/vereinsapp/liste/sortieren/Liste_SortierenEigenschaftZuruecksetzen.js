@@ -1,4 +1,4 @@
-function Liste_SortierenEigenschaftLoeschen($sortieren_eigenschaft, ziel_id, liste) {
+function Liste_SortierenEigenschaftZuruecksetzen($sortieren_eigenschaft, ziel_id, liste) {
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
             .removeAttr("value")

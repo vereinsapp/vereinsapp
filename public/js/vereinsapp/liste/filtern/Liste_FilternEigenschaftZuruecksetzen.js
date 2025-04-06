@@ -1,4 +1,4 @@
-function Liste_FilternEigenschaftLoeschen($filtern_eigenschaft, ziel_id, liste) {
+function Liste_FilternEigenschaftZuruecksetzen($filtern_eigenschaft, ziel_id, liste) {
     const eigenschaft = $filtern_eigenschaft.attr("data-eigenschaft");
 
     let filtern_prio_niedrig;

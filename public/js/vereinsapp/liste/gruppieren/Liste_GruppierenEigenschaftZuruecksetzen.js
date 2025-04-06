@@ -1,4 +1,4 @@
-function Liste_GruppierenEigenschaftLoeschen($gruppieren_eigenschaft, ziel_id, liste) {
+function Liste_GruppierenEigenschaftZuruecksetzen($gruppieren_eigenschaft, ziel_id, liste) {
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
             .removeAttr("value")
