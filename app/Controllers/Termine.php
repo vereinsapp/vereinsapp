@@ -357,7 +357,8 @@ class Termine extends BaseController {
             $filtern_mitglieder_kategorie = TERMINE_KATEGORIE_FILTERN_MITGLIEDER[ $termin['kategorie'] ];
         else $filtern_mitglieder_kategorie = array();
 
-        return $this->filtern_mit_prio_kombiniert( $filtern_mitglieder_kategorie, $filtern_mitglieder, 'termine' );
+        // return $this->filtern_mit_prio_kombiniert( $filtern_mitglieder_kategorie, $filtern_mitglieder, 'termine' );
+        return $filtern_mitglieder; // aktuell wird nur $filtern_mitglieder verwendet, weil in der Datenbank bereits der kombinierte Filter gespeichert ist
     }
 
     protected function filtern_mit_prio_kombiniert( $filtern_prio_niedrig, $filtern_prio_hoch, $liste )  {
@@ -388,14 +389,13 @@ class Termine extends BaseController {
                     case "janein":
                     case "element_id":
                         foreach( array( "inklusiv", "exklusiv" ) as $filtern_klasse ) {
-                            $filtern_eigenschaft_filtern_klasse = array();
-                            $filtern_prio_hoch_eigenschaft_filtern_klasse = array();
-                            if( array_key_exists( $eigenschaft, $filtern_prio_niedrig ) AND array_key_exists( $filtern_klasse AND $filtern_prio_niedrig[$eigenschaft] ) )
-                                $filtern_eigenschaft_filtern_klasse = $filtern_prio_niedrig[$eigenschaft][$filtern_klasse];
-                            if( array_key_exists( $eigenschaft, $filtern_prio_hoch ) AND array_key_exists( $filtern_klasse, $filtern_prio_hoch[$eigenschaft] ) )
-                                $filtern_prio_hoch_eigenschaft_filtern_klasse = $filtern_prio_hoch[$eigenschaft][$filtern_klasse];
-                            if( count( $filtern_eigenschaft_filtern_klasse ) > 0 OR count( $filtern_prio_hoch_eigenschaft_filtern_klasse ) > 0 )
-                                $filtern_kombiniert[$eigenschaft][$filtern_klasse] = array_merge( $filtern_eigenschaft_filtern_klasse, $filtern_prio_hoch_eigenschaft_filtern_klasse );
+                            if( array_key_exists( $eigenschaft, $filtern_prio_hoch ) ) {
+                                if( array_key_exists( $filtern_klasse AND $filtern_prio_hoch[$eigenschaft] ) )
+                                    $filtern_kombiniert[$eigenschaft][$filtern_klasse] = $filtern_prio_hoch[$eigenschaft][$filtern_klasse];
+                            } if( array_key_exists( $eigenschaft, $filtern_prio_niedrig ) ) {
+                                if( array_key_exists( $filtern_klasse AND $filtern_prio_niedrig[$eigenschaft] ) )
+                                    $filtern_kombiniert[$eigenschaft][$filtern_klasse] = $filtern_prio_niedrig[$eigenschaft][$filtern_klasse];
+                            }
                         }
                         break;
                 }
