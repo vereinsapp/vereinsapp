@@ -5,6 +5,7 @@ namespace Config;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\I18n\Time;
 defined('HEUTE') OR define( 'HEUTE', Time::today( 'Europe/Berlin' )->toDateTimeString() );
+defined('JAHRESBEGINN') OR define( 'JAHRESBEGINN', Time::today( 'Europe/Berlin' )->setMonth(1)->setDay(1)->setHour(0)->setMinute(0)->setSecond(0)->toDateTimeString() );
 
 class Vereinsapp extends BaseConfig
 {
@@ -153,7 +154,7 @@ class Vereinsapp extends BaseConfig
 
         'termine' => array(
             'liste' => 'termine',
-            'filtern' => array( 'start' => array( 'start' => HEUTE ), ),
+            'filtern' => array( 'start' => array( 'start' => HEUTE ), 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
             'sortieren' => array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'zusatzsymbol' => array('kategorie'),
@@ -454,6 +455,109 @@ class Vereinsapp extends BaseConfig
 
     );
 
+    
+    /**
+     * --------------------------------------------------------------------------
+     * Vorgegebene Filter
+     * --------------------------------------------------------------------------
+     *
+     * Vorgegebene Filter, die im Filtern-Modal ausgewählt werden können
+     */
+    public $vorgegebene_filter = array(
+
+        'mitglieder' => array(
+            'alle_minderjaehrigen' => array(
+                'beschriftung' => 'Alle Minderjährigen',
+                'filtern' => array( 'alter' => array( 'ende' => 17.9999 ), ),
+            ),
+            'alle_volljaehrigen' => array(
+                'beschriftung' => 'Alle Volljährigen',
+                'filtern' => array( 'alter' => array( 'start' => 18 ), ),
+            ),
+            'funktionaere' => array(
+                'beschriftung' => 'Alle Funktionäre',
+                'filtern' => array( 'funktion' => array( 'exklusiv' => [ 'ohne' ] ), ),
+            ),
+            'vorstandschaft' => array(
+                'beschriftung' => 'Vorstandschaft',
+                'filtern' => array( 'vorstandschaft_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+            ),
+            'aktive_mitglieder' => array(
+                'beschriftung' => 'Aktive Mitglieder',
+                'filtern' => array( 'aktiv_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+            ),
+            'alle_mitglieder' => array(
+                'beschriftung' => 'Alle Mitglieder',
+                'filtern' => array( 'aktiv_janein' => array(), ),
+            ),
+        ),
+
+        'aufgaben' => array(
+            'offen' => array(
+                'beschriftung' => 'Alle offenen Aufgaben',
+                'filtern' => array( 'erledigt_janein' => array( 'inklusiv' => [ FALSE ] ), ),
+            ),
+            'alle_seit_jahresbeginn' => array(
+                'beschriftung' => 'Alle Aufgaben seit Jahresbeginn',
+                'filtern' => array( 'erstellung' => array( 'start' => JAHRESBEGINN ), ),
+            ),
+        ),
+
+        'termine' => array(
+            'alle_seit_jahresbeginn' => array(
+                'beschriftung' => 'Alle Termine seit Jahresbeginn',
+                'filtern' => array( 'start' => array( 'start' => JAHRESBEGINN ), ),
+            ),
+            'alle_auftritte' => array(
+                'beschriftung' => 'Alle anstehenden Auftritte',
+                'filtern' => array( 'kategorie' => array( 'inklusiv' => [ 'auftritt' ] ), ),
+            ),
+            'ich_rueckgemeldet' => array(
+                'beschriftung' => 'Alle Termine, zu denen ich Rückmeldung gegeben habe',
+                'filtern' => array( 'ich_rueckgemeldet_janein' => array( 'inklusiv' => [ TRUE ] ), 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+            ),
+            'ich_nicht_rueckgemeldet' => array(
+                'beschriftung' => 'Alle Termine, zu denen ich keine Rückmeldung gegeben habe',
+                'filtern' => array( 'ich_rueckgemeldet_janein' => array( 'inklusiv' => [ FALSE ] ), 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+            ),
+            'ich_eingeladen' => array(
+                'beschriftung' => 'Alle Termine, zu denen ich eingeladen bin',
+                'filtern' => array( 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+            ),
+            'ich_nicht_eingeladen' => array(
+                'beschriftung' => 'Alle Termine, zu denen ich nicht eingeladen bin',
+                'filtern' => array( 'ich_eingeladen_janein' => array( 'inklusiv' => [ FALSE ] ), ),
+            ),
+        ),
+
+        'kassenbuch' => array(
+            'offen' => array(
+                'beschriftung' => 'Alle offenen Einträge',
+                'filtern' => array( 'erledigt_janein' => array( 'inklusiv' => [ FALSE ] ), ),
+            ),
+            'alle_seit_jahresbeginn' => array(
+                'beschriftung' => 'Alle Einträge seit Jahresbeginn',
+                'filtern' => array( 'erstellung' => array( 'start' => JAHRESBEGINN ), ),
+            ),
+        ),
+
+        'notenbank' => array(
+            'standard_verzeichnis' => array(
+                'beschriftung' => 'Standard-Verzeichnis',
+                'filtern' => array( 'titel_nr' => array( 'ende' => 99 ), ),
+            ),
+            'erweitertes_verzeichnis' => array(
+                'beschriftung' => 'Erweitertes Verzeichnis',
+                'filtern' => array( 'titel_nr' => array( 'start' => 100 ), ),
+            ),
+            'titel_mit_dateien' => array(
+                'beschriftung' => 'Alle Titel mit Noten',
+                'filtern' => array( 'anzahl_noten' => array( 'start' => 1 ), ),
+            ),
+        ),
+        
+    );
+
     /**
      * --------------------------------------------------------------------------
      * Filterbare Eigenschaften
@@ -484,7 +588,7 @@ class Vereinsapp extends BaseConfig
             // 'mitglied_id',
             // 'erledigt',
             'erledigt_janein',
-            // 'erstellung',
+            'erstellung',
         ),
 
         'termine' => array(
@@ -507,7 +611,7 @@ class Vereinsapp extends BaseConfig
 
         'kassenbuch' => array(
             'wert',
-            'mitglied_id',
+            // 'mitglied_id',
             'erledigt',
             'erledigt_janein',
             'erstellung',

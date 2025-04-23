@@ -1,4 +1,17 @@
 function Liste_FilternFormularInitialisieren($formular, ziel_id, liste) {
+    const $vorgegebene_filter = $formular.find(".vorgegebene_filter");
+    const $vorgegebene_filter_auswahl = $vorgegebene_filter.find(".vorgegebene_filter_auswahl");
+    $vorgegebene_filter_auswahl.empty();
+    if (liste in VORGEGEBENE_FILTER) {
+        $("<option selected></option>").appendTo($vorgegebene_filter_auswahl);
+        $.each(VORGEGEBENE_FILTER[liste], function (vorgegebene_filter_id, eigenschaften) {
+            $('<option value="' + vorgegebene_filter_id + '">' + eigenschaften.beschriftung + "</option>").appendTo($vorgegebene_filter_auswahl);
+        });
+
+        $vorgegebene_filter.attr("data-liste", liste).attr("data-ziel_id", ziel_id).removeClass("invisible");
+    } else $vorgegebene_filter.addClass("invisible");
+
+    $formular.find(".filtern_eigenschaft").remove();
     $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (position, eigenschaft) {
         const typ = EIGENSCHAFTEN[liste][eigenschaft].typ;
         const beschriftung = EIGENSCHAFTEN[liste][eigenschaft].beschriftung;

@@ -16,6 +16,7 @@ const ELEMENTE = <?= json_encode( ELEMENTE ) ?>;
 const HAUPTINSTANZEN = <?= json_encode( HAUPTINSTANZEN ) ?>;
 const EIGENSCHAFTEN = <?= json_encode( EIGENSCHAFTEN ) ?>;
 const VORGEGEBENE_WERTE = <?= json_encode( VORGEGEBENE_WERTE ) ?>;
+const VORGEGEBENE_FILTER = <?= json_encode( VORGEGEBENE_FILTER ) ?>;
 
 const FILTERBARE_EIGENSCHAFTEN = <?= json_encode( FILTERBARE_EIGENSCHAFTEN ) ?>;
 const SORTIERBARE_EIGENSCHAFTEN = <?= json_encode( SORTIERBARE_EIGENSCHAFTEN ) ?>;

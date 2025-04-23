@@ -164,6 +164,7 @@ class Mitglieder extends BaseController {
         if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['liste']['bevorstehende_termine_mitglied'] = HAUPTINSTANZEN['termine'];
             $this->viewdata['liste']['bevorstehende_termine_mitglied']['link'] = TRUE;
+            unset($this->viewdata['liste']['bevorstehende_termine_mitglied']['filtern']['ich_eingeladen_janein']);
             $this->viewdata['liste']['bevorstehende_termine_mitglied']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
             $this->viewdata['liste']['bevorstehende_termine_mitglied']['vorschau'] = array( 'start', 'ort' );
             $this->viewdata['liste']['bevorstehende_termine_mitglied']['views'] = array( array( 'view' => 'Termine/rueckmeldung_basiseigenschaften', 'data' => array( 'mitglied_id' => $mitglied_id ) ) );

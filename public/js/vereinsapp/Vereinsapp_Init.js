@@ -91,10 +91,18 @@ AKUT
 Bugs beheben wenn filtern-Eigenschaft leer ist???
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
+Badge über filtern- und sortieren-Button legen (https://getbootstrap.com/docs/5.3/components/badge/)
+    nicht prüfen, ob ein prio_hoch-filter existiert, sondern ob prio_hoch- und prio_niedrig identisch sind
+    Filtern Button zyklisch oder event-getriggert aktualisieren (val, badge, etc.)
+
 Offene Kassenbucheinträge auf die Startseite
+Nicht-reale Mitglieder einführen
 0.65.3.4 in neuem Branch implementieren
-Badge über filtern- und sortieren-Button legen (https://getbootstrap.com/docs/5.3/components/badge/) (nicht prüfen, ob ein prio_hoch-filter existiert, sondern ob prio_hoch- und prio_niedrig identisch sind)
+leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
+
+Vereinsapp_env angleichen an Vereinsapp
+Magic Link funktioniert auf der NAS und in der Kracherapp nicht, aber MV App geht
+Aufgaben nur in den einzelnen Controllern anzeigen
 Sortieren und Gruppieren an Filtern angleichen
-Vordefinierte Filter: Beginn Kalenderjahr, Beginn Aktionszeitraum
 
 */

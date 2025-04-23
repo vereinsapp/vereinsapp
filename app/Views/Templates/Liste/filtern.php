@@ -1,5 +1,11 @@
 <div class="formular">
 
+    <div class="form-floating vorgegebene_filter invisible mb-3">
+        <select class="form-select vorgegebene_filter_auswahl">
+        </select>
+        <label>Vorgegebene Filter</label>
+    </div>
+
     <div class="input-group blanko filtern_eigenschaft invisible mb-1" data-typ="zeitpunkt">
         <span class="input-group-text"><i class="bi bi-<?= SYMBOLE['zeitraum']['bootstrap']; ?>"></i></span>
         <div class="form-floating">

@@ -13,6 +13,16 @@ function Liste_FilternInit() {
         Liste_FilternAendern(true, $(this), $(this).attr("data-title"), undefined, $(this).attr("data-liste"));
     });
 
+    // VORGEGEBENE FILTER AUSWÄHLEN
+    $(document).on("change", ".vorgegebene_filter_auswahl", function () {
+        Liste_FilternVorgegebenAuswaehlen(
+            $(this),
+            $(this).closest(".vorgegebene_filter").attr("data-ziel_id"),
+            $(this).val(),
+            $(this).closest(".vorgegebene_filter").attr("data-liste")
+        );
+    });
+
     // FILTERN ÄNDERN
     $(document).on("change", ".filtern_eigenschaft", function () {
         Liste_FilternAendern(false, $(this), undefined, $(this).attr("data-ziel_id"), $(this).attr("data-liste"));

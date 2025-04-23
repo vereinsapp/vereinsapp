@@ -154,8 +154,9 @@ abstract class BaseController extends Controller
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternEigenschaftZuruecksetzen.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternFormularInitialisieren.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternFormular$EigenschaftAktualisieren.js?v='.VERSION), );
-        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternMitPrioKombiniertZurueck.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternVorgegebenAuswaehlen.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternLocalStorageSpeichern.js?v='.VERSION), );
+        $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_FilternMitPrioKombiniertZurueck.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/filtern/Liste_TabelleGefiltertZurueck.js?v='.VERSION), );
 
         $head_script[] = array( 'src' => base_url('js/vereinsapp/liste/sortieren/Liste_SortierenInit.js?v='.VERSION), );
