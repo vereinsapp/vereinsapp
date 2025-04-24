@@ -2,8 +2,7 @@ function Liste_GruppierenAendern(formular_oeffnen, $quelle_ziel, title, ziel_id,
     if (formular_oeffnen) {
         const $ziel = $quelle_ziel;
         const ziel_id = zufaelligeZeichenketteZurueck(8);
-
-        $ziel.attr("id", ziel_id);
+        if ($ziel.exists()) $ziel.attr("id", ziel_id);
 
         const $neues_gruppieren_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "GRUPPIEREN");
         Schnittstelle_DomModalOeffnen($neues_gruppieren_modal);

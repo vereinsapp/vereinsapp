@@ -56,6 +56,9 @@ Auswertungen überarbeiten
     Auswertung unabhängig machen von Auswertungen (dann muss das Ergebnis aber für jede Auswertung bestimmt werden)
     Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit den Werten?
     Warum wird Liste_AuswertungenAktualisieren in den Termin-Details so oft aufgerufen?
+    Gruppieren von _janein-Eigenschaft wirft einen Fehler
+    Gruppieren nach Eigenschaft mit Wert "ohne" (bspw. Auto, Funktion, etc.) zeigt falschen Werte für "ohne" an
+    Filtern- und Gruppieren-Button batch einführen (Spezial-Bedigungen in Schnittstelle_EventVariableUpdDom wegnehmen)
 Mehrere element_ids und mehrere mitglied_ids pro Aufgabe
 Mitglied einplanen bereits bei der Erstellung einer Aufgabe
 Setlist mit Links zu den Titeln einführen
@@ -89,11 +92,9 @@ Rekursion-Problem Rückmeldungen vs. Termine auflösen
 
 AKUT
 Bugs beheben wenn filtern-Eigenschaft leer ist???
+Besseres Symbol für _eigenschaft_loeschen und _eigenschaft_loeschen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
-Badge über filtern- und sortieren-Button legen (https://getbootstrap.com/docs/5.3/components/badge/)
-    nicht prüfen, ob ein prio_hoch-filter existiert, sondern ob prio_hoch- und prio_niedrig identisch sind
-    Filtern Button zyklisch oder event-getriggert aktualisieren (val, badge, etc.)
 
 Offene Kassenbucheinträge auf die Startseite
 Nicht-reale Mitglieder einführen
@@ -103,6 +104,5 @@ leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewä
 Vereinsapp_env angleichen an Vereinsapp
 Magic Link funktioniert auf der NAS und in der Kracherapp nicht, aber MV App geht
 Aufgaben nur in den einzelnen Controllern anzeigen
-Sortieren und Gruppieren an Filtern angleichen
 
 */

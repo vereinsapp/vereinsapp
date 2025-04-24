@@ -24,14 +24,19 @@ function Liste_SortierenFormularInitialisieren($formular, ziel_id, liste) {
         sortieren_prio_hoch = undefined;
     }
 
-    let sortieren;
-    if (typeof sortieren_prio_hoch !== "undefined") sortieren = sortieren_prio_hoch;
-    else if (typeof sortieren_prio_niedrig !== "undefined") sortieren = sortieren_prio_niedrig;
-    else sortieren = undefined;
+    let sortieren_kombiniert;
+    if (typeof sortieren_prio_hoch !== "undefined") sortieren_kombiniert = sortieren_prio_hoch;
+    else if (typeof sortieren_prio_niedrig !== "undefined") sortieren_kombiniert = sortieren_prio_niedrig;
+    else sortieren_kombiniert = undefined;
 
-    if (typeof sortieren !== "undefined") {
-        $sortieren_wert.val(sortieren.eigenschaft);
+    if (typeof ziel_id !== "undefined")
+        $("#" + ziel_id)
+            .val(JsonStringifiedZurueck(sortieren_kombiniert))
+            .trigger("change");
+
+    if (typeof sortieren_kombiniert !== "undefined") {
+        $sortieren_wert.val(sortieren_kombiniert.eigenschaft);
         $formular.find(".sortieren_richtung").attr("checked", false);
-        $formular.find('.sortieren_richtung[value="' + sortieren.richtung + '"]').attr("checked", true);
+        $formular.find('.sortieren_richtung[value="' + sortieren_kombiniert.richtung + '"]').attr("checked", true);
     }
 }

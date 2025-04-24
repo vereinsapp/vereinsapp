@@ -26,18 +26,58 @@ function Schnittstelle_EventVariableUpdDom(folgendes_event, data) {
     $('.werkzeug[data-liste="' + liste + '"]').each(function () {
         const $werkzeug = $(this);
         const instanz = $werkzeug.attr("data-instanz");
-        if ($werkzeug.hasClass("btn_filtern_modal_oeffnen"))
-            $werkzeug
-                .attr("data-filtern_prio_niedrig", $("#" + instanz + ".liste").attr("data-filtern"))
-                .val(JsonStringifiedZurueck(LISTEN[liste].instanz[instanz].filtern));
-        else if ($werkzeug.hasClass("btn_sortieren_modal_oeffnen"))
-            $werkzeug
-                .attr("data-sortieren_prio_niedrig", $("#" + instanz + ".liste").attr("data-sortieren"))
-                .val(JsonStringifiedZurueck(LISTEN[liste].instanz[instanz].sortieren));
-        else if ($werkzeug.hasClass("btn_gruppieren_modal_oeffnen"))
-            $werkzeug
-                .attr("data-gruppieren_prio_niedrig", $("#" + instanz + ".liste").attr("data-gruppieren"))
-                .val(JsonStringifiedZurueck(LISTEN[liste].instanz[instanz].gruppieren));
+        if ($werkzeug.hasClass("btn_filtern_modal_oeffnen")) {
+            const filtern_prio_niedrig = JsonStringifiedZurueck(
+                Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".liste").attr("data-filtern"))
+            );
+            const filtern_prio_hoch = JsonStringifiedZurueck(LISTEN[liste].instanz[instanz].filtern);
+
+            $werkzeug.attr("data-filtern_prio_niedrig", filtern_prio_niedrig).val(filtern_prio_hoch);
+            if (
+                filtern_prio_hoch !== "{}" &&
+                filtern_prio_niedrig != filtern_prio_hoch &&
+                instanz != "rueckmeldungen_termin" /* todo */ &&
+                instanz != "anwesenheiten_termin" /* todo */
+            )
+                $werkzeug
+                    .addClass("position-relative")
+                    .append('<span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-danger border border-danger rounded-circle">');
+            else $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
+        } else if ($werkzeug.hasClass("btn_sortieren_modal_oeffnen")) {
+            const sortieren_prio_niedrig = JsonStringifiedZurueck(
+                Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".liste").attr("data-sortieren"))
+            );
+            const sortieren_prio_hoch = JsonStringifiedZurueck(LISTEN[liste].instanz[instanz].sortieren);
+
+            $werkzeug.attr("data-sortieren_prio_niedrig", sortieren_prio_niedrig).val(sortieren_prio_hoch);
+            if (
+                typeof sortieren_prio_hoch !== "undefined" &&
+                sortieren_prio_niedrig != sortieren_prio_hoch &&
+                instanz != "rueckmeldungen_termin" /* todo */ &&
+                instanz != "anwesenheiten_termin" /* todo */
+            )
+                $werkzeug
+                    .addClass("position-relative")
+                    .append('<span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-danger border border-danger rounded-circle">');
+            else $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
+        } else if ($werkzeug.hasClass("btn_gruppieren_modal_oeffnen")) {
+            const gruppieren_prio_niedrig = JsonStringifiedZurueck(
+                Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".liste").attr("data-gruppieren"))
+            );
+            const gruppieren_prio_hoch = JsonStringifiedZurueck(LISTEN[liste].instanz[instanz].gruppieren);
+
+            $werkzeug.attr("data-gruppieren_prio_niedrig", gruppieren_prio_niedrig).val(gruppieren_prio_hoch);
+            if (
+                typeof gruppieren_prio_hoch !== "undefined" &&
+                gruppieren_prio_niedrig != gruppieren_prio_hoch &&
+                instanz != "rueckmeldungen_termin" /* todo */ &&
+                instanz != "anwesenheiten_termin" /* todo */
+            )
+                $werkzeug
+                    .addClass("position-relative")
+                    .append('<span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-danger border border-danger rounded-circle">');
+            else $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
+        }
     });
 
     // LISTENSTATISTIK AKTUALISIEREN

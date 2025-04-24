@@ -2,8 +2,7 @@ function Liste_SortierenAendern(formular_oeffnen, $quelle_ziel, title, ziel_id, 
     if (formular_oeffnen) {
         const $ziel = $quelle_ziel;
         const ziel_id = zufaelligeZeichenketteZurueck(8);
-
-        $ziel.attr("id", ziel_id);
+        if ($ziel.exists()) $ziel.attr("id", ziel_id);
 
         const $neues_sortieren_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "SORTIEREN");
         Schnittstelle_DomModalOeffnen($neues_sortieren_modal);
@@ -12,8 +11,8 @@ function Liste_SortierenAendern(formular_oeffnen, $quelle_ziel, title, ziel_id, 
         const $formular = $quelle_ziel.closest(".formular");
 
         const sortieren = {
-            richtung: Number($formular.find(".sortieren_richtung:checked").val()),
             eigenschaft: $formular.find(".sortieren_wert").val(),
+            richtung: Number($formular.find(".sortieren_richtung:checked").val()),
         };
 
         if (typeof ziel_id !== "undefined")

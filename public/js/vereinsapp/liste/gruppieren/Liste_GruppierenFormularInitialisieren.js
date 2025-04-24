@@ -24,10 +24,15 @@ function Liste_GruppierenFormularInitialisieren($formular, ziel_id, liste) {
         gruppieren_prio_hoch = undefined;
     }
 
-    let gruppieren = undefined;
-    if (typeof gruppieren_prio_hoch !== "undefined") gruppieren = gruppieren_prio_hoch;
-    else if (typeof gruppieren_prio_niedrig !== "undefined") gruppieren = gruppieren_prio_niedrig;
-    else gruppieren = undefined;
+    let gruppieren_kombiniert = undefined;
+    if (typeof gruppieren_prio_hoch !== "undefined") gruppieren_kombiniert = gruppieren_prio_hoch;
+    else if (typeof gruppieren_prio_niedrig !== "undefined") gruppieren_kombiniert = gruppieren_prio_niedrig;
+    else gruppieren_kombiniert = undefined;
 
-    if (typeof gruppieren !== "undefined") $gruppieren_wert.val(gruppieren);
+    if (typeof ziel_id !== "undefined")
+        $("#" + ziel_id)
+            .val(JsonStringifiedZurueck(gruppieren_kombiniert))
+            .trigger("change");
+
+    if (typeof gruppieren_kombiniert !== "undefined") $gruppieren_wert.val(gruppieren_kombiniert);
 }
