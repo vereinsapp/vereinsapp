@@ -1,5 +1,5 @@
 function Schnittstelle_EventSqlUpdLocalstorage(folgendes_event) {
-    Schnittstelle_AjaxInDieSchlange("einstellungen/ajax_tabellen", { folgendes_event: folgendes_event }, {}, function (AJAX) {
+    Schnittstelle_AjaxInDieSchlange("einstellungen/ajax_tabellen", { folgendes_event: folgendes_event }, new Object(), function (AJAX) {
         if (isObject(AJAX) && "antwort" in AJAX && isObject(AJAX.antwort) && "tabellen" in AJAX.antwort && isObject(AJAX.antwort.tabellen))
             $.each(AJAX.antwort.tabellen, function (liste, tabelle) {
                 Schnittstelle_LocalstorageRein(liste + "_tabelle", tabelle);

@@ -6,40 +6,27 @@ function Liste_ElementNavigationAktualisieren($element_navigation, $element, lis
     // TABELLE FILTERN
     // filtern aus data
     let filtern_data = $element_navigation.attr("data-filtern");
-    if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(filtern_data));
-    else filtern_data = new Array();
+    if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableWertBereinigtZurueck(filtern_data);
+    else filtern_data = new Object();
     // filtern aus LocalStorage (Problem: LISTEN[liste].instanz[instanz].filtern existiert nicht, weil keine .liste mit dieser instanz existiert)
     let filtern_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_filtern");
-    if (typeof filtern_LocalStorage === "undefined") filtern_LocalStorage = new Array();
-    function LOC_upd_VAR_filtern(filtern, liste) {
-        $.each(filtern, function (index, knoten) {
-            if ("verknuepfung" in knoten) LOC_upd_VAR_filtern(knoten.filtern, liste);
-            else if ("operator" in knoten) knoten.wert = Schnittstelle_VariableWertBereinigtZurueck(knoten.wert);
-        });
-    }
-    LOC_upd_VAR_filtern(filtern_LocalStorage, liste);
+    if (typeof filtern_LocalStorage === "undefined") filtern_LocalStorage = new Object();
     // data und LocalStorage kombinieren
-    let filtern_kombiniert;
-    if (filtern_LocalStorage.length === 0) filtern_kombiniert = filtern_data;
-    else if (filtern_data.length === 0) filtern_kombiniert = filtern_LocalStorage;
-    else {
-        if (liste == "termine" && Liste_FilternEigenschaftPositionZurueck(filtern_LocalStorage, "start").length > 1)
-            filtern_kombiniert = filtern_LocalStorage;
-        filtern_kombiniert = [{ verknuepfung: "&&", filtern: [filtern_data[0], filtern_LocalStorage[0]] }];
-    }
-    const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(filtern_kombiniert, liste);
+    const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
+        Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_LocalStorage, liste),
+        LISTEN[liste].tabelle,
+        liste
+    );
 
     // TABELLE SORTIEREN
     // sortieren aus data
     let sortieren_data = $element_navigation.attr("data-sortieren");
-    if (typeof sortieren_data !== "undefined") sortieren_data = JSON.parse(sortieren_data);
-    else sortieren_data = new Array();
+    if (typeof sortieren_data !== "undefined") sortieren_data = Schnittstelle_VariableWertBereinigtZurueck(sortieren_data);
     // sortieren aus LocalStorage (Problem: LISTEN[liste].instanz[instanz].sortieren existiert nicht, weil keine .liste mit dieser instanz existiert)
-    let sortieren_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren");
-    if (typeof sortieren_LocalStorage === "undefined") sortieren_LocalStorage = new Array();
+    const sortieren_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren");
     // data und LocalStorage kombinieren
     let sortieren_kombiniert;
-    if (sortieren_LocalStorage.length === 0) sortieren_kombiniert = sortieren_data;
+    if (typeof sortieren_LocalStorage === "undefined") sortieren_kombiniert = sortieren_data;
     else sortieren_kombiniert = sortieren_LocalStorage;
     const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(tabelle_gefiltert, sortieren_kombiniert);
 

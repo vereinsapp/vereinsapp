@@ -1,8 +1,8 @@
 function Aufgaben_AufgabeElementZuordnen(auswahl_einfordern, dom, title, liste) {
-    if (auswahl_einfordern) Liste_ElementAuswahlEinfordern({ $ziel: dom.$ziel }, title, liste, "btn_element_zuordnen");
+    if (auswahl_einfordern) Liste_ElementAuswahlEinfordern(dom.$quelle_ziel, title, liste, "btn_element_zuordnen");
     else {
-        const element_id = dom.$quelle.attr("data-element_id");
-        const $ziel = $("#" + dom.$quelle.attr("data-ziel_id"));
+        const element_id = dom.$quelle_ziel.attr("data-element_id");
+        const $ziel = $("#" + dom.$quelle_ziel.attr("data-ziel_id"));
         const eingabe = $ziel.attr("data-eingabe");
 
         $ziel.val(element_id).removeAttr("id");

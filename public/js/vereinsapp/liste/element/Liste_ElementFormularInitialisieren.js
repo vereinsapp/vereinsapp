@@ -6,8 +6,7 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
         const eingabe = $eingabe.attr("data-eingabe");
 
         // Wenn element_id definiert ist und es gerade um einen Button geht
-        if (typeof element_id !== "undefined" && $eingabe.attr("type") == "button") $eingabe.attr("data-element_id", element_id);
-        // else $eingabe.removeAttr("data-element_id");
+        if ($eingabe.attr("type") == "button") $eingabe.attr("id", zufaelligeZeichenketteZurueck(8));
 
         let wert = Schnittstelle_VariableRausZurueck(eingabe, element_id, liste);
         // Wenn aber nichts definiert ist, dann nimm den Standard-Wert (je nach Typ)
@@ -35,8 +34,18 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
                 suppressSeconds: true,
                 suppressMilliseconds: true,
             });
-        // Oder wenn aber die Eigenschaft ein Objekt oder ein Array ist
-        else if (isObject(wert) || isArray(wert)) wert_formatiert = JSON.stringify(wert);
+        // Oder wenn aber die Eigenschaft ein janein ist
+        else if (EIGENSCHAFTEN[liste][eingabe].typ == "janein") wert_formatiert = Number(wert);
+        // Oder wenn aber die Eigenschaft ein Objekt ist
+        else if (isObject(wert)) {
+            if (Object.keys(wert).length > 0) wert_formatiert = JsonStringifiedZurueck(wert);
+            else wert_formatiert = "";
+        }
+        // Oder wenn aber die Eigenschaft ein Array ist
+        else if (isArray(wert)) {
+            if (wert.length > 0) wert_formatiert = JsonStringifiedZurueck(wert);
+            else wert_formatiert = "";
+        }
 
         $eingabe.val(wert_formatiert);
         if ("change_aktion" in EIGENSCHAFTEN[liste][eingabe] && typeof EIGENSCHAFTEN[liste][eingabe].change_aktion === "function")

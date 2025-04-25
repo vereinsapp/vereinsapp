@@ -31,10 +31,11 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
                 // Spezialfall login-view
                 $('input[name="' + CSRF_NAME + '"]').val(CSRF[CSRF_NAME]);
 
-                if ("info" in AJAX.antwort) Schnittstelle_LogInDieKonsole("INFO", JSON.stringify(AJAX.antwort.info));
+                if ("info" in AJAX.antwort) Schnittstelle_LogInDieKonsole("INFO", JsonStringifiedZurueck(AJAX.antwort.info));
 
                 // WENN DIE VALIDATION FEHLSCHLÄGT
                 if ("validation" in AJAX.antwort) {
+                    Schnittstelle_LogInDieKonsole("VALIDATION", JsonStringifiedZurueck(AJAX.antwort.validation));
                     if (typeof AJAX.rein_validation_neg_aktion === "function") AJAX.rein_validation_neg_aktion(AJAX);
                 }
 

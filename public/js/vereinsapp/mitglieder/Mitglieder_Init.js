@@ -1,13 +1,14 @@
 ELEMENTE.mitglied.ergaenzen_aktion = function (mitglied) {
+    if ("vorstandschaft_janein" in mitglied && mitglied["vorstandschaft_janein"] == 1) mitglied["vorstandschaft_janein"] = true;
+    else mitglied["vorstandschaft_janein"] = false;
+    if ("aktiv_janein" in mitglied && mitglied["aktiv_janein"] == 1) mitglied["aktiv_janein"] = true;
+    else mitglied["aktiv_janein"] = false;
+
     if ("geburt" in mitglied) {
         mitglied["alter"] = -1 * mitglied["geburt"].diffNow("years").years;
 
-        mitglied["geburtstag"] = DateTime.fromFormat(mitglied["geburt"].toFormat("dd.MM.") + DateTime.now().toFormat("yyyy"), "dd.MM.yyyy");
-        if (mitglied["geburtstag"] < DateTime.now().startOf("day"))
-            mitglied["geburtstag"] = mitglied["geburtstag"].plus({
-                years: 1,
-            });
-
+        mitglied["geburtstag"] = mitglied["geburt"].set({ year: DateTime.now().year });
+        if (mitglied["geburtstag"] < DateTime.now().startOf("day")) mitglied["geburtstag"] = mitglied["geburtstag"].plus({ years: 1 });
         mitglied["alter_geburtstag"] = mitglied["geburtstag"].diff(mitglied["geburt"], "years").years;
     }
 };
@@ -86,7 +87,7 @@ function Mitglieder_Init() {
                 $modal: $(this).closest(".modal"),
                 $formular: $(this).closest(".formular"),
             },
-            {},
+            new Object(),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
         );

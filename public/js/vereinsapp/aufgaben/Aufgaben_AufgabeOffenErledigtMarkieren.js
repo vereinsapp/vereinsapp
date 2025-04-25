@@ -14,7 +14,7 @@ function Aufgaben_AufgabeOffenErledigtMarkieren(bestaetigung_einfordern, dom, ti
             { aufgabe_id: aufgabe_id }
         );
     } else {
-        if (erledigt === null) erledigt = DateTime.now().toSQL();
+        if (erledigt === null) erledigt = DateTime.now();
         else erledigt = null;
         Aufgaben_AufgabeAendern(false, dom, { erledigt: erledigt }, title, aufgabe_id);
     }

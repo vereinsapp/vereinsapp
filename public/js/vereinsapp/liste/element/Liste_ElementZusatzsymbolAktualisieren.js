@@ -108,16 +108,11 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
 
             if ($element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').exists()) {
                 const gegen_element_id = Number($element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').attr("data-gegen_element_id"));
-                const filtern = [
-                    {
-                        verknuepfung: "&&",
-                        filtern: [
-                            { operator: "==", eigenschaft: "termin_id", wert: gegen_element_id },
-                            { operator: "==", eigenschaft: "mitglied_id", wert: element_id },
-                        ],
-                    },
-                ];
-                const gefilterte_rueckmeldungen = Liste_TabelleGefiltertZurueck(filtern, "rueckmeldungen");
+                const gefilterte_rueckmeldungen = Liste_TabelleGefiltertZurueck(
+                    { termin_id: { inklusiv: [gegen_element_id] }, mitglied_id: { inklusiv: [element_id] } },
+                    LISTEN.rueckmeldungen.tabelle,
+                    "rueckmeldungen"
+                );
                 if (gefilterte_rueckmeldungen.length > 0) bemerkung = gefilterte_rueckmeldungen[gefilterte_rueckmeldungen.length - 1]["bemerkung"];
             } else bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste);
 

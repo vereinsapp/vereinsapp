@@ -52,19 +52,13 @@ class Notenbank extends BaseController {
         $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array( 'liste' => 'notenbank', 'link' => TRUE, 'element_id' => $titel_id, );
 
         if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
-
             $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
             unset($this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']);
-            $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( array( 'verknuepfung' => '&&', 'filtern' => array(
-                array( 'eigenschaft' => 'zugeordnete_liste', 'operator' => '==', 'wert' => "notenbank", ),
-                array( 'eigenschaft' => 'zugeordnete_element_id', 'operator' => '==', 'wert' => $titel_id, ),
-            ), ), );
+            $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( 'zugeordnete_liste' => array( 'inklusiv' => array( 'notenbank' ), ), 'zugeordnete_element_id' => array( 'inklusiv' => array( $titel_id ), ), );
             $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
             $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
-
             if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
                 $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
-
         }
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
@@ -86,11 +80,8 @@ class Notenbank extends BaseController {
 
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'aktuelles_verzeichnis',
-            'sortieren' => array(
-                array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
-            ),
+            'filtern' => HAUPTINSTANZEN['notenbank']['filtern'],
+            'sortieren' => HAUPTINSTANZEN['notenbank']['sortieren'],
         );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;

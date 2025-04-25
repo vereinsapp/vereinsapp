@@ -58,19 +58,15 @@ function Schnittstelle_DomInit() {
                 if (liste in LISTEN && instanz in LISTEN[liste].verzeichnis && !("$blanko_datei" in LISTEN[liste].verzeichnis[instanz]))
                     LISTEN[liste].verzeichnis[instanz].$blanko_datei = $blanko;
             }
-            // Wenn .blanko eine .filtern_sammlung ist
-            else if ($blanko.hasClass("filtern_sammlung") && !("$blanko_filtern_sammlung" in FILTERN)) FILTERN.$blanko_filtern_sammlung = $blanko;
-            // Wenn .blanko ein .filtern_element ist
-            else if ($blanko.hasClass("filtern_element") && !("$blanko_filtern_element" in FILTERN)) FILTERN.$blanko_filtern_element = $blanko;
-            // Wenn .blanko eine .filtern_definition ist
-            else if ($blanko.hasClass("filtern_definition")) {
+            // Wenn .blanko eine .filtern_eigenschaft ist
+            else if ($blanko.hasClass("filtern_eigenschaft")) {
                 const typ = $blanko.attr("data-typ");
-                if ("$blanko_filtern_definition" in FILTERN && !(typ in FILTERN.$blanko_filtern_definition))
-                    FILTERN.$blanko_filtern_definition[typ] = $blanko;
+                $blanko.removeAttr("data-typ");
+                if ("$blanko_filtern_eigenschaft" in FILTERN && !(typ in FILTERN.$blanko_filtern_eigenschaft))
+                    FILTERN.$blanko_filtern_eigenschaft[typ] = $blanko;
             }
-            // Wenn .blanko ein .sortieren_element ist
-            else if ($blanko.hasClass("sortieren_element") && !("$blanko_sortieren_element" in SORTIEREN))
-                SORTIEREN.$blanko_sortieren_element = $blanko;
+            // Wenn .blanko ein .filtern_wert ist
+            else if ($blanko.hasClass("filtern_wert") && !("$filtern_wert" in FILTERN)) FILTERN.$blanko_filtern_wert = $blanko;
         })
         .remove();
     $("#hauptinstanzen").remove();
@@ -266,10 +262,7 @@ function Schnittstelle_CheckWartenEnde($check) {
 }
 
 function Schnittstelle_JetztAktualisieren($jetzt) {
-    let format = "dd.MM.yyyy HH:mm:ss";
-    const data_format = $jetzt.attr("data-format");
-    if (typeof data_format !== "undefined") format = $jetzt.attr("data-format");
-    $jetzt.text(DateTime.now().toFormat(format));
+    $jetzt.text(DateTime.now().toFormat("dd.MM.yyyy HH:mm:ss"));
 }
 
 function Schnittstelle_ToggleSymbol($symbol) {

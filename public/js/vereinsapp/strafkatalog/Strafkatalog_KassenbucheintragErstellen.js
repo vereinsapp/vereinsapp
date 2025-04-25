@@ -9,9 +9,11 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
         if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
-        const ajax_data = data;
-        if (!("erledigt" in ajax_data)) ajax_data.erledigt = DateTime.now().toSQL();
-        if (!("mitglied_id" in ajax_data)) ajax_data.mitglied_id = ICH["id"];
+
+        if (!("erledigt" in data)) data.erledigt = DateTime.now();
+        if (!("mitglied_id" in data)) data.mitglied_id = ICH["id"];
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+        if ("erledigt" in ajax_data && isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();
 
         Schnittstelle_AjaxInDieSchlange(
             "strafkatalog/ajax_kassenbucheintrag_speichern",

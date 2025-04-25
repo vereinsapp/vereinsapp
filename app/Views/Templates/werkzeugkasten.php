@@ -9,7 +9,6 @@
                         else echo ' '.$werkzeug['klasse_id'];
                     }
                     ?>" data-title="<?= $werkzeug['title']; ?>"<?php
-                    if( array_key_exists( 'farbe', $werkzeug ) ) { ?> data-farbe="<?= $werkzeug['farbe']; ?>"<?php }
                     if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php }
                     ?> role="button">
                     <i class="bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?> float-start me-2"></i>

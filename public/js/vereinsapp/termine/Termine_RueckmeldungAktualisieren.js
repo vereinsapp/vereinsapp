@@ -2,7 +2,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
     const $btn_rueckmeldung_detaillieren = $btn_rueckmelden.siblings(".btn_rueckmeldung_detaillieren");
 
     let data_werte = $btn_rueckmelden.attr("data-werte");
-    if (typeof data_werte !== "undefined") data_werte = JSON.parse(data_werte);
+    if (typeof data_werte !== "undefined") data_werte = Schnittstelle_VariableWertBereinigtZurueck(data_werte);
     else data_werte = new Object();
 
     if (!("mitglied_id" in data_werte)) data_werte.mitglied_id = undefined;
@@ -25,7 +25,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
     if (typeof rueckmeldung_id !== "undefined") rueckmeldung_id = Number(rueckmeldung_id);
 
     if ($btn_rueckmelden.hasClass("zusagen")) {
-        $btn_rueckmelden.attr("data-werte", JSON.stringify({ termin_id: termin_id, mitglied_id: mitglied_id, status: 1 }));
+        $btn_rueckmelden.attr("data-werte", JsonStringifiedZurueck({ termin_id: termin_id, mitglied_id: mitglied_id, status: 1 }));
 
         if (typeof rueckmeldung_id !== "undefined" && LISTEN.rueckmeldungen.tabelle[rueckmeldung_id].status == 1) {
             $btn_rueckmelden
@@ -69,7 +69,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
             $btn_rueckmeldung_detaillieren.addClass("invisible").removeClass("btn-success").addClass("btn-outline-success");
         }
     } else if ($btn_rueckmelden.hasClass("absagen")) {
-        $btn_rueckmelden.attr("data-werte", JSON.stringify({ termin_id: termin_id, mitglied_id: mitglied_id, status: 2 }));
+        $btn_rueckmelden.attr("data-werte", JsonStringifiedZurueck({ termin_id: termin_id, mitglied_id: mitglied_id, status: 2 }));
 
         if (typeof rueckmeldung_id !== "undefined" && LISTEN.rueckmeldungen.tabelle[rueckmeldung_id].status == 2) {
             $btn_rueckmelden

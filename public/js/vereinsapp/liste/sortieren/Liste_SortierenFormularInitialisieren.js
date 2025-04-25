@@ -1,19 +1,42 @@
-function Liste_SortierenFormularInitialisieren($formular, instanz, liste) {
-    const $sortieren_definitionen = $formular.find(".sortieren_definitionen");
-    $sortieren_definitionen.find(".btn_sortieren_erstellen").attr("data-liste", liste).attr("data-instanz", instanz);
+function Liste_SortierenFormularInitialisieren($formular, ziel_id, liste) {
+    const $sortieren_eigenschaft = $formular.find(".sortieren_eigenschaft");
+    const $sortieren_wert = $formular.find(".sortieren_wert");
 
-    const $sortieren_eigenschaft = $sortieren_definitionen.find(".sortieren_eigenschaft");
-    $sortieren_eigenschaft.empty();
+    $sortieren_eigenschaft.attr("data-liste", liste).attr("data-ziel_id", ziel_id);
+
+    $sortieren_wert.empty();
     $.each(SORTIERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
-        $('<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[liste][eigenschaft].beschriftung + "</option>").appendTo($sortieren_eigenschaft);
+        $('<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[liste][eigenschaft].beschriftung + "</option>").appendTo($sortieren_wert);
     });
 
-    const sortieren_value = Schnittstelle_DomLetztesModalZurueck()
-        .find(".btn_sortieren_modal_oeffnen[data-liste='" + liste + "']")
-        .val();
-    if (isJson(sortieren_value))
-        $formular
-            .find(".sortieren")
-            .append(Liste_Sortieren2$SortierenZurueck(Schnittstelle_VariableArrayBereinigtZurueck(JSON.parse(sortieren_value)), undefined, liste));
-    else $formular.find(".sortieren").append(Liste_Sortieren2$SortierenZurueck(LISTEN[liste].instanz[instanz].sortieren, instanz, liste));
+    let sortieren_prio_niedrig, sortieren_prio_hoch;
+    if (typeof ziel_id !== "undefined") {
+        sortieren_prio_niedrig = $("#" + ziel_id).attr("data-sortieren_prio_niedrig");
+        if (typeof sortieren_prio_niedrig !== "undefined")
+            sortieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck(sortieren_prio_niedrig);
+        else sortieren_prio_niedrig = undefined;
+
+        sortieren_prio_hoch = $("#" + ziel_id).val();
+        if (sortieren_prio_hoch != "") sortieren_prio_hoch = Schnittstelle_VariableWertBereinigtZurueck(sortieren_prio_hoch);
+        else sortieren_prio_hoch = undefined;
+    } else {
+        sortieren_prio_niedrig = undefined;
+        sortieren_prio_hoch = undefined;
+    }
+
+    let sortieren_kombiniert;
+    if (typeof sortieren_prio_hoch !== "undefined") sortieren_kombiniert = sortieren_prio_hoch;
+    else if (typeof sortieren_prio_niedrig !== "undefined") sortieren_kombiniert = sortieren_prio_niedrig;
+    else sortieren_kombiniert = undefined;
+
+    if (typeof ziel_id !== "undefined")
+        $("#" + ziel_id)
+            .val(JsonStringifiedZurueck(sortieren_kombiniert))
+            .trigger("change");
+
+    if (typeof sortieren_kombiniert !== "undefined") {
+        $sortieren_wert.val(sortieren_kombiniert.eigenschaft);
+        $formular.find(".sortieren_richtung").attr("checked", false);
+        $formular.find('.sortieren_richtung[value="' + sortieren_kombiniert.richtung + '"]').attr("checked", true);
+    }
 }

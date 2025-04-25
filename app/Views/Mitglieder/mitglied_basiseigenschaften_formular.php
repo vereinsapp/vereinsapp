@@ -66,21 +66,21 @@
     <label><?= EIGENSCHAFTEN['mitglieder']['funktion']['beschriftung']; ?></label>
 </div><?php } ?>
 
-<?php if( array_key_exists( 'vorstandschaft', EIGENSCHAFTEN['mitglieder'] ) AND array_key_exists( 'aktiv', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="row g-2"><?php } ?>
-    <?php if( array_key_exists( 'vorstandschaft', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="col form-floating mb-2">
-        <select class="form-select eingabe" data-eingabe="vorstandschaft">
-        <?php foreach ( VORGEGEBENE_WERTE['mitglieder']['vorstandschaft'] as $vorstandschaft => $eigenschaften ): ?>
-            <option value="<?= $vorstandschaft; ?>"><?= $eigenschaften['beschriftung']; ?></option>
+<?php if( array_key_exists( 'vorstandschaft_janein', EIGENSCHAFTEN['mitglieder'] ) AND array_key_exists( 'aktiv_janein', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="row g-2"><?php } ?>
+    <?php if( array_key_exists( 'vorstandschaft_janein', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="col form-floating mb-2">
+        <select class="form-select eingabe" data-eingabe="vorstandschaft_janein">
+        <?php foreach ( JANEIN as $janein => $eigenschaften ): ?>
+            <option value="<?= $janein; ?>"><?= $eigenschaften['beschriftung']; ?></option>
         <?php endforeach; ?>
         </select>
-        <label><?= EIGENSCHAFTEN['mitglieder']['vorstandschaft']['beschriftung']; ?></label>
+        <label><?= EIGENSCHAFTEN['mitglieder']['vorstandschaft_janein']['beschriftung']; ?></label>
     </div><?php } ?>
-    <?php if( array_key_exists( 'aktiv', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="col form-floating mb-2">
-        <select class="form-select eingabe" data-eingabe="aktiv">
-        <?php foreach ( VORGEGEBENE_WERTE['mitglieder']['aktiv'] as $aktiv => $eigenschaften ): ?>
-            <option value="<?= $aktiv; ?>"><?= $eigenschaften['beschriftung']; ?></option>
+    <?php if( array_key_exists( 'aktiv_janein', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="col form-floating mb-2">
+        <select class="form-select eingabe" data-eingabe="aktiv_janein">
+        <?php foreach ( JANEIN as $janein => $eigenschaften ): ?>
+            <option value="<?= $janein; ?>"><?= $eigenschaften['beschriftung']; ?></option>
         <?php endforeach; ?>
         </select>
-        <label><?= EIGENSCHAFTEN['mitglieder']['aktiv']['beschriftung']; ?></label>
+        <label><?= EIGENSCHAFTEN['mitglieder']['aktiv_janein']['beschriftung']; ?></label>
     </div><?php } ?>
-<?php if( array_key_exists( 'vorstandschaft', EIGENSCHAFTEN['mitglieder'] ) AND array_key_exists( 'aktiv', EIGENSCHAFTEN['mitglieder'] ) ) { ?></div><?php } ?>
+<?php if( array_key_exists( 'vorstandschaft_janein', EIGENSCHAFTEN['mitglieder'] ) AND array_key_exists( 'aktiv_janein', EIGENSCHAFTEN['mitglieder'] ) ) { ?></div><?php } ?>

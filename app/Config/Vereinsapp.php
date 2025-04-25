@@ -5,6 +5,7 @@ namespace Config;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\I18n\Time;
 defined('HEUTE') OR define( 'HEUTE', Time::today( 'Europe/Berlin' )->toDateTimeString() );
+defined('JAHRESBEGINN') OR define( 'JAHRESBEGINN', Time::today( 'Europe/Berlin' )->setMonth(1)->setDay(1)->setHour(0)->setMinute(0)->setSecond(0)->toDateTimeString() );
 
 class Vereinsapp extends BaseConfig
 {
@@ -95,12 +96,8 @@ class Vereinsapp extends BaseConfig
 
         'mitglieder' => array(
             'liste' => 'mitglieder',
-            // 'filtern' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
-            'sortieren' => array(
-                array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'vorname', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'register', 'richtung' => SORT_ASC, ),
-            ),
+            'filtern' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ) ),
+            'sortieren' => array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
             // 'group-flush' => TRUE,
             // 'sortable' => TRUE,
             // 'link' => TRUE,
@@ -113,111 +110,107 @@ class Vereinsapp extends BaseConfig
             // 'checkliste' => 'vergebene_rechte',
             // 'gegen_liste' => 'termine',
             // 'gegen_element_id' => 42,
-            // 'disabled' => array( 'liste' => 'liste','filtern' => array( array( 'verknuepfung' => '||', 'filtern' => $disabled_filtern, ), ), ),
+            // 'disabled' => array( 'liste' => 'liste','filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), ),
             // 'bedingte_formatierung' => array( 'liste' => 'liste', 'klasse' => array(
-            //     'text-success' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '1' ),
-            //     'text-danger' => array( 'operator' => '==', 'eigenschaft' => 'status', 'wert' => '2' ),
+            //     'text-success' => array( 'status' => array( 'inklusiv' => array( 1 ), ), ),
+            //     'text-danger' => array( 'status' => array( 'inklusiv' => array( 2 ), ), ),
             // ), ),
             'werkzeugkasten' => array(
-                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Mitglieder filtern', ),
-                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Mitglieder sortieren', ),
+                'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Mitglieder filtern', ),
+                'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Mitglieder sortieren', ),
             ),
             'listenstatistik' => array(),
         ),
 
         'verfuegbare_rechte' => array(
             'liste' => 'verfuegbare_rechte',
+            'filtern' => array(),
+            'sortieren' => array(),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             // 'werkzeugkasten' => array(
-            //     'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Verfügbare Rechte filtern', ),
-            //     'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Verfügbare Rechte sortieren', ),
+            //     'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Verfügbare Rechte filtern', ),
+            //     'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Verfügbare Rechte sortieren', ),
             // ),
             // 'listenstatistik' => array(),
         ),
 
         'vergebene_rechte' => array(
             'liste' => 'vergebene_rechte',
+            'filtern' => array(),
+            'sortieren' => array(),
         ),
 
         'aufgaben' => array(
             'liste' => 'aufgaben',
-            'sortieren' => array( array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ), ),
+            'filtern' => array(),
+            'sortieren' => array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'werkzeugkasten' => array(
-                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Aufgaben filtern', ),
-                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Aufgaben sortieren', ),
+                'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Aufgaben filtern', ),
+                'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Aufgaben sortieren', ),
             ),
             'listenstatistik' => array(),
         ),
 
         'termine' => array(
             'liste' => 'termine',
-            'filtern' => array(
-                array( 'operator' => '>=', 'eigenschaft' => 'start', 'wert' => HEUTE ),
-            ),
-            'sortieren' => array(
-                array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
-            ),
+            'filtern' => array( 'start' => array( 'start' => HEUTE ), 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+            'sortieren' => array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'zusatzsymbol' => array('kategorie'),
             'werkzeugkasten' => array(
-                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Termine filtern', ),
-                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Termine sortieren', ),
+                'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Termine filtern', ),
+                'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Termine sortieren', ),
             ),
             'listenstatistik' => array(),
         ),
 
         'rueckmeldungen' => array(
             'liste' => 'rueckmeldungen',
+            'filtern' => array(),
+            'sortieren' => array(),
         ),
 
         'anwesenheiten' => array(
             'liste' => 'anwesenheiten',
+            'filtern' => array(),
+            'sortieren' => array(),
         ),
 
         'strafkatalog' => array(
             'liste' => 'strafkatalog',
-            'sortieren' => array(
-                array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
-            ),
+            'filtern' => array(),
+            'sortieren' => array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'werkzeugkasten' => array(
-                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Strafkatalog filtern', ),
-                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Strafkatalog sortieren', ),
+                'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Strafkatalog filtern', ),
+                'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Strafkatalog sortieren', ),
             ),
             'listenstatistik' => array(),
         ),
 
         'kassenbuch' => array(
             'liste' => 'kassenbuch',
-            'sortieren' => array(
-                array( 'eigenschaft' => 'erstellung', 'richtung' => SORT_DESC, ),
-                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'wert', 'richtung' => SORT_ASC, ),
-            ),
+            'filtern' => array(),
+            'sortieren' => array( 'eigenschaft' => 'erstellung', 'richtung' => SORT_DESC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'zusatzsymbol' => array('offen_erledigt'),
-            'bedingte_formatierung' => array( 'klasse' => array( 'text-danger' => array( 'operator' => '<=', 'eigenschaft' => 'wert', 'wert' => 0 ), ), 'eigenschaft' => 'wert', ),
+            'bedingte_formatierung' => array( 'eigenschaft' => 'wert', 'klasse' => array( 'text-danger' => array( 'wert' => array( 'ende' =>  0, ), ), ), ),
             'werkzeugkasten' => array(
-                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Kassenbuch filtern', ),
-                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Kassenbuch sortieren', ),
+                'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Kassenbuch filtern', ),
+                'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Kassenbuch sortieren', ),
             ),
             'listenstatistik' => array( 'summe' => 'wert', ),
         ),
 
         'notenbank' => array(
             'liste' => 'notenbank',
-            'sortieren' => array(
-                array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-                array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
-            ),
+            'filtern' => array(),
+            'sortieren' => array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
             'beschriftung' => '[<span class="eigenschaft" data-eigenschaft="titel_nr"></span>] <span class="eigenschaft" data-eigenschaft="titel"></span>',
             'werkzeugkasten' => array(
-                'filtern' => array( 'klasse_id' => 'btn_filtern_modal_oeffnen', 'title' => 'Notenbank filtern', ),
-                'sortieren' => array( 'klasse_id' => 'btn_sortieren_modal_oeffnen', 'title' => 'Notenbank sortieren', ),
+                'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Notenbank filtern', ),
+                'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Notenbank sortieren', ),
             ),
             'listenstatistik' => array(),
         ),
@@ -235,7 +228,7 @@ class Vereinsapp extends BaseConfig
     public $eigenschaften = array(
 
         'mitglieder' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'email' => array( 'beschriftung' => 'Email', 'typ' => 'text' ), // PHP
             'vorname' => array( 'beschriftung' => 'Vorname', 'typ' => 'text' ),
             'nachname' => array( 'beschriftung' => 'Nachname', 'typ' => 'text' ),
@@ -249,8 +242,8 @@ class Vereinsapp extends BaseConfig
             'register' => array( 'beschriftung' => 'Instrument', 'typ' => 'vorgegebene_werte' ),
             'auto' => array( 'beschriftung' => 'Auto', 'typ' => 'vorgegebene_werte' ),
             'funktion' => array( 'beschriftung' => 'Funktion', 'typ' => 'vorgegebene_werte' ),
-            'vorstandschaft' => array( 'beschriftung' => 'Vorstandschaft', 'typ' => 'vorgegebene_werte' ),
-            'aktiv' => array( 'beschriftung' => 'Aktiv', 'typ' => 'vorgegebene_werte' ),
+            'vorstandschaft_janein' => array( 'beschriftung' => 'Vorstandschaft', 'typ' => 'janein' ),
+            'aktiv_janein' => array( 'beschriftung' => 'Aktiv', 'typ' => 'janein' ),
             'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),                  // PHP
             'letzte_aktivitaet' => array( 'beschriftung' => 'Letzte Aktivität', 'typ' => 'zeitpunkt' ),     // PHP
             'passwort_alt' => array( 'beschriftung' => 'Altes Passwort', 'typ' => 'text' ),                 // PHP
@@ -259,61 +252,61 @@ class Vereinsapp extends BaseConfig
         ),
 
         'verfuegbare_rechte' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),               // PHP
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),         // PHP
             'permission' => array( 'beschriftung' => 'Recht', 'typ' => 'text' ),    // PHP
-            'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),  // PHP
+            'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),         // PHP
         ),
 
         'vergebene_rechte' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),                                      // PHP
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),                     // PHP
-            'verfuegbares_recht_id' => array( 'beschriftung' => 'Verfuegbares-Recht-ID', 'typ' => 'zahl' ), // PHP
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),                                         // PHP
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),                       // PHP
+            'verfuegbares_recht_id' => array( 'beschriftung' => 'Verfuegbares-Recht-ID', 'typ' => 'element_id' ),   // PHP
         ),
 
         'aufgaben' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'zugeordnete_liste' => array( 'beschriftung' => 'Zugeordnete Liste', 'typ' => 'vorgegebene_werte' ),
-            'zugeordnete_element_id' => array( 'beschriftung' => 'Zugeordnete Element-ID', 'typ' => 'zahl' ),
-            'zugeordnetes_element' => array( 'beschriftung' => 'Zugeordnetes Element', 'typ' => 'text' ), // JAVA
+            'zugeordnete_element_id' => array( 'beschriftung' => 'Zugeordnete Element-ID', 'typ' => 'element_id' ),
+            'zugeordnetes_element' => array( 'beschriftung' => 'Zugeordnetes Element', 'typ' => 'text' ),   // JAVA
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),
-            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'vorgegebene_werte' ),       // JAVA
+            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'janein' ),                  // JAVA
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),                  // PHP
         ),
 
         'termine' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'start' => array( 'beschriftung' => 'Beginn', 'typ' => 'zeitpunkt' ),
             'ort' => array( 'beschriftung' => 'Ort', 'typ' => 'text' ),
             'kategorie' => array( 'beschriftung' => 'Typ', 'typ' => 'vorgegebene_werte' ),
             'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'ich_rueckgemeldet' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'vorgegebene_werte' ), // JAVA
-            'ich_rueckmeldung_id' => array( 'beschriftung' => 'Meine RÜckmeldung-ID', 'typ' => 'zahl' ),                    // JAVA
-            'ich_eingeladen' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'vorgegebene_werte' ),              // JAVA
+            'ich_rueckgemeldet_janein' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'janein' ), // JAVA
+            'ich_rueckmeldung_id' => array( 'beschriftung' => 'Meine RÜckmeldung-ID', 'typ' => 'element_id' ),          // JAVA
+            'ich_eingeladen_janein' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'janein' ),              // JAVA
         ),
 
         'rueckmeldungen' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
-            'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'zahl' ),
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
+            'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'element_id' ),
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
         ),
 
         'anwesenheiten' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
-            'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'zahl' ),
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
+            'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'element_id' ),
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
         ),
 
         'strafkatalog' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'wert' => array( 'beschriftung' => 'Wert (in Euro)', 'typ' => 'zahl' ),
             'kategorie' => array( 'beschriftung' => 'Kapitel', 'typ' => 'vorgegebene_werte' ),
@@ -321,18 +314,18 @@ class Vereinsapp extends BaseConfig
         ),
 
         'kassenbuch' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'wert' => array( 'beschriftung' => 'Wert (in Euro)', 'typ' => 'zahl' ),
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'zahl' ),
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),
-            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'vorgegebene_werte' ),   // JAVA
+            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'janein' ),  // JAVA
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),              // PHP
+            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),  // PHP
         ),
 
         'notenbank' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'zahl' ),
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'titel_nr' => array( 'beschriftung' => 'Titel-Nr.', 'typ' => 'zahl' ),
             'kategorie' => array( 'beschriftung' => 'Genre', 'typ' => 'vorgegebene_werte' ),
@@ -401,10 +394,6 @@ class Vereinsapp extends BaseConfig
                 'noten' => array( 'beschriftung' => 'Notenwart', ),
             ),
 
-            'vorstandschaft' => JANEIN,
-
-            'aktiv' => JANEIN,
-
         ),
 
         'vergebene_rechte' => array(
@@ -419,8 +408,6 @@ class Vereinsapp extends BaseConfig
                 'notenbank' => array( 'beschriftung' => LISTEN['notenbank']['beschriftung'] ),
             ),
 
-            'erledigt_janein' => JANEIN,
-
         ),
 
         'termine' => array(
@@ -432,9 +419,6 @@ class Vereinsapp extends BaseConfig
                 'vorstandschaftssitzung' => array( 'beschriftung' => 'Vorstandschaftssitzung', 'symbol' => '&#128186' ),
             ),
 
-            'ich_rueckgemeldet' => JANEIN,
-
-            'ich_eingeladen' => JANEIN,
         ),
 
         'rueckmeldungen' => array(
@@ -455,9 +439,6 @@ class Vereinsapp extends BaseConfig
         ),
 
         'kassenbuch' => array(
-
-            'erledigt_janein' => JANEIN,
-
         ),
 
         'notenbank' => array(
@@ -474,6 +455,109 @@ class Vereinsapp extends BaseConfig
 
     );
 
+    
+    /**
+     * --------------------------------------------------------------------------
+     * Vorgegebene Filter
+     * --------------------------------------------------------------------------
+     *
+     * Vorgegebene Filter, die im Filtern-Modal ausgewählt werden können
+     */
+    public $vorgegebene_filter = array(
+
+        'mitglieder' => array(
+            'alle_minderjaehrigen' => array(
+                'beschriftung' => 'Alle Minderjährigen',
+                'filtern' => array( 'alter' => array( 'ende' => 17.9999 ), ),
+            ),
+            'alle_volljaehrigen' => array(
+                'beschriftung' => 'Alle Volljährigen',
+                'filtern' => array( 'alter' => array( 'start' => 18 ), ),
+            ),
+            'funktionaere' => array(
+                'beschriftung' => 'Alle Funktionäre',
+                'filtern' => array( 'funktion' => array( 'exklusiv' => [ 'ohne' ] ), ),
+            ),
+            'vorstandschaft' => array(
+                'beschriftung' => 'Vorstandschaft',
+                'filtern' => array( 'vorstandschaft_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+            ),
+            'aktive_mitglieder' => array(
+                'beschriftung' => 'Aktive Mitglieder',
+                'filtern' => array( 'aktiv_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+            ),
+            'alle_mitglieder' => array(
+                'beschriftung' => 'Alle Mitglieder',
+                'filtern' => array( 'aktiv_janein' => array(), ),
+            ),
+        ),
+
+        'aufgaben' => array(
+            'offen' => array(
+                'beschriftung' => 'Alle offenen Aufgaben',
+                'filtern' => array( 'erledigt_janein' => array( 'inklusiv' => [ FALSE ] ), ),
+            ),
+            'alle_seit_jahresbeginn' => array(
+                'beschriftung' => 'Alle Aufgaben seit Jahresbeginn',
+                'filtern' => array( 'erstellung' => array( 'start' => JAHRESBEGINN ), ),
+            ),
+        ),
+
+        'termine' => array(
+            'alle_seit_jahresbeginn' => array(
+                'beschriftung' => 'Alle Termine seit Jahresbeginn',
+                'filtern' => array( 'start' => array( 'start' => JAHRESBEGINN ), ),
+            ),
+            'alle_auftritte' => array(
+                'beschriftung' => 'Alle anstehenden Auftritte',
+                'filtern' => array( 'kategorie' => array( 'inklusiv' => [ 'auftritt' ] ), ),
+            ),
+            'ich_rueckgemeldet' => array(
+                'beschriftung' => 'Alle Termine, zu denen ich Rückmeldung gegeben habe',
+                'filtern' => array( 'ich_rueckgemeldet_janein' => array( 'inklusiv' => [ TRUE ] ), 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+            ),
+            'ich_nicht_rueckgemeldet' => array(
+                'beschriftung' => 'Alle Termine, zu denen ich keine Rückmeldung gegeben habe',
+                'filtern' => array( 'ich_rueckgemeldet_janein' => array( 'inklusiv' => [ FALSE ] ), 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+            ),
+            'ich_eingeladen' => array(
+                'beschriftung' => 'Alle Termine, zu denen ich eingeladen bin',
+                'filtern' => array( 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+            ),
+            'ich_nicht_eingeladen' => array(
+                'beschriftung' => 'Alle Termine, zu denen ich nicht eingeladen bin',
+                'filtern' => array( 'ich_eingeladen_janein' => array( 'inklusiv' => [ FALSE ] ), ),
+            ),
+        ),
+
+        'kassenbuch' => array(
+            'offen' => array(
+                'beschriftung' => 'Alle offenen Einträge',
+                'filtern' => array( 'erledigt_janein' => array( 'inklusiv' => [ FALSE ] ), ),
+            ),
+            'alle_seit_jahresbeginn' => array(
+                'beschriftung' => 'Alle Einträge seit Jahresbeginn',
+                'filtern' => array( 'erstellung' => array( 'start' => JAHRESBEGINN ), ),
+            ),
+        ),
+
+        'notenbank' => array(
+            'standard_verzeichnis' => array(
+                'beschriftung' => 'Standard-Verzeichnis',
+                'filtern' => array( 'titel_nr' => array( 'ende' => 99 ), ),
+            ),
+            'erweitertes_verzeichnis' => array(
+                'beschriftung' => 'Erweitertes Verzeichnis',
+                'filtern' => array( 'titel_nr' => array( 'start' => 100 ), ),
+            ),
+            'titel_mit_dateien' => array(
+                'beschriftung' => 'Alle Titel mit Noten',
+                'filtern' => array( 'anzahl_noten' => array( 'start' => 1 ), ),
+            ),
+        ),
+        
+    );
+
     /**
      * --------------------------------------------------------------------------
      * Filterbare Eigenschaften
@@ -484,15 +568,15 @@ class Vereinsapp extends BaseConfig
     public $filterbare_eigenschaften = array(
 
         'mitglieder' => array(
-            'geburt',
+            // 'geburt',
             'geburtstag',
             'alter',
             'geschlecht',
             'register',
             'auto',
             'funktion',
-            'vorstandschaft',
-            'aktiv',
+            'vorstandschaft_janein',
+            'aktiv_janein',
         ),
 
         'vergebene_rechte' => array(
@@ -504,14 +588,14 @@ class Vereinsapp extends BaseConfig
             // 'mitglied_id',
             // 'erledigt',
             'erledigt_janein',
-            // 'erstellung',
+            'erstellung',
         ),
 
         'termine' => array(
             'start',
             'kategorie',
-            'ich_rueckgemeldet',
-            'ich_eingeladen',
+            'ich_rueckgemeldet_janein',
+            'ich_eingeladen_janein',
         ),
 
         'rueckmeldungen' => array(
@@ -527,7 +611,7 @@ class Vereinsapp extends BaseConfig
 
         'kassenbuch' => array(
             'wert',
-            'mitglied_id',
+            // 'mitglied_id',
             'erledigt',
             'erledigt_janein',
             'erstellung',
@@ -563,8 +647,8 @@ class Vereinsapp extends BaseConfig
             'register',
             'auto',
             'funktion',
-            'vorstandschaft',
-            'aktiv',
+            'vorstandschaft_janein',
+            'aktiv_janein',
         ),
 
         'vergebene_rechte' => array(
@@ -633,8 +717,8 @@ class Vereinsapp extends BaseConfig
             'register',
             'auto',
             'funktion',
-            'vorstandschaft',
-            'aktiv',
+            'vorstandschaft_janein',
+            'aktiv_janein',
         ),
 
         'vergebene_rechte' => array(
@@ -698,9 +782,9 @@ class Vereinsapp extends BaseConfig
      * entsprechend dem Standard-Schema für Filtern
      */
     public $termine_kategorie_filtern_mitglieder = array(
-        'probe' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
-        'auftritt' => array( array( 'operator' => '==', 'eigenschaft' => 'aktiv', 'wert' => '1' ), ),
-        'vorstandschaftssitzung' => array( array( 'operator' => '==', 'eigenschaft' => 'vorstandschaft', 'wert' => '1' ), ),
+        'probe' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), ),
+        'auftritt' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), ),
+        'vorstandschaftssitzung' => array( 'vorstandschaft_janein' => array( 'inklusiv' => array( TRUE ), ), ),
     );
 
     /**

@@ -9,7 +9,8 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitgli
         if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
-        const ajax_data = data;
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+        if ("geburt" in ajax_data && isLuxonDateTime(ajax_data.geburt)) ajax_data.geburt = ajax_data.geburt.toISO();
 
         Schnittstelle_AjaxInDieSchlange(
             "mitglieder/ajax_mitglied_speichern",

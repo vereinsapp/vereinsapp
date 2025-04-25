@@ -9,8 +9,7 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
         if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
-        const ajax_data = data;
-        ajax_data.id = mitglied_id;
+
         if (!("email" in data)) data.email = Schnittstelle_VariableRausZurueck("email", mitglied_id, "mitglieder");
         if (!("vorname" in data)) data.vorname = Schnittstelle_VariableRausZurueck("vorname", mitglied_id, "mitglieder");
         if (!("nachname" in data)) data.nachname = Schnittstelle_VariableRausZurueck("nachname", mitglied_id, "mitglieder");
@@ -21,8 +20,12 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
         if (!("register" in data)) data.register = Schnittstelle_VariableRausZurueck("register", mitglied_id, "mitglieder");
         if (!("auto" in data)) data.auto = Schnittstelle_VariableRausZurueck("auto", mitglied_id, "mitglieder");
         if (!("funktion" in data)) data.funktion = Schnittstelle_VariableRausZurueck("funktion", mitglied_id, "mitglieder");
-        if (!("vorstandschaft" in data)) data.vorstandschaft = Schnittstelle_VariableRausZurueck("vorstandschaft", mitglied_id, "mitglieder");
-        if (!("aktiv" in data)) data.aktiv = Schnittstelle_VariableRausZurueck("aktiv", mitglied_id, "mitglieder");
+        if (!("vorstandschaft_janein" in data))
+            data.vorstandschaft_janein = Schnittstelle_VariableRausZurueck("vorstandschaft_janein", mitglied_id, "mitglieder");
+        if (!("aktiv_janein" in data)) data.aktiv_janein = Schnittstelle_VariableRausZurueck("aktiv_janein", mitglied_id, "mitglieder");
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+        ajax_data.id = mitglied_id;
+        if ("geburt" in ajax_data && isLuxonDateTime(ajax_data.geburt)) ajax_data.geburt = ajax_data.geburt.toISO();
 
         Schnittstelle_AjaxInDieSchlange(
             "mitglieder/ajax_mitglied_speichern",

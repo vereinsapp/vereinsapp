@@ -9,7 +9,7 @@ function Notenbank_TitelErstellen(formular_oeffnen, dom, data, title, titel_id) 
         if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
-        const ajax_data = data;
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
 
         Schnittstelle_AjaxInDieSchlange(
             "notenbank/ajax_titel_speichern",

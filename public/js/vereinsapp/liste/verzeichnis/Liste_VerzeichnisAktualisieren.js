@@ -5,7 +5,7 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
     if (typeof instanz === "undefined") instanz = $verzeichnis.attr("id");
 
     let basis = $verzeichnis.attr("data-basis");
-    if (typeof basis !== "undefined") basis = JSON.parse(basis);
+    if (typeof basis !== "undefined") basis = Schnittstelle_VariableWertBereinigtZurueck(basis);
     else basis = new Array();
 
     if (basis.length > 0)
@@ -46,16 +46,13 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
 
             $neues_unterverzeichnis.attr("data-unterverzeichnis", unterverzeichnis);
 
-            const neue_id = zufaelligeZeichenketteZurueck(8);
+            const ziel_id = zufaelligeZeichenketteZurueck(8);
             $neues_unterverzeichnis
                 .find('[data-bs-toggle="collapse"]')
                 .first()
-                .attr("data-bs-target", "#target_" + neue_id);
-            $neues_unterverzeichnis.find(".toggle_symbol").attr("data-bs-target", "#target_" + neue_id);
-            $neues_unterverzeichnis
-                .find(".collapse")
-                .first()
-                .attr("id", "target_" + neue_id);
+                .attr("data-bs-target", "#" + ziel_id);
+            $neues_unterverzeichnis.find(".toggle_symbol").attr("data-bs-target", "#" + ziel_id);
+            $neues_unterverzeichnis.find(".collapse").first().attr("id", ziel_id);
 
             const neue_basis = JSON.parse(JSON.stringify(basis));
             neue_basis.push(unterverzeichnis);
@@ -63,7 +60,7 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
                 .find(".verzeichnis")
                 .attr("data-instanz", instanz)
                 .attr("data-element_id", element_id)
-                .attr("data-basis", JSON.stringify(neue_basis));
+                .attr("data-basis", JsonStringifiedZurueck(neue_basis));
 
             // Unterverzeichnis wird hinzugefügt (je nachdem, wo es im Verzeichnis positioniert ist)
             if (position === 0) $neues_unterverzeichnis.appendTo($verzeichnis);

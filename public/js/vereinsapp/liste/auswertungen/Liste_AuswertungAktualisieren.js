@@ -47,15 +47,11 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
     // ERGEBNIS AKTUALISIEREN
     $auswertung.find(".ergebnis").each(function () {
         const $ergebnis = $(this);
-        const ergebnis = alle_element_ids_mit_status[$ergebnis.attr("data-status")];
-
-        filtern = "";
-        $.each(ergebnis, function (position, id) {
-            filtern += '{"operator":"==","eigenschaft":"id","wert":' + id + "}";
-            if (position < ergebnis.length - 1) filtern += ",";
+        const filtern = { id: { inklusiv: new Array() } };
+        $.each(alle_element_ids_mit_status[$ergebnis.attr("data-status")], function (position, id) {
+            filtern.id.inklusiv.push(Number(id));
         });
-        filtern = '[{"verknuepfung":"||","filtern":[' + filtern + "]}]";
-        $ergebnis.attr("data-filtern", filtern);
+        $ergebnis.attr("data-filtern", JsonStringifiedZurueck(filtern));
     });
 
     // BEINHALTETE LISTE AKTUALISIEREN

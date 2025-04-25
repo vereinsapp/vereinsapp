@@ -7,28 +7,48 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
             ],
             "rueckmeldungen"
         );
-        if (typeof termin["ich_rueckmeldung_id"] === "undefined") termin["ich_rueckgemeldet"] = false;
-        else termin["ich_rueckgemeldet"] = true;
+        if (typeof termin["ich_rueckmeldung_id"] === "undefined") termin["ich_rueckgemeldet_janein"] = false;
+        else termin["ich_rueckgemeldet_janein"] = true;
     }
 
-    termin["ich_eingeladen"] = false;
-    if ("filtern_mitglieder" in termin) termin["filtern_mitglieder"] = Schnittstelle_VariableArrayBereinigtZurueck(termin["filtern_mitglieder"]);
-    else termin["filtern_mitglieder"] = new Array();
+    termin["ich_eingeladen_janein"] = false;
+    if ("filtern_mitglieder" in termin) termin["filtern_mitglieder"] = Schnittstelle_VariableWertBereinigtZurueck(termin["filtern_mitglieder"]);
+    else termin["filtern_mitglieder"] = new Object();
     let termin_kategorie_filtern_mitglieder;
     if (termin["kategorie"] in TERMINE_KATEGORIE_FILTERN_MITGLIEDER)
-        termin_kategorie_filtern_mitglieder = Schnittstelle_VariableArrayBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin["kategorie"]]);
-    else termin_kategorie_filtern_mitglieder = new Array();
-    let filtern_mitglieder_kombiniert;
-    if (termin_kategorie_filtern_mitglieder.length > 0)
-        if (termin["filtern_mitglieder"].length === 0) filtern_mitglieder_kombiniert = termin_kategorie_filtern_mitglieder;
-        else
-            filtern_mitglieder_kombiniert = [
-                { verknuepfung: "&&", filtern: [termin["filtern_mitglieder"][0], termin_kategorie_filtern_mitglieder[0]] },
-            ];
-    else filtern_mitglieder_kombiniert = termin["filtern_mitglieder"];
-    $.each(Liste_TabelleGefiltertZurueck(filtern_mitglieder_kombiniert, "mitglieder"), function () {
-        if (this["id"] == ICH["id"]) termin["ich_eingeladen"] = true;
-    });
+        termin_kategorie_filtern_mitglieder = Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin["kategorie"]]);
+    else termin_kategorie_filtern_mitglieder = new Object();
+    $.each(
+        Liste_TabelleGefiltertZurueck(
+            Liste_FilternMitPrioKombiniertZurueck(termin_kategorie_filtern_mitglieder, termin["filtern_mitglieder"], "mitglieder"),
+            LISTEN.mitglieder.tabelle,
+            "mitglieder"
+        ),
+        function () {
+            if (this["id"] == ICH["id"]) termin["ich_eingeladen_janein"] = true;
+            return;
+        }
+    );
+};
+
+EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
+    if ($kategorie.val() in TERMINE_KATEGORIE_FILTERN_MITGLIEDER)
+        $kategorie
+            .closest(".formular")
+            .find('.eingabe[data-eingabe="filtern_mitglieder"]')
+            .each(function () {
+                const filtern = JsonStringifiedZurueck(
+                    Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()])
+                );
+                $(this).attr("data-filtern_prio_niedrig", filtern).val(filtern);
+            });
+    else
+        $kategorie
+            .closest(".formular")
+            .find('.eingabe[data-eingabe="filtern_mitglieder"]')
+            .each(function () {
+                $(this).removeAttr("data-filtern_prio_niedrig").val("");
+            });
 };
 
 function Termine_Init() {
@@ -108,9 +128,9 @@ function Termine_Init() {
             false,
             { $btn_ausloesend: $(this) },
             {
-                termin_id: JSON.parse($(this).attr("data-werte")).termin_id,
-                mitglied_id: JSON.parse($(this).attr("data-werte")).mitglied_id,
-                status: JSON.parse($(this).attr("data-werte")).status,
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte")).termin_id,
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte")).mitglied_id,
+                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte")).status,
                 bemerkung: "",
             },
             $(this).attr("data-title"),
@@ -124,7 +144,7 @@ function Termine_Init() {
             false,
             { $btn_ausloesend: $(this) },
             {
-                status: JSON.parse($(this).attr("data-werte")).status,
+                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte")).status,
                 bemerkung: "",
             },
             $(this).attr("data-title"),

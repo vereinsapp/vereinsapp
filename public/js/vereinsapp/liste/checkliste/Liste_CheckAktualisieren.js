@@ -3,24 +3,12 @@ function Liste_CheckAktualisieren($check, element_id, disabled, liste) {
     const $label = $check.closest("label");
 
     let check_element_array = new Array();
-    if ($element.exists())
-        check_element_array = Liste_TabelleGefiltertZurueck(
-            [
-                {
-                    verknuepfung: "&&",
-                    filtern: [
-                        {
-                            operator: "==",
-                            eigenschaft: LISTEN[$element.attr("data-gegen_liste")].element + "_id",
-                            wert: Number($element.attr("data-gegen_element_id")),
-                        },
-                        { operator: "==", eigenschaft: LISTEN[liste].element + "_id", wert: element_id },
-                    ],
-                },
-            ],
-            $check.attr("data-checkliste")
-        );
-
+    if ($element.exists()) {
+        const filtern = new Object();
+        filtern[LISTEN[liste].element + "_id"] = { inklusiv: [Number(element_id)] };
+        filtern[LISTEN[$element.attr("data-gegen_liste")].element + "_id"] = { inklusiv: [Number($element.attr("data-gegen_element_id"))] };
+        check_element_array = Liste_TabelleGefiltertZurueck(filtern, LISTEN[$check.attr("data-checkliste")].tabelle, $check.attr("data-checkliste"));
+    }
     // Check setzen
     $check.attr("checked", check_element_array.length > 0);
 

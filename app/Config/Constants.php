@@ -238,8 +238,8 @@ defined('ELEMENTE') OR define( 'ELEMENTE', array(
 ) );
 
 defined('JANEIN') OR define( 'JANEIN', array(
-	0 => array( 'beschriftung' => 'Nein' ),
-	1 => array( 'beschriftung' => 'Ja' ),
+	0 => array( 'beschriftung' => 'Nein', 'wert' => FALSE ),
+	1 => array( 'beschriftung' => 'Ja', 'wert' => TRUE ),
 ) );
 
 defined('WOCHENTAGE_KURZ') OR define( 'WOCHENTAGE_KURZ', array(
@@ -291,6 +291,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'filtern' => array( 'bootstrap' => 'funnel' ),
     'sortieren' => array( 'bootstrap' => 'sort-down' ),
     'gruppieren' => array( 'bootstrap' => 'hdd-stack' ),
+    'inklusiv_exklusiv' => array( 'bootstrap' => 'transparency' ),
     'asc' => array( 'bootstrap' => 'sort-alpha-down' ),
     'desc' => array( 'bootstrap' => 'sort-alpha-up' ),
     'alle_checks_anwaehlen' => array( 'bootstrap' => 'toggle-on' ),

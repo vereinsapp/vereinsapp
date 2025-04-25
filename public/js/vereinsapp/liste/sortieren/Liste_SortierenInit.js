@@ -1,23 +1,25 @@
-const SORTIEREN = new Object();
-
 function Liste_SortierenInit() {
-    // MODAL ÖFFNEN
+    // SORTIEREN IM LOCALSTORAGE SPEICHERN
+    $(document).on("change", ".sortieren_localstorage_speichern", function () {
+        Liste_SortierenLocalStorageSpeichern($(this), $(this).attr("data-instanz"), $(this).attr("data-liste"));
+    });
+
+    // SORTIEREN MODAL ÖFFNEN
     $(document).on("click", ".btn_sortieren_modal_oeffnen", function () {
-        Liste_SortierenModalOeffnen($(this).attr("data-title"), $(this).attr("data-instanz"), $(this).attr("data-liste"));
+        Liste_SortierenAendern(true, $(this), $(this).attr("data-title"), undefined, $(this).attr("data-liste"));
     });
 
-    // ERSTELLEN
-    $(document).on("click", ".btn_sortieren_erstellen", function () {
-        Liste_SortierenErstellen($(this).closest(".sortieren_definitionen"), $(this).attr("data-instanz"), $(this).attr("data-liste"));
+    // SORTIEREN ÄNDERN
+    $(document).on("change", ".sortieren_eigenschaft", function () {
+        Liste_SortierenAendern(false, $(this), undefined, $(this).attr("data-ziel_id"), $(this).attr("data-liste"));
     });
 
-    // ÄNDERN (RICHTUNG)
-    $(document).on("click", ".btn_sortieren_aendern", function () {
-        Liste_SortierenRichtungAendern($(this), $(this).attr("data-instanz"), $(this).attr("data-liste"));
-    });
-
-    // LÖSCHEN
-    $(document).on("click", ".btn_sortieren_loeschen", function () {
-        Liste_SortierenLoeschen($(this).closest(".sortieren_element"), $(this).attr("data-instanz"), $(this).attr("data-liste"));
+    // SORTIEREN LOESCHEN
+    $(document).on("click", ".btn_sortieren_eigenschaft_loeschen", function () {
+        Liste_SortierenEigenschaftZuruecksetzen(
+            $(this).closest(".sortieren_eigenschaft"),
+            $(this).closest(".sortieren_eigenschaft").attr("data-ziel_id"),
+            $(this).closest(".sortieren_eigenschaft").attr("data-liste")
+        );
     });
 }

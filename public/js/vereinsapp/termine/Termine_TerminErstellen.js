@@ -9,9 +9,12 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
         if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
-        const ajax_data = data;
+
         if (("filtern_mitglieder" in data && typeof data.filtern_mitglieder === "undefined") || data.filtern_mitglieder == "")
-            data.filtern_mitglieder = "[]";
+            data.filtern_mitglieder = new Object();
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+        if ("start" in ajax_data && isLuxonDateTime(ajax_data.start)) ajax_data.start = ajax_data.start.toISO();
+        if ("filtern_mitglieder" in ajax_data) ajax_data.filtern_mitglieder = JsonStringifiedZurueck(ajax_data.filtern_mitglieder);
 
         Schnittstelle_AjaxInDieSchlange(
             "termine/ajax_termin_speichern",

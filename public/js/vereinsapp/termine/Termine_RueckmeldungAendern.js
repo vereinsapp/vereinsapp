@@ -9,12 +9,13 @@ function Termine_RueckmeldungAendern(formular_oeffnen, dom, data, title, rueckme
         if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
-        const ajax_data = data;
-        ajax_data.id = rueckmeldung_id;
+
         if (!("termin_id" in data)) data.termin_id = Schnittstelle_VariableRausZurueck("termin_id", rueckmeldung_id, "rueckmeldungen");
         if (!("mitglied_id" in data)) data.mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "rueckmeldungen");
         if (!("status" in data)) data.status = Schnittstelle_VariableRausZurueck("status", rueckmeldung_id, "rueckmeldungen");
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", rueckmeldung_id, "rueckmeldungen");
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+        ajax_data.id = rueckmeldung_id;
 
         Schnittstelle_AjaxInDieSchlange(
             "termine/ajax_rueckmeldung_speichern",

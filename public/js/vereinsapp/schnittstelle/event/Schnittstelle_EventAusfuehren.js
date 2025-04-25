@@ -1,7 +1,7 @@
 function Schnittstelle_EventAusfuehren(event, data, schleife) {
     if (typeof schleife === "undefined") schleife = false;
 
-    if (typeof event === "function") event([], data);
+    if (typeof event === "function") event(new Array(), data);
     else if (isArray(event) && event.length > 0) {
         const folgendes_event = arrayKopiertZurueck(event);
         const naechstes_event = folgendes_event.shift();

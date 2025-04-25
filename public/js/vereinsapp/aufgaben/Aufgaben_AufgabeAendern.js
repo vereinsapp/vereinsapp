@@ -9,8 +9,7 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
         if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
-        const ajax_data = data;
-        ajax_data.id = aufgabe_id;
+
         if ("zugeordnete_liste" in data && (typeof data.zugeordnete_liste === "undefined" || data.zugeordnete_liste == ""))
             data.zugeordnete_liste = null;
         if ("zugeordnete_element_id" in data && typeof data.zugeordnete_element_id === "undefined") data.zugeordnete_element_id = null;
@@ -18,6 +17,9 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
         if ("mitglied_id" in data && typeof data.mitglied_id === "undefined") data.mitglied_id = null;
         if ("erledigt" in data && typeof data.erledigt === "undefined") data.erledigt = null;
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", aufgabe_id, "aufgaben");
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+        ajax_data.id = aufgabe_id;
+        if ("erledigt" in ajax_data && isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();
 
         Schnittstelle_AjaxInDieSchlange(
             "aufgaben/ajax_aufgabe_speichern",

@@ -9,14 +9,15 @@ function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, dom, data, titl
         if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
-        const ajax_data = data;
-        ajax_data.id = kassenbucheintrag_id;
+
         if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", kassenbucheintrag_id, "kassenbuch");
         if (!("wert" in data)) data.wert = Schnittstelle_VariableRausZurueck("wert", kassenbucheintrag_id, "kassenbuch");
-        if (!("mitglied_id" in ajax_data))
-            ajax_data.mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", kassenbucheintrag_id, "kassenbuch");
+        if (!("mitglied_id" in data)) data.mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", kassenbucheintrag_id, "kassenbuch");
         if ("erledigt" in data && typeof data.erledigt === "undefined") data.erledigt = null;
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", kassenbucheintrag_id, "kassenbuch");
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+        ajax_data.id = kassenbucheintrag_id;
+        if ("erledigt" in ajax_data && isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();
 
         Schnittstelle_AjaxInDieSchlange(
             "strafkatalog/ajax_kassenbucheintrag_speichern",

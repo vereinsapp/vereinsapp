@@ -1,23 +1,38 @@
-function Liste_GruppierenFormularInitialisieren($formular, instanz, liste) {
-    const $gruppieren_definitionen = $formular.find(".gruppieren_definitionen");
-    $gruppieren_definitionen.attr("data-liste", liste).attr("data-instanz", instanz);
+function Liste_GruppierenFormularInitialisieren($formular, ziel_id, liste) {
+    const $gruppieren_eigenschaft = $formular.find(".gruppieren_eigenschaft");
+    const $gruppieren_wert = $formular.find(".gruppieren_wert");
 
-    const $gruppieren_eigenschaft = $gruppieren_definitionen.find(".gruppieren_eigenschaft");
+    $gruppieren_eigenschaft.attr("data-liste", liste).attr("data-ziel_id", ziel_id);
 
+    $gruppieren_wert.empty();
     $.each(GRUPPIERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
-        $('<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[liste][eigenschaft].beschriftung + "</option>").appendTo($gruppieren_eigenschaft);
+        $('<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[liste][eigenschaft].beschriftung + "</option>").appendTo($gruppieren_wert);
     });
 
-    const gruppieren_value = Schnittstelle_DomLetztesModalZurueck()
-        .find(".btn_gruppieren_modal_oeffnen[data-liste='" + liste + "']")
-        .val();
+    let gruppieren_prio_niedrig, gruppieren_prio_hoch;
+    if (typeof ziel_id !== "undefined") {
+        gruppieren_prio_niedrig = $("#" + ziel_id).attr("data-gruppieren_prio_niedrig");
+        if (typeof gruppieren_prio_niedrig !== "undefined")
+            gruppieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck(gruppieren_prio_niedrig);
+        else gruppieren_prio_niedrig = undefined;
 
-    let gruppieren_aktuell = undefined;
-    if (typeof instanz !== "undefined") {
-        gruppieren_aktuell = LISTEN[liste].instanz[instanz].gruppieren;
-        if (typeof gruppieren_aktuell === "undefined") gruppieren_aktuell = LISTEN[liste].instanz[instanz].gruppieren_data;
-    } else if (typeof gruppieren_value !== "undefined") gruppieren_aktuell = gruppieren_value;
+        gruppieren_prio_hoch = $("#" + ziel_id).val();
+        if (gruppieren_prio_hoch != "");
+        else gruppieren_prio_hoch = undefined;
+    } else {
+        gruppieren_prio_niedrig = undefined;
+        gruppieren_prio_hoch = undefined;
+    }
 
-    if (typeof gruppieren_value !== "undefined") $gruppieren_eigenschaft.val(Schnittstelle_VariableWertBereinigtZurueck(gruppieren_value));
-    else $gruppieren_eigenschaft.val(gruppieren_aktuell);
+    let gruppieren_kombiniert = undefined;
+    if (typeof gruppieren_prio_hoch !== "undefined") gruppieren_kombiniert = gruppieren_prio_hoch;
+    else if (typeof gruppieren_prio_niedrig !== "undefined") gruppieren_kombiniert = gruppieren_prio_niedrig;
+    else gruppieren_kombiniert = undefined;
+
+    if (typeof ziel_id !== "undefined")
+        $("#" + ziel_id)
+            .val(JsonStringifiedZurueck(gruppieren_kombiniert))
+            .trigger("change");
+
+    if (typeof gruppieren_kombiniert !== "undefined") $gruppieren_wert.val(gruppieren_kombiniert);
 }

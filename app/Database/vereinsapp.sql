@@ -79,15 +79,15 @@ CREATE TABLE `vereinsapp_mitglieder` (
   `register` varchar(50) NOT NULL DEFAULT 'ohne',
   `auto` varchar(50) NOT NULL DEFAULT 'ohne',
   `funktion` varchar(50) NOT NULL DEFAULT 'ohne',
-  `vorstandschaft` int(1) UNSIGNED NOT NULL DEFAULT 0,
-  `aktiv` int(1) UNSIGNED NOT NULL DEFAULT 1
+  `vorstandschaft_janein` tinyint(1) NOT NULL DEFAULT 0,
+  `aktiv_janein` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Daten für Tabelle `vereinsapp_mitglieder`
 --
 
-INSERT INTO `vereinsapp_mitglieder` (`id`, `username`, `status`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`, `vorname`, `nachname`, `geburt`, `postleitzahl`, `wohnort`, `geschlecht`, `register`, `auto`, `funktion`, `vorstandschaft`, `aktiv`) VALUES
+INSERT INTO `vereinsapp_mitglieder` (`id`, `username`, `status`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`, `vorname`, `nachname`, `geburt`, `postleitzahl`, `wohnort`, `geschlecht`, `register`, `auto`, `funktion`, `vorstandschaft_janein`, `aktiv_janein`) VALUES
 (1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'John', 'Doe', '2024-01-01 00:00:00', 12345, 'Musterstadt', 'd', 'ohne', 'ohne', 'ohne', 0, 1);
 
 -- --------------------------------------------------------
@@ -290,7 +290,7 @@ CREATE TABLE `vereinsapp_termine` (
   `ende` datetime NOT NULL,
   `ort` varchar(100) NOT NULL,
   `kategorie` varchar(50) NOT NULL,
-  `filtern_mitglieder` varchar(9999) NOT NULL,
+  `filtern_mitglieder` longtext NOT NULL CHECK (json_valid(`filtern_mitglieder`)),
   `bemerkung` varchar(100) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,

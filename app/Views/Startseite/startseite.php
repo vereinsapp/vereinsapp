@@ -3,7 +3,7 @@
 <?= $this->section( 'containers' ) ?>
 
 <div class="container mb-3 text-center">
-<?php if ( KASTEN_WEITER_ZUR_WEBSITE_VON_STARTSEITE ) : ?>
+<?php if( KASTEN_WEITER_ZUR_WEBSITE_VON_STARTSEITE ) : ?>
     <div class="row row-cols-2 g-0">
         <div class="col-6" style="position: relative;">
             <img style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" src="<?= base_url( VEREINSAPP_LOGO ) ?>" /></div>
