@@ -4,11 +4,15 @@
 
 <div class="container mb-3 element" data-liste="notenbank" data-element_id="<?= $element_id; ?>">
 <?= view( 'Templates/Liste/element_navigation', array( 'element_navigation' => $element_navigation ) ); ?>
+    <div class="text-center">
+        <span class="eigenschaft" data-eigenschaft="titel_nr"></span>
+    </div>
     <div class="h5 beschriftung text-center">
         <span class="eigenschaft" data-eigenschaft="titel"></span>
     </div>
     <div class="row g-0 my-1">
         <div class="col text-center text-nowrap"><span class="eigenschaft" data-eigenschaft="kategorie"></span></div>
+        <div class="col text-center text-nowrap"><span class="eigenschaft" data-eigenschaft="komponist"></span></div>    </div>
     </div>
 </div>
 

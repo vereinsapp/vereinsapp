@@ -9,6 +9,10 @@
 </div>
 
 <div class="form-floating mb-2">
+    <input type="text" class="form-control eingabe" data-eingabe="komponist" placeholder="<?= EIGENSCHAFTEN['notenbank']['komponist']['beschriftung']; ?>" />
+    <label><?= EIGENSCHAFTEN['notenbank']['komponist']['beschriftung']; ?></label>
+</div>
+<div class="form-floating mb-2">
     <select class="form-select eingabe" data-eingabe="kategorie">
     <?php foreach ( VORGEGEBENE_WERTE['notenbank']['kategorie'] as $kategorie => $eigenschaften ): ?>
         <option value="<?= $kategorie; ?>"><?= $eigenschaften['beschriftung']; ?></option>

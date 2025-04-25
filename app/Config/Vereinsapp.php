@@ -72,6 +72,8 @@ class Vereinsapp extends BaseConfig
         'startseite' => array ( 'beschriftung' => 'Willkommen', 'symbol' => SYMBOLE['startseite']['bootstrap'] ),
         'status' => array ( 'beschriftung' => 'Status', 'symbol' => SYMBOLE['einstellungen']['bootstrap'] ),
         'loginController' => array ( 'beschriftung' => 'Login', 'symbol' => SYMBOLE['einstellungen']['bootstrap'] ),
+        'actionController' => array ( 'beschriftung' => 'Login-Action', 'symbol' => SYMBOLE['einstellungen']['bootstrap'] ),        
+        'magicLinkController' => array ( 'beschriftung' => 'Einmal-Link', 'symbol' => SYMBOLE['einstellungen']['bootstrap'] ),        
     );
 
     /**
@@ -207,7 +209,7 @@ class Vereinsapp extends BaseConfig
             'liste' => 'notenbank',
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
-            'beschriftung' => '[<span class="eigenschaft" data-eigenschaft="titel_nr"></span>] <span class="eigenschaft" data-eigenschaft="titel"></span>',
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel_nr"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>',
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Notenbank filtern', ),
                 'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Notenbank sortieren', ),
@@ -328,6 +330,7 @@ class Vereinsapp extends BaseConfig
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'titel_nr' => array( 'beschriftung' => 'Titel-Nr.', 'typ' => 'zahl' ),
+            'komponist' => array( 'beschriftung' => 'Komponist', 'typ' => 'text' ),
             'kategorie' => array( 'beschriftung' => 'Genre', 'typ' => 'vorgegebene_werte' ),
             'verzeichnis_basis' => array( 'beschriftung' => 'Basis-Verzeichnis', 'typ' => 'text' ),     //PHP
             'verzeichnis' => array( 'beschriftung' => 'Verzeichnis', 'typ' => 'text' ),                 //PHP
@@ -695,6 +698,7 @@ class Vereinsapp extends BaseConfig
             'titel',
             'titel_nr',
             'kategorie',
+            'komponist',
             'anzahl_noten',
             'anzahl_audio',
             'anzahl_verzeichnis',

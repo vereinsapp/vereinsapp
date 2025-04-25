@@ -98,11 +98,9 @@ eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 
 Offene Kassenbucheinträge auf die Startseite
 Nicht-reale Mitglieder einführen
-0.65.3.4 in neuem Branch implementieren
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
 
 Vereinsapp_env angleichen an Vereinsapp
-Magic Link funktioniert auf der NAS und in der Kracherapp nicht, aber MV App geht
 Aufgaben nur in den einzelnen Controllern anzeigen
 
 */

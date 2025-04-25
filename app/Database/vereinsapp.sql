@@ -218,6 +218,7 @@ CREATE TABLE `vereinsapp_notenbank` (
   `id` int(11) UNSIGNED NOT NULL,
   `titel` varchar(100) NOT NULL,
   `titel_nr` int(11) UNSIGNED NOT NULL,
+  `komponist` varchar(100) NOT NULL,
   `kategorie` varchar(50) NOT NULL,
   `bemerkung` varchar(100) NOT NULL,
   `created_at` datetime DEFAULT NULL,

@@ -93,20 +93,20 @@ function Liste_ElementAktualisieren($element, liste) {
     });
 
     // VORSCHAU-EIGENSCHAFT UND ZUGEHÖRIGEN SPACER IN DER VORSCHAU AUSBLENDEN
-    $element
-        .find(".vorschau")
-        .children(".eigenschaft")
-        .each(function () {
-            const $eigenschaft = $(this);
-            const $vorheriger_spacer = $eigenschaft.prev();
-            if ($eigenschaft.text().trim() == "") {
-                $eigenschaft.addClass("invisible");
-                $vorheriger_spacer.addClass("invisible");
-            } else {
-                $eigenschaft.removeClass("invisible");
-                $vorheriger_spacer.removeClass("invisible");
-            }
-        });
+    const $vorschau_eigenschaften = $element.find(".vorschau").children(".eigenschaft");
+    $vorschau_eigenschaften.each(function (position) {
+        const $eigenschaft = $(this);
+        let $zugehoeriger_spacer;
+        if (position == $vorschau_eigenschaften.length - 1) $zugehoeriger_spacer = $eigenschaft.prev();
+        else $zugehoeriger_spacer = $eigenschaft.next();
+        if ($eigenschaft.text().trim() == "") {
+            $eigenschaft.addClass("invisible");
+            $zugehoeriger_spacer.addClass("invisible");
+        } else {
+            $eigenschaft.removeClass("invisible");
+            $zugehoeriger_spacer.removeClass("invisible");
+        }
+    });
 
     // NAVIGATION AKTUALISIEREN
     $element.find(".element_navigation").each(function () {

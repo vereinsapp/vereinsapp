@@ -12,7 +12,7 @@ class Notenbank extends BaseController {
         $this->viewdata['liste']['aktuelles_verzeichnis'] = HAUPTINSTANZEN['notenbank'];
         $this->viewdata['liste']['aktuelles_verzeichnis']['group-flush'] = TRUE;
         $this->viewdata['liste']['aktuelles_verzeichnis']['link'] = TRUE;
-        $this->viewdata['liste']['aktuelles_verzeichnis']['vorschau'] = array( 'kategorie', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis' );
+        $this->viewdata['liste']['aktuelles_verzeichnis']['vorschau'] = array( 'kategorie', 'komponist', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis' );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
@@ -125,6 +125,7 @@ class Notenbank extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['notenbank']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'titel_nr' => [ 'label' => EIGENSCHAFTEN['notenbank']['titel_nr']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'komponist' => [ 'label' => EIGENSCHAFTEN['notenbank']['komponist']['beschriftung'], 'rules' => [ 'required', 'permit_empty' ] ],
             'kategorie' => [ 'label' => EIGENSCHAFTEN['notenbank']['kategorie']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['notenbank']['kategorie'] ) ).']' ] ],
         );
         $validation_titel_nr = model(Titel_Model::class)->where( [ 'titel_nr' => $this->request->getPost()['titel_nr'] ] )->findAll();
@@ -139,6 +140,7 @@ class Notenbank extends BaseController {
             $titel = array(
                 'titel' => $this->request->getpost()['titel'],
                 'titel_nr' => $this->request->getPost()['titel_nr'],
+                'komponist' => $this->request->getPost()['komponist'],
                 'kategorie' => $this->request->getPost()['kategorie'],
             );
 

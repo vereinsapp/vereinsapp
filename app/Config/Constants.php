@@ -231,8 +231,8 @@ defined('ELEMENTE') OR define( 'ELEMENTE', array(
         'beschriftung' => 'Titel',
         'liste' => 'notenbank',
         'element_beschriftung' => array(
-            array( 'eigenschaft' => 'titel_nr', 'prefix' => '[', 'suffix' => '] ' ),
-            array( 'eigenschaft' => 'titel' )
+            array( 'eigenschaft' => 'titel_nr' ),
+            array( 'eigenschaft' => 'titel', 'prefix' => ' ' )
         ),
     ),
 ) );

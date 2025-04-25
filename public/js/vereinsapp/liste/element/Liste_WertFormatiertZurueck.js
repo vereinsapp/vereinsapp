@@ -37,6 +37,9 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
         case "ende":
             wert_formatiert = WOCHENTAGE_KURZ[wert.weekday].beschriftung + ", " + wert.toFormat("dd.MM.yyyy HH:mm");
             break;
+        case "titel_nr":
+            wert_formatiert = "[" + wert + "]";
+            break;
         case "wert":
             wert_formatiert = parseFloat(wert).toFixed(2).replace(".", ";").replace(",", ".").replace(";", ",") + "€";
             break;
