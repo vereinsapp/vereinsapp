@@ -83,7 +83,7 @@ class Vereinsapp extends BaseConfig
         array( 'typ' => 'controller', 'data' => 'termine' ),
         array( 'typ' => 'controller', 'data' => 'strafkatalog' ),
         array( 'typ' => 'controller', 'data' => 'notenbank' ),
-        array( 'typ' => 'controller', 'data' => 'aufgaben' ),
+        // array( 'typ' => 'controller', 'data' => 'aufgaben' ),
         array( 'typ' => 'controller', 'data' => 'mitglieder' ),
         array( 'typ' => 'controller', 'data' => 'einstellungen' ),
         array( 'typ' => 'intern', 'data' => array( 'url' => 'logout', 'beschriftung' => 'Abmelden', 'symbol' => SYMBOLE['logout']['bootstrap'] ) ),
@@ -586,7 +586,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            'zugeordnete_liste',
+            // 'zugeordnete_liste', darf nicht aktiv sein solange die Aufgaben ausschließlich den anderen Controllern zugeordnet sind
             // 'element_id',
             // 'mitglied_id',
             // 'erledigt',
@@ -658,7 +658,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            'zugeordnete_liste',
+            // 'zugeordnete_liste', darf nicht aktiv sein solange die Aufgaben ausschließlich den anderen Controllern zugeordnet sind
             'titel',
             'mitglied_id',
             'erledigt',
@@ -729,7 +729,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            'zugeordnete_liste',
+            // 'zugeordnete_liste', darf nicht aktiv sein solange die Aufgaben ausschließlich den anderen Controllern zugeordnet sind
             'mitglied_id',
             'erledigt_janein',
         ),

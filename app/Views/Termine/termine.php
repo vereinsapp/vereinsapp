@@ -12,10 +12,10 @@
         view( 'Termine/termin_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?= view( 'Templates/modal', array( 'id' => 'termine_anwesenheiten_dokumentieren', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ) ) ); ?>
-    
+
 <?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) echo
     view( 'Templates/modal', array( 'id' => 'zugeordnete_aufgaben_anzeigen', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['zugeordnete_aufgaben'] ) ) ) ); ?>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['bevorstehende_termine_zugeordnete_aufgaben'] ) ) ) ); ?>
 <?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) echo
     view( 'Templates/modal', array( 'id' => 'mitglieder_aufgaben_erledigt_anzeigen', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['mitglieder_aufgaben_erledigt'] ) ) ) ); ?>

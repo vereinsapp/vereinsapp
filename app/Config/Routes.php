@@ -63,8 +63,8 @@ $routes->group('mitglieder', static function ($routes) {
 });
 
 $routes->group('aufgaben', static function ($routes) {
-    $routes->get('',                                        'Aufgaben::aufgaben');
-    $routes->get('aufgaben',                                'Aufgaben::aufgaben');
+    // $routes->get('',                                        'Aufgaben::aufgaben');
+    // $routes->get('aufgaben',                                'Aufgaben::aufgaben');
 
     $routes->post('ajax_aufgabe_speichern',                 'Aufgaben::ajax_aufgabe_speichern');
     $routes->post('ajax_aufgabe_loeschen',                  'Aufgaben::ajax_aufgabe_loeschen');

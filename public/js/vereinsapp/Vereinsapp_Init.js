@@ -101,6 +101,6 @@ Nicht-reale Mitglieder einführen
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
 
 Vereinsapp_env angleichen an Vereinsapp
-Aufgaben nur in den einzelnen Controllern anzeigen
+Neue Aufgaben hinzufügen
 
 */
