@@ -10,8 +10,9 @@ class Startseite extends BaseController {
     public function startseite() {
 
         $this->viewdata['liste']['anstehende_geburtstage'] = HAUPTINSTANZEN['mitglieder'];
-        unset($this->viewdata['liste']['anstehende_geburtstage']['werkzeugkasten']);
-        unset($this->viewdata['liste']['anstehende_geburtstage']['listenstatistik']);
+        unset( $this->viewdata['liste']['anstehende_geburtstage']['werkzeugkasten'] );
+        unset( $this->viewdata['liste']['anstehende_geburtstage']['listenstatistik'] );
+        unset( $this->viewdata['liste']['anstehende_geburtstage']['filtern'] );
         $this->viewdata['liste']['anstehende_geburtstage']['filtern'] = array( 'geburtstag' => array( 'start' => Time::today( 'Europe/Berlin' )->toDateTimeString(), 'ende' => Time::today( 'Europe/Berlin' )->addDays(14)->subSeconds(1)->toDateTimeString(), ), );
         $this->viewdata['liste']['anstehende_geburtstage']['sortieren'] = array( 'eigenschaft' => 'geburtstag', 'richtung' => SORT_ASC, );
         $this->viewdata['liste']['anstehende_geburtstage']['link'] = TRUE;
@@ -20,8 +21,8 @@ class Startseite extends BaseController {
 
         if( array_key_exists( LISTEN['termine']['controller'], CONTROLLERS ) ) {
             $this->viewdata['liste']['bevorstehende_termine_startseite'] = HAUPTINSTANZEN['termine'];
-            unset($this->viewdata['liste']['bevorstehende_termine_startseite']['werkzeugkasten']);
-            unset($this->viewdata['liste']['bevorstehende_termine_startseite']['listenstatistik']);
+            unset( $this->viewdata['liste']['bevorstehende_termine_startseite']['werkzeugkasten'] );
+            unset( $this->viewdata['liste']['bevorstehende_termine_startseite']['listenstatistik'] );
             $this->viewdata['liste']['bevorstehende_termine_startseite']['filtern'] = array(
                 'start' => array( 'start' => Time::today( 'Europe/Berlin' )->toDateTimeString(), 'ende' => Time::today( 'Europe/Berlin' )->addDays(14)->subSeconds(1)->toDateTimeString(), ),
                 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ), ),
@@ -33,8 +34,8 @@ class Startseite extends BaseController {
 
         if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
             $this->viewdata['liste']['aufgaben_offen_startseite'] = HAUPTINSTANZEN['aufgaben'];
-            unset($this->viewdata['liste']['aufgaben_offen_startseite']['werkzeugkasten']);
-            unset($this->viewdata['liste']['aufgaben_offen_startseite']['listenstatistik']);
+            unset( $this->viewdata['liste']['aufgaben_offen_startseite']['werkzeugkasten'] );
+            unset( $this->viewdata['liste']['aufgaben_offen_startseite']['listenstatistik'] );
             $this->viewdata['liste']['aufgaben_offen_startseite']['filtern'] = array(
                 'mitglied_id' => array( 'inklusiv' => array( ICH['id'] ), ),
                 'erledigt_janein' => array( 'inklusiv' => array( FALSE ), ),
@@ -46,8 +47,8 @@ class Startseite extends BaseController {
 
         if( array_key_exists( LISTEN['rueckmeldungen']['controller'], CONTROLLERS ) ) {
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung'] = HAUPTINSTANZEN['termine'];
-            unset($this->viewdata['liste']['termine_ausstehende_rueckmeldung']['werkzeugkasten']);
-            unset($this->viewdata['liste']['termine_ausstehende_rueckmeldung']['listenstatistik']);
+            unset( $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['werkzeugkasten'] );
+            unset( $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['listenstatistik'] );
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['filtern'] = array(
                 'start' => array( 'start' => Time::now( 'Europe/Berlin' )->addSeconds(TERMINE_RUECKMELDUNG_FRIST)->toDateTimeString(), ),
                 'ich_rueckgemeldet_janein' => array( 'inklusiv' => array( FALSE ), ),

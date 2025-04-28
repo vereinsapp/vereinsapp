@@ -405,7 +405,6 @@ class Vereinsapp extends BaseConfig
         'aufgaben' => array(
 
             'zugeordnete_liste' => array(
-                null => array( 'beschriftung' => 'Keine Liste zugeordnet' ),
                 'mitglieder' => array( 'beschriftung' => LISTEN['mitglieder']['beschriftung'] ),
                 'termine' => array( 'beschriftung' => LISTEN['termine']['beschriftung'] ),
                 'notenbank' => array( 'beschriftung' => LISTEN['notenbank']['beschriftung'] ),

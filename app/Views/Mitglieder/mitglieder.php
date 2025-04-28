@@ -18,10 +18,14 @@
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_einmal_link_anzeigen', 'beschriftung' => 'Einmal-Link anzeigen' ), 'formular' =>
     view( 'Mitglieder/mitglied_einmal_link_anzeigen_formular' ) ) ) ) ); ?>
 
-<?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) echo
+<?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) { echo
     view( 'Templates/modal', array( 'id' => 'zugeordnete_aufgaben_anzeigen', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['alle_mitglieder_zugeordnete_aufgaben'] ) ) ) ); ?>
-<?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) echo
-    view( 'Templates/modal', array( 'id' => 'mitglieder_aufgaben_erledigt_anzeigen', 'modal' =>
+<?= view( 'Templates/modal', array( 'id' => 'mitglieder_aufgaben_erledigt_anzeigen', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['mitglieder_aufgaben_erledigt'] ) ) ) ); ?>
+    <?php if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
+    view( 'Templates/modal', array( 'id' => 'aufgabe_basiseigenschaften', 'modal' =>
+    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'aufgaben' ), 'btn' => array( 'klasse_id' => 'btn_aufgabe_aktion' ), 'formular' =>
+    view( 'Aufgaben/aufgabe_basiseigenschaften_formular' ) ) ) ) ); ?>
+<?php } ?>
 <?= $this->endSection() ?>

@@ -95,12 +95,13 @@ Bugs beheben wenn filtern-Eigenschaft leer ist???
 Besseres Symbol für _eigenschaft_loeschen und _eigenschaft_loeschen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
+_basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt (bspw. für neue Aufgabe)
 
 Offene Kassenbucheinträge auf die Startseite
 Nicht-reale Mitglieder einführen
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
 
 Vereinsapp_env angleichen an Vereinsapp
-Neue Aufgaben hinzufügen
+IDs im Filter der Liste _zugeordnete_aufgaben aktualisieren, wenn eine neue Aufgabe hinzugefügt wird
 
 */

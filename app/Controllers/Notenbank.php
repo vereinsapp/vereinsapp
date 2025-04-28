@@ -32,7 +32,16 @@ class Notenbank extends BaseController {
                 'title' => 'Eingeplante und erledigte Aufgaben',
             );
 
+            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+                $this->viewdata['liste']['aktuelles_verzeichnis_zugeordnete_aufgaben']['werkzeugkasten']['erstellen'] = array(
+                    'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
+                    'title' => 'Aufgabe erstellen',
+                );
+                $this->viewdata['liste']['aktuelles_verzeichnis_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
+            }
+
             $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
+            unset( $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] );
             $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
             $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
 
@@ -104,8 +113,6 @@ class Notenbank extends BaseController {
 
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'aktuelles_verzeichnis',
-            'filtern' => HAUPTINSTANZEN['notenbank']['filtern'],
-            'sortieren' => HAUPTINSTANZEN['notenbank']['sortieren'],
         );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;

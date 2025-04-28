@@ -5,7 +5,6 @@ use App\Models\Aufgaben\Aufgabe_Model;
 
 class Aufgaben extends BaseController {
 
-    //------------------------------------------------------------------------------------------------------------------
     public function ajax_aufgabe_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
