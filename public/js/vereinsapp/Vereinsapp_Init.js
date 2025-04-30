@@ -102,6 +102,8 @@ Nicht-reale Mitglieder einführen
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
 
 Vereinsapp_env angleichen an Vereinsapp
-IDs im Filter der Liste _zugeordnete_aufgaben aktualisieren, wenn eine neue Aufgabe hinzugefügt wird
+ÜBERSCHRIFT AKTUALISIEREN, WERKZEUG AKTUALISIEREN und LISTENSTATISTIK AKTUALISIEREN nach Liste_Aktualisieren umziehen
+In _prio_hoch dürfen nur eigenschaften stehen, die auch filter-/sortier-/gruppenbar sind
+EVENT_VARIABLE_UPD_DOM_MODULE aufteilen, jenachdem an welcher Stelle in Schnittstelle_EventVariableUpdDom aufgerufen werden soll (bspw. vor Liste_Aktualisieren, vor Liste_ElementAktualisieren, etc.)
 
 */

@@ -117,6 +117,7 @@ class Vereinsapp extends BaseConfig
             //     'text-success' => array( 'status' => array( 'inklusiv' => array( 1 ), ), ),
             //     'text-danger' => array( 'status' => array( 'inklusiv' => array( 2 ), ), ),
             // ), ),
+            // 'zugeordnet_zu_instanz' => 'bevorstehende_termine',
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Mitglieder filtern', ),
                 'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Mitglieder sortieren', ),

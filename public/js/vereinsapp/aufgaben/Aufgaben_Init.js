@@ -74,6 +74,11 @@ function Aufgaben_Init() {
             $('.element[data-liste="aufgaben"]').each(function () {
                 Aufgaben_AufgabeAktualisieren($(this));
             });
+
+            // ZUGEORDNETE AUFGABEN AKTUALISIEREN
+            $('.liste[data-liste="aufgaben"][data-zugeordnet_zu_instanz]').each(function () {
+                Aufgaben_ZugeordneteAufgabenAktualisieren($(this), $(this).attr("data-zugeordnet_zu_instanz"));
+            });
         },
     ];
 
@@ -171,9 +176,6 @@ function Aufgaben_Init() {
 
     // ZUGEORDNETE AUFGABEN ANZEIGEN
     $(document).on("click", ".btn_zugeordnete_aufgaben_anzeigen", function () {
-        Aufgaben_ZugeordneteAufgabenAnzeigen(
-            { $btn_ausloesend: $(this), $liste: $('.liste[id="' + $(this).attr("data-instanz") + '"]') },
-            $(this).attr("data-title")
-        );
+        Aufgaben_ZugeordneteAufgabenAnzeigen($(this).attr("data-title"));
     });
 }
