@@ -52,7 +52,7 @@ EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
 };
 
 function Termine_Init() {
-    EVENT_VARIABLE_UPD_DOM_MODULE["rueckmeldungen"] = [
+    EVENT_VARIABLE_UPD_DOM_VOR_ENDE["rueckmeldungen"] = [
         function () {
             // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
             $(".rueckmeldung_eingeladen").each(function () {

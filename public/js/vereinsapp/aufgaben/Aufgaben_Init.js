@@ -68,13 +68,8 @@ EIGENSCHAFTEN.aufgaben.zugeordnetes_element.change_aktion = function ($zugeordne
 };
 
 function Aufgaben_Init() {
-    EVENT_VARIABLE_UPD_DOM_MODULE["aufgaben"] = [
+    EVENT_VARIABLE_UPD_DOM_VOR_LISTE["aufgaben"] = [
         function () {
-            // AUFGABE AKTUALISIEREN
-            $('.element[data-liste="aufgaben"]').each(function () {
-                Aufgaben_AufgabeAktualisieren($(this));
-            });
-
             // ZUGEORDNETE AUFGABEN AKTUALISIEREN
             $('.liste[data-liste="aufgaben"][data-zugeordnet_zu_instanz]').each(function () {
                 Aufgaben_ZugeordneteAufgabenAktualisieren($(this), $(this).attr("data-zugeordnet_zu_instanz"));
@@ -82,6 +77,14 @@ function Aufgaben_Init() {
         },
     ];
 
+    EVENT_VARIABLE_UPD_DOM_VOR_ENDE["aufgaben"] = [
+        function () {
+            // AUFGABE AKTUALISIEREN
+            $('.element[data-liste="aufgaben"]').each(function () {
+                Aufgaben_AufgabeAktualisieren($(this));
+            });
+        },
+    ];
     // AUFGABE ERSTELLEN
     $(document).on("click", ".btn_aufgabe_erstellen", function () {
         Aufgaben_AufgabeErstellen(

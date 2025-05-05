@@ -1,8 +1,14 @@
-EVENT_VARIABLE_UPD_DOM_MODULE = new Array();
+EVENT_VARIABLE_UPD_DOM_VOR_LISTE = new Array();
+EVENT_VARIABLE_UPD_DOM_VOR_ENDE = new Array();
 
 function Schnittstelle_EventVariableUpdDom(folgendes_event, data) {
     let liste;
     if ("liste" in data && data.liste in LISTEN) liste = data.liste;
+
+    // SPEZIAL VOR LISTE AKTUALISIEREN
+    $.each(EVENT_VARIABLE_UPD_DOM_VOR_LISTE[liste], function () {
+        this();
+    });
 
     // LISTE AKTUALISIEREN
     $('.liste[data-liste="' + liste + '"]').each(function () {
@@ -147,8 +153,8 @@ function Schnittstelle_EventVariableUpdDom(folgendes_event, data) {
         Liste_DateiAktualisieren($(this), liste);
     });
 
-    // SPEZIAL AKTUALISIEREN
-    $.each(EVENT_VARIABLE_UPD_DOM_MODULE[liste], function () {
+    // SPEZIAL ZUM SCHLUSS AKTUALISIEREN
+    $.each(EVENT_VARIABLE_UPD_DOM_VOR_ENDE[liste], function () {
         this();
     });
 
