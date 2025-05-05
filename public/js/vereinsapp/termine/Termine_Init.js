@@ -37,10 +37,10 @@ EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
             .closest(".formular")
             .find('.eingabe[data-eingabe="filtern_mitglieder"]')
             .each(function () {
-                const filtern = JsonStringifiedZurueck(
+                const filtern_prio_hoch = JsonStringifiedZurueck(
                     Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()])
                 );
-                $(this).attr("data-filtern_prio_niedrig", filtern).val(filtern);
+                $(this).attr("data-filtern_prio_niedrig", filtern_prio_hoch).val(filtern_prio_hoch);
             });
     else
         $kategorie

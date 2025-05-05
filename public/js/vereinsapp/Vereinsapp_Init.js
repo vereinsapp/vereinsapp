@@ -103,6 +103,10 @@ leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewä
 
 Vereinsapp_env angleichen an Vereinsapp
 ÜBERSCHRIFT AKTUALISIEREN, WERKZEUG AKTUALISIEREN und LISTENSTATISTIK AKTUALISIEREN nach Liste_Aktualisieren umziehen
+sortieren und gruppieren angleichen an filtern
 In _prio_hoch dürfen nur eigenschaften stehen, die auch filter-/sortier-/gruppenbar sind
+Braucht es filtern: New Object() etc. (bspw. in Aufgaben_Init, Liste_Init)?
+Immer wenn Liste_FilternMitPrioKombiniertZurueck verwendet wird, muss vorher filtern_prio_niedrig und filtern_prio_hoch definiert sein 
+filtern und sortieren in Liste_ElementAuswahlEinfordern nach php verschieben
 
 */

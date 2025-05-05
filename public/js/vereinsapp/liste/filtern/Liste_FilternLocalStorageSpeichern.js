@@ -1,6 +1,5 @@
-function Liste_FilternLocalStorageSpeichern($quelle, instanz, liste) {
-    let filtern = $quelle.val();
-    if (filtern != "") filtern = Schnittstelle_VariableWertBereinigtZurueck(filtern);
+function Liste_FilternLocalStorageSpeichern(filtern, instanz, liste) {
+    if (typeof filtern !== "undefined" && filtern != "") filtern = Schnittstelle_VariableWertBereinigtZurueck(filtern);
     else filtern = new Object();
 
     LISTEN[liste].instanz[instanz].filtern = filtern;
