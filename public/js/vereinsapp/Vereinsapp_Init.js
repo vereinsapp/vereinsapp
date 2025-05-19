@@ -107,6 +107,5 @@ sortieren und gruppieren angleichen an filtern
 Braucht es filtern: New Object() etc. (bspw. in Aufgaben_Init, Liste_Init)?
 Immer wenn Liste_FilternMitPrioKombiniertZurueck verwendet wird, muss vorher filtern_prio_niedrig und filtern_prio_hoch definiert sein 
 filtern und sortieren in Liste_ElementAuswahlEinfordern nach php verschieben
-Liste_FilternAendern aufsplitten in Liste_FilternAendern und Liste_FilternModalOeffnen
 
 */

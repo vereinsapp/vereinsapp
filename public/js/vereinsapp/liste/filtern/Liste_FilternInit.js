@@ -14,7 +14,7 @@ function Liste_FilternInit() {
 
     // FILTERN MODAL ÖFFNEN
     $(document).on("click", ".btn_filtern_modal_oeffnen", function () {
-        Liste_FilternAendern(true, $(this), $(this).attr("data-title"), undefined, $(this).attr("data-liste"));
+        Liste_FilternModalOeffnen($(this), $(this).attr("data-title"), $(this).attr("data-liste"));
     });
 
     // VORGEGEBENE FILTER AUSWÄHLEN
@@ -29,7 +29,7 @@ function Liste_FilternInit() {
 
     // FILTERN ÄNDERN
     $(document).on("change", ".filtern_eigenschaft", function () {
-        Liste_FilternAendern(false, $(this), undefined, $(this).attr("data-ziel_id"), $(this).attr("data-liste"));
+        Liste_FilternAendern($(this), $(this).attr("data-ziel_id"), $(this).attr("data-liste"));
     });
 
     // FILTERN WERT ZWISCHEN INKLUSIV UND EXKLUSIV VERSCHIEBEN
