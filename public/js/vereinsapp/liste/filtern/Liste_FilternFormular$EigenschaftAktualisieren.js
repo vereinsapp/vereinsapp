@@ -1,7 +1,8 @@
 function Liste_FilternFormular$EigenschaftAktualisieren($eigenschaft, filtern_eigenschaft, liste) {
     const eigenschaft = $eigenschaft.attr("data-eigenschaft");
 
-    if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste])
+    if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft))
+        // todo: braucht es ^^^^^^^^ das ^^^^^^ überhaupt noch?
         switch (EIGENSCHAFTEN[liste][eigenschaft].typ) {
             case "text":
                 // (noch) kein filtern möglich
@@ -73,4 +74,5 @@ function Liste_FilternFormular$EigenschaftAktualisieren($eigenschaft, filtern_ei
             case "element_id":
                 break;
         }
+    else Schnittstelle_LogInDieKonsole("Es wurde versucht, eine Eigenschaft zu aktualisieren, die nicht existiert in FILTERBARE_EIGENSCHAFTEN.");
 }

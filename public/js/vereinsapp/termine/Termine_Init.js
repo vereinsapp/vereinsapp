@@ -32,23 +32,19 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
 };
 
 EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
-    if ($kategorie.val() in TERMINE_KATEGORIE_FILTERN_MITGLIEDER)
-        $kategorie
-            .closest(".formular")
-            .find('.eingabe[data-eingabe="filtern_mitglieder"]')
-            .each(function () {
-                const filtern_prio_hoch = JsonStringifiedZurueck(
-                    Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()])
-                );
-                $(this).attr("data-filtern_prio_niedrig", filtern_prio_hoch).val(filtern_prio_hoch);
-            });
-    else
-        $kategorie
-            .closest(".formular")
-            .find('.eingabe[data-eingabe="filtern_mitglieder"]')
-            .each(function () {
-                $(this).removeAttr("data-filtern_prio_niedrig").val("");
-            });
+    const $filtern_mitglieder = $kategorie.closest(".formular").find('.eingabe[data-eingabe="filtern_mitglieder"]');
+    if ($kategorie.val() in TERMINE_KATEGORIE_FILTERN_MITGLIEDER) {
+        const filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()]);
+        const filtern_prio_hoch = new Object();
+        $.each(Object.keys(filtern_prio_niedrig), function (position, eigenschaft) {
+            if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft))
+                filtern_prio_hoch[eigenschaft] = filtern_prio_niedrig[eigenschaft];
+        });
+
+        $filtern_mitglieder
+            .attr("data-filtern_prio_niedrig", JsonStringifiedZurueck(filtern_prio_niedrig))
+            .val(JsonStringifiedZurueck(filtern_prio_hoch));
+    } else $filtern_mitglieder.removeAttr("data-filtern_prio_niedrig").val("");
 };
 
 function Termine_Init() {

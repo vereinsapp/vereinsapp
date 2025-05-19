@@ -33,15 +33,13 @@ function Schnittstelle_EventVariableUpdDom(folgendes_event, data) {
         const $werkzeug = $(this);
         const instanz = $werkzeug.attr("data-instanz");
         if ($werkzeug.hasClass("btn_filtern_modal_oeffnen")) {
-            const filtern_prio_niedrig = JsonStringifiedZurueck(
-                Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".liste").attr("data-filtern"))
-            );
-            const filtern_prio_hoch = JsonStringifiedZurueck(LISTEN[liste].instanz[instanz].filtern);
+            const filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".liste").attr("data-filtern"));
+            const filtern_prio_hoch = LISTEN[liste].instanz[instanz].filtern;
 
-            $werkzeug.attr("data-filtern_prio_niedrig", filtern_prio_niedrig).val(filtern_prio_hoch);
+            $werkzeug.attr("data-filtern_prio_niedrig", JsonStringifiedZurueck(filtern_prio_niedrig)).val(JsonStringifiedZurueck(filtern_prio_hoch));
+
             if (
-                filtern_prio_hoch !== "{}" &&
-                filtern_prio_niedrig != filtern_prio_hoch &&
+                Object.keys(filtern_prio_hoch).length > 0 &&
                 instanz != "rueckmeldungen_termin" /* todo */ &&
                 instanz != "anwesenheiten_termin" /* todo */
             )
