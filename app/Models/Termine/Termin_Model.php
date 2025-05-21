@@ -14,6 +14,7 @@ class Termin_Model extends Model {
         'ort',
         'kategorie',
         'filtern_mitglieder',
+        'oeffentlich_janein',
         'bemerkung',
     ];
     protected $useTimestamps = TRUE;

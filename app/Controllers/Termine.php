@@ -231,6 +231,7 @@ class Termine extends BaseController {
             'ort' => [ 'label' => EIGENSCHAFTEN['termine']['ort']['beschriftung'], 'rules' => [ 'required' ] ],
             'kategorie' => [ 'label' => EIGENSCHAFTEN['termine']['kategorie']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['termine']['kategorie'] ) ).']', ] ],
             'filtern_mitglieder' => [ 'label' => EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung'], 'rules' => [ 'required', 'valid_json' ] ],
+            'oeffentlich_janein' => [ 'label' => EIGENSCHAFTEN['termine']['oeffentlich_janein']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( JANEIN ) ).']', ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         );
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
@@ -244,6 +245,7 @@ class Termine extends BaseController {
                 'ort' => $this->request->getpost()['ort'],
                 'kategorie' => $this->request->getpost()['kategorie'],
                 'filtern_mitglieder' => $this->request->getpost()['filtern_mitglieder'],
+                'oeffentlich_janein' => $this->request->getpost()['oeffentlich_janein'],
             );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $termin['bemerkung'] = $this->request->getpost()['bemerkung']; else $termin['bemerkung'] = '';
 
@@ -254,10 +256,10 @@ class Termine extends BaseController {
             }
         }
 
-        $termine_oeffentlich = array();
-        foreach( model(Termin_Model::class)/* todo: einfügen ->where( array( 'oeffentlich_janein' => TRUE ) )*/->findAll() as $id => $termin )
-            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) $termine_oeffentlich[] = $termin;
-        $this->json_export_verzeichnis( $termine_oeffentlich );
+        $termine_export = array();
+        foreach( model(Termin_Model::class)->where( array( 'oeffentlich_janein' => TRUE ) )->findAll() as $id => $termin )
+            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) $termine_export[] = $termin;
+        $this->json_export( $termine_export );
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
@@ -271,10 +273,10 @@ class Termine extends BaseController {
         else if( !auth()->user()->can( 'termine.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else model(Termin_Model::class)->delete( $this->request->getPost()['id'] );
 
-        $termine_oeffentlich = array();
-        foreach( model(Termin_Model::class)/* todo: einfügen ->where( array( 'oeffentlich_janein' => TRUE ) )*/->findAll() as $id => $termin )
-            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) $termine_oeffentlich[] = $termin;
-        $this->json_export_verzeichnis( $termine_oeffentlich );
+        $termine_export = array();
+        foreach( model(Termin_Model::class)->where( array( 'oeffentlich_janein' => TRUE ) )->findAll() as $id => $termin )
+            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) $termine_export[] = $termin;
+        $this->json_export( $termine_export );
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
@@ -292,7 +294,7 @@ class Termine extends BaseController {
             else $termine = array();
             foreach( $termine as $id => $termin ) $termine[ $id ]['link'] = site_url().'termine/'.$termin['id'];
 
-            $this->json_export_verzeichnis( $termine ); // todo: Umbau zu tatsächlichem download (nicht export)
+            $this->json_export( $termine ); // todo: Umbau zu tatsächlichem download (nicht export)
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -417,7 +419,7 @@ class Termine extends BaseController {
         return $filtern_kombiniert;
     }
 
-    protected function json_export_verzeichnis( $termine ) {
+    protected function json_export( $termine ) {
 
         if( !is_dir( DATEI_UPLOAD_VERZEICHNIS.'/'.JSON_EXPORT_VERZEICHNIS ) ) mkdir( DATEI_UPLOAD_VERZEICHNIS.'/'.JSON_EXPORT_VERZEICHNIS, 0777, true );
         if( !is_file( DATEI_UPLOAD_VERZEICHNIS.'/'.JSON_EXPORT_VERZEICHNIS.'/index.html') AND is_file( DATEI_UPLOAD_VERZEICHNIS.'/index.html') ) copy( DATEI_UPLOAD_VERZEICHNIS.'/index.html', DATEI_UPLOAD_VERZEICHNIS.'/'.JSON_EXPORT_VERZEICHNIS.'/index.html' );
