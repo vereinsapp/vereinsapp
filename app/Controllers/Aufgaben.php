@@ -5,52 +5,6 @@ use App\Models\Aufgaben\Aufgabe_Model;
 
 class Aufgaben extends BaseController {
 
-    public function aufgaben() {
-
-        $this->viewdata['liste']['alle_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-        $this->viewdata['liste']['alle_aufgaben']['group-flush'] = TRUE;
-        $this->viewdata['liste']['alle_aufgaben']['vorschau'] = array( 'erstellung', 'zugeordnetes_element' );
-        $this->viewdata['liste']['alle_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
-
-        $this->viewdata['liste']['alle_aufgaben']['werkzeugkasten']['statistiken'] = array(
-            'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
-            'title' => 'Erledigte Aufgaben',
-        );
-
-        $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
-        $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-        $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
-
-        if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-
-            $this->viewdata['liste']['alle_aufgaben']['werkzeugkasten_handle'] = TRUE;
-
-            $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'klasse_id' => array('btn_aufgabe_aendern', 'formular_oeffnen'),
-                'title' => 'Aufgabe ändern',
-            );
-            $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'klasse_id' => array('btn_aufgabe_duplizieren', 'formular_oeffnen'),
-                'title' => 'Aufgabe duplizieren',
-            );
-            $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => array('btn_aufgabe_loeschen', 'bestaetigung_einfordern'),
-                'title' => 'Aufgabe löschen',
-                'farbe' => 'danger',
-            );
-
-            $this->viewdata['liste']['alle_aufgaben']['werkzeugkasten']['erstellen'] = array(
-                'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
-                'title' => 'Aufgabe erstellen',
-            );
-
-        }
-
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
-        echo view( 'Aufgaben/aufgaben', $this->viewdata );
-    }
-
-    //------------------------------------------------------------------------------------------------------------------
     public function ajax_aufgabe_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',

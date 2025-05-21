@@ -42,6 +42,7 @@ function Liste_FilternFormularInitialisieren($formular, ziel_id, liste) {
         $neue_filtern_eigenschaft.appendTo($formular);
     });
 
+    // Definition von filtern_prio_niedrig und filtern_prio_hoch
     let filtern_prio_niedrig, filtern_prio_hoch;
     if (typeof ziel_id !== "undefined") {
         filtern_prio_niedrig = $("#" + ziel_id).attr("data-filtern_prio_niedrig");
@@ -56,18 +57,18 @@ function Liste_FilternFormularInitialisieren($formular, ziel_id, liste) {
         filtern_prio_hoch = new Object();
     }
 
-    const filtern_kombiniert = Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_prio_hoch, liste);
-
+    // Überschreiben des value mit geänderten filtern_prio_hoch
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
-            .val(JsonStringifiedZurueck(filtern_kombiniert))
+            .val(JsonStringifiedZurueck(filtern_prio_hoch))
             .trigger("change");
 
-    $.each(filtern_kombiniert, function (eigenschaft, filtern_eigenschaft) {
-        Liste_FilternFormular$EigenschaftAktualisieren(
-            $formular.find('.filtern_eigenschaft[data-eigenschaft="' + eigenschaft + '"]'),
-            filtern_eigenschaft,
-            liste
-        );
-    });
+    $.each(
+        Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_prio_hoch, liste),
+        function (eigenschaft, filtern_eigenschaft_aktualisieren) {
+            // Aktualisieren der $filtern_eigenschaft
+            const $filtern_eigenschaft = $formular.find('.filtern_eigenschaft[data-eigenschaft="' + eigenschaft + '"]');
+            Liste_FilternFormular$EigenschaftAktualisieren($filtern_eigenschaft, filtern_eigenschaft_aktualisieren, liste);
+        }
+    );
 }

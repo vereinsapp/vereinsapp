@@ -24,6 +24,7 @@ if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sorta
 if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
 if( array_key_exists( 'filtern', $liste ) ) { ?> data-filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
+if( array_key_exists( 'zugeordnet_zu_instanz', $liste ) ) { ?> data-zugeordnet_zu_instanz='<?= $liste['zugeordnet_zu_instanz']; ?>'<?php }
 ?>>
 
     <li class="blanko element invisible text-body list-group-item<?php

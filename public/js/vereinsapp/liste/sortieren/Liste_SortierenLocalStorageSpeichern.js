@@ -1,9 +1,10 @@
-function Liste_SortierenLocalStorageSpeichern($quelle, instanz, liste) {
-    let sortieren = $quelle.val();
-    if (sortieren != "") sortieren = Schnittstelle_VariableWertBereinigtZurueck(sortieren);
-    else sortieren = undefined;
+function Liste_SortierenLocalStorageSpeichern(sortieren, instanz, liste) {
+    LISTEN[liste].instanz[instanz].sortieren = undefined;
 
-    LISTEN[liste].instanz[instanz].sortieren = sortieren;
+    if (isObject(sortieren))
+        if ("eigenschaft" in sortieren)
+            if (liste in SORTIERBARE_EIGENSCHAFTEN && SORTIERBARE_EIGENSCHAFTEN[liste].includes(sortieren.eigenschaft))
+                LISTEN[liste].instanz[instanz].sortieren = sortieren;
 
     Schnittstelle_EventAusfuehren(
         [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],

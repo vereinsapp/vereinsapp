@@ -1,9 +1,11 @@
-function Liste_FilternLocalStorageSpeichern($quelle, instanz, liste) {
-    let filtern = $quelle.val();
-    if (filtern != "") filtern = Schnittstelle_VariableWertBereinigtZurueck(filtern);
-    else filtern = new Object();
+function Liste_FilternLocalStorageSpeichern(filtern, instanz, liste) {
+    LISTEN[liste].instanz[instanz].filtern = new Object();
 
-    LISTEN[liste].instanz[instanz].filtern = filtern;
+    if (isObject(filtern))
+        $.each(Object.keys(filtern), function (position, eigenschaft) {
+            if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft))
+                LISTEN[liste].instanz[instanz].filtern[eigenschaft] = filtern[eigenschaft];
+        });
 
     Schnittstelle_EventAusfuehren(
         [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],

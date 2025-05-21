@@ -64,6 +64,40 @@ class Mitglieder extends BaseController {
             );
         }
 
+        if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
+
+            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['aufgaben'] = array(
+                'klasse_id' => array('btn_zugeordnete_aufgaben_anzeigen'),
+                'title' => 'Zugeordnete Aufgaben',
+            );
+
+            $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+            unset( $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['filtern'] );
+            $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+            $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['vorschau'] = array('zugeordnetes_element');
+            $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
+            $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['zugeordnet_zu_instanz'] = 'alle_mitglieder';
+
+            $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['werkzeugkasten']['statistiken'] = array(
+                'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
+                'title' => 'Eingeplante und erledigte Aufgaben',
+            );
+
+            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+                $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['werkzeugkasten']['erstellen'] = array(
+                    'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
+                    'title' => 'Aufgabe erstellen',
+                );
+                $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
+            }
+
+            $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
+            unset( $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] );
+            $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
+            $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
+
+        }
+
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
@@ -190,14 +224,14 @@ class Mitglieder extends BaseController {
 
         if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
-            $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-            unset($this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']);
-            $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( 'zugeordnete_liste' => array( 'inklusiv' => array( 'mitglieder' ), ), 'zugeordnete_element_id' => array( 'inklusiv' => array( $mitglied_id ), ), );
-            $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-            $this->viewdata['liste']['zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
+            $this->viewdata['liste']['mitglied_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+            unset($this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['werkzeugkasten']);
+            $this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['filtern'] = array( 'zugeordnete_liste' => array( 'inklusiv' => array( 'mitglieder' ), ), 'zugeordnete_element_id' => array( 'inklusiv' => array( $mitglied_id ), ), );
+            $this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+            $this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
 
             if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-                $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
+                $this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
 
                 $this->viewdata['liste']['aufgaben_offen_mitglied_geplant'] = HAUPTINSTANZEN['aufgaben'];
                 unset($this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['werkzeugkasten']);
@@ -243,8 +277,6 @@ class Mitglieder extends BaseController {
 
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'alle_mitglieder',
-            'filtern' => HAUPTINSTANZEN['mitglieder']['filtern'],
-            'sortieren' => HAUPTINSTANZEN['mitglieder']['sortieren'],
         );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;

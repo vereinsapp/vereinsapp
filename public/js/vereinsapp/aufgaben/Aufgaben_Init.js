@@ -68,7 +68,16 @@ EIGENSCHAFTEN.aufgaben.zugeordnetes_element.change_aktion = function ($zugeordne
 };
 
 function Aufgaben_Init() {
-    EVENT_VARIABLE_UPD_DOM_MODULE["aufgaben"] = [
+    EVENT_VARIABLE_UPD_DOM_VOR_LISTE["aufgaben"] = [
+        function () {
+            // ZUGEORDNETE AUFGABEN AKTUALISIEREN
+            $('.liste[data-liste="aufgaben"][data-zugeordnet_zu_instanz]').each(function () {
+                Aufgaben_ZugeordneteAufgabenAktualisieren($(this), $(this).attr("data-zugeordnet_zu_instanz"));
+            });
+        },
+    ];
+
+    EVENT_VARIABLE_UPD_DOM_VOR_ENDE["aufgaben"] = [
         function () {
             // AUFGABE AKTUALISIEREN
             $('.element[data-liste="aufgaben"]').each(function () {
@@ -76,7 +85,6 @@ function Aufgaben_Init() {
             });
         },
     ];
-
     // AUFGABE ERSTELLEN
     $(document).on("click", ".btn_aufgabe_erstellen", function () {
         Aufgaben_AufgabeErstellen(
@@ -171,9 +179,6 @@ function Aufgaben_Init() {
 
     // ZUGEORDNETE AUFGABEN ANZEIGEN
     $(document).on("click", ".btn_zugeordnete_aufgaben_anzeigen", function () {
-        Aufgaben_ZugeordneteAufgabenAnzeigen(
-            { $btn_ausloesend: $(this), $liste: $('.liste[id="' + $(this).attr("data-instanz") + '"]') },
-            $(this).attr("data-title")
-        );
+        Aufgaben_ZugeordneteAufgabenAnzeigen($(this).attr("data-title"));
     });
 }

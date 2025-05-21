@@ -1,9 +1,10 @@
-function Liste_GruppierenLocalStorageSpeichern($quelle, instanz, liste) {
-    let gruppieren = $quelle.val();
-    if (gruppieren != "");
-    else gruppieren = undefined;
+function Liste_GruppierenLocalStorageSpeichern(gruppieren, instanz, liste) {
+    LISTEN[liste].instanz[instanz].gruppieren = undefined;
 
-    LISTEN[liste].instanz[instanz].gruppieren = gruppieren;
+    if (isString(gruppieren))
+        if (true)
+            if (liste in GRUPPIERBARE_EIGENSCHAFTEN && GRUPPIERBARE_EIGENSCHAFTEN[liste].includes(gruppieren))
+                LISTEN[liste].instanz[instanz].gruppieren = gruppieren;
 
     Schnittstelle_EventAusfuehren(
         [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],

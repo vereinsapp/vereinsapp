@@ -5,12 +5,16 @@ FILTERN.$blanko_filtern_wert = new Object();
 function Liste_FilternInit() {
     // FILTERN IM LOCALSTORAGE SPEICHERN
     $(document).on("change", ".filtern_localstorage_speichern", function () {
-        Liste_FilternLocalStorageSpeichern($(this), $(this).attr("data-instanz"), $(this).attr("data-liste"));
+        Liste_FilternLocalStorageSpeichern(
+            Schnittstelle_VariableWertBereinigtZurueck($(this).val()),
+            $(this).attr("data-instanz"),
+            $(this).attr("data-liste")
+        );
     });
 
     // FILTERN MODAL ÖFFNEN
     $(document).on("click", ".btn_filtern_modal_oeffnen", function () {
-        Liste_FilternAendern(true, $(this), $(this).attr("data-title"), undefined, $(this).attr("data-liste"));
+        Liste_FilternModalOeffnen($(this), $(this).attr("data-title"), $(this).attr("data-liste"));
     });
 
     // VORGEGEBENE FILTER AUSWÄHLEN
@@ -25,7 +29,7 @@ function Liste_FilternInit() {
 
     // FILTERN ÄNDERN
     $(document).on("change", ".filtern_eigenschaft", function () {
-        Liste_FilternAendern(false, $(this), undefined, $(this).attr("data-ziel_id"), $(this).attr("data-liste"));
+        Liste_FilternAendern($(this), $(this).attr("data-ziel_id"), $(this).attr("data-liste"));
     });
 
     // FILTERN WERT ZWISCHEN INKLUSIV UND EXKLUSIV VERSCHIEBEN
@@ -46,7 +50,7 @@ function Liste_FilternInit() {
         );
     });
 
-    // FILTERN LOESCHEN
+    // FILTERN EIGENSCHAFT ZURÜCKSETZEN
     $(document).on("click", ".btn_filtern_eigenschaft_loeschen", function () {
         Liste_FilternEigenschaftZuruecksetzen(
             $(this).closest(".filtern_eigenschaft"),
