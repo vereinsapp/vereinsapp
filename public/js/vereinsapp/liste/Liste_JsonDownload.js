@@ -1,11 +1,9 @@
-function Liste_CsvExport(bestaetigung_einfordern, dom, title, instanz, liste) {
+function Liste_JsonDownload(bestaetigung_einfordern, dom, title, instanz, liste) {
     if (bestaetigung_einfordern)
         Schnittstelle_DomBestaetigungEinfordern(
-            'Willst du wirklich die Liste "' +
-                instanz +
-                '" als CSV-Datei exportieren? (Achtung: Eine möglicherweise bereits existierende CSV-Datei wird dann überschrieben!)',
+            "Willst du wirklich die Liste als JSON-Datei herunterladen?",
             title,
-            "btn_" + liste + "_csv_export",
+            "btn_" + liste + "_json_download",
             { liste: liste, instanz: instanz }
         );
     else {
@@ -20,20 +18,20 @@ function Liste_CsvExport(bestaetigung_einfordern, dom, title, instanz, liste) {
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
 
         Schnittstelle_AjaxInDieSchlange(
-            LISTEN[liste].controller + "/ajax_" + liste + "_csv_export",
+            LISTEN[liste].controller + "/ajax_" + liste + "_json_download",
             ajax_data,
             ajax_dom,
             function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
-                Schnittstelle_DomToastFeuern('Die Liste "' + instanz + '" wurde erfolgreich als CSV-Datei exportiert.');
+                Schnittstelle_DomToastFeuern("Die Liste wurde erfolgreich als JSON-Datei zum Download bereitgestellt.");
             },
             function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
-                Schnittstelle_DomToastFeuern('Die Liste "' + instanz + '" konnte nicht als CSV-Datei exportiert werden.', "danger");
+                Schnittstelle_DomToastFeuern("Die Liste konnte nicht als JSON-Datei zum Download bereitgestellt werden.", "danger");
             }
         );
     }

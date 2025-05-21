@@ -39,12 +39,12 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
         // Oder wenn aber die Eigenschaft ein Objekt ist
         else if (isObject(wert)) {
             if (Object.keys(wert).length > 0) wert_formatiert = JsonStringifiedZurueck(wert);
-            else wert_formatiert = "";
+            else wert_formatiert = "{}";
         }
         // Oder wenn aber die Eigenschaft ein Array ist
         else if (isArray(wert)) {
             if (wert.length > 0) wert_formatiert = JsonStringifiedZurueck(wert);
-            else wert_formatiert = "";
+            else wert_formatiert = "[]";
         }
 
         $eingabe.val(wert_formatiert);

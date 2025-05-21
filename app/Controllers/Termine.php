@@ -98,9 +98,9 @@ class Termine extends BaseController {
                 'farbe' => 'danger',
             );
 
-            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['csv_export'] = array(
-                'klasse_id' => array('btn_termine_csv_export', 'bestaetigung_einfordern'),
-                'title' => 'Termine als CSV-Datei exportieren',
+            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['json_download'] = array(
+                'klasse_id' => array('btn_termine_json_download', 'bestaetigung_einfordern'),
+                'title' => 'Termine als JSON-Datei downloaden',
             );
 
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['erstellen'] = array(
@@ -254,6 +254,11 @@ class Termine extends BaseController {
             }
         }
 
+        $termine_oeffentlich = array();
+        foreach( model(Termin_Model::class)/* todo: einfügen ->where( array( 'oeffentlich_janein' => TRUE ) )*/->findAll() as $id => $termin )
+            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) $termine_oeffentlich[] = $termin;
+        $this->json_export_verzeichnis( $termine_oeffentlich );
+
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
@@ -266,30 +271,28 @@ class Termine extends BaseController {
         else if( !auth()->user()->can( 'termine.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else model(Termin_Model::class)->delete( $this->request->getPost()['id'] );
 
+        $termine_oeffentlich = array();
+        foreach( model(Termin_Model::class)/* todo: einfügen ->where( array( 'oeffentlich_janein' => TRUE ) )*/->findAll() as $id => $termin )
+            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) $termine_oeffentlich[] = $termin;
+        $this->json_export_verzeichnis( $termine_oeffentlich );
+
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    public function ajax_termine_csv_export() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+    public function ajax_termine_json_download() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'element_ids' => [ 'label' => 'Element-IDs', 'rules' => [ 'permit_empty' ] ],
             'element_ids.*' => [ 'label' => 'Element-ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !( array_key_exists('element_ids', $this->request->getpost() ) AND is_array( $this->request->getpost()['element_ids'] ) AND count( $this->request->getpost()['element_ids'] ) > 0 ) ) $ajax_antwort['validation'] = array( 'element_ids' => 'Die Liste muss mindestens ein Element enthalten.' );
         else {
-            $termine = model(Termin_Model::class)->find( $this->request->getpost()['element_ids'] );
+            if( array_key_exists( 'element_ids', $this->request->getPost() ) AND !empty( $this->request->getPost()['element_ids'] ) )
+                $termine = model(Termin_Model::class)->find( $this->request->getPost()['element_ids'] );
+            else $termine = array();
             foreach( $termine as $id => $termin ) $termine[ $id ]['link'] = site_url().'termine/'.$termin['id'];
 
-            if( !is_dir( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS ) ) mkdir( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS, 0777, true );
-            if( !is_file( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS.'/index.html') AND is_file( DATEI_UPLOAD_VERZEICHNIS.'/index.html') ) copy( DATEI_UPLOAD_VERZEICHNIS.'/index.html', DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS.'/index.html' );
-            $csv_export_datei = fopen( DATEI_UPLOAD_VERZEICHNIS.'/'.CSV_EXPORT_VERZEICHNIS.'/'.TERMINE_CSV_EXPORT_DATEINAME, 'w' );
-            if( !$csv_export_datei ) $ajax_antwort['validation'] = 'Fehler beim Öffnen der Datei!';
-
-            foreach( $termine as $termin ) if( isset( $termin['start'], $termin['titel'], $termin['ort'], $termin['link'] ) )
-                fputcsv( $csv_export_datei, [ $termin['start'], $termin['titel'], $termin['ort'], $termin['link'] ] );
-
-            fclose( $csv_export_datei );
+            $this->json_export_verzeichnis( $termine ); // todo: Umbau zu tatsächlichem download (nicht export)
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -412,6 +415,20 @@ class Termine extends BaseController {
         }
     
         return $filtern_kombiniert;
+    }
+
+    protected function json_export_verzeichnis( $termine ) {
+
+        if( !is_dir( DATEI_UPLOAD_VERZEICHNIS.'/'.JSON_EXPORT_VERZEICHNIS ) ) mkdir( DATEI_UPLOAD_VERZEICHNIS.'/'.JSON_EXPORT_VERZEICHNIS, 0777, true );
+        if( !is_file( DATEI_UPLOAD_VERZEICHNIS.'/'.JSON_EXPORT_VERZEICHNIS.'/index.html') AND is_file( DATEI_UPLOAD_VERZEICHNIS.'/index.html') ) copy( DATEI_UPLOAD_VERZEICHNIS.'/index.html', DATEI_UPLOAD_VERZEICHNIS.'/'.JSON_EXPORT_VERZEICHNIS.'/index.html' );
+        
+        $json_export_datei = fopen( DATEI_UPLOAD_VERZEICHNIS.'/'.JSON_EXPORT_VERZEICHNIS.'/'.TERMINE_JSON_EXPORT_DATEINAME, 'w' );
+        
+        if( !$json_export_datei ) $ajax_antwort['validation'] = 'Fehler beim Öffnen der Datei!';
+        else fwrite( $json_export_datei, json_encode( $termine, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ) );
+        
+        fclose( $json_export_datei );
+
     }
 
 }

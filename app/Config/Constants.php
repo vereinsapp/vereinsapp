@@ -282,7 +282,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'auswaehlen' => array( 'bootstrap' => 'box-arrow-in-down-left' ),
     'offen_erledigt_markieren' => array ( 'bootstrap' => 'check2-circle' ),
     'strafe_zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
-    'csv_export' => array ( 'bootstrap' => 'filetype-csv' ),
+    'json_download' => array ( 'bootstrap' => 'filetype-json' ),
 
     'sortable' => array( 'bootstrap' => 'arrow-down-up' ),
     'collapse_oeffnen' => array( 'bootstrap' => 'caret-right' ),

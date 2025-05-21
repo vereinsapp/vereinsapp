@@ -802,13 +802,13 @@ class Vereinsapp extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
-     * CSV-Export der Termine
+     * JSON-Export der öffentlichen Termine
      * --------------------------------------------------------------------------
      *
-     * Name der Datei, die beim Export der Termine
-     * in ein csv-Format verwendet bzw. erstellt wird
+     * Name der Datei, die beim Export der öffentlichen Termine
+     * in ein json-Format verwendet bzw. erstellt wird
      */
-    public $termine_csv_export_dateiname = 'termine.csv';
+    public $termine_json_export_dateiname = 'termine.json';
 
     /**
      * --------------------------------------------------------------------------
@@ -886,13 +886,13 @@ class Vereinsapp extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
-     * CSV-Export Verzeichnis
+     * JSON-Export Verzeichnis
      * --------------------------------------------------------------------------
      *
      * Verzeichnis, das beim Export einer Liste
-     * in ein csv-Format verwendet bzw. erstellt wird
+     * in ein json-Format verwendet bzw. erstellt wird
      */
-    public $csv_export_verzeichnis = 'csv_export';
+    public $json_export_verzeichnis = 'json_export';
 
     /**
      * --------------------------------------------------------------------------
