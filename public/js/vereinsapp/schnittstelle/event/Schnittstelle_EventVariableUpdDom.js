@@ -48,15 +48,15 @@ function Schnittstelle_EventVariableUpdDom(folgendes_event, data) {
                     .append('<span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-danger border border-danger rounded-circle">');
             else $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
         } else if ($werkzeug.hasClass("btn_sortieren_modal_oeffnen")) {
-            const sortieren_prio_niedrig = JsonStringifiedZurueck(
-                Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".liste").attr("data-sortieren"))
-            );
-            const sortieren_prio_hoch = JsonStringifiedZurueck(LISTEN[liste].instanz[instanz].sortieren);
+            const sortieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".liste").attr("data-sortieren"));
+            const sortieren_prio_hoch = LISTEN[liste].instanz[instanz].sortieren;
 
-            $werkzeug.attr("data-sortieren_prio_niedrig", sortieren_prio_niedrig).val(sortieren_prio_hoch);
+            $werkzeug
+                .attr("data-sortieren_prio_niedrig", JsonStringifiedZurueck(sortieren_prio_niedrig))
+                .val(JsonStringifiedZurueck(sortieren_prio_hoch));
+
             if (
                 typeof sortieren_prio_hoch !== "undefined" &&
-                sortieren_prio_niedrig != sortieren_prio_hoch &&
                 instanz != "rueckmeldungen_termin" /* todo */ &&
                 instanz != "anwesenheiten_termin" /* todo */
             )
@@ -65,15 +65,15 @@ function Schnittstelle_EventVariableUpdDom(folgendes_event, data) {
                     .append('<span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-danger border border-danger rounded-circle">');
             else $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
         } else if ($werkzeug.hasClass("btn_gruppieren_modal_oeffnen")) {
-            const gruppieren_prio_niedrig = JsonStringifiedZurueck(
-                Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".liste").attr("data-gruppieren"))
-            );
-            const gruppieren_prio_hoch = JsonStringifiedZurueck(LISTEN[liste].instanz[instanz].gruppieren);
+            const gruppieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".liste").attr("data-gruppieren"));
+            const gruppieren_prio_hoch = LISTEN[liste].instanz[instanz].gruppieren;
 
-            $werkzeug.attr("data-gruppieren_prio_niedrig", gruppieren_prio_niedrig).val(gruppieren_prio_hoch);
+            $werkzeug
+                .attr("data-gruppieren_prio_niedrig", JsonStringifiedZurueck(gruppieren_prio_niedrig))
+                .val(JsonStringifiedZurueck(gruppieren_prio_hoch));
+
             if (
                 typeof gruppieren_prio_hoch !== "undefined" &&
-                gruppieren_prio_niedrig != gruppieren_prio_hoch &&
                 instanz != "rueckmeldungen_termin" /* todo */ &&
                 instanz != "anwesenheiten_termin" /* todo */
             )

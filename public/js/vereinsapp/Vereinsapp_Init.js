@@ -92,6 +92,7 @@ Rekursion-Problem Rückmeldungen vs. Termine auflösen
 
 AKUT
 Bugs beheben wenn filtern-Eigenschaft leer ist???
+Braucht es filtern: New Object() etc. (bspw. in Aufgaben_Init, Liste_Init)???
 Besseres Symbol für _eigenschaft_loeschen und _eigenschaft_loeschen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
@@ -100,12 +101,6 @@ _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt
 Offene Kassenbucheinträge auf die Startseite
 Nicht-reale Mitglieder einführen
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
-
-Vereinsapp_env angleichen an Vereinsapp
 ÜBERSCHRIFT AKTUALISIEREN, WERKZEUG AKTUALISIEREN und LISTENSTATISTIK AKTUALISIEREN nach Liste_Aktualisieren umziehen
-sortieren und gruppieren angleichen an filtern
-Braucht es filtern: New Object() etc. (bspw. in Aufgaben_Init, Liste_Init)?
-Immer wenn Liste_FilternMitPrioKombiniertZurueck verwendet wird, muss vorher filtern_prio_niedrig und filtern_prio_hoch definiert sein 
-filtern und sortieren in Liste_ElementAuswahlEinfordern nach php verschieben
 
 */

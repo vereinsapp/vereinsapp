@@ -83,7 +83,6 @@ class Vereinsapp extends BaseConfig
         array( 'typ' => 'controller', 'data' => 'termine' ),
         array( 'typ' => 'controller', 'data' => 'strafkatalog' ),
         array( 'typ' => 'controller', 'data' => 'notenbank' ),
-        // array( 'typ' => 'controller', 'data' => 'aufgaben' ),
         array( 'typ' => 'controller', 'data' => 'mitglieder' ),
         array( 'typ' => 'controller', 'data' => 'einstellungen' ),
         array( 'typ' => 'intern', 'data' => array( 'url' => 'logout', 'beschriftung' => 'Abmelden', 'symbol' => SYMBOLE['logout']['bootstrap'] ) ),
@@ -751,7 +750,7 @@ class Vereinsapp extends BaseConfig
         'kassenbuch' => array(
             'erledigt_janein',
         ),
-        
+
         'notenbank' => array(
             'kategorie',
             'anzahl_noten',
@@ -913,6 +912,6 @@ class Vereinsapp extends BaseConfig
      * soll, dann muss der jetzige Zeitpunkt definiert werden
      * Winterzeit: +01:00 / Sommerzeit: +02:00
      */
-    public $force_localstorage_reset_zeitpunkt = '2024-01-31T00:00:00.000+01:00';
+    public $force_localstorage_reset_zeitpunkt = '2025-05-21T16:00:00.000+02:00';
 
 }

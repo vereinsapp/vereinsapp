@@ -9,6 +9,7 @@ function Liste_GruppierenFormularInitialisieren($formular, ziel_id, liste) {
         $('<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[liste][eigenschaft].beschriftung + "</option>").appendTo($gruppieren_wert);
     });
 
+    // Definition von gruppieren_prio_niedrig und gruppieren_prio_hoch
     let gruppieren_prio_niedrig, gruppieren_prio_hoch;
     if (typeof ziel_id !== "undefined") {
         gruppieren_prio_niedrig = $("#" + ziel_id).attr("data-gruppieren_prio_niedrig");
@@ -23,16 +24,22 @@ function Liste_GruppierenFormularInitialisieren($formular, ziel_id, liste) {
         gruppieren_prio_niedrig = undefined;
         gruppieren_prio_hoch = undefined;
     }
+    Schnittstelle_LogInDieKonsole(
+        "Liste_GruppierenFormularInitialisieren: gruppieren_prio_niedrig: " +
+            gruppieren_prio_niedrig +
+            ", gruppieren_prio_hoch: " +
+            gruppieren_prio_hoch
+    );
+    // Überschreiben des value mit geänderten gruppieren_prio_hoch
+    if (typeof ziel_id !== "undefined")
+        $("#" + ziel_id)
+            .val(JsonStringifiedZurueck(gruppieren_prio_hoch))
+            .trigger("change");
 
     let gruppieren_kombiniert = undefined;
     if (typeof gruppieren_prio_hoch !== "undefined") gruppieren_kombiniert = gruppieren_prio_hoch;
     else if (typeof gruppieren_prio_niedrig !== "undefined") gruppieren_kombiniert = gruppieren_prio_niedrig;
     else gruppieren_kombiniert = undefined;
-
-    if (typeof ziel_id !== "undefined")
-        $("#" + ziel_id)
-            .val(JsonStringifiedZurueck(gruppieren_kombiniert))
-            .trigger("change");
-
+    // Aktualisieren des $gruppieren_wert
     if (typeof gruppieren_kombiniert !== "undefined") $gruppieren_wert.val(gruppieren_kombiniert);
 }

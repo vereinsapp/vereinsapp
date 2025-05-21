@@ -50,7 +50,7 @@ function Liste_FilternInit() {
         );
     });
 
-    // FILTERN LOESCHEN
+    // FILTERN EIGENSCHAFT ZURÜCKSETZEN
     $(document).on("click", ".btn_filtern_eigenschaft_loeschen", function () {
         Liste_FilternEigenschaftZuruecksetzen(
             $(this).closest(".filtern_eigenschaft"),

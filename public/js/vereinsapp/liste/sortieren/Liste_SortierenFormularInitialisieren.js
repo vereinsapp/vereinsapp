@@ -9,6 +9,7 @@ function Liste_SortierenFormularInitialisieren($formular, ziel_id, liste) {
         $('<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[liste][eigenschaft].beschriftung + "</option>").appendTo($sortieren_wert);
     });
 
+    // Definition von sortieren_prio_niedrig und sortieren_prio_hoch
     let sortieren_prio_niedrig, sortieren_prio_hoch;
     if (typeof ziel_id !== "undefined") {
         sortieren_prio_niedrig = $("#" + ziel_id).attr("data-sortieren_prio_niedrig");
@@ -24,16 +25,17 @@ function Liste_SortierenFormularInitialisieren($formular, ziel_id, liste) {
         sortieren_prio_hoch = undefined;
     }
 
+    // Überschreiben des value mit geänderten gruppieren_prio_hoch
+    if (typeof ziel_id !== "undefined")
+        $("#" + ziel_id)
+            .val(JsonStringifiedZurueck(sortieren_prio_hoch))
+            .trigger("change");
+
     let sortieren_kombiniert;
     if (typeof sortieren_prio_hoch !== "undefined") sortieren_kombiniert = sortieren_prio_hoch;
     else if (typeof sortieren_prio_niedrig !== "undefined") sortieren_kombiniert = sortieren_prio_niedrig;
     else sortieren_kombiniert = undefined;
-
-    if (typeof ziel_id !== "undefined")
-        $("#" + ziel_id)
-            .val(JsonStringifiedZurueck(sortieren_kombiniert))
-            .trigger("change");
-
+    // Aktualisieren des $sortieren_wert
     if (typeof sortieren_kombiniert !== "undefined") {
         $sortieren_wert.val(sortieren_kombiniert.eigenschaft);
         $formular.find(".sortieren_richtung").attr("checked", false);
