@@ -812,6 +812,16 @@ class Vereinsapp extends BaseConfig
     public $termine_json_export_dateiname = 'termine.json';
 
     /**
+     * Eigenschaften, die beim Export der öffentlichen Termine
+     * berücksichtigt werden
+     */
+    public $termine_json_export_eigenschaften = array(
+        'titel',
+        'start',
+        'ort',
+    );
+
+    /**
      * --------------------------------------------------------------------------
      * Notenbank Verzeichnis Anzahl Ziffern
      * --------------------------------------------------------------------------
@@ -893,16 +903,7 @@ class Vereinsapp extends BaseConfig
      * Verzeichnis, das beim Export einer Liste
      * in ein json-Format verwendet bzw. erstellt wird
      */
-    public $json_export_verzeichnis = 'json_export';
-
-    /**
-     * --------------------------------------------------------------------------
-     * Datei-Upload Verzeichnis
-     * --------------------------------------------------------------------------
-     *
-     * Verzeichnis, das beim Datei-Upload verwendet bzw. erstellt wird
-     */
-    public $datei_upload_verzeichnis = WRITEPATH.'uploads';
+    public $json_export_verzeichnis = 'json_export/';
 
     /**
      * --------------------------------------------------------------------------

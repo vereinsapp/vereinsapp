@@ -135,3 +135,6 @@ public/storage/notenbank/*
 
 public/images/*
 !public/images/index.html
+
+writable/json_export/*
+!writable/json_export/index.html

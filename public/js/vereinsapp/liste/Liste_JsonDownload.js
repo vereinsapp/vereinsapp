@@ -22,6 +22,17 @@ function Liste_JsonDownload(bestaetigung_einfordern, dom, title, instanz, liste)
             ajax_data,
             ajax_dom,
             function (AJAX) {
+                /* todo:
+                Wahrscheinlich ist es einfacher, wenn die Datei in einem temp-Verzeichnis gespeichert wird.
+                Dann muss eine URL zurückgegeben werden, die temp-Dateien aus dem writable-Verzeichnis bereitstellt.
+                Danach muss ein zweiter AJAX-Request erfolgen, um die Datei wieder zu löschen.
+                const $link = $("<a>")
+                    .attr("href", window.URL.createObjectURL(new Blob([AJAX.antwort.datei])))
+                    .attr("download", AJAX.antwort.dateiname)
+                    .appendTo(AJAX.dom.$modal);
+                $link[0].click();
+                $link.remove();
+                */
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);

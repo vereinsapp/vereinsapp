@@ -258,7 +258,11 @@ class Termine extends BaseController {
 
         $termine_export = array();
         foreach( model(Termin_Model::class)->where( array( 'oeffentlich_janein' => TRUE ) )->findAll() as $id => $termin )
-            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) $termine_export[] = $termin;
+            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) {
+                $termin_export = array();
+                foreach( TERMINE_JSON_EXPORT_EIGENSCHAFTEN as $eigenschaft ) $termin_export[$eigenschaft] = $termin[$eigenschaft];
+                $termine_export[] = $termin_export;
+            }
         $this->json_export( $termine_export );
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -275,7 +279,11 @@ class Termine extends BaseController {
 
         $termine_export = array();
         foreach( model(Termin_Model::class)->where( array( 'oeffentlich_janein' => TRUE ) )->findAll() as $id => $termin )
-            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) $termine_export[] = $termin;
+            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) {
+                $termin_export = array();
+                foreach( TERMINE_JSON_EXPORT_EIGENSCHAFTEN as $eigenschaft ) $termin_export[$eigenschaft] = $termin[$eigenschaft];
+                $termine_export[] = $termin_export;
+            }
         $this->json_export( $termine_export );
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -292,9 +300,29 @@ class Termine extends BaseController {
             if( array_key_exists( 'element_ids', $this->request->getPost() ) AND !empty( $this->request->getPost()['element_ids'] ) )
                 $termine = model(Termin_Model::class)->find( $this->request->getPost()['element_ids'] );
             else $termine = array();
-            foreach( $termine as $id => $termin ) $termine[ $id ]['link'] = site_url().'termine/'.$termin['id'];
 
-            $this->json_export( $termine ); // todo: Umbau zu tatsächlichem download (nicht export)
+            $termine_export = array();
+            foreach( $termine as $id => $termin )
+                if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) {
+                    $termin_export = array();
+                    foreach( TERMINE_JSON_EXPORT_EIGENSCHAFTEN as $eigenschaft ) $termin_export[$eigenschaft] = $termin[$eigenschaft];
+                    $termin_export['link'] = site_url().'termine/'.$termin['id'];
+                    $termine_export[] = $termin_export;
+                }
+            $this->json_export( $termine_export );
+            /* todo:
+            Wahrscheinlich ist es einfacher, wenn die Datei in einem temp-Verzeichnis gespeichert wird.
+            Dann muss eine URL zurückgegeben werden, die temp-Dateien aus dem writable-Verzeichnis bereitstellt.
+            Danach muss ein zweiter AJAX-Request erfolgen, um die Datei wieder zu löschen.
+
+            Folgendes funktioniert nicht richtig:
+            $ajax_antwort['datei'] = $this->response->download(
+                TERMINE_JSON_EXPORT_DATEINAME,
+                json_encode( $termine_export, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ),
+                TRUE
+            );
+            $ajax_antwort['dateiname'] = TERMINE_JSON_EXPORT_DATEINAME;
+            */
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -418,16 +446,16 @@ class Termine extends BaseController {
         return $filtern_kombiniert;
     }
 
-    protected function json_export( $termine ) {
+    protected function json_export( $termine_export ) {
 
-        if( !is_dir( DATEI_UPLOAD_VERZEICHNIS.'/'.JSON_EXPORT_VERZEICHNIS ) ) mkdir( DATEI_UPLOAD_VERZEICHNIS.'/'.JSON_EXPORT_VERZEICHNIS, 0777, true );
-        if( !is_file( DATEI_UPLOAD_VERZEICHNIS.'/'.JSON_EXPORT_VERZEICHNIS.'/index.html') AND is_file( DATEI_UPLOAD_VERZEICHNIS.'/index.html') ) copy( DATEI_UPLOAD_VERZEICHNIS.'/index.html', DATEI_UPLOAD_VERZEICHNIS.'/'.JSON_EXPORT_VERZEICHNIS.'/index.html' );
+        if( !is_dir( WRITEPATH.JSON_EXPORT_VERZEICHNIS ) ) mkdir( WRITEPATH.JSON_EXPORT_VERZEICHNIS, 0777, TRUE );
+        if( !is_file( WRITEPATH.JSON_EXPORT_VERZEICHNIS.'/index.html' ) AND is_file( WRITEPATH.'index.html' ) ) copy( WRITEPATH.'index.html', WRITEPATH.JSON_EXPORT_VERZEICHNIS.'/index.html' );
         
-        $json_export_datei = fopen( DATEI_UPLOAD_VERZEICHNIS.'/'.JSON_EXPORT_VERZEICHNIS.'/'.TERMINE_JSON_EXPORT_DATEINAME, 'w' );
+        $json_export_datei = fopen( WRITEPATH.JSON_EXPORT_VERZEICHNIS.TERMINE_JSON_EXPORT_DATEINAME, 'w' );
         
         if( !$json_export_datei ) $ajax_antwort['validation'] = 'Fehler beim Öffnen der Datei!';
-        else fwrite( $json_export_datei, json_encode( $termine, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ) );
-        
+        else fwrite( $json_export_datei, json_encode( $termine_export, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ) );
+
         fclose( $json_export_datei );
 
     }
