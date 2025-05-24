@@ -123,7 +123,7 @@ class Termine extends BaseController {
         $this->viewdata['auswertungen'][ 'rueckmeldungen_termin' ] = array(
             'auswertungen' => 'rueckmeldungen',
             'status_auswahl' => array( 1 => 'ZUSAGEN', 2 => 'ABSAGEN' ),
-            'liste' => array( 'liste' => 'mitglieder', 'gruppieren' => 'register', 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ), ),
+            'liste' => array( 'liste' => 'mitglieder', 'gruppieren' => 'register', 'filtern' => $this->filtern_mitglieder_kombiniert( $termin_id ), ),
             'gegen_liste' => 'termine',
             'gegen_element_id' => $termin_id,
         );
@@ -141,7 +141,7 @@ class Termine extends BaseController {
         $this->viewdata['auswertungen'][ 'anwesenheiten_termin' ] = array(
             'auswertungen' => 'anwesenheiten',
             'status_auswahl' => array( 1 => 'ANWESEND' ),
-            'liste' => array( 'liste' => 'mitglieder', 'gruppieren' => 'register', 'filtern' => $this->termin_filtern_mitglieder_kombiniert( $termin_id ), ),
+            'liste' => array( 'liste' => 'mitglieder', 'gruppieren' => 'register', 'filtern' => $this->filtern_mitglieder_kombiniert( $termin_id ), ),
             'gegen_liste' => 'termine',
             'gegen_element_id' => $termin_id,
         );
@@ -157,7 +157,7 @@ class Termine extends BaseController {
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = $this->termin_filtern_mitglieder_kombiniert( $termin_id );
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'rueckmeldungen', 'klasse' => array(
             'text-success' => array( 'status' => array( 'start' => array( 1 ), 'ende' => array( 1 ), ), ),
@@ -344,6 +344,22 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
+    public function termine_json() {
+        if( !is_file( WRITEPATH.JSON_EXPORT_VERZEICHNIS.TERMINE_JSON_EXPORT_DATEINAME ) )
+            return $this->response->download( TERMINE_JSON_EXPORT_DATEINAME, json_encode( array(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ), TRUE );
+        else return $this->response->download( WRITEPATH.JSON_EXPORT_VERZEICHNIS.TERMINE_JSON_EXPORT_DATEINAME, NULL, TRUE );
+    }
+
+    public function termine_ics() {
+        if( $this->request->getMethod() === 'PUT' || $this->request->getMethod() === 'PROPPATCH') {
+            header('HTTP/1.1 204 No Content');
+        } else {
+            if( !is_file( WRITEPATH.TERMINE_ICS_EXPORT_VERZEICHNIS.TERMINE_ICS_EXPORT_DATEINAME ) )
+                echo 'BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//'.VEREIN_NAME.'//DE\nEND:VCALENDAR';
+            else return $this->response->download( WRITEPATH.TERMINE_ICS_EXPORT_VERZEICHNIS.TERMINE_ICS_EXPORT_DATEINAME, NULL, TRUE );
+        }
+    }
+
     //------------------------------------------------------------------------------------------------------------------
     public function ajax_rueckmeldung_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
@@ -407,7 +423,7 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    protected function termin_filtern_mitglieder_kombiniert( $termin_id ) {
+    protected function filtern_mitglieder_kombiniert( $termin_id ) {
         $termin = model(Termin_Model::class)->find( $termin_id );
         $filtern_mitglieder = json_decode( $termin['filtern_mitglieder'], TRUE );
         if( array_key_exists( $termin['kategorie'], TERMINE_KATEGORIE_FILTERN_MITGLIEDER ) AND !empty( TERMINE_KATEGORIE_FILTERN_MITGLIEDER[ $termin['kategorie'] ] ) )
@@ -429,22 +445,22 @@ class Termine extends BaseController {
             foreach( array_merge( array_keys( $filtern_prio_niedrig ), array_keys( $filtern_prio_hoch ) ) as $eigenschaft ) {
                 $filtern_kombiniert[$eigenschaft] = array();
                 switch( EIGENSCHAFTEN[$liste][$eigenschaft]['typ'] ) {
-                    case "text":
+                    case 'text':
                         // (noch) kein filtern möglich
                         break;
-                    case "zahl":
-                    case "zeitpunkt":
-                        foreach( array( "start", "ende" ) as $filtern_klasse ) {
+                    case 'zahl':
+                    case 'zeitpunkt':
+                        foreach( array( 'start', 'ende' ) as $filtern_klasse ) {
                             if( array_key_exists( $eigenschaft, $filtern_prio_hoch ) AND array_key_exists( $filtern_klasse, $filtern_prio_hoch[$eigenschaft] ) )
                                 $filtern_kombiniert[$eigenschaft][$filtern_klasse] = $filtern_prio_hoch[$eigenschaft][$filtern_klasse];
                             else if( array_key_exists( $eigenschaft, $filtern_prio_niedrig ) AND array_key_exists( $filtern_klasse, $filtern_prio_niedrig[$eigenschaft] ) )
                                 $filtern_kombiniert[$eigenschaft][$filtern_klasse] = $filtern_prio_niedrig[$eigenschaft][$filtern_klasse];
                         }
                         break;
-                    case "vorgegebene_werte":
-                    case "janein":
-                    case "element_id":
-                        foreach( array( "inklusiv", "exklusiv" ) as $filtern_klasse ) {
+                    case 'vorgegebene_werte':
+                    case 'janein':
+                    case 'element_id':
+                        foreach( array( 'inklusiv', 'exklusiv' ) as $filtern_klasse ) {
                             if( array_key_exists( $eigenschaft, $filtern_prio_hoch ) ) {
                                 if( array_key_exists( $filtern_klasse, $filtern_prio_hoch[$eigenschaft] ) )
                                     $filtern_kombiniert[$eigenschaft][$filtern_klasse] = $filtern_prio_hoch[$eigenschaft][$filtern_klasse];
@@ -483,15 +499,15 @@ class Termine extends BaseController {
         
         $ics_termine = "BEGIN:VCALENDAR\n";
         $ics_termine .= "VERSION:2.0\n";
-        $ics_termine .= "PRODID:-//".VEREIN_NAME."//NONSGML v1.0//EN\n";
+        $ics_termine .= "PRODID:-//".VEREIN_NAME."//NONSGML v1.0//DE\n";
         foreach ($termine_export as $termin) {
             $ics_termine .= "BEGIN:VEVENT\n";
-            $ics_termine .= "DTSTART:".Time::parse( $termin['start'], 'Europe/Berlin' )->setTimezone('UTC')->format('Ymd\THis\Z')."\n";
-            $ics_termine .= "DTEND:".Time::parse( $termin['start'], 'Europe/Berlin' )->setTimezone('UTC')->addSeconds(2*60*60)->format('Ymd\THis\Z')."\n";
-            $ics_termine .= "SUMMARY:".$termin['titel']."s\n";
-            $ics_termine .= "LOCATION:".$termin['ort']."\n";
-            $ics_termine .= "DESCRIPTION:".$termin['link']."\n";
-            $ics_termine .= "URL:".$termin['link']."\n";
+            $ics_termine .= "DTSTART:".Time::parse( $termin["start"], "Europe/Berlin" )->setTimezone("UTC")->format("Ymd\THis\Z")."\n";
+            $ics_termine .= "DTEND:".Time::parse( $termin["start"], "Europe/Berlin" )->setTimezone("UTC")->addSeconds(2*60*60)->format("Ymd\THis\Z")."\n";
+            $ics_termine .= "SUMMARY:".$termin["titel"]."s\n";
+            $ics_termine .= "LOCATION:".$termin["ort"]."\n";
+            $ics_termine .= "DESCRIPTION:".$termin["link"]."\n";
+            $ics_termine .= "URL:".$termin["link"]."\n";
             $ics_termine .= "END:VEVENT\n";
         }
         $ics_termine .= "END:VCALENDAR\n";

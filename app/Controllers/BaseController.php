@@ -58,8 +58,8 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = \Config\Services::session();
 
         $this->router = \Config\Services::router();
-        $this->request  = \Config\Services::request();
-        $this->validation  = \Config\Services::validation();
+        $this->request = \Config\Services::request();
+        $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
 
         foreach( get_object_vars( config('Vereinsapp') ) as $eigenschaft => $wert ) {

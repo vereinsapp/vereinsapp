@@ -75,6 +75,8 @@ $routes->group('termine', static function ($routes) {
     $routes->get('termine',                                 'Termine::termine');
     $routes->get('(:num)',                                  'Termine::details/$1');
     $routes->get('details/(:num)',                          'Termine::details/$1');
+    $routes->get('json',                                    'Termine::termine_json');
+    $routes->get('ics',                                     'Termine::termine_ics');
 
     $routes->post('ajax_termin_speichern',                  'Termine::ajax_termin_speichern');
     $routes->post('ajax_termin_loeschen',                   'Termine::ajax_termin_loeschen');
