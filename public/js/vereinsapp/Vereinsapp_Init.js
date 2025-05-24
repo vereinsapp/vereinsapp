@@ -63,7 +63,6 @@ Mehrere element_ids und mehrere mitglied_ids pro Aufgabe
 Mitglied einplanen bereits bei der Erstellung einer Aufgabe
 Setlist mit Links zu den Titeln einführen
 Liste unformatiert in die Zwischenablage kopieren
-Termin mit Ende erweitern
 Terminserie / Regeltermine
 Mitglieder Lebenslauf
 Verzeichnis filtern und sortieren
@@ -101,5 +100,7 @@ Offene Kassenbucheinträge auf die Startseite
 Nicht-reale Mitglieder einführen
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
 ÜBERSCHRIFT AKTUALISIEREN, WERKZEUG AKTUALISIEREN und LISTENSTATISTIK AKTUALISIEREN nach Liste_Aktualisieren umziehen
+
+Termin mit Ende erweitern
 
 */

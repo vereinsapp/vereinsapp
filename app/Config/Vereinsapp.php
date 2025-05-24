@@ -823,6 +823,22 @@ class Vereinsapp extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
+     * ICS-Export der Termine
+     * --------------------------------------------------------------------------
+     *
+     * Verzeichnis, das beim Export der Termine
+     * in ein ics-Format verwendet bzw. erstellt wird
+     */
+    public $termine_ics_export_verzeichnis = 'ics_export/';
+
+    /**
+     * Name der Datei, die beim Export der Termine
+     * in ein ics-Format verwendet bzw. erstellt wird
+     */
+    public $termine_ics_export_dateiname = 'termine.ics';
+
+    /**
+     * --------------------------------------------------------------------------
      * Notenbank Verzeichnis Anzahl Ziffern
      * --------------------------------------------------------------------------
      *

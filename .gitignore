@@ -138,3 +138,6 @@ public/images/*
 
 writable/json_export/*
 !writable/json_export/index.html
+
+writable/ics_export/*
+!writable/ics_export/index.html

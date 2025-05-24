@@ -256,14 +256,22 @@ class Termine extends BaseController {
             }
         }
 
-        $termine_export = array();
+        $termine_json_export = array();
         foreach( model(Termin_Model::class)->where( array( 'oeffentlich_janein' => TRUE ) )->findAll() as $id => $termin )
             if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) {
                 $termin_export = array();
                 foreach( TERMINE_JSON_EXPORT_EIGENSCHAFTEN as $eigenschaft ) $termin_export[$eigenschaft] = $termin[$eigenschaft];
-                $termine_export[] = $termin_export;
+                $termine_json_export[] = $termin_export;
             }
-        $this->json_export( $termine_export );
+        $this->json_export( $termine_json_export );
+
+        $termine_ics_export = array();
+        foreach( model(Termin_Model::class)->findAll() as $id => $termin )
+            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) {
+                $termin['link'] = site_url().'termine/'.$termin['id'];
+                $termine_ics_export[] = $termin;
+            }
+        $this->ics_export( $termine_ics_export );
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
@@ -277,14 +285,22 @@ class Termine extends BaseController {
         else if( !auth()->user()->can( 'termine.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else model(Termin_Model::class)->delete( $this->request->getPost()['id'] );
 
-        $termine_export = array();
+        $termine_json_export = array();
         foreach( model(Termin_Model::class)->where( array( 'oeffentlich_janein' => TRUE ) )->findAll() as $id => $termin )
             if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) {
                 $termin_export = array();
                 foreach( TERMINE_JSON_EXPORT_EIGENSCHAFTEN as $eigenschaft ) $termin_export[$eigenschaft] = $termin[$eigenschaft];
-                $termine_export[] = $termin_export;
+                $termine_json_export[] = $termin_export;
             }
-        $this->json_export( $termine_export );
+        $this->json_export( $termine_json_export );
+
+        $termine_ics_export = array();
+        foreach( model(Termin_Model::class)->findAll() as $id => $termin )
+            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) {
+                $termin['link'] = site_url().'termine/'.$termin['id'];
+                $termine_ics_export[] = $termin;
+            }
+        $this->ics_export( $termine_ics_export );
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
@@ -301,15 +317,14 @@ class Termine extends BaseController {
                 $termine = model(Termin_Model::class)->find( $this->request->getPost()['element_ids'] );
             else $termine = array();
 
-            $termine_export = array();
+            $termine_json_export = array();
             foreach( $termine as $id => $termin )
-                if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) {
-                    $termin_export = array();
-                    foreach( TERMINE_JSON_EXPORT_EIGENSCHAFTEN as $eigenschaft ) $termin_export[$eigenschaft] = $termin[$eigenschaft];
-                    $termin_export['link'] = site_url().'termine/'.$termin['id'];
-                    $termine_export[] = $termin_export;
-                }
-            $this->json_export( $termine_export );
+                if( $termin['oeffentlich_janein'] == TRUE ) {
+                $termin_export = array();
+                foreach( TERMINE_JSON_EXPORT_EIGENSCHAFTEN as $eigenschaft ) $termin_export[$eigenschaft] = $termin[$eigenschaft];
+                $termine_json_export[] = $termin_export;
+            }            
+            $this->json_export( $termine_json_export );
             /* todo:
             Wahrscheinlich ist es einfacher, wenn die Datei in einem temp-Verzeichnis gespeichert wird.
             Dann muss eine URL zurückgegeben werden, die temp-Dateien aus dem writable-Verzeichnis bereitstellt.
@@ -452,11 +467,41 @@ class Termine extends BaseController {
         if( !is_file( WRITEPATH.JSON_EXPORT_VERZEICHNIS.'/index.html' ) AND is_file( WRITEPATH.'index.html' ) ) copy( WRITEPATH.'index.html', WRITEPATH.JSON_EXPORT_VERZEICHNIS.'/index.html' );
         
         $json_export_datei = fopen( WRITEPATH.JSON_EXPORT_VERZEICHNIS.TERMINE_JSON_EXPORT_DATEINAME, 'w' );
-        
-        if( !$json_export_datei ) $ajax_antwort['validation'] = 'Fehler beim Öffnen der Datei!';
-        else fwrite( $json_export_datei, json_encode( $termine_export, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ) );
+        if( !$json_export_datei ) $ajax_antwort['validation'] = 'Fehler beim JSON-Export!';
+        else {
+            fwrite( $json_export_datei, json_encode( $termine_export, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ) );
+            fclose( $json_export_datei );
+        }
 
-        fclose( $json_export_datei );
+    }
+
+    protected function ics_export( $termine_export ) {
+        /* todo: muss sichergestellt sein, dass der Termin mindestens 24 Stunden in der Zukunft liegt? */
+
+        if( !is_dir( WRITEPATH.TERMINE_ICS_EXPORT_VERZEICHNIS ) ) mkdir( WRITEPATH.TERMINE_ICS_EXPORT_VERZEICHNIS, 0777, TRUE );
+        if( !is_file( WRITEPATH.TERMINE_ICS_EXPORT_VERZEICHNIS.'/index.html' ) AND is_file( WRITEPATH.'index.html' ) ) copy( WRITEPATH.'index.html', WRITEPATH.TERMINE_ICS_EXPORT_VERZEICHNIS.'/index.html' );
+        
+        $ics_termine = "BEGIN:VCALENDAR\n";
+        $ics_termine .= "VERSION:2.0\n";
+        $ics_termine .= "PRODID:-//".VEREIN_NAME."//NONSGML v1.0//EN\n";
+        foreach ($termine_export as $termin) {
+            $ics_termine .= "BEGIN:VEVENT\n";
+            $ics_termine .= "DTSTART:".Time::parse( $termin['start'], 'Europe/Berlin' )->setTimezone('UTC')->format('Ymd\THis\Z')."\n";
+            $ics_termine .= "DTEND:".Time::parse( $termin['start'], 'Europe/Berlin' )->setTimezone('UTC')->addSeconds(2*60*60)->format('Ymd\THis\Z')."\n";
+            $ics_termine .= "SUMMARY:".$termin['titel']."s\n";
+            $ics_termine .= "LOCATION:".$termin['ort']."\n";
+            $ics_termine .= "DESCRIPTION:".$termin['link']."\n";
+            $ics_termine .= "URL:".$termin['link']."\n";
+            $ics_termine .= "END:VEVENT\n";
+        }
+        $ics_termine .= "END:VCALENDAR\n";
+        
+        $ics_export_datei = fopen( WRITEPATH.TERMINE_ICS_EXPORT_VERZEICHNIS.TERMINE_ICS_EXPORT_DATEINAME, 'w' );
+        if( !$ics_export_datei ) $ajax_antwort['validation'] = 'Fehler beim ICS-Export!';
+        else {
+            fwrite($ics_export_datei, $ics_termine);
+            fclose($ics_export_datei);
+        }
 
     }
 
