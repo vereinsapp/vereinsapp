@@ -260,7 +260,7 @@ class Termine extends BaseController {
         }
 
         $termine_json_export = array();
-        foreach( model(Termin_Model::class)->where( array( 'oeffentlich_janein' => TRUE ) )->findAll() as $id => $termin )
+        foreach( model(Termin_Model::class)->where( array( 'oeffentlich_janein' => TRUE ) )->orderBy('start', 'ASC')->findAll() as $id => $termin )
             if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) {
                 $termin_export = array();
                 foreach( TERMINE_JSON_EXPORT_EIGENSCHAFTEN as $eigenschaft ) $termin_export[$eigenschaft] = $termin[$eigenschaft];
@@ -269,7 +269,7 @@ class Termine extends BaseController {
         $this->json_export( $termine_json_export );
 
         $termine_ics_export = array();
-        foreach( model(Termin_Model::class)->findAll() as $id => $termin )
+        foreach( model(Termin_Model::class)->orderBy('start', 'ASC')->findAll() as $id => $termin )
             if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) {
                 $termin['link'] = site_url().'termine/'.$termin['id'];
                 $termine_ics_export[] = $termin;
@@ -289,7 +289,7 @@ class Termine extends BaseController {
         else model(Termin_Model::class)->delete( $this->request->getPost()['id'] );
 
         $termine_json_export = array();
-        foreach( model(Termin_Model::class)->where( array( 'oeffentlich_janein' => TRUE ) )->findAll() as $id => $termin )
+        foreach( model(Termin_Model::class)->where( array( 'oeffentlich_janein' => TRUE ) )->orderBy('start', 'ASC')->findAll() as $id => $termin )
             if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) {
                 $termin_export = array();
                 foreach( TERMINE_JSON_EXPORT_EIGENSCHAFTEN as $eigenschaft ) $termin_export[$eigenschaft] = $termin[$eigenschaft];
@@ -298,7 +298,7 @@ class Termine extends BaseController {
         $this->json_export( $termine_json_export );
 
         $termine_ics_export = array();
-        foreach( model(Termin_Model::class)->findAll() as $id => $termin )
+        foreach( model(Termin_Model::class)->orderBy('start', 'ASC')->findAll() as $id => $termin )
             if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) {
                 $termin['link'] = site_url().'termine/'.$termin['id'];
                 $termine_ics_export[] = $termin;
