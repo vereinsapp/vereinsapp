@@ -11,9 +11,11 @@ class Termin_Model extends Model {
     protected $allowedFields  = [
         'titel',
         'start',
+        'ende',
         'ort',
         'kategorie',
         'filtern_mitglieder',
+        'oeffentlich_janein',
         'bemerkung',
     ];
     protected $useTimestamps = TRUE;

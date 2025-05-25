@@ -6,9 +6,16 @@
 <?= view( 'Templates/Liste/element_navigation', array( 'element_navigation' => $element_navigation ) ); ?>
     <div class="h5 beschriftung text-center"><span class="eigenschaft" data-eigenschaft="titel"></span></div>
     <div class="row g-0 my-1">
-        <div class="col text-center text-nowrap"><i class="bi bi-<?= SYMBOLE["termine"]["bootstrap"]; ?>"></i> <span class="eigenschaft" data-eigenschaft="start"></span></div>
-        <div class="col text-center text-nowrap"><span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span></div>
-        <div class="col text-center text-nowrap"><i class="bi bi-<?= SYMBOLE["ort"]["bootstrap"]; ?>"></i> <span class="eigenschaft" data-eigenschaft="ort"></span></div>
+        <div class="col-5 text-center text-nowrap">
+            <div><i class="bi bi-<?= SYMBOLE["zeitraum"]["bootstrap"]; ?>"></i></div>
+            <div class="eigenschaft" data-eigenschaft="start"></div>
+            <div class="text-secondary small">bis <span class="eigenschaft" data-eigenschaft="ende"></span></div>
+        </div>
+        <div class="col-2 text-center text-nowrap"><span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span></div>
+        <div class="col-5 text-center text-nowrap">
+            <div><i class="bi bi-<?= SYMBOLE["ort"]["bootstrap"]; ?>"></i></div>
+            <div><span class="eigenschaft" data-eigenschaft="ort"></span></div>
+        </div>
     </div>
     <div class="row g-0 my-1">
         <div class="col text-center text-nowrap fst-italic"><span class="eigenschaft" data-eigenschaft="bemerkung"></span></div>

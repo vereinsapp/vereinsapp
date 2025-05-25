@@ -9,6 +9,11 @@
 </div>
 
 <div class="form-floating mb-2">
+    <input type="datetime-local" class="form-control eingabe" data-eingabe="ende" />
+    <label><?= EIGENSCHAFTEN['termine']['ende']['beschriftung']; ?></label>
+</div>
+
+<div class="form-floating mb-2">
     <input type="text" class="form-control eingabe" data-eingabe="ort" placeholder="<?= EIGENSCHAFTEN['termine']['ort']['beschriftung']; ?>" />
     <label><?= EIGENSCHAFTEN['termine']['ort']['beschriftung']; ?></label>
 </div>
@@ -25,6 +30,18 @@
     <?php endforeach; ?>
     </select>
     <label><?= EIGENSCHAFTEN['termine']['kategorie']['beschriftung']; ?></label>
+</div>
+
+<div class="row g-2">
+    <div class="col"></div>
+    <div class="col form-floating mb-2">
+        <select class="form-select eingabe" data-eingabe="oeffentlich_janein">
+        <?php foreach ( JANEIN as $janein => $eigenschaften ): ?>
+            <option value="<?= $janein; ?>"><?= $eigenschaften['beschriftung']; ?></option>
+        <?php endforeach; ?>
+        </select>
+        <label><?= EIGENSCHAFTEN['termine']['oeffentlich_janein']['beschriftung']; ?></label>
+    </div>
 </div>
 
 <div class="d-grid mb-2">

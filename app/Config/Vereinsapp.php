@@ -282,9 +282,11 @@ class Vereinsapp extends BaseConfig
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'start' => array( 'beschriftung' => 'Beginn', 'typ' => 'zeitpunkt' ),
+            'ende' => array( 'beschriftung' => 'Ende', 'typ' => 'zeitpunkt' ),
             'ort' => array( 'beschriftung' => 'Ort', 'typ' => 'text' ),
             'kategorie' => array( 'beschriftung' => 'Typ', 'typ' => 'vorgegebene_werte' ),
             'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text' ),
+            'oeffentlich_janein' => array( 'beschriftung' => 'Öffentlich', 'typ' => 'janein' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'ich_rueckgemeldet_janein' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'janein' ), // JAVA
             'ich_rueckmeldung_id' => array( 'beschriftung' => 'Meine RÜckmeldung-ID', 'typ' => 'element_id' ),          // JAVA
@@ -802,13 +804,40 @@ class Vereinsapp extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
-     * CSV-Export der Termine
+     * JSON-Export der öffentlichen Termine
      * --------------------------------------------------------------------------
      *
-     * Name der Datei, die beim Export der Termine
-     * in ein csv-Format verwendet bzw. erstellt wird
+     * Name der Datei, die beim Export der öffentlichen Termine
+     * in ein json-Format verwendet bzw. erstellt wird
      */
-    public $termine_csv_export_dateiname = 'termine.csv';
+    public $termine_json_export_dateiname = 'termine.json';
+
+    /**
+     * Eigenschaften, die beim Export der öffentlichen Termine
+     * berücksichtigt werden
+     */
+    public $termine_json_export_eigenschaften = array(
+        'titel',
+        'start',
+        'ende',
+        'ort',
+    );
+
+    /**
+     * --------------------------------------------------------------------------
+     * ICS-Export der Termine
+     * --------------------------------------------------------------------------
+     *
+     * Verzeichnis, das beim Export der Termine
+     * in ein ics-Format verwendet bzw. erstellt wird
+     */
+    public $termine_ics_export_verzeichnis = 'ics_export/';
+
+    /**
+     * Name der Datei, die beim Export der Termine
+     * in ein ics-Format verwendet bzw. erstellt wird
+     */
+    public $termine_ics_export_dateiname = 'termine.ics';
 
     /**
      * --------------------------------------------------------------------------
@@ -886,22 +915,13 @@ class Vereinsapp extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
-     * CSV-Export Verzeichnis
+     * JSON-Export Verzeichnis
      * --------------------------------------------------------------------------
      *
      * Verzeichnis, das beim Export einer Liste
-     * in ein csv-Format verwendet bzw. erstellt wird
+     * in ein json-Format verwendet bzw. erstellt wird
      */
-    public $csv_export_verzeichnis = 'csv_export';
-
-    /**
-     * --------------------------------------------------------------------------
-     * Datei-Upload Verzeichnis
-     * --------------------------------------------------------------------------
-     *
-     * Verzeichnis, das beim Datei-Upload verwendet bzw. erstellt wird
-     */
-    public $datei_upload_verzeichnis = WRITEPATH.'uploads';
+    public $json_export_verzeichnis = 'json_export/';
 
     /**
      * --------------------------------------------------------------------------

@@ -12,13 +12,16 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
 
         if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", termin_id, "termine");
         if (!("start" in data)) data.start = Schnittstelle_VariableRausZurueck("start", termin_id, "termine");
+        if (!("ende" in data)) data.ende = Schnittstelle_VariableRausZurueck("ende", termin_id, "termine");
         if (!("ort" in data)) data.ort = Schnittstelle_VariableRausZurueck("ort", termin_id, "termine");
         if (!("kategorie" in data)) data.kategorie = Schnittstelle_VariableRausZurueck("kategorie", termin_id, "termine");
         if (!("filtern_mitglieder" in data)) data.filtern_mitglieder = Schnittstelle_VariableRausZurueck("filtern_mitglieder", termin_id, "termine");
+        if (!("oeffentlich_janein" in data)) data.oeffentlich_janein = Schnittstelle_VariableRausZurueck("oeffentlich_janein", termin_id, "termine");
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", termin_id, "termine");
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
         ajax_data.id = termin_id;
         if ("start" in ajax_data && isLuxonDateTime(ajax_data.start)) ajax_data.start = ajax_data.start.toISO();
+        if ("ende" in ajax_data && isLuxonDateTime(ajax_data.ende)) ajax_data.ende = ajax_data.ende.toISO();
         if ("filtern_mitglieder" in ajax_data) ajax_data.filtern_mitglieder = JsonStringifiedZurueck(ajax_data.filtern_mitglieder);
 
         Schnittstelle_AjaxInDieSchlange(

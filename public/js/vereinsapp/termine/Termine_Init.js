@@ -37,7 +37,7 @@ EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
         const filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()]);
         const filtern_prio_hoch = new Object();
         $.each(Object.keys(filtern_prio_niedrig), function (position, eigenschaft) {
-            if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft))
+            if ("termine" in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN.termine.includes(eigenschaft))
                 filtern_prio_hoch[eigenschaft] = filtern_prio_niedrig[eigenschaft];
         });
 
@@ -107,9 +107,9 @@ function Termine_Init() {
         );
     });
 
-    // TERMINE ALS CSV-DATEI EXPORTIEREN
-    $(document).on("click", ".btn_termine_csv_export", function () {
-        Liste_CsvExport(
+    // TERMINE ALS JSON-DATEI DOWNLOADEN
+    $(document).on("click", ".btn_termine_json_download", function () {
+        Liste_JsonDownload(
             $(this).hasClass("bestaetigung_einfordern"),
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
             $(this).attr("data-title"),

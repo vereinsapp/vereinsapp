@@ -36,7 +36,19 @@ function Schnittstelle_EventVariableUpdDom(folgendes_event, data) {
             const filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".liste").attr("data-filtern"));
             const filtern_prio_hoch = LISTEN[liste].instanz[instanz].filtern;
 
-            $werkzeug.attr("data-filtern_prio_niedrig", JsonStringifiedZurueck(filtern_prio_niedrig)).val(JsonStringifiedZurueck(filtern_prio_hoch));
+            if (instanz == "rueckmeldungen_termin" /* todo */ || instanz == "anwesenheiten_termin" /* todo */)
+                $werkzeug
+                    .attr(
+                        "data-filtern_prio_niedrig",
+                        JsonStringifiedZurueck(
+                            Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".auswertungen").attr("data-liste")).filtern
+                        )
+                    )
+                    .val(JsonStringifiedZurueck(filtern_prio_hoch));
+            else
+                $werkzeug
+                    .attr("data-filtern_prio_niedrig", JsonStringifiedZurueck(filtern_prio_niedrig))
+                    .val(JsonStringifiedZurueck(filtern_prio_hoch));
 
             if (
                 Object.keys(filtern_prio_hoch).length > 0 &&
@@ -51,9 +63,19 @@ function Schnittstelle_EventVariableUpdDom(folgendes_event, data) {
             const sortieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".liste").attr("data-sortieren"));
             const sortieren_prio_hoch = LISTEN[liste].instanz[instanz].sortieren;
 
-            $werkzeug
-                .attr("data-sortieren_prio_niedrig", JsonStringifiedZurueck(sortieren_prio_niedrig))
-                .val(JsonStringifiedZurueck(sortieren_prio_hoch));
+            if (instanz == "rueckmeldungen_termin" /* todo */ || instanz == "anwesenheiten_termin" /* todo */)
+                $werkzeug
+                    .attr(
+                        "data-sortieren_prio_niedrig",
+                        JsonStringifiedZurueck(
+                            Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".auswertungen").attr("data-liste")).sortieren
+                        )
+                    )
+                    .val(JsonStringifiedZurueck(sortieren_prio_hoch));
+            else
+                $werkzeug
+                    .attr("data-sortieren_prio_niedrig", JsonStringifiedZurueck(sortieren_prio_niedrig))
+                    .val(JsonStringifiedZurueck(sortieren_prio_hoch));
 
             if (
                 typeof sortieren_prio_hoch !== "undefined" &&
@@ -68,9 +90,19 @@ function Schnittstelle_EventVariableUpdDom(folgendes_event, data) {
             const gruppieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".liste").attr("data-gruppieren"));
             const gruppieren_prio_hoch = LISTEN[liste].instanz[instanz].gruppieren;
 
-            $werkzeug
-                .attr("data-gruppieren_prio_niedrig", JsonStringifiedZurueck(gruppieren_prio_niedrig))
-                .val(JsonStringifiedZurueck(gruppieren_prio_hoch));
+            if (instanz == "rueckmeldungen_termin" /* todo */ || instanz == "anwesenheiten_termin" /* todo */)
+                $werkzeug
+                    .attr(
+                        "data-gruppieren_prio_niedrig",
+                        JsonStringifiedZurueck(
+                            Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".auswertungen").attr("data-liste")).gruppieren
+                        )
+                    )
+                    .val(JsonStringifiedZurueck(gruppieren_prio_hoch));
+            else
+                $werkzeug
+                    .attr("data-gruppieren_prio_niedrig", JsonStringifiedZurueck(gruppieren_prio_niedrig))
+                    .val(JsonStringifiedZurueck(gruppieren_prio_hoch));
 
             if (
                 typeof gruppieren_prio_hoch !== "undefined" &&

@@ -63,8 +63,6 @@ Mehrere element_ids und mehrere mitglied_ids pro Aufgabe
 Mitglied einplanen bereits bei der Erstellung einer Aufgabe
 Setlist mit Links zu den Titeln einführen
 Liste unformatiert in die Zwischenablage kopieren
-Termin als ics exportieren (export in csv wurde schon gemacht)
-Termin mit Ende erweitern
 Terminserie / Regeltermine
 Mitglieder Lebenslauf
 Verzeichnis filtern und sortieren
