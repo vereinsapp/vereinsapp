@@ -1,6 +1,7 @@
 function Schnittstelle_LocalstorageInit() {
     let localstorage_reset_string = Schnittstelle_LocalstorageRausZurueck("localstorage_reset");
     if (
+        typeof localstorage_reset_string !== "undefined" &&
         localstorage_reset_string.length >= 2 &&
         localstorage_reset_string.charAt(0) === '"' &&
         localstorage_reset_string.charAt(localstorage_reset_string.length - 1) === '"'
@@ -9,6 +10,7 @@ function Schnittstelle_LocalstorageInit() {
 
     let datenschutz_richtlinie_string = Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM);
     if (
+        typeof datenschutz_richtlinie_string !== "undefined" &&
         datenschutz_richtlinie_string.length >= 2 &&
         datenschutz_richtlinie_string.charAt(0) === '"' &&
         datenschutz_richtlinie_string.charAt(datenschutz_richtlinie_string.length - 1) === '"'
