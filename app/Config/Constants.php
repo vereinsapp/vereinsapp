@@ -313,6 +313,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'zahlenraum' => array( 'bootstrap' => '123' ),
     'zeitraum' => array( 'bootstrap' => 'calendar-range' ),
     'ort' => array( 'bootstrap' => 'geo-alt-fill' ),
+    // 'ende' => array( 'bootstrap' => 'heart-arrow' ),
 
     'sichtbar' => array( 'bootstrap' => 'eye' ),
     'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),

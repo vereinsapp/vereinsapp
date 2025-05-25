@@ -11,6 +11,7 @@ class Termin_Model extends Model {
     protected $allowedFields  = [
         'titel',
         'start',
+        'ende',
         'ort',
         'kategorie',
         'filtern_mitglieder',

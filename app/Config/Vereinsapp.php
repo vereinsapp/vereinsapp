@@ -282,6 +282,7 @@ class Vereinsapp extends BaseConfig
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'start' => array( 'beschriftung' => 'Beginn', 'typ' => 'zeitpunkt' ),
+            'ende' => array( 'beschriftung' => 'Ende', 'typ' => 'zeitpunkt' ),
             'ort' => array( 'beschriftung' => 'Ort', 'typ' => 'text' ),
             'kategorie' => array( 'beschriftung' => 'Typ', 'typ' => 'vorgegebene_werte' ),
             'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text' ),
@@ -818,6 +819,7 @@ class Vereinsapp extends BaseConfig
     public $termine_json_export_eigenschaften = array(
         'titel',
         'start',
+        'ende',
         'ort',
     );
 

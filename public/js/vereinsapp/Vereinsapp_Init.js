@@ -101,6 +101,4 @@ Nicht-reale Mitglieder einführen
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
 ÜBERSCHRIFT AKTUALISIEREN, WERKZEUG AKTUALISIEREN und LISTENSTATISTIK AKTUALISIEREN nach Liste_Aktualisieren umziehen
 
-Termin mit Ende erweitern
-
 */

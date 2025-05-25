@@ -228,6 +228,7 @@ class Termine extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['termine']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'start' => [ 'label' => EIGENSCHAFTEN['termine']['start']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
+            'ende' => [ 'label' => EIGENSCHAFTEN['termine']['ende']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
             'ort' => [ 'label' => EIGENSCHAFTEN['termine']['ort']['beschriftung'], 'rules' => [ 'required' ] ],
             'kategorie' => [ 'label' => EIGENSCHAFTEN['termine']['kategorie']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['termine']['kategorie'] ) ).']', ] ],
             'filtern_mitglieder' => [ 'label' => EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung'], 'rules' => [ 'required', 'valid_json' ] ],
@@ -236,12 +237,14 @@ class Termine extends BaseController {
         );
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( Time::parse( $this->request->getpost()['start'], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin') ) ) $ajax_antwort['validation'] = array( 'start' => 'Der Termin darf nicht in der Vergangenheit liegen.' );
+        else if( Time::parse( $this->request->getpost()['ende'], 'Europe/Berlin' )->isBefore( Time::parse( $this->request->getpost()['start'], 'Europe/Berlin' ) ) ) $ajax_antwort['validation'] = array( 'ende' => 'Der Termin darf nicht enden bevor er beginnt.' );
         else if( !auth()->user()->can( 'termine.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $termine_Model = model(Termin_Model::class);
             $termin = array(
                 'titel' => $this->request->getpost()['titel'],
                 'start' => $this->request->getPost()['start'],
+                'ende' => $this->request->getPost()['ende'],
                 'ort' => $this->request->getpost()['ort'],
                 'kategorie' => $this->request->getpost()['kategorie'],
                 'filtern_mitglieder' => $this->request->getpost()['filtern_mitglieder'],
@@ -503,7 +506,7 @@ class Termine extends BaseController {
         foreach ($termine_export as $termin) {
             $ics_termine .= "BEGIN:VEVENT\n";
             $ics_termine .= "DTSTART:".Time::parse( $termin["start"], "Europe/Berlin" )->setTimezone("UTC")->format("Ymd\THis\Z")."\n";
-            $ics_termine .= "DTEND:".Time::parse( $termin["start"], "Europe/Berlin" )->setTimezone("UTC")->addSeconds(2*60*60)->format("Ymd\THis\Z")."\n";
+            $ics_termine .= "DTEND:".Time::parse( $termin["ende"], "Europe/Berlin" )->setTimezone("UTC")->format("Ymd\THis\Z")."\n";
             $ics_termine .= "SUMMARY:".$termin["titel"]."s\n";
             $ics_termine .= "LOCATION:".$termin["ort"]."\n";
             $ics_termine .= "DESCRIPTION:".$termin["link"]."\n";
