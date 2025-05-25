@@ -1,4 +1,23 @@
 function Schnittstelle_LocalstorageInit() {
+    let localstorage_reset_string = Schnittstelle_LocalstorageRausZurueck("localstorage_reset");
+    if (
+        localstorage_reset_string.length >= 2 &&
+        localstorage_reset_string.charAt(0) === '"' &&
+        localstorage_reset_string.charAt(localstorage_reset_string.length - 1) === '"'
+    )
+        Schnittstelle_LocalstorageRein("localstorage_reset", localstorage_reset_string.substring(1, localstorage_reset_string.length - 1));
+
+    let datenschutz_richtlinie_string = Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM);
+    if (
+        datenschutz_richtlinie_string.length >= 2 &&
+        datenschutz_richtlinie_string.charAt(0) === '"' &&
+        datenschutz_richtlinie_string.charAt(datenschutz_richtlinie_string.length - 1) === '"'
+    )
+        Schnittstelle_LocalstorageRein(
+            "datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM,
+            datenschutz_richtlinie_string.substring(1, datenschutz_richtlinie_string.length - 1)
+        );
+
     // LOCALSTORAGE LEEREN
     $(document).on("click", ".btn_localstorage_leeren", function () {
         const $btn_localstorage_leeren = $(this);
@@ -30,7 +49,7 @@ function Schnittstelle_LocalstorageInit() {
 function localstorage_leeren() {
     const datenschutz_richtlinie = Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM);
     localStorage.clear();
-    Schnittstelle_LocalstorageRein("localstorage_reset", DateTime.now());
+    Schnittstelle_LocalstorageRein("localstorage_reset", DateTime.now().toISO());
     if (typeof datenschutz_richtlinie !== "undefined")
         Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, datenschutz_richtlinie);
 }

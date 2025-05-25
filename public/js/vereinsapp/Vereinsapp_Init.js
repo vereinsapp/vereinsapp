@@ -42,7 +42,7 @@ $(document).ready(function () {
         Schnittstelle_AjaxInDieSchlange("status/ajax_datenschutz_richtlinie", new Object(), new Object(), function (AJAX) {
             Schnittstelle_DomModalOeffnen(AJAX.antwort.html);
             $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
-                Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DateTime.now());
+                Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DateTime.now().toISO());
                 Schnittstelle_DomModalSchliessen($("#datenschutz_richtlinie_anzeigen"));
             });
         });
@@ -89,6 +89,7 @@ Details loswerden und stattdessen den Singular der Liste verwenden
 Rekursion-Problem Rückmeldungen vs. Termine auflösen
 
 AKUT
+localstorage_reset_string und datenschutz_richtlinie_string in Schnittstelle_LocalstorageInit entfernen
 Bugs beheben wenn filtern-Eigenschaft leer ist???
 Braucht es filtern: New Object() etc. (bspw. in Aufgaben_Init, Liste_Init)???
 Besseres Symbol für _eigenschaft_loeschen und _eigenschaft_loeschen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
