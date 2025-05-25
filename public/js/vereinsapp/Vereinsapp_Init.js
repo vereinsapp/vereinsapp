@@ -90,9 +90,9 @@ Rekursion-Problem Rückmeldungen vs. Termine auflösen
 
 AKUT
 localstorage_reset_string und datenschutz_richtlinie_string in Schnittstelle_LocalstorageInit entfernen
-Bugs beheben wenn filtern-Eigenschaft leer ist???
+Bugfix: filtern-Eigenschaft ist leer???
 Braucht es filtern: New Object() etc. (bspw. in Aufgaben_Init, Liste_Init)???
-Besseres Symbol für _eigenschaft_loeschen und _eigenschaft_loeschen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
+Besseres Symbol für _eigenschaft_loeschen und _eigenschaft_loeschen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt (bspw. für neue Aufgabe)
@@ -101,5 +101,6 @@ Offene Kassenbucheinträge auf die Startseite
 Nicht-reale Mitglieder einführen
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
 ÜBERSCHRIFT AKTUALISIEREN, WERKZEUG AKTUALISIEREN und LISTENSTATISTIK AKTUALISIEREN nach Liste_Aktualisieren umziehen
+Bugfix: Link-Rechts-Pfeile in den Details funktionieren nicht bei Elementen ganz am Ende der Liste
 
 */

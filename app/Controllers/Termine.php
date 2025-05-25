@@ -228,16 +228,16 @@ class Termine extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['termine']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'start' => [ 'label' => EIGENSCHAFTEN['termine']['start']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
-            'ende' => [ 'label' => EIGENSCHAFTEN['termine']['ende']['beschriftung'], 'rules' => [ 'required', 'valid_date' ] ],
             'ort' => [ 'label' => EIGENSCHAFTEN['termine']['ort']['beschriftung'], 'rules' => [ 'required' ] ],
             'kategorie' => [ 'label' => EIGENSCHAFTEN['termine']['kategorie']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['termine']['kategorie'] ) ).']', ] ],
             'filtern_mitglieder' => [ 'label' => EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung'], 'rules' => [ 'required', 'valid_json' ] ],
             'oeffentlich_janein' => [ 'label' => EIGENSCHAFTEN['termine']['oeffentlich_janein']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( JANEIN ) ).']', ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         );
+        if( array_key_exists( 'ende', EIGENSCHAFTEN['termine'] ) ) $validation_rules['ende'] = [ 'label' => EIGENSCHAFTEN['termine']['ende']['beschriftung'], 'rules' => [ 'if_exist', 'permit_empty' ] ];
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( Time::parse( $this->request->getpost()['start'], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin') ) ) $ajax_antwort['validation'] = array( 'start' => 'Der Termin darf nicht in der Vergangenheit liegen.' );
-        else if( Time::parse( $this->request->getpost()['ende'], 'Europe/Berlin' )->isBefore( Time::parse( $this->request->getpost()['start'], 'Europe/Berlin' ) ) ) $ajax_antwort['validation'] = array( 'ende' => 'Der Termin darf nicht enden bevor er beginnt.' );
+        else if( array_key_exists( 'ende', $this->request->getpost() ) AND !empty( $this->request->getpost()['ende'] ) AND Time::parse( $this->request->getpost()['ende'], 'Europe/Berlin' )->isBefore( Time::parse( $this->request->getpost()['start'], 'Europe/Berlin' ) ) ) $ajax_antwort['validation'] = array( 'ende' => 'Der Termin darf nicht enden bevor er beginnt.' );
         else if( !auth()->user()->can( 'termine.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $termine_Model = model(Termin_Model::class);
@@ -250,6 +250,7 @@ class Termine extends BaseController {
                 'filtern_mitglieder' => $this->request->getpost()['filtern_mitglieder'],
                 'oeffentlich_janein' => $this->request->getpost()['oeffentlich_janein'],
             );
+            if( array_key_exists( 'ende', $this->request->getpost() ) AND !empty( $this->request->getpost()['ende'] ) ) $termin['ende'] = $this->request->getPost()['ende']; else $termin['ende'] = $termin['start'];
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $termin['bemerkung'] = $this->request->getpost()['bemerkung']; else $termin['bemerkung'] = '';
 
             if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $termine_Model->update( $this->request->getpost()['id'], $termin );
@@ -348,9 +349,14 @@ class Termine extends BaseController {
     }
 
     public function termine_json() {
-        if( !is_file( WRITEPATH.JSON_EXPORT_VERZEICHNIS.TERMINE_JSON_EXPORT_DATEINAME ) )
-            return $this->response->download( TERMINE_JSON_EXPORT_DATEINAME, json_encode( array(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ), TRUE );
-        else return $this->response->download( WRITEPATH.JSON_EXPORT_VERZEICHNIS.TERMINE_JSON_EXPORT_DATEINAME, NULL, TRUE );
+        if ( !is_file( WRITEPATH . JSON_EXPORT_VERZEICHNIS . TERMINE_JSON_EXPORT_DATEINAME ) )
+            $json = json_encode( array(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE );
+        else
+            $json = file_get_contents( WRITEPATH . JSON_EXPORT_VERZEICHNIS . TERMINE_JSON_EXPORT_DATEINAME );
+
+        return $this->response
+            ->setHeader('Content-Type', 'application/json; charset=utf-8')
+            ->setBody( $json );
     }
 
     public function termine_ics() {
@@ -507,7 +513,7 @@ class Termine extends BaseController {
             $ics_termine .= "BEGIN:VEVENT\n";
             $ics_termine .= "DTSTART:".Time::parse( $termin["start"], "Europe/Berlin" )->setTimezone("UTC")->format("Ymd\THis\Z")."\n";
             $ics_termine .= "DTEND:".Time::parse( $termin["ende"], "Europe/Berlin" )->setTimezone("UTC")->format("Ymd\THis\Z")."\n";
-            $ics_termine .= "SUMMARY:".$termin["titel"]."s\n";
+            $ics_termine .= "SUMMARY:".$termin["titel"]."\n";
             $ics_termine .= "LOCATION:".$termin["ort"]."\n";
             $ics_termine .= "DESCRIPTION:".$termin["link"]."\n";
             $ics_termine .= "URL:".$termin["link"]."\n";

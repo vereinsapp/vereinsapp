@@ -8,10 +8,10 @@
     <label><?= EIGENSCHAFTEN['termine']['start']['beschriftung']; ?></label>
 </div>
 
-<div class="form-floating mb-2">
+<?php if( array_key_exists( 'ende', EIGENSCHAFTEN['termine'] ) ) { ?><div class="form-floating mb-2">
     <input type="datetime-local" class="form-control eingabe" data-eingabe="ende" />
     <label><?= EIGENSCHAFTEN['termine']['ende']['beschriftung']; ?></label>
-</div>
+</div><?php } ?>
 
 <div class="form-floating mb-2">
     <input type="text" class="form-control eingabe" data-eingabe="ort" placeholder="<?= EIGENSCHAFTEN['termine']['ort']['beschriftung']; ?>" />

@@ -22,6 +22,7 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
         ajax_data.id = termin_id;
         if ("start" in ajax_data && isLuxonDateTime(ajax_data.start)) ajax_data.start = ajax_data.start.toISO();
         if ("ende" in ajax_data && isLuxonDateTime(ajax_data.ende)) ajax_data.ende = ajax_data.ende.toISO();
+        else ajax_data.ende = ajax_data.start;
         if ("filtern_mitglieder" in ajax_data) ajax_data.filtern_mitglieder = JsonStringifiedZurueck(ajax_data.filtern_mitglieder);
 
         Schnittstelle_AjaxInDieSchlange(

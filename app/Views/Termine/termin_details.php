@@ -9,7 +9,7 @@
         <div class="col-5 text-center text-nowrap">
             <div><i class="bi bi-<?= SYMBOLE["zeitraum"]["bootstrap"]; ?>"></i></div>
             <div class="eigenschaft" data-eigenschaft="start"></div>
-            <div class="text-secondary small">bis <span class="eigenschaft" data-eigenschaft="ende"></span></div>
+            <?php if( array_key_exists( 'ende', EIGENSCHAFTEN['termine'] ) ) { ?><div class="text-secondary small">bis <span class="eigenschaft" data-eigenschaft="ende"></span></div><?php } ?>
         </div>
         <div class="col-2 text-center text-nowrap"><span class="zusatzsymbol" data-zusatzsymbol="kategorie"></span></div>
         <div class="col-5 text-center text-nowrap">
