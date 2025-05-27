@@ -98,11 +98,6 @@ class Termine extends BaseController {
                 'farbe' => 'danger',
             );
 
-            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['json_download'] = array(
-                'klasse_id' => array('btn_termine_json_download', 'bestaetigung_einfordern'),
-                'title' => 'Termine als JSON-Datei downloaden',
-            );
-
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['erstellen'] = array(
                 'klasse_id' => array('btn_termin_erstellen', 'formular_oeffnen'),
                 'title' => 'Termin erstellen',
@@ -305,44 +300,6 @@ class Termine extends BaseController {
                 $termine_ics_export[] = $termin;
             }
         $this->ics_export( $termine_ics_export );
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
-    public function ajax_termine_json_download() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-            'element_ids' => [ 'label' => 'Element-IDs', 'rules' => [ 'permit_empty' ] ],
-            'element_ids.*' => [ 'label' => 'Element-ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else {
-            if( array_key_exists( 'element_ids', $this->request->getPost() ) AND !empty( $this->request->getPost()['element_ids'] ) )
-                $termine = model(Termin_Model::class)->find( $this->request->getPost()['element_ids'] );
-            else $termine = array();
-
-            $termine_json_export = array();
-            foreach( $termine as $id => $termin )
-                if( $termin['oeffentlich_janein'] == TRUE ) {
-                $termin_export = array();
-                foreach( TERMINE_JSON_EXPORT_EIGENSCHAFTEN as $eigenschaft ) $termin_export[$eigenschaft] = $termin[$eigenschaft];
-                $termine_json_export[] = $termin_export;
-            }            
-            $this->json_export( $termine_json_export );
-            /* todo:
-            Wahrscheinlich ist es einfacher, wenn die Datei in einem temp-Verzeichnis gespeichert wird.
-            Dann muss eine URL zurückgegeben werden, die temp-Dateien aus dem writable-Verzeichnis bereitstellt.
-            Danach muss ein zweiter AJAX-Request erfolgen, um die Datei wieder zu löschen.
-
-            Folgendes funktioniert nicht richtig:
-            $ajax_antwort['datei'] = $this->response->download(
-                TERMINE_JSON_EXPORT_DATEINAME,
-                json_encode( $termine_export, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ),
-                TRUE
-            );
-            $ajax_antwort['dateiname'] = TERMINE_JSON_EXPORT_DATEINAME;
-            */
-        }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );

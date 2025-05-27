@@ -80,7 +80,6 @@ $routes->group('termine', static function ($routes) {
 
     $routes->post('ajax_termin_speichern',                  'Termine::ajax_termin_speichern');
     $routes->post('ajax_termin_loeschen',                   'Termine::ajax_termin_loeschen');
-    $routes->post('ajax_termine_json_download',             'Termine::ajax_termine_json_download');
 
     $routes->post('ajax_rueckmeldung_speichern',            'Termine::ajax_rueckmeldung_speichern');
 

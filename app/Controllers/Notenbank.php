@@ -12,7 +12,7 @@ class Notenbank extends BaseController {
         $this->viewdata['liste']['aktuelles_verzeichnis'] = HAUPTINSTANZEN['notenbank'];
         $this->viewdata['liste']['aktuelles_verzeichnis']['group-flush'] = TRUE;
         $this->viewdata['liste']['aktuelles_verzeichnis']['link'] = TRUE;
-        $this->viewdata['liste']['aktuelles_verzeichnis']['vorschau'] = array( 'kategorie', 'komponist', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis' );
+        $this->viewdata['liste']['aktuelles_verzeichnis']['vorschau'] = array( 'kategorie', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis' );
 
         if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
@@ -157,8 +157,9 @@ class Notenbank extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['notenbank']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'titel_nr' => [ 'label' => EIGENSCHAFTEN['notenbank']['titel_nr']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'komponist' => [ 'label' => EIGENSCHAFTEN['notenbank']['komponist']['beschriftung'], 'rules' => [ 'required', 'permit_empty' ] ],
+            'komponist' => [ 'label' => EIGENSCHAFTEN['notenbank']['komponist']['beschriftung'], 'rules' => [ 'field_exists' ] ],
             'kategorie' => [ 'label' => EIGENSCHAFTEN['notenbank']['kategorie']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['notenbank']['kategorie'] ) ).']' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['notenbank']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         );
         $validation_titel_nr = model(Titel_Model::class)->where( [ 'titel_nr' => $this->request->getPost()['titel_nr'] ] )->findAll();
         $validation_titel_nr_id = model(Titel_Model::class)->where( [ 'titel_nr' => $this->request->getPost()['titel_nr'] ] )->findColumn('id');
@@ -172,9 +173,10 @@ class Notenbank extends BaseController {
             $titel = array(
                 'titel' => $this->request->getpost()['titel'],
                 'titel_nr' => $this->request->getPost()['titel_nr'],
-                'komponist' => $this->request->getPost()['komponist'],
                 'kategorie' => $this->request->getPost()['kategorie'],
             );
+            if( array_key_exists( 'komponist', $this->request->getpost() ) ) $titel['komponist'] = $this->request->getpost()['komponist']; else $titel['komponist'] = '';
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $titel['bemerkung'] = $this->request->getpost()['bemerkung']; else $titel['bemerkung'] = '';
 
             if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $notenbank_Model->update( $this->request->getpost()['id'], $titel );
             else {

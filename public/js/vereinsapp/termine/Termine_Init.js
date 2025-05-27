@@ -107,17 +107,6 @@ function Termine_Init() {
         );
     });
 
-    // TERMINE ALS JSON-DATEI DOWNLOADEN
-    $(document).on("click", ".btn_termine_json_download", function () {
-        Liste_JsonDownload(
-            $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
-            $(this).attr("data-title"),
-            $(this).attr("data-instanz"),
-            "termine"
-        );
-    });
-
     // RÜCKMELDUNG ERSTELLEN
     $(document).on("click", ".btn_rueckmeldung_erstellen", function () {
         Termine_RueckmeldungErstellen(

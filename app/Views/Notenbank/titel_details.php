@@ -12,7 +12,10 @@
     </div>
     <div class="row g-0 my-1">
         <div class="col text-center text-nowrap"><span class="eigenschaft" data-eigenschaft="kategorie"></span></div>
-        <div class="col text-center text-nowrap"><span class="eigenschaft" data-eigenschaft="komponist"></span></div>    </div>
+        <div class="col text-center text-nowrap"><span class="eigenschaft" data-eigenschaft="komponist"></span></div>
+    </div>
+    <div class="row g-0 my-1">
+        <div class="col text-center text-nowrap fst-italic"><span class="eigenschaft" data-eigenschaft="bemerkung"></span></div>
     </div>
 </div>
 
