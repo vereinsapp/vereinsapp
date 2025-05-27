@@ -257,19 +257,12 @@ class Termine extends BaseController {
 
         $termine_json_export = array();
         foreach( model(Termin_Model::class)->where( array( 'oeffentlich_janein' => TRUE ) )->orderBy('start', 'ASC')->findAll() as $id => $termin )
-            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) {
-                $termin_export = array();
-                foreach( TERMINE_JSON_EXPORT_EIGENSCHAFTEN as $eigenschaft ) $termin_export[$eigenschaft] = $termin[$eigenschaft];
-                $termine_json_export[] = $termin_export;
-            }
+            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) $termine_json_export[] = $termin;
         $this->json_export( $termine_json_export );
 
         $termine_ics_export = array();
         foreach( model(Termin_Model::class)->orderBy('start', 'ASC')->findAll() as $id => $termin )
-            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) {
-                $termin['link'] = site_url().'termine/'.$termin['id'];
-                $termine_ics_export[] = $termin;
-            }
+            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) $termine_ics_export[] = $termin;
         $this->ics_export( $termine_ics_export );
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -286,11 +279,7 @@ class Termine extends BaseController {
 
         $termine_json_export = array();
         foreach( model(Termin_Model::class)->where( array( 'oeffentlich_janein' => TRUE ) )->orderBy('start', 'ASC')->findAll() as $id => $termin )
-            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) {
-                $termin_export = array();
-                foreach( TERMINE_JSON_EXPORT_EIGENSCHAFTEN as $eigenschaft ) $termin_export[$eigenschaft] = $termin[$eigenschaft];
-                $termine_json_export[] = $termin_export;
-            }
+            if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) $termine_json_export[] = $termin;
         $this->json_export( $termine_json_export );
 
         $termine_ics_export = array();
@@ -443,15 +432,29 @@ class Termine extends BaseController {
         return $filtern_kombiniert;
     }
 
-    protected function json_export( $termine_export ) {
+    protected function json_export( $termine ) {
 
         if( !is_dir( WRITEPATH.JSON_EXPORT_VERZEICHNIS ) ) mkdir( WRITEPATH.JSON_EXPORT_VERZEICHNIS, 0777, TRUE );
         if( !is_file( WRITEPATH.JSON_EXPORT_VERZEICHNIS.'/index.html' ) AND is_file( WRITEPATH.'index.html' ) ) copy( WRITEPATH.'index.html', WRITEPATH.JSON_EXPORT_VERZEICHNIS.'/index.html' );
         
         $json_export_datei = fopen( WRITEPATH.JSON_EXPORT_VERZEICHNIS.TERMINE_JSON_EXPORT_DATEINAME, 'w' );
-        if( !$json_export_datei ) $ajax_antwort['validation'] = 'Fehler beim JSON-Export!';
+        if( !$json_export_datei ) $ajax_antwort['validation'] = 'Fehler beim JSON-Export!'; // todo: $ajax_antwort['validation'] ist hier nicht verfügbar
         else {
-            fwrite( $json_export_datei, json_encode( $termine_export, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ) );
+
+            $termine_export = array();
+            foreach( $termine as $id => $termin ) {
+                $termin_export = array();
+                foreach( TERMINE_JSON_EXPORT_EIGENSCHAFTEN as $eigenschaft ) $termin_export[ $eigenschaft ] = $termin[ $eigenschaft ];
+                $termine_export[] = $termin_export;
+            }
+
+            $json_export_inhalt = array(
+                'termine' => $termine_export,
+                'version' => '0.79',
+                'datum' => Time::now('Europe/Berlin')->format('Y-m-d H:i:s'),
+            );
+
+            fwrite( $json_export_datei, json_encode( $json_export_inhalt, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ) );
             fclose( $json_export_datei );
         }
 
@@ -472,8 +475,8 @@ class Termine extends BaseController {
             $ics_termine .= "DTEND:".Time::parse( $termin["ende"], "Europe/Berlin" )->setTimezone("UTC")->format("Ymd\THis\Z")."\n";
             $ics_termine .= "SUMMARY:".$termin["titel"]."\n";
             $ics_termine .= "LOCATION:".$termin["ort"]."\n";
-            $ics_termine .= "DESCRIPTION:".$termin["link"]."\n";
-            $ics_termine .= "URL:".$termin["link"]."\n";
+            $ics_termine .= "DESCRIPTION:".site_url().'termine/'.$termin['id']."\n";
+            $ics_termine .= "URL:".site_url().'termine/'.$termin['id']."\n";
             $ics_termine .= "END:VEVENT\n";
         }
         $ics_termine .= "END:VCALENDAR\n";
