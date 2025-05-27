@@ -114,6 +114,8 @@ class Notenbank extends BaseController {
 
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'aktuelles_verzeichnis',
+            'filtern' => HAUPTINSTANZEN['notenbank']['filtern'],
+            'sortieren' => HAUPTINSTANZEN['notenbank']['sortieren'],
         );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;

@@ -101,6 +101,5 @@ Offene Kassenbucheinträge auf die Startseite
 Nicht-reale Mitglieder einführen
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
 ÜBERSCHRIFT AKTUALISIEREN, WERKZEUG AKTUALISIEREN und LISTENSTATISTIK AKTUALISIEREN nach Liste_Aktualisieren umziehen
-Bugfix: Link-Rechts-Pfeile in den Details funktionieren nicht bei Elementen ganz am Ende der Liste
 
 */
