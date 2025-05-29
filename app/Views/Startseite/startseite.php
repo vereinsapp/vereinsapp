@@ -28,8 +28,13 @@
 </div><?php } ?>
 
 <?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) { ?><div class="container mb-3">
-    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="termine" data-instanz="aufgaben_offen_startseite">Meine offenen Aufgaben</div>
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="aufgaben" data-instanz="aufgaben_offen_startseite">Meine offenen Aufgaben</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['aufgaben_offen_startseite'] ) ); ?>
+</div><?php } ?>
+
+<?php if( array_key_exists( LISTEN['strafkatalog']['controller'], CONTROLLERS ) ) { ?><div class="container mb-3">
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="strafkatalog" data-instanz="kassenbuch_offene_eintraege_startseite">Meine offenen Kassenbucheinträge</div>
+<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['kassenbuch_offene_eintraege_startseite'] ) ); ?>
 </div><?php } ?>
 
 <?php if( array_key_exists( LISTEN['rueckmeldungen']['controller'], CONTROLLERS ) ) { ?><div class="container mb-3">

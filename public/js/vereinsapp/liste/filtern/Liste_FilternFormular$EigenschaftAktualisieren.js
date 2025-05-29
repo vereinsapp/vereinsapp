@@ -2,7 +2,6 @@ function Liste_FilternFormular$EigenschaftAktualisieren($eigenschaft, filtern_ei
     const eigenschaft = $eigenschaft.attr("data-eigenschaft");
 
     if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft))
-        // todo: braucht es ^^^^^^^^ das ^^^^^^ überhaupt noch?
         switch (EIGENSCHAFTEN[liste][eigenschaft].typ) {
             case "text":
                 // (noch) kein filtern möglich

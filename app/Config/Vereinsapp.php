@@ -97,7 +97,7 @@ class Vereinsapp extends BaseConfig
 
         'mitglieder' => array(
             'liste' => 'mitglieder',
-            'filtern' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ) ),
+            'filtern' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ) ),
             'sortieren' => array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
             // 'group-flush' => TRUE,
             // 'sortable' => TRUE,
@@ -246,6 +246,7 @@ class Vereinsapp extends BaseConfig
             'funktion' => array( 'beschriftung' => 'Funktion', 'typ' => 'vorgegebene_werte' ),
             'vorstandschaft_janein' => array( 'beschriftung' => 'Vorstandschaft', 'typ' => 'janein' ),
             'aktiv_janein' => array( 'beschriftung' => 'Aktiv', 'typ' => 'janein' ),
+            'real_janein' => array( 'beschriftung' => 'Real', 'typ' => 'janein' ),
             'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),                  // PHP
             'letzte_aktivitaet' => array( 'beschriftung' => 'Letzte Aktivität', 'typ' => 'zeitpunkt' ),     // PHP
             'passwort_alt' => array( 'beschriftung' => 'Altes Passwort', 'typ' => 'text' ),                 // PHP
@@ -472,27 +473,27 @@ class Vereinsapp extends BaseConfig
         'mitglieder' => array(
             'alle_minderjaehrigen' => array(
                 'beschriftung' => 'Alle Minderjährigen',
-                'filtern' => array( 'alter' => array( 'ende' => 17.9999 ), ),
+                'filtern' => array( 'alter' => array( 'ende' => 17.9999 ), 'real_janein' => array( 'inklusiv' => [ TRUE ] ), ),
             ),
             'alle_volljaehrigen' => array(
                 'beschriftung' => 'Alle Volljährigen',
-                'filtern' => array( 'alter' => array( 'start' => 18 ), ),
+                'filtern' => array( 'alter' => array( 'start' => 18 ), 'real_janein' => array( 'inklusiv' => [ TRUE ] ), ),
             ),
             'funktionaere' => array(
                 'beschriftung' => 'Alle Funktionäre',
-                'filtern' => array( 'funktion' => array( 'exklusiv' => [ 'ohne' ] ), ),
+                'filtern' => array( 'funktion' => array( 'exklusiv' => [ 'ohne' ] ), 'real_janein' => array( 'inklusiv' => [ TRUE ] ), ),
             ),
             'vorstandschaft' => array(
                 'beschriftung' => 'Vorstandschaft',
-                'filtern' => array( 'vorstandschaft_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+                'filtern' => array( 'vorstandschaft_janein' => array( 'inklusiv' => [ TRUE ] ), 'real_janein' => array( 'inklusiv' => [ TRUE ] ), ),
             ),
             'aktive_mitglieder' => array(
                 'beschriftung' => 'Aktive Mitglieder',
-                'filtern' => array( 'aktiv_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+                'filtern' => array( 'aktiv_janein' => array( 'inklusiv' => [ TRUE ] ), 'real_janein' => array( 'inklusiv' => [ TRUE ] ), ),
             ),
             'alle_mitglieder' => array(
                 'beschriftung' => 'Alle Mitglieder',
-                'filtern' => array( 'aktiv_janein' => array(), ),
+                'filtern' => array( 'aktiv_janein' => array(), 'real_janein' => array( 'inklusiv' => [ TRUE ] ), ),
             ),
         ),
 
@@ -587,7 +588,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            // 'zugeordnete_liste', darf nicht aktiv sein solange die Aufgaben ausschließlich den anderen Controllern zugeordnet sind
+            // 'zugeordnete_liste', muss auskommentiert sein solange die Aufgaben ausschließlich den anderen Controllern zugeordnet sind
             // 'element_id',
             // 'mitglied_id',
             // 'erledigt',
@@ -659,7 +660,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            // 'zugeordnete_liste', darf nicht aktiv sein solange die Aufgaben ausschließlich den anderen Controllern zugeordnet sind
+            // 'zugeordnete_liste', muss auskommentiert sein solange die Aufgaben ausschließlich den anderen Controllern zugeordnet sind
             'titel',
             'mitglied_id',
             'erledigt',
@@ -730,7 +731,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            // 'zugeordnete_liste', darf nicht aktiv sein solange die Aufgaben ausschließlich den anderen Controllern zugeordnet sind
+            // 'zugeordnete_liste', muss auskommentiert sein solange die Aufgaben ausschließlich den anderen Controllern zugeordnet sind
             'mitglied_id',
             'erledigt_janein',
         ),
@@ -787,9 +788,10 @@ class Vereinsapp extends BaseConfig
      * entsprechend dem Standard-Schema für Filtern
      */
     public $termine_kategorie_filtern_mitglieder = array(
-        'probe' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), ),
-        'auftritt' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), ),
-        'vorstandschaftssitzung' => array( 'vorstandschaft_janein' => array( 'inklusiv' => array( TRUE ), ), ),
+        'allgemein' => array( 'real_janein' => array( 'inklusiv' => array( TRUE ), ), ),
+        'probe' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ), ),
+        'auftritt' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ), ),
+        'vorstandschaftssitzung' => array( 'vorstandschaft_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ), ),
     );
 
     /**

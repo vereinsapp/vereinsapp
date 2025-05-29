@@ -92,7 +92,7 @@ class Mitglieder extends BaseController {
             }
 
             $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
-            unset( $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] );
+            $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
             $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
             $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
 
@@ -302,6 +302,7 @@ class Mitglieder extends BaseController {
         if( array_key_exists( 'funktion', EIGENSCHAFTEN['mitglieder'] ) ) $validation_rules['funktion'] = [ 'label' => EIGENSCHAFTEN['mitglieder']['funktion']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['funktion'] ) ).']', ] ];
         if( array_key_exists( 'vorstandschaft_janein', EIGENSCHAFTEN['mitglieder'] ) ) $validation_rules['vorstandschaft_janein'] = [ 'label' => EIGENSCHAFTEN['mitglieder']['vorstandschaft_janein']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( JANEIN ) ).']', ] ];
         if( array_key_exists( 'aktiv_janein', EIGENSCHAFTEN['mitglieder'] ) ) $validation_rules['aktiv_janein'] = [ 'label' => EIGENSCHAFTEN['mitglieder']['aktiv_janein']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( JANEIN ) ).']', ] ];
+        if( array_key_exists( 'real_janein', EIGENSCHAFTEN['mitglieder'] ) ) $validation_rules['real_janein'] = [ 'label' => EIGENSCHAFTEN['mitglieder']['real_janein']['beschriftung'], 'rules' => [ 'if_exist', 'in_list['.implode( ', ', array_keys( JANEIN ) ).']', ] ];
 
         if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret,user_id,{id}]';
         else $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret]';
@@ -325,6 +326,7 @@ class Mitglieder extends BaseController {
             if( array_key_exists( 'funktion', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['funktion'] = $this->request->getpost()['funktion'];
             if( array_key_exists( 'vorstandschaft_janein', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['vorstandschaft_janein'] = $this->request->getpost()['vorstandschaft_janein'];
             if( array_key_exists( 'aktiv_janein', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['aktiv_janein'] = $this->request->getpost()['aktiv_janein'];
+            if( array_key_exists( 'real_janein', EIGENSCHAFTEN['mitglieder'] ) AND array_key_exists( 'real_janein', $this->request->getpost() ) ) $mitglied['real_janein'] = $this->request->getpost()['real_janein'];
 
             if( !empty( $this->request->getPost()['id'] ) ) {
                 $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);

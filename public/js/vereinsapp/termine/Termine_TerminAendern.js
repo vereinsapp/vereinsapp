@@ -16,7 +16,8 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
         if (!("ort" in data)) data.ort = Schnittstelle_VariableRausZurueck("ort", termin_id, "termine");
         if (!("kategorie" in data)) data.kategorie = Schnittstelle_VariableRausZurueck("kategorie", termin_id, "termine");
         if (!("filtern_mitglieder" in data)) data.filtern_mitglieder = Schnittstelle_VariableRausZurueck("filtern_mitglieder", termin_id, "termine");
-        if (!("oeffentlich_janein" in data)) data.oeffentlich_janein = Schnittstelle_VariableRausZurueck("oeffentlich_janein", termin_id, "termine");
+        if (!("oeffentlich_janein" in data))
+            data.oeffentlich_janein = Number(Schnittstelle_VariableRausZurueck("oeffentlich_janein", termin_id, "termine"));
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", termin_id, "termine");
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
         ajax_data.id = termin_id;

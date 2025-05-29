@@ -80,15 +80,16 @@ CREATE TABLE `vereinsapp_mitglieder` (
   `auto` varchar(50) NOT NULL DEFAULT 'ohne',
   `funktion` varchar(50) NOT NULL DEFAULT 'ohne',
   `vorstandschaft_janein` tinyint(1) NOT NULL DEFAULT 0,
-  `aktiv_janein` tinyint(1) NOT NULL DEFAULT 1
+  `aktiv_janein` tinyint(1) NOT NULL DEFAULT 1,
+  `real_janein` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Daten für Tabelle `vereinsapp_mitglieder`
 --
 
-INSERT INTO `vereinsapp_mitglieder` (`id`, `username`, `status`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`, `vorname`, `nachname`, `geburt`, `postleitzahl`, `wohnort`, `geschlecht`, `register`, `auto`, `funktion`, `vorstandschaft_janein`, `aktiv_janein`) VALUES
-(1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'John', 'Doe', '2024-01-01 00:00:00', 12345, 'Musterstadt', 'd', 'ohne', 'ohne', 'ohne', 0, 1);
+INSERT INTO `vereinsapp_mitglieder` (`id`, `username`, `status`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`, `vorname`, `nachname`, `geburt`, `postleitzahl`, `wohnort`, `geschlecht`, `register`, `auto`, `funktion`, `vorstandschaft_janein`, `aktiv_janein`, `real_janein`) VALUES
+(1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'John', 'Doe', '2024-01-01 00:00:00', 12345, 'Musterstadt', 'd', 'ohne', 'ohne', 'ohne', 0, 1, 1);
 
 -- --------------------------------------------------------
 

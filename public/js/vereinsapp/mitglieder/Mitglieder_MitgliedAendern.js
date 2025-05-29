@@ -22,7 +22,8 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
         if (!("funktion" in data)) data.funktion = Schnittstelle_VariableRausZurueck("funktion", mitglied_id, "mitglieder");
         if (!("vorstandschaft_janein" in data))
             data.vorstandschaft_janein = Schnittstelle_VariableRausZurueck("vorstandschaft_janein", mitglied_id, "mitglieder");
-        if (!("aktiv_janein" in data)) data.aktiv_janein = Schnittstelle_VariableRausZurueck("aktiv_janein", mitglied_id, "mitglieder");
+        if (!("aktiv_janein" in data)) data.aktiv_janein = Number(Schnittstelle_VariableRausZurueck("aktiv_janein", mitglied_id, "mitglieder"));
+        if (!("real_janein" in data)) data.real_janein = Number(Schnittstelle_VariableRausZurueck("real_janein", mitglied_id, "mitglieder"));
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
         ajax_data.id = mitglied_id;
         if ("geburt" in ajax_data && isLuxonDateTime(ajax_data.geburt)) ajax_data.geburt = ajax_data.geburt.toISO();

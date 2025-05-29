@@ -18,7 +18,7 @@ class Termine extends BaseController {
         $this->viewdata['liste']['bevorstehende_termine']['views'] = array( array( 'view' => 'Termine/rueckmeldung_basiseigenschaften', 'data' => array( 'mitglied_id' => ICH['id'] ) ) );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
-        unset( $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] );
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'rueckmeldungen', 'klasse' => array(
             'text-success' => array( 'status' => array( 'start' => array( 1 ), 'ende' => array( 1 ), ), ),
@@ -74,7 +74,7 @@ class Termine extends BaseController {
             }
 
             $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
-            unset( $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] );
+            $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
             $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
             $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
 
@@ -260,7 +260,7 @@ class Termine extends BaseController {
         $termine_json_export = array();
         foreach( model(Termin_Model::class)->where( array( 'oeffentlich_janein' => TRUE ) )->orderBy('start', 'ASC')->findAll() as $id => $termin )
             if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) $termine_json_export[] = $termin;
-        $this->json_export( $termine_json_export );
+        if( !$this->json_export( $termine_json_export ) ) $ajax_antwort['validation'] = 'JSON-Export fehlgeschlagen!';
 
         $termine_ics_export = array();
         foreach( model(Termin_Model::class)->orderBy('start', 'ASC')->findAll() as $id => $termin )
@@ -282,7 +282,7 @@ class Termine extends BaseController {
         $termine_json_export = array();
         foreach( model(Termin_Model::class)->where( array( 'oeffentlich_janein' => TRUE ) )->orderBy('start', 'ASC')->findAll() as $id => $termin )
             if( !Time::parse( $termin['start'], 'Europe/Berlin' )->isBefore( Time::today('Europe/Berlin') ) ) $termine_json_export[] = $termin;
-        $this->json_export( $termine_json_export );
+        if( !$this->json_export( $termine_json_export ) ) $ajax_antwort['validation'] = 'JSON-Export fehlgeschlagen!';
 
         $termine_ics_export = array();
         foreach( model(Termin_Model::class)->orderBy('start', 'ASC')->findAll() as $id => $termin )
@@ -435,36 +435,36 @@ class Termine extends BaseController {
     }
 
     protected function json_export( $termine ) {
-
         if( !is_dir( WRITEPATH.JSON_EXPORT_VERZEICHNIS ) ) mkdir( WRITEPATH.JSON_EXPORT_VERZEICHNIS, 0777, TRUE );
         if( !is_file( WRITEPATH.JSON_EXPORT_VERZEICHNIS.'/index.html' ) AND is_file( WRITEPATH.'index.html' ) ) copy( WRITEPATH.'index.html', WRITEPATH.JSON_EXPORT_VERZEICHNIS.'/index.html' );
         
         $json_export_datei = fopen( WRITEPATH.JSON_EXPORT_VERZEICHNIS.TERMINE_JSON_EXPORT_DATEINAME, 'w' );
-        if( !$json_export_datei ) $ajax_antwort['validation'] = 'Fehler beim JSON-Export!'; // todo: $ajax_antwort['validation'] ist hier nicht verfügbar
+        if( !$json_export_datei ) return FALSE;
         else {
 
             $termine_export = array();
             foreach( $termine as $id => $termin ) {
                 $termin_export = array();
                 foreach( TERMINE_JSON_EXPORT_EIGENSCHAFTEN as $eigenschaft ) $termin_export[ $eigenschaft ] = $termin[ $eigenschaft ];
+                $termin_export['link_veranstaltung'] = '';
+                $termin_export['link_anfahrt'] = '';
                 $termine_export[] = $termin_export;
             }
 
             $json_export_inhalt = array(
                 'termine' => $termine_export,
-                'version' => '0.79',
+                'version' => '0.81',
                 'datum' => Time::now('Europe/Berlin')->format('Y-m-d H:i:s'),
             );
 
             fwrite( $json_export_datei, json_encode( $json_export_inhalt, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ) );
             fclose( $json_export_datei );
-        }
 
+            return TRUE;
+        }
     }
 
     protected function ics_export( $termine_export ) {
-        /* todo: muss sichergestellt sein, dass der Termin mindestens 24 Stunden in der Zukunft liegt? */
-
         if( !is_dir( WRITEPATH.TERMINE_ICS_EXPORT_VERZEICHNIS ) ) mkdir( WRITEPATH.TERMINE_ICS_EXPORT_VERZEICHNIS, 0777, TRUE );
         if( !is_file( WRITEPATH.TERMINE_ICS_EXPORT_VERZEICHNIS.'/index.html' ) AND is_file( WRITEPATH.'index.html' ) ) copy( WRITEPATH.'index.html', WRITEPATH.TERMINE_ICS_EXPORT_VERZEICHNIS.'/index.html' );
         
@@ -489,7 +489,6 @@ class Termine extends BaseController {
             fwrite($ics_export_datei, $ics_termine);
             fclose($ics_export_datei);
         }
-
     }
 
 }

@@ -27,6 +27,7 @@ class Mitglied_Model extends UserModel {
         'funktion',
         'vorstandschaft_janein',
         'aktiv_janein',
+        'real_janein',
     ];
 
     public function mitglieder_tabelle() {
@@ -47,6 +48,7 @@ class Mitglied_Model extends UserModel {
             if( array_key_exists( 'funktion', EIGENSCHAFTEN['mitglieder'] ) ) $eintrag['funktion'] = $eintrag_class->funktion;
             if( array_key_exists( 'vorstandschaft_janein', EIGENSCHAFTEN['mitglieder'] ) ) $eintrag['vorstandschaft_janein'] = $eintrag_class->vorstandschaft_janein;
             if( array_key_exists( 'aktiv_janein', EIGENSCHAFTEN['mitglieder'] ) ) $eintrag['aktiv_janein'] = $eintrag_class->aktiv_janein;
+            if( array_key_exists( 'real_janein', EIGENSCHAFTEN['mitglieder'] ) ) $eintrag['real_janein'] = $eintrag_class->real_janein;
 
             if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
                 $eintrag['email'] = $eintrag_class->email;

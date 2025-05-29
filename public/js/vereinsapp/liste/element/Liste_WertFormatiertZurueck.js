@@ -20,6 +20,7 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
             break;
         case "vorstandschaft_janein":
         case "aktiv_janein":
+        case "real_janein":
         case "erledigt_janein":
         case "ich_rueckgemeldet_janein":
         case "ich_eingeladen_janein":

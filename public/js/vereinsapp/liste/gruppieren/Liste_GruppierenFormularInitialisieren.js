@@ -24,12 +24,7 @@ function Liste_GruppierenFormularInitialisieren($formular, ziel_id, liste) {
         gruppieren_prio_niedrig = undefined;
         gruppieren_prio_hoch = undefined;
     }
-    Schnittstelle_LogInDieKonsole(
-        "Liste_GruppierenFormularInitialisieren: gruppieren_prio_niedrig: " +
-            gruppieren_prio_niedrig +
-            ", gruppieren_prio_hoch: " +
-            gruppieren_prio_hoch
-    );
+
     // Überschreiben des value mit geänderten gruppieren_prio_hoch
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)

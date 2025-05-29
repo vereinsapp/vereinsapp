@@ -84,3 +84,15 @@
         <label><?= EIGENSCHAFTEN['mitglieder']['aktiv_janein']['beschriftung']; ?></label>
     </div><?php } ?>
 <?php if( array_key_exists( 'vorstandschaft_janein', EIGENSCHAFTEN['mitglieder'] ) AND array_key_exists( 'aktiv_janein', EIGENSCHAFTEN['mitglieder'] ) ) { ?></div><?php } ?>
+
+<?php if( array_key_exists( 'real_janein', EIGENSCHAFTEN['mitglieder'] ) AND auth()->user()->can( 'global.einstellungen' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) { ?><div class="row g-2">
+    <div class="col"></div>
+    <div class="col form-floating mb-2">
+        <select class="form-select eingabe" data-eingabe="real_janein">
+        <?php foreach ( JANEIN as $janein => $eigenschaften ): ?>
+            <option value="<?= $janein; ?>"><?= $eigenschaften['beschriftung']; ?></option>
+        <?php endforeach; ?>
+        </select>
+        <label><?= EIGENSCHAFTEN['mitglieder']['real_janein']['beschriftung']; ?></label>
+    </div>
+</div><?php } ?>

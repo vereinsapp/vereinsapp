@@ -3,6 +3,8 @@ ELEMENTE.mitglied.ergaenzen_aktion = function (mitglied) {
     else mitglied["vorstandschaft_janein"] = false;
     if ("aktiv_janein" in mitglied && mitglied["aktiv_janein"] == 1) mitglied["aktiv_janein"] = true;
     else mitglied["aktiv_janein"] = false;
+    if ("real_janein" in mitglied && mitglied["real_janein"] == 1) mitglied["real_janein"] = true;
+    else mitglied["real_janein"] = false;
 
     if ("geburt" in mitglied) {
         mitglied["alter"] = -1 * mitglied["geburt"].diffNow("years").years;
