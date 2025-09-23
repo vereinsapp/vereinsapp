@@ -34,7 +34,7 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
                 Schnittstelle_VariableRein(null, "element_id", aufgabe_id, "aufgaben");
                 Schnittstelle_VariableRein(null, "mitglied_id", aufgabe_id, "aufgaben");
                 Schnittstelle_VariableRein(null, "erledigt", aufgabe_id, "aufgaben");
-                Schnittstelle_VariableRein(DateTime.now(), "erstellung", aufgabe_id, "aufgaben");
+                Schnittstelle_VariableRein(DATETIME.now(), "erstellung", aufgabe_id, "aufgaben");
                 Schnittstelle_EventAusfuehren(
                     [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
                     { liste: "aufgaben" }

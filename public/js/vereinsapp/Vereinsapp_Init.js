@@ -1,4 +1,4 @@
-const DateTime = luxon.DateTime;
+const DATETIME = luxon.DateTime;
 
 $(document).ready(function () {
     Schnittstelle_AjaxInit(); // initialisiert auch AJAXSCHLANGE und CSRF
@@ -43,7 +43,7 @@ $(document).ready(function () {
         Schnittstelle_AjaxInDieSchlange("status/ajax_datenschutz_richtlinie", new Object(), new Object(), function (AJAX) {
             Schnittstelle_DomModalOeffnen(AJAX.antwort.html);
             $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
-                Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DateTime.now().toISO());
+                Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DATETIME.now().toISO());
                 Schnittstelle_DomModalSchliessen($("#datenschutz_richtlinie_anzeigen"));
             });
         });

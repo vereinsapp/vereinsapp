@@ -12,9 +12,9 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
         // Wenn aber nichts definiert ist, dann nimm den Standard-Wert (je nach Typ)
         if (typeof wert === "undefined")
             if ($eingabe.prop("tagName") == "SELECT") wert = $eingabe.find("option:first").val();
-            else if ($eingabe.attr("type") == "date") wert = DateTime.now().plus({ days: 1 });
-            else if ($eingabe.attr("type") == "time") wert = DateTime.now().plus({ minutes: 1 });
-            else if ($eingabe.attr("type") == "datetime-local") wert = DateTime.now().plus({ minutes: 1 });
+            else if ($eingabe.attr("type") == "date") wert = DATETIME.now().plus({ days: 1 });
+            else if ($eingabe.attr("type") == "time") wert = DATETIME.now().plus({ minutes: 1 });
+            else if ($eingabe.attr("type") == "datetime-local") wert = DATETIME.now().plus({ minutes: 1 });
             else wert = "";
 
         let wert_formatiert = wert;
