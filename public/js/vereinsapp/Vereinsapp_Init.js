@@ -1,12 +1,12 @@
 const DateTime = luxon.DateTime;
-let DEBUG = false;
 
 $(document).ready(function () {
-    Schnittstelle_AjaxInit();
-    Schnittstelle_EventInit();
-    Schnittstelle_LocalstorageInit();
+    Schnittstelle_AjaxInit(); // initialisiert auch AJAXSCHLANGE und CSRF
+    Schnittstelle_EventInit(); // initialisiert auch EVENT_VARIABLE_UPD_DOM_VOR_LISTE und EVENT_VARIABLE_UPD_DOM_VOR_ENDE
+    Schnittstelle_LocalstorageInit(); // initialisiert auch LOCALSTORAGE LEEREN ERZWINGEN
     Liste_Init();
-    Schnittstelle_DomInit();
+    Schnittstelle_DomInit(); // initialisiert auch STATUS_SPINNER_CLASS, STATUS_SPINNER_HTML, TOASTS und MODALS
+    Schnittstelle_LogInit(); // initialisiert auch FILTERN
 
     if (LOGGEDIN) {
         Mitglieder_Init();
@@ -28,6 +28,7 @@ $(document).ready(function () {
         );
     }
 
+    // FORMULARE OHNE MODAL (DIREKT IM DOM) INITIALISIEREN, BSPW. MIT WERTEN BEFÜLLEN
     $(".formular").each(function () {
         const $formular = $(this);
         const liste = $formular.attr("data-liste");
