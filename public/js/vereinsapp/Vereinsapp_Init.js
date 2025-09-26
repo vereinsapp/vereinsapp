@@ -6,7 +6,7 @@ $(document).ready(function () {
     Schnittstelle_LocalstorageInit(); // initialisiert auch LOCALSTORAGE LEEREN ERZWINGEN
     Liste_Init();
     Schnittstelle_DomInit(); // initialisiert auch STATUS_SPINNER_CLASS, STATUS_SPINNER_HTML, TOASTS und MODALS
-    Schnittstelle_LogInit(); // initialisiert auch FILTERN
+    Schnittstelle_LogInit();
 
     if (LOGGEDIN) {
         Mitglieder_Init();
@@ -27,6 +27,7 @@ $(document).ready(function () {
             Schnittstelle_EventVariableUpdDom(liste);
         });
 
+        Schnittstelle_EventSqlUpdLocalstorage();
         setInterval(Schnittstelle_EventSqlUpdLocalstorage, AJAX_ZYKLUSZEIT * 1000);
     }
 

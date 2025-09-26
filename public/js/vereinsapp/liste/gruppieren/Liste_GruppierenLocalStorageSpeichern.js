@@ -6,8 +6,8 @@ function Liste_GruppierenLocalStorageSpeichern(gruppieren, instanz, liste) {
             if (liste in GRUPPIERBARE_EIGENSCHAFTEN && GRUPPIERBARE_EIGENSCHAFTEN[liste].includes(gruppieren))
                 LISTEN[liste].instanz[instanz].gruppieren = gruppieren;
 
-    Schnittstelle_EventAusfuehren(
-        [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
-        { liste: liste }
-    );
+    Schnittstelle_EventVariableUpdLocalstorage(liste);
+    Schnittstelle_EventLocalstorageUpdVariable(liste);
+    Schnittstelle_VariableErgaenzen(liste);
+    Schnittstelle_EventVariableUpdDom(liste);
 }
