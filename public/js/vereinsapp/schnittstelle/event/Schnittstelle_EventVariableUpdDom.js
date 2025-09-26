@@ -1,7 +1,4 @@
-function Schnittstelle_EventVariableUpdDom(folgendes_event, data) {
-    let liste;
-    if ("liste" in data && data.liste in LISTEN) liste = data.liste;
-
+function Schnittstelle_EventVariableUpdDom(liste) {
     // SPEZIAL VOR LISTE AKTUALISIEREN
     $.each(EVENT_VARIABLE_UPD_DOM_VOR_LISTE[liste], function () {
         this();
@@ -188,12 +185,4 @@ function Schnittstelle_EventVariableUpdDom(folgendes_event, data) {
     $(".jetzt").each(function () {
         Schnittstelle_JetztAktualisieren($(this));
     });
-
-    if (typeof folgendes_event === "function" || (isArray(folgendes_event) && folgendes_event.length > 0))
-        Schnittstelle_EventAusfuehren(folgendes_event, data);
-
-    if ("abhaengig_von" in LISTEN[liste])
-        $.each(LISTEN[liste].abhaengig_von, function (prio, liste) {
-            Schnittstelle_EventAusfuehren(Schnittstelle_EventVariableUpdDom, { liste: liste });
-        });
 }

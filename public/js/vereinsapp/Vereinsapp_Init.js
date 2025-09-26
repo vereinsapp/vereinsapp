@@ -15,17 +15,19 @@ $(document).ready(function () {
         Strafkatalog_Init();
         Notenbank_Init();
 
-        $.each(LISTEN, function (liste, LISTE) {
-            Schnittstelle_EventAusfuehren([Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom], {
-                liste: liste,
-            });
+        $.each(LISTEN, function (liste) {
+            Schnittstelle_EventLocalstorageUpdVariable(liste);
         });
 
-        Schnittstelle_EventAusfuehren(
-            [Schnittstelle_EventSqlUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
-            undefined,
-            true
-        );
+        $.each(LISTEN, function (liste) {
+            Schnittstelle_VariableErgaenzen(liste);
+        });
+
+        $.each(LISTEN, function (liste) {
+            Schnittstelle_EventVariableUpdDom(liste);
+        });
+
+        setInterval(Schnittstelle_EventSqlUpdLocalstorage, AJAX_ZYKLUSZEIT * 1000);
     }
 
     // FORMULARE OHNE MODAL (DIREKT IM DOM) INITIALISIEREN, BSPW. MIT WERTEN BEFÜLLEN
@@ -87,7 +89,6 @@ Select JANEIN als check umbauen
 Wartungsarbeiten per Filter handlen
 .btn in .formular mit ENTER betätigbar machen
 Details loswerden und stattdessen den Singular der Liste verwenden
-Rekursion-Problem Rückmeldungen vs. Termine auflösen
 
 AKUT
 localstorage_reset_string und datenschutz_richtlinie_string in Schnittstelle_LocalstorageInit entfernen
