@@ -94,28 +94,23 @@ abstract class BaseController extends Controller
 
         defined('VERSION') OR define( 'VERSION', preg_replace('/\s+/', '', file_get_contents( ROOTPATH.'/README.md', FALSE, NULL, 13 ) ) );
 
-        defined('HEAD_STYLESHEET') OR define( 'HEAD_STYLESHEET', array( 
-          array( 'href' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css', 'integrity' => 'sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH', 'crossorigin' => 'anonymous', ),
-          array( 'href' => 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css'),
-        //   array( 'href' => 'http://localhost/lib_extern/css/bootstrap.min.css', 'integrity' => 'sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH', 'crossorigin' => 'anonymous', ),
-        //   array( 'href' => 'http://localhost/lib_extern/css/bootstrap-icons.css'),
-          array( 'href' => base_url('css/vereinsapp.css?v='.VERSION), ),
-        ) );
+        $head_stylesheet = array();
+        $head_stylesheet[] = array( 'href' => base_url('css/bootstrap.min.css') ); // https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css
+        $head_stylesheet[] = array( 'href' => base_url('css/bootstrap-icons.css') ); // https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css
+
+        $head_stylesheet[] = array( 'href' => base_url('css/vereinsapp.css?v='.VERSION) );
+        defined('HEAD_STYLESHEET') OR define( 'HEAD_STYLESHEET', $head_stylesheet );
+
         $head_script = array();
-        $head_script[] = array( 'src' => 'https://code.jquery.com/jquery-3.7.1.js', 'integrity' => 'sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=', 'crossorigin' => 'anonymous', );
-        // $head_script[] = array( 'src' => 'https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js', 'integrity' => 'sha256-1PYCpx/EXA36KN1NKrK7auaTylVyk01D98R7Ccf04Bc=', 'crossorigin' => 'anonymous', );
-        $head_script[] = array( 'src' => 'https://code.jquery.com/ui/1.13.2/jquery-ui.js', 'integrity' => 'sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=', 'crossorigin' => 'anonymous', );
-        $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch@0.2.3/jquery.ui.touch-punch.min.js', );
-        $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js', 'integrity' => 'sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz', 'crossorigin' => 'anonymous', );
-        $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js', );
-        $head_script[] = array( 'src' => 'https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js', );
-        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/jquery-3.7.1.js', 'integrity' => 'sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=', 'crossorigin' => 'anonymous', );
-        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/jquery-ui.js', 'integrity' => 'sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=', 'crossorigin' => 'anonymous', );
-        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/jquery.ui.touch-punch.min.js', );
-        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/bootstrap.bundle.min.js', 'integrity' => 'sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz', 'crossorigin' => 'anonymous', );
-        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/luxon.min.js', );
-        // $head_script[] = array( 'src' => 'http://localhost/lib_extern/js/clipboard.min.js', );
-        $head_script[] = array( 'src' => base_url('js/lib/sha256.min.js?v='.VERSION), ); // https://www.npmjs.com/package/js-sha256
+        // $head_script[] = array( 'src' => base_url('js/lib/jquery.mobile-1.4.5.js'), ); // https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js
+        $head_script[] = array( 'src' => base_url('js/lib/jquery-3.7.1.js'), ); // https://code.jquery.com/jquery-3.7.1.js
+        $head_script[] = array( 'src' => base_url('js/lib/jquery-ui.js'), ); // https://code.jquery.com/ui/1.13.2/jquery-ui.js
+        $head_script[] = array( 'src' => base_url('js/lib/jquery.ui.touch-punch.min.js'), ); // https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch@0.2.3/jquery.ui.touch-punch.min.js
+        $head_script[] = array( 'src' => base_url('js/lib/bootstrap.bundle.min.js'), ); // https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js
+        $head_script[] = array( 'src' => base_url('js/lib/luxon.min.js'), ); // https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js
+        $head_script[] = array( 'src' => base_url('js/lib/clipboard.min.js'), ); // https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js
+        $head_script[] = array( 'src' => base_url('js/lib/sha256.min.js'), ); // https://www.npmjs.com/package/js-sha256
+
         $head_script[] = array( 'src' => base_url('js/lib/ajaxqueue.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/isJson.js?v='.VERSION), );
         $head_script[] = array( 'src' => base_url('js/lib/isArray.js?v='.VERSION), );
