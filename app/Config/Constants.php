@@ -98,6 +98,8 @@ define('EVENT_PRIORITY_HIGH', 10);
 | VEREINSAPP Projekt-übergreifende Konstanten
 |--------------------------------------------------------------------------*/
 
+defined('VERSION') OR define( 'VERSION', preg_replace('/\s+/', '', file_get_contents( ROOTPATH.'/README.md', FALSE, NULL, 13 ) ) );
+
 defined('LISTEN') OR define( 'LISTEN', array(
     'mitglieder' => array(
         'beschriftung' => 'Mitglieder',
