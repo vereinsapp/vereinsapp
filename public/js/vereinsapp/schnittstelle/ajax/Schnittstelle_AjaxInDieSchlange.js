@@ -10,7 +10,6 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
 
     const data_ajaxQueue = objektKopiertZurueck(data);
     if (!("ajax_id" in data_ajaxQueue)) data_ajaxQueue.ajax_id = AJAXSCHLANGE[neue_ajax_id].ajax_id;
-    if ("folgendes_event" in data_ajaxQueue) data_ajaxQueue.folgendes_event = undefined;
 
     $.ajaxQueue({
         url: SITE_URL + url,

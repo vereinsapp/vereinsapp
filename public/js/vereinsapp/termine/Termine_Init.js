@@ -173,6 +173,6 @@ function Termine_Init() {
         const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, liste + "_anwesenheiten_dokumentieren");
         $neues_modal.find("#anwesenheiten_dokumentieren.liste").attr("data-gegen_liste", liste).attr("data-gegen_element_id", element_id);
         Schnittstelle_DomModalOeffnen($neues_modal);
-        Schnittstelle_EventAusfuehren(Schnittstelle_EventVariableUpdDom, { liste: gegen_liste });
+        Schnittstelle_EventVariableUpdDom(gegen_liste);
     });
 }

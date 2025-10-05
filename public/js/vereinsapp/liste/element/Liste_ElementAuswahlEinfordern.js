@@ -38,5 +38,5 @@ function Liste_ElementAuswahlEinfordern($ziel, title, liste, klasse_id, data) {
     LISTEN[liste].instanz[instanz] = { filtern: new Object(), sortieren: undefined, $blanko_element: $blanko_element };
 
     Schnittstelle_DomModalOeffnen($neues_auswahl_modal);
-    Schnittstelle_EventAusfuehren([Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom], { liste: liste });
+    Schnittstelle_EventVariableUpdDom(liste);
 }

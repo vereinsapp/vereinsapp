@@ -26,10 +26,11 @@ function Termine_RueckmeldungErstellen(formular_oeffnen, dom, data, title, rueck
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
                         Schnittstelle_VariableRein(wert, eigenschaft, rueckmeldung_id, "rueckmeldungen");
                 });
-                Schnittstelle_EventAusfuehren(
-                    [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
-                    { liste: "rueckmeldungen" }
-                );
+
+                Schnittstelle_EventVariableUpdLocalstorage("rueckmeldungen");
+                Schnittstelle_EventLocalstorageUpdVariable("rueckmeldungen");
+                Schnittstelle_VariableErgaenzen("rueckmeldungen");
+                Schnittstelle_EventVariableUpdDom("rueckmeldungen");
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);

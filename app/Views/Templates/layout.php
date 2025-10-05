@@ -7,14 +7,16 @@
 
     <title><?= VEREINSAPP_NAME ?></title>
 
-    <?php foreach( HEAD_STYLESHEET as $stylesheet ): ?><link rel="stylesheet" href="<?= $stylesheet['href']; ?>"<?php if( array_key_exists( 'integrity', $stylesheet ) ) echo ' integrity="'.$stylesheet['integrity'].'"'; ?><?php if( array_key_exists( 'crossorigin', $stylesheet ) ) echo ' crossorigin="'.$stylesheet['crossorigin'].'"'; ?>>
+    <?php foreach( config('Vereinsapp_css')->pfad as $href ): ?><link rel="stylesheet" href="<?= base_url($href); ?>">
     <?php endforeach; ?>
 
     <script type='text/javascript'>
 <?= view( 'Templates/javascript' ); ?>
     </script>
 
-    <?php foreach( HEAD_SCRIPT as $script ): ?><script src="<?= $script['src']; ?>"<?php if( array_key_exists( 'integrity', $script ) ) echo ' integrity="'.$script['integrity'].'"'; ?><?php if( array_key_exists( 'crossorigin', $script ) ) echo ' crossorigin="'.$script['crossorigin'].'"'; ?>></script>
+    <?php foreach( config('Vereinsapp_javascript')->pfad as $script ): ?><script src="<?= base_url($script); ?>"></script>
+    <?php endforeach; ?>
+    <?php if( auth()->loggedIn() ) foreach( config('Vereinsapp_javascript')->pfad_loggedin as $script ): ?><script src="<?= base_url($script); ?>"></script>
     <?php endforeach; ?>
 
   </head>

@@ -27,10 +27,11 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
                         Schnittstelle_VariableRein(wert, eigenschaft, strafe_id, "strafkatalog");
                 });
-                Schnittstelle_EventAusfuehren(
-                    [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
-                    { liste: "strafkatalog" }
-                );
+
+                Schnittstelle_EventVariableUpdLocalstorage("strafkatalog");
+                Schnittstelle_EventLocalstorageUpdVariable("strafkatalog");
+                Schnittstelle_VariableErgaenzen("strafkatalog");
+                Schnittstelle_EventVariableUpdDom("strafkatalog");
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);

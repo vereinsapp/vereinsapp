@@ -116,7 +116,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
         /* FEHLER */
     }
 
-    if (LISTEN.termine.tabelle[termin_id].start < DateTime.now().plus({ seconds: TERMINE_RUECKMELDUNG_FRIST })) {
+    if (LISTEN.termine.tabelle[termin_id].start < DATETIME.now().plus({ seconds: TERMINE_RUECKMELDUNG_FRIST })) {
         $btn_rueckmelden.prop("disabled", true);
         $btn_rueckmeldung_detaillieren.prop("disabled", true);
     }

@@ -1,28 +1,26 @@
-function Schnittstelle_EventVariableUpdLocalstorage(folgendes_event, data) {
-    let liste;
-    if ("liste" in data && data.liste in LISTEN) liste = data.liste;
-
-    const LOC_tabelle = new Array();
+function Schnittstelle_EventVariableUpdLocalstorage(liste) {
+    // tabelle_LocalStorage wird aus der Variable geholt
+    const tabelle_LocalStorage = new Array();
     $.each(LISTEN[liste].tabelle, function () {
-        const element = this; // if ("alter" in element) delete element["alter"];
-        if ("id" in element) LOC_tabelle.push(element);
+        const element = this;
+        if ("id" in element) tabelle_LocalStorage.push(element);
     });
-    Schnittstelle_LocalstorageRein(liste + "_tabelle", LOC_tabelle);
+
+    // tabelle_LocalStorage wird im LocalStorage gespeichert
+    Schnittstelle_LocalstorageRein(liste + "_tabelle", tabelle_LocalStorage);
 
     $.each(LISTEN[liste].instanz, function (instanz) {
-        const LOC_filtern = LISTEN[liste].instanz[instanz].filtern;
-        if (Object.keys(LOC_filtern).length > 0) Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_filtern", LOC_filtern);
+        // filtern wird im LocalStorage gespeichert
+        if (Object.keys(LISTEN[liste].instanz[instanz].filtern).length > 0)
+            Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_filtern", LISTEN[liste].instanz[instanz].filtern);
         else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_filtern");
-
-        const LOC_sortieren = LISTEN[liste].instanz[instanz].sortieren;
-        if (typeof LOC_sortieren !== "undefined") Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_sortieren", LOC_sortieren);
+        // sortieren wird im LocalStorage gespeichert
+        if (typeof LISTEN[liste].instanz[instanz].sortieren !== "undefined")
+            Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_sortieren", LISTEN[liste].instanz[instanz].sortieren);
         else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_sortieren");
-
-        const LOC_gruppieren = LISTEN[liste].instanz[instanz].gruppieren;
-        if (typeof LOC_gruppieren !== "undefined") Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_gruppieren", LOC_gruppieren);
+        // gruppieren wird im LocalStorage gespeichert
+        if (typeof LISTEN[liste].instanz[instanz].gruppieren !== "undefined")
+            Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_gruppieren", LISTEN[liste].instanz[instanz].gruppieren);
         else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_gruppieren");
     });
-
-    if (typeof folgendes_event === "function" || (isArray(folgendes_event) && folgendes_event.length > 0))
-        Schnittstelle_EventAusfuehren(folgendes_event, data);
 }
