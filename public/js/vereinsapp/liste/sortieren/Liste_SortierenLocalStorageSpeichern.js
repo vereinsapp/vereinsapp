@@ -6,8 +6,8 @@ function Liste_SortierenLocalStorageSpeichern(sortieren, instanz, liste) {
             if (liste in SORTIERBARE_EIGENSCHAFTEN && SORTIERBARE_EIGENSCHAFTEN[liste].includes(sortieren.eigenschaft))
                 LISTEN[liste].instanz[instanz].sortieren = sortieren;
 
-    Schnittstelle_EventAusfuehren(
-        [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
-        { liste: liste }
-    );
+    Schnittstelle_EventVariableUpdLocalstorage(liste);
+    Schnittstelle_EventLocalstorageUpdVariable(liste);
+    Schnittstelle_VariableErgaenzen(liste);
+    Schnittstelle_EventVariableUpdDom(liste);
 }

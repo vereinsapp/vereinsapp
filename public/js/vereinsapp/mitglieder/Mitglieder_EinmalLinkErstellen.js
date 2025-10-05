@@ -24,10 +24,11 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                Schnittstelle_EventAusfuehren(
-                    [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
-                    { liste: "mitglieder" }
-                );
+                Schnittstelle_EventVariableUpdLocalstorage("mitglieder");
+                Schnittstelle_EventLocalstorageUpdVariable("mitglieder");
+                Schnittstelle_VariableErgaenzen("mitglieder");
+                Schnittstelle_EventVariableUpdDom("mitglieder");
+
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if (AJAX.data.email) {

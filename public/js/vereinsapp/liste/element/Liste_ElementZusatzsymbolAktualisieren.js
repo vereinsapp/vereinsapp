@@ -10,8 +10,8 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
         // Zusatzsymbol für Geburtstag
         case "geburtstag":
             if (
-                Schnittstelle_VariableRausZurueck("geburtstag", element_id, liste) <= DateTime.now() &&
-                DateTime.now() <= Schnittstelle_VariableRausZurueck("geburtstag", element_id, liste).plus({ days: 1 })
+                Schnittstelle_VariableRausZurueck("geburtstag", element_id, liste) <= DATETIME.now() &&
+                DATETIME.now() <= Schnittstelle_VariableRausZurueck("geburtstag", element_id, liste).plus({ days: 1 })
             )
                 $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["geburtstag"]["bootstrap"] + ' text-primary"></i>');
             break;

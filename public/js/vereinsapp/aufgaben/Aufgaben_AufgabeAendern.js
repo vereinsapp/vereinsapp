@@ -30,10 +30,11 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, aufgabe_id, "aufgaben");
                 });
-                Schnittstelle_EventAusfuehren(
-                    [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
-                    { liste: "aufgaben" }
-                );
+
+                Schnittstelle_EventVariableUpdLocalstorage("aufgaben");
+                Schnittstelle_EventLocalstorageUpdVariable("aufgaben");
+                Schnittstelle_VariableErgaenzen("aufgaben");
+                Schnittstelle_EventVariableUpdDom("aufgaben");
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);

@@ -25,5 +25,5 @@ function Mitglieder_MitgliederAufgabenErledigtAnzeigen(dom, title) {
     );
 
     Schnittstelle_DomModalOeffnen($neues_modal);
-    Schnittstelle_EventAusfuehren(Schnittstelle_EventVariableUpdDom, { liste: "mitglieder" });
+    Schnittstelle_EventVariableUpdDom("mitglieder");
 }

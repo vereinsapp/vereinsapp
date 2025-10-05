@@ -63,7 +63,7 @@ EIGENSCHAFTEN.aufgaben.zugeordnetes_element.change_aktion = function ($zugeordne
             sortieren: undefined,
             $blanko_element: LISTEN[zugeordnete_liste].instanz.HAUPTINSTANZ.$blanko_element.clone(),
         };
-        Schnittstelle_EventAusfuehren(Schnittstelle_EventVariableUpdDom, { liste: zugeordnete_liste });
+        Schnittstelle_EventVariableUpdDom(zugeordnete_liste);
     } else $zugeordnetes_element.empty();
 };
 

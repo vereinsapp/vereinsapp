@@ -262,7 +262,7 @@ function Schnittstelle_CheckWartenEnde($check) {
 }
 
 function Schnittstelle_JetztAktualisieren($jetzt) {
-    $jetzt.text(DateTime.now().toFormat("dd.MM.yyyy HH:mm:ss"));
+    $jetzt.text(DATETIME.now().toFormat("dd.MM.yyyy HH:mm:ss"));
 }
 
 function Schnittstelle_ToggleSymbol($symbol) {

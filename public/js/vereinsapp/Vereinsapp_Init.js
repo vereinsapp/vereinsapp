@@ -1,12 +1,12 @@
-const DateTime = luxon.DateTime;
-let DEBUG = false;
+const DATETIME = luxon.DateTime;
 
 $(document).ready(function () {
-    Schnittstelle_AjaxInit();
-    Schnittstelle_EventInit();
-    Schnittstelle_LocalstorageInit();
+    Schnittstelle_AjaxInit(); // initialisiert auch AJAXSCHLANGE und CSRF
+    Schnittstelle_EventInit(); // initialisiert auch EVENT_VARIABLE_UPD_DOM_VOR_LISTE und EVENT_VARIABLE_UPD_DOM_VOR_ENDE
+    Schnittstelle_LocalstorageInit(); // initialisiert auch LOCALSTORAGE LEEREN ERZWINGEN
     Liste_Init();
-    Schnittstelle_DomInit();
+    Schnittstelle_DomInit(); // initialisiert auch STATUS_SPINNER_CLASS, STATUS_SPINNER_HTML, TOASTS und MODALS
+    Schnittstelle_LogInit();
 
     if (LOGGEDIN) {
         Mitglieder_Init();
@@ -15,19 +15,23 @@ $(document).ready(function () {
         Strafkatalog_Init();
         Notenbank_Init();
 
-        $.each(LISTEN, function (liste, LISTE) {
-            Schnittstelle_EventAusfuehren([Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom], {
-                liste: liste,
-            });
+        $.each(LISTEN, function (liste) {
+            Schnittstelle_EventLocalstorageUpdVariable(liste);
         });
 
-        Schnittstelle_EventAusfuehren(
-            [Schnittstelle_EventSqlUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
-            undefined,
-            true
-        );
+        $.each(LISTEN, function (liste) {
+            Schnittstelle_VariableErgaenzen(liste);
+        });
+
+        $.each(LISTEN, function (liste) {
+            Schnittstelle_EventVariableUpdDom(liste);
+        });
+
+        Schnittstelle_EventSqlUpdLocalstorage();
+        setInterval(Schnittstelle_EventSqlUpdLocalstorage, AJAX_ZYKLUSZEIT * 1000);
     }
 
+    // FORMULARE OHNE MODAL (DIREKT IM DOM) INITIALISIEREN, BSPW. MIT WERTEN BEFÜLLEN
     $(".formular").each(function () {
         const $formular = $(this);
         const liste = $formular.attr("data-liste");
@@ -42,7 +46,7 @@ $(document).ready(function () {
         Schnittstelle_AjaxInDieSchlange("status/ajax_datenschutz_richtlinie", new Object(), new Object(), function (AJAX) {
             Schnittstelle_DomModalOeffnen(AJAX.antwort.html);
             $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
-                Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DateTime.now().toISO());
+                Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DATETIME.now().toISO());
                 Schnittstelle_DomModalSchliessen($("#datenschutz_richtlinie_anzeigen"));
             });
         });
@@ -86,7 +90,6 @@ Select JANEIN als check umbauen
 Wartungsarbeiten per Filter handlen
 .btn in .formular mit ENTER betätigbar machen
 Details loswerden und stattdessen den Singular der Liste verwenden
-Rekursion-Problem Rückmeldungen vs. Termine auflösen
 
 AKUT
 localstorage_reset_string und datenschutz_richtlinie_string in Schnittstelle_LocalstorageInit entfernen

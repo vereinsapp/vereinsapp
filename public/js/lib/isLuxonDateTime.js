@@ -1,3 +1,3 @@
 function isLuxonDateTime(object) {
-    return DateTime.isDateTime(object);
+    return luxon.DateTime.isDateTime(object);
 }

@@ -98,70 +98,62 @@ define('EVENT_PRIORITY_HIGH', 10);
 | VEREINSAPP Projekt-übergreifende Konstanten
 |--------------------------------------------------------------------------*/
 
+defined('VERSION') OR define( 'VERSION', preg_replace('/\s+/', '', file_get_contents( ROOTPATH.'/README.md', FALSE, NULL, 13 ) ) );
+
 defined('LISTEN') OR define( 'LISTEN', array(
     'mitglieder' => array(
         'beschriftung' => 'Mitglieder',
         'controller' => 'mitglieder',
         'element' => 'mitglied',
-        'abhaengig_von' => array(),
     ),
     'verfuegbare_rechte' => array(
         'beschriftung' => 'Verfügbare Rechte',
         'controller' => 'mitglieder',
         'element' => 'verfuegbares_recht',
-        'abhaengig_von' => array(),
     ),
     'vergebene_rechte' => array(
         'beschriftung' => 'Vergebene Rechte',
         'controller' => 'mitglieder',
         'element' => 'vergebenes_recht',
-        'abhaengig_von' => array( 'mitglieder', 'verfuegbare_rechte' ),
     ),
 
     'aufgaben' => array(
         'beschriftung' => 'Aufgaben',
         'controller' => 'aufgaben',
         'element' => 'aufgabe',
-        'abhaengig_von' => array( 'mitglieder', 'termine', 'strafkatalog', 'kassenbuch', 'notenbank'),
     ),
 
     'termine' => array(
         'beschriftung' => 'Termine',
         'controller' => 'termine',
         'element' => 'termin',
-        'abhaengig_von' => array( 'rueckmeldungen' ),
     ),
     'rueckmeldungen' => array(
         'beschriftung' => 'Rückmeldungen',
         'controller' => 'termine',
         'element' => 'rueckmeldung',
-        'abhaengig_von' => array( /*'termine',*/ 'mitglieder' ),
     ),
     'anwesenheiten' => array(
         'beschriftung' => 'Anwesenheiten',
         'controller' => 'termine',
         'element' => 'anwesenheit',
-        'abhaengig_von' => array( 'termine', 'mitglieder' ),
     ),
 
     'strafkatalog' => array(
         'beschriftung' => 'Strafkatalog',
         'controller' => 'strafkatalog',
         'element' => 'strafe',
-        'abhaengig_von' => array(),
     ),
     'kassenbuch' => array(
         'beschriftung' => 'Kassenbuch',
         'controller' => 'strafkatalog',
         'element' => 'kassenbucheintrag',
-        'abhaengig_von' => array( 'mitglieder' ),
     ),
 
     'notenbank' => array(
         'beschriftung' => 'Notenbank',
         'controller' => 'notenbank',
         'element' => 'titel',
-        'abhaengig_von' => array(),
     ),
 ) );
 

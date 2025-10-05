@@ -9,8 +9,8 @@ ELEMENTE.mitglied.ergaenzen_aktion = function (mitglied) {
     if ("geburt" in mitglied) {
         mitglied["alter"] = -1 * mitglied["geburt"].diffNow("years").years;
 
-        mitglied["geburtstag"] = mitglied["geburt"].set({ year: DateTime.now().year });
-        if (mitglied["geburtstag"] < DateTime.now().startOf("day")) mitglied["geburtstag"] = mitglied["geburtstag"].plus({ years: 1 });
+        mitglied["geburtstag"] = mitglied["geburt"].set({ year: DATETIME.now().year });
+        if (mitglied["geburtstag"] < DATETIME.now().startOf("day")) mitglied["geburtstag"] = mitglied["geburtstag"].plus({ years: 1 });
         mitglied["alter_geburtstag"] = mitglied["geburtstag"].diff(mitglied["geburt"], "years").years;
     }
 };

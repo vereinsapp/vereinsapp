@@ -10,7 +10,7 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
 
         const ajax_dom = dom;
 
-        if (!("erledigt" in data)) data.erledigt = DateTime.now();
+        if (!("erledigt" in data)) data.erledigt = DATETIME.now();
         if (!("mitglied_id" in data)) data.mitglied_id = ICH["id"];
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
         if ("erledigt" in ajax_data && isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();
@@ -30,11 +30,12 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
                         Schnittstelle_VariableRein(wert, eigenschaft, kassenbucheintrag_id, "kassenbuch");
                 });
-                Schnittstelle_VariableRein(DateTime.now(), "erstellung", kassenbucheintrag_id, "kassenbuch");
-                Schnittstelle_EventAusfuehren(
-                    [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
-                    { liste: "kassenbuch" }
-                );
+                Schnittstelle_VariableRein(DATETIME.now(), "erstellung", kassenbucheintrag_id, "kassenbuch");
+
+                Schnittstelle_EventVariableUpdLocalstorage("kassenbuch");
+                Schnittstelle_EventLocalstorageUpdVariable("kassenbuch");
+                Schnittstelle_VariableErgaenzen("kassenbuch");
+                Schnittstelle_EventVariableUpdDom("kassenbuch");
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);

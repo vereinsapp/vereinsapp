@@ -27,10 +27,11 @@ function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, titel_id, "notenbank");
                 });
-                Schnittstelle_EventAusfuehren(
-                    [Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable, Schnittstelle_EventVariableUpdDom],
-                    { liste: "notenbank" }
-                );
+
+                Schnittstelle_EventVariableUpdLocalstorage("notenbank");
+                Schnittstelle_EventLocalstorageUpdVariable("notenbank");
+                Schnittstelle_VariableErgaenzen("notenbank");
+                Schnittstelle_EventVariableUpdDom("notenbank");
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
