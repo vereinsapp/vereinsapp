@@ -34,6 +34,7 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
 
                 Schnittstelle_EventVariableUpdLocalstorage("kassenbuch");
                 Schnittstelle_EventLocalstorageUpdVariable("kassenbuch");
+                // Schnittstelle_VariableElementZuordnen("kassenbuch");
                 Schnittstelle_VariableElementErgaenzen("kassenbuch");
                 Schnittstelle_EventVariableUpdDom("kassenbuch");
 

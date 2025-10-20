@@ -30,6 +30,7 @@ function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
 
                 Schnittstelle_EventVariableUpdLocalstorage("notenbank");
                 Schnittstelle_EventLocalstorageUpdVariable("notenbank");
+                // Schnittstelle_VariableElementZuordnen("notenbank");
                 Schnittstelle_VariableElementErgaenzen("notenbank");
                 Schnittstelle_EventVariableUpdDom("notenbank");
 

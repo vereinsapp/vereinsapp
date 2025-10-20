@@ -30,7 +30,8 @@ function Termine_RueckmeldungAendern(formular_oeffnen, dom, data, title, rueckme
 
                 Schnittstelle_EventVariableUpdLocalstorage("rueckmeldungen");
                 Schnittstelle_EventLocalstorageUpdVariable("rueckmeldungen");
-                Schnittstelle_VariableElementErgaenzen("rueckmeldungen");
+                Schnittstelle_VariableElementZuordnen("rueckmeldungen");
+                // Schnittstelle_VariableElementErgaenzen("rueckmeldungen");
                 Schnittstelle_EventVariableUpdDom("rueckmeldungen");
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))

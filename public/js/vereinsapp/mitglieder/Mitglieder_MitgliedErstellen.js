@@ -29,6 +29,7 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitgli
 
                 Schnittstelle_EventVariableUpdLocalstorage("mitglieder");
                 Schnittstelle_EventLocalstorageUpdVariable("mitglieder");
+                // Schnittstelle_VariableElementZuordnen("mitglieder");
                 Schnittstelle_VariableElementErgaenzen("mitglieder");
                 Schnittstelle_EventVariableUpdDom("mitglieder");
 

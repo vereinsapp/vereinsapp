@@ -8,6 +8,7 @@ function Liste_SortierenLocalStorageSpeichern(sortieren, instanz, liste) {
 
     Schnittstelle_EventVariableUpdLocalstorage(liste);
     Schnittstelle_EventLocalstorageUpdVariable(liste);
+    Schnittstelle_VariableElementZuordnen(liste);
     Schnittstelle_VariableElementErgaenzen(liste);
     Schnittstelle_EventVariableUpdDom(liste);
 }

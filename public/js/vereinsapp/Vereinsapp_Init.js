@@ -20,6 +20,10 @@ $(document).ready(function () {
         });
 
         $.each(LISTEN, function (liste) {
+            Schnittstelle_VariableElementZuordnen(liste);
+        });
+
+        $.each(LISTEN, function (liste) {
             Schnittstelle_VariableElementErgaenzen(liste);
         });
 

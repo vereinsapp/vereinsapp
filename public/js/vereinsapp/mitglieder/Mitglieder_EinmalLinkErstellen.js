@@ -26,6 +26,7 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
             function (AJAX) {
                 Schnittstelle_EventVariableUpdLocalstorage("mitglieder");
                 Schnittstelle_EventLocalstorageUpdVariable("mitglieder");
+                // Schnittstelle_VariableElementZuordnen("mitglieder");
                 Schnittstelle_VariableElementErgaenzen("mitglieder");
                 Schnittstelle_EventVariableUpdDom("mitglieder");
 

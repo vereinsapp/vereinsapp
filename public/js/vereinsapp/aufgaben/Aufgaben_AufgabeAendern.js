@@ -33,6 +33,7 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
 
                 Schnittstelle_EventVariableUpdLocalstorage("aufgaben");
                 Schnittstelle_EventLocalstorageUpdVariable("aufgaben");
+                // Schnittstelle_VariableElementZuordnen("aufgaben");
                 Schnittstelle_VariableElementErgaenzen("aufgaben");
                 Schnittstelle_EventVariableUpdDom("aufgaben");
 

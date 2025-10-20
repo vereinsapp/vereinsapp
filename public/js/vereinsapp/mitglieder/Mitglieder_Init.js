@@ -15,6 +15,22 @@ ELEMENTE.mitglied.ergaenzen_aktion = function (mitglied) {
     }
 };
 
+ELEMENTE.vergebenes_recht.zuordnen_aktion = function (vergebenes_recht) {
+    const vergebenes_recht_id = Number(vergebenes_recht.id);
+    const status = Number(vergebenes_recht_id);
+
+    if ("mitglieder" in LISTEN) {
+        const mitglied = LISTEN.mitglieder.tabelle[Number(vergebenes_recht.mitglied_id)];
+
+        if (typeof mitglied !== "undefined" && "zugeordnete_elemente_nach_liste" in mitglied) {
+            const zugeordnete_elemente_nach_liste = mitglied.zugeordnete_elemente_nach_liste;
+
+            if (!("vergebene_rechte" in zugeordnete_elemente_nach_liste)) zugeordnete_elemente_nach_liste.vergebene_rechte = new Object();
+            zugeordnete_elemente_nach_liste.vergebene_rechte[status] = vergebenes_recht_id;
+        }
+    }
+};
+
 function Mitglieder_Init() {
     // MITGLIED ERSTELLEN
     $(document).on("click", ".btn_mitglied_erstellen", function () {

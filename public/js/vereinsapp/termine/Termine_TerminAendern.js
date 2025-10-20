@@ -38,6 +38,7 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
 
                 Schnittstelle_EventVariableUpdLocalstorage("termine");
                 Schnittstelle_EventLocalstorageUpdVariable("termine");
+                // Schnittstelle_VariableElementZuordnen("termine");
                 Schnittstelle_VariableElementErgaenzen("termine");
                 Schnittstelle_EventVariableUpdDom("termine");
 

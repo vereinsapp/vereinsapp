@@ -117,6 +117,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableRausZurueck.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableWertBereinigtZurueck.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableLoeschen.js?v='.VERSION,
+        'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableElementZuordnen.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableElementErgaenzen.js?v='.VERSION,
 
         'js/vereinsapp/schnittstelle/dom/Schnittstelle_DomInit.js?v='.VERSION,

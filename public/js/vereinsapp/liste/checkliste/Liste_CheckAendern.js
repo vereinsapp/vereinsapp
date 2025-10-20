@@ -53,6 +53,7 @@ function Liste_CheckAendern(dom, data) {
 
             Schnittstelle_EventVariableUpdLocalstorage(AJAX.data.checkliste);
             Schnittstelle_EventLocalstorageUpdVariable(AJAX.data.checkliste);
+            Schnittstelle_VariableElementZuordnen(AJAX.data.checkliste);
             Schnittstelle_VariableElementErgaenzen(AJAX.data.checkliste);
             Schnittstelle_EventVariableUpdDom(AJAX.data.checkliste);
 

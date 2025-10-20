@@ -38,6 +38,7 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
 
                 Schnittstelle_EventVariableUpdLocalstorage("aufgaben");
                 Schnittstelle_EventLocalstorageUpdVariable("aufgaben");
+                // Schnittstelle_VariableElementZuordnen("aufgaben");
                 Schnittstelle_VariableElementErgaenzen("aufgaben");
                 Schnittstelle_EventVariableUpdDom("aufgaben");
 

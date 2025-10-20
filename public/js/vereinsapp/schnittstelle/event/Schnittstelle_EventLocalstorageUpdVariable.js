@@ -6,7 +6,9 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste) {
     // tabelle wird in der Variable gespeichert
     const tabelle = new Array();
     $.each(tabelle_LocalStorage, function () {
-        tabelle[this["id"]] = this;
+        const element = this;
+        element.zugeordnete_elemente_nach_liste = new Object();
+        tabelle[Number(element.id)] = element;
     });
     LISTEN[liste].tabelle = tabelle;
 

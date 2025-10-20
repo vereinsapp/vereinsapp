@@ -30,7 +30,8 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
 
                 Schnittstelle_EventVariableUpdLocalstorage("strafkatalog");
                 Schnittstelle_EventLocalstorageUpdVariable("strafkatalog");
-                Schnittstelle_VariableElementErgaenzen("strafkatalog");
+                // Schnittstelle_VariableElementZuordnen("strafkatalog");
+                // Schnittstelle_VariableElementErgaenzen("strafkatalog");
                 Schnittstelle_EventVariableUpdDom("strafkatalog");
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
