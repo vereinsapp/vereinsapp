@@ -156,15 +156,15 @@ function Schnittstelle_EventVariableUpdDom(liste) {
     });
 
     // AUSWERTUNGEN AKTUALISIEREN
-    $('.auswertungen[data-auswertungen="' + liste + '"], .auswertungen[data-liste*=\'"' + liste + "\"']").each(function () {
-        if ($(this).attr("data-auswertungen") == liste) Liste_AuswertungenAktualisieren($(this), liste);
-        else Liste_AuswertungenAktualisieren($(this), $(this).attr("data-auswertungen"));
+    $('.auswertungen[data-auswertungen="' + liste + '"], .auswertungen[data-liste*="' + liste + '"]').each(function () {
+        // , .auswertungen[data-gegen_liste="' + liste + '"]
+        Liste_AuswertungenAktualisieren($(this), $(this).attr("data-auswertungen"));
     });
 
     // AUSWERTUNG AKTUALISIEREN
-    $('.auswertung[data-auswertungen="' + liste + '"], .auswertung[data-liste="' + liste + '"]').each(function () {
-        if ($(this).attr("data-auswertungen") == liste) Liste_AuswertungAktualisieren($(this), liste);
-        else Liste_AuswertungAktualisieren($(this), $(this).attr("data-auswertungen"));
+    $('.auswertung[data-auswertungen="' + liste + '"], .auswertung[data-liste*="' + liste + '"]').each(function () {
+        // , .auswertung[data-gegen_liste="' + liste + '"]
+        Liste_AuswertungAktualisieren($(this), $(this).attr("data-auswertungen"));
     });
 
     // VERZEICHNIS AKTUALISIEREN

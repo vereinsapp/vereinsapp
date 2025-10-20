@@ -1,12 +1,6 @@
 function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const auswertungen_instanz = $auswertungen.attr("id");
 
-    // STATUS_AUSWAHL DEFINIEREN
-    let status_auswahl = $auswertungen.attr("data-status_auswahl");
-    if (typeof status_auswahl !== "undefined") status_auswahl = Schnittstelle_VariableWertBereinigtZurueck(status_auswahl);
-    else status_auswahl = new Object();
-    status_auswahl[0] = undefined;
-
     // LISTE DEFINIEREN
     // liste_data aus data
     let liste_data = $auswertungen.attr("data-liste");
@@ -15,15 +9,8 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     // liste aus liste_data
     let liste = undefined;
     if ("liste" in liste_data) liste = liste_data.liste;
-    // gruppieren aus liste_data
-    let gruppieren_data = undefined;
-    if ("gruppieren" in liste_data) gruppieren_data = liste_data.gruppieren;
-    // gruppieren aus LocalStorage
-    const gruppieren_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].gruppieren;
-    // gruppieren_data und gruppieren_LocalStorage kombinieren
-    let gruppieren;
-    if (typeof gruppieren_LocalStorage === "undefined") gruppieren = gruppieren_data;
-    else gruppieren = gruppieren_LocalStorage;
+
+    // LISTE FILTERN
     // filtern aus liste_data
     let liste_filtern_data;
     if ("filtern" in liste_data) liste_filtern_data = Schnittstelle_VariableWertBereinigtZurueck(liste_data.filtern);
@@ -37,7 +24,31 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
         liste
     );
 
-    // GEGEN_LISTE DEFINIEREN
+    // ELEMENT_IDS DEFINIEREN
+    // gruppieren aus liste_data
+    let gruppieren_data = undefined;
+    if ("gruppieren" in liste_data) gruppieren_data = liste_data.gruppieren;
+    // gruppieren aus LocalStorage
+    const gruppieren_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].gruppieren;
+    // gruppieren_data und gruppieren_LocalStorage kombinieren
+    let gruppieren;
+    if (typeof gruppieren_LocalStorage === "undefined") gruppieren = gruppieren_data;
+    else gruppieren = gruppieren_LocalStorage;
+    // element_ids gruppieren
+    const gruppieren_werte = new Array();
+    const element_ids = new Array();
+    const element_ids_nach_wert = new Object();
+    $.each(liste_tabelle_gefiltert, function (position, element) {
+        const element_id = element.id;
+        const wert = element[gruppieren];
+        if (!gruppieren_werte.includes(wert)) gruppieren_werte.push(wert);
+        if (!element_ids.includes(element_id)) element_ids.push(element_id);
+        if (!(wert in element_ids_nach_wert)) element_ids_nach_wert[wert] = new Array();
+        element_ids_nach_wert[wert].push(element_id);
+    });
+    gruppieren_werte.sort();
+
+    // AUSWERTUNG_ELEMENT_IDS DEFINIEREN
     // gegen_liste aus data
     let gegen_liste = undefined;
     const gegen_liste_data = $auswertungen.attr("data-gegen_liste");
@@ -46,49 +57,40 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     let gegen_element_id = undefined;
     const gegen_element_id_data = $auswertungen.attr("data-gegen_element_id");
     if (typeof gegen_element_id_data !== "undefined") gegen_element_id = Number(gegen_element_id_data);
-
-    // AUSWERTUNGEN FILTERN
-    const auswertungen_filtern = new Object();
-    auswertungen_filtern[LISTEN[liste].element + "_id"] = { inklusiv: new Array() };
-    $.each(liste_tabelle_gefiltert, function () {
-        auswertungen_filtern[LISTEN[liste].element + "_id"].inklusiv.push(Number(this.id));
+    // auswertung_element_ids aus zugeordnete_elemente_nach_liste
+    let auswertung_element_ids = LISTEN[gegen_liste].tabelle[gegen_element_id].zugeordnete_elemente_nach_liste[auswertungen];
+    if (typeof auswertung_element_ids === "undefined") auswertung_element_ids = new Array();
+    // auswertung_element_ids gruppieren
+    const auswertung_element_ids_nach_wert = new Object();
+    $.each(auswertung_element_ids, function (position, auswertung_element_id) {
+        const element_id = LISTEN[auswertungen].tabelle[auswertung_element_id][LISTEN[liste].element + "_id"];
+        const element = LISTEN[liste].tabelle[element_id];
+        const wert = element[gruppieren];
+        if (!(wert in auswertung_element_ids_nach_wert)) auswertung_element_ids_nach_wert[wert] = new Array();
+        auswertung_element_ids_nach_wert[wert].push(auswertung_element_id);
     });
-    auswertungen_filtern[LISTEN[gegen_liste].element + "_id"] = { inklusiv: [gegen_element_id] };
-    const auswertungen_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(auswertungen_filtern, LISTEN[auswertungen].tabelle, auswertungen);
 
-    // WERTE ZU GRUPPIEREN SORTIEREN
-    const gruppieren_werte = Object.keys(Liste_ArrayGruppiertZurueck(liste_tabelle_gefiltert, gruppieren));
-    gruppieren_werte.sort();
-
-    // ERGEBNIS DER AUSWERTUNGEN GLOBAL SPEICHERN
-    LISTEN[auswertungen].instanz[auswertungen_instanz].auswertungen_ergebnis = Liste_AuswertungenErgebnisZurueck(
-        auswertungen_tabelle_gefiltert,
-        liste_tabelle_gefiltert,
-        gruppieren,
-        gruppieren_werte,
-        status_auswahl,
-        liste
-    );
-
-    // DOM LÖSCHEN
+    // AUSWERTUNGEN IM DOM LÖSCHEN
     $auswertungen.find(".auswertung").each(function () {
         const $auswertung = $(this);
         const wert = $auswertung.attr("data-wert");
         if (!gruppieren_werte.includes(wert)) $auswertung.remove();
     });
 
-    // DOM ERGÄNZEN
+    // AUSWERTUNGEN IM DOM ERGÄNZEN
     $.each(gruppieren_werte, function (position, wert) {
-        const $auswertung = $auswertungen.find('.auswertung[data-gruppieren="' + gruppieren + '"][data-wert="' + wert + '"]');
+        const $auswertung = $auswertungen.find('.auswertung[data-wert="' + wert + '"]');
         if (!$auswertung.exists()) {
             const $neue_auswertung = LISTEN[auswertungen].instanz[auswertungen_instanz].$blanko_auswertung.clone().removeClass("blanko invisible");
 
             $neue_auswertung
                 .attr("data-auswertungen", auswertungen)
-                .attr("data-instanz", auswertungen_instanz)
+                .attr("data-auswertung_element_ids", JsonStringifiedZurueck(auswertung_element_ids_nach_wert[wert]))
+                .attr("data-wert", wert)
                 .attr("data-liste", liste)
-                .attr("data-gruppieren", gruppieren)
-                .attr("data-wert", wert);
+                .attr("data-element_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert]))
+                .attr("data-status_auswahl", $auswertungen.attr("data-status_auswahl"))
+                .attr("data-beschriftung", Liste_WertFormatiertZurueck(wert, gruppieren, liste));
 
             const ziel_id = zufaelligeZeichenketteZurueck(8);
             $neue_auswertung.find('[data-bs-toggle="collapse"]').attr("data-bs-target", "#" + ziel_id);
@@ -96,10 +98,18 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             $neue_auswertung.find(".collapse").attr("id", ziel_id);
 
             if (position === 0) $neue_auswertung.appendTo($auswertungen);
-            else
-                $neue_auswertung.insertAfter(
-                    $auswertungen.find('.auswertung[data-gruppieren="' + gruppieren + '"][data-wert="' + gruppieren_werte[position - 1] + '"]')
-                );
+            else $neue_auswertung.insertAfter($auswertungen.find('.auswertung[data-wert="' + gruppieren_werte[position - 1] + '"]'));
         }
+    });
+
+    // ZUSAMMENFASSUNG AKTUALISIEREN
+    $(".auswertung.zusammenfassung[data-instanz='" + auswertungen_instanz + "']").each(function () {
+        const $zusammenfassung = $(this);
+        $zusammenfassung
+            .attr("data-auswertungen", auswertungen)
+            .attr("data-auswertung_element_ids", JsonStringifiedZurueck(auswertung_element_ids))
+            .attr("data-liste", liste)
+            .attr("data-element_ids", JsonStringifiedZurueck(element_ids))
+            .attr("data-status_auswahl", $auswertungen.attr("data-status_auswahl"));
     });
 }

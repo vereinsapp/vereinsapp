@@ -1,43 +1,38 @@
 function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
-    const auswertungen_instanz = $auswertung.attr("data-instanz");
+    const beschriftung = $auswertung.attr("data-beschriftung");
+
+    let status_auswahl = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-status_auswahl"));
+    if (typeof status_auswahl === "undefined") status_auswahl = new Object();
+
     const liste = $auswertung.attr("data-liste");
-    const gruppieren = $auswertung.attr("data-gruppieren");
-    const wert = $auswertung.attr("data-wert");
+    let element_ids = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-element_ids"));
+    if (typeof element_ids === "undefined") element_ids = new Array();
 
-    const alle_element_ids = new Array();
-    const alle_element_ids_mit_status = new Object();
-    function alleElementIdsSammeln(ergebnis_wert, alle_element_ids, alle_element_ids_mit_status) {
-        $.each(ergebnis_wert, function (status, ergebnis_wert_status) {
-            if (!(status in alle_element_ids_mit_status)) alle_element_ids_mit_status[status] = new Array();
-            $.each(ergebnis_wert_status, function (position, element_id) {
-                alle_element_ids.push(element_id);
-                alle_element_ids_mit_status[status].push(element_id);
-            });
-        });
-    }
+    let auswertung_element_ids = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-auswertung_element_ids"));
+    if (typeof auswertung_element_ids === "undefined") auswertung_element_ids = new Array();
 
-    if ($auswertung.hasClass("zusammenfassung")) {
-        $.each(LISTEN[auswertungen].instanz[auswertungen_instanz].auswertungen_ergebnis, function (wert, ergebnis_wert) {
-            alleElementIdsSammeln(ergebnis_wert, alle_element_ids, alle_element_ids_mit_status);
-        });
-    } else
-        alleElementIdsSammeln(
-            LISTEN[auswertungen].instanz[auswertungen_instanz].auswertungen_ergebnis[wert],
-            alle_element_ids,
-            alle_element_ids_mit_status
-        );
+    const element_ids_nach_status = new Array();
+    element_ids_nach_status[0] = arrayKopiertZurueck(element_ids);
+    $.each(status_auswahl, function (status, beschriftung) {
+        element_ids_nach_status[Number(status)] = new Array();
+    });
+    $.each(auswertung_element_ids, function (position, auswertung_element_id) {
+        const status = LISTEN[auswertungen].tabelle[auswertung_element_id].status;
+        const element_id = LISTEN[auswertungen].tabelle[auswertung_element_id][LISTEN[liste].element + "_id"];
+        element_ids_nach_status[status].push(element_id);
+        element_ids_nach_status[0] = element_ids_nach_status[0].filter((id) => id != element_id);
+    });
 
     // BESCHRIFTUNG AKTUALISIEREN
-    if (typeof wert !== "undefined" && typeof gruppieren !== "undefined")
-        $auswertung.find(".beschriftung").text(Liste_WertFormatiertZurueck(wert, gruppieren, liste));
+    if (typeof beschriftung !== "undefined") $auswertung.find(".beschriftung").text(beschriftung);
 
     // ERGEBNIS_ANZAHL AKTUALISIEREN
     $auswertung.find(".ergebnis_anzahl").each(function () {
         const $ergebnis_anzahl = $(this);
         const status = $ergebnis_anzahl.attr("data-status");
 
-        const ergebnis_anzahl = alle_element_ids_mit_status[status].length;
-        const ergebnis_referenz_anzahl = alle_element_ids.length;
+        const ergebnis_anzahl = element_ids_nach_status[status].length;
+        const ergebnis_referenz_anzahl = element_ids.length;
 
         if ($ergebnis_anzahl.hasClass("progress"))
             $ergebnis_anzahl.attr("style", "width: " + (ergebnis_anzahl / ergebnis_referenz_anzahl) * 100 + "%");
@@ -48,8 +43,8 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
     $auswertung.find(".ergebnis").each(function () {
         const $ergebnis = $(this);
         const filtern = { id: { inklusiv: new Array() } };
-        $.each(alle_element_ids_mit_status[$ergebnis.attr("data-status")], function (position, id) {
-            filtern.id.inklusiv.push(Number(id));
+        $.each(element_ids_nach_status[$ergebnis.attr("data-status")], function (position, element_id) {
+            filtern.id.inklusiv.push(Number(element_id));
         });
         $ergebnis.attr("data-filtern", JsonStringifiedZurueck(filtern));
     });

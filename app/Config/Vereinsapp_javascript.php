@@ -93,7 +93,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/auswertungen/Liste_AuswertungenInit.js?v='.VERSION,
         'js/vereinsapp/liste/auswertungen/Liste_AuswertungenAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/auswertungen/Liste_AuswertungAktualisieren.js?v='.VERSION,
-        'js/vereinsapp/liste/auswertungen/Liste_AuswertungenErgebnisZurueck.js?v='.VERSION,
         
         'js/vereinsapp/liste/checkliste/Liste_ChecklisteInit.js?v='.VERSION,
         'js/vereinsapp/liste/checkliste/Liste_CheckAendern.js?v='.VERSION,

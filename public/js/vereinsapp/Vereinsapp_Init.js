@@ -63,7 +63,6 @@ Auswertungen überarbeiten
     Filtern, sortieren und gruppieren bei auswertungen steckt in einem JSON (data-filtern_prio_niedrig kann also nicht im Modal angezeigt oder bearbeitet werden)
     Auswertung unabhängig machen von Auswertungen (dann muss das Ergebnis aber für jede Auswertung bestimmt werden)
     Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit den Werten?
-    Warum wird Liste_AuswertungenAktualisieren in den Termin-Details so oft aufgerufen?
     Gruppieren von _janein-Eigenschaft wirft einen Fehler
     Gruppieren nach Eigenschaft mit Wert "ohne" (bspw. Auto, Funktion, etc.) zeigt falschen Werte für "ohne" an
     Filtern- und Gruppieren-Button batch einführen (Spezial-Bedigungen in Schnittstelle_EventVariableUpdDom wegnehmen)
@@ -107,5 +106,8 @@ _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt
 
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
 ÜBERSCHRIFT AKTUALISIEREN, WERKZEUG AKTUALISIEREN und LISTENSTATISTIK AKTUALISIEREN nach Liste_Aktualisieren umziehen
+
+Wenn Schnittstelle_VariableWertBereinigtZurueck(xxx) verwendet wird, dann muss kein if (typeof xxx !== "undefined") geprüft werden.
+zuordnen_aktion ordnet ganze Elemente und nicht nur IDs zu (bspw. in Termine_Init)
 
 */

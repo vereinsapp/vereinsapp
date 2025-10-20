@@ -4,7 +4,7 @@ function Liste_AuswertungenInit() {
             const $auswertungen = $(this);
             const instanz = $auswertungen.attr("id");
 
-            LISTEN[auswertungen].instanz[instanz] = new Object();
+            if (!(instanz in LISTEN[auswertungen].instanz)) LISTEN[auswertungen].instanz[instanz] = new Object();
 
             // liste_data aus data
             let liste_data = $auswertungen.attr("data-liste");
@@ -17,7 +17,7 @@ function Liste_AuswertungenInit() {
             let gruppieren_data = undefined;
             if ("gruppieren" in liste_data) gruppieren_data = liste_data.gruppieren;
 
-            LISTEN[liste].instanz[instanz] = new Object();
+            if (!(instanz in LISTEN[liste].instanz)) LISTEN[liste].instanz[instanz] = new Object();
             LISTEN[liste].instanz[instanz].gruppieren_data = gruppieren_data;
         });
     });
