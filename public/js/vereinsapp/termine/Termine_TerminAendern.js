@@ -38,7 +38,7 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
 
                 Schnittstelle_EventVariableUpdLocalstorage("termine");
                 Schnittstelle_EventLocalstorageUpdVariable("termine");
-                Schnittstelle_VariableErgaenzen("termine");
+                Schnittstelle_VariableElementErgaenzen("termine");
                 Schnittstelle_EventVariableUpdDom("termine");
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))

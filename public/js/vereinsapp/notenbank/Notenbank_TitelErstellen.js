@@ -27,7 +27,7 @@ function Notenbank_TitelErstellen(formular_oeffnen, dom, data, title, titel_id) 
 
                 Schnittstelle_EventVariableUpdLocalstorage("notenbank");
                 Schnittstelle_EventLocalstorageUpdVariable("notenbank");
-                Schnittstelle_VariableErgaenzen("notenbank");
+                Schnittstelle_VariableElementErgaenzen("notenbank");
                 Schnittstelle_EventVariableUpdDom("notenbank");
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))

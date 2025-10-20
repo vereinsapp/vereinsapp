@@ -20,7 +20,7 @@ $(document).ready(function () {
         });
 
         $.each(LISTEN, function (liste) {
-            Schnittstelle_VariableErgaenzen(liste);
+            Schnittstelle_VariableElementErgaenzen(liste);
         });
 
         $.each(LISTEN, function (liste) {

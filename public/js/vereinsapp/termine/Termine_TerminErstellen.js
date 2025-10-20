@@ -34,7 +34,7 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
 
                 Schnittstelle_EventVariableUpdLocalstorage("termine");
                 Schnittstelle_EventLocalstorageUpdVariable("termine");
-                Schnittstelle_VariableErgaenzen("termine");
+                Schnittstelle_VariableElementErgaenzen("termine");
                 Schnittstelle_EventVariableUpdDom("termine");
                 Schnittstelle_EventVariableUpdDom("rueckmeldungen");
 

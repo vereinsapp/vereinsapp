@@ -33,7 +33,7 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, elemen
                 if (typeof weiterleiten !== "undefined") $(location).attr("href", SITE_URL + weiterleiten);
                 else {
                     Schnittstelle_EventLocalstorageUpdVariable(AJAX.data.liste);
-                    Schnittstelle_VariableErgaenzen(AJAX.data.liste);
+                    Schnittstelle_VariableElementErgaenzen(AJAX.data.liste);
                     Schnittstelle_EventVariableUpdDom(AJAX.data.liste);
 
                     if (

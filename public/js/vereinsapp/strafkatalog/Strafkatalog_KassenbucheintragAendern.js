@@ -32,7 +32,7 @@ function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, dom, data, titl
 
                 Schnittstelle_EventVariableUpdLocalstorage("kassenbuch");
                 Schnittstelle_EventLocalstorageUpdVariable("kassenbuch");
-                Schnittstelle_VariableErgaenzen("kassenbuch");
+                Schnittstelle_VariableElementErgaenzen("kassenbuch");
                 Schnittstelle_EventVariableUpdDom("kassenbuch");
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))

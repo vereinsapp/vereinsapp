@@ -41,7 +41,7 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
 
                 Schnittstelle_EventVariableUpdLocalstorage("mitglieder");
                 Schnittstelle_EventLocalstorageUpdVariable("mitglieder");
-                Schnittstelle_VariableErgaenzen("mitglieder");
+                Schnittstelle_VariableElementErgaenzen("mitglieder");
                 Schnittstelle_EventVariableUpdDom("mitglieder");
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))

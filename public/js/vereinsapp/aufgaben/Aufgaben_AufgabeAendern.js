@@ -33,7 +33,7 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
 
                 Schnittstelle_EventVariableUpdLocalstorage("aufgaben");
                 Schnittstelle_EventLocalstorageUpdVariable("aufgaben");
-                Schnittstelle_VariableErgaenzen("aufgaben");
+                Schnittstelle_VariableElementErgaenzen("aufgaben");
                 Schnittstelle_EventVariableUpdDom("aufgaben");
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
