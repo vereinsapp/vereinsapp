@@ -108,6 +108,5 @@ leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewä
 ÜBERSCHRIFT AKTUALISIEREN, WERKZEUG AKTUALISIEREN und LISTENSTATISTIK AKTUALISIEREN nach Liste_Aktualisieren umziehen
 
 Wenn Schnittstelle_VariableWertBereinigtZurueck(xxx) verwendet wird, dann muss kein if (typeof xxx !== "undefined") geprüft werden.
-zuordnen_aktion ordnet ganze Elemente und nicht nur IDs zu (bspw. in Termine_Init)
 
 */

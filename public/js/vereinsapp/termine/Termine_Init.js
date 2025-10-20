@@ -32,8 +32,6 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
 };
 
 ELEMENTE.rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
-    const rueckmeldung_id = rueckmeldung.id;
-
     if ("termine" in LISTEN) {
         const termin = LISTEN.termine.tabelle[Number(rueckmeldung.termin_id)];
 
@@ -42,7 +40,7 @@ ELEMENTE.rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
             const zugeordnete_elemente_nach_liste = termin.zugeordnete_elemente_nach_liste;
 
             if (!("rueckmeldungen" in zugeordnete_elemente_nach_liste)) zugeordnete_elemente_nach_liste.rueckmeldungen = new Array();
-            zugeordnete_elemente_nach_liste.rueckmeldungen.push(rueckmeldung_id);
+            zugeordnete_elemente_nach_liste.rueckmeldungen.push(rueckmeldung);
         }
     }
 
@@ -54,14 +52,12 @@ ELEMENTE.rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
             const zugeordnete_elemente_nach_liste = mitglied.zugeordnete_elemente_nach_liste;
 
             if (!("rueckmeldungen" in zugeordnete_elemente_nach_liste)) zugeordnete_elemente_nach_liste.rueckmeldungen = new Array();
-            zugeordnete_elemente_nach_liste.rueckmeldungen.push(rueckmeldung_id);
+            zugeordnete_elemente_nach_liste.rueckmeldungen.push(rueckmeldung);
         }
     }
 };
 
 ELEMENTE.anwesenheit.zuordnen_aktion = function (anwesenheit) {
-    const anwesenheit_id = anwesenheit.id;
-
     if ("termine" in LISTEN) {
         const termin = LISTEN.termine.tabelle[Number(anwesenheit.termin_id)];
 
@@ -70,7 +66,7 @@ ELEMENTE.anwesenheit.zuordnen_aktion = function (anwesenheit) {
             const zugeordnete_elemente_nach_liste = termin.zugeordnete_elemente_nach_liste;
 
             if (!("anwesenheiten" in zugeordnete_elemente_nach_liste)) zugeordnete_elemente_nach_liste.anwesenheiten = new Array();
-            zugeordnete_elemente_nach_liste.anwesenheiten.push(anwesenheit_id);
+            zugeordnete_elemente_nach_liste.anwesenheiten.push(anwesenheit);
         }
     }
 
@@ -82,7 +78,7 @@ ELEMENTE.anwesenheit.zuordnen_aktion = function (anwesenheit) {
             const zugeordnete_elemente_nach_liste = mitglied.zugeordnete_elemente_nach_liste;
 
             if (!("anwesenheiten" in zugeordnete_elemente_nach_liste)) zugeordnete_elemente_nach_liste.anwesenheiten = new Array();
-            zugeordnete_elemente_nach_liste.anwesenheiten.push(anwesenheit_id);
+            zugeordnete_elemente_nach_liste.anwesenheiten.push(anwesenheit);
         }
     }
 };

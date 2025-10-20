@@ -57,17 +57,19 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     let gegen_element_id = undefined;
     const gegen_element_id_data = $auswertungen.attr("data-gegen_element_id");
     if (typeof gegen_element_id_data !== "undefined") gegen_element_id = Number(gegen_element_id_data);
-    // auswertung_element_ids aus zugeordnete_elemente_nach_liste
-    let auswertung_element_ids = LISTEN[gegen_liste].tabelle[gegen_element_id].zugeordnete_elemente_nach_liste[auswertungen];
-    if (typeof auswertung_element_ids === "undefined") auswertung_element_ids = new Array();
+    // auswertung_elemente aus zugeordnete_elemente_nach_liste
+    let auswertung_elemente = LISTEN[gegen_liste].tabelle[gegen_element_id].zugeordnete_elemente_nach_liste[auswertungen];
+    if (typeof auswertung_elemente === "undefined") auswertung_elemente = new Array();
     // auswertung_element_ids gruppieren
     const auswertung_element_ids_nach_wert = new Object();
-    $.each(auswertung_element_ids, function (position, auswertung_element_id) {
-        const element_id = LISTEN[auswertungen].tabelle[auswertung_element_id][LISTEN[liste].element + "_id"];
+    const auswertung_element_ids = new Array();
+    $.each(auswertung_elemente, function (position, auswertung_element) {
+        const element_id = auswertung_element[LISTEN[liste].element + "_id"];
         const element = LISTEN[liste].tabelle[element_id];
         const wert = element[gruppieren];
         if (!(wert in auswertung_element_ids_nach_wert)) auswertung_element_ids_nach_wert[wert] = new Array();
-        auswertung_element_ids_nach_wert[wert].push(auswertung_element_id);
+        auswertung_element_ids_nach_wert[wert].push(auswertung_element.id);
+        auswertung_element_ids.push(auswertung_element.id);
     });
 
     // AUSWERTUNGEN IM DOM LÖSCHEN
