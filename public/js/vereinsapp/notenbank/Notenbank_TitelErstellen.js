@@ -9,18 +9,17 @@ function Notenbank_TitelErstellen(formular_oeffnen, dom, data, title, titel_id) 
         if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
-        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
 
         Schnittstelle_AjaxInDieSchlange(
             "notenbank/ajax_titel_speichern",
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                if ("titel_id" in AJAX.antwort && typeof AJAX.antwort.titel_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.titel_id);
-                else AJAX.data.id = Number(LISTEN["notenbank"].tabelle.length + 1);
+                if (typeof AJAX.antwort.titel_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.titel_id);
+                else AJAX.data.id = LISTEN["notenbank"].tabelle.length + 1;
                 const titel_id = AJAX.data.id;
 
-                LISTEN["notenbank"].tabelle[titel_id] = new Object();
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, titel_id, "notenbank");
                 });

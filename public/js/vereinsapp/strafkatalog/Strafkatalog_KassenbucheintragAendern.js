@@ -10,14 +10,15 @@ function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, dom, data, titl
 
         const ajax_dom = dom;
 
-        if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", kassenbucheintrag_id, "kassenbuch");
-        if (!("wert" in data)) data.wert = Schnittstelle_VariableRausZurueck("wert", kassenbucheintrag_id, "kassenbuch");
-        if (!("mitglied_id" in data)) data.mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", kassenbucheintrag_id, "kassenbuch");
-        if ("erledigt" in data && typeof data.erledigt === "undefined") data.erledigt = null;
-        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", kassenbucheintrag_id, "kassenbuch");
-        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+        if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", kassenbucheintrag_id, "kassenbuch", undefined);
+        if (!("wert" in data)) data.wert = Schnittstelle_VariableRausZurueck("wert", kassenbucheintrag_id, "kassenbuch", undefined);
+        if (!("mitglied_id" in data))
+            data.mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", kassenbucheintrag_id, "kassenbuch", undefined);
+        if (typeof data.erledigt === "undefined") data.erledigt = null;
+        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", kassenbucheintrag_id, "kassenbuch", undefined);
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = kassenbucheintrag_id;
-        if ("erledigt" in ajax_data && isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();
+        if (isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();
 
         Schnittstelle_AjaxInDieSchlange(
             "strafkatalog/ajax_kassenbucheintrag_speichern",

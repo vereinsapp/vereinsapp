@@ -12,8 +12,7 @@ function Liste_ElementZusatzinfoAktualisieren($zusatzinfo, $element) {
             let anzahl_eingeplant = 0;
             $.each($('#alle_aufgaben.liste, .liste[data-liste="aufgaben"]').find(".element"), function () {
                 const aufgabe_id = Number($(this).attr("data-element_id"));
-                if (LISTEN.aufgaben.tabelle[aufgabe_id].mitglied_id == element_id) anzahl_eingeplant++;
-                // if(LISTEN.aufgaben.tabelle[aufgabe_id].erledigt_janein) anzahl_erledigt++;
+                if (Schnittstelle_VariableRausZurueck("mitglied_id", aufgabe_id, "aufgaben") === element_id) anzahl_eingeplant++;
             });
             $zusatzinfo.html('<span class="text-primary">' + anzahl_eingeplant + '<i class="bi bi-' + SYMBOLE["aufgaben"]["bootstrap"] + '"></span>');
             break;
@@ -22,7 +21,10 @@ function Liste_ElementZusatzinfoAktualisieren($zusatzinfo, $element) {
             let anzahl_erledigt = 0;
             $.each($('#alle_aufgaben.liste, .liste[data-liste="aufgaben"]').find(".element"), function () {
                 const aufgabe_id = Number($(this).attr("data-element_id"));
-                if (LISTEN.aufgaben.tabelle[aufgabe_id].mitglied_id == element_id && LISTEN.aufgaben.tabelle[aufgabe_id].erledigt_janein)
+                if (
+                    Schnittstelle_VariableRausZurueck("mitglied_id", aufgabe_id, "aufgaben") === element_id &&
+                    Schnittstelle_VariableRausZurueck("erledigt_janein", aufgabe_id, "aufgaben")
+                )
                     anzahl_erledigt++;
             });
             $zusatzinfo.html('<span class="text-success">' + anzahl_erledigt + '<i class="bi bi-' + SYMBOLE["erledigt"]["bootstrap"] + '"></span>');

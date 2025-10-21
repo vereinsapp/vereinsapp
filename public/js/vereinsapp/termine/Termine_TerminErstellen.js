@@ -10,11 +10,11 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
 
         const ajax_dom = dom;
 
-        if (("filtern_mitglieder" in data && typeof data.filtern_mitglieder === "undefined") || data.filtern_mitglieder == "")
+        if (typeof data.filtern_mitglieder === "undefined" || ("filtern_mitglieder" in data && data.filtern_mitglieder == ""))
             data.filtern_mitglieder = new Object();
-        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
-        if ("start" in ajax_data && isLuxonDateTime(ajax_data.start)) ajax_data.start = ajax_data.start.toISO();
-        if ("ende" in ajax_data && isLuxonDateTime(ajax_data.ende)) ajax_data.ende = ajax_data.ende.toISO();
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+        if (isLuxonDateTime(ajax_data.start)) ajax_data.start = ajax_data.start.toISO();
+        if (isLuxonDateTime(ajax_data.ende)) ajax_data.ende = ajax_data.ende.toISO();
         else ajax_data.ende = ajax_data.start;
         if ("filtern_mitglieder" in ajax_data) ajax_data.filtern_mitglieder = JsonStringifiedZurueck(ajax_data.filtern_mitglieder);
 
@@ -23,11 +23,10 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                if ("termin_id" in AJAX.antwort && typeof AJAX.antwort.termin_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.termin_id);
-                else AJAX.data.id = Number(LISTEN["termine"].tabelle.length + 1);
+                if (typeof AJAX.antwort.termin_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.termin_id);
+                else AJAX.data.id = LISTEN["termine"].tabelle.length + 1;
                 const termin_id = AJAX.data.id;
 
-                LISTEN["termine"].tabelle[termin_id] = new Object();
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, termin_id, "termine");
                 });

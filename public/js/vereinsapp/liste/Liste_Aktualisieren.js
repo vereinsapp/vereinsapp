@@ -2,13 +2,8 @@ function Liste_Aktualisieren($liste, liste) {
     const instanz = $liste.attr("id");
 
     // TABELLE FILTERN
-    // filtern aus data
-    let filtern_data = $liste.attr("data-filtern");
-    if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableWertBereinigtZurueck(filtern_data);
-    else filtern_data = new Object();
-    // filtern aus LocalStorage
+    const filtern_data = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-filtern"), new Object());
     const filtern_LocalStorage = LISTEN[liste].instanz[instanz].filtern;
-    // data und LocalStorage kombinieren
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
         Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_LocalStorage, liste),
         LISTEN[liste].tabelle,
@@ -16,15 +11,11 @@ function Liste_Aktualisieren($liste, liste) {
     );
 
     // TABELLE SORTIEREN
-    // sortieren aus data
-    let sortieren_data = $liste.attr("data-sortieren");
-    if (typeof sortieren_data !== "undefined") sortieren_data = Schnittstelle_VariableWertBereinigtZurueck(sortieren_data);
-    // sortieren aus LocalStorage
+    const sortieren_data = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-sortieren"), undefined);
     const sortieren_LocalStorage = LISTEN[liste].instanz[instanz].sortieren;
-    // data und LocalStorage kombinieren
     let sortieren_kombiniert;
-    if (typeof sortieren_LocalStorage === "undefined") sortieren_kombiniert = sortieren_data;
-    else sortieren_kombiniert = sortieren_LocalStorage;
+    if (typeof sortieren_LocalStorage !== "undefined") sortieren_kombiniert = sortieren_LocalStorage;
+    else sortieren_kombiniert = sortieren_data;
     const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(tabelle_gefiltert, sortieren_kombiniert);
 
     // ELEMENTE IM DOM LÖSCHEN

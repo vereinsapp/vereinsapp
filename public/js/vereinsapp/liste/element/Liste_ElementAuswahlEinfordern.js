@@ -1,6 +1,4 @@
-function Liste_ElementAuswahlEinfordern($ziel, title, liste, klasse_id, data) {
-    if (typeof data === "undefined") data = new Object();
-
+function Liste_ElementAuswahlEinfordern($ziel, title, liste, klasse_id, data = new Object()) {
     // const $ziel = $ziel;
     const ziel_id = zufaelligeZeichenketteZurueck(8);
     if ($ziel.exists()) $ziel.attr("id", ziel_id);

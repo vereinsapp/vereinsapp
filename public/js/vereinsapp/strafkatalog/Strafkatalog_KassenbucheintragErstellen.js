@@ -12,20 +12,18 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
 
         if (!("erledigt" in data)) data.erledigt = DATETIME.now();
         if (!("mitglied_id" in data)) data.mitglied_id = ICH["id"];
-        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
-        if ("erledigt" in ajax_data && isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+        if (isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();
 
         Schnittstelle_AjaxInDieSchlange(
             "strafkatalog/ajax_kassenbucheintrag_speichern",
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                if ("kassenbucheintrag_id" in AJAX.antwort && typeof AJAX.antwort.kassenbucheintrag_id !== "undefined")
-                    AJAX.data.id = Number(AJAX.antwort.kassenbucheintrag_id);
-                else AJAX.data.id = Number(LISTEN["kassenbuch"].tabelle.length + 1);
+                if (typeof AJAX.antwort.kassenbucheintrag_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.kassenbucheintrag_id);
+                else AJAX.data.id = LISTEN["kassenbuch"].tabelle.length + 1;
                 const kassenbucheintrag_id = AJAX.data.id;
 
-                LISTEN["kassenbuch"].tabelle[kassenbucheintrag_id] = new Object();
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
                         Schnittstelle_VariableRein(wert, eigenschaft, kassenbucheintrag_id, "kassenbuch");

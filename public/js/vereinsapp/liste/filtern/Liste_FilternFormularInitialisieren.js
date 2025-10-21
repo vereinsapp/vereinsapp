@@ -45,13 +45,8 @@ function Liste_FilternFormularInitialisieren($formular, ziel_id, liste) {
     // Definition von filtern_prio_niedrig und filtern_prio_hoch
     let filtern_prio_niedrig, filtern_prio_hoch;
     if (typeof ziel_id !== "undefined") {
-        filtern_prio_niedrig = $("#" + ziel_id).attr("data-filtern_prio_niedrig");
-        if (typeof filtern_prio_niedrig !== "undefined") filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck(filtern_prio_niedrig);
-        else filtern_prio_niedrig = new Object();
-
-        filtern_prio_hoch = $("#" + ziel_id).val();
-        if (filtern_prio_hoch != "") filtern_prio_hoch = Schnittstelle_VariableWertBereinigtZurueck(filtern_prio_hoch);
-        else filtern_prio_hoch = new Object();
+        filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($("#" + ziel_id).attr("data-filtern_prio_niedrig"), new Object());
+        filtern_prio_hoch = Schnittstelle_VariableWertBereinigtZurueck($("#" + ziel_id).val(), new Object());
     } else {
         filtern_prio_niedrig = new Object();
         filtern_prio_hoch = new Object();

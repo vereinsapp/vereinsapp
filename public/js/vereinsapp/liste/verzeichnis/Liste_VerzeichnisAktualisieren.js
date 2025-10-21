@@ -1,12 +1,7 @@
 function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
     const element_id = Number($verzeichnis.attr("data-element_id"));
-
-    let instanz = $verzeichnis.attr("data-instanz");
-    if (typeof instanz === "undefined") instanz = $verzeichnis.attr("id");
-
-    let basis = $verzeichnis.attr("data-basis");
-    if (typeof basis !== "undefined") basis = Schnittstelle_VariableWertBereinigtZurueck(basis);
-    else basis = new Array();
+    const instanz = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-instanz"), $verzeichnis.attr("id"));
+    const basis = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-basis"), new Array());
 
     if (basis.length > 0)
         $verzeichnis
@@ -14,7 +9,7 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
             .find(".beschriftung")
             .text(basis[basis.length - 1]);
 
-    let inhalt = Schnittstelle_VariableRausZurueck("verzeichnis", element_id, liste);
+    let inhalt = Schnittstelle_VariableRausZurueck("verzeichnis", element_id, liste, new Object());
     $.each(basis, function (position, unterverzeichnis) {
         inhalt = inhalt.unterverzeichnisse[unterverzeichnis];
     });

@@ -6,12 +6,8 @@ function Liste_DateiAktualisieren($datei, liste) {
     // const punkt = datei.lastIndexOf(".");
     // const typ = datei.slice(punkt + 1);
 
-    let basis = $verzeichnis.attr("data-basis");
-    if (typeof basis !== "undefined") basis = Schnittstelle_VariableWertBereinigtZurueck(basis);
-    else basis = new Array();
-
-    link = BASE_URL + "storage/" + liste + "/" + Schnittstelle_VariableRausZurueck("verzeichnis_basis", element_id, liste);
-    $.each(basis, function (position, unterverzeichnis) {
+    let link = BASE_URL + "storage/" + liste + "/" + Schnittstelle_VariableRausZurueck("verzeichnis_basis", element_id, liste, "");
+    $.each(Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-basis"), new Array()), function (position, unterverzeichnis) {
         link += unterverzeichnis;
     });
     link += datei;

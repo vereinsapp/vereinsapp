@@ -1,5 +1,7 @@
 function Schnittstelle_LocalstorageInit() {
-    let localstorage_reset_string = Schnittstelle_LocalstorageRausZurueck("localstorage_reset");
+    const localstorage_reset_string = Schnittstelle_LocalstorageRausZurueck("localstorage_reset", undefined);
+    const datenschutz_richtlinie_string = Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined);
+
     if (
         typeof localstorage_reset_string !== "undefined" &&
         localstorage_reset_string.length >= 2 &&
@@ -8,7 +10,6 @@ function Schnittstelle_LocalstorageInit() {
     )
         Schnittstelle_LocalstorageRein("localstorage_reset", localstorage_reset_string.substring(1, localstorage_reset_string.length - 1));
 
-    let datenschutz_richtlinie_string = Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM);
     if (
         typeof datenschutz_richtlinie_string !== "undefined" &&
         datenschutz_richtlinie_string.length >= 2 &&
@@ -39,19 +40,16 @@ function Schnittstelle_LocalstorageInit() {
     });
 
     // LOCALSTORAGE LEEREN ERZWINGEN
-    if (
-        typeof Schnittstelle_LocalstorageRausZurueck("localstorage_reset") === "undefined" ||
-        Schnittstelle_LocalstorageRausZurueck("localstorage_reset") < DATETIME.fromISO(FORCE_LOCALSTORAGE_RESET_ZEITPUNKT)
-    ) {
+    if (typeof localstorage_reset_string === "undefined" || localstorage_reset_string < DATETIME.fromISO(FORCE_LOCALSTORAGE_RESET_ZEITPUNKT)) {
         localstorage_leeren();
         Schnittstelle_LogInDieKonsole("LocalStorage wurde erzwungenermaßen geleert.");
     }
-}
 
-function localstorage_leeren() {
-    const datenschutz_richtlinie = Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM);
-    localStorage.clear();
-    Schnittstelle_LocalstorageRein("localstorage_reset", DATETIME.now().toISO());
-    if (typeof datenschutz_richtlinie !== "undefined")
-        Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, datenschutz_richtlinie);
+    function localstorage_leeren() {
+        const datenschutz_richtlinie = Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined);
+        localStorage.clear();
+        Schnittstelle_LocalstorageRein("localstorage_reset", DATETIME.now().toISO());
+        if (typeof datenschutz_richtlinie !== "undefined")
+            Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, datenschutz_richtlinie);
+    }
 }

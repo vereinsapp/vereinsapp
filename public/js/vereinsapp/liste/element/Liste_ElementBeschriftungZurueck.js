@@ -1,12 +1,17 @@
 function Liste_ElementBeschriftungZurueck(element_id, liste) {
-    let beschriftung = "";
+    let beschriftung;
 
-    if ("element_beschriftung" in ELEMENTE[LISTEN[liste].element] && ELEMENTE[LISTEN[liste].element].element_beschriftung.length > 0) {
+    if (
+        typeof element_id !== "undefined" &&
+        "element_beschriftung" in ELEMENTE[LISTEN[liste].element] &&
+        ELEMENTE[LISTEN[liste].element].element_beschriftung.length > 0
+    ) {
+        beschriftung = "";
         $.each(ELEMENTE[LISTEN[liste].element].element_beschriftung, function () {
             if ("prefix" in this) beschriftung += this.prefix;
             if ("eigenschaft" in this)
                 beschriftung += Liste_WertFormatiertZurueck(
-                    Schnittstelle_VariableRausZurueck(this.eigenschaft, element_id, liste),
+                    Schnittstelle_VariableRausZurueck(this.eigenschaft, element_id, liste, undefined),
                     this.eigenschaft,
                     liste
                 );

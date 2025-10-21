@@ -1,5 +1,8 @@
 function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_aktion, rein_validation_neg_aktion) {
     const neue_ajax_id = AJAXSCHLANGE.length;
+
+    if (!("ajax_id" in data)) data.ajax_id = neue_ajax_id;
+
     AJAXSCHLANGE[neue_ajax_id] = {
         ajax_id: neue_ajax_id,
         data: data,
@@ -8,13 +11,10 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
         rein_validation_neg_aktion: rein_validation_neg_aktion,
     };
 
-    const data_ajaxQueue = objektKopiertZurueck(data);
-    if (!("ajax_id" in data_ajaxQueue)) data_ajaxQueue.ajax_id = AJAXSCHLANGE[neue_ajax_id].ajax_id;
-
     $.ajaxQueue({
         url: SITE_URL + url,
         method: "post",
-        data: data_ajaxQueue,
+        data: data,
         dataType: "json",
         beforeSend: function () {},
         success: function (antwort) {

@@ -2,7 +2,7 @@ function Liste_SortierenInit() {
     // SORTIEREN IM LOCALSTORAGE SPEICHERN
     $(document).on("change", ".sortieren_localstorage_speichern", function () {
         Liste_SortierenLocalStorageSpeichern(
-            Schnittstelle_VariableWertBereinigtZurueck($(this).val()),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).val(), undefined),
             $(this).attr("data-instanz"),
             $(this).attr("data-liste")
         );

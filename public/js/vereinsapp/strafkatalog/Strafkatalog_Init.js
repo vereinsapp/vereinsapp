@@ -1,6 +1,6 @@
 ELEMENTE.kassenbucheintrag.ergaenzen_aktion = function (kassenbucheintrag) {
-    if (kassenbucheintrag["erledigt"] === null) kassenbucheintrag["erledigt_janein"] = false;
-    else kassenbucheintrag["erledigt_janein"] = true;
+    if (typeof kassenbucheintrag["erledigt"] !== null) kassenbucheintrag["erledigt_janein"] = true;
+    else kassenbucheintrag["erledigt_janein"] = false;
 };
 
 function Strafkatalog_Init() {

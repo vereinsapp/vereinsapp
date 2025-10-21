@@ -1,5 +1,6 @@
 function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id) {
     if (typeof aufgabe_id !== "undefined") aufgabe_id = Number(aufgabe_id);
+    // else aufgabe_id = undefined;
 
     if (formular_oeffnen) {
         const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "aufgabe_basiseigenschaften");
@@ -10,16 +11,17 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
 
         const ajax_dom = dom;
 
-        if ("zugeordnete_liste" in data && (typeof data.zugeordnete_liste === "undefined" || data.zugeordnete_liste == ""))
+        if (typeof data.zugeordnete_liste === "undefined" || ("zugeordnete_liste" in data && data.zugeordnete_liste == ""))
             data.zugeordnete_liste = null;
-        if ("zugeordnete_element_id" in data && typeof data.zugeordnete_element_id === "undefined") data.zugeordnete_element_id = null;
-        if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", aufgabe_id, "aufgaben");
-        if ("mitglied_id" in data && typeof data.mitglied_id === "undefined") data.mitglied_id = null;
-        if ("erledigt" in data && typeof data.erledigt === "undefined") data.erledigt = null;
-        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", aufgabe_id, "aufgaben");
-        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+        if (typeof data.zugeordnete_element_id === "undefined" || ("zugeordnete_element_id" in data && data.zugeordnete_element_id == ""))
+            data.zugeordnete_element_id = null;
+        if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", aufgabe_id, "aufgaben", undefined);
+        if (typeof data.mitglied_id === "undefined") data.mitglied_id = null;
+        if (typeof data.erledigt === "undefined") data.erledigt = null;
+        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", aufgabe_id, "aufgaben", undefined);
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = aufgabe_id;
-        if ("erledigt" in ajax_data && isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();
+        if (isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();
 
         Schnittstelle_AjaxInDieSchlange(
             "aufgaben/ajax_aufgabe_speichern",

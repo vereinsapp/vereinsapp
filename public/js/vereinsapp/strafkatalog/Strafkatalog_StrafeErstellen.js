@@ -9,18 +9,17 @@ function Strafkatalog_StrafeErstellen(formular_oeffnen, dom, data, title, strafe
         if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
-        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
 
         Schnittstelle_AjaxInDieSchlange(
             "strafkatalog/ajax_strafe_speichern",
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                if ("strafe_id" in AJAX.antwort && typeof AJAX.antwort.strafe_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.strafe_id);
-                else AJAX.data.id = Number(LISTEN["strafkatalog"].tabelle.length + 1);
+                if (typeof AJAX.antwort.strafe_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.strafe_id);
+                else AJAX.data.id = LISTEN["strafkatalog"].tabelle.length + 1;
                 const strafe_id = AJAX.data.id;
 
-                LISTEN["strafkatalog"].tabelle[strafe_id] = new Object();
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
                         Schnittstelle_VariableRein(wert, eigenschaft, strafe_id, "strafkatalog");

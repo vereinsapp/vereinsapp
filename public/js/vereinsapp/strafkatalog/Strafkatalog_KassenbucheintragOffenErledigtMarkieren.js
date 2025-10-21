@@ -2,24 +2,25 @@ function Strafkatalog_KassenbucheintragOffenErledigtMarkieren(bestaetigung_einfo
     if (typeof kassenbucheintrag_id !== "undefined") kassenbucheintrag_id = Number(kassenbucheintrag_id);
     else if ("$btn_ausloesend" in dom && typeof dom.$btn_ausloesend.attr("data-element_id") !== "undefined")
         kassenbucheintrag_id = Number(dom.$btn_ausloesend.attr("data-element_id"));
-    let erledigt = Schnittstelle_VariableRausZurueck("erledigt", kassenbucheintrag_id, "kassenbuch");
 
     if (bestaetigung_einfordern) {
-        if (erledigt === null) erledigt = "erledigt";
-        else erledigt = "offen";
+        let erledigt_string;
+        if (Schnittstelle_VariableRausZurueck("erledigt", kassenbucheintrag_id, "kassenbuch", undefined) !== null) erledigt_string = "offen";
+        else erledigt_string = "erledigt";
         Schnittstelle_DomBestaetigungEinfordern(
             "Willst du wirklich den Kassenbucheintrag " +
                 Liste_ElementBeschriftungZurueck(kassenbucheintrag_id, "kassenbuch") +
                 " als " +
-                erledigt +
+                erledigt_string +
                 " markieren?",
             title,
             "btn_kassenbucheintrag_offen_erledigt_markieren",
             { kassenbucheintrag_id: kassenbucheintrag_id }
         );
     } else {
-        if (erledigt === null) erledigt = DATETIME.now();
-        else erledigt = null;
+        let erledigt;
+        if (Schnittstelle_VariableRausZurueck("erledigt", kassenbucheintrag_id, "kassenbuch", null) !== null) erledigt = null;
+        else erledigt = DATETIME.now();
         Strafkatalog_KassenbucheintragAendern(false, dom, { erledigt: erledigt }, title, kassenbucheintrag_id);
     }
 }

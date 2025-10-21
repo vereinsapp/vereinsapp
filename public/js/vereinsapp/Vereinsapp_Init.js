@@ -46,7 +46,7 @@ $(document).ready(function () {
     });
 
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
-    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM) === "undefined")
+    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined) === "undefined")
         Schnittstelle_AjaxInDieSchlange("status/ajax_datenschutz_richtlinie", new Object(), new Object(), function (AJAX) {
             Schnittstelle_DomModalOeffnen(AJAX.antwort.html);
             $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
@@ -61,7 +61,6 @@ $(document).ready(function () {
 FEATURES
 Auswertungen überarbeiten
     Filtern, sortieren und gruppieren bei auswertungen steckt in einem JSON (data-filtern_prio_niedrig kann also nicht im Modal angezeigt oder bearbeitet werden)
-    Auswertung unabhängig machen von Auswertungen (dann muss das Ergebnis aber für jede Auswertung bestimmt werden)
     Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit den Werten?
     Gruppieren von _janein-Eigenschaft wirft einen Fehler
     Gruppieren nach Eigenschaft mit Wert "ohne" (bspw. Auto, Funktion, etc.) zeigt falschen Werte für "ohne" an
@@ -79,6 +78,7 @@ Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 Link zu Github neben die Version
 
 SOFTWARE
+localstorage_reset_string und datenschutz_richtlinie_string entfernen (hinzugefügt im Juni 2025?)
 Funktion zur Erstellung eines Verzeichnisses, inkl. Kopieren von index.html aus dem übergeordneten Verzeichnis
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
 Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel) und weiches Löschen für abhängige Tabellen einführen
@@ -87,15 +87,13 @@ Einzelne Module als Light-Version, einschaltbar über .env oder settings
 IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, Auswertungen, etc.)
 title ändern in beschriftung?
 anwesenheiten_dokumentieren für checkliste verallgemeinern (analog zu Schnittstelle_DomNeuesModalInitialisiertZurueck)
-Schnittstelle_VariableWertBereinigtZurueck erweitern mit einem zweiten Parameter für einen Wert, der zurückgegeben wird im Fall von undefined (um den anschließenden else-Pfad zu vermeiden)
 Zustandsautomat für den Zustand der Vereinsapp einführen
 Select JANEIN als check umbauen
 Wartungsarbeiten per Filter handlen
 .btn in .formular mit ENTER betätigbar machen
-Details loswerden und stattdessen den Singular der Liste verwenden
+Details loswerden und stattdessen den Singular der Liste verwenden
 
 AKUT
-localstorage_reset_string und datenschutz_richtlinie_string in Schnittstelle_LocalstorageInit entfernen
 Bugfix: filtern-Eigenschaft ist leer???
 ics_export: muss sichergestellt sein, dass der Termin mindestens 24 Stunden in der Zukunft liegt?
 Braucht es filtern: New Object() etc. (bspw. in Aufgaben_Init, Liste_Init)???
@@ -107,6 +105,17 @@ _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
 ÜBERSCHRIFT AKTUALISIEREN, WERKZEUG AKTUALISIEREN und LISTENSTATISTIK AKTUALISIEREN nach Liste_Aktualisieren umziehen
 
-Wenn Schnittstelle_VariableWertBereinigtZurueck(xxx) verwendet wird, dann muss kein if (typeof xxx !== "undefined") geprüft werden.
+sortieren_kombiniert einführen (und auch gruppen_kombiniert?)
+wird sortieren mal irgendwann als Array definiert? 
+ajax_id vereinheitlichen
+Liste_ElementIdZurueck loswerden
+Braucht es LISTEN[liste].instanz[instanz].filtern noch oder kann man einfach immer Schnittstelle_LocalstorageRausZurueck verwenden?
+
+kann mitglied_id bei aufgaben undefined sein oder nur null bzw. eine ID?
+kann bemerkung undefined oder nur null bzw. ein String?
+mitgliedausplanen und mitgliedeinplanen in einer Funktion zusammenfassen?
+Schnittstelle_VariableRausZurueck mit Standardrückgabewert umsetzen
+null in text erkennen, bspw. für Schnittstelle_LocalstorageRausZurueck -> Schnittstelle_VariableWertBereinigtZurueck
+Anwesenheiten_dokumentieren aktualisiert sich nicht in der Auswertung bzw. wirft Fehler
 
 */

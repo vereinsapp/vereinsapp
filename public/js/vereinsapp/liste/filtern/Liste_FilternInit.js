@@ -6,7 +6,7 @@ function Liste_FilternInit() {
     // FILTERN IM LOCALSTORAGE SPEICHERN
     $(document).on("change", ".filtern_localstorage_speichern", function () {
         Liste_FilternLocalStorageSpeichern(
-            Schnittstelle_VariableWertBereinigtZurueck($(this).val()),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).val(), undefined),
             $(this).attr("data-instanz"),
             $(this).attr("data-liste")
         );

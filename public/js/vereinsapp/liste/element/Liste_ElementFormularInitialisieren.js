@@ -1,4 +1,6 @@
 function Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste) {
+    if (typeof element_id !== "undefined") Number(element_id);
+
     if (typeof element_id !== "undefined") $formular.find(".beschriftung").text(Liste_ElementBeschriftungZurueck(element_id, liste));
 
     $formular.find(".eingabe").each(function () {
@@ -8,14 +10,15 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
         // Wenn element_id definiert ist und es gerade um einen Button geht
         if ($eingabe.attr("type") == "button") $eingabe.attr("id", zufaelligeZeichenketteZurueck(8));
 
-        let wert = Schnittstelle_VariableRausZurueck(eingabe, element_id, liste);
+        let wert = Schnittstelle_VariableRausZurueck(eingabe, element_id, liste, undefined);
         // Wenn aber nichts definiert ist, dann nimm den Standard-Wert (je nach Typ)
-        if (typeof wert === "undefined")
+        if (typeof wert === "undefined") {
             if ($eingabe.prop("tagName") == "SELECT") wert = $eingabe.find("option:first").val();
             else if ($eingabe.attr("type") == "date") wert = DATETIME.now().plus({ days: 1 });
             else if ($eingabe.attr("type") == "time") wert = DATETIME.now().plus({ minutes: 1 });
             else if ($eingabe.attr("type") == "datetime-local") wert = DATETIME.now().plus({ minutes: 1 });
             else wert = "";
+        }
 
         let wert_formatiert = wert;
         // Wenn aber die Eigenschaft ein Datum ist
@@ -48,8 +51,7 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
         }
 
         $eingabe.val(wert_formatiert);
-        if ("change_aktion" in EIGENSCHAFTEN[liste][eingabe] && typeof EIGENSCHAFTEN[liste][eingabe].change_aktion === "function")
-            EIGENSCHAFTEN[liste][eingabe].change_aktion($eingabe);
+        if (typeof EIGENSCHAFTEN[liste][eingabe].change_aktion === "function") EIGENSCHAFTEN[liste][eingabe].change_aktion($eingabe);
     });
 
     $formular.find("[class*=btn_" + LISTEN[liste].element + "_").each(function () {

@@ -7,17 +7,16 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
             ],
             "rueckmeldungen"
         );
-        if (typeof termin["ich_rueckmeldung_id"] === "undefined") termin["ich_rueckgemeldet_janein"] = false;
-        else termin["ich_rueckgemeldet_janein"] = true;
+        if (typeof termin["ich_rueckmeldung_id"] !== "undefined") termin["ich_rueckgemeldet_janein"] = true;
+        else termin["ich_rueckgemeldet_janein"] = false;
     }
 
     termin["ich_eingeladen_janein"] = false;
-    if ("filtern_mitglieder" in termin) termin["filtern_mitglieder"] = Schnittstelle_VariableWertBereinigtZurueck(termin["filtern_mitglieder"]);
-    else termin["filtern_mitglieder"] = new Object();
-    let termin_kategorie_filtern_mitglieder;
-    if (termin["kategorie"] in TERMINE_KATEGORIE_FILTERN_MITGLIEDER)
-        termin_kategorie_filtern_mitglieder = Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin["kategorie"]]);
-    else termin_kategorie_filtern_mitglieder = new Object();
+    termin["filtern_mitglieder"] = Schnittstelle_VariableWertBereinigtZurueck(termin["filtern_mitglieder"], new Object());
+    const termin_kategorie_filtern_mitglieder = Schnittstelle_VariableWertBereinigtZurueck(
+        TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin["kategorie"]],
+        new Object()
+    );
     $.each(
         Liste_TabelleGefiltertZurueck(
             Liste_FilternMitPrioKombiniertZurueck(termin_kategorie_filtern_mitglieder, termin["filtern_mitglieder"], "mitglieder"),
@@ -86,7 +85,7 @@ ELEMENTE.anwesenheit.zuordnen_aktion = function (anwesenheit) {
 EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
     const $filtern_mitglieder = $kategorie.closest(".formular").find('.eingabe[data-eingabe="filtern_mitglieder"]');
     if ($kategorie.val() in TERMINE_KATEGORIE_FILTERN_MITGLIEDER) {
-        const filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()]);
+        const filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()], new Object());
         const filtern_prio_hoch = new Object();
         $.each(Object.keys(filtern_prio_niedrig), function (position, eigenschaft) {
             if ("termine" in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN.termine.includes(eigenschaft))
@@ -165,9 +164,9 @@ function Termine_Init() {
             false,
             { $btn_ausloesend: $(this) },
             {
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte")).termin_id,
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte")).mitglied_id,
-                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte")).status,
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte"), { termin_id: undefined }).termin_id,
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte"), { mitglied_id: undefined }).mitglied_id,
+                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte"), { status: undefined }).status,
                 bemerkung: "",
             },
             $(this).attr("data-title"),
@@ -181,7 +180,7 @@ function Termine_Init() {
             false,
             { $btn_ausloesend: $(this) },
             {
-                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte")).status,
+                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte"), { status: undefined }).status,
                 bemerkung: "",
             },
             $(this).attr("data-title"),

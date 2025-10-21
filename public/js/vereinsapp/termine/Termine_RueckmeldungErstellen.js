@@ -9,19 +9,17 @@ function Termine_RueckmeldungErstellen(formular_oeffnen, dom, data, title, rueck
         if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
-        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
 
         Schnittstelle_AjaxInDieSchlange(
             "termine/ajax_rueckmeldung_speichern",
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                if ("rueckmeldung_id" in AJAX.antwort && typeof AJAX.antwort.rueckmeldung_id !== "undefined")
-                    AJAX.data.id = Number(AJAX.antwort.rueckmeldung_id);
-                else AJAX.data.id = Number(LISTEN["rueckmeldungen"].tabelle.length + 1);
+                if (typeof AJAX.antwort.rueckmeldung_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.rueckmeldung_id);
+                else AJAX.data.id = LISTEN["rueckmeldungen"].tabelle.length + 1;
                 const rueckmeldung_id = AJAX.data.id;
 
-                LISTEN["rueckmeldungen"].tabelle[rueckmeldung_id] = new Object();
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
                         Schnittstelle_VariableRein(wert, eigenschaft, rueckmeldung_id, "rueckmeldungen");

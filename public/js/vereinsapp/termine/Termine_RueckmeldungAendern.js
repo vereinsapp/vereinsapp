@@ -10,11 +10,12 @@ function Termine_RueckmeldungAendern(formular_oeffnen, dom, data, title, rueckme
 
         const ajax_dom = dom;
 
-        if (!("termin_id" in data)) data.termin_id = Schnittstelle_VariableRausZurueck("termin_id", rueckmeldung_id, "rueckmeldungen");
-        if (!("mitglied_id" in data)) data.mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "rueckmeldungen");
-        if (!("status" in data)) data.status = Schnittstelle_VariableRausZurueck("status", rueckmeldung_id, "rueckmeldungen");
-        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", rueckmeldung_id, "rueckmeldungen");
-        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+        if (!("termin_id" in data)) data.termin_id = Schnittstelle_VariableRausZurueck("termin_id", rueckmeldung_id, "rueckmeldungen", undefined);
+        if (!("mitglied_id" in data))
+            data.mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "rueckmeldungen", undefined);
+        if (!("status" in data)) data.status = Schnittstelle_VariableRausZurueck("status", rueckmeldung_id, "rueckmeldungen", undefined);
+        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", rueckmeldung_id, "rueckmeldungen", undefined);
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = rueckmeldung_id;
 
         Schnittstelle_AjaxInDieSchlange(

@@ -1,6 +1,6 @@
 ELEMENTE.aufgabe.ergaenzen_aktion = function (aufgabe) {
-    if (aufgabe["erledigt"] === null) aufgabe["erledigt_janein"] = false;
-    else aufgabe["erledigt_janein"] = true;
+    if (aufgabe["erledigt"] !== null) aufgabe["erledigt_janein"] = true;
+    else aufgabe["erledigt_janein"] = false;
 
     if (aufgabe["zugeordnete_liste"] !== null && aufgabe["zugeordnete_element_id"] !== null)
         aufgabe["zugeordnetes_element"] = { liste: aufgabe["zugeordnete_liste"], id: aufgabe["zugeordnete_element_id"] };

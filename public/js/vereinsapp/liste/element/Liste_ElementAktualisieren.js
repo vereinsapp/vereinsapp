@@ -3,9 +3,8 @@ function Liste_ElementAktualisieren($element, liste) {
 
     // ELEMENTE DISABLED
     let disabled = false;
-    let disabled_data = $element.attr("data-disabled");
-    if (typeof disabled_data !== "undefined") {
-        disabled_data = Schnittstelle_VariableWertBereinigtZurueck(disabled_data);
+    const disabled_data = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-disabled"), new Object());
+    if (isObject(disabled_data.filtern) && disabled_data.liste in LISTEN) {
         $.each(Liste_TabelleGefiltertZurueck(disabled_data.filtern, LISTEN[disabled_data.liste].tabelle, disabled_data.liste), function () {
             const element = this;
             if ("id" in element && element.id == element_id) {
@@ -32,10 +31,7 @@ function Liste_ElementAktualisieren($element, liste) {
     // ELEMENT BEDINGT FORMATIEREN (ACHTUNG: REIHENFOLGE!)
     const gegen_liste = $element.attr("data-gegen_liste");
     const gegen_element_id = $element.attr("data-gegen_element_id");
-
-    let bedingte_formatierung = $element.attr("data-bedingte_formatierung");
-    if (typeof bedingte_formatierung !== "undefined") bedingte_formatierung = Schnittstelle_VariableWertBereinigtZurueck(bedingte_formatierung);
-    else bedingte_formatierung = new Object();
+    const bedingte_formatierung = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-bedingte_formatierung"), new Object());
 
     if (!("liste" in bedingte_formatierung)) bedingte_formatierung.liste = liste;
 
@@ -67,8 +63,13 @@ function Liste_ElementAktualisieren($element, liste) {
     $element.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
-        const wert = Schnittstelle_VariableRausZurueck(eigenschaft, Number($element.attr("data-element_id")), liste);
-        $eigenschaft.html(Liste_WertFormatiertZurueck(wert, eigenschaft, liste));
+        $eigenschaft.html(
+            Liste_WertFormatiertZurueck(
+                Schnittstelle_VariableRausZurueck(eigenschaft, Number($element.attr("data-element_id")), liste, undefined),
+                eigenschaft,
+                liste
+            )
+        );
     });
 
     // CHECK AKTUALISIEREN

@@ -1,7 +1,6 @@
 function Aufgaben_AufgabeAktualisieren($aufgabe) {
     const aufgabe_id = Number($aufgabe.attr("data-element_id"));
-    const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", aufgabe_id, "aufgaben");
-    const erledigt_janein = Schnittstelle_VariableRausZurueck("erledigt_janein", aufgabe_id, "aufgaben");
+    const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", aufgabe_id, "aufgaben", null);
     const $btn_aufgabe_mitglied_einplanen = $aufgabe.find(".btn_aufgabe_mitglied_einplanen");
     const $btn_aufgabe_mitglied_ausplanen = $aufgabe.find(".btn_aufgabe_mitglied_ausplanen");
     const $btn_aufgabe_erledigen = $aufgabe.find(".btn_aufgabe_offen_erledigt_markieren");
@@ -13,7 +12,7 @@ function Aufgaben_AufgabeAktualisieren($aufgabe) {
     $btn_aufgabe_mitglied_ausplanen.attr("data-aufgabe_id", aufgabe_id);
     $btn_aufgabe_erledigen.attr("data-aufgabe_id", aufgabe_id);
 
-    if (typeof mitglied_id === "undefined" || mitglied_id === null) {
+    if (mitglied_id === null) {
         // Wenn kein Mitglied eingeplant ist
         $btn_aufgabe_mitglied_einplanen
             .addClass("btn-outline-primary")
@@ -30,7 +29,7 @@ function Aufgaben_AufgabeAktualisieren($aufgabe) {
 
         if (Mitglieder_MitgliedBesitztRechtZurueck("aufgaben.verwaltung", ICH["id"]) || mitglied_id == ICH["id"]) {
             // Wenn das Recht zur Verwaltung der Aufgaben erteilt ist oder ich eingeplant bin
-            if (erledigt_janein) {
+            if (Schnittstelle_VariableRausZurueck("erledigt_janein", aufgabe_id, "aufgaben", false)) {
                 // Wenn die Aufgabe erledigt ist
                 $btn_aufgabe_mitglied_einplanen
                     .removeClass("btn-outline-primary")

@@ -12,14 +12,8 @@ function Liste_GruppierenFormularInitialisieren($formular, ziel_id, liste) {
     // Definition von gruppieren_prio_niedrig und gruppieren_prio_hoch
     let gruppieren_prio_niedrig, gruppieren_prio_hoch;
     if (typeof ziel_id !== "undefined") {
-        gruppieren_prio_niedrig = $("#" + ziel_id).attr("data-gruppieren_prio_niedrig");
-        if (typeof gruppieren_prio_niedrig !== "undefined")
-            gruppieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck(gruppieren_prio_niedrig);
-        else gruppieren_prio_niedrig = undefined;
-
-        gruppieren_prio_hoch = $("#" + ziel_id).val();
-        if (gruppieren_prio_hoch != "");
-        else gruppieren_prio_hoch = undefined;
+        gruppieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($("#" + ziel_id).attr("data-gruppieren_prio_niedrig"), undefined);
+        gruppieren_prio_hoch = Schnittstelle_VariableWertBereinigtZurueck($("#" + ziel_id).val(), undefined);
     } else {
         gruppieren_prio_niedrig = undefined;
         gruppieren_prio_hoch = undefined;

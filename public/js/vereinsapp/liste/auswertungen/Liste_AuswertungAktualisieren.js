@@ -1,24 +1,21 @@
 function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
     const beschriftung = $auswertung.attr("data-beschriftung");
+    const status_auswahl = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-status_auswahl"), new Object());
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-liste"), undefined);
+    const element_ids = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-element_ids"), new Array());
+    const auswertung_element_ids = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-auswertung_element_ids"), new Array());
 
-    let status_auswahl = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-status_auswahl"));
-    if (typeof status_auswahl === "undefined") status_auswahl = new Object();
+    const element_ids_nach_status = new Array(new Array());
+    $.each(element_ids, function (position, element_id) {
+        element_ids_nach_status[0].push(element_id);
+    });
 
-    const liste = $auswertung.attr("data-liste");
-    let element_ids = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-element_ids"));
-    if (typeof element_ids === "undefined") element_ids = new Array();
-
-    let auswertung_element_ids = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-auswertung_element_ids"));
-    if (typeof auswertung_element_ids === "undefined") auswertung_element_ids = new Array();
-
-    const element_ids_nach_status = new Array();
-    element_ids_nach_status[0] = arrayKopiertZurueck(element_ids);
     $.each(status_auswahl, function (status, beschriftung) {
         element_ids_nach_status[Number(status)] = new Array();
     });
     $.each(auswertung_element_ids, function (position, auswertung_element_id) {
-        const status = LISTEN[auswertungen].tabelle[auswertung_element_id].status;
-        const element_id = LISTEN[auswertungen].tabelle[auswertung_element_id][LISTEN[liste].element + "_id"];
+        const status = Schnittstelle_VariableRausZurueck("status", auswertung_element_id, auswertungen);
+        const element_id = Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_element_id, auswertungen);
         element_ids_nach_status[status].push(element_id);
         element_ids_nach_status[0] = element_ids_nach_status[0].filter((id) => id != element_id);
     });

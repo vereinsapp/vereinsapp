@@ -1,5 +1,4 @@
-function Schnittstelle_DomToastFeuern(nachricht, farbe) {
-    if (typeof farbe === "undefined") farbe = "success";
+function Schnittstelle_DomToastFeuern(nachricht, farbe = "success") {
     const $toasts = $("#toasts");
 
     const $neuer_toast = TOASTS.$blanko_toast.clone().removeClass("blanko invisible");

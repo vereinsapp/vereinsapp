@@ -13,7 +13,7 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, elemen
         if (typeof dom.$btn_ausloesend !== "undefined" && !dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
-        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = element_id;
         ajax_data.liste = liste;
 

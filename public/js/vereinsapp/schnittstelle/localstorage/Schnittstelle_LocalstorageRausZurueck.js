@@ -1,8 +1,6 @@
-function Schnittstelle_LocalstorageRausZurueck(schluessel) {
-    let LocalstorageRaus = localStorage.getItem("vereinsapp_" + schluessel);
+function Schnittstelle_LocalstorageRausZurueck(schluessel, wert_undefined) {
+    let localstorage_raus = localStorage.getItem("vereinsapp_" + schluessel);
+    if (localstorage_raus === null) localstorage_raus = undefined;
 
-    if (LocalstorageRaus === null) LocalstorageRaus = undefined;
-    else LocalstorageRaus = Schnittstelle_VariableWertBereinigtZurueck(LocalstorageRaus);
-
-    return LocalstorageRaus;
+    return Schnittstelle_VariableWertBereinigtZurueck(localstorage_raus, wert_undefined);
 }

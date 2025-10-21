@@ -2,20 +2,21 @@ function Aufgaben_AufgabeOffenErledigtMarkieren(bestaetigung_einfordern, dom, ti
     if (typeof aufgabe_id !== "undefined") aufgabe_id = Number(aufgabe_id);
     else if ("$btn_ausloesend" in dom && typeof dom.$btn_ausloesend.attr("data-element_id") !== "undefined")
         aufgabe_id = Number(dom.$btn_ausloesend.attr("data-element_id"));
-    let erledigt = Schnittstelle_VariableRausZurueck("erledigt", aufgabe_id, "aufgaben");
 
     if (bestaetigung_einfordern) {
-        if (erledigt === null) erledigt = "erledigt";
-        else erledigt = "offen";
+        let erledigt_string;
+        if (Schnittstelle_VariableRausZurueck("erledigt", aufgabe_id, "aufgaben", null) !== null) erledigt_string = "offen";
+        else erledigt_string = "erledigt";
         Schnittstelle_DomBestaetigungEinfordern(
-            "Willst du wirklich die Aufgabe " + Liste_ElementBeschriftungZurueck(aufgabe_id, "aufgaben") + " als " + erledigt + " markieren?",
+            "Willst du wirklich die Aufgabe " + Liste_ElementBeschriftungZurueck(aufgabe_id, "aufgaben") + " als " + erledigt_string + " markieren?",
             title,
             "btn_aufgabe_offen_erledigt_markieren",
             { aufgabe_id: aufgabe_id }
         );
     } else {
-        if (erledigt === null) erledigt = DATETIME.now();
-        else erledigt = null;
+        let erledigt;
+        if (Schnittstelle_VariableRausZurueck("erledigt", aufgabe_id, "aufgaben", null) !== null) erledigt = null;
+        else erledigt = DATETIME.now();
         Aufgaben_AufgabeAendern(false, dom, { erledigt: erledigt }, title, aufgabe_id);
     }
 }

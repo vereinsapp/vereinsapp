@@ -6,7 +6,7 @@ function Liste_CheckAendern(dom, data) {
     Schnittstelle_CheckWartenStart(dom.$check);
 
     const ajax_dom = dom;
-    const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
+    const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
     ajax_data[LISTEN[data.liste].element + "_id"] = data.element_id;
     ajax_data[LISTEN[data.gegen_liste].element + "_id"] = data.gegen_element_id;
 
@@ -34,9 +34,8 @@ function Liste_CheckAendern(dom, data) {
                     typeof AJAX.antwort[LISTEN[AJAX.data.checkliste].element + "_id"] !== "undefined"
                 )
                     AJAX.data.id = Number(AJAX.antwort[LISTEN[AJAX.data.checkliste].element + "_id"]);
-                else AJAX.data.id = Number(LISTEN[AJAX.data.checkliste].tabelle.length + 1);
+                else AJAX.data.id = LISTEN[AJAX.data.checkliste].tabelle.length + 1;
 
-                LISTEN[AJAX.data.checkliste].tabelle[AJAX.data.id] = new Object();
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (
                         eigenschaft != "ajax_id" &&

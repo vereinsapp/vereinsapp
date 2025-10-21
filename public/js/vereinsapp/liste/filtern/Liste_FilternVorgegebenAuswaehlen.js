@@ -1,5 +1,5 @@
 function Liste_FilternVorgegebenAuswaehlen($vorgegebene_filter_auswahl, ziel_id, vorgegebene_filter_id, liste) {
-    const filtern_vorgegeben = Schnittstelle_VariableWertBereinigtZurueck(VORGEGEBENE_FILTER[liste][vorgegebene_filter_id].filtern);
+    const filtern_vorgegeben = Schnittstelle_VariableWertBereinigtZurueck(VORGEGEBENE_FILTER[liste][vorgegebene_filter_id].filtern, new Object());
 
     // Komplette Neu-Definition von filtern_prio_hoch
     // (Definition von filtern_prio_hoch ist nicht notwendig, weil Modal später sowieso geschlossen wird)

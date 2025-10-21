@@ -9,10 +9,8 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
     switch (zusatzsymbol) {
         // Zusatzsymbol für Geburtstag
         case "geburtstag":
-            if (
-                Schnittstelle_VariableRausZurueck("geburtstag", element_id, liste) <= DATETIME.now() &&
-                DATETIME.now() <= Schnittstelle_VariableRausZurueck("geburtstag", element_id, liste).plus({ days: 1 })
-            )
+            const geburtstag = Schnittstelle_VariableRausZurueck("geburtstag", element_id, liste, undefined);
+            if (typeof geburtstag !== "undefined" && geburtstag <= DATETIME.now() && DATETIME.now() <= geburtstag.plus({ days: 1 }))
                 $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["geburtstag"]["bootstrap"] + ' text-primary"></i>');
             break;
 
@@ -24,8 +22,8 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
         // Zusatzsymbol für offen_erledigt
         case "offen_erledigt":
             let offen_erledigt;
-            if (Schnittstelle_VariableRausZurueck("erledigt", element_id, liste) === null) offen_erledigt = "offen";
-            else offen_erledigt = "erledigt";
+            if (Schnittstelle_VariableRausZurueck("erledigt", element_id, liste, null) !== null) offen_erledigt = "erledigt";
+            else offen_erledigt = "offen";
 
             $zusatzsymbol.html(
                 '<i class="bi bi-' +
@@ -40,7 +38,14 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
 
         // Zusatzsymbol für Kategorie
         case "kategorie":
-            $zusatzsymbol.html(VORGEGEBENE_WERTE[liste]["kategorie"][Schnittstelle_VariableRausZurueck("kategorie", element_id, liste)]["symbol"]);
+            const kategorie = Schnittstelle_VariableRausZurueck("kategorie", element_id, liste, undefined);
+            if (
+                liste in VORGEGEBENE_WERTE &&
+                "kategorie" in VORGEGEBENE_WERTE[liste] &&
+                kategorie in VORGEGEBENE_WERTE[liste]["kategorie"] &&
+                "symbol" in VORGEGEBENE_WERTE[liste]["kategorie"][kategorie]
+            )
+                $zusatzsymbol.html(VORGEGEBENE_WERTE[liste]["kategorie"][kategorie]["symbol"]);
             break;
 
         // Zusatzsymbol für Datei
@@ -114,9 +119,9 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                     "rueckmeldungen"
                 );
                 if (gefilterte_rueckmeldungen.length > 0) bemerkung = gefilterte_rueckmeldungen[gefilterte_rueckmeldungen.length - 1]["bemerkung"];
-            } else bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste);
+            } else bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste, null);
 
-            if (typeof bemerkung !== "undefined" && bemerkung != null && bemerkung != "")
+            if (bemerkung !== null && bemerkung != "")
                 $zusatzsymbol.html(
                     '<i class="bi bi-' +
                         SYMBOLE["bemerkung"]["bootstrap"] +

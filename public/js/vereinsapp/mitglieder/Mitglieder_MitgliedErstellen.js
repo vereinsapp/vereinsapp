@@ -9,19 +9,18 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitgli
         if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
-        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data);
-        if ("geburt" in ajax_data && isLuxonDateTime(ajax_data.geburt)) ajax_data.geburt = ajax_data.geburt.toISO();
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+        if (isLuxonDateTime(ajax_data.geburt)) ajax_data.geburt = ajax_data.geburt.toISO();
 
         Schnittstelle_AjaxInDieSchlange(
             "mitglieder/ajax_mitglied_speichern",
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                if ("mitglied_id" in AJAX.antwort && typeof AJAX.antwort.mitglied_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.mitglied_id);
-                else AJAX.data.id = Number(LISTEN["mitglieder"].tabelle.length + 1);
+                if (typeof AJAX.antwort.mitglied_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.mitglied_id);
+                else AJAX.data.id = LISTEN["mitglieder"].tabelle.length + 1;
                 const mitglied_id = AJAX.data.id;
 
-                LISTEN["mitglieder"].tabelle[mitglied_id] = new Object();
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
                         Schnittstelle_VariableRein(wert, eigenschaft, mitglied_id, "mitglieder");

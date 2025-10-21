@@ -1,10 +1,7 @@
 function Aufgaben_ZugeordneteAufgabenAktualisieren($zugeordnete_aufgaben, zugeordnete_instanz) {
     const $zugeordnete_liste = $("#" + zugeordnete_instanz);
     const zugeordnete_liste = $zugeordnete_liste.attr("data-liste");
-
-    let filtern_data = $zugeordnete_aufgaben.attr("data-filtern");
-    if (typeof filtern_data !== "undefined") filtern_data = Schnittstelle_VariableWertBereinigtZurueck(filtern_data);
-    else filtern_data = new Object();
+    const filtern_data = Schnittstelle_VariableWertBereinigtZurueck($zugeordnete_aufgaben.attr("data-filtern"), new Object());
 
     const zugeordnete_element_ids = new Array();
     $.each($("#" + zugeordnete_instanz).find(".element"), function () {

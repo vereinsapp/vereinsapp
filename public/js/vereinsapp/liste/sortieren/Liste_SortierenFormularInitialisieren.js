@@ -12,14 +12,8 @@ function Liste_SortierenFormularInitialisieren($formular, ziel_id, liste) {
     // Definition von sortieren_prio_niedrig und sortieren_prio_hoch
     let sortieren_prio_niedrig, sortieren_prio_hoch;
     if (typeof ziel_id !== "undefined") {
-        sortieren_prio_niedrig = $("#" + ziel_id).attr("data-sortieren_prio_niedrig");
-        if (typeof sortieren_prio_niedrig !== "undefined")
-            sortieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck(sortieren_prio_niedrig);
-        else sortieren_prio_niedrig = undefined;
-
-        sortieren_prio_hoch = $("#" + ziel_id).val();
-        if (sortieren_prio_hoch != "") sortieren_prio_hoch = Schnittstelle_VariableWertBereinigtZurueck(sortieren_prio_hoch);
-        else sortieren_prio_hoch = undefined;
+        sortieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($("#" + ziel_id).attr("data-sortieren_prio_niedrig"), undefined);
+        sortieren_prio_hoch = Schnittstelle_VariableWertBereinigtZurueck($("#" + ziel_id).val(), undefined);
     } else {
         sortieren_prio_niedrig = undefined;
         sortieren_prio_hoch = undefined;

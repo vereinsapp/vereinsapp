@@ -39,8 +39,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/lib/isString.js?v='.VERSION,
         'js/lib/isJquery.js?v='.VERSION,
         'js/lib/isLuxonDateTime.js?v='.VERSION,
-        'js/lib/objektKopiertZurueck.js?v='.VERSION,
-        'js/lib/arrayKopiertZurueck.js?v='.VERSION,
         'js/lib/JsonStringifiedZurueck.js?v='.VERSION,
         'js/lib/zufaelligeZeichenketteZurueck.js?v='.VERSION,
         'js/lib/exists.js?v='.VERSION,
@@ -88,7 +86,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/gruppieren/Liste_GruppierenEigenschaftZuruecksetzen.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_GruppierenFormularInitialisieren.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_GruppierenLocalStorageSpeichern.js?v='.VERSION,
-        'js/vereinsapp/liste/gruppieren/Liste_ArrayGruppiertZurueck.js?v='.VERSION,
+        // 'js/vereinsapp/liste/gruppieren/Liste_ArrayGruppiertZurueck.js?v='.VERSION,
 
         'js/vereinsapp/liste/auswertungen/Liste_AuswertungenInit.js?v='.VERSION,
         'js/vereinsapp/liste/auswertungen/Liste_AuswertungenAktualisieren.js?v='.VERSION,
@@ -123,8 +121,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/schnittstelle/dom/Schnittstelle_DomToastFeuern.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/dom/Schnittstelle_DomModalOeffnen.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/dom/Schnittstelle_DomNeuesModalInitialisiertZurueck.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/dom/Schnittstelle_DomLetztesModalZurueck.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/dom/Schnittstelle_DomLetztesWartendesModalZurueck.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/dom/Schnittstelle_DomModalSchliessen.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/dom/Schnittstelle_DomBestaetigungEinfordern.js?v='.VERSION,
         
