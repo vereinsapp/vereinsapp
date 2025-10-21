@@ -5,11 +5,11 @@ function Liste_CheckAktualisieren($check, element_id, disabled, liste) {
     let check_element_array;
     if ($element.exists())
         check_element_array = Liste_TabelleGefiltertZurueck(
+            LISTEN[$check.attr("data-checkliste")].tabelle,
             {
                 [LISTEN[liste].element + "_id"]: { inklusiv: [Number(element_id)] },
                 [LISTEN[$element.attr("data-gegen_liste")].element + "_id"]: { inklusiv: [Number($element.attr("data-gegen_element_id"))] },
             },
-            LISTEN[$check.attr("data-checkliste")].tabelle,
             $check.attr("data-checkliste")
         );
     else check_element_array = new Array();

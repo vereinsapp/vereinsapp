@@ -29,7 +29,7 @@ function Liste_FilternAendern($quelle_ziel, ziel_id, liste) {
             });
             break;
         case "vorgegebene_werte":
-            const neuer_filtern_wert = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.find(".filtern_auswahl").val(), new Array());
+            const neuer_filtern_wert = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.find(".filtern_auswahl").val(), undefined);
             if (neuer_filtern_wert.length > 0) {
                 if (!("inklusiv" in filtern_eigenschaft)) filtern_eigenschaft.inklusiv = new Array();
                 if (!filtern_eigenschaft.inklusiv.includes(neuer_filtern_wert)) filtern_eigenschaft.inklusiv.push(neuer_filtern_wert);
@@ -38,20 +38,17 @@ function Liste_FilternAendern($quelle_ziel, ziel_id, liste) {
         case "janein":
             const neuer_filtern_wert_janein = Schnittstelle_VariableWertBereinigtZurueck(
                 $filtern_eigenschaft.find(".filtern_auswahl").val(),
-                new Array()
+                undefined
             );
-            if (neuer_filtern_wert_janein.length > 0) {
+            if (neuer_filtern_wert_janein === 0 || neuer_filtern_wert_janein === 1) {
                 if (!("inklusiv" in filtern_eigenschaft)) filtern_eigenschaft.inklusiv = new Array();
                 if (!filtern_eigenschaft.inklusiv.includes(JANEIN[neuer_filtern_wert_janein].wert))
                     filtern_eigenschaft.inklusiv.push(JANEIN[neuer_filtern_wert_janein].wert);
             }
             break;
         case "element_id":
-            const neuer_filtern_wert_id = Schnittstelle_VariableWertBereinigtZurueck(
-                $filtern_eigenschaft.find(".filtern_auswahl").val(),
-                new Array()
-            );
-            if (neuer_filtern_wert_id.length > 0) {
+            const neuer_filtern_wert_id = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.find(".filtern_auswahl").val(), undefined);
+            if (neuer_filtern_wert_id > 0) {
                 if (!("inklusiv" in filtern_eigenschaft)) filtern_eigenschaft.inklusiv = new Array();
                 if (!filtern_eigenschaft.inklusiv.includes(neuer_filtern_wert_id)) filtern_eigenschaft.inklusiv.push(neuer_filtern_wert_id);
             }

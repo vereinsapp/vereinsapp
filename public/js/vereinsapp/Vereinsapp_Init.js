@@ -101,15 +101,12 @@ Besseres Symbol für _eigenschaft_loeschen und _eigenschaft_loeschen-Button nur 
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt (bspw. für neue Aufgabe)
+Liste_ElementIdZurueck loswerden
+.instanz loswerden (INSTANZ einführen?)
+    Braucht es LISTEN[liste].instanz[instanz].filtern noch oder kann man einfach immer Schnittstelle_LocalstorageRausZurueck verwenden?
 
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
 ÜBERSCHRIFT AKTUALISIEREN, WERKZEUG AKTUALISIEREN und LISTENSTATISTIK AKTUALISIEREN nach Liste_Aktualisieren umziehen
-
-sortieren_kombiniert einführen (und auch gruppen_kombiniert?)
-wird sortieren mal irgendwann als Array definiert? 
-ajax_id vereinheitlichen
-Liste_ElementIdZurueck loswerden
-Braucht es LISTEN[liste].instanz[instanz].filtern noch oder kann man einfach immer Schnittstelle_LocalstorageRausZurueck verwenden?
 
 kann mitglied_id bei aufgaben undefined sein oder nur null bzw. eine ID?
 kann bemerkung undefined oder nur null bzw. ein String?
@@ -117,5 +114,4 @@ mitgliedausplanen und mitgliedeinplanen in einer Funktion zusammenfassen?
 Schnittstelle_VariableRausZurueck mit Standardrückgabewert umsetzen
 null in text erkennen, bspw. für Schnittstelle_LocalstorageRausZurueck -> Schnittstelle_VariableWertBereinigtZurueck
 Anwesenheiten_dokumentieren aktualisiert sich nicht in der Auswertung bzw. wirft Fehler
-
 */

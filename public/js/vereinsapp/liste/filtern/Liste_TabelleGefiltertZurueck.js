@@ -1,4 +1,4 @@
-function Liste_TabelleGefiltertZurueck(filtern, tabelle, liste) {
+function Liste_TabelleGefiltertZurueck(tabelle, filtern, liste) {
     const tabelle_gefiltert = new Array();
     $.each(tabelle, function () {
         const element = this;

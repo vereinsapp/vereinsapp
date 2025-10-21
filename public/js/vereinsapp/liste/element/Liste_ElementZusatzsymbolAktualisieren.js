@@ -112,13 +112,31 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             let bemerkung;
 
             if ($element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').exists()) {
-                const gegen_element_id = Number($element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').attr("data-gegen_element_id"));
                 const gefilterte_rueckmeldungen = Liste_TabelleGefiltertZurueck(
-                    { termin_id: { inklusiv: [gegen_element_id] }, mitglied_id: { inklusiv: [element_id] } },
-                    LISTEN.rueckmeldungen.tabelle,
+                    Schnittstelle_VariableRausZurueck(
+                        "zugeordnete_elemente_nach_liste",
+                        Schnittstelle_VariableWertBereinigtZurueck(
+                            $element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').attr("data-gegen_element_id"),
+                            undefined
+                        ),
+                        Schnittstelle_VariableWertBereinigtZurueck(
+                            $element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').attr("data-gegen_liste"),
+                            undefined
+                        ),
+                        {
+                            rueckmeldungen: new Array(),
+                        }
+                    ).rueckmeldungen,
+                    { mitglied_id: { inklusiv: [element_id] } },
                     "rueckmeldungen"
                 );
-                if (gefilterte_rueckmeldungen.length > 0) bemerkung = gefilterte_rueckmeldungen[gefilterte_rueckmeldungen.length - 1]["bemerkung"];
+                if (gefilterte_rueckmeldungen.length > 0)
+                    bemerkung = Schnittstelle_VariableRausZurueck(
+                        "bemerkung",
+                        gefilterte_rueckmeldungen[gefilterte_rueckmeldungen.length - 1].id,
+                        "rueckmeldungen",
+                        undefined
+                    );
             } else bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste, null);
 
             if (bemerkung !== null && bemerkung != "")

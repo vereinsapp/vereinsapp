@@ -5,18 +5,18 @@ function Liste_Aktualisieren($liste, liste) {
     const filtern_data = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-filtern"), new Object());
     const filtern_LocalStorage = LISTEN[liste].instanz[instanz].filtern;
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
-        Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_LocalStorage, liste),
         LISTEN[liste].tabelle,
+        Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_LocalStorage, liste),
         liste
     );
 
     // TABELLE SORTIEREN
     const sortieren_data = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-sortieren"), undefined);
     const sortieren_LocalStorage = LISTEN[liste].instanz[instanz].sortieren;
-    let sortieren_kombiniert;
-    if (typeof sortieren_LocalStorage !== "undefined") sortieren_kombiniert = sortieren_LocalStorage;
-    else sortieren_kombiniert = sortieren_data;
-    const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(tabelle_gefiltert, sortieren_kombiniert);
+    const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(
+        tabelle_gefiltert,
+        Liste_SortierenMitPrioKombiniertZurueck(sortieren_data, sortieren_LocalStorage, liste)
+    );
 
     // ELEMENTE IM DOM LÖSCHEN
     $liste.find(".element").each(function () {

@@ -16,23 +16,19 @@ function Liste_CheckAendern(dom, data) {
         ajax_dom,
         function (AJAX) {
             // bereits vorhandene identische Einträge in der Checkliste werden gelöscht
-            $.each(LISTEN[AJAX.data.checkliste].tabelle, function () {
-                const checkliste_element = this;
-                if ("id" in checkliste_element) {
-                    if (
-                        checkliste_element[LISTEN[AJAX.data.liste].element + "_id"] == AJAX.data.element_id &&
-                        checkliste_element[LISTEN[AJAX.data.gegen_liste].element + "_id"] == AJAX.data.gegen_element_id
-                    )
-                        Schnittstelle_VariableLoeschen(checkliste_element["id"], AJAX.data.checkliste);
+            $.each(
+                Schnittstelle_VariableRausZurueck("zugeordnete_elemente_nach_liste", AJAX.data.gegen_element_id, AJAX.data.gegen_liste, {
+                    [AJAX.data.checkliste]: new Array(),
+                })[AJAX.data.checkliste],
+                function (position, checkliste_element) {
+                    if (checkliste_element[LISTEN[AJAX.data.liste].element + "_id"] == AJAX.data.element_id)
+                        Schnittstelle_VariableLoeschen(checkliste_element.id, AJAX.data.checkliste);
                 }
-            });
+            );
 
-            // Falls der Haken gesetzt wurde, wird ein neuer Eintrag hinzugefügt
-            if (AJAX.data.status) {
-                if (
-                    LISTEN[AJAX.data.checkliste].element + "_id" in AJAX.antwort &&
-                    typeof AJAX.antwort[LISTEN[AJAX.data.checkliste].element + "_id"] !== "undefined"
-                )
+            // falls der Haken gesetzt wurde, wird ein neuer Eintrag hinzugefügt
+            if (AJAX.data.status > 0) {
+                if (typeof AJAX.antwort[LISTEN[AJAX.data.checkliste].element + "_id"] !== "undefined")
                     AJAX.data.id = Number(AJAX.antwort[LISTEN[AJAX.data.checkliste].element + "_id"]);
                 else AJAX.data.id = LISTEN[AJAX.data.checkliste].tabelle.length + 1;
 

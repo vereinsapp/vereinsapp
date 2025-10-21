@@ -25,10 +25,7 @@ function Liste_GruppierenFormularInitialisieren($formular, ziel_id, liste) {
             .val(JsonStringifiedZurueck(gruppieren_prio_hoch))
             .trigger("change");
 
-    let gruppieren_kombiniert = undefined;
-    if (typeof gruppieren_prio_hoch !== "undefined") gruppieren_kombiniert = gruppieren_prio_hoch;
-    else if (typeof gruppieren_prio_niedrig !== "undefined") gruppieren_kombiniert = gruppieren_prio_niedrig;
-    else gruppieren_kombiniert = undefined;
     // Aktualisieren des $gruppieren_wert
+    const gruppieren_kombiniert = Liste_GruppierenMitPrioKombiniertZurueck(gruppieren_prio_niedrig, gruppieren_prio_hoch, liste);
     if (typeof gruppieren_kombiniert !== "undefined") $gruppieren_wert.val(gruppieren_kombiniert);
 }

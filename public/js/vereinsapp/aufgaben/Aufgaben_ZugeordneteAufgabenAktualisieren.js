@@ -11,12 +11,8 @@ function Aufgaben_ZugeordneteAufgabenAktualisieren($zugeordnete_aufgaben, zugeor
     const filtern_zugeordnete_element_ids = { id: { inklusiv: new Array() } };
     $.each(LISTEN.aufgaben.tabelle, function () {
         const aufgabe = this;
-        if (
-            "id" in aufgabe &&
-            aufgabe.zugeordnete_liste == zugeordnete_liste &&
-            zugeordnete_element_ids.includes(Number(aufgabe.zugeordnete_element_id))
-        )
-            filtern_zugeordnete_element_ids.id.inklusiv.push(Number(aufgabe.id));
+        if ("id" in aufgabe && aufgabe.zugeordnete_liste == zugeordnete_liste && zugeordnete_element_ids.includes(aufgabe.zugeordnete_element_id))
+            filtern_zugeordnete_element_ids.id.inklusiv.push(aufgabe.id);
     });
 
     $zugeordnete_aufgaben.attr(

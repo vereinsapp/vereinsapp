@@ -78,6 +78,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/sortieren/Liste_SortierenEigenschaftZuruecksetzen.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_SortierenFormularInitialisieren.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_SortierenLocalStorageSpeichern.js?v='.VERSION,
+        'js/vereinsapp/liste/sortieren/Liste_SortierenMitPrioKombiniertZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_ArraySortiertZurueck.js?v='.VERSION,
 
         'js/vereinsapp/liste/gruppieren/Liste_GruppierenInit.js?v='.VERSION,
@@ -86,6 +87,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/gruppieren/Liste_GruppierenEigenschaftZuruecksetzen.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_GruppierenFormularInitialisieren.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_GruppierenLocalStorageSpeichern.js?v='.VERSION,
+        'js/vereinsapp/liste/gruppieren/Liste_GruppierenMitPrioKombiniertZurueck.js?v='.VERSION,
         // 'js/vereinsapp/liste/gruppieren/Liste_ArrayGruppiertZurueck.js?v='.VERSION,
 
         'js/vereinsapp/liste/auswertungen/Liste_AuswertungenInit.js?v='.VERSION,

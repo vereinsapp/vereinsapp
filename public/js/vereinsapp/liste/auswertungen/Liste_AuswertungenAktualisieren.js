@@ -9,8 +9,8 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const liste_filtern_data = Schnittstelle_VariableWertBereinigtZurueck(liste_data.filtern, new Object());
     const liste_filtern_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].filtern;
     const liste_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
-        Liste_FilternMitPrioKombiniertZurueck(liste_filtern_data, liste_filtern_LocalStorage, liste),
         LISTEN[liste].tabelle,
+        Liste_FilternMitPrioKombiniertZurueck(liste_filtern_data, liste_filtern_LocalStorage, liste),
         liste
     );
 

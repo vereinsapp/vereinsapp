@@ -7,18 +7,18 @@ function Liste_ElementNavigationAktualisieren($element_navigation, $element, lis
     const filtern_data = Schnittstelle_VariableWertBereinigtZurueck($element_navigation.attr("data-filtern"), new Object());
     const filtern_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_filtern", new Object()); // Problem: LISTEN[liste].instanz[instanz].filtern existiert nicht, weil keine .liste mit dieser instanz existiert
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
-        Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_LocalStorage, liste),
         LISTEN[liste].tabelle,
+        Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_LocalStorage, liste),
         liste
     );
 
     // TABELLE SORTIEREN
     const sortieren_data = Schnittstelle_VariableWertBereinigtZurueck($element_navigation.attr("data-sortieren"), undefined);
     const sortieren_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren", undefined); // Problem: LISTEN[liste].instanz[instanz].sortieren existiert nicht, weil keine .liste mit dieser instanz existiert
-    let sortieren_kombiniert;
-    if (typeof sortieren_LocalStorage !== "undefined") sortieren_kombiniert = sortieren_LocalStorage;
-    else sortieren_kombiniert = sortieren_data;
-    const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(tabelle_gefiltert, sortieren_kombiniert);
+    const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(
+        tabelle_gefiltert,
+        Liste_SortierenMitPrioKombiniertZurueck(sortieren_data, sortieren_LocalStorage, liste)
+    );
 
     let vorherige_element_id = undefined;
     let naechste_element_id = undefined;

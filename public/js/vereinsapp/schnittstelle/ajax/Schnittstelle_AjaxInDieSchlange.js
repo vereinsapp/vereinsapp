@@ -4,7 +4,6 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
     if (!("ajax_id" in data)) data.ajax_id = neue_ajax_id;
 
     AJAXSCHLANGE[neue_ajax_id] = {
-        ajax_id: neue_ajax_id,
         data: data,
         dom: dom,
         rein_validation_pos_aktion: rein_validation_pos_aktion,

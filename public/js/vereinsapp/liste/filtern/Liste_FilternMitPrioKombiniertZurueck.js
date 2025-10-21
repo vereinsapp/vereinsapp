@@ -1,6 +1,18 @@
 function Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_prio_hoch, liste) {
-    if (Object.keys(filtern_prio_niedrig).length === 0 && Object.keys(filtern_prio_hoch).length > 0) filtern_kombiniert = filtern_prio_hoch;
-    else if (Object.keys(filtern_prio_hoch).length === 0 && Object.keys(filtern_prio_niedrig).length > 0) filtern_kombiniert = filtern_prio_niedrig;
+    let filtern_kombiniert;
+
+    if (
+        (typeof filtern_prio_niedrig === "undefined" || Object.keys(filtern_prio_niedrig).length === 0) &&
+        isObject(filtern_prio_hoch) &&
+        Object.keys(filtern_prio_hoch).length > 0
+    )
+        filtern_kombiniert = filtern_prio_hoch;
+    else if (
+        (typeof filtern_prio_hoch === "undefined" || Object.keys(filtern_prio_hoch).length === 0) &&
+        isObject(filtern_prio_niedrig) &&
+        Object.keys(filtern_prio_niedrig).length > 0
+    )
+        filtern_kombiniert = filtern_prio_niedrig;
     else {
         filtern_kombiniert = new Object();
 

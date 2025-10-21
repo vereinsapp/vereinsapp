@@ -5,7 +5,7 @@ function Liste_ElementAktualisieren($element, liste) {
     let disabled = false;
     const disabled_data = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-disabled"), new Object());
     if (isObject(disabled_data.filtern) && disabled_data.liste in LISTEN) {
-        $.each(Liste_TabelleGefiltertZurueck(disabled_data.filtern, LISTEN[disabled_data.liste].tabelle, disabled_data.liste), function () {
+        $.each(Liste_TabelleGefiltertZurueck(LISTEN[disabled_data.liste].tabelle, disabled_data.filtern, disabled_data.liste), function () {
             const element = this;
             if ("id" in element && element.id == element_id) {
                 disabled = true;
@@ -50,8 +50,8 @@ function Liste_ElementAktualisieren($element, liste) {
 
             if (
                 Liste_TabelleGefiltertZurueck(
-                    Liste_FilternMitPrioKombiniertZurueck(filtern, filtern_ergaenzung, bedingte_formatierung.liste),
                     LISTEN[bedingte_formatierung.liste].tabelle,
+                    Liste_FilternMitPrioKombiniertZurueck(filtern, filtern_ergaenzung, bedingte_formatierung.liste),
                     bedingte_formatierung.liste
                 ).length > 0
             )

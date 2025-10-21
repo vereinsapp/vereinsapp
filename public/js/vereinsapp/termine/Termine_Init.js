@@ -19,8 +19,8 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
     );
     $.each(
         Liste_TabelleGefiltertZurueck(
-            Liste_FilternMitPrioKombiniertZurueck(termin_kategorie_filtern_mitglieder, termin["filtern_mitglieder"], "mitglieder"),
             LISTEN.mitglieder.tabelle,
+            Liste_FilternMitPrioKombiniertZurueck(termin_kategorie_filtern_mitglieder, termin["filtern_mitglieder"], "mitglieder"),
             "mitglieder"
         ),
         function () {
