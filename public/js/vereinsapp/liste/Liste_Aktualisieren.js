@@ -26,13 +26,13 @@ function Liste_Aktualisieren($liste, liste) {
         if (!tabelle_gefiltert_sortiert.includes(element)) $element.remove();
     });
 
-    // ELEMENTE IM DOM ERGÄNZEN
+    // ELEMENTE IM DOM ERGÄNZEN UND SORTIEREN
     $.each(tabelle_gefiltert_sortiert, function (position, element) {
         const element_id = element["id"];
         const $element = $liste.find('.element[data-element_id="' + element_id + '"]');
 
-        // Element wird nur hinzugefügt, falls es noch nicht existiert
         if (!$element.exists()) {
+            // Element existiert noch nicht, also wird es an der sortierten Position hinzugefügt
             const $neues_element = LISTEN[liste].instanz[instanz].$blanko_element.clone().removeClass("blanko invisible");
 
             $neues_element.attr("data-liste", liste).attr("data-element_id", element_id);
@@ -44,9 +44,12 @@ function Liste_Aktualisieren($liste, liste) {
             if (typeof $neues_element.attr("data-gegen_element_id") === "undefined" && typeof gegen_element_id !== "undefined")
                 $neues_element.attr("data-gegen_element_id", gegen_element_id);
 
-            // Element wird hinzugefügt (je nachdem, wo es in der Liste positioniert ist)
             if (position === 0) $neues_element.appendTo($liste);
             else $neues_element.insertAfter($liste.find('.element[data-element_id="' + tabelle_gefiltert_sortiert[position - 1]["id"] + '"]'));
+        } else {
+            // Element existiert bereits, also wird es nur einsortiert
+            if (position === 0) $element.appendTo($liste);
+            else $element.insertAfter($liste.find('.element[data-element_id="' + tabelle_gefiltert_sortiert[position - 1]["id"] + '"]'));
         }
     });
 
@@ -57,5 +60,20 @@ function Liste_Aktualisieren($liste, liste) {
 
         if (position === 0) $element.appendTo($liste);
         else $element.insertAfter($liste.find('.element[data-element_id="' + tabelle_gefiltert_sortiert[position - 1]["id"] + '"]'));
+    });
+
+    // ÜBERSCHRIFT AKTUALISIEREN
+    $('.ueberschrift[data-instanz="' + instanz + '"]').each(function () {
+        Liste_UeberschriftAktualisieren($(this), liste);
+    });
+
+    // WERKZEUG AKTUALISIEREN
+    $('.werkzeug[data-instanz="' + instanz + '"]').each(function () {
+        Liste_WerkzeugAktualisieren($(this), liste);
+    });
+
+    // LISTENSTATISTIK AKTUALISIEREN
+    $('.listenstatistik[data-instanz="' + instanz + '"]').each(function () {
+        Liste_ListenstatistikAktualisieren($(this), liste);
     });
 }

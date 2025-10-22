@@ -1,6 +1,6 @@
 function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
+    const verzeichnis_instanz = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-instanz"), $verzeichnis.attr("id"));
     const element_id = Number($verzeichnis.attr("data-element_id"));
-    const instanz = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-instanz"), $verzeichnis.attr("id"));
     const basis = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-basis"), new Array());
 
     if (basis.length > 0)
@@ -37,7 +37,9 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
         // Unterverzeichnis wird nur hinzugefügt, falls es noch nicht existiert
         if (!$unterverzeichnis.exists()) {
             // Blanko-Verzeichnis wird geklont
-            const $neues_unterverzeichnis = LISTEN[liste].verzeichnis[instanz].$blanko_unterverzeichnis.clone().removeClass("blanko invisible");
+            const $neues_unterverzeichnis = LISTEN[liste].verzeichnis[verzeichnis_instanz].$blanko_unterverzeichnis
+                .clone()
+                .removeClass("blanko invisible");
 
             $neues_unterverzeichnis.attr("data-unterverzeichnis", unterverzeichnis);
 
@@ -53,7 +55,7 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
             neue_basis.push(unterverzeichnis);
             $neues_unterverzeichnis
                 .find(".verzeichnis")
-                .attr("data-instanz", instanz)
+                .attr("data-instanz", verzeichnis_instanz)
                 .attr("data-element_id", element_id)
                 .attr("data-basis", JsonStringifiedZurueck(neue_basis));
 
@@ -73,7 +75,7 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
         // Datei wird nur hinzugefügt, falls sie noch nicht existiert
         if (!$datei.exists()) {
             // Blanko-Datei wird geklont
-            const $neue_datei = LISTEN[liste].verzeichnis[instanz].$blanko_datei.clone().removeClass("blanko invisible");
+            const $neue_datei = LISTEN[liste].verzeichnis[verzeichnis_instanz].$blanko_datei.clone().removeClass("blanko invisible");
 
             $neue_datei.attr("data-liste", liste).attr("data-datei", datei);
 
@@ -121,5 +123,20 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
     // UNTERVERZEICHNISSE AKTUALISIEREN
     $verzeichnis.children(".unterverzeichnis").each(function () {
         Liste_VerzeichnisAktualisieren($(this).find(".verzeichnis").first(), liste);
+    });
+
+    // ÜBERSCHRIFT AKTUALISIEREN
+    $('.ueberschrift[data-instanz="' + verzeichnis_instanz + '"]').each(function () {
+        Liste_UeberschriftAktualisieren($(this), liste);
+    });
+
+    // WERKZEUG AKTUALISIEREN
+    $('.werkzeug[data-instanz="' + verzeichnis_instanz + '"]').each(function () {
+        Liste_WerkzeugAktualisieren($(this), liste);
+    });
+
+    // LISTENSTATISTIK AKTUALISIEREN
+    $('.listenstatistik[data-instanz="' + verzeichnis_instanz + '"]').each(function () {
+        Liste_ListenstatistikAktualisieren($(this), liste);
     });
 }

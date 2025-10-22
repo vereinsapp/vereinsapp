@@ -59,12 +59,6 @@ $(document).ready(function () {
 /* TODO
 
 FEATURES
-Auswertungen überarbeiten
-    Filtern, sortieren und gruppieren bei auswertungen steckt in einem JSON (data-filtern_prio_niedrig kann also nicht im Modal angezeigt oder bearbeitet werden)
-    Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit den Werten?
-    Gruppieren von _janein-Eigenschaft wirft einen Fehler
-    Gruppieren nach Eigenschaft mit Wert "ohne" (bspw. Auto, Funktion, etc.) zeigt falschen Werte für "ohne" an
-    Filtern- und Gruppieren-Button batch einführen (Spezial-Bedigungen in Schnittstelle_EventVariableUpdDom wegnehmen)
 Mehrere element_ids und mehrere mitglied_ids pro Aufgabe
 Mitglied einplanen bereits bei der Erstellung einer Aufgabe
 Setlist mit Links zu den Titeln einführen
@@ -84,7 +78,6 @@ Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
 Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel) und weiches Löschen für abhängige Tabellen einführen
 Ausloggen, bevor Einmal-Link benutzt wird
 Einzelne Module als Light-Version, einschaltbar über .env oder settings
-IM DOM ERGÄNZEN und IM DOM SORTIEREN zusammenziehen (für Liste, Verzeichnis, Auswertungen, etc.)
 title ändern in beschriftung?
 anwesenheiten_dokumentieren für checkliste verallgemeinern (analog zu Schnittstelle_DomNeuesModalInitialisiertZurueck)
 Zustandsautomat für den Zustand der Vereinsapp einführen
@@ -104,9 +97,9 @@ _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt
 Liste_ElementIdZurueck loswerden
 .instanz loswerden (INSTANZ einführen?)
     Braucht es LISTEN[liste].instanz[instanz].filtern noch oder kann man einfach immer Schnittstelle_LocalstorageRausZurueck verwenden?
+Aufruf der Termin-Details mit leerem LocalStorage wirft einen Fehler
 
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
-ÜBERSCHRIFT AKTUALISIEREN, WERKZEUG AKTUALISIEREN und LISTENSTATISTIK AKTUALISIEREN nach Liste_Aktualisieren umziehen
 
 kann mitglied_id bei aufgaben undefined sein oder nur null bzw. eine ID?
 kann bemerkung undefined oder nur null bzw. ein String?
@@ -114,4 +107,12 @@ mitgliedausplanen und mitgliedeinplanen in einer Funktion zusammenfassen?
 Schnittstelle_VariableRausZurueck mit Standardrückgabewert umsetzen
 null in text erkennen, bspw. für Schnittstelle_LocalstorageRausZurueck -> Schnittstelle_VariableWertBereinigtZurueck
 Anwesenheiten_dokumentieren aktualisiert sich nicht in der Auswertung bzw. wirft Fehler
+alles, was mittels $() eingelesen wird, muss mittels Schnittstelle_VariabeleWertBereinigtZurueck überprüft werden
+Auswertungen überarbeiten
+    Filtern, sortieren und gruppieren bei auswertungen steckt in einem JSON (data-filtern_prio_niedrig kann also nicht im Modal angezeigt oder bearbeitet werden)
+    Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit den Werten?
+    Gruppieren von _janein-Eigenschaft wirft einen Fehler
+    Gruppieren nach Eigenschaft mit Wert "ohne" (bspw. Auto, Funktion, etc.) zeigt falschen Werte für "ohne" an
+    Filtern- und Gruppieren-Button batch einführen (Spezial-Bedigungen in Schnittstelle_EventVariableUpdDom wegnehmen)
+
 */

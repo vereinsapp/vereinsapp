@@ -1,195 +1,47 @@
 function Schnittstelle_EventVariableUpdDom(liste) {
-    // SPEZIAL VOR LISTE AKTUALISIEREN
-    $.each(EVENT_VARIABLE_UPD_DOM_VOR_LISTE[liste], function () {
-        this();
-    });
+    if (liste in LISTEN) {
+        // SPEZIAL VOR LISTE AKTUALISIEREN
+        $.each(EVENT_VARIABLE_UPD_DOM_VOR_LISTE[liste], function () {
+            this();
+        });
 
-    // LISTE AKTUALISIEREN
-    $('.liste[data-liste="' + liste + '"]').each(function () {
-        Liste_Aktualisieren($(this), liste);
-    });
+        // LISTE AKTUALISIEREN
+        $('.liste[data-liste="' + liste + '"]').each(function () {
+            Liste_Aktualisieren($(this), liste);
+        });
 
-    // ELEMENT AKTUALISIEREN
-    $('.element[data-liste="' + liste + '"]').each(function () {
-        Liste_ElementAktualisieren($(this), liste);
-    });
+        // ELEMENT AKTUALISIEREN
+        $('.element[data-liste="' + liste + '"]').each(function () {
+            Liste_ElementAktualisieren($(this), liste);
+        });
 
-    // ÜBERSCHRIFT AKTUALISIEREN
-    $('.ueberschrift[data-liste="' + liste + '"]').each(function () {
-        const $ueberschrift = $(this);
-        const instanz = $ueberschrift.attr("data-instanz");
-        if ($("#" + instanz + ".liste").children().length === 0) $ueberschrift.addClass("invisible");
-        else $ueberschrift.removeClass("invisible");
-    });
+        // AUSWERTUNGEN AKTUALISIEREN
+        $('.auswertungen[data-auswertungen="' + liste + '"], .auswertungen[data-liste*="' + liste + '"]').each(function () {
+            // , .auswertungen[data-gegen_liste="' + liste + '"]
+            Liste_AuswertungenAktualisieren($(this), $(this).attr("data-auswertungen"));
+        });
 
-    // WERKZEUG AKTUALISIEREN
-    $('.werkzeug[data-liste="' + liste + '"]').each(function () {
-        const $werkzeug = $(this);
-        const instanz = $werkzeug.attr("data-instanz");
-        if ($werkzeug.hasClass("btn_filtern_modal_oeffnen")) {
-            const filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".liste").attr("data-filtern"), new Object());
-            const filtern_prio_hoch = LISTEN[liste].instanz[instanz].filtern;
+        // AUSWERTUNG AKTUALISIEREN
+        $('.auswertung[data-auswertungen="' + liste + '"], .auswertung[data-liste*="' + liste + '"]').each(function () {
+            // , .auswertung[data-gegen_liste="' + liste + '"]
+            Liste_AuswertungAktualisieren($(this), $(this).attr("data-auswertungen"));
+        });
 
-            if (instanz == "rueckmeldungen_termin" /* todo */ || instanz == "anwesenheiten_termin" /* todo */)
-                $werkzeug
-                    .attr(
-                        "data-filtern_prio_niedrig",
-                        JsonStringifiedZurueck(
-                            Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".auswertungen").attr("data-liste"), {
-                                filtern: new Object(),
-                            }).filtern
-                        )
-                    )
-                    .val(JsonStringifiedZurueck(filtern_prio_hoch));
-            else
-                $werkzeug
-                    .attr("data-filtern_prio_niedrig", JsonStringifiedZurueck(filtern_prio_niedrig))
-                    .val(JsonStringifiedZurueck(filtern_prio_hoch));
+        // VERZEICHNIS AKTUALISIEREN
+        $('.verzeichnis[data-liste="' + liste + '"]').each(function () {
+            Liste_VerzeichnisAktualisieren($(this), liste);
+        });
 
-            if (
-                Object.keys(filtern_prio_hoch).length > 0 &&
-                instanz != "rueckmeldungen_termin" /* todo */ &&
-                instanz != "anwesenheiten_termin" /* todo */
-            )
-                $werkzeug
-                    .addClass("position-relative")
-                    .append('<span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-danger border border-danger rounded-circle">');
-            else $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
-        } else if ($werkzeug.hasClass("btn_sortieren_modal_oeffnen")) {
-            const sortieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".liste").attr("data-sortieren"), undefined);
-            const sortieren_prio_hoch = LISTEN[liste].instanz[instanz].sortieren;
+        // DATEI AKTUALISIEREN
+        $('.datei[data-liste="' + liste + '"]').each(function () {
+            Liste_DateiAktualisieren($(this), liste);
+        });
 
-            if (instanz == "rueckmeldungen_termin" /* todo */ || instanz == "anwesenheiten_termin" /* todo */)
-                $werkzeug
-                    .attr(
-                        "data-sortieren_prio_niedrig",
-                        JsonStringifiedZurueck(
-                            Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".auswertungen").attr("data-liste"), {
-                                sortieren: undefined,
-                            }).sortieren
-                        )
-                    )
-                    .val(JsonStringifiedZurueck(sortieren_prio_hoch));
-            else
-                $werkzeug
-                    .attr("data-sortieren_prio_niedrig", JsonStringifiedZurueck(sortieren_prio_niedrig))
-                    .val(JsonStringifiedZurueck(sortieren_prio_hoch));
-
-            if (
-                typeof sortieren_prio_hoch !== "undefined" &&
-                instanz != "rueckmeldungen_termin" /* todo */ &&
-                instanz != "anwesenheiten_termin" /* todo */
-            )
-                $werkzeug
-                    .addClass("position-relative")
-                    .append('<span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-danger border border-danger rounded-circle">');
-            else $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
-        } else if ($werkzeug.hasClass("btn_gruppieren_modal_oeffnen")) {
-            const gruppieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck(
-                $("#" + instanz + ".liste").attr("data-gruppieren"),
-                undefined
-            );
-            const gruppieren_prio_hoch = LISTEN[liste].instanz[instanz].gruppieren;
-
-            if (instanz == "rueckmeldungen_termin" /* todo */ || instanz == "anwesenheiten_termin" /* todo */)
-                $werkzeug
-                    .attr(
-                        "data-gruppieren_prio_niedrig",
-                        JsonStringifiedZurueck(
-                            Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".auswertungen").attr("data-liste"), {
-                                gruppieren: undefined,
-                            }).gruppieren
-                        )
-                    )
-                    .val(JsonStringifiedZurueck(gruppieren_prio_hoch));
-            else
-                $werkzeug
-                    .attr("data-gruppieren_prio_niedrig", JsonStringifiedZurueck(gruppieren_prio_niedrig))
-                    .val(JsonStringifiedZurueck(gruppieren_prio_hoch));
-
-            if (
-                typeof gruppieren_prio_hoch !== "undefined" &&
-                instanz != "rueckmeldungen_termin" /* todo */ &&
-                instanz != "anwesenheiten_termin" /* todo */
-            )
-                $werkzeug
-                    .addClass("position-relative")
-                    .append('<span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-danger border border-danger rounded-circle">');
-            else $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
-        }
-    });
-
-    // LISTENSTATISTIK AKTUALISIEREN
-    $('.listenstatistik[data-liste="' + liste + '"]').each(function () {
-        const $listenstatistik = $(this);
-        const $listenstatistik_sammler = $(this).closest(".listenstatistik_sammler");
-        const instanz = $listenstatistik.attr("data-instanz");
-        const $liste = $("#" + instanz + ".liste");
-
-        if ($liste.children().length === 0) $listenstatistik_sammler.addClass("invisible");
-        else {
-            $listenstatistik_sammler.removeClass("invisible");
-
-            switch ($listenstatistik.attr("data-listenstatistik")) {
-                case "anzahl": {
-                    $listenstatistik.text($liste.children().length);
-                    break;
-                }
-                case "angewaehlt": {
-                    $listenstatistik.text($liste.find(".check:checked").length);
-                    break;
-                }
-                case "summe": {
-                    const eigenschaft = $listenstatistik.attr("data-eigenschaft");
-                    if (typeof eigenschaft !== "undefined" && EIGENSCHAFTEN[liste][eigenschaft].typ == "zahl") {
-                        let summe = 0;
-                        $liste.children().each(function () {
-                            summe += Number(Schnittstelle_VariableRausZurueck(eigenschaft, $(this).attr("data-element_id"), liste, 0));
-                        });
-                        $listenstatistik.text(Liste_WertFormatiertZurueck(summe, eigenschaft, liste));
-                    }
-                    break;
-                }
-                case "durchschnitt": {
-                    const eigenschaft = $listenstatistik.attr("data-eigenschaft");
-                    if (typeof instanz !== "undefined" && typeof eigenschaft !== "undefined" && EIGENSCHAFTEN[liste][eigenschaft].typ == "zahl") {
-                        let summe = 0;
-                        $liste.children().each(function () {
-                            summe += Number(Schnittstelle_VariableRausZurueck(eigenschaft, $(this).attr("data-element_id"), liste, 0));
-                        });
-                        $listenstatistik.text(Liste_WertFormatiertZurueck(summe / $liste.children().length, eigenschaft, liste));
-                    }
-                }
-            }
-        }
-    });
-
-    // AUSWERTUNGEN AKTUALISIEREN
-    $('.auswertungen[data-auswertungen="' + liste + '"], .auswertungen[data-liste*="' + liste + '"]').each(function () {
-        // , .auswertungen[data-gegen_liste="' + liste + '"]
-        Liste_AuswertungenAktualisieren($(this), $(this).attr("data-auswertungen"));
-    });
-
-    // AUSWERTUNG AKTUALISIEREN
-    $('.auswertung[data-auswertungen="' + liste + '"], .auswertung[data-liste*="' + liste + '"]').each(function () {
-        // , .auswertung[data-gegen_liste="' + liste + '"]
-        Liste_AuswertungAktualisieren($(this), $(this).attr("data-auswertungen"));
-    });
-
-    // VERZEICHNIS AKTUALISIEREN
-    $('.verzeichnis[data-liste="' + liste + '"]').each(function () {
-        Liste_VerzeichnisAktualisieren($(this), liste);
-    });
-
-    // DATEI AKTUALISIEREN
-    $('.datei[data-liste="' + liste + '"]').each(function () {
-        Liste_DateiAktualisieren($(this), liste);
-    });
-
-    // SPEZIAL ZUM SCHLUSS AKTUALISIEREN
-    $.each(EVENT_VARIABLE_UPD_DOM_VOR_ENDE[liste], function () {
-        this();
-    });
+        // SPEZIAL ZUM SCHLUSS AKTUALISIEREN
+        $.each(EVENT_VARIABLE_UPD_DOM_VOR_ENDE[liste], function () {
+            this();
+        });
+    }
 
     $(".jetzt").each(function () {
         Schnittstelle_JetztAktualisieren($(this));

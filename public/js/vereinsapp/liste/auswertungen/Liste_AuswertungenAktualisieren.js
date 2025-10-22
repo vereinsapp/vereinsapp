@@ -33,7 +33,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
         if (!(wert in element_ids_nach_wert)) element_ids_nach_wert[wert] = new Array();
         element_ids_nach_wert[wert].push(element_id);
     });
-    gruppieren_werte.sort();
+    const gruppieren_werte_sortiert = gruppieren_werte.sort();
 
     // AUSWERTUNG_ELEMENT_IDS DEFINIEREN
     const auswertung_element_ids_nach_wert = new Object();
@@ -57,13 +57,14 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     $auswertungen.find(".auswertung").each(function () {
         const $auswertung = $(this);
         const wert = $auswertung.attr("data-wert");
-        if (!gruppieren_werte.includes(wert)) $auswertung.remove();
+        if (!gruppieren_werte_sortiert.includes(wert)) $auswertung.remove();
     });
 
     // AUSWERTUNGEN IM DOM ERGÄNZEN
-    $.each(gruppieren_werte, function (position, wert) {
+    $.each(gruppieren_werte_sortiert, function (position, wert) {
         const $auswertung = $auswertungen.find('.auswertung[data-wert="' + wert + '"]');
         if (!$auswertung.exists()) {
+            // Auswertung existiert noch nicht, also wird sie an der sortierten Position hinzugefügt
             const $neue_auswertung = LISTEN[auswertungen].instanz[auswertungen_instanz].$blanko_auswertung.clone().removeClass("blanko invisible");
 
             $neue_auswertung
@@ -81,7 +82,11 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             $neue_auswertung.find(".collapse").attr("id", ziel_id);
 
             if (position === 0) $neue_auswertung.appendTo($auswertungen);
-            else $neue_auswertung.insertAfter($auswertungen.find('.auswertung[data-wert="' + gruppieren_werte[position - 1] + '"]'));
+            else $neue_auswertung.insertAfter($auswertungen.find('.auswertung[data-wert="' + gruppieren_werte_sortiert[position - 1] + '"]'));
+        } else {
+            // Auswertung existiert bereits, also wird sie nur einsortiert
+            if (position === 0) $auswertung.appendTo($auswertungen);
+            else $auswertung.insertAfter($auswertungen.find('.auswertung[data-wert="' + gruppieren_werte_sortiert[position - 1] + '"]'));
         }
     });
 
@@ -94,5 +99,20 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             .attr("data-liste", liste)
             .attr("data-element_ids", JsonStringifiedZurueck(element_ids))
             .attr("data-status_auswahl", $auswertungen.attr("data-status_auswahl"));
+    });
+
+    // ÜBERSCHRIFT AKTUALISIEREN
+    $('.ueberschrift[data-instanz="' + auswertungen_instanz + '"]').each(function () {
+        Liste_UeberschriftAktualisieren($(this), liste);
+    });
+
+    // WERKZEUG AKTUALISIEREN
+    $('.werkzeug[data-instanz="' + auswertungen_instanz + '"]').each(function () {
+        Liste_WerkzeugAktualisieren($(this), liste);
+    });
+
+    // LISTENSTATISTIK AKTUALISIEREN
+    $('.listenstatistik[data-instanz="' + auswertungen_instanz + '"]').each(function () {
+        Liste_ListenstatistikAktualisieren($(this), liste);
     });
 }
