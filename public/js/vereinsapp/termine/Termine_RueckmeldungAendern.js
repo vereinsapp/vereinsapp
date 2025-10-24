@@ -14,7 +14,7 @@ function Termine_RueckmeldungAendern(formular_oeffnen, dom, data, title, rueckme
         if (!("mitglied_id" in data))
             data.mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "rueckmeldungen", undefined);
         if (!("status" in data)) data.status = Schnittstelle_VariableRausZurueck("status", rueckmeldung_id, "rueckmeldungen", undefined);
-        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", rueckmeldung_id, "rueckmeldungen", undefined);
+        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", rueckmeldung_id, "rueckmeldungen", null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = rueckmeldung_id;
 

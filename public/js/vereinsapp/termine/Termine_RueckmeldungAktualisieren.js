@@ -19,7 +19,10 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
     if ($btn_rueckmelden.hasClass("zusagen")) {
         $btn_rueckmelden.attr("data-werte", JsonStringifiedZurueck({ termin_id: termin_id, mitglied_id: mitglied_id, status: 1 }));
 
-        if (typeof rueckmeldung_id !== "undefined" && Schnittstelle_VariableRausZurueck("status", rueckmeldung_id, "rueckmeldungen") == 1) {
+        if (
+            typeof rueckmeldung_id !== "undefined" &&
+            Schnittstelle_VariableRausZurueck("status", rueckmeldung_id, "rueckmeldungen", undefined) == 1
+        ) {
             $btn_rueckmelden
                 .prop("disabled", true)
                 .removeClass("btn_rueckmeldung_aendern")
@@ -62,7 +65,10 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
     } else if ($btn_rueckmelden.hasClass("absagen")) {
         $btn_rueckmelden.attr("data-werte", JsonStringifiedZurueck({ termin_id: termin_id, mitglied_id: mitglied_id, status: 2 }));
 
-        if (typeof rueckmeldung_id !== "undefined" && Schnittstelle_VariableRausZurueck("status", rueckmeldung_id, "rueckmeldungen") == 2) {
+        if (
+            typeof rueckmeldung_id !== "undefined" &&
+            Schnittstelle_VariableRausZurueck("status", rueckmeldung_id, "rueckmeldungen", undefined) == 2
+        ) {
             $btn_rueckmelden
                 .prop("disabled", true)
                 .removeClass("btn_rueckmeldung_aendern")
@@ -106,7 +112,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
         /* FEHLER */
     }
 
-    if (Schnittstelle_VariableRausZurueck("start", termin_id, "termine") < DATETIME.now().plus({ seconds: TERMINE_RUECKMELDUNG_FRIST })) {
+    if (Schnittstelle_VariableRausZurueck("start", termin_id, "termine", undefined) < DATETIME.now().plus({ seconds: TERMINE_RUECKMELDUNG_FRIST })) {
         $btn_rueckmelden.prop("disabled", true);
         $btn_rueckmeldung_detaillieren.prop("disabled", true);
     }

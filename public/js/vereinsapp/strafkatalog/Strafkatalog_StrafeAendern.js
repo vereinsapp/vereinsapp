@@ -13,7 +13,7 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
         if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", strafe_id, "strafkatalog", undefined);
         if (!("wert" in data)) data.wert = Schnittstelle_VariableRausZurueck("wert", strafe_id, "strafkatalog", undefined);
         if (!("kategorie" in data)) data.kategorie = Schnittstelle_VariableRausZurueck("kategorie", strafe_id, "strafkatalog", undefined);
-        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", strafe_id, "strafkatalog", undefined);
+        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", strafe_id, "strafkatalog", null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = strafe_id;
 

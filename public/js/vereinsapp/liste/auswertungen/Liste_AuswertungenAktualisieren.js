@@ -46,7 +46,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             { [auswertungen]: new Array() }
         )[auswertungen],
         function (position, auswertung_element) {
-            const wert = Schnittstelle_VariableRausZurueck(gruppieren, auswertung_element[LISTEN[liste].element + "_id"], liste);
+            const wert = Schnittstelle_VariableRausZurueck(gruppieren, auswertung_element[LISTEN[liste].element + "_id"], liste, undefined);
             if (!(wert in auswertung_element_ids_nach_wert)) auswertung_element_ids_nach_wert[wert] = new Array();
             auswertung_element_ids_nach_wert[wert].push(auswertung_element.id);
             auswertung_element_ids.push(auswertung_element.id);

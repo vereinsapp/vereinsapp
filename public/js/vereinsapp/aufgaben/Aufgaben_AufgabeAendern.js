@@ -18,7 +18,7 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
         if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", aufgabe_id, "aufgaben", undefined);
         if (typeof data.mitglied_id === "undefined") data.mitglied_id = null;
         if (typeof data.erledigt === "undefined") data.erledigt = null;
-        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", aufgabe_id, "aufgaben", undefined);
+        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", aufgabe_id, "aufgaben", null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = aufgabe_id;
         if (isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();

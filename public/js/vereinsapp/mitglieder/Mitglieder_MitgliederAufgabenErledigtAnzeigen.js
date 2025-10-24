@@ -10,7 +10,7 @@ function Mitglieder_MitgliederAufgabenErledigtAnzeigen(dom, title) {
     const filtern_data = Schnittstelle_VariableWertBereinigtZurueck($mitglieder_aufgaben_erledigt.attr("data-filtern"), new Object());
     const filtern_mitglied_ids = { id: { inklusiv: new Array() } };
     $.each(element_ids, function () {
-        const mitglied_id = Number(Schnittstelle_VariableRausZurueck("mitglied_id", this, "aufgaben"));
+        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", this, "aufgaben", undefined);
         if (!filtern_mitglied_ids.id.inklusiv.includes(mitglied_id)) filtern_mitglied_ids.id.inklusiv.push(mitglied_id);
     });
 

@@ -97,16 +97,11 @@ _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt
 Liste_ElementIdZurueck loswerden
 .instanz loswerden (INSTANZ einführen?)
     Braucht es LISTEN[liste].instanz[instanz].filtern noch oder kann man einfach immer Schnittstelle_LocalstorageRausZurueck verwenden?
-Aufruf der Termin-Details mit leerem LocalStorage wirft einen Fehler
-
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
 
 kann mitglied_id bei aufgaben undefined sein oder nur null bzw. eine ID?
 kann bemerkung undefined oder nur null bzw. ein String?
 mitgliedausplanen und mitgliedeinplanen in einer Funktion zusammenfassen?
-Schnittstelle_VariableRausZurueck mit Standardrückgabewert umsetzen
-null in text erkennen, bspw. für Schnittstelle_LocalstorageRausZurueck -> Schnittstelle_VariableWertBereinigtZurueck
-Anwesenheiten_dokumentieren aktualisiert sich nicht in der Auswertung bzw. wirft Fehler
 alles, was mittels $() eingelesen wird, muss mittels Schnittstelle_VariabeleWertBereinigtZurueck überprüft werden
 Auswertungen überarbeiten
     Filtern, sortieren und gruppieren bei auswertungen steckt in einem JSON (data-filtern_prio_niedrig kann also nicht im Modal angezeigt oder bearbeitet werden)
@@ -114,5 +109,7 @@ Auswertungen überarbeiten
     Gruppieren von _janein-Eigenschaft wirft einen Fehler
     Gruppieren nach Eigenschaft mit Wert "ohne" (bspw. Auto, Funktion, etc.) zeigt falschen Werte für "ohne" an
     Filtern- und Gruppieren-Button batch einführen (Spezial-Bedigungen in Schnittstelle_EventVariableUpdDom wegnehmen)
+Anwesenheiten_dokumentieren aktualisiert sich nicht in der Auswertung bzw. wirft Fehler
+Aufruf der Termin-Details mit leerem LocalStorage wirft einen Fehler
 
 */

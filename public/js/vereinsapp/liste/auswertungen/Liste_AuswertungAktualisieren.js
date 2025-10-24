@@ -14,8 +14,8 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
         element_ids_nach_status[Number(status)] = new Array();
     });
     $.each(auswertung_element_ids, function (position, auswertung_element_id) {
-        const status = Schnittstelle_VariableRausZurueck("status", auswertung_element_id, auswertungen);
-        const element_id = Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_element_id, auswertungen);
+        const status = Schnittstelle_VariableRausZurueck("status", auswertung_element_id, auswertungen, undefined);
+        const element_id = Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_element_id, auswertungen, undefined);
         element_ids_nach_status[status].push(element_id);
         element_ids_nach_status[0] = element_ids_nach_status[0].filter((id) => id != element_id);
     });

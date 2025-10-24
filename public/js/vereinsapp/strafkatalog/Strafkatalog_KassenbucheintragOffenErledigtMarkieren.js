@@ -5,7 +5,7 @@ function Strafkatalog_KassenbucheintragOffenErledigtMarkieren(bestaetigung_einfo
 
     if (bestaetigung_einfordern) {
         let erledigt_string;
-        if (Schnittstelle_VariableRausZurueck("erledigt", kassenbucheintrag_id, "kassenbuch", undefined) !== null) erledigt_string = "offen";
+        if (Schnittstelle_VariableRausZurueck("erledigt", kassenbucheintrag_id, "kassenbuch", null) !== null) erledigt_string = "offen";
         else erledigt_string = "erledigt";
         Schnittstelle_DomBestaetigungEinfordern(
             "Willst du wirklich den Kassenbucheintrag " +

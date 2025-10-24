@@ -15,7 +15,7 @@ function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, dom, data, titl
         if (!("mitglied_id" in data))
             data.mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", kassenbucheintrag_id, "kassenbuch", undefined);
         if (typeof data.erledigt === "undefined") data.erledigt = null;
-        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", kassenbucheintrag_id, "kassenbuch", undefined);
+        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", kassenbucheintrag_id, "kassenbuch", null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = kassenbucheintrag_id;
         if (isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();

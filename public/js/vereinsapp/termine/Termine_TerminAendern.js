@@ -19,7 +19,7 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
             data.filtern_mitglieder = Schnittstelle_VariableRausZurueck("filtern_mitglieder", termin_id, "termine", undefined);
         if (!("oeffentlich_janein" in data))
             data.oeffentlich_janein = Number(Schnittstelle_VariableRausZurueck("oeffentlich_janein", termin_id, "termine", undefined));
-        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", termin_id, "termine", undefined);
+        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", termin_id, "termine", null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = termin_id;
         if (isLuxonDateTime(ajax_data.start)) ajax_data.start = ajax_data.start.toISO();
