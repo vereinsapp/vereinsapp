@@ -112,9 +112,10 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             let bemerkung;
 
             if ($element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').exists()) {
-                const gefilterte_rueckmeldungen = Liste_TabelleGefiltertZurueck(
+                const gefilterte_rueckmeldung_ids = new Array();
+                $.each(
                     Schnittstelle_VariableRausZurueck(
-                        "zugeordnete_elemente_nach_liste",
+                        "zugeordnete_element_ids_nach_liste",
                         Schnittstelle_VariableWertBereinigtZurueck(
                             $element.parents('.auswertungen[data-auswertungen="rueckmeldungen"]').attr("data-gegen_element_id"),
                             undefined
@@ -127,13 +128,15 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                             rueckmeldungen: new Array(),
                         }
                     ).rueckmeldungen,
-                    { mitglied_id: { inklusiv: [element_id] } },
-                    "rueckmeldungen"
+                    function (position, rueckmeldung_id) {
+                        if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "rueckmeldungen", undefined) === element_id)
+                            gefilterte_rueckmeldung_ids.push(rueckmeldung_id);
+                    }
                 );
-                if (gefilterte_rueckmeldungen.length > 0)
+                if (gefilterte_rueckmeldung_ids.length > 0)
                     bemerkung = Schnittstelle_VariableRausZurueck(
                         "bemerkung",
-                        gefilterte_rueckmeldungen[gefilterte_rueckmeldungen.length - 1].id,
+                        gefilterte_rueckmeldung_ids[gefilterte_rueckmeldung_ids.length - 1],
                         "rueckmeldungen",
                         undefined
                     );

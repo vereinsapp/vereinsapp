@@ -4,7 +4,7 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste) {
     $.each(LISTEN[liste].tabelle, function () {
         const element = this;
         if ("id" in element) {
-            delete element.zugeordnete_elemente_nach_liste;
+            delete element.zugeordnete_element_ids_nach_liste;
             tabelle_LocalStorage.push(element);
         }
     });

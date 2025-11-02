@@ -17,12 +17,19 @@ function Liste_CheckAendern(dom, data) {
         function (AJAX) {
             // bereits vorhandene identische Einträge in der Checkliste werden gelöscht
             $.each(
-                Schnittstelle_VariableRausZurueck("zugeordnete_elemente_nach_liste", AJAX.data.gegen_element_id, AJAX.data.gegen_liste, {
+                Schnittstelle_VariableRausZurueck("zugeordnete_element_ids_nach_liste", AJAX.data.gegen_element_id, AJAX.data.gegen_liste, {
                     [AJAX.data.checkliste]: new Array(),
                 })[AJAX.data.checkliste],
-                function (position, checkliste_element) {
-                    if (checkliste_element[LISTEN[AJAX.data.liste].element + "_id"] == AJAX.data.element_id)
-                        Schnittstelle_VariableLoeschen(checkliste_element.id, AJAX.data.checkliste);
+                function (position, checkliste_element_id) {
+                    if (
+                        Schnittstelle_VariableRausZurueck(
+                            LISTEN[AJAX.data.liste].element + "_id",
+                            checkliste_element_id,
+                            AJAX.data.checkliste,
+                            undefined
+                        ) === AJAX.data.element_id
+                    )
+                        Schnittstelle_VariableLoeschen(checkliste_element_id, AJAX.data.checkliste);
                 }
             );
 

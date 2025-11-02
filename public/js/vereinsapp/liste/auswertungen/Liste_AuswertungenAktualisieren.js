@@ -40,16 +40,21 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const auswertung_element_ids = new Array();
     $.each(
         Schnittstelle_VariableRausZurueck(
-            "zugeordnete_elemente_nach_liste",
+            "zugeordnete_element_ids_nach_liste",
             $auswertungen.attr("data-gegen_element_id"),
             $auswertungen.attr("data-gegen_liste"),
             { [auswertungen]: new Array() }
         )[auswertungen],
-        function (position, auswertung_element) {
-            const wert = Schnittstelle_VariableRausZurueck(gruppieren, auswertung_element[LISTEN[liste].element + "_id"], liste, undefined);
+        function (position, auswertung_element_id) {
+            const wert = Schnittstelle_VariableRausZurueck(
+                gruppieren,
+                Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_element_id, auswertungen, undefined),
+                liste,
+                undefined
+            );
             if (!(wert in auswertung_element_ids_nach_wert)) auswertung_element_ids_nach_wert[wert] = new Array();
-            auswertung_element_ids_nach_wert[wert].push(auswertung_element.id);
-            auswertung_element_ids.push(auswertung_element.id);
+            auswertung_element_ids_nach_wert[wert].push(auswertung_element_id);
+            auswertung_element_ids.push(auswertung_element_id);
         }
     );
 
@@ -85,6 +90,15 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             else $neue_auswertung.insertAfter($auswertungen.find('.auswertung[data-wert="' + gruppieren_werte_sortiert[position - 1] + '"]'));
         } else {
             // Auswertung existiert bereits, also wird sie nur einsortiert
+            $auswertung
+                .attr("data-auswertungen", auswertungen)
+                .attr("data-auswertung_element_ids", JsonStringifiedZurueck(auswertung_element_ids_nach_wert[wert]))
+                // .attr("data-wert", wert)
+                .attr("data-liste", liste)
+                .attr("data-element_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert]))
+                .attr("data-status_auswahl", $auswertungen.attr("data-status_auswahl"))
+                .attr("data-beschriftung", Liste_WertFormatiertZurueck(wert, gruppieren, liste));
+
             if (position === 0) $auswertung.appendTo($auswertungen);
             else $auswertung.insertAfter($auswertungen.find('.auswertung[data-wert="' + gruppieren_werte_sortiert[position - 1] + '"]'));
         }

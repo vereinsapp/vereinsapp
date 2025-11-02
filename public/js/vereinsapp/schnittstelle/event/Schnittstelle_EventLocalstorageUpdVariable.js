@@ -2,7 +2,6 @@ function Schnittstelle_EventLocalstorageUpdVariable(liste) {
     LISTEN[liste].tabelle = new Array();
     $.each(Schnittstelle_LocalstorageRausZurueck(liste + "_tabelle", new Array()), function () {
         const element = this;
-        element.zugeordnete_elemente_nach_liste = new Object();
         LISTEN[liste].tabelle[element.id] = element;
     });
 

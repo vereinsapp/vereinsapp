@@ -16,15 +16,23 @@ ELEMENTE.mitglied.ergaenzen_aktion = function (mitglied) {
 };
 
 ELEMENTE.vergebenes_recht.zuordnen_aktion = function (vergebenes_recht) {
+    const vergebenes_recht_id = vergebenes_recht.id;
+
     if ("mitglieder" in LISTEN) {
-        const mitglied = LISTEN.mitglieder.tabelle[Number(vergebenes_recht.mitglied_id)];
+        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", vergebenes_recht_id, "vergebene_rechte", undefined);
 
-        if (typeof mitglied !== "undefined") {
-            if (!("zugeordnete_elemente_nach_liste" in mitglied)) mitglied.zugeordnete_elemente_nach_liste = new Object();
-            const zugeordnete_elemente_nach_liste = mitglied.zugeordnete_elemente_nach_liste;
+        if (typeof mitglied_id !== "undefined") {
+            const mitglied = LISTEN.mitglieder.tabelle[mitglied_id];
 
-            if (!("vergebene_rechte" in zugeordnete_elemente_nach_liste)) zugeordnete_elemente_nach_liste.vergebene_rechte = new Array();
-            zugeordnete_elemente_nach_liste.vergebene_rechte.push(vergebenes_recht);
+            if (typeof mitglied !== "undefined") {
+                if (!("zugeordnete_element_ids_nach_liste" in mitglied)) mitglied.zugeordnete_element_ids_nach_liste = new Object();
+                const zugeordnete_element_ids_nach_liste = mitglied.zugeordnete_element_ids_nach_liste;
+
+                if (!("vergebene_rechte" in zugeordnete_element_ids_nach_liste)) zugeordnete_element_ids_nach_liste.vergebene_rechte = new Array();
+                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.vergebene_rechte;
+                if (!zugeordnete_element_ids.includes(vergebenes_recht_id))
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.vergebene_rechte.push(vergebenes_recht_id);
+            }
         }
     }
 };

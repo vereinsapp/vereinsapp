@@ -31,53 +31,81 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
 };
 
 ELEMENTE.rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
+    const rueckmeldung_id = rueckmeldung.id;
+
     if ("termine" in LISTEN) {
-        const termin = LISTEN.termine.tabelle[Number(rueckmeldung.termin_id)];
+        const termin_id = Schnittstelle_VariableRausZurueck("termin_id", rueckmeldung_id, "rueckmeldungen", undefined);
 
-        if (typeof termin !== "undefined") {
-            if (!("zugeordnete_elemente_nach_liste" in termin)) termin.zugeordnete_elemente_nach_liste = new Object();
-            const zugeordnete_elemente_nach_liste = termin.zugeordnete_elemente_nach_liste;
+        if (typeof termin_id !== "undefined") {
+            const termin = LISTEN.termine.tabelle[termin_id];
 
-            if (!("rueckmeldungen" in zugeordnete_elemente_nach_liste)) zugeordnete_elemente_nach_liste.rueckmeldungen = new Array();
-            zugeordnete_elemente_nach_liste.rueckmeldungen.push(rueckmeldung);
+            if (typeof termin !== "undefined") {
+                if (!("zugeordnete_element_ids_nach_liste" in termin)) termin.zugeordnete_element_ids_nach_liste = new Object();
+                const zugeordnete_element_ids_nach_liste = termin.zugeordnete_element_ids_nach_liste;
+
+                if (!("rueckmeldungen" in zugeordnete_element_ids_nach_liste)) zugeordnete_element_ids_nach_liste.rueckmeldungen = new Array();
+                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.rueckmeldungen;
+                if (!zugeordnete_element_ids.includes(rueckmeldung_id))
+                    LISTEN.termine.tabelle[termin_id].zugeordnete_element_ids_nach_liste.rueckmeldungen.push(rueckmeldung_id);
+            }
         }
     }
 
     if ("mitglieder" in LISTEN) {
-        const mitglied = LISTEN.mitglieder.tabelle[Number(rueckmeldung.mitglied_id)];
+        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "rueckmeldungen", undefined);
 
-        if (typeof mitglied !== "undefined") {
-            if (!("zugeordnete_elemente_nach_liste" in mitglied)) mitglied.zugeordnete_elemente_nach_liste = new Object();
-            const zugeordnete_elemente_nach_liste = mitglied.zugeordnete_elemente_nach_liste;
+        if (typeof mitglied_id !== "undefined") {
+            const mitglied = LISTEN.mitglieder.tabelle[mitglied_id];
 
-            if (!("rueckmeldungen" in zugeordnete_elemente_nach_liste)) zugeordnete_elemente_nach_liste.rueckmeldungen = new Array();
-            zugeordnete_elemente_nach_liste.rueckmeldungen.push(rueckmeldung);
+            if (typeof mitglied !== "undefined") {
+                if (!("zugeordnete_element_ids_nach_liste" in mitglied)) mitglied.zugeordnete_element_ids_nach_liste = new Object();
+                const zugeordnete_element_ids_nach_liste = mitglied.zugeordnete_element_ids_nach_liste;
+
+                if (!("rueckmeldungen" in zugeordnete_element_ids_nach_liste)) zugeordnete_element_ids_nach_liste.rueckmeldungen = new Array();
+                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.rueckmeldungen;
+                if (!zugeordnete_element_ids.includes(rueckmeldung_id))
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.rueckmeldungen.push(rueckmeldung_id);
+            }
         }
     }
 };
 
 ELEMENTE.anwesenheit.zuordnen_aktion = function (anwesenheit) {
+    const anwesenheit_id = anwesenheit.id;
+
     if ("termine" in LISTEN) {
-        const termin = LISTEN.termine.tabelle[Number(anwesenheit.termin_id)];
+        const termin_id = Schnittstelle_VariableRausZurueck("termin_id", anwesenheit_id, "anwesenheiten", undefined);
 
-        if (typeof termin !== "undefined") {
-            if (!("zugeordnete_elemente_nach_liste" in termin)) termin.zugeordnete_elemente_nach_liste = new Object();
-            const zugeordnete_elemente_nach_liste = termin.zugeordnete_elemente_nach_liste;
+        if (typeof termin_id !== "undefined") {
+            const termin = LISTEN.termine.tabelle[termin_id];
 
-            if (!("anwesenheiten" in zugeordnete_elemente_nach_liste)) zugeordnete_elemente_nach_liste.anwesenheiten = new Array();
-            zugeordnete_elemente_nach_liste.anwesenheiten.push(anwesenheit);
+            if (typeof termin !== "undefined") {
+                if (!("zugeordnete_element_ids_nach_liste" in termin)) termin.zugeordnete_element_ids_nach_liste = new Object();
+                const zugeordnete_element_ids_nach_liste = termin.zugeordnete_element_ids_nach_liste;
+
+                if (!("anwesenheiten" in zugeordnete_element_ids_nach_liste)) zugeordnete_element_ids_nach_liste.anwesenheiten = new Array();
+                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.anwesenheiten;
+                if (!zugeordnete_element_ids.includes(anwesenheit_id))
+                    LISTEN.termine.tabelle[termin_id].zugeordnete_element_ids_nach_liste.anwesenheiten.push(anwesenheit_id);
+            }
         }
     }
 
     if ("mitglieder" in LISTEN) {
-        const mitglied = LISTEN.mitglieder.tabelle[Number(anwesenheit.mitglied_id)];
+        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", anwesenheit_id, "anwesenheiten", undefined);
 
-        if (typeof mitglied !== "undefined") {
-            if (!("zugeordnete_elemente_nach_liste" in mitglied)) mitglied.zugeordnete_elemente_nach_liste = new Object();
-            const zugeordnete_elemente_nach_liste = mitglied.zugeordnete_elemente_nach_liste;
+        if (typeof mitglied_id !== "undefined") {
+            const mitglied = LISTEN.mitglieder.tabelle[mitglied_id];
 
-            if (!("anwesenheiten" in zugeordnete_elemente_nach_liste)) zugeordnete_elemente_nach_liste.anwesenheiten = new Array();
-            zugeordnete_elemente_nach_liste.anwesenheiten.push(anwesenheit);
+            if (typeof mitglied !== "undefined") {
+                if (!("zugeordnete_element_ids_nach_liste" in mitglied)) mitglied.zugeordnete_element_ids_nach_liste = new Object();
+                const zugeordnete_element_ids_nach_liste = mitglied.zugeordnete_element_ids_nach_liste;
+
+                if (!("anwesenheiten" in zugeordnete_element_ids_nach_liste)) zugeordnete_element_ids_nach_liste.anwesenheiten = new Array();
+                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.anwesenheiten;
+                if (!zugeordnete_element_ids.includes(anwesenheit_id))
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.anwesenheiten.push(anwesenheit_id);
+            }
         }
     }
 };

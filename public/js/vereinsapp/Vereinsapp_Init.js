@@ -109,7 +109,6 @@ Auswertungen überarbeiten
     Gruppieren von _janein-Eigenschaft wirft einen Fehler
     Gruppieren nach Eigenschaft mit Wert "ohne" (bspw. Auto, Funktion, etc.) zeigt falschen Werte für "ohne" an
     Filtern- und Gruppieren-Button batch einführen (Spezial-Bedigungen in Schnittstelle_EventVariableUpdDom wegnehmen)
-Anwesenheiten_dokumentieren aktualisiert sich nicht in der Auswertung bzw. wirft Fehler
 Aufruf der Termin-Details mit leerem LocalStorage wirft einen Fehler
 
 */
