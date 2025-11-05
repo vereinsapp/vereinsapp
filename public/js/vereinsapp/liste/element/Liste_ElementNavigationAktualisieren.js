@@ -30,10 +30,10 @@ function Liste_ElementNavigationAktualisieren($element_navigation, $element, lis
     });
 
     if (typeof vorherige_element_id !== "undefined")
-        $vorheriges_element.removeClass("invisible").attr("href", SITE_URL + liste + "/details/" + vorherige_element_id);
+        $vorheriges_element.removeClass("invisible").attr("href", SITE_URL + AKTIVER_CONTROLLER + "/" + vorherige_element_id);
     else $vorheriges_element.addClass("invisible").removeAttr("href");
 
     if (typeof naechste_element_id !== "undefined")
-        $naechstes_element.removeClass("invisible").attr("href", SITE_URL + liste + "/details/" + naechste_element_id);
+        $naechstes_element.removeClass("invisible").attr("href", SITE_URL + AKTIVER_CONTROLLER + "/" + naechste_element_id);
     else $naechstes_element.addClass("invisible").removeAttr("href");
 }

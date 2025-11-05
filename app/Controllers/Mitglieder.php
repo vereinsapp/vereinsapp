@@ -137,7 +137,7 @@ class Mitglieder extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function details( $mitglied_id ) {
+    public function mitglied( $mitglied_id ) {
       if( empty( model(Mitglied_Model::class)->find( $mitglied_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 
         $this->viewdata['element_id'] = $mitglied_id;

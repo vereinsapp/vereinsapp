@@ -84,7 +84,6 @@ Zustandsautomat für den Zustand der Vereinsapp einführen
 Select JANEIN als check umbauen
 Wartungsarbeiten per Filter handlen
 .btn in .formular mit ENTER betätigbar machen
-Details loswerden und stattdessen den Singular der Liste verwenden
 
 AKUT
 Bugfix: filtern-Eigenschaft ist leer???
