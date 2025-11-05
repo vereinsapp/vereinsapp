@@ -22,7 +22,7 @@ function Liste_SortierenFormularInitialisieren($formular, ziel_id, liste) {
     // Überschreiben des value mit geänderten gruppieren_prio_hoch
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
-            .val(JsonStringifiedZurueck(sortieren_prio_hoch))
+            .val(JsonStringifiedZurueck(sortieren_prio_hoch, undefined))
             .trigger("change");
 
     // Aktualisieren des $sortieren_wert

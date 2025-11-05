@@ -121,8 +121,8 @@ EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
         });
 
         $filtern_mitglieder
-            .attr("data-filtern_prio_niedrig", JsonStringifiedZurueck(filtern_prio_niedrig))
-            .val(JsonStringifiedZurueck(filtern_prio_hoch));
+            .attr("data-filtern_prio_niedrig", JsonStringifiedZurueck(filtern_prio_niedrig, new Object()))
+            .val(JsonStringifiedZurueck(filtern_prio_hoch, new Object()));
     } else $filtern_mitglieder.removeAttr("data-filtern_prio_niedrig").val("");
 };
 

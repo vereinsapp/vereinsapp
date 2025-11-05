@@ -17,7 +17,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
     );
 
     if ($btn_rueckmelden.hasClass("zusagen")) {
-        $btn_rueckmelden.attr("data-werte", JsonStringifiedZurueck({ termin_id: termin_id, mitglied_id: mitglied_id, status: 1 }));
+        $btn_rueckmelden.attr("data-werte", JsonStringifiedZurueck({ termin_id: termin_id, mitglied_id: mitglied_id, status: 1 }, new Object()));
 
         if (
             typeof rueckmeldung_id !== "undefined" &&
@@ -63,7 +63,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
             $btn_rueckmeldung_detaillieren.addClass("invisible").removeClass("btn-success").addClass("btn-outline-success");
         }
     } else if ($btn_rueckmelden.hasClass("absagen")) {
-        $btn_rueckmelden.attr("data-werte", JsonStringifiedZurueck({ termin_id: termin_id, mitglied_id: mitglied_id, status: 2 }));
+        $btn_rueckmelden.attr("data-werte", JsonStringifiedZurueck({ termin_id: termin_id, mitglied_id: mitglied_id, status: 2 }, new Object()));
 
         if (
             typeof rueckmeldung_id !== "undefined" &&

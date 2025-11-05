@@ -101,7 +101,7 @@ leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewä
 kann mitglied_id bei aufgaben undefined sein oder nur null bzw. eine ID?
 kann bemerkung undefined oder nur null bzw. ein String?
 mitgliedausplanen und mitgliedeinplanen in einer Funktion zusammenfassen?
-alles, was mittels $() eingelesen wird, muss mittels Schnittstelle_VariabeleWertBereinigtZurueck überprüft werden
+alles, was mittels $() eingelesen wird, muss mittels Schnittstelle_VariableWertBereinigtZurueck überprüft werden
 Auswertungen überarbeiten
     Filtern, sortieren und gruppieren bei auswertungen steckt in einem JSON (data-filtern_prio_niedrig kann also nicht im Modal angezeigt oder bearbeitet werden)
     Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit den Werten?

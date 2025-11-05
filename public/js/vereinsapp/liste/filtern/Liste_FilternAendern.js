@@ -58,7 +58,7 @@ function Liste_FilternAendern($quelle_ziel, ziel_id, liste) {
     // Überschreiben des value mit geänderten filtern_prio_hoch
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
-            .val(JsonStringifiedZurueck(filtern_prio_hoch))
+            .val(JsonStringifiedZurueck(filtern_prio_hoch, new Object()))
             .trigger("change");
 
     // Aktualisieren der $filtern_eigenschaft

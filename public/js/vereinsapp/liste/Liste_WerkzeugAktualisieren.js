@@ -11,11 +11,15 @@ function Liste_WerkzeugAktualisieren($werkzeug, liste) {
                     JsonStringifiedZurueck(
                         Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".auswertungen").attr("data-liste"), {
                             filtern: new Object(),
-                        }).filtern
+                        }).filtern,
+                        new Object()
                     )
                 )
-                .val(JsonStringifiedZurueck(filtern_prio_hoch));
-        else $werkzeug.attr("data-filtern_prio_niedrig", JsonStringifiedZurueck(filtern_prio_niedrig)).val(JsonStringifiedZurueck(filtern_prio_hoch));
+                .val(JsonStringifiedZurueck(filtern_prio_hoch, new Object()));
+        else
+            $werkzeug
+                .attr("data-filtern_prio_niedrig", JsonStringifiedZurueck(filtern_prio_niedrig, new Object()))
+                .val(JsonStringifiedZurueck(filtern_prio_hoch, new Object()));
 
         if (
             Object.keys(filtern_prio_hoch).length > 0 &&
@@ -37,14 +41,15 @@ function Liste_WerkzeugAktualisieren($werkzeug, liste) {
                     JsonStringifiedZurueck(
                         Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".auswertungen").attr("data-liste"), {
                             sortieren: undefined,
-                        }).sortieren
+                        }).sortieren,
+                        undefined
                     )
                 )
-                .val(JsonStringifiedZurueck(sortieren_prio_hoch));
+                .val(JsonStringifiedZurueck(sortieren_prio_hoch, undefined));
         else
             $werkzeug
-                .attr("data-sortieren_prio_niedrig", JsonStringifiedZurueck(sortieren_prio_niedrig))
-                .val(JsonStringifiedZurueck(sortieren_prio_hoch));
+                .attr("data-sortieren_prio_niedrig", JsonStringifiedZurueck(sortieren_prio_niedrig, undefined))
+                .val(JsonStringifiedZurueck(sortieren_prio_hoch, undefined));
 
         if (
             typeof sortieren_prio_hoch !== "undefined" &&
@@ -66,14 +71,15 @@ function Liste_WerkzeugAktualisieren($werkzeug, liste) {
                     JsonStringifiedZurueck(
                         Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + ".auswertungen").attr("data-liste"), {
                             gruppieren: undefined,
-                        }).gruppieren
+                        }).gruppieren,
+                        undefined
                     )
                 )
-                .val(JsonStringifiedZurueck(gruppieren_prio_hoch));
+                .val(JsonStringifiedZurueck(gruppieren_prio_hoch, undefined));
         else
             $werkzeug
-                .attr("data-gruppieren_prio_niedrig", JsonStringifiedZurueck(gruppieren_prio_niedrig))
-                .val(JsonStringifiedZurueck(gruppieren_prio_hoch));
+                .attr("data-gruppieren_prio_niedrig", JsonStringifiedZurueck(gruppieren_prio_niedrig, undefined))
+                .val(JsonStringifiedZurueck(gruppieren_prio_hoch, undefined));
 
         if (
             typeof gruppieren_prio_hoch !== "undefined" &&

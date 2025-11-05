@@ -57,7 +57,7 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
                 .find(".verzeichnis")
                 .attr("data-instanz", verzeichnis_instanz)
                 .attr("data-element_id", element_id)
-                .attr("data-basis", JsonStringifiedZurueck(neue_basis));
+                .attr("data-basis", JsonStringifiedZurueck(neue_basis, new Array()));
 
             // Unterverzeichnis wird hinzugefügt (je nachdem, wo es im Verzeichnis positioniert ist)
             if (position === 0) $neues_unterverzeichnis.appendTo($verzeichnis);

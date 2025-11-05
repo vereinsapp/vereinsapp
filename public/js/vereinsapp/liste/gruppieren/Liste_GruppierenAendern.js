@@ -5,7 +5,7 @@ function Liste_GruppierenAendern($quelle_ziel, ziel_id, liste) {
     // Überschreiben des value mit geänderten gruppieren
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
-            .val(JsonStringifiedZurueck(gruppieren))
+            .val(JsonStringifiedZurueck(gruppieren, undefined))
             .trigger("change");
 
     Schnittstelle_DomModalSchliessen($quelle_ziel.closest(".modal"));

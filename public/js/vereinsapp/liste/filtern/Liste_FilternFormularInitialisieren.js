@@ -55,7 +55,7 @@ function Liste_FilternFormularInitialisieren($formular, ziel_id, liste) {
     // Überschreiben des value mit geänderten filtern_prio_hoch
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
-            .val(JsonStringifiedZurueck(filtern_prio_hoch))
+            .val(JsonStringifiedZurueck(filtern_prio_hoch, new Object()))
             .trigger("change");
 
     $.each(

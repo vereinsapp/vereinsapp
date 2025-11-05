@@ -16,7 +16,7 @@ function Mitglieder_MitgliederAufgabenErledigtAnzeigen(dom, title) {
 
     $mitglieder_aufgaben_erledigt.attr(
         "data-filtern",
-        JsonStringifiedZurueck(Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_mitglied_ids, "mitglieder"))
+        JsonStringifiedZurueck(Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_mitglied_ids, "mitglieder"), new Object())
     );
 
     Schnittstelle_DomModalOeffnen($neues_modal);

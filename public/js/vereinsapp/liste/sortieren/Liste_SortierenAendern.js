@@ -9,7 +9,7 @@ function Liste_SortierenAendern($quelle_ziel, ziel_id, liste) {
     // Überschreiben des value mit geänderten sortieren
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
-            .val(JsonStringifiedZurueck(sortieren))
+            .val(JsonStringifiedZurueck(sortieren, undefined))
             .trigger("change");
 
     Schnittstelle_DomModalSchliessen($quelle_ziel.closest(".modal"));

@@ -5,15 +5,6 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const liste_data = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-liste"), new Object());
     const liste = liste_data.liste;
 
-    // TABELLE FILTERN
-    const liste_filtern_data = Schnittstelle_VariableWertBereinigtZurueck(liste_data.filtern, new Object());
-    const liste_filtern_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].filtern;
-    const liste_tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
-        LISTEN[liste].tabelle,
-        Liste_FilternMitPrioKombiniertZurueck(liste_filtern_data, liste_filtern_LocalStorage, liste),
-        liste
-    );
-
     // GRUPPIEREN DEFINIEREN
     const gruppieren_data = liste_data.gruppieren;
     const gruppieren_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].gruppieren;
@@ -21,23 +12,34 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     if (typeof gruppieren_LocalStorage !== "undefined") gruppieren = gruppieren_LocalStorage;
     else gruppieren = gruppieren_data;
 
-    // ELEMENT_IDS DEFINIEREN
+    // GRUPPIEREN_WERTE UND ELEMENT_IDS DEFINIEREN
     const gruppieren_werte = new Array();
     const element_ids = new Array();
     const element_ids_nach_wert = new Object();
-    $.each(liste_tabelle_gefiltert, function (position, element) {
-        const element_id = element.id;
-        const wert = element[gruppieren];
-        if (!gruppieren_werte.includes(wert)) gruppieren_werte.push(wert);
-        if (!element_ids.includes(element_id)) element_ids.push(element_id);
-        if (!(wert in element_ids_nach_wert)) element_ids_nach_wert[wert] = new Array();
-        element_ids_nach_wert[wert].push(element_id);
-    });
+    $.each(
+        Liste_TabelleGefiltertZurueck(
+            LISTEN[liste].tabelle,
+            Liste_FilternMitPrioKombiniertZurueck(
+                Schnittstelle_VariableWertBereinigtZurueck(liste_data.filtern, new Object()),
+                LISTEN[liste].instanz[auswertungen_instanz].filtern,
+                liste
+            ),
+            liste
+        ),
+        function (position, element) {
+            const element_id = element.id;
+            const wert = element[gruppieren];
+            if (!gruppieren_werte.includes(wert)) gruppieren_werte.push(wert);
+            if (!element_ids.includes(element_id)) element_ids.push(element_id);
+            if (!(wert in element_ids_nach_wert)) element_ids_nach_wert[wert] = new Array();
+            element_ids_nach_wert[wert].push(element_id);
+        }
+    );
     const gruppieren_werte_sortiert = gruppieren_werte.sort();
 
     // AUSWERTUNG_ELEMENT_IDS DEFINIEREN
-    const auswertung_element_ids_nach_wert = new Object();
     const auswertung_element_ids = new Array();
+    const auswertung_element_ids_nach_wert = new Object();
     $.each(
         Schnittstelle_VariableRausZurueck(
             "zugeordnete_element_ids_nach_liste",
@@ -52,9 +54,9 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
                 liste,
                 undefined
             );
+            if (!auswertung_element_ids.includes(auswertung_element_id)) auswertung_element_ids.push(auswertung_element_id);
             if (!(wert in auswertung_element_ids_nach_wert)) auswertung_element_ids_nach_wert[wert] = new Array();
             auswertung_element_ids_nach_wert[wert].push(auswertung_element_id);
-            auswertung_element_ids.push(auswertung_element_id);
         }
     );
 
@@ -74,10 +76,10 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
 
             $neue_auswertung
                 .attr("data-auswertungen", auswertungen)
-                .attr("data-auswertung_element_ids", JsonStringifiedZurueck(auswertung_element_ids_nach_wert[wert]))
+                .attr("data-auswertung_element_ids", JsonStringifiedZurueck(auswertung_element_ids_nach_wert[wert], new Array()))
                 .attr("data-wert", wert)
                 .attr("data-liste", liste)
-                .attr("data-element_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert]))
+                .attr("data-element_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
                 .attr("data-status_auswahl", $auswertungen.attr("data-status_auswahl"))
                 .attr("data-beschriftung", Liste_WertFormatiertZurueck(wert, gruppieren, liste));
 
@@ -92,10 +94,10 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             // Auswertung existiert bereits, also wird sie nur einsortiert
             $auswertung
                 .attr("data-auswertungen", auswertungen)
-                .attr("data-auswertung_element_ids", JsonStringifiedZurueck(auswertung_element_ids_nach_wert[wert]))
+                .attr("data-auswertung_element_ids", JsonStringifiedZurueck(auswertung_element_ids_nach_wert[wert], new Array()))
                 // .attr("data-wert", wert)
                 .attr("data-liste", liste)
-                .attr("data-element_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert]))
+                .attr("data-element_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
                 .attr("data-status_auswahl", $auswertungen.attr("data-status_auswahl"))
                 .attr("data-beschriftung", Liste_WertFormatiertZurueck(wert, gruppieren, liste));
 
@@ -109,9 +111,9 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
         const $zusammenfassung = $(this);
         $zusammenfassung
             .attr("data-auswertungen", auswertungen)
-            .attr("data-auswertung_element_ids", JsonStringifiedZurueck(auswertung_element_ids))
+            .attr("data-auswertung_element_ids", JsonStringifiedZurueck(auswertung_element_ids, new Array()))
             .attr("data-liste", liste)
-            .attr("data-element_ids", JsonStringifiedZurueck(element_ids))
+            .attr("data-element_ids", JsonStringifiedZurueck(element_ids, new Array()))
             .attr("data-status_auswahl", $auswertungen.attr("data-status_auswahl"));
     });
 

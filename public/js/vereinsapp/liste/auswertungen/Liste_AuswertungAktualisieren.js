@@ -43,7 +43,7 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
         $.each(element_ids_nach_status[$ergebnis.attr("data-status")], function (position, element_id) {
             filtern.id.inklusiv.push(Number(element_id));
         });
-        $ergebnis.attr("data-filtern", JsonStringifiedZurueck(filtern));
+        $ergebnis.attr("data-filtern", JsonStringifiedZurueck(filtern, new Object()));
     });
 
     // BEINHALTETE LISTE AKTUALISIEREN

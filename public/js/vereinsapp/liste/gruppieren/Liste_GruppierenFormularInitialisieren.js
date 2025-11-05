@@ -22,7 +22,7 @@ function Liste_GruppierenFormularInitialisieren($formular, ziel_id, liste) {
     // Überschreiben des value mit geänderten gruppieren_prio_hoch
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
-            .val(JsonStringifiedZurueck(gruppieren_prio_hoch))
+            .val(JsonStringifiedZurueck(gruppieren_prio_hoch, undefined))
             .trigger("change");
 
     // Aktualisieren des $gruppieren_wert

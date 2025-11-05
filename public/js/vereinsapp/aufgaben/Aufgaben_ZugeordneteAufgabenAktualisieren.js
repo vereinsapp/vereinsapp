@@ -17,6 +17,6 @@ function Aufgaben_ZugeordneteAufgabenAktualisieren($zugeordnete_aufgaben, zugeor
 
     $zugeordnete_aufgaben.attr(
         "data-filtern",
-        JsonStringifiedZurueck(Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_zugeordnete_element_ids, "aufgaben"))
+        JsonStringifiedZurueck(Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_zugeordnete_element_ids, "aufgaben"), new Object())
     );
 }

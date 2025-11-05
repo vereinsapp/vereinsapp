@@ -1,13 +1,14 @@
-function JsonStringifiedZurueck(wert) {
-    let JsonStringified;
-    if (isString(wert)) JsonStringified = wert;
-    else if (typeof wert === "undefined") JsonStringified = JSON.stringify(new Object());
+function JsonStringifiedZurueck(wert, wert_undefined) {
+    let json_stringified;
+
+    if (typeof wert === "undefined") json_stringified = JSON.stringify(wert_undefined);
+    else if (isString(wert)) json_stringified = wert;
     else
-        JsonStringified = JSON.stringify(wert, (schluessel, wert) => {
+        json_stringified = JSON.stringify(wert, (schluessel, wert) => {
             if (isNumber(wert)) return Number(wert);
             // else if (isLuxonDateTime(wert)) return wert.toFormat("yyyy-MM-dd HH:mm:ss");
             else return wert;
         });
 
-    return JsonStringified;
+    return json_stringified;
 }

@@ -12,7 +12,7 @@ function Liste_FilternVorgegebenAuswaehlen($vorgegebene_filter_auswahl, ziel_id,
     // Überschreiben des value mit geänderten filtern_prio_hoch
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
-            .val(JsonStringifiedZurueck(filtern_prio_hoch))
+            .val(JsonStringifiedZurueck(filtern_prio_hoch, new Object()))
             .trigger("change");
 
     // Schließen des Modals
