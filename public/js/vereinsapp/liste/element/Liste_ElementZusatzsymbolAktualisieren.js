@@ -138,11 +138,11 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                         "bemerkung",
                         gefilterte_rueckmeldung_ids[gefilterte_rueckmeldung_ids.length - 1],
                         "rueckmeldungen",
-                        undefined
+                        null
                     );
             } else bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste, null);
 
-            if (bemerkung !== null && bemerkung != "")
+            if (bemerkung !== null)
                 $zusatzsymbol.html(
                     '<i class="bi bi-' +
                         SYMBOLE["bemerkung"]["bootstrap"] +

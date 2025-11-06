@@ -13,7 +13,7 @@ class Notenbank extends Migration
             'titel_nr'      => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => false],
             'komponist'     => ['type' => 'varchar',    'constraint' => 100,                        'null' => false],
             'kategorie'     => ['type' => 'varchar',    'constraint' => 50,                         'null' => false],
-            'bemerkung'     => ['type' => 'varchar',    'constraint' => 100,                        'null' => false],
+            'bemerkung'     => ['type' => 'varchar',    'constraint' => 100,                        'null' => true],
             'created_at'    => ['type' => 'datetime',                                               'null' => true],
             'updated_at'    => ['type' => 'datetime',                                               'null' => true],
             'deleted_at'    => ['type' => 'datetime',                                               'null' => true],

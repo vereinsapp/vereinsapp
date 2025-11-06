@@ -10,6 +10,7 @@ function Termine_RueckmeldungErstellen(formular_oeffnen, dom, data, title, rueck
 
         const ajax_dom = dom;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+        if (!("bemerkung" in ajax_data) || (isString(ajax_data.bemerkung) && ajax_data.bemerkung.trim() === "")) ajax_data.bemerkung = null;
 
         Schnittstelle_AjaxInDieSchlange(
             "termine/ajax_rueckmeldung_speichern",

@@ -16,7 +16,7 @@ class Termine extends Migration
             'kategorie'          => ['type' => 'varchar',   'constraint' => 50,                     'null' => false],
             'filtern_mitglieder' => ['type' => 'varchar',   'constraint' => 9999,                   'null' => false],    
             'oeffentlich_janein' => ['type' => 'tinyint',   'constraint' => 1,                      'null' => false,    'default' => 0],    
-            'bemerkung'          => ['type' => 'varchar',   'constraint' => 100,                    'null' => false],
+            'bemerkung'          => ['type' => 'varchar',   'constraint' => 100,                    'null' => true],
             'created_at'         => ['type' => 'datetime',                                          'null' => true],
             'updated_at'         => ['type' => 'datetime',                                          'null' => true],
             'deleted_at'         => ['type' => 'datetime',                                          'null' => true],

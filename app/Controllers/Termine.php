@@ -248,7 +248,7 @@ class Termine extends BaseController {
                 'oeffentlich_janein' => $this->request->getpost()['oeffentlich_janein'],
             );
             if( array_key_exists( 'ende', $this->request->getpost() ) AND !empty( $this->request->getpost()['ende'] ) ) $termin['ende'] = $this->request->getPost()['ende']; else $termin['ende'] = $termin['start'];
-            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $termin['bemerkung'] = $this->request->getpost()['bemerkung']; else $termin['bemerkung'] = '';
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $termin['bemerkung'] = $this->request->getpost()['bemerkung']; else $termin['bemerkung'] = NULL;
 
             if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $termine_Model->update( $this->request->getpost()['id'], $termin );
             else {
@@ -338,7 +338,7 @@ class Termine extends BaseController {
                 'mitglied_id' => $this->request->getpost()['mitglied_id'],
                 'status' => $this->request->getpost()['status'],
             );
-            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $rueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung']; else $rueckmeldung['bemerkung'] = '';
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $rueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung']; else $rueckmeldung['bemerkung'] = NULL;
 
             if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) {
                 $rueckmeldungen_Model->where( array( 'termin_id' => $rueckmeldung['termin_id'], 'mitglied_id' => $rueckmeldung['termin_id'], 'id !=' => $this->request->getpost()['id'] ) )->delete();
@@ -360,6 +360,7 @@ class Termine extends BaseController {
             'termin_id' => [ 'label' => EIGENSCHAFTEN['anwesenheiten']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['anwesenheiten']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'status' => [ 'label' => EIGENSCHAFTEN['anwesenheiten']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'termine.anwesenheiten' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
@@ -368,6 +369,8 @@ class Termine extends BaseController {
                 'termin_id' => $this->request->getpost()['termin_id'],
                 'mitglied_id' => $this->request->getpost()['mitglied_id'],
             );
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $anwesenheit['bemerkung'] = $this->request->getpost()['bemerkung']; else $anwesenheit['bemerkung'] = NULL;
+
             $anwesenheiten_Model->where( $anwesenheit )->delete();
             if( filter_var( $this->request->getpost()['status'], FILTER_VALIDATE_BOOLEAN) ) {
                 $anwesenheit['status'] = $this->request->getpost()['status'];

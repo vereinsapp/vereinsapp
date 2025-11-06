@@ -195,7 +195,7 @@ function Termine_Init() {
                 termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte"), { termin_id: undefined }).termin_id,
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte"), { mitglied_id: undefined }).mitglied_id,
                 status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte"), { status: undefined }).status,
-                bemerkung: "",
+                bemerkung: null,
             },
             $(this).attr("data-title"),
             undefined
@@ -209,7 +209,7 @@ function Termine_Init() {
             { $btn_ausloesend: $(this) },
             {
                 status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte"), { status: undefined }).status,
-                bemerkung: "",
+                bemerkung: null,
             },
             $(this).attr("data-title"),
             $(this).attr("data-element_id")

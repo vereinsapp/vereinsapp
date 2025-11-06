@@ -178,7 +178,7 @@ class Notenbank extends BaseController {
                 'kategorie' => $this->request->getPost()['kategorie'],
             );
             if( array_key_exists( 'komponist', $this->request->getpost() ) ) $titel['komponist'] = $this->request->getpost()['komponist']; else $titel['komponist'] = '';
-            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $titel['bemerkung'] = $this->request->getpost()['bemerkung']; else $titel['bemerkung'] = '';
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $titel['bemerkung'] = $this->request->getpost()['bemerkung']; else $titel['bemerkung'] = NULL;
 
             if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $notenbank_Model->update( $this->request->getpost()['id'], $titel );
             else {

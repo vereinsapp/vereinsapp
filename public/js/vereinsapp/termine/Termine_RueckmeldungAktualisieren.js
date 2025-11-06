@@ -15,6 +15,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
             "rueckmeldungen"
         )
     );
+    const bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", rueckmeldung_id, "rueckmeldungen", null);
 
     if ($btn_rueckmelden.hasClass("zusagen")) {
         $btn_rueckmelden.attr("data-werte", JsonStringifiedZurueck({ termin_id: termin_id, mitglied_id: mitglied_id, status: 1 }, new Object()));
@@ -38,8 +39,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
 
             $btn_rueckmeldung_detaillieren.removeClass("invisible").attr("data-element_id", rueckmeldung_id);
 
-            const bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", rueckmeldung_id, "rueckmeldungen", null);
-            if (bemerkung != null && bemerkung != "") $btn_rueckmeldung_detaillieren.removeClass("btn-outline-success").addClass("btn-success");
+            if (bemerkung !== null) $btn_rueckmeldung_detaillieren.removeClass("btn-outline-success").addClass("btn-success");
             else $btn_rueckmeldung_detaillieren.addClass("btn-outline-success").removeClass("btn-success");
         } else {
             $btn_rueckmelden
@@ -84,8 +84,7 @@ function Termine_RueckmeldungAktualisieren($btn_rueckmelden) {
 
             $btn_rueckmeldung_detaillieren.removeClass("invisible").attr("data-element_id", rueckmeldung_id);
 
-            const bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", rueckmeldung_id, "rueckmeldungen", null);
-            if (bemerkung != null && bemerkung != "") $btn_rueckmeldung_detaillieren.removeClass("btn-outline-danger").addClass("btn-danger");
+            if (bemerkung !== null) $btn_rueckmeldung_detaillieren.removeClass("btn-outline-danger").addClass("btn-danger");
             else $btn_rueckmeldung_detaillieren.addClass("btn-outline-danger").removeClass("btn-danger");
         } else {
             $btn_rueckmelden

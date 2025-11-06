@@ -105,7 +105,7 @@ class Strafkatalog extends BaseController {
                 'wert' => $this->request->getPost()['wert'],
                 'kategorie' => $this->request->getPost()['kategorie'],
             );
-            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $strafe['bemerkung'] = $this->request->getpost()['bemerkung']; else $strafe['bemerkung'] = '';
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $strafe['bemerkung'] = $this->request->getpost()['bemerkung']; else $strafe['bemerkung'] = NULL;
 
             if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $strafkatalog_Model->update( $this->request->getpost()['id'], $strafe );
             else {
@@ -151,7 +151,7 @@ class Strafkatalog extends BaseController {
                 'mitglied_id' => $this->request->getPost()['mitglied_id'],
             );
             if( array_key_exists( 'erledigt', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['erledigt'] ) ) $kassenbucheintrag['erledigt'] = $this->request->getpost()['erledigt']; else $kassenbucheintrag['erledigt'] = NULL; }
-            if( array_key_exists( 'bemerkung', $this->request->getpost() ) ) $kassenbucheintrag['bemerkung'] = $this->request->getpost()['bemerkung']; else $kassenbucheintrag['bemerkung'] = '';
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $kassenbucheintrag['bemerkung'] = $this->request->getpost()['bemerkung']; else $kassenbucheintrag['bemerkung'] = NULL;
 
             if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $kassenbuch_Model->update( $this->request->getpost()['id'], $kassenbucheintrag );
             else {

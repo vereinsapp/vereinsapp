@@ -22,6 +22,7 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = aufgabe_id;
         if (isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();
+        if (isString(ajax_data.bemerkung) && ajax_data.bemerkung.trim() === "") ajax_data.bemerkung = null;
 
         Schnittstelle_AjaxInDieSchlange(
             "aufgaben/ajax_aufgabe_speichern",

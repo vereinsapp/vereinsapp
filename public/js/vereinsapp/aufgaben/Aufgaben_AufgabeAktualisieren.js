@@ -12,19 +12,7 @@ function Aufgaben_AufgabeAktualisieren($aufgabe) {
     $btn_aufgabe_mitglied_ausplanen.attr("data-aufgabe_id", aufgabe_id);
     $btn_aufgabe_erledigen.attr("data-aufgabe_id", aufgabe_id);
 
-    if (mitglied_id === null) {
-        // Wenn kein Mitglied eingeplant ist
-        $btn_aufgabe_mitglied_einplanen
-            .addClass("btn-outline-primary")
-            .removeClass("btn-outline-success")
-            .removeClass("btn-primary")
-            .removeClass("btn-success")
-            .removeClass("disabled");
-        $btn_aufgabe_mitglied_ausplanen.appendTo($unsichtbar);
-        $btn_aufgabe_erledigen.html('<i class="bi bi-' + SYMBOLE["offen_erledigt_markieren"]["bootstrap"] + '"></i>').appendTo($unsichtbar);
-
-        $btn_aufgabe_mitglied_einplanen.html('<i class="bi bi-' + SYMBOLE["erstellen"]["bootstrap"] + '"></i>');
-    } else {
+    if (mitglied_id !== null) {
         // Wenn ein Mitglied eingeplant ist
 
         if (Mitglieder_MitgliedBesitztRechtZurueck("aufgaben.verwaltung", ICH["id"]) || mitglied_id == ICH["id"]) {
@@ -72,5 +60,18 @@ function Aufgaben_AufgabeAktualisieren($aufgabe) {
         }
 
         $btn_aufgabe_mitglied_einplanen.text(Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder"));
+    } else {
+        // Wenn kein Mitglied eingeplant ist
+
+        $btn_aufgabe_mitglied_einplanen
+            .addClass("btn-outline-primary")
+            .removeClass("btn-outline-success")
+            .removeClass("btn-primary")
+            .removeClass("btn-success")
+            .removeClass("disabled");
+        $btn_aufgabe_mitglied_ausplanen.appendTo($unsichtbar);
+        $btn_aufgabe_erledigen.html('<i class="bi bi-' + SYMBOLE["offen_erledigt_markieren"]["bootstrap"] + '"></i>').appendTo($unsichtbar);
+
+        $btn_aufgabe_mitglied_einplanen.html('<i class="bi bi-' + SYMBOLE["erstellen"]["bootstrap"] + '"></i>');
     }
 }

@@ -9,6 +9,7 @@ function Liste_CheckAendern(dom, data) {
     const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
     ajax_data[LISTEN[data.liste].element + "_id"] = data.element_id;
     ajax_data[LISTEN[data.gegen_liste].element + "_id"] = data.gegen_element_id;
+    if (!("bemerkung" in ajax_data) || (isString(ajax_data.bemerkung) && ajax_data.bemerkung.trim() === "")) ajax_data.bemerkung = null;
 
     Schnittstelle_AjaxInDieSchlange(
         LISTEN[data.checkliste].controller + "/ajax_" + LISTEN[data.checkliste].element + "_speichern",

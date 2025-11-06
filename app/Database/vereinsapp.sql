@@ -19,7 +19,7 @@ CREATE TABLE `vereinsapp_aufgaben` (
   `titel` varchar(100) NOT NULL,
   `mitglied_id` int(11) UNSIGNED DEFAULT NULL,
   `erledigt` datetime DEFAULT NULL,
-  `bemerkung` varchar(100) NOT NULL,
+  `bemerkung` varchar(100) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -221,7 +221,7 @@ CREATE TABLE `vereinsapp_notenbank` (
   `titel_nr` int(11) UNSIGNED NOT NULL,
   `komponist` varchar(100) NOT NULL,
   `kategorie` varchar(50) NOT NULL,
-  `bemerkung` varchar(100) NOT NULL,
+  `bemerkung` varchar(100) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -255,7 +255,7 @@ CREATE TABLE `vereinsapp_strafkatalog` (
   `titel` varchar(100) NOT NULL,
   `wert` decimal(10,2) UNSIGNED NOT NULL,
   `kategorie` varchar(50) NOT NULL,
-  `bemerkung` varchar(100) NOT NULL,
+  `bemerkung` varchar(100) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -273,7 +273,7 @@ CREATE TABLE `vereinsapp_strafkatalog_kassenbuch` (
   `wert` decimal(10,2) NOT NULL,
   `mitglied_id` int(11) UNSIGNED NOT NULL,
   `erledigt` datetime DEFAULT NULL,
-  `bemerkung` varchar(100) NOT NULL,
+  `bemerkung` varchar(100) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -294,7 +294,7 @@ CREATE TABLE `vereinsapp_termine` (
   `kategorie` varchar(50) NOT NULL,
   `filtern_mitglieder` longtext NOT NULL DEFAULT '{}',
   `oeffentlich_janein` tinyint(1) NOT NULL DEFAULT 0,
-  `bemerkung` varchar(100) NOT NULL,
+  `bemerkung` varchar(100) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL

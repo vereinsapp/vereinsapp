@@ -19,6 +19,7 @@ function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, dom, data, titl
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = kassenbucheintrag_id;
         if (isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();
+        if (isString(ajax_data.bemerkung) && ajax_data.bemerkung.trim() === "") ajax_data.bemerkung = null;
 
         Schnittstelle_AjaxInDieSchlange(
             "strafkatalog/ajax_kassenbucheintrag_speichern",

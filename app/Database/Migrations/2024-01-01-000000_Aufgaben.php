@@ -14,7 +14,7 @@ class Aufgaben extends Migration
             'titel'                     => ['type' => 'varchar',    'constraint' => 100,                        'null' => false],
             'mitglied_id'               => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => true],
             'erledigt'                  => ['type' => 'datetime',                                               'null' => true],
-            'bemerkung'                 => ['type' => 'varchar',    'constraint' => 100,                        'null' => false],
+            'bemerkung'                 => ['type' => 'varchar',    'constraint' => 100,                        'null' => true],
             'created_at'                => ['type' => 'datetime',                                               'null' => true],
             'updated_at'                => ['type' => 'datetime',                                               'null' => true],
             'deleted_at'                => ['type' => 'datetime',                                               'null' => true],

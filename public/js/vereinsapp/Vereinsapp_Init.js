@@ -98,16 +98,35 @@ Liste_ElementIdZurueck loswerden
     Braucht es LISTEN[liste].instanz[instanz].filtern noch oder kann man einfach immer Schnittstelle_LocalstorageRausZurueck verwenden?
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
 
-kann mitglied_id bei aufgaben undefined sein oder nur null bzw. eine ID?
-kann bemerkung undefined oder nur null bzw. ein String?
 mitgliedausplanen und mitgliedeinplanen in einer Funktion zusammenfassen?
-alles, was mittels $() eingelesen wird, muss mittels Schnittstelle_VariableWertBereinigtZurueck überprüft werden
 Auswertungen überarbeiten
     Filtern, sortieren und gruppieren bei auswertungen steckt in einem JSON (data-filtern_prio_niedrig kann also nicht im Modal angezeigt oder bearbeitet werden)
     Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit den Werten?
     Gruppieren von _janein-Eigenschaft wirft einen Fehler
     Gruppieren nach Eigenschaft mit Wert "ohne" (bspw. Auto, Funktion, etc.) zeigt falschen Werte für "ohne" an
     Filtern- und Gruppieren-Button batch einführen (Spezial-Bedigungen in Schnittstelle_EventVariableUpdDom wegnehmen)
-Aufruf der Termin-Details mit leerem LocalStorage wirft einen Fehler
+ajax_rueckmeldung_speichern angleichen an ajax_anwesenheit_speichern und die Vorgehensweise in javascript bzgl. löschen der alten Einträge?
+komponist, erledigt, mitglied_id bei aufgaben etc. nachziehen (analog zu bemerkung)
+isStringAndEmpty(string) isStringAndNotEmpty(string) einführen
 
+ALTER TABLE `vereinsapp_aufgaben` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
+UPDATE `vereinsapp_aufgaben` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
+
+ALTER TABLE `vereinsapp_notenbank` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
+UPDATE `vereinsapp_notenbank` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
+
+ALTER TABLE `vereinsapp_strafkatalog` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
+UPDATE `vereinsapp_strafkatalog` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
+
+ALTER TABLE `vereinsapp_strafkatalog_kassenbuch` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
+UPDATE `vereinsapp_strafkatalog_kassenbuch` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
+
+ALTER TABLE `vereinsapp_termine` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
+UPDATE `vereinsapp_termine` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
+
+ALTER TABLE `vereinsapp_termine_anwesenheiten` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
+UPDATE `vereinsapp_termine_anwesenheiten` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
+
+ALTER TABLE `vereinsapp_termine_rueckmeldungen` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
+UPDATE `vereinsapp_termine_rueckmeldungen` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
 */

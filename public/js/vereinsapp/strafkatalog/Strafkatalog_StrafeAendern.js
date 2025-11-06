@@ -16,6 +16,7 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", strafe_id, "strafkatalog", null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = strafe_id;
+        if (isString(ajax_data.bemerkung) && ajax_data.bemerkung.trim() === "") ajax_data.bemerkung = null;
 
         Schnittstelle_AjaxInDieSchlange(
             "strafkatalog/ajax_strafe_speichern",

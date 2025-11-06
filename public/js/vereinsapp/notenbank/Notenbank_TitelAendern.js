@@ -17,6 +17,7 @@ function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", titel_id, "notenbank", null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = titel_id;
+        if (isString(ajax_data.bemerkung) && ajax_data.bemerkung.trim() === "") ajax_data.bemerkung = null;
 
         Schnittstelle_AjaxInDieSchlange(
             "notenbank/ajax_titel_speichern",
