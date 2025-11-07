@@ -12,11 +12,12 @@ function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
 
         if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", titel_id, "notenbank", undefined);
         if (!("titel_nr" in data)) data.titel_nr = Schnittstelle_VariableRausZurueck("titel_nr", titel_id, "notenbank", undefined);
-        if (!("komponist" in data)) data.komponist = Schnittstelle_VariableRausZurueck("komponist", titel_id, "notenbank", undefined);
         if (!("kategorie" in data)) data.kategorie = Schnittstelle_VariableRausZurueck("kategorie", titel_id, "notenbank", undefined);
+        if (!("komponist" in data)) data.komponist = Schnittstelle_VariableRausZurueck("komponist", titel_id, "notenbank", null);
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", titel_id, "notenbank", null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = titel_id;
+        if (isEmptyString(ajax_data.komponist)) ajax_data.komponist = null;
         if (isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
         Schnittstelle_AjaxInDieSchlange(

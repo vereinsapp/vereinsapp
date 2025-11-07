@@ -159,8 +159,8 @@ class Notenbank extends BaseController {
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['notenbank']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'titel_nr' => [ 'label' => EIGENSCHAFTEN['notenbank']['titel_nr']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'komponist' => [ 'label' => EIGENSCHAFTEN['notenbank']['komponist']['beschriftung'], 'rules' => [ 'field_exists' ] ],
             'kategorie' => [ 'label' => EIGENSCHAFTEN['notenbank']['kategorie']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['notenbank']['kategorie'] ) ).']' ] ],
+            'komponist' => [ 'label' => EIGENSCHAFTEN['notenbank']['komponist']['beschriftung'], 'rules' => [ 'field_exists' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['notenbank']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         );
         $validation_titel_nr = model(Titel_Model::class)->where( [ 'titel_nr' => $this->request->getPost()['titel_nr'] ] )->findAll();
@@ -177,7 +177,7 @@ class Notenbank extends BaseController {
                 'titel_nr' => $this->request->getPost()['titel_nr'],
                 'kategorie' => $this->request->getPost()['kategorie'],
             );
-            if( array_key_exists( 'komponist', $this->request->getpost() ) ) $titel['komponist'] = $this->request->getpost()['komponist']; else $titel['komponist'] = '';
+            if( array_key_exists( 'komponist', $this->request->getpost() ) AND !empty( $this->request->getpost()['komponist'] ) ) $titel['komponist'] = $this->request->getpost()['komponist']; else $titel['komponist'] = NULL;
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $titel['bemerkung'] = $this->request->getpost()['bemerkung']; else $titel['bemerkung'] = NULL;
 
             if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $notenbank_Model->update( $this->request->getpost()['id'], $titel );

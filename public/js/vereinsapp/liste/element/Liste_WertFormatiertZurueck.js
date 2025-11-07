@@ -46,6 +46,10 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
             case "titel_nr":
                 wert_formatiert = "[" + wert + "]";
                 break;
+            case "komponist":
+                if (wert !== null) wert_formatiert = wert;
+                else wert_formatiert = "";
+                break;
             case "wert":
                 wert_formatiert = parseFloat(wert).toFixed(2).replace(".", ";").replace(",", ".").replace(";", ",") + "€";
                 break;

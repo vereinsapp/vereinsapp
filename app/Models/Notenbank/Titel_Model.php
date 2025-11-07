@@ -11,8 +11,8 @@ class Titel_Model extends Model {
     protected $allowedFields  = [
         'titel',
         'titel_nr',
-        'komponist',
         'kategorie',
+        'komponist',
         'bemerkung',
     ];
     protected $useTimestamps = TRUE;

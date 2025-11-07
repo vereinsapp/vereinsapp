@@ -10,6 +10,7 @@ function Notenbank_TitelErstellen(formular_oeffnen, dom, data, title, titel_id) 
 
         const ajax_dom = dom;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+        if (!("komponist" in ajax_data) || isEmptyString(ajax_data.komponist)) ajax_data.komponist = null;
         if (!("bemerkung" in ajax_data) || isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
         Schnittstelle_AjaxInDieSchlange(

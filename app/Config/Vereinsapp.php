@@ -333,11 +333,11 @@ class Vereinsapp extends BaseConfig
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'titel_nr' => array( 'beschriftung' => 'Titel-Nr.', 'typ' => 'zahl' ),
-            'komponist' => array( 'beschriftung' => 'Komponist', 'typ' => 'text' ),
             'kategorie' => array( 'beschriftung' => 'Genre', 'typ' => 'vorgegebene_werte' ),
+            'komponist' => array( 'beschriftung' => 'Komponist', 'typ' => 'text' ),
+            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'verzeichnis_basis' => array( 'beschriftung' => 'Basis-Verzeichnis', 'typ' => 'text' ),     //PHP
             'verzeichnis' => array( 'beschriftung' => 'Verzeichnis', 'typ' => 'text' ),                 //PHP
-            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'anzahl_noten' => array( 'beschriftung' => 'Anzahl Noten', 'typ' => 'zahl' ),               // JAVA
             'anzahl_audio' => array( 'beschriftung' => 'Anzahl Audio', 'typ' => 'zahl' ),               // JAVA
             'anzahl_verzeichnis' => array( 'beschriftung' => 'Anzahl Verzeichnisse', 'typ' => 'zahl' ), // JAVA
