@@ -12,7 +12,7 @@ function Liste_ArraySortiertZurueck(array, sortieren) {
             if (typeof valA === "number" && typeof valB === "number") return valA - valB;
 
             // Strings vergleichen mit localeCompare
-            if (typeof valA === "string" && typeof valB === "string") return valA.localeCompare(valB, undefined, { sensitivity: "base" });
+            if (isString(valA) && isString(valB)) return valA.localeCompare(valB, undefined, { sensitivity: "base" });
 
             // Fallback für andere Typen
             return 0;
@@ -34,8 +34,7 @@ function Liste_MultiArraySortiertZurueck(array, sortieren) {
 
                 a_formatiert = a[sortieren[i].eigenschaft];
                 b_formatiert = b[sortieren[i].eigenschaft];
-                // Wenn aber a und b vom Typ String sind
-                if (typeof a_formatiert === "string" && typeof b_formatiert === "string") {
+                if (isString(a_formatiert) && isString(b_formatiert)) {
                     a_formatiert = umlaute2unixZurueck(a_formatiert.toString());
                     b_formatiert = umlaute2unixZurueck(b_formatiert.toString());
                 }

@@ -1,7 +1,7 @@
 function Schnittstelle_DomModalOeffnen($modal) {
     const $umgebung = $("#modals");
 
-    if (typeof $modal === "string") {
+    if (isString($modal)) {
         const html = $modal;
         const temp_id = zufaelligeZeichenketteZurueck(8);
 

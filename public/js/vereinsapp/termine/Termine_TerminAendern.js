@@ -26,7 +26,7 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
         if (isLuxonDateTime(ajax_data.ende)) ajax_data.ende = ajax_data.ende.toISO();
         else ajax_data.ende = ajax_data.start;
         if ("filtern_mitglieder" in ajax_data) ajax_data.filtern_mitglieder = JsonStringifiedZurueck(ajax_data.filtern_mitglieder, new Object());
-        if (isString(ajax_data.bemerkung) && ajax_data.bemerkung.trim() === "") ajax_data.bemerkung = null;
+        if (isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
         Schnittstelle_AjaxInDieSchlange(
             "termine/ajax_termin_speichern",

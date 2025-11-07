@@ -29,7 +29,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/lib/bootstrap.bundle.min.js', // https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js
         'js/lib/luxon.min.js', // https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js
         'js/lib/clipboard.min.js', // https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js
-        'js/lib/sha256.min.js', // https://www.npmjs.com/package/js-sha256
 
         'js/lib/ajaxqueue.js?v='.VERSION,
         'js/lib/isJson.js?v='.VERSION,
@@ -37,6 +36,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/lib/isObject.js?v='.VERSION,
         'js/lib/isNumber.js?v='.VERSION,
         'js/lib/isString.js?v='.VERSION,
+        'js/lib/isEmptyString.js?v='.VERSION,
         'js/lib/isJquery.js?v='.VERSION,
         'js/lib/isLuxonDateTime.js?v='.VERSION,
         'js/lib/JsonStringifiedZurueck.js?v='.VERSION,

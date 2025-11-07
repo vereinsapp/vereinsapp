@@ -100,7 +100,7 @@ function Liste_ElementAktualisieren($element, liste) {
         let $zugehoeriger_spacer;
         if (position == $vorschau_eigenschaften.length - 1) $zugehoeriger_spacer = $eigenschaft.prev();
         else $zugehoeriger_spacer = $eigenschaft.next();
-        if (isString($eigenschaft.text()) && $eigenschaft.text().trim() == "") {
+        if (isEmptyString($eigenschaft.text())) {
             $eigenschaft.addClass("invisible");
             $zugehoeriger_spacer.addClass("invisible");
         } else {

@@ -107,7 +107,6 @@ Auswertungen überarbeiten
     Filtern- und Gruppieren-Button batch einführen (Spezial-Bedigungen in Schnittstelle_EventVariableUpdDom wegnehmen)
 ajax_rueckmeldung_speichern angleichen an ajax_anwesenheit_speichern und die Vorgehensweise in javascript bzgl. löschen der alten Einträge?
 komponist, erledigt, mitglied_id bei aufgaben etc. nachziehen (analog zu bemerkung)
-isStringAndEmpty(string) isStringAndNotEmpty(string) einführen
 
 ALTER TABLE `vereinsapp_aufgaben` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
 UPDATE `vereinsapp_aufgaben` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
