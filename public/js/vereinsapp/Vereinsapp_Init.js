@@ -98,15 +98,16 @@ Liste_ElementIdZurueck loswerden
     Braucht es LISTEN[liste].instanz[instanz].filtern noch oder kann man einfach immer Schnittstelle_LocalstorageRausZurueck verwenden?
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
 
-mitgliedausplanen und mitgliedeinplanen in einer Funktion zusammenfassen?
+Aufgaben überarbeiten
+    mitglied_id bei aufgaben etc. nachziehen (analog zu bemerkung)
 Auswertungen überarbeiten
     Filtern, sortieren und gruppieren bei auswertungen steckt in einem JSON (data-filtern_prio_niedrig kann also nicht im Modal angezeigt oder bearbeitet werden)
     Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit den Werten?
     Gruppieren von _janein-Eigenschaft wirft einen Fehler
     Gruppieren nach Eigenschaft mit Wert "ohne" (bspw. Auto, Funktion, etc.) zeigt falschen Werte für "ohne" an
     Filtern- und Gruppieren-Button batch einführen (Spezial-Bedigungen in Schnittstelle_EventVariableUpdDom wegnehmen)
+mitgliedausplanen und mitgliedeinplanen in einer Funktion zusammenfassen?
 ajax_rueckmeldung_speichern angleichen an ajax_anwesenheit_speichern und die Vorgehensweise in javascript bzgl. löschen der alten Einträge?
-erledigt, mitglied_id bei aufgaben etc. nachziehen (analog zu bemerkung)
 
 ALTER TABLE `vereinsapp_aufgaben` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
 UPDATE `vereinsapp_aufgaben` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';

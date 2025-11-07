@@ -1,7 +1,7 @@
 function Aufgaben_AufgabeOffenErledigtMarkieren(bestaetigung_einfordern, dom, title, aufgabe_id) {
     if (typeof aufgabe_id !== "undefined") aufgabe_id = Number(aufgabe_id);
     else if ("$btn_ausloesend" in dom && typeof dom.$btn_ausloesend.attr("data-element_id") !== "undefined")
-        aufgabe_id = Number(dom.$btn_ausloesend.attr("data-element_id"));
+        aufgabe_id = Schnittstelle_VariableWertBereinigtZurueck(dom.$btn_ausloesend.attr("data-element_id"), undefined);
 
     if (bestaetigung_einfordern) {
         let erledigt_string;

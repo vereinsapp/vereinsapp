@@ -13,7 +13,7 @@ class Aufgaben extends BaseController {
             'zugeordnete_element_id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['zugeordnete_element_id']['beschriftung'], 'rules' => [ 'required_with[zugeordnete_liste]', 'if_exist', 'is_natural_no_zero', 'permit_empty' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['aufgaben']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['mitglied_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero', 'permit_empty' ] ],
-            'erledigt' => [ 'label' => EIGENSCHAFTEN['aufgaben']['erledigt']['beschriftung'], 'rules' => [ 'if_exist', 'valid_date', 'permit_empty' ] ],
+            'erledigt' => [ 'label' => EIGENSCHAFTEN['aufgaben']['erledigt']['beschriftung'], 'rules' => [ 'field_exists', 'valid_date', 'permit_empty' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         );
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
@@ -43,7 +43,7 @@ class Aufgaben extends BaseController {
             if( array_key_exists( 'zugeordnete_liste', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['zugeordnete_liste'] ) ) $aufgabe['zugeordnete_liste'] = $this->request->getpost()['zugeordnete_liste']; else $aufgabe['zugeordnete_liste'] = NULL; }
             if( array_key_exists( 'zugeordnete_element_id', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['zugeordnete_element_id'] ) ) $aufgabe['zugeordnete_element_id'] = $this->request->getpost()['zugeordnete_element_id']; else $aufgabe['zugeordnete_element_id'] = NULL; }
             if( array_key_exists( 'mitglied_id', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['mitglied_id'] ) ) $aufgabe['mitglied_id'] = $this->request->getpost()['mitglied_id']; else $aufgabe['mitglied_id'] = NULL; }
-            if( array_key_exists( 'erledigt', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['erledigt'] ) ) $aufgabe['erledigt'] = $this->request->getpost()['erledigt']; else $aufgabe['erledigt'] = NULL; }
+            if( array_key_exists( 'erledigt', $this->request->getpost() ) AND !empty( $this->request->getpost()['erledigt'] ) ) $aufgabe['erledigt'] = $this->request->getpost()['erledigt']; else $aufgabe['erledigt'] = NULL;
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $aufgabe['bemerkung'] = $this->request->getpost()['bemerkung']; else $aufgabe['bemerkung'] = NULL;
 
             if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $aufgaben_Model->update( $this->request->getpost()['id'], $aufgabe );

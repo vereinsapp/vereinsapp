@@ -1,7 +1,7 @@
 function Strafkatalog_KassenbucheintragOffenErledigtMarkieren(bestaetigung_einfordern, dom, title, kassenbucheintrag_id) {
     if (typeof kassenbucheintrag_id !== "undefined") kassenbucheintrag_id = Number(kassenbucheintrag_id);
     else if ("$btn_ausloesend" in dom && typeof dom.$btn_ausloesend.attr("data-element_id") !== "undefined")
-        kassenbucheintrag_id = Number(dom.$btn_ausloesend.attr("data-element_id"));
+        kassenbucheintrag_id = Schnittstelle_VariableWertBereinigtZurueck(dom.$btn_ausloesend.attr("data-element_id"), undefined);
 
     if (bestaetigung_einfordern) {
         let erledigt_string;

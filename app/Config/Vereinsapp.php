@@ -591,7 +591,6 @@ class Vereinsapp extends BaseConfig
             // 'zugeordnete_liste', muss auskommentiert sein solange die Aufgaben ausschließlich den anderen Controllern zugeordnet sind
             // 'element_id',
             // 'mitglied_id',
-            // 'erledigt',
             'erledigt_janein',
             'erstellung',
         ),
@@ -617,7 +616,6 @@ class Vereinsapp extends BaseConfig
         'kassenbuch' => array(
             'wert',
             // 'mitglied_id',
-            'erledigt',
             'erledigt_janein',
             'erstellung',
         ),
@@ -664,7 +662,6 @@ class Vereinsapp extends BaseConfig
             'titel',
             'mitglied_id',
             'erledigt',
-            'erledigt_janein',
             'erstellung',
         ),
 
@@ -692,7 +689,6 @@ class Vereinsapp extends BaseConfig
             'wert',
             'mitglied_id',
             'erledigt',
-            'erledigt_janein',
             'erstellung',
         ),
 

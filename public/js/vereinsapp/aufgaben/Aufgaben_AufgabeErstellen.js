@@ -16,8 +16,8 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
         if (typeof data.zugeordnete_element_id === "undefined" || ("zugeordnete_element_id" in data && data.zugeordnete_element_id == ""))
             data.zugeordnete_element_id = null;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
-        ajax_data.id = aufgabe_id;
-        if (isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = ajax_data.erledigt.toISO();
+        if (!("erledigt" in ajax_data) || !isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = null;
+        else ajax_data.erledigt = ajax_data.erledigt.toISO();
         if (!("bemerkung" in ajax_data) || isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
         Schnittstelle_AjaxInDieSchlange(
