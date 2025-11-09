@@ -129,13 +129,8 @@ EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
 function Termine_Init() {
     EVENT_VARIABLE_UPD_DOM_VOR_ENDE["rueckmeldungen"] = [
         function () {
-            // FORMULAR MEINE RÜCKMELDUNG EIN-/AUSBLENDEN
-            $(".rueckmeldung_eingeladen").each(function () {
-                Termine_RueckmeldungEinAusblenden($(this));
-            });
-
             // RÜCKMELDUNG AKTUALISIEREN
-            $(".zusagen, .absagen").each(function () {
+            $(".formular[data-liste='rueckmeldungen']").each(function () {
                 Termine_RueckmeldungAktualisieren($(this));
             });
         },
@@ -192,38 +187,24 @@ function Termine_Init() {
             false,
             { $btn_ausloesend: $(this) },
             {
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte"), { termin_id: undefined }).termin_id,
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte"), { mitglied_id: undefined }).mitglied_id,
-                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte"), { status: undefined }).status,
-                bemerkung: null,
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-status"), undefined),
+                bemerkung: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-bemerkung"), null),
             },
-            $(this).attr("data-title"),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             undefined
-        );
-    });
-
-    // RÜCKMELDUNG ÄNDERN
-    $(document).on("click", ".btn_rueckmeldung_aendern", function () {
-        Termine_RueckmeldungAendern(
-            false,
-            { $btn_ausloesend: $(this) },
-            {
-                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-werte"), { status: undefined }).status,
-                bemerkung: null,
-            },
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
         );
     });
 
     // RÜCKMELDUNG DETAILLIEREN
     $(document).on("click", ".btn_rueckmeldung_detaillieren", function () {
-        Termine_RueckmeldungDetaillieren(
+        Termine_RueckmeldungBemerkungAendern(
             $(this).hasClass("formular_oeffnen"),
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title")),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id"))
         );
     });
 

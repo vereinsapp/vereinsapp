@@ -107,7 +107,6 @@ Auswertungen überarbeiten
     Gruppieren nach Eigenschaft mit Wert "ohne" (bspw. Auto, Funktion, etc.) zeigt falschen Werte für "ohne" an
     Filtern- und Gruppieren-Button batch einführen (Spezial-Bedigungen in Schnittstelle_EventVariableUpdDom wegnehmen)
 mitgliedausplanen und mitgliedeinplanen in einer Funktion zusammenfassen?
-ajax_rueckmeldung_speichern angleichen an ajax_anwesenheit_speichern und die Vorgehensweise in javascript bzgl. löschen der alten Einträge?
 
 ALTER TABLE `vereinsapp_aufgaben` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
 UPDATE `vereinsapp_aufgaben` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';

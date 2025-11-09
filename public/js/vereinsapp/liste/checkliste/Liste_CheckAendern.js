@@ -1,14 +1,13 @@
 function Liste_CheckAendern(dom, data) {
-    if ("element_id" in data && data.element_id !== "undefined") data.element_id = Number(data.element_id);
-    if ("gegen_element_id" in data && data.gegen_element_id !== "undefined") data.gegen_element_id = Number(data.gegen_element_id);
-    if ("status" in data && data.status !== "undefined") data.status = Number(data.status);
-
     Schnittstelle_CheckWartenStart(dom.$check);
 
+    data[LISTEN[data.liste].element + "_id"] = data.element_id;
+    data[LISTEN[data.gegen_liste].element + "_id"] = data.gegen_element_id;
+    delete data.element_id;
+    delete data.gegen_element_id;
+    data.status = Number(data.status);
     const ajax_dom = dom;
     const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
-    ajax_data[LISTEN[data.liste].element + "_id"] = data.element_id;
-    ajax_data[LISTEN[data.gegen_liste].element + "_id"] = data.gegen_element_id;
     if (!("bemerkung" in ajax_data) || isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
     Schnittstelle_AjaxInDieSchlange(
@@ -18,9 +17,14 @@ function Liste_CheckAendern(dom, data) {
         function (AJAX) {
             // bereits vorhandene identische Einträge in der Checkliste werden gelöscht
             $.each(
-                Schnittstelle_VariableRausZurueck("zugeordnete_element_ids_nach_liste", AJAX.data.gegen_element_id, AJAX.data.gegen_liste, {
-                    [AJAX.data.checkliste]: new Array(),
-                })[AJAX.data.checkliste],
+                Schnittstelle_VariableRausZurueck(
+                    "zugeordnete_element_ids_nach_liste",
+                    AJAX.data[LISTEN[AJAX.data.gegen_liste].element + "_id"],
+                    AJAX.data.gegen_liste,
+                    {
+                        [AJAX.data.checkliste]: new Array(),
+                    }
+                )[AJAX.data.checkliste],
                 function (position, checkliste_element_id) {
                     if (
                         Schnittstelle_VariableRausZurueck(
@@ -39,18 +43,17 @@ function Liste_CheckAendern(dom, data) {
                 if (typeof AJAX.antwort[LISTEN[AJAX.data.checkliste].element + "_id"] !== "undefined")
                     AJAX.data.id = Number(AJAX.antwort[LISTEN[AJAX.data.checkliste].element + "_id"]);
                 else AJAX.data.id = LISTEN[AJAX.data.checkliste].tabelle.length + 1;
+                const checkliste_element_id = AJAX.data.id;
 
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (
                         eigenschaft != "ajax_id" &&
                         eigenschaft != CSRF_NAME &&
                         eigenschaft != "liste" &&
-                        eigenschaft != "element_id" &&
                         eigenschaft != "gegen_liste" &&
-                        eigenschaft != "gegen_element_id" &&
                         eigenschaft != "checkliste"
                     )
-                        Schnittstelle_VariableRein(wert, eigenschaft, AJAX.data.id, AJAX.data.checkliste);
+                        Schnittstelle_VariableRein(wert, eigenschaft, checkliste_element_id, AJAX.data.checkliste);
                 });
             }
 

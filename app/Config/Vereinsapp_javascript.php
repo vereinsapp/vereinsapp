@@ -170,10 +170,8 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/termine/Termine_TerminErstellen.js?v='.VERSION,
         'js/vereinsapp/termine/Termine_TerminAendern.js?v='.VERSION,
         'js/vereinsapp/termine/Termine_RueckmeldungErstellen.js?v='.VERSION,
-        'js/vereinsapp/termine/Termine_RueckmeldungAendern.js?v='.VERSION,
-        'js/vereinsapp/termine/Termine_RueckmeldungDetaillieren.js?v='.VERSION,
+        'js/vereinsapp/termine/Termine_RueckmeldungBemerkungAendern.js?v='.VERSION,
         'js/vereinsapp/termine/Termine_RueckmeldungAktualisieren.js?v='.VERSION,
-        'js/vereinsapp/termine/Termine_RueckmeldungEinAusblenden.js?v='.VERSION,
 
         'js/vereinsapp/strafkatalog/Strafkatalog_Init.js?v='.VERSION,
         'js/vereinsapp/strafkatalog/Strafkatalog_StrafeErstellen.js?v='.VERSION,

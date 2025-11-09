@@ -84,6 +84,7 @@ $routes->group('termine', static function ($routes) {
     $routes->post('ajax_termin_loeschen',                   'Termine::ajax_termin_loeschen');
 
     $routes->post('ajax_rueckmeldung_speichern',            'Termine::ajax_rueckmeldung_speichern');
+    $routes->post('ajax_rueckmeldung_bemerkung_aendern',    'Termine::ajax_rueckmeldung_bemerkung_aendern');
 
     $routes->post('ajax_anwesenheit_speichern',             'Termine::ajax_anwesenheit_speichern');
 });

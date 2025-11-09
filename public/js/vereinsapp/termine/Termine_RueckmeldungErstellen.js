@@ -1,6 +1,12 @@
-function Termine_RueckmeldungErstellen(formular_oeffnen, dom, data, title, rueckmeldung_id) {
-    if (typeof rueckmeldung_id !== "undefined") rueckmeldung_id = Number(rueckmeldung_id);
+/**
+ * @param {boolean} formular_oeffnen
+ * @param {Object} dom
+ * @param {Object} data
+ * @param {string} title
+ * @param {number} rueckmeldung_id
+ */
 
+function Termine_RueckmeldungErstellen(formular_oeffnen, dom, data, title, rueckmeldung_id) {
     if (formular_oeffnen) {
         const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "rueckmeldung_basiseigenschaften");
         Schnittstelle_DomModalOeffnen($neues_modal);
@@ -17,14 +23,28 @@ function Termine_RueckmeldungErstellen(formular_oeffnen, dom, data, title, rueck
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                if (typeof AJAX.antwort.rueckmeldung_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.rueckmeldung_id);
-                else AJAX.data.id = LISTEN["rueckmeldungen"].tabelle.length + 1;
-                const rueckmeldung_id = AJAX.data.id;
+                // bereits vorhandene identische Rückmeldungen werden gelöscht
+                $.each(
+                    Schnittstelle_VariableRausZurueck("zugeordnete_element_ids_nach_liste", AJAX.data.termin_id, "termine", {
+                        rueckmeldungen: new Array(),
+                    }).rueckmeldungen,
+                    function (position, rueckmeldung_id) {
+                        if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "rueckmeldungen", undefined) === AJAX.data.mitglied_id)
+                            Schnittstelle_VariableLoeschen(rueckmeldung_id, "rueckmeldungen");
+                    }
+                );
 
-                $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
-                        Schnittstelle_VariableRein(wert, eigenschaft, rueckmeldung_id, "rueckmeldungen");
-                });
+                // eine neue Rückmeldung wird hinzugefügt
+                if (AJAX.data.status > 0) {
+                    if (typeof AJAX.antwort.rueckmeldung_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.rueckmeldung_id);
+                    else AJAX.data.id = LISTEN["rueckmeldungen"].tabelle.length + 1;
+                    const rueckmeldung_id = AJAX.data.id;
+
+                    $.each(AJAX.data, function (eigenschaft, wert) {
+                        if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
+                            Schnittstelle_VariableRein(wert, eigenschaft, rueckmeldung_id, "rueckmeldungen");
+                    });
+                }
 
                 Schnittstelle_EventVariableUpdLocalstorage("rueckmeldungen");
                 Schnittstelle_EventLocalstorageUpdVariable("rueckmeldungen");
@@ -40,6 +60,8 @@ function Termine_RueckmeldungErstellen(formular_oeffnen, dom, data, title, rueck
                         Liste_ElementBeschriftungZurueck(rueckmeldung_id, "rueckmeldungen") + " wurde erfolgreich erstellt."
                     );
                 }
+                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
+                    Termine_RueckmeldungAktualisieren(AJAX.dom.$btn_ausloesend.closest(".formular[data-liste='rueckmeldungen']"));
             },
             function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
