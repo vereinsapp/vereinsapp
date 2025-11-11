@@ -61,7 +61,7 @@ function Termine_RueckmeldungErstellen(formular_oeffnen, dom, data, title, rueck
                     );
                 }
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
-                    Termine_RueckmeldungAktualisieren(AJAX.dom.$btn_ausloesend.closest(".formular[data-liste='rueckmeldungen']"));
+                    Termine_RueckmeldungAktualisieren(AJAX.dom.$btn_ausloesend.closest("[data-liste='rueckmeldungen']"));
             },
             function (AJAX) {
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))

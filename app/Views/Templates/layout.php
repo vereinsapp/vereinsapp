@@ -37,6 +37,7 @@
 
     <div id="modals">
 <?= view( 'Templates/modal', array( 'id' => 'BESTAETIGUNG', 'modal' => view( 'Templates/bestaetigung' ) ) ); ?>
+<?= view( 'Templates/modal', array( 'id' => 'BEMERKUNG', 'modal_title' => 'Bemerkung ändern', 'modal' => view( 'Templates/Liste/formular', array( 'btn' => array( 'klasse_id' => 'btn_bemerkung_aendern' ), 'formular' => view( 'Templates/Liste/bemerkung_formular' ) ) ) ) ); ?>
 <?= view( 'Templates/modal', array( 'id' => 'FILTERN', 'modal' => view( 'Templates/Liste/filtern' ) ) ); ?>
 <?= view( 'Templates/modal', array( 'id' => 'SORTIEREN', 'modal' => view( 'Templates/Liste/sortieren' ) ) ); ?>
 <?= view( 'Templates/modal', array( 'id' => 'GRUPPIEREN', 'modal' => view( 'Templates/Liste/gruppieren' ) ) ); ?>

@@ -54,6 +54,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/element/Liste_ElementFormularEigenschaftenWerteZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementFormularValidationAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementLoeschen.js?v='.VERSION,
+        'js/vereinsapp/liste/element/Liste_ElementBemerkungAendern.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_WertFormatiertZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementZusatzsymbolAktualisieren.js?v='.VERSION,
@@ -170,7 +171,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/termine/Termine_TerminErstellen.js?v='.VERSION,
         'js/vereinsapp/termine/Termine_TerminAendern.js?v='.VERSION,
         'js/vereinsapp/termine/Termine_RueckmeldungErstellen.js?v='.VERSION,
-        'js/vereinsapp/termine/Termine_RueckmeldungBemerkungAendern.js?v='.VERSION,
         'js/vereinsapp/termine/Termine_RueckmeldungAktualisieren.js?v='.VERSION,
 
         'js/vereinsapp/strafkatalog/Strafkatalog_Init.js?v='.VERSION,
