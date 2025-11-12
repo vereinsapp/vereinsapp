@@ -10,7 +10,7 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
         element_ids_nach_status[0].push(element_id);
     });
 
-    $.each(status_auswahl, function (status, beschriftung) {
+    $.each(status_auswahl, function (position, status) {
         element_ids_nach_status[Number(status)] = new Array();
     });
     $.each(auswertung_element_ids, function (position, auswertung_element_id) {

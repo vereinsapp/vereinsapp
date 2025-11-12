@@ -117,7 +117,7 @@ class Termine extends BaseController {
 
         $this->viewdata['auswertungen'][ 'rueckmeldungen_termin' ] = array(
             'auswertungen' => 'termine_rueckmeldungen',
-            'status_auswahl' => array( 1 => 'ZUSAGEN', 2 => 'ABSAGEN' ),
+            'status_auswahl' => array( 1, 2 ),
             'liste' => array( 'liste' => 'mitglieder', 'gruppieren' => 'register', 'filtern' => $this->filtern_mitglieder_kombiniert( $termin_id ), ),
             'gegen_liste' => 'termine',
             'gegen_element_id' => $termin_id,
@@ -135,7 +135,7 @@ class Termine extends BaseController {
 
         $this->viewdata['auswertungen'][ 'anwesenheiten_termin' ] = array(
             'auswertungen' => 'anwesenheiten',
-            'status_auswahl' => array( 1 => 'ANWESEND' ),
+            'status_auswahl' => array( 1 ),
             'liste' => array( 'liste' => 'mitglieder', 'gruppieren' => 'register', 'filtern' => $this->filtern_mitglieder_kombiniert( $termin_id ), ),
             'gegen_liste' => 'termine',
             'gegen_element_id' => $termin_id,
