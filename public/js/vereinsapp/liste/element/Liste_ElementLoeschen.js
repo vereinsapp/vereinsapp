@@ -5,7 +5,7 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, elemen
         Schnittstelle_DomBestaetigungEinfordern(
             "Willst du wirklich " + Liste_ElementBeschriftungZurueck(element_id, liste) + " löschen?",
             title,
-            "btn_" + LISTEN[liste].element + "_loeschen",
+            "btn_element_loeschen",
             { liste: liste, element_id: element_id, weiterleiten: data.weiterleiten },
             "danger"
         );

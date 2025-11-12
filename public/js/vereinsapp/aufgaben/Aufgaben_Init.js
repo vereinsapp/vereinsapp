@@ -165,18 +165,6 @@ function Aufgaben_Init() {
         );
     });
 
-    // AUFGABE LÖSCHEN
-    $(document).on("click", ".btn_aufgabe_loeschen", function () {
-        Liste_ElementLoeschen(
-            $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
-            { weiterleiten: $(this).attr("data-weiterleiten") },
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            "aufgaben"
-        );
-    });
-
     // ZUGEORDNETE AUFGABEN ANZEIGEN
     $(document).on("click", ".btn_zugeordnete_aufgaben_anzeigen", function () {
         Aufgaben_ZugeordneteAufgabenAnzeigen($(this).attr("data-title"));

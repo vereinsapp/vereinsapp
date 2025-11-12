@@ -30,7 +30,7 @@ class Strafkatalog extends BaseController {
                 'title' => 'Strafe duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => array('btn_strafe_loeschen', 'bestaetigung_einfordern'),
+                'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
                 'title' => 'Strafe löschen',
                 'farbe' => 'danger',
             );
@@ -70,7 +70,7 @@ class Strafkatalog extends BaseController {
                 'title' => 'Kassenbucheintrag duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => array('btn_kassenbucheintrag_loeschen', 'bestaetigung_einfordern'),
+                'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
                 'title' => 'Kassenbucheintrag löschen',
                 'farbe' => 'danger',
             );

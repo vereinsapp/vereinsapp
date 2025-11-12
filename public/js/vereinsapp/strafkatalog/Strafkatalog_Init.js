@@ -37,18 +37,6 @@ function Strafkatalog_Init() {
         );
     });
 
-    // STRAFE LÖSCHEN
-    $(document).on("click", ".btn_strafe_loeschen", function () {
-        Liste_ElementLoeschen(
-            $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
-            { weiterleiten: $(this).attr("data-weiterleiten") },
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            "strafkatalog"
-        );
-    });
-
     // STRAFE ZUWEISEN
     $(document).on("click", ".btn_strafe_zuweisen", function () {
         Strafkatalog_StrafeZuweisen(
@@ -102,18 +90,6 @@ function Strafkatalog_Init() {
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
             $(this).attr("data-title"),
             $(this).attr("data-kassenbucheintrag_id")
-        );
-    });
-
-    // KASSENBUCHEINTRAG LÖSCHEN
-    $(document).on("click", ".btn_kassenbucheintrag_loeschen", function () {
-        Liste_ElementLoeschen(
-            $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
-            { weiterleiten: $(this).attr("data-weiterleiten") },
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            "kassenbuch"
         );
     });
 }

@@ -120,7 +120,7 @@ class Mitglieder extends BaseController {
                 'title' => 'Mitglied duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => array('btn_mitglied_loeschen', 'bestaetigung_einfordern'),
+                'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
                 'title' => 'Mitglied löschen',
                 'farbe' => 'danger',
             );
@@ -263,7 +263,7 @@ class Mitglieder extends BaseController {
                 'title' => 'Mitglied duplizieren',
             );
             $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => array('btn_mitglied_loeschen', 'bestaetigung_einfordern'),
+                'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
                 'title' => 'Mitglied löschen',
                 'farbe' => 'danger',
                 'weiterleiten' => 'mitglieder',

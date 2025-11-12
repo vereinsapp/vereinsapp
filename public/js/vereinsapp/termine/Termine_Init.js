@@ -169,18 +169,6 @@ function Termine_Init() {
         );
     });
 
-    // TERMIN LÖSCHEN
-    $(document).on("click", ".btn_termin_loeschen", function () {
-        Liste_ElementLoeschen(
-            $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
-            { weiterleiten: $(this).attr("data-weiterleiten") },
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            "termine"
-        );
-    });
-
     // RÜCKMELDUNG ERSTELLEN
     $(document).on("click", ".btn_rueckmeldung_erstellen", function () {
         Termine_RueckmeldungErstellen(
@@ -193,18 +181,6 @@ function Termine_Init() {
                 bemerkung: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-bemerkung"), null),
             },
             undefined
-        );
-    });
-
-    // RÜCKMELDUNG LÖSCHEN
-    $(document).on("click", ".btn_rueckmeldung_loeschen", function () {
-        Liste_ElementLoeschen(
-            $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
-            { weiterleiten: $(this).attr("data-weiterleiten") },
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            "rueckmeldungen"
         );
     });
 

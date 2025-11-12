@@ -95,9 +95,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             $zusatzsymbol.html(
                 '<i class="bi bi-' +
                     SYMBOLE["loeschen"]["bootstrap"] +
-                    " btn_" +
-                    LISTEN[liste].element +
-                    '_loeschen bestaetigung_einfordern text-danger" data-liste="' +
+                    ' btn_element_loeschen bestaetigung_einfordern text-danger" data-liste="' +
                     liste +
                     '" data-element_id="' +
                     element_id +

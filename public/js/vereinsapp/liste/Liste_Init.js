@@ -27,6 +27,18 @@ function Liste_Init() {
             EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].change_aktion($(this));
     });
 
+    // ELEMENT LÖSCHEN
+    $(document).on("click", ".btn_element_loeschen", function () {
+        Liste_ElementLoeschen(
+            $(this).hasClass("bestaetigung_einfordern"),
+            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
+            { weiterleiten: $(this).attr("data-weiterleiten") },
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title")),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id")),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"))
+        );
+    });
+
     // BEMERKUNG AENDERN
     $(document).on("click", ".btn_bemerkung_aendern", function () {
         Liste_ElementBemerkungAendern(
