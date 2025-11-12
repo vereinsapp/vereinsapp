@@ -1,3 +1,11 @@
+/**
+ * @param {boolean} formular_oeffnen
+ * @param {Object} dom
+ * @param {Object} data
+ * @param {string} title
+ * @param {number} termin_id
+ */
+
 function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
     if (typeof termin_id !== "undefined") termin_id = Number(termin_id);
 
@@ -40,9 +48,13 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
 
                 Schnittstelle_EventVariableUpdLocalstorage("termine");
                 Schnittstelle_EventLocalstorageUpdVariable("termine");
+                Schnittstelle_EventLocalstorageUpdVariable("termine_rueckmeldungen");
                 // Schnittstelle_VariableElementZuordnen("termine");
+                Schnittstelle_VariableElementZuordnen("termine_rueckmeldungen");
                 Schnittstelle_VariableElementErgaenzen("termine");
+                Schnittstelle_VariableElementErgaenzen("termine_rueckmeldungen");
                 Schnittstelle_EventVariableUpdDom("termine");
+                Schnittstelle_EventVariableUpdDom("termine_rueckmeldungen");
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);

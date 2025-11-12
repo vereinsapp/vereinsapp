@@ -101,7 +101,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/checkliste/Liste_CheckAendern.js?v='.VERSION,
         'js/vereinsapp/liste/checkliste/Liste_RueckmeldungBemerkungAendern.js?v='.VERSION,
         'js/vereinsapp/liste/checkliste/Liste_CheckAktualisieren.js?v='.VERSION,
-        'js/vereinsapp/liste/checkliste/Liste_ElementIdZurueck.js?v='.VERSION,
 
         'js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisInit.js?v='.VERSION,
         'js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisAktualisieren.js?v='.VERSION,

@@ -1,12 +1,12 @@
 ELEMENTE.termin.ergaenzen_aktion = function (termin) {
     if ("termine_rueckmeldungen" in LISTEN) {
-        termin["ich_rueckmeldung_id"] = Liste_ElementIdZurueck(
-            [
-                { liste: "termine", element_id: Number(termin["id"]) },
-                { liste: "mitglieder", element_id: Number(ICH["id"]) },
-            ],
-            "termine_rueckmeldungen"
-        );
+        if ("zugeordnete_element_ids_nach_liste" in termin)
+            $.each(termin["zugeordnete_element_ids_nach_liste"].termine_rueckmeldungen, function (position, rueckmeldung_id) {
+                if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == Number(ICH["id"])) {
+                    termin["ich_rueckmeldung_id"] = rueckmeldung_id;
+                    return false;
+                }
+            });
         if (typeof termin["ich_rueckmeldung_id"] !== "undefined") termin["ich_rueckgemeldet_janein"] = true;
         else termin["ich_rueckgemeldet_janein"] = false;
     }

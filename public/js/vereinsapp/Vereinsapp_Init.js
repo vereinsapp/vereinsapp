@@ -93,7 +93,6 @@ Besseres Symbol für _eigenschaft_loeschen und _eigenschaft_loeschen-Button nur 
 zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt (bspw. für neue Aufgabe)
-Liste_ElementIdZurueck loswerden
 .instanz loswerden (INSTANZ einführen?)
     Braucht es LISTEN[liste].instanz[instanz].filtern noch oder kann man einfach immer Schnittstelle_LocalstorageRausZurueck verwenden?
 leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann

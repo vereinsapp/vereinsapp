@@ -39,11 +39,13 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, termin_id, "termine");
                 });
-
                 Schnittstelle_EventVariableUpdLocalstorage("termine");
                 Schnittstelle_EventLocalstorageUpdVariable("termine");
+                Schnittstelle_EventLocalstorageUpdVariable("termine_rueckmeldungen");
                 // Schnittstelle_VariableElementZuordnen("termine");
+                Schnittstelle_VariableElementZuordnen("termine_rueckmeldungen");
                 Schnittstelle_VariableElementErgaenzen("termine");
+                Schnittstelle_VariableElementErgaenzen("termine_rueckmeldungen");
                 Schnittstelle_EventVariableUpdDom("termine");
                 Schnittstelle_EventVariableUpdDom("termine_rueckmeldungen");
 

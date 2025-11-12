@@ -20,16 +20,17 @@ function Termine_RueckmeldungAktualisieren($rueckmeldung) {
                 const $btn_rueckmeldung_erstellen = $(this);
                 const mitglied_id = Schnittstelle_VariableWertBereinigtZurueck($btn_rueckmeldung_erstellen.attr("data-mitglied_id"), undefined);
                 const status = Schnittstelle_VariableWertBereinigtZurueck($btn_rueckmeldung_erstellen.attr("data-status"), undefined);
-                const rueckmeldung_id = Schnittstelle_VariableWertBereinigtZurueck(
-                    $btn_rueckmeldung_erstellen.attr("data-element_id"),
-                    Liste_ElementIdZurueck(
-                        [
-                            { liste: "termine", element_id: termin_id },
-                            { liste: "mitglieder", element_id: mitglied_id },
-                        ],
-                        "termine_rueckmeldungen"
-                    )
+                let rueckmeldung_id_;
+                $.each(
+                    Schnittstelle_VariableRausZurueck("zugeordnete_element_ids_nach_liste", termin_id, "termine", {
+                        termine_rueckmeldungen: new Array(),
+                    }).termine_rueckmeldungen,
+                    function (position, rueckmeldung_id) {
+                        if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) === mitglied_id)
+                            rueckmeldung_id_ = rueckmeldung_id;
+                    }
                 );
+                const rueckmeldung_id = rueckmeldung_id_;
                 const bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", rueckmeldung_id, "termine_rueckmeldungen", null);
 
                 const attribute = new Array();
