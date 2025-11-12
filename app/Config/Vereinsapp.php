@@ -167,8 +167,8 @@ class Vereinsapp extends BaseConfig
             'listenstatistik' => array(),
         ),
 
-        'rueckmeldungen' => array(
-            'liste' => 'rueckmeldungen',
+        'termine_rueckmeldungen' => array(
+            'liste' => 'termine_rueckmeldungen',
             'filtern' => array(),
             'sortieren' => array(),
         ),
@@ -295,7 +295,7 @@ class Vereinsapp extends BaseConfig
             'ich_eingeladen_janein' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'janein' ),              // JAVA
         ),
 
-        'rueckmeldungen' => array(
+        'termine_rueckmeldungen' => array(
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'element_id' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
@@ -427,7 +427,7 @@ class Vereinsapp extends BaseConfig
 
         ),
 
-        'rueckmeldungen' => array(
+        'termine_rueckmeldungen' => array(
         ),
 
         'anwesenheiten' => array(
@@ -603,7 +603,7 @@ class Vereinsapp extends BaseConfig
             'ich_eingeladen_janein',
         ),
 
-        'rueckmeldungen' => array(
+        'termine_rueckmeldungen' => array(
         ),
 
         'anwesenheiten' => array(
@@ -673,7 +673,7 @@ class Vereinsapp extends BaseConfig
             'kategorie',
         ),
 
-        'rueckmeldungen' => array(
+        'termine_rueckmeldungen' => array(
         ),
 
         'anwesenheiten' => array(
@@ -737,7 +737,7 @@ class Vereinsapp extends BaseConfig
             'kategorie',
         ),
 
-        'rueckmeldungen' => array(
+        'termine_rueckmeldungen' => array(
         ),
 
         'anwesenheiten' => array(

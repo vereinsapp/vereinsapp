@@ -1,11 +1,11 @@
 ELEMENTE.termin.ergaenzen_aktion = function (termin) {
-    if ("rueckmeldungen" in LISTEN) {
+    if ("termine_rueckmeldungen" in LISTEN) {
         termin["ich_rueckmeldung_id"] = Liste_ElementIdZurueck(
             [
                 { liste: "termine", element_id: Number(termin["id"]) },
                 { liste: "mitglieder", element_id: Number(ICH["id"]) },
             ],
-            "rueckmeldungen"
+            "termine_rueckmeldungen"
         );
         if (typeof termin["ich_rueckmeldung_id"] !== "undefined") termin["ich_rueckgemeldet_janein"] = true;
         else termin["ich_rueckgemeldet_janein"] = false;
@@ -30,11 +30,11 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
     );
 };
 
-ELEMENTE.rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
+ELEMENTE.termine_rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
     const rueckmeldung_id = rueckmeldung.id;
 
     if ("termine" in LISTEN) {
-        const termin_id = Schnittstelle_VariableRausZurueck("termin_id", rueckmeldung_id, "rueckmeldungen", undefined);
+        const termin_id = Schnittstelle_VariableRausZurueck("termin_id", rueckmeldung_id, "termine_rueckmeldungen", undefined);
 
         if (typeof termin_id !== "undefined") {
             const termin = LISTEN.termine.tabelle[termin_id];
@@ -43,16 +43,17 @@ ELEMENTE.rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
                 if (!("zugeordnete_element_ids_nach_liste" in termin)) termin.zugeordnete_element_ids_nach_liste = new Object();
                 const zugeordnete_element_ids_nach_liste = termin.zugeordnete_element_ids_nach_liste;
 
-                if (!("rueckmeldungen" in zugeordnete_element_ids_nach_liste)) zugeordnete_element_ids_nach_liste.rueckmeldungen = new Array();
-                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.rueckmeldungen;
+                if (!("termine_rueckmeldungen" in zugeordnete_element_ids_nach_liste))
+                    zugeordnete_element_ids_nach_liste.termine_rueckmeldungen = new Array();
+                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.termine_rueckmeldungen;
                 if (!zugeordnete_element_ids.includes(rueckmeldung_id))
-                    LISTEN.termine.tabelle[termin_id].zugeordnete_element_ids_nach_liste.rueckmeldungen.push(rueckmeldung_id);
+                    LISTEN.termine.tabelle[termin_id].zugeordnete_element_ids_nach_liste.termine_rueckmeldungen.push(rueckmeldung_id);
             }
         }
     }
 
     if ("mitglieder" in LISTEN) {
-        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "rueckmeldungen", undefined);
+        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined);
 
         if (typeof mitglied_id !== "undefined") {
             const mitglied = LISTEN.mitglieder.tabelle[mitglied_id];
@@ -61,10 +62,11 @@ ELEMENTE.rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
                 if (!("zugeordnete_element_ids_nach_liste" in mitglied)) mitglied.zugeordnete_element_ids_nach_liste = new Object();
                 const zugeordnete_element_ids_nach_liste = mitglied.zugeordnete_element_ids_nach_liste;
 
-                if (!("rueckmeldungen" in zugeordnete_element_ids_nach_liste)) zugeordnete_element_ids_nach_liste.rueckmeldungen = new Array();
-                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.rueckmeldungen;
+                if (!("termine_rueckmeldungen" in zugeordnete_element_ids_nach_liste))
+                    zugeordnete_element_ids_nach_liste.termine_rueckmeldungen = new Array();
+                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.termine_rueckmeldungen;
                 if (!zugeordnete_element_ids.includes(rueckmeldung_id))
-                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.rueckmeldungen.push(rueckmeldung_id);
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.termine_rueckmeldungen.push(rueckmeldung_id);
             }
         }
     }
@@ -127,10 +129,10 @@ EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
 };
 
 function Termine_Init() {
-    EVENT_VARIABLE_UPD_DOM_VOR_ENDE["rueckmeldungen"] = [
+    EVENT_VARIABLE_UPD_DOM_VOR_ENDE["termine_rueckmeldungen"] = [
         function () {
             // RÜCKMELDUNG AKTUALISIEREN
-            $("[data-liste='rueckmeldungen']").each(function () {
+            $("[data-liste='termine_rueckmeldungen']").each(function () {
                 Termine_RueckmeldungAktualisieren($(this));
             });
         },

@@ -37,7 +37,7 @@
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['kassenbuch_offene_eintraege_startseite'] ) ); ?>
 </div><?php } ?>
 
-<?php if( array_key_exists( LISTEN['rueckmeldungen']['controller'], CONTROLLERS ) ) { ?><div class="container mb-3">
+<?php if( array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) { ?><div class="container mb-3">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="termine" data-instanz="termine_ausstehende_rueckmeldung">Termine ohne Rückmeldung</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_ausstehende_rueckmeldung'] ) ); ?>
 </div><?php } ?>

@@ -22,7 +22,7 @@ class Rueckmeldung_Model extends Model {
         $tabelle = array();
 
         foreach( $this->findAll() as $eintrag )
-            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'rueckmeldungen' );
+            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'termine_rueckmeldungen' );
 
         return $tabelle;
     }

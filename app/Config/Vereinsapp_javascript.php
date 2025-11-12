@@ -54,7 +54,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/element/Liste_ElementFormularEigenschaftenWerteZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementFormularValidationAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementLoeschen.js?v='.VERSION,
-        'js/vereinsapp/liste/element/Liste_ElementBemerkungAendern.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_WertFormatiertZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementZusatzsymbolAktualisieren.js?v='.VERSION,
@@ -100,6 +99,7 @@ class Vereinsapp_javascript extends BaseConfig
         
         'js/vereinsapp/liste/checkliste/Liste_ChecklisteInit.js?v='.VERSION,
         'js/vereinsapp/liste/checkliste/Liste_CheckAendern.js?v='.VERSION,
+        'js/vereinsapp/liste/checkliste/Liste_RueckmeldungBemerkungAendern.js?v='.VERSION,
         'js/vereinsapp/liste/checkliste/Liste_CheckAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/checkliste/Liste_ElementIdZurueck.js?v='.VERSION,
 

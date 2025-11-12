@@ -1,3 +1,6 @@
+/**
+ */
+
 function Liste_Init() {
     $.each(LISTEN, function (liste) {
         LISTEN[liste].instanz = new Object();
@@ -40,8 +43,8 @@ function Liste_Init() {
     });
 
     // BEMERKUNG AENDERN
-    $(document).on("click", ".btn_bemerkung_aendern", function () {
-        Liste_ElementBemerkungAendern(
+    $(document).on("click", ".btn_rueckmeldung_bemerkung_aendern", function () {
+        Liste_RueckmeldungBemerkungAendern(
             $(this).hasClass("formular_oeffnen"),
             { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),

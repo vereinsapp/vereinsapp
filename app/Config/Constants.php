@@ -128,10 +128,10 @@ defined('LISTEN') OR define( 'LISTEN', array(
         'controller' => 'termine',
         'element' => 'termin',
     ),
-    'rueckmeldungen' => array(
+    'termine_rueckmeldungen' => array(
         'beschriftung' => 'Rückmeldungen',
         'controller' => 'termine',
-        'element' => 'rueckmeldung',
+        'element' => 'termine_rueckmeldung',
     ),
     'anwesenheiten' => array(
         'beschriftung' => 'Anwesenheiten',
@@ -191,9 +191,9 @@ defined('ELEMENTE') OR define( 'ELEMENTE', array(
             array( 'eigenschaft' => 'start', 'prefix' => ' (', 'suffix' => ')' )
         ),
     ),
-    'rueckmeldung' => array(
+    'termine_rueckmeldung' => array(
         'beschriftung' => 'Rückmeldung',
-        'liste' => 'rueckmeldungen',
+        'liste' => 'termine_rueckmeldungen',
         'element_beschriftung' => array(),
     ),
     'anwesenheit' => array(

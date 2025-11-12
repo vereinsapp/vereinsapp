@@ -43,7 +43,7 @@ class Einstellungen extends BaseController {
             $ajax_antwort['tabellen']['vergebene_rechte'] = model(Mitglied_Model::class)->vergebene_rechte_tabelle();
             if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['aufgaben'] = model(Aufgabe_Model::class)->aufgaben_tabelle();
             if( array_key_exists( LISTEN['termine']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['termine'] = model(Termin_Model::class)->termine_tabelle();
-            if( array_key_exists( LISTEN['rueckmeldungen']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['rueckmeldungen'] = model(Rueckmeldung_Model::class)->rueckmeldungen_tabelle();
+            if( array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['termine_rueckmeldungen'] = model(Rueckmeldung_Model::class)->rueckmeldungen_tabelle();
             if( array_key_exists( LISTEN['anwesenheiten']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['anwesenheiten'] = model(Anwesenheit_Model::class)->anwesenheiten_tabelle();
             if( array_key_exists( LISTEN['strafkatalog']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['strafkatalog'] = model(Strafe_Model::class)->strafkatalog_tabelle();
             if( array_key_exists( LISTEN['kassenbuch']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['kassenbuch'] = model(Kassenbucheintrag_Model::class)->kassenbuch_tabelle();

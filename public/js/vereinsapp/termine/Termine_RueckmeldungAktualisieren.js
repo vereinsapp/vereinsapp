@@ -10,7 +10,7 @@ function Termine_RueckmeldungAktualisieren($rueckmeldung) {
 
     if (typeof termin_id !== "undefined") {
         const $rueckmeldung_nicht_eingeladen = $rueckmeldung.siblings(".rueckmeldung_nicht_eingeladen").first();
-        const $btn_bemerkung_aendern = $rueckmeldung.find(".btn_bemerkung_aendern");
+        const $btn_rueckmeldung_bemerkung_aendern = $rueckmeldung.find(".btn_rueckmeldung_bemerkung_aendern");
 
         if (Schnittstelle_VariableRausZurueck("ich_eingeladen_janein", termin_id, "termine", undefined)) {
             $rueckmeldung.removeClass("invisible");
@@ -27,10 +27,10 @@ function Termine_RueckmeldungAktualisieren($rueckmeldung) {
                             { liste: "termine", element_id: termin_id },
                             { liste: "mitglieder", element_id: mitglied_id },
                         ],
-                        "rueckmeldungen"
+                        "termine_rueckmeldungen"
                     )
                 );
-                const bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", rueckmeldung_id, "rueckmeldungen", null);
+                const bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", rueckmeldung_id, "termine_rueckmeldungen", null);
 
                 const attribute = new Array();
                 attribute[1] = { farbe: "success", aktiv: "ZUSAGEN", passiv: "ZUGESAGT" };
@@ -38,22 +38,22 @@ function Termine_RueckmeldungAktualisieren($rueckmeldung) {
 
                 $btn_rueckmeldung_erstellen.attr("data-termin_id", termin_id);
 
-                if (Schnittstelle_VariableRausZurueck("status", rueckmeldung_id, "rueckmeldungen", undefined) === status) {
+                if (Schnittstelle_VariableRausZurueck("status", rueckmeldung_id, "termine_rueckmeldungen", undefined) === status) {
                     $btn_rueckmeldung_erstellen
                         .removeClass("btn-outline-" + attribute[status].farbe)
                         .addClass("btn-" + attribute[status].farbe)
                         .text(attribute[status].passiv)
                         .prop("disabled", true);
 
-                    $btn_bemerkung_aendern
+                    $btn_rueckmeldung_bemerkung_aendern
                         .attr("data-element_id", rueckmeldung_id)
                         .removeClass("btn-outline-success")
                         .removeClass("btn-outline-danger")
                         .removeClass("btn-success")
                         .removeClass("btn-danger");
 
-                    if (bemerkung !== null) $btn_bemerkung_aendern.addClass("btn-" + attribute[status].farbe);
-                    else $btn_bemerkung_aendern.addClass("btn-outline-" + attribute[status].farbe);
+                    if (bemerkung !== null) $btn_rueckmeldung_bemerkung_aendern.addClass("btn-" + attribute[status].farbe);
+                    else $btn_rueckmeldung_bemerkung_aendern.addClass("btn-outline-" + attribute[status].farbe);
                 } else {
                     $btn_rueckmeldung_erstellen
                         .removeClass("btn-" + attribute[status].farbe)
@@ -67,7 +67,7 @@ function Termine_RueckmeldungAktualisieren($rueckmeldung) {
                     DATETIME.now().plus({ seconds: TERMINE_RUECKMELDUNG_FRIST })
                 ) {
                     $btn_rueckmeldung_erstellen.prop("disabled", true);
-                    $btn_bemerkung_aendern.prop("disabled", true);
+                    $btn_rueckmeldung_bemerkung_aendern.prop("disabled", true);
                 }
             });
         } else {

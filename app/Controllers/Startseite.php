@@ -58,7 +58,7 @@ class Startseite extends BaseController {
             $this->viewdata['liste']['kassenbuch_offene_eintraege_startseite']['vorschau'] = array( 'erstellung', 'wert' );
         }
 
-        if( array_key_exists( LISTEN['rueckmeldungen']['controller'], CONTROLLERS ) ) {
+        if( array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) {
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung'] = HAUPTINSTANZEN['termine'];
             unset( $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['werkzeugkasten'] );
             unset( $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['listenstatistik'] );
