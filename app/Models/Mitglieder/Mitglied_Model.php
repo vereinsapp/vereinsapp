@@ -28,6 +28,7 @@ class Mitglied_Model extends UserModel {
         'vorstandschaft_janein',
         'aktiv_janein',
         'real_janein',
+        'bemerkung',
     ];
 
     public function mitglieder_tabelle() {
@@ -42,6 +43,7 @@ class Mitglied_Model extends UserModel {
                 'postleitzahl' => $eintrag_class->postleitzahl,
                 'wohnort' => $eintrag_class->wohnort,
                 'geschlecht' => $eintrag_class->geschlecht,
+                'bemerkung' => $eintrag_class->bemerkung,
             );
             if( array_key_exists( 'register', EIGENSCHAFTEN['mitglieder'] ) ) $eintrag['register'] = $eintrag_class->register;
             if( array_key_exists( 'auto', EIGENSCHAFTEN['mitglieder'] ) ) $eintrag['auto'] = $eintrag_class->auto;

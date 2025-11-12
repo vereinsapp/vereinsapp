@@ -11,6 +11,7 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitgli
         const ajax_dom = dom;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         if (isLuxonDateTime(ajax_data.geburt)) ajax_data.geburt = ajax_data.geburt.toISO();
+        if (!("bemerkung" in ajax_data) || isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
         Schnittstelle_AjaxInDieSchlange(
             "mitglieder/ajax_mitglied_speichern",

@@ -296,6 +296,7 @@ class Mitglieder extends BaseController {
             'postleitzahl' => [ 'label' => EIGENSCHAFTEN['mitglieder']['postleitzahl']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero', 'greater_than_equal_to[10000]', 'less_than_equal_to[99999]', ] ],
             'wohnort' => [ 'label' => EIGENSCHAFTEN['mitglieder']['wohnort']['beschriftung'], 'rules' => [ 'required' ] ],
             'geschlecht' => [ 'label' => EIGENSCHAFTEN['mitglieder']['geschlecht']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['geschlecht'] ) ).']', ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['mitglieder']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         );
         if( array_key_exists( 'register', EIGENSCHAFTEN['mitglieder'] ) ) $validation_rules['register'] = [ 'label' => EIGENSCHAFTEN['mitglieder']['register']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['register'] ) ).']', ] ];
         if( array_key_exists( 'auto', EIGENSCHAFTEN['mitglieder'] ) ) $validation_rules['auto'] = [ 'label' => EIGENSCHAFTEN['mitglieder']['auto']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['mitglieder']['auto'] ) ).']', ] ];
@@ -327,6 +328,7 @@ class Mitglieder extends BaseController {
             if( array_key_exists( 'vorstandschaft_janein', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['vorstandschaft_janein'] = $this->request->getpost()['vorstandschaft_janein'];
             if( array_key_exists( 'aktiv_janein', EIGENSCHAFTEN['mitglieder'] ) ) $mitglied['aktiv_janein'] = $this->request->getpost()['aktiv_janein'];
             if( array_key_exists( 'real_janein', EIGENSCHAFTEN['mitglieder'] ) AND array_key_exists( 'real_janein', $this->request->getpost() ) ) $mitglied['real_janein'] = $this->request->getpost()['real_janein'];
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $mitglied['bemerkung'] = $this->request->getpost()['bemerkung']; else $mitglied['bemerkung'] = NULL;
 
             if( !empty( $this->request->getPost()['id'] ) ) {
                 $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);

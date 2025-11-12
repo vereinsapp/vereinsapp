@@ -20,6 +20,7 @@ class Extend_Mitglieder extends Migration
             'vorstandschaft_janein' => ['type' => 'tinyint',    'constraint' => 1,                          'null' => false,    'default' => 0],
             'aktiv_janein'          => ['type' => 'tinyint',    'constraint' => 1,                          'null' => false,    'default' => 1],
             'real_janein'           => ['type' => 'tinyint',    'constraint' => 1,                          'null' => false,    'default' => 1],
+            'bemerkung'             => ['type' => 'varchar',    'constraint' => 100,                        'null' => true],
         ]);
     }
 
@@ -38,6 +39,7 @@ class Extend_Mitglieder extends Migration
             'vorstandschaft_janein',
             'aktiv_janein',
             'real_janein',
+            'bemerkung',
         ]);
     }
 }

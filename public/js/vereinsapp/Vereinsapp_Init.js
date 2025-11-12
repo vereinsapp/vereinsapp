@@ -131,4 +131,6 @@ UPDATE `vereinsapp_termine_anwesenheiten` SET `bemerkung` = NULL WHERE `bemerkun
 
 ALTER TABLE `vereinsapp_termine_rueckmeldungen` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
 UPDATE `vereinsapp_termine_rueckmeldungen` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
+
+ALTER TABLE `vereinsapp_mitglieder` ADD `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
 */

@@ -82,6 +82,7 @@ CREATE TABLE `vereinsapp_mitglieder` (
   `vorstandschaft_janein` tinyint(1) NOT NULL DEFAULT 0,
   `aktiv_janein` tinyint(1) NOT NULL DEFAULT 1,
   `real_janein` tinyint(1) NOT NULL DEFAULT 1
+  `bemerkung` varchar(100) DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

@@ -26,9 +26,11 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
             data.aktiv_janein = Number(Schnittstelle_VariableRausZurueck("aktiv_janein", mitglied_id, "mitglieder", undefined));
         if (!("real_janein" in data))
             data.real_janein = Number(Schnittstelle_VariableRausZurueck("real_janein", mitglied_id, "mitglieder", undefined));
+        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", mitglied_id, "mitglieder", null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = mitglied_id;
         if (isLuxonDateTime(ajax_data.geburt)) ajax_data.geburt = ajax_data.geburt.toISO();
+        if (isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
         Schnittstelle_AjaxInDieSchlange(
             "mitglieder/ajax_mitglied_speichern",

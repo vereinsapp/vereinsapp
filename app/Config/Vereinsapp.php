@@ -247,6 +247,7 @@ class Vereinsapp extends BaseConfig
             'vorstandschaft_janein' => array( 'beschriftung' => 'Vorstandschaft', 'typ' => 'janein' ),
             'aktiv_janein' => array( 'beschriftung' => 'Aktiv', 'typ' => 'janein' ),
             'real_janein' => array( 'beschriftung' => 'Real', 'typ' => 'janein' ),
+            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),                  // PHP
             'letzte_aktivitaet' => array( 'beschriftung' => 'Letzte Aktivität', 'typ' => 'zeitpunkt' ),     // PHP
             'passwort_alt' => array( 'beschriftung' => 'Altes Passwort', 'typ' => 'text' ),                 // PHP
