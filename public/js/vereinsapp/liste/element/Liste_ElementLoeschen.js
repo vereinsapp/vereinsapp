@@ -10,7 +10,7 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, elemen
             "danger"
         );
     else {
-        if (typeof dom.$btn_ausloesend !== "undefined" && !dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
+        Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
@@ -37,19 +37,14 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, elemen
                     Schnittstelle_VariableElementErgaenzen(AJAX.data.liste);
                     Schnittstelle_EventVariableUpdDom(AJAX.data.liste);
 
-                    if (
-                        "dom" in AJAX &&
-                        "$btn_ausloesend" in AJAX.dom &&
-                        AJAX.dom.$btn_ausloesend.exists() &&
-                        !dom.$btn_ausloesend.hasClass("element")
-                    )
+                    if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                         Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                     if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
                     Schnittstelle_DomToastFeuern(beschriftung + " wurde gelöscht.", "danger");
                 }
             },
             function (AJAX) {
-                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
+                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 Schnittstelle_DomToastFeuern(

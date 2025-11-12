@@ -12,7 +12,7 @@ function Termine_RueckmeldungErstellen(formular_oeffnen, dom, data, title, rueck
         Schnittstelle_DomModalOeffnen($neues_modal);
         Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "erstellen", rueckmeldung_id, "termine_rueckmeldungen");
     } else {
-        if (!dom.$btn_ausloesend.hasClass("element")) Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
+        Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
 
         const ajax_dom = dom;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
@@ -55,7 +55,7 @@ function Termine_RueckmeldungErstellen(formular_oeffnen, dom, data, title, rueck
                 // Schnittstelle_VariableElementErgaenzen("termine_rueckmeldungen");
                 Schnittstelle_EventVariableUpdDom("termine_rueckmeldungen");
 
-                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
+                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                     Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
@@ -63,11 +63,11 @@ function Termine_RueckmeldungErstellen(formular_oeffnen, dom, data, title, rueck
                         Liste_ElementBeschriftungZurueck(rueckmeldung_id, "termine_rueckmeldungen") + " wurde erfolgreich erstellt."
                     );
                 }
-                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
+                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Termine_RueckmeldungAktualisieren(AJAX.dom.$btn_ausloesend.closest("[data-liste='termine_rueckmeldungen']"));
             },
             function (AJAX) {
-                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists() && !dom.$btn_ausloesend.hasClass("element"))
+                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())

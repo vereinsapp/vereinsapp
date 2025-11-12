@@ -223,22 +223,22 @@ function Schnittstelle_DomInit() {
 }
 
 function Schnittstelle_BtnWartenStart($btn_warten) {
-    if ($btn_warten.parents(".formular").exists() || $btn_warten.parents(".bestaetigung").exists())
-        $btn_warten.attr("data-beschriftung", $btn_warten.html()).html(STATUS_SPINNER_HTML).prop("disabled", true);
-    else {
-        $btn_warten.after(STATUS_SPINNER_HTML);
-        $btn_warten.siblings("." + STATUS_SPINNER_CLASS).addClass("text-primary");
-        $btn_warten.addClass("invisible").prop("disabled", true);
-    }
+    // if ($btn_warten.parents(".formular").exists() || $btn_warten.parents(".bestaetigung").exists())
+    $btn_warten.attr("data-beschriftung", $btn_warten.html()).html(STATUS_SPINNER_HTML).prop("disabled", true);
+    // else {
+    //     $btn_warten.after(STATUS_SPINNER_HTML);
+    //     $btn_warten.siblings("." + STATUS_SPINNER_CLASS).addClass("text-primary");
+    //     $btn_warten.addClass("invisible").prop("disabled", true);
+    // }
 }
 
 function Schnittstelle_BtnWartenEnde($btn_warten) {
-    if ($btn_warten.parents(".formular").exists() || $btn_warten.parents(".bestaetigung").exists())
-        $btn_warten.prop("disabled", false).html($btn_warten.attr("data-beschriftung"));
-    else {
-        $btn_warten.prop("disabled", false).removeClass("invisible");
-        $btn_warten.siblings("." + STATUS_SPINNER_CLASS).remove();
-    }
+    // if ($btn_warten.parents(".formular").exists() || $btn_warten.parents(".bestaetigung").exists())
+    $btn_warten.prop("disabled", false).html($btn_warten.attr("data-beschriftung"));
+    // else {
+    //     $btn_warten.prop("disabled", false).removeClass("invisible");
+    //     $btn_warten.siblings("." + STATUS_SPINNER_CLASS).remove();
+    // }
 }
 
 function Schnittstelle_CheckWartenStart($check) {

@@ -1,15 +1,12 @@
 function Liste_ElementAuswahlEinfordern($ziel, title, liste, klasse_id, data = new Object()) {
+    const instanz = liste + "_auswahl";
+
     // const $ziel = $ziel;
     const ziel_id = zufaelligeZeichenketteZurueck(8);
     if ($ziel.exists()) $ziel.attr("id", ziel_id);
     data.ziel_id = ziel_id;
 
-    const $neues_auswahl_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(
-        ELEMENTE[LISTEN[liste].element].beschriftung + " " + title,
-        "AUSWAHL"
-    );
-
-    const instanz = liste + "_auswahl";
+    const $neues_auswahl_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "AUSWAHL");
 
     const $liste = $neues_auswahl_modal.find("#AUSWAHLLISTE.liste");
     $liste.attr("id", instanz).attr("data-liste", liste);

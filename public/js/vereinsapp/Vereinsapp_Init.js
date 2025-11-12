@@ -99,14 +99,13 @@ leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewä
 
 Aufgaben überarbeiten
     mitglied_id bei aufgaben etc. nachziehen (analog zu bemerkung)
+    mitgliedausplanen und mitgliedeinplanen in einer Funktion zusammenfassen?
 Auswertungen überarbeiten
     Filtern, sortieren und gruppieren bei auswertungen steckt in einem JSON (data-filtern_prio_niedrig kann also nicht im Modal angezeigt oder bearbeitet werden)
     Braucht status_auswahl wirklich eine Beschriftung? Reicht nicht ein array mit den Werten?
     Gruppieren von _janein-Eigenschaft wirft einen Fehler
     Gruppieren nach Eigenschaft mit Wert "ohne" (bspw. Auto, Funktion, etc.) zeigt falschen Werte für "ohne" an
     Filtern- und Gruppieren-Button batch einführen (Spezial-Bedigungen in Schnittstelle_EventVariableUpdDom wegnehmen)
-mitgliedausplanen und mitgliedeinplanen in einer Funktion zusammenfassen?
-Schnittstelle_BtnWartenStart mit ersetzen erweitern
 
 ALTER TABLE `vereinsapp_aufgaben` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
 UPDATE `vereinsapp_aufgaben` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
