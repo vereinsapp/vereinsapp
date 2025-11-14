@@ -59,14 +59,12 @@ $(document).ready(function () {
 /* TODO
 
 FEATURES
-Mehrere element_ids und mehrere mitglied_ids pro Aufgabe
-Mitglied einplanen bereits bei der Erstellung einer Aufgabe
 Setlist mit Links zu den Titeln einführen
+Verzeichnis filtern und sortieren
+Meta-Infos für Unterverzeichnisse und Dateien anzeigen
 Liste unformatiert in die Zwischenablage kopieren
 Terminserie / Regeltermine
 Mitglieder Lebenslauf
-Verzeichnis filtern und sortieren
-Meta-Infos für Unterverzeichnisse und Dateien anzeigen
 Abwesenheiten wieder einführen
 Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 Link zu Github neben die Version
@@ -83,28 +81,18 @@ anwesenheiten_dokumentieren für checkliste verallgemeinern (analog zu Schnittst
 Zustandsautomat für den Zustand der Vereinsapp einführen
 Select JANEIN als check umbauen
 Wartungsarbeiten per Filter handlen
+ics_export: muss sichergestellt sein, dass der Termin mindestens 24 Stunden in der Zukunft liegt?
+Besseres Symbol für _eigenschaft_loeschen und _eigenschaft_loeschen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
+_basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt (bspw. für neue Aufgabe)
+eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 .btn in .formular mit ENTER betätigbar machen
 
 AKUT
-Bugfix: filtern-Eigenschaft ist leer???
-ics_export: muss sichergestellt sein, dass der Termin mindestens 24 Stunden in der Zukunft liegt?
-Braucht es filtern: New Object() etc. (bspw. in Aufgaben_Init, Liste_Init)???
-Besseres Symbol für _eigenschaft_loeschen und _eigenschaft_loeschen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
-zusatzsymbole mit aktion nicht anzeigen, wenn klasse_id definiert ist (weil stretched-link-unwirksam nicht funktioniert)
-eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
-_basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt (bspw. für neue Aufgabe)
-.instanz loswerden (INSTANZ einführen?)
-    Braucht es LISTEN[liste].instanz[instanz].filtern noch oder kann man einfach immer Schnittstelle_LocalstorageRausZurueck verwenden?
-leere option aus select entfernen falls dann trotzdem kein Wert initial ausgewählt sein kann
-
 Aufgaben überarbeiten
     mitglied_id bei aufgaben etc. nachziehen (analog zu bemerkung)
     mitgliedausplanen und mitgliedeinplanen in einer Funktion zusammenfassen?
-Auswertungen überarbeiten
-    Filtern, sortieren und gruppieren bei auswertungen steckt in einem JSON (data-filtern_prio_niedrig kann also nicht im Modal angezeigt oder bearbeitet werden)
-    Gruppieren von _janein-Eigenschaft wirft einen Fehler
-    Gruppieren nach Eigenschaft mit Wert "ohne" (bspw. Auto, Funktion, etc.) zeigt falschen Werte für "ohne" an
-    Filtern- und Gruppieren-Button batch einführen (Spezial-Bedigungen in Schnittstelle_EventVariableUpdDom wegnehmen)
+    Mehrere element_ids und mehrere mitglied_ids pro Aufgabe
+    Mitglied einplanen bereits bei der Erstellung einer Aufgabe
 
 ALTER TABLE `vereinsapp_aufgaben` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
 UPDATE `vereinsapp_aufgaben` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';

@@ -2,13 +2,13 @@ function Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_pri
     let filtern_kombiniert;
 
     if (
-        (typeof filtern_prio_niedrig === "undefined" || Object.keys(filtern_prio_niedrig).length === 0) &&
+        (typeof filtern_prio_niedrig === "undefined" || isEmptyString(filtern_prio_niedrig) || Object.keys(filtern_prio_niedrig).length === 0) &&
         isObject(filtern_prio_hoch) &&
         Object.keys(filtern_prio_hoch).length > 0
     )
         filtern_kombiniert = filtern_prio_hoch;
     else if (
-        (typeof filtern_prio_hoch === "undefined" || Object.keys(filtern_prio_hoch).length === 0) &&
+        (typeof filtern_prio_hoch === "undefined" || isEmptyString(filtern_prio_hoch) || Object.keys(filtern_prio_hoch).length === 0) &&
         isObject(filtern_prio_niedrig) &&
         Object.keys(filtern_prio_niedrig).length > 0
     )

@@ -6,7 +6,7 @@ function Liste_Init() {
         LISTEN[liste].instanz = new Object();
         $('.liste[data-liste="' + liste + '"]').each(function () {
             const instanz = $(this).attr("id");
-            LISTEN[liste].instanz[instanz] = { filtern: new Object(), sortieren: undefined };
+            LISTEN[liste].instanz[instanz] = { filtern: new Object(), sortieren: undefined, gruppieren: undefined };
         });
     });
 

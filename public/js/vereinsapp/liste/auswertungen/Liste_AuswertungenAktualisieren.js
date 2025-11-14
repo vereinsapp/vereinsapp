@@ -2,39 +2,36 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const auswertungen_instanz = $auswertungen.attr("id");
 
     // LISTE DEFINIEREN
-    const liste_data = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-liste"), new Object());
-    const liste = liste_data.liste;
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-liste"), undefined);
 
     // GRUPPIEREN DEFINIEREN
-    const gruppieren_data = liste_data.gruppieren;
+    const gruppieren_data = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-gruppieren"), undefined);
     const gruppieren_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].gruppieren;
     let gruppieren;
     if (typeof gruppieren_LocalStorage !== "undefined") gruppieren = gruppieren_LocalStorage;
     else gruppieren = gruppieren_data;
 
+    // TABELLE FILTERN
+    const filtern_data = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-filtern"), new Object());
+    const filtern_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].filtern;
+    const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
+        LISTEN[liste].tabelle,
+        Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_LocalStorage, liste),
+        liste
+    );
+
     // GRUPPIEREN_WERTE UND ELEMENT_IDS DEFINIEREN
     const gruppieren_werte = new Array();
     const element_ids = new Array();
     const element_ids_nach_wert = new Object();
-    $.each(
-        Liste_TabelleGefiltertZurueck(
-            LISTEN[liste].tabelle,
-            Liste_FilternMitPrioKombiniertZurueck(
-                Schnittstelle_VariableWertBereinigtZurueck(liste_data.filtern, new Object()),
-                LISTEN[liste].instanz[auswertungen_instanz].filtern,
-                liste
-            ),
-            liste
-        ),
-        function (position, element) {
-            const element_id = element.id;
-            const wert = element[gruppieren];
-            if (!gruppieren_werte.includes(wert)) gruppieren_werte.push(wert);
-            if (!element_ids.includes(element_id)) element_ids.push(element_id);
-            if (!(wert in element_ids_nach_wert)) element_ids_nach_wert[wert] = new Array();
-            element_ids_nach_wert[wert].push(element_id);
-        }
-    );
+    $.each(tabelle_gefiltert, function (position, element) {
+        const element_id = element.id;
+        const wert = element[gruppieren];
+        if (!gruppieren_werte.includes(wert)) gruppieren_werte.push(wert);
+        if (!element_ids.includes(element_id)) element_ids.push(element_id);
+        if (!(wert in element_ids_nach_wert)) element_ids_nach_wert[wert] = new Array();
+        element_ids_nach_wert[wert].push(element_id);
+    });
     const gruppieren_werte_sortiert = gruppieren_werte.sort();
 
     // AUSWERTUNG_ELEMENT_IDS DEFINIEREN
@@ -48,15 +45,25 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             { [auswertungen]: new Array() }
         )[auswertungen],
         function (position, auswertung_element_id) {
+            const element_id = Schnittstelle_VariableRausZurueck(
+                "id",
+                Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_element_id, auswertungen, undefined),
+                liste,
+                undefined
+            );
             const wert = Schnittstelle_VariableRausZurueck(
                 gruppieren,
                 Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_element_id, auswertungen, undefined),
                 liste,
                 undefined
             );
-            if (!auswertung_element_ids.includes(auswertung_element_id)) auswertung_element_ids.push(auswertung_element_id);
-            if (!(wert in auswertung_element_ids_nach_wert)) auswertung_element_ids_nach_wert[wert] = new Array();
-            auswertung_element_ids_nach_wert[wert].push(auswertung_element_id);
+            if (element_id in element_ids) {
+                if (!auswertung_element_ids.includes(auswertung_element_id)) auswertung_element_ids.push(auswertung_element_id);
+                if (!(wert in auswertung_element_ids_nach_wert)) auswertung_element_ids_nach_wert[wert] = new Array();
+                auswertung_element_ids_nach_wert[wert].push(auswertung_element_id);
+            } else {
+                /* auswertung_element_id existiert zwar, aber zugehörige element_id wird garnicht berücksichtigt */
+            }
         }
     );
 

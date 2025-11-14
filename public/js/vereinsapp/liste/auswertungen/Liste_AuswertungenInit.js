@@ -6,10 +6,9 @@ function Liste_AuswertungenInit() {
 
             if (!(instanz in LISTEN[auswertungen].instanz)) LISTEN[auswertungen].instanz[instanz] = new Object();
 
-            const liste_data = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-liste"), new Object());
-            const liste = liste_data.liste;
+            const liste = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-liste"), undefined);
             if (!(instanz in LISTEN[liste].instanz)) LISTEN[liste].instanz[instanz] = new Object();
-            LISTEN[liste].instanz[instanz].gruppieren_data = liste_data.gruppieren;
+            LISTEN[liste].instanz[instanz].gruppieren = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-gruppieren"), undefined);
         });
     });
 }
