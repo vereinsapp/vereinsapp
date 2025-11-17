@@ -25,8 +25,8 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
             case "aktiv_janein":
             case "real_janein":
             case "erledigt_janein":
-            case "ich_rueckgemeldet_janein":
             case "ich_eingeladen_janein":
+            case "ich_rueckgemeldet_janein":
                 if (wert == "true") wert = 1; // todo: es darf kein string "true" geben (nur boolean true)
                 else if (wert == "false") wert = 0; // todo: es darf kein string "false" geben (nur boolean false)
                 wert_formatiert = JANEIN[Number(wert)].beschriftung;

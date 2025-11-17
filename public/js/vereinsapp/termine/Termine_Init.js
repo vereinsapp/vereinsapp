@@ -1,33 +1,29 @@
 ELEMENTE.termin.ergaenzen_aktion = function (termin) {
-    if ("termine_rueckmeldungen" in LISTEN) {
-        if ("zugeordnete_element_ids_nach_liste" in termin)
-            $.each(termin["zugeordnete_element_ids_nach_liste"].termine_rueckmeldungen, function (position, rueckmeldung_id) {
-                if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == Number(ICH["id"])) {
-                    termin["ich_rueckmeldung_id"] = rueckmeldung_id;
-                    return false;
-                }
-            });
-        if (typeof termin["ich_rueckmeldung_id"] !== "undefined") termin["ich_rueckgemeldet_janein"] = true;
-        else termin["ich_rueckgemeldet_janein"] = false;
-    }
-
-    termin["ich_eingeladen_janein"] = false;
-    termin["filtern_mitglieder"] = Schnittstelle_VariableWertBereinigtZurueck(termin["filtern_mitglieder"], new Object());
-    const termin_kategorie_filtern_mitglieder = Schnittstelle_VariableWertBereinigtZurueck(
-        TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin["kategorie"]],
-        new Object()
-    );
+    termin["mitglieder_ids_eingeladen"] = new Array();
     $.each(
         Liste_TabelleGefiltertZurueck(
             LISTEN.mitglieder.tabelle,
-            Liste_FilternMitPrioKombiniertZurueck(termin_kategorie_filtern_mitglieder, termin["filtern_mitglieder"], "mitglieder"),
+            Liste_FilternMitPrioKombiniertZurueck(
+                Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin["kategorie"]], new Object()),
+                termin["filtern_mitglieder"],
+                "mitglieder"
+            ),
             "mitglieder"
         ),
         function () {
-            if (this["id"] == ICH["id"]) termin["ich_eingeladen_janein"] = true;
-            return;
+            termin["mitglieder_ids_eingeladen"].push(this["id"]);
         }
     );
+    termin["ich_eingeladen_janein"] = termin["mitglieder_ids_eingeladen"].includes(Number(ICH["id"]));
+
+    termin["ich_rueckgemeldet_janein"] = false;
+    if ("zugeordnete_element_ids_nach_liste" in termin && "termine_rueckmeldungen" in termin["zugeordnete_element_ids_nach_liste"])
+        $.each(termin["zugeordnete_element_ids_nach_liste"].termine_rueckmeldungen, function (position, rueckmeldung_id) {
+            if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == Number(ICH["id"])) {
+                termin["ich_rueckgemeldet_janein"] = true;
+                return false;
+            }
+        });
 };
 
 ELEMENTE.termine_rueckmeldung.zuordnen_aktion = function (rueckmeldung) {

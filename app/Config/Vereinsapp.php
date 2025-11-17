@@ -290,9 +290,9 @@ class Vereinsapp extends BaseConfig
             'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text' ),
             'oeffentlich_janein' => array( 'beschriftung' => 'Öffentlich', 'typ' => 'janein' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'ich_rueckgemeldet_janein' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'janein' ), // JAVA
-            'ich_rueckmeldung_id' => array( 'beschriftung' => 'Meine RÜckmeldung-ID', 'typ' => 'element_id' ),          // JAVA
+            'mitglieder_ids_eingeladen' => array( 'beschriftung' => 'Eingeladene Mitglieder', 'typ' => 'element_ids' ),     // JAVA
             'ich_eingeladen_janein' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'janein' ),              // JAVA
+            'ich_rueckgemeldet_janein' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'janein' ), // JAVA
         ),
 
         'termine_rueckmeldungen' => array(
@@ -518,14 +518,6 @@ class Vereinsapp extends BaseConfig
                 'beschriftung' => 'Alle anstehenden Auftritte',
                 'filtern' => array( 'kategorie' => array( 'inklusiv' => [ 'auftritt' ] ), ),
             ),
-            'ich_rueckgemeldet' => array(
-                'beschriftung' => 'Alle Termine, zu denen ich Rückmeldung gegeben habe',
-                'filtern' => array( 'ich_rueckgemeldet_janein' => array( 'inklusiv' => [ TRUE ] ), 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
-            ),
-            'ich_nicht_rueckgemeldet' => array(
-                'beschriftung' => 'Alle Termine, zu denen ich keine Rückmeldung gegeben habe',
-                'filtern' => array( 'ich_rueckgemeldet_janein' => array( 'inklusiv' => [ FALSE ] ), 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
-            ),
             'ich_eingeladen' => array(
                 'beschriftung' => 'Alle Termine, zu denen ich eingeladen bin',
                 'filtern' => array( 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
@@ -533,6 +525,14 @@ class Vereinsapp extends BaseConfig
             'ich_nicht_eingeladen' => array(
                 'beschriftung' => 'Alle Termine, zu denen ich nicht eingeladen bin',
                 'filtern' => array( 'ich_eingeladen_janein' => array( 'inklusiv' => [ FALSE ] ), ),
+            ),
+            'ich_rueckgemeldet' => array(
+                'beschriftung' => 'Alle Termine, zu denen ich Rückmeldung gegeben habe',
+                'filtern' => array( 'ich_rueckgemeldet_janein' => array( 'inklusiv' => [ TRUE ] ), 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+            ),
+            'ich_nicht_rueckgemeldet' => array(
+                'beschriftung' => 'Alle Termine, zu denen ich keine Rückmeldung gegeben habe',
+                'filtern' => array( 'ich_rueckgemeldet_janein' => array( 'inklusiv' => [ FALSE ] ), 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
             ),
         ),
 
@@ -599,8 +599,8 @@ class Vereinsapp extends BaseConfig
         'termine' => array(
             'start',
             'kategorie',
-            'ich_rueckgemeldet_janein',
             'ich_eingeladen_janein',
+            'ich_rueckgemeldet_janein',
         ),
 
         'termine_rueckmeldungen' => array(
@@ -789,6 +789,18 @@ class Vereinsapp extends BaseConfig
         'probe' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ), ),
         'auftritt' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ), ),
         'vorstandschaftssitzung' => array( 'vorstandschaft_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ), ),
+    );
+
+    /**
+     * --------------------------------------------------------------------------
+     * Rückmelde-Auswahlmöglichkeiten für Termine
+     * --------------------------------------------------------------------------
+     *
+     * Auswahl an Möglichkeiten zur Rückmeldung für Termine
+     */
+    public $termine_rueckmeldung_auswahlmoeglichkeiten = array(
+        1 => array( 'farbe' => 'success', 'aktiv' => 'ZUSAGEN', 'passiv' => 'ZUGESAGT' ),
+        2 => array( 'farbe' => 'danger', 'aktiv' => 'ABSAGEN', 'passiv' => 'ABGESAGT' ),
     );
 
     /**

@@ -1,6 +1,5 @@
 function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
     const beschriftung = $auswertung.attr("data-beschriftung");
-    const status_auswahl = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-status_auswahl"), new Object());
     const liste = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-liste"), undefined);
     const element_ids = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-element_ids"), new Array());
     const auswertung_element_ids = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-auswertung_element_ids"), new Array());
@@ -10,7 +9,7 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
         element_ids_nach_status[0].push(element_id);
     });
 
-    $.each(status_auswahl, function (position, status) {
+    $.each(Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-auswahlmoeglichkeiten"), new Array()), function (position, status) {
         element_ids_nach_status[Number(status)] = new Array();
     });
     $.each(auswertung_element_ids, function (position, auswertung_element_id) {

@@ -87,7 +87,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
                 .attr("data-wert", wert)
                 .attr("data-liste", liste)
                 .attr("data-element_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
-                .attr("data-status_auswahl", $auswertungen.attr("data-status_auswahl"))
+                .attr("data-auswahlmoeglichkeiten", $auswertungen.attr("data-auswahlmoeglichkeiten"))
                 .attr("data-beschriftung", Liste_WertFormatiertZurueck(wert, gruppieren, liste));
 
             const ziel_id = zufaelligeZeichenketteZurueck(8);
@@ -105,7 +105,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
                 // .attr("data-wert", wert)
                 .attr("data-liste", liste)
                 .attr("data-element_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
-                .attr("data-status_auswahl", $auswertungen.attr("data-status_auswahl"))
+                .attr("data-auswahlmoeglichkeiten", $auswertungen.attr("data-auswahlmoeglichkeiten"))
                 .attr("data-beschriftung", Liste_WertFormatiertZurueck(wert, gruppieren, liste));
 
             if (position === 0) $auswertung.appendTo($auswertungen);
@@ -121,7 +121,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             .attr("data-auswertung_element_ids", JsonStringifiedZurueck(auswertung_element_ids, new Array()))
             .attr("data-liste", liste)
             .attr("data-element_ids", JsonStringifiedZurueck(element_ids, new Array()))
-            .attr("data-status_auswahl", $auswertungen.attr("data-status_auswahl"));
+            .attr("data-auswahlmoeglichkeiten", $auswertungen.attr("data-auswahlmoeglichkeiten"));
     });
 
     // ÜBERSCHRIFT AKTUALISIEREN

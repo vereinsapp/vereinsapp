@@ -2,8 +2,7 @@
     <div class="row g-0" data-bs-toggle="collapse" role="button">
         <div class="ergebnis_anzahl col-1 h5 float-start text-start" data-status=1></div>
         <div class="col-10 text-center">
-            <span class="beschriftung"></span>
-            <i class="bi bi-<?= SYMBOLE['collapse_oeffnen']['bootstrap']; ?> toggle_symbol text-primary ms-1" data-toggle_symbol="<?= SYMBOLE['collapse_schliessen']['bootstrap']; ?>"></i>
+            <span class="beschriftung"></span><i class="bi bi-<?= SYMBOLE['collapse_oeffnen']['bootstrap']; ?> toggle_symbol text-primary ms-1" data-toggle_symbol="<?= SYMBOLE['collapse_schliessen']['bootstrap']; ?>"></i>
             <div class="progress-stacked">
                 <div class="progress ergebnis_anzahl" role="progressbar" data-status=1><div class="progress-bar bg-success"></div></div>
                 <div class="progress ergebnis_anzahl" role="progressbar" data-status=0><div class="progress-bar bg-danger"></div></div>

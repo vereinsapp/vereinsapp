@@ -12,7 +12,7 @@ foreach( $auswertungen['werkzeugkasten'] as $symbol => $werkzeug) { ?><button ty
 
 <ul id="<?= $auswertungen['id']; ?>" class="auswertungen text-center<?php
 if( array_key_exists( 'sortable', $auswertungen ) AND $auswertungen['sortable'] ) echo ' sortable';
-?> p-0 mb-1" data-auswertungen="<?= $auswertungen['auswertungen']; ?>" data-status_auswahl='<?= json_encode( $auswertungen['status_auswahl'], JSON_UNESCAPED_UNICODE ); ?>'<?php
+?> p-0 mb-1" data-auswertungen="<?= $auswertungen['auswertungen']; ?>" data-auswahlmoeglichkeiten='<?= json_encode( $auswertungen['auswahlmoeglichkeiten'], JSON_UNESCAPED_UNICODE ); ?>'<?php
 if( array_key_exists( 'gruppieren', $auswertungen ) ) { ?> data-gruppieren='<?= $auswertungen['gruppieren']; ?>'<?php }
 if( array_key_exists( 'liste', $auswertungen ) ) { ?> data-liste='<?= $auswertungen['liste']; ?>'<?php }
 if( array_key_exists( 'filtern', $auswertungen ) ) { ?> data-filtern='<?= json_encode( $auswertungen['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
