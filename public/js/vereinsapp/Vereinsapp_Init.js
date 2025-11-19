@@ -86,7 +86,6 @@ _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 .btn in .formular mit ENTER betätigbar machen
 aufgaben direkt termine zuordnen (mit multi-select, analog zu filtern_mitglieder bei termine?)
-anwesenheiten umbenennen in termine_anwesenheiten (analog zu termine_rueckmeldungen)
 Vereinheitlichung von
     Termine_RueckmeldungErstellen und Aufgaben_RueckmeldungErstellen
     Termine_RueckmeldungAktualisieren und Aufgaben_RueckmeldungAktualisieren

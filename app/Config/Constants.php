@@ -130,7 +130,7 @@ defined('LISTEN') OR define( 'LISTEN', array(
     'aufgaben_zuordnungen_termine' => array(
         'beschriftung' => 'Termin-Zuordnungen',
         'controller' => 'aufgaben',
-        'element' => 'aufgaben_zurdonung_termine',
+        'element' => 'aufgaben_zuordnung_termine',
     ),
 
     'termine' => array(
@@ -143,10 +143,10 @@ defined('LISTEN') OR define( 'LISTEN', array(
         'controller' => 'termine',
         'element' => 'termine_rueckmeldung',
     ),
-    'anwesenheiten' => array(
+    'termine_anwesenheiten' => array(
         'beschriftung' => 'Anwesenheiten',
         'controller' => 'termine',
-        'element' => 'anwesenheit',
+        'element' => 'termine_anwesenheit',
     ),
 
     'strafkatalog' => array(
@@ -197,7 +197,7 @@ defined('ELEMENTE') OR define( 'ELEMENTE', array(
         'liste' => 'aufgaben_rueckmeldungen',
         'element_beschriftung' => array(),
     ),
-    'aufgaben_zurdonung_termine' => array(
+    'aufgaben_zuordnung_termine' => array(
         'beschriftung' => 'Termin-Zuordnung',
         'liste' => 'aufgaben_zuordnungen_termine',
         'element_beschriftung' => array(),
@@ -216,9 +216,9 @@ defined('ELEMENTE') OR define( 'ELEMENTE', array(
         'liste' => 'termine_rueckmeldungen',
         'element_beschriftung' => array(),
     ),
-    'anwesenheit' => array(
+    'termine_anwesenheit' => array(
         'beschriftung' => 'Anwesenheit',
-        'liste' => 'anwesenheiten',
+        'liste' => 'termine_anwesenheiten',
         'element_beschriftung' => array(),
     ),
 

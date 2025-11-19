@@ -4,8 +4,10 @@ namespace App\Controllers;
 
 use App\Models\Mitglieder\Mitglied_Model;
 use App\Models\Aufgaben\Aufgabe_Model;
+use App\Models\Aufgaben\Rueckmeldung_Model as Aufgaben_Rueckmeldung_Model;
+use App\Models\Aufgaben\Zuordnung_Termine_Model;
 use App\Models\Termine\Termin_Model;
-use App\Models\Termine\Rueckmeldung_Model;
+use App\Models\Termine\Rueckmeldung_Model as Termine_Rueckmeldung_Model;
 use App\Models\Termine\Anwesenheit_Model;
 use App\Models\Strafkatalog\Strafe_Model;
 use App\Models\Strafkatalog\Kassenbucheintrag_Model;
@@ -42,9 +44,11 @@ class Einstellungen extends BaseController {
             $ajax_antwort['tabellen']['verfuegbare_rechte'] = model(Mitglied_Model::class)->verfuegbare_rechte_tabelle();
             $ajax_antwort['tabellen']['vergebene_rechte'] = model(Mitglied_Model::class)->vergebene_rechte_tabelle();
             if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['aufgaben'] = model(Aufgabe_Model::class)->aufgaben_tabelle();
+            if( array_key_exists( LISTEN['aufgaben_rueckmeldungen']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['aufgaben_rueckmeldungen'] = model(Aufgaben_Rueckmeldung_Model::class)->rueckmeldungen_tabelle();
+            if( array_key_exists( LISTEN['aufgaben_zuordnungen_termine']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['aufgaben_zuordnungen_termine'] = model(Zuordnung_Termine_Model::class)->zuordnungen_termine_tabelle();
             if( array_key_exists( LISTEN['termine']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['termine'] = model(Termin_Model::class)->termine_tabelle();
-            if( array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['termine_rueckmeldungen'] = model(Rueckmeldung_Model::class)->rueckmeldungen_tabelle();
-            if( array_key_exists( LISTEN['anwesenheiten']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['anwesenheiten'] = model(Anwesenheit_Model::class)->anwesenheiten_tabelle();
+            if( array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['termine_rueckmeldungen'] = model(Termine_Rueckmeldung_Model::class)->rueckmeldungen_tabelle();
+            if( array_key_exists( LISTEN['termine_anwesenheiten']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['termine_anwesenheiten'] = model(Anwesenheit_Model::class)->anwesenheiten_tabelle();
             if( array_key_exists( LISTEN['strafkatalog']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['strafkatalog'] = model(Strafe_Model::class)->strafkatalog_tabelle();
             if( array_key_exists( LISTEN['kassenbuch']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['kassenbuch'] = model(Kassenbucheintrag_Model::class)->kassenbuch_tabelle();
             if( array_key_exists( LISTEN['notenbank']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['notenbank'] = model(Titel_Model::class)->notenbank_tabelle();

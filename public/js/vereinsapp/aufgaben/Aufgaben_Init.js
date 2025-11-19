@@ -42,12 +42,11 @@ ELEMENTE.aufgaben_rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
     }
 };
 
-ELEMENTE.anwesenheit.zuordnen_aktion = function (anwesenheit) {
-    const anwesenheit_id = anwesenheit.id;
+ELEMENTE.aufgaben_zuordnung_termine.zuordnen_aktion = function (zuordnung_termine) {
+    const zuordnung_termine_id = zuordnung_termine.id;
 
     if ("aufgaben" in LISTEN) {
-        const aufgabe_id = Schnittstelle_VariableRausZurueck("aufgabe_id", anwesenheit_id, "aufgaben_zuordnungen_termine", undefined);
-
+        const aufgabe_id = Schnittstelle_VariableRausZurueck("aufgabe_id", zuordnung_termine_id, "aufgaben_zuordnungen_termine", undefined);
         if (typeof aufgabe_id !== "undefined") {
             const aufgabe = LISTEN.aufgaben.tabelle[aufgabe_id];
 
@@ -58,14 +57,14 @@ ELEMENTE.anwesenheit.zuordnen_aktion = function (anwesenheit) {
                 if (!("aufgaben_zuordnungen_termine" in zugeordnete_element_ids_nach_liste))
                     zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine = new Array();
                 const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine;
-                if (!zugeordnete_element_ids.includes(anwesenheit_id))
-                    LISTEN.aufgaben.tabelle[aufgabe_id].zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine.push(anwesenheit_id);
+                if (!zugeordnete_element_ids.includes(zuordnung_termine_id))
+                    LISTEN.aufgaben.tabelle[aufgabe_id].zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine.push(zuordnung_termine_id);
             }
         }
     }
 
     if ("mitglieder" in LISTEN) {
-        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", anwesenheit_id, "aufgaben_zuordnungen_termine", undefined);
+        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", zuordnung_termine_id, "aufgaben_zuordnungen_termine", undefined);
 
         if (typeof mitglied_id !== "undefined") {
             const mitglied = LISTEN.mitglieder.tabelle[mitglied_id];
@@ -77,8 +76,8 @@ ELEMENTE.anwesenheit.zuordnen_aktion = function (anwesenheit) {
                 if (!("aufgaben_zuordnungen_termine" in zugeordnete_element_ids_nach_liste))
                     zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine = new Array();
                 const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine;
-                if (!zugeordnete_element_ids.includes(anwesenheit_id))
-                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine.push(anwesenheit_id);
+                if (!zugeordnete_element_ids.includes(zuordnung_termine_id))
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine.push(zuordnung_termine_id);
             }
         }
     }

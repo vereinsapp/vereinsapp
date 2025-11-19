@@ -185,8 +185,8 @@ class Vereinsapp extends BaseConfig
             'sortieren' => array(),
         ),
 
-        'anwesenheiten' => array(
-            'liste' => 'anwesenheiten',
+        'termine_anwesenheiten' => array(
+            'liste' => 'termine_anwesenheiten',
             'filtern' => array(),
             'sortieren' => array(),
         ),
@@ -328,7 +328,7 @@ class Vereinsapp extends BaseConfig
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
         ),
 
-        'anwesenheiten' => array(
+        'termine_anwesenheiten' => array(
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'element_id' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
@@ -454,7 +454,7 @@ class Vereinsapp extends BaseConfig
         'termine_rueckmeldungen' => array(
         ),
 
-        'anwesenheiten' => array(
+        'termine_anwesenheiten' => array(
         ),
 
         'strafkatalog' => array(
@@ -629,7 +629,7 @@ class Vereinsapp extends BaseConfig
         'termine_rueckmeldungen' => array(
         ),
 
-        'anwesenheiten' => array(
+        'termine_anwesenheiten' => array(
         ),
 
         'strafkatalog' => array(
@@ -703,7 +703,7 @@ class Vereinsapp extends BaseConfig
         'termine_rueckmeldungen' => array(
         ),
 
-        'anwesenheiten' => array(
+        'termine_anwesenheiten' => array(
         ),
 
         'strafkatalog' => array(
@@ -773,7 +773,7 @@ class Vereinsapp extends BaseConfig
         'termine_rueckmeldungen' => array(
         ),
 
-        'anwesenheiten' => array(
+        'termine_anwesenheiten' => array(
         ),
 
         'strafkatalog' => array(

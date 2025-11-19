@@ -20,19 +20,19 @@ class Mitglieder extends BaseController {
         $this->viewdata['liste']['alle_mitglieder']['link'] = TRUE;
         $this->viewdata['liste']['alle_mitglieder']['vorschau'] = MITGLIEDER_EIGENSCHAFTEN_VORSCHAU;
 
-        if( array_key_exists( LISTEN['anwesenheiten']['controller'], CONTROLLERS ) ) {
+        if( array_key_exists( LISTEN['termine_anwesenheiten']['controller'], CONTROLLERS ) ) {
 
             $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern']);
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['beschriftung'] = '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>';
-            $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'termine_anwesenheiten';
             
             $disabled_ids = array();
             if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) )
                 foreach( model(Termin_Model::class)->findAll() as $termin )$disabled_ids[] = $termin['id'];
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine','filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), );
 
-            if( array_key_exists( LISTEN['anwesenheiten']['controller'], CONTROLLERS ) AND array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) )
+            if( array_key_exists( LISTEN['termine_anwesenheiten']['controller'], CONTROLLERS ) AND array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) )
                 $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'termine_rueckmeldungen', 'klasse' => array(
                     'text-success' => array( 'status' => array( 'start' => array( 1 ), 'ende' => array( 1 ), ), ),
                     'text-danger' => array( 'status' => array( 'start' => array( 2 ), 'ende' => array( 2 ), ), ),
@@ -142,19 +142,19 @@ class Mitglieder extends BaseController {
 
         $this->viewdata['element_id'] = $mitglied_id;
 
-        if( array_key_exists( LISTEN['anwesenheiten']['controller'], CONTROLLERS ) ) {
+        if( array_key_exists( LISTEN['termine_anwesenheiten']['controller'], CONTROLLERS ) ) {
 
             $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern']);
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['beschriftung'] = '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>';
-            $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'termine_anwesenheiten';
 
             $disabled_ids = array();
             if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) )
                 foreach( model(Termin_Model::class)->findAll() as $termin )$disabled_ids[] = $termin['id'];
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine','filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), );
 
-            if( array_key_exists( LISTEN['anwesenheiten']['controller'], CONTROLLERS ) AND array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) )
+            if( array_key_exists( LISTEN['termine_anwesenheiten']['controller'], CONTROLLERS ) AND array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) )
                 $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'termine_rueckmeldungen', 'klasse' => array(
                     'text-success' => array( 'status' => array( 'start' => array( 1 ), 'ende' => array( 1 ), ), ),
                     'text-danger' => array( 'status' => array( 'start' => array( 2 ), 'ende' => array( 2 ), ), ),

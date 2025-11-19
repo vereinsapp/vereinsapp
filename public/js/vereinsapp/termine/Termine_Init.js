@@ -68,11 +68,11 @@ ELEMENTE.termine_rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
     }
 };
 
-ELEMENTE.anwesenheit.zuordnen_aktion = function (anwesenheit) {
+ELEMENTE.termine_anwesenheit.zuordnen_aktion = function (anwesenheit) {
     const anwesenheit_id = anwesenheit.id;
 
     if ("termine" in LISTEN) {
-        const termin_id = Schnittstelle_VariableRausZurueck("termin_id", anwesenheit_id, "anwesenheiten", undefined);
+        const termin_id = Schnittstelle_VariableRausZurueck("termin_id", anwesenheit_id, "termine_anwesenheiten", undefined);
 
         if (typeof termin_id !== "undefined") {
             const termin = LISTEN.termine.tabelle[termin_id];
@@ -81,16 +81,17 @@ ELEMENTE.anwesenheit.zuordnen_aktion = function (anwesenheit) {
                 if (!("zugeordnete_element_ids_nach_liste" in termin)) termin.zugeordnete_element_ids_nach_liste = new Object();
                 const zugeordnete_element_ids_nach_liste = termin.zugeordnete_element_ids_nach_liste;
 
-                if (!("anwesenheiten" in zugeordnete_element_ids_nach_liste)) zugeordnete_element_ids_nach_liste.anwesenheiten = new Array();
-                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.anwesenheiten;
+                if (!("termine_anwesenheiten" in zugeordnete_element_ids_nach_liste))
+                    zugeordnete_element_ids_nach_liste.termine_anwesenheiten = new Array();
+                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.termine_anwesenheiten;
                 if (!zugeordnete_element_ids.includes(anwesenheit_id))
-                    LISTEN.termine.tabelle[termin_id].zugeordnete_element_ids_nach_liste.anwesenheiten.push(anwesenheit_id);
+                    LISTEN.termine.tabelle[termin_id].zugeordnete_element_ids_nach_liste.termine_anwesenheiten.push(anwesenheit_id);
             }
         }
     }
 
     if ("mitglieder" in LISTEN) {
-        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", anwesenheit_id, "anwesenheiten", undefined);
+        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", anwesenheit_id, "termine_anwesenheiten", undefined);
 
         if (typeof mitglied_id !== "undefined") {
             const mitglied = LISTEN.mitglieder.tabelle[mitglied_id];
@@ -99,10 +100,11 @@ ELEMENTE.anwesenheit.zuordnen_aktion = function (anwesenheit) {
                 if (!("zugeordnete_element_ids_nach_liste" in mitglied)) mitglied.zugeordnete_element_ids_nach_liste = new Object();
                 const zugeordnete_element_ids_nach_liste = mitglied.zugeordnete_element_ids_nach_liste;
 
-                if (!("anwesenheiten" in zugeordnete_element_ids_nach_liste)) zugeordnete_element_ids_nach_liste.anwesenheiten = new Array();
-                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.anwesenheiten;
+                if (!("termine_anwesenheiten" in zugeordnete_element_ids_nach_liste))
+                    zugeordnete_element_ids_nach_liste.termine_anwesenheiten = new Array();
+                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.termine_anwesenheiten;
                 if (!zugeordnete_element_ids.includes(anwesenheit_id))
-                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.anwesenheiten.push(anwesenheit_id);
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.termine_anwesenheiten.push(anwesenheit_id);
             }
         }
     }

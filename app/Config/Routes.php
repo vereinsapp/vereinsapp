@@ -73,7 +73,7 @@ $routes->group('aufgaben', static function ($routes) {
     $routes->post('ajax_rueckmeldung_speichern',            'Aufgaben::ajax_rueckmeldung_speichern');
     $routes->post('ajax_rueckmeldung_bemerkung_aendern',    'Aufgaben::ajax_rueckmeldung_bemerkung_aendern');
 
-    $routes->post('ajax_zuordnung_termine_speichern',       'Aufgaben::ajax_zuordnung_termine_speichern');
+    $routes->post('ajax_aufgaben_zuordnung_termine_speichern','Aufgaben::ajax_zuordnung_termine_speichern');
 });
 
 $routes->get('termin/(:num)',                               'Termine::termin/$1');
@@ -91,7 +91,7 @@ $routes->group('termine', static function ($routes) {
     $routes->post('ajax_rueckmeldung_speichern',            'Termine::ajax_rueckmeldung_speichern');
     $routes->post('ajax_rueckmeldung_bemerkung_aendern',    'Termine::ajax_rueckmeldung_bemerkung_aendern');
 
-    $routes->post('ajax_anwesenheit_speichern',             'Termine::ajax_anwesenheit_speichern');
+    $routes->post('ajax_termine_anwesenheit_speichern',     'Termine::ajax_anwesenheit_speichern');
 });
 
 $routes->group('strafkatalog', static function ($routes) {

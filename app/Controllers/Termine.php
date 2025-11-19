@@ -19,7 +19,7 @@ class Termine extends BaseController {
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'termine_anwesenheiten';
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'termine_rueckmeldungen', 'klasse' => array(
             'text-success' => array( 'status' => array( 'start' => array( 1 ), 'ende' => array( 1 ), ), ),
             'text-danger' => array( 'status' => array( 'start' => array( 2 ), 'ende' => array( 2 ), ), ),
@@ -136,7 +136,7 @@ class Termine extends BaseController {
         );
 
         $this->viewdata['auswertungen'][ 'anwesenheiten_termin' ] = array(
-            'auswertungen' => 'anwesenheiten',
+            'auswertungen' => 'termine_anwesenheiten',
             'auswahlmoeglichkeiten' => array( 1 ),
             'gruppieren' => 'register',
             'liste' => 'mitglieder',
@@ -157,7 +157,7 @@ class Termine extends BaseController {
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'anwesenheiten';
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'termine_anwesenheiten';
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'termine_rueckmeldungen', 'klasse' => array(
             'text-success' => array( 'status' => array( 'start' => array( 1 ), 'ende' => array( 1 ), ), ),
             'text-danger' => array( 'status' => array( 'start' => array( 2 ), 'ende' => array( 2 ), ), ),
@@ -378,10 +378,10 @@ class Termine extends BaseController {
     public function ajax_anwesenheit_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'termin_id' => [ 'label' => EIGENSCHAFTEN['anwesenheiten']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['anwesenheiten']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'status' => [ 'label' => EIGENSCHAFTEN['anwesenheiten']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
-            'bemerkung' => [ 'label' => EIGENSCHAFTEN['anwesenheiten']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
+            'termin_id' => [ 'label' => EIGENSCHAFTEN['termine_anwesenheiten']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['termine_anwesenheiten']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'status' => [ 'label' => EIGENSCHAFTEN['termine_anwesenheiten']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine_anwesenheiten']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'termine.anwesenheiten' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
