@@ -1,5 +1,3 @@
-ELEMENTE.aufgabe.ergaenzen_aktion = function (aufgabe) {};
-
 ELEMENTE.aufgaben_rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
     const rueckmeldung_id = rueckmeldung.id;
 
@@ -81,6 +79,9 @@ ELEMENTE.aufgaben_zuordnung_termine.zuordnen_aktion = function (zuordnung_termin
             }
         }
     }
+};
+
+ELEMENTE.aufgabe.ergaenzen_aktion = function (aufgabe) {
 };
 
 function Aufgaben_Init() {

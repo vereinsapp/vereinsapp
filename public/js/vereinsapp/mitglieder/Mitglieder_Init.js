@@ -1,20 +1,3 @@
-ELEMENTE.mitglied.ergaenzen_aktion = function (mitglied) {
-    if ("vorstandschaft_janein" in mitglied && mitglied["vorstandschaft_janein"] == 1) mitglied["vorstandschaft_janein"] = true;
-    else mitglied["vorstandschaft_janein"] = false;
-    if ("aktiv_janein" in mitglied && mitglied["aktiv_janein"] == 1) mitglied["aktiv_janein"] = true;
-    else mitglied["aktiv_janein"] = false;
-    if ("real_janein" in mitglied && mitglied["real_janein"] == 1) mitglied["real_janein"] = true;
-    else mitglied["real_janein"] = false;
-
-    if ("geburt" in mitglied) {
-        mitglied["alter"] = -1 * mitglied["geburt"].diffNow("years").years;
-
-        mitglied["geburtstag"] = mitglied["geburt"].set({ year: DATETIME.now().year });
-        if (mitglied["geburtstag"] < DATETIME.now().startOf("day")) mitglied["geburtstag"] = mitglied["geburtstag"].plus({ years: 1 });
-        mitglied["alter_geburtstag"] = mitglied["geburtstag"].diff(mitglied["geburt"], "years").years;
-    }
-};
-
 ELEMENTE.vergebenes_recht.zuordnen_aktion = function (vergebenes_recht) {
     const vergebenes_recht_id = vergebenes_recht.id;
 
@@ -34,6 +17,23 @@ ELEMENTE.vergebenes_recht.zuordnen_aktion = function (vergebenes_recht) {
                     LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.vergebene_rechte.push(vergebenes_recht_id);
             }
         }
+    }
+};
+
+ELEMENTE.mitglied.ergaenzen_aktion = function (mitglied) {
+    if ("vorstandschaft_janein" in mitglied && mitglied["vorstandschaft_janein"] == 1) mitglied["vorstandschaft_janein"] = true;
+    else mitglied["vorstandschaft_janein"] = false;
+    if ("aktiv_janein" in mitglied && mitglied["aktiv_janein"] == 1) mitglied["aktiv_janein"] = true;
+    else mitglied["aktiv_janein"] = false;
+    if ("real_janein" in mitglied && mitglied["real_janein"] == 1) mitglied["real_janein"] = true;
+    else mitglied["real_janein"] = false;
+
+    if ("geburt" in mitglied) {
+        mitglied["alter"] = -1 * mitglied["geburt"].diffNow("years").years;
+
+        mitglied["geburtstag"] = mitglied["geburt"].set({ year: DATETIME.now().year });
+        if (mitglied["geburtstag"] < DATETIME.now().startOf("day")) mitglied["geburtstag"] = mitglied["geburtstag"].plus({ years: 1 });
+        mitglied["alter_geburtstag"] = mitglied["geburtstag"].diff(mitglied["geburt"], "years").years;
     }
 };
 

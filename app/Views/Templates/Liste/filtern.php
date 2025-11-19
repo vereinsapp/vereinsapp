@@ -6,19 +6,6 @@
         <label>Vorgegebene Filter</label>
     </div>
 
-    <div class="input-group blanko filtern_eigenschaft invisible mb-1" data-typ="zeitpunkt">
-        <span class="input-group-text"><i class="bi bi-<?= SYMBOLE['zeitraum']['bootstrap']; ?>"></i></span>
-        <div class="form-floating">
-            <input type="date" class="form-control filtern_start" />
-            <label><span class="beschriftung"></span> von</label>
-        </div>
-        <div class="form-floating">
-            <input type="date" class="form-control filtern_ende" />
-            <label><span class="beschriftung"></span> bis</label>
-        </div>
-        <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
-    </div>
-
     <div class="input-group blanko filtern_eigenschaft invisible mb-1" data-typ="zahl">
         <span class="input-group-text"><i class="bi bi-<?= SYMBOLE['zahlenraum']['bootstrap']; ?>"></i></span>
         <div class="form-floating">
@@ -27,6 +14,19 @@
         </div>
         <div class="form-floating">
             <input type="number" class="form-control filtern_ende" />
+            <label><span class="beschriftung"></span> bis</label>
+        </div>
+        <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
+    </div>
+
+    <div class="input-group blanko filtern_eigenschaft invisible mb-1" data-typ="zeitpunkt">
+        <span class="input-group-text"><i class="bi bi-<?= SYMBOLE['zeitraum']['bootstrap']; ?>"></i></span>
+        <div class="form-floating">
+            <input type="date" class="form-control filtern_start" />
+            <label><span class="beschriftung"></span> von</label>
+        </div>
+        <div class="form-floating">
+            <input type="date" class="form-control filtern_ende" />
             <label><span class="beschriftung"></span> bis</label>
         </div>
         <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
@@ -73,5 +73,5 @@
             <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
             </div>
     </div>
-
+<?php /* (noch) kein filtern möglich für text, element_id, element_ids */ ?>
 </div>

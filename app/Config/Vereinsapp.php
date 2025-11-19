@@ -238,6 +238,15 @@ class Vereinsapp extends BaseConfig
      *
      * Die Indices dürfen nicht verändert werden!
      * Es sollte lediglich die Beschriftung verändert werden.
+     * 
+     * Verfügbare Typen:
+     * text
+     * zahl
+     * zeitpunkt
+     * vorgegebene_werte
+     * janein
+     * element_id
+     * element_ids
      */
     public $eigenschaften = array(
 

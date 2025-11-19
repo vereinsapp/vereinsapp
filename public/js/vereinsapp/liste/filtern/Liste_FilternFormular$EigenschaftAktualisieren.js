@@ -71,6 +71,8 @@ function Liste_FilternFormular$EigenschaftAktualisieren($eigenschaft, filtern_ei
                 $eigenschaft.find(".filtern_auswahl").val("");
                 break;
             case "element_id":
+            case "element_ids":
+                // (noch) kein filtern möglich
                 break;
         }
     else Schnittstelle_LogInDieKonsole("Es wurde versucht, eine Eigenschaft zu aktualisieren, die nicht existiert in FILTERBARE_EIGENSCHAFTEN.");

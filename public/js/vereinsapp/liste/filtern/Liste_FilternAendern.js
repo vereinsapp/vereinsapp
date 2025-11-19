@@ -53,6 +53,9 @@ function Liste_FilternAendern($quelle_ziel, ziel_id, liste) {
                 if (!filtern_eigenschaft.inklusiv.includes(neuer_filtern_wert_id)) filtern_eigenschaft.inklusiv.push(neuer_filtern_wert_id);
             }
             break;
+        case "element_ids":
+            // (noch) kein filtern möglich
+            break;
     }
 
     // Überschreiben des value mit geänderten filtern_prio_hoch

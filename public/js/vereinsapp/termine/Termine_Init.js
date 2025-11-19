@@ -1,31 +1,3 @@
-ELEMENTE.termin.ergaenzen_aktion = function (termin) {
-    termin["mitglieder_ids_eingeladen"] = new Array();
-    $.each(
-        Liste_TabelleGefiltertZurueck(
-            LISTEN.mitglieder.tabelle,
-            Liste_FilternMitPrioKombiniertZurueck(
-                Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin["kategorie"]], new Object()),
-                termin["filtern_mitglieder"],
-                "mitglieder"
-            ),
-            "mitglieder"
-        ),
-        function () {
-            termin["mitglieder_ids_eingeladen"].push(this["id"]);
-        }
-    );
-    termin["ich_eingeladen_janein"] = termin["mitglieder_ids_eingeladen"].includes(Number(ICH["id"]));
-
-    termin["ich_rueckgemeldet_janein"] = false;
-    if ("zugeordnete_element_ids_nach_liste" in termin && "termine_rueckmeldungen" in termin["zugeordnete_element_ids_nach_liste"])
-        $.each(termin["zugeordnete_element_ids_nach_liste"].termine_rueckmeldungen, function (position, rueckmeldung_id) {
-            if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == Number(ICH["id"])) {
-                termin["ich_rueckgemeldet_janein"] = true;
-                return false;
-            }
-        });
-};
-
 ELEMENTE.termine_rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
     const rueckmeldung_id = rueckmeldung.id;
 
@@ -124,6 +96,34 @@ EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
             .attr("data-filtern_prio_niedrig", JsonStringifiedZurueck(filtern_prio_niedrig, new Object()))
             .val(JsonStringifiedZurueck(filtern_prio_hoch, new Object()));
     } else $filtern_mitglieder.removeAttr("data-filtern_prio_niedrig").val("");
+};
+
+ELEMENTE.termin.ergaenzen_aktion = function (termin) {
+    termin["mitglieder_ids_eingeladen"] = new Array();
+    $.each(
+        Liste_TabelleGefiltertZurueck(
+            LISTEN.mitglieder.tabelle,
+            Liste_FilternMitPrioKombiniertZurueck(
+                Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin["kategorie"]], new Object()),
+                termin["filtern_mitglieder"],
+                "mitglieder"
+            ),
+            "mitglieder"
+        ),
+        function () {
+            termin["mitglieder_ids_eingeladen"].push(this["id"]);
+        }
+    );
+    termin["ich_eingeladen_janein"] = termin["mitglieder_ids_eingeladen"].includes(Number(ICH["id"]));
+
+    termin["ich_rueckgemeldet_janein"] = false;
+    if ("zugeordnete_element_ids_nach_liste" in termin && "termine_rueckmeldungen" in termin["zugeordnete_element_ids_nach_liste"])
+        $.each(termin["zugeordnete_element_ids_nach_liste"].termine_rueckmeldungen, function (position, rueckmeldung_id) {
+            if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == Number(ICH["id"])) {
+                termin["ich_rueckgemeldet_janein"] = true;
+                return false;
+            }
+        });
 };
 
 function Termine_Init() {

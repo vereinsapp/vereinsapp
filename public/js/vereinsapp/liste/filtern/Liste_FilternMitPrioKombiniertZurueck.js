@@ -44,6 +44,9 @@ function Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_pri
                         }
                     });
                     break;
+                case "element_ids":
+                    // (noch) kein filtern möglich
+                    break;
             }
         });
     }

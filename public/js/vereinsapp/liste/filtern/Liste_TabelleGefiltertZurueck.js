@@ -38,6 +38,9 @@ function Liste_TabelleGefiltertZurueck(tabelle, filtern, liste) {
                             filtern_ergebnis &= filtern_ergebnis_exklusiv;
                         }
                         break;
+                    case "element_ids":
+                        // (noch) kein filtern möglich
+                        break;
                 }
             });
 

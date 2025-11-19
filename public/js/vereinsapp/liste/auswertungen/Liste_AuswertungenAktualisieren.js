@@ -57,7 +57,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
                 liste,
                 undefined
             );
-            if (element_id in element_ids) {
+            if (element_ids.includes(element_id)) {
                 if (!auswertung_element_ids.includes(auswertung_element_id)) auswertung_element_ids.push(auswertung_element_id);
                 if (!(wert in auswertung_element_ids_nach_wert)) auswertung_element_ids_nach_wert[wert] = new Array();
                 auswertung_element_ids_nach_wert[wert].push(auswertung_element_id);

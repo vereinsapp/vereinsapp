@@ -73,6 +73,9 @@ function Liste_FilternWertInExklusivVerschieben($filtern_wert, ziel_id, liste) {
             }
 
             break;
+        case "element_ids":
+            // (noch) kein filtern möglich
+            break;
     }
 
     // Überschreiben des value mit geänderten filtern_prio_hoch
