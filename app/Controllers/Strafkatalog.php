@@ -99,7 +99,7 @@ class Strafkatalog extends BaseController {
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'strafkatalog.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
-            $strafkatalog_Model = model(Strafe_Model::class);
+            $strafe_Model = model(Strafe_Model::class);
             $strafe = array(
                 'titel' => $this->request->getpost()['titel'],
                 'wert' => $this->request->getPost()['wert'],
@@ -107,10 +107,10 @@ class Strafkatalog extends BaseController {
             );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $strafe['bemerkung'] = $this->request->getpost()['bemerkung']; else $strafe['bemerkung'] = NULL;
 
-            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $strafkatalog_Model->update( $this->request->getpost()['id'], $strafe );
+            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $strafe_Model->update( $this->request->getpost()['id'], $strafe );
             else {
-                $strafkatalog_Model->save( $strafe );
-                $ajax_antwort['strafe_id'] = (int)$strafkatalog_Model->getInsertID();
+                $strafe_Model->save( $strafe );
+                $ajax_antwort['strafe_id'] = (int)$strafe_Model->getInsertID();
             }
         }
 

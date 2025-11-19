@@ -1,6 +1,13 @@
+/**
+ * @param {boolean} formular_oeffnen
+ * @param {Object} dom
+ * @param {Object} data
+ * @param {string} title
+ * @param {number} aufgabe_id
+ */
+
 function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_id) {
     if (typeof aufgabe_id !== "undefined") aufgabe_id = Number(aufgabe_id);
-    // else aufgabe_id = undefined;
 
     if (formular_oeffnen) {
         const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "aufgabe_basiseigenschaften");
@@ -11,13 +18,8 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
 
         const ajax_dom = dom;
 
-        if (typeof data.zugeordnete_liste === "undefined" || ("zugeordnete_liste" in data && data.zugeordnete_liste == ""))
-            data.zugeordnete_liste = null;
-        if (typeof data.zugeordnete_element_id === "undefined" || ("zugeordnete_element_id" in data && data.zugeordnete_element_id == ""))
-            data.zugeordnete_element_id = null;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
-        if (!("erledigt" in ajax_data) || !isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = null;
-        else ajax_data.erledigt = ajax_data.erledigt.toISO();
+        if (!("max_anzahl_mitglieder" in ajax_data) || isEmptyString(ajax_data.max_anzahl_mitglieder)) ajax_data.max_anzahl_mitglieder = null;
         if (!("bemerkung" in ajax_data) || isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
         Schnittstelle_AjaxInDieSchlange(
@@ -32,16 +34,15 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
                 $.each(AJAX.data, function (eigenschaft, wert) {
                     if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, aufgabe_id, "aufgaben");
                 });
-                Schnittstelle_VariableRein(null, "element_id", aufgabe_id, "aufgaben");
-                Schnittstelle_VariableRein(null, "mitglied_id", aufgabe_id, "aufgaben");
-                Schnittstelle_VariableRein(null, "erledigt", aufgabe_id, "aufgaben");
-                Schnittstelle_VariableRein(DATETIME.now(), "erstellung", aufgabe_id, "aufgaben");
-
                 Schnittstelle_EventVariableUpdLocalstorage("aufgaben");
                 Schnittstelle_EventLocalstorageUpdVariable("aufgaben");
+                Schnittstelle_EventLocalstorageUpdVariable("aufgaben_rueckmeldungen");
                 // Schnittstelle_VariableElementZuordnen("aufgaben");
+                Schnittstelle_VariableElementZuordnen("aufgaben_rueckmeldungen");
                 Schnittstelle_VariableElementErgaenzen("aufgaben");
+                Schnittstelle_VariableElementErgaenzen("aufgaben_rueckmeldungen");
                 Schnittstelle_EventVariableUpdDom("aufgaben");
+                Schnittstelle_EventVariableUpdDom("aufgaben_rueckmeldungen");
 
                 if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
                     Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);

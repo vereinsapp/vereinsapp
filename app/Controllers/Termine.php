@@ -46,39 +46,39 @@ class Termine extends BaseController {
             'title' => 'Anwesenheiten dokumentieren',
         );
 
-        if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
+        // if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
-            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['aufgaben'] = array(
-                'klasse_id' => array('btn_zugeordnete_aufgaben_anzeigen'),
-                'title' => 'Zugeordnete Aufgaben',
-            );
+        //     $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['aufgaben'] = array(
+        //         'klasse_id' => array('btn_zugeordnete_aufgaben_anzeigen'),
+        //         'title' => 'Zugeordnete Aufgaben',
+        //     );
 
-            $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-            unset( $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['filtern'] );
-            $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-            $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['vorschau'] = array('zugeordnetes_element');
-            $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
-            $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['zugeordnet_zu_instanz'] = 'bevorstehende_termine';
+        //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+        //     unset( $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['filtern'] );
+        //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+        //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['vorschau'] = array('zugeordnetes_element');
+        //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
+        //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['zugeordnet_zu_instanz'] = 'bevorstehende_termine';
 
-            $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['werkzeugkasten']['statistiken'] = array(
-                'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
-                'title' => 'Eingeplante und erledigte Aufgaben',
-            );
+        //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['werkzeugkasten']['statistiken'] = array(
+        //         'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
+        //         'title' => 'Eingeplante und erledigte Aufgaben',
+        //     );
 
-            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-                $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['werkzeugkasten']['erstellen'] = array(
-                    'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
-                    'title' => 'Aufgabe erstellen',
-                );
-                $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
-            }
+        //     if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+        //         $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['werkzeugkasten']['erstellen'] = array(
+        //             'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
+        //             'title' => 'Aufgabe erstellen',
+        //         );
+        //         $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
+        //     }
 
-            $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
-            $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
-            $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-            $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
+        //     $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
+        //     $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
+        //     $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
+        //     $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
 
-        }
+        // }
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
 
@@ -184,15 +184,15 @@ class Termine extends BaseController {
             'title' => 'Anwesenheiten dokumentieren',
         );
 
-        if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
-            $this->viewdata['liste']['termin_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-            unset($this->viewdata['liste']['termin_zugeordnete_aufgaben']['werkzeugkasten']);
-            $this->viewdata['liste']['termin_zugeordnete_aufgaben']['filtern'] = array( 'zugeordnete_liste' => array( 'termine' => array( 'notenbank' ), ), 'zugeordnete_element_id' => array( 'inklusiv' => array( $termin_id ), ), );
-            $this->viewdata['liste']['termin_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-            $this->viewdata['liste']['termin_zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
-            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
-                $this->viewdata['liste']['termin_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
-        }
+        // if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
+        //     $this->viewdata['liste']['termin_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+        //     unset($this->viewdata['liste']['termin_zugeordnete_aufgaben']['werkzeugkasten']);
+        //     $this->viewdata['liste']['termin_zugeordnete_aufgaben']['filtern'] = array( 'zugeordnete_liste' => array( 'termine' => array( 'notenbank' ), ), 'zugeordnete_element_id' => array( 'inklusiv' => array( $termin_id ), ), );
+        //     $this->viewdata['liste']['termin_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+        //     $this->viewdata['liste']['termin_zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
+        //     if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
+        //         $this->viewdata['liste']['termin_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
+        // }
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
@@ -241,7 +241,7 @@ class Termine extends BaseController {
         else if( array_key_exists( 'ende', $this->request->getpost() ) AND !empty( $this->request->getpost()['ende'] ) AND Time::parse( $this->request->getpost()['ende'], 'Europe/Berlin' )->isBefore( Time::parse( $this->request->getpost()['start'], 'Europe/Berlin' ) ) ) $ajax_antwort['validation'] = array( 'ende' => 'Der Termin darf nicht enden bevor er beginnt.' );
         else if( !auth()->user()->can( 'termine.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
-            $termine_Model = model(Termin_Model::class);
+            $termin_Model = model(Termin_Model::class);
             $termin = array(
                 'titel' => $this->request->getpost()['titel'],
                 'start' => $this->request->getPost()['start'],
@@ -254,10 +254,10 @@ class Termine extends BaseController {
             if( array_key_exists( 'ende', $this->request->getpost() ) AND !empty( $this->request->getpost()['ende'] ) ) $termin['ende'] = $this->request->getPost()['ende']; else $termin['ende'] = $termin['start'];
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $termin['bemerkung'] = $this->request->getpost()['bemerkung']; else $termin['bemerkung'] = NULL;
 
-            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $termine_Model->update( $this->request->getpost()['id'], $termin );
+            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $termin_Model->update( $this->request->getpost()['id'], $termin );
             else {
-                $termine_Model->save( $termin );
-                $ajax_antwort['termin_id'] = (int)$termine_Model->getInsertID();
+                $termin_Model->save( $termin );
+                $ajax_antwort['termin_id'] = (int)$termin_Model->getInsertID();
             }
         }
 
@@ -330,14 +330,14 @@ class Termine extends BaseController {
             'status' => [ 'label' => EIGENSCHAFTEN['termine_rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine_rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !(array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( $this->request->getPost()['status'] == 0 ) $ajax_antwort['validation'] = 'Ein Löschen der Rückmeldung ist nicht möglich!';
         else if( Time::parse( model(Termin_Model::class)->find(
                     $this->request->getPost()['termin_id']
                  )['start'], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds(TERMINE_RUECKMELDUNG_FRIST) ) )
                     $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
         else {
-            $rueckmeldungen_Model = model(Rueckmeldung_Model::class);
+            $rueckmeldung_Model = model(Rueckmeldung_Model::class);
             $rueckmeldung = array(
                 'termin_id' => $this->request->getpost()['termin_id'],
                 'mitglied_id' => $this->request->getpost()['mitglied_id'],
@@ -345,10 +345,10 @@ class Termine extends BaseController {
             );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $rueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung']; else $rueckmeldung['bemerkung'] = NULL;
 
-            $rueckmeldungen_Model->where( array( 'termin_id' => $rueckmeldung['termin_id'], 'mitglied_id' => $rueckmeldung['mitglied_id'] ) )->delete();
+            $rueckmeldung_Model->where( array( 'termin_id' => $rueckmeldung['termin_id'], 'mitglied_id' => $rueckmeldung['mitglied_id'] ) )->delete();
             if( (int)$rueckmeldung['status'] > 0 ) {
-                $rueckmeldungen_Model->save( $rueckmeldung );
-                $ajax_antwort['rueckmeldung_id'] = (int)$rueckmeldungen_Model->getInsertID();
+                $rueckmeldung_Model->save( $rueckmeldung );
+                $ajax_antwort['rueckmeldung_id'] = (int)$rueckmeldung_Model->getInsertID();
             }
         }
 
@@ -356,7 +356,6 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
-    //------------------------------------------------------------------------------------------------------------------
     public function ajax_rueckmeldung_bemerkung_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
@@ -364,11 +363,11 @@ class Termine extends BaseController {
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine_rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else {
-            $rueckmeldungen_Model = model(Rueckmeldung_Model::class);
+            $rueckmeldung_Model = model(Rueckmeldung_Model::class);
             $rueckmeldung = array();
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $rueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung']; else $rueckmeldung['bemerkung'] = NULL;
 
-            $rueckmeldungen_Model->update( $this->request->getpost()['id'], $rueckmeldung );
+            $rueckmeldung_Model->update( $this->request->getpost()['id'], $rueckmeldung );
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -386,7 +385,7 @@ class Termine extends BaseController {
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'termine.anwesenheiten' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
-            $anwesenheiten_Model = model(Anwesenheit_Model::class);
+            $anwesenheit_Model = model(Anwesenheit_Model::class);
             $anwesenheit = array(
                 'termin_id' => $this->request->getpost()['termin_id'],
                 'mitglied_id' => $this->request->getpost()['mitglied_id'],
@@ -394,10 +393,10 @@ class Termine extends BaseController {
             );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $anwesenheit['bemerkung'] = $this->request->getpost()['bemerkung']; else $anwesenheit['bemerkung'] = NULL;
 
-            $anwesenheiten_Model->where( array( 'termin_id' => $anwesenheit['termin_id'], 'mitglied_id' => $anwesenheit['mitglied_id'] ) )->delete();
+            $anwesenheit_Model->where( array( 'termin_id' => $anwesenheit['termin_id'], 'mitglied_id' => $anwesenheit['mitglied_id'] ) )->delete();
             if( (int)$anwesenheit['status'] > 0 ) {
-                $anwesenheiten_Model->save( $anwesenheit );
-                $ajax_antwort['anwesenheit_id'] = (int)$anwesenheiten_Model->getInsertID();
+                $anwesenheit_Model->save( $anwesenheit );
+                $ajax_antwort['anwesenheit_id'] = (int)$anwesenheit_Model->getInsertID();
             }
         }
 
@@ -405,6 +404,7 @@ class Termine extends BaseController {
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
 
+    //------------------------------------------------------------------------------------------------------------------
     protected function filtern_mitglieder_kombiniert( $termin_id ) {
         $termin = model(Termin_Model::class)->find( $termin_id );
         $filtern_mitglieder = json_decode( $termin['filtern_mitglieder'], TRUE );

@@ -2,6 +2,10 @@
 
 namespace App\Controllers;
 use App\Models\Aufgaben\Aufgabe_Model;
+use App\Models\Aufgaben\Rueckmeldung_Model;
+use App\Models\Aufgaben\Zuordnung_Termine_Model;
+
+// use CodeIgniter\I18n\Time;
 
 class Aufgaben extends BaseController {
 
@@ -9,47 +13,24 @@ class Aufgaben extends BaseController {
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
-            'zugeordnete_liste' => [ 'label' => EIGENSCHAFTEN['aufgaben']['zugeordnete_liste']['beschriftung'], 'rules' => [ 'required_with[zugeordnete_element_id]', 'if_exist', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['aufgaben']['zugeordnete_liste'] ) ).']', 'permit_empty' ] ],
-            'zugeordnete_element_id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['zugeordnete_element_id']['beschriftung'], 'rules' => [ 'required_with[zugeordnete_liste]', 'if_exist', 'is_natural_no_zero', 'permit_empty' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['aufgaben']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
-            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['mitglied_id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero', 'permit_empty' ] ],
-            'erledigt' => [ 'label' => EIGENSCHAFTEN['aufgaben']['erledigt']['beschriftung'], 'rules' => [ 'field_exists', 'valid_date', 'permit_empty' ] ],
+            'max_anzahl_mitglieder' => [ 'label' => EIGENSCHAFTEN['aufgaben']['max_anzahl_mitglieder']['beschriftung'], 'rules' => [ 'field_exists' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         );
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        // Die Aufgabe darf nicht erstellt oder geändert werden, wenn das Recht zur Verwaltung der Aufgaben nicht vergeben ist
-        else if( !auth()->user()->can( 'aufgaben.verwaltung' )
-        // und man die Aufgabe sich nicht zuweisen will bzw. sich nicht mehr zuweisen will
-            AND  !( array_key_exists( 'id', $this->request->getpost() ) AND array_key_exists( 'mitglied_id', $this->request->getpost() )
-                AND (  ( $this->request->getpost()['mitglied_id'] == ICH['id']  AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] === NULL )
-                    OR ( $this->request->getpost()['mitglied_id'] == ''         AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == ICH['id'] ) ) )
-        // und man die Aufgabe nicht als erledigt markieren will
-            AND  !( array_key_exists( 'id', $this->request->getpost() ) AND array_key_exists( 'erledigt', $this->request->getpost() )
-                AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] == ICH['id'] )
-            ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        // Das zugewiesene Mitglied darf nicht verändert werden, wenn die Aufgabe als erledigt markiert ist
-        else if( array_key_exists( 'id', $this->request->getpost() ) AND array_key_exists( 'mitglied_id', $this->request->getpost() )
-        AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] !== $this->request->getpost()['mitglied_id']
-        AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['erledigt'] !== NULL ) $ajax_antwort['validation'] = 'Das eingeplante Mitglied darf nicht verändert werden, wenn die Aufgabe als erledigt markiert ist';
-        // Die Aufgabe darf nicht als offen oder erledigt markiert werden, wenn der Aufgabe kein Mitglied zugeordnet ist
-        else if( array_key_exists( 'id', $this->request->getpost() ) AND array_key_exists( 'erledigt', $this->request->getpost() )
-        AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['erledigt'] !== $this->request->getpost()['erledigt']
-        AND model(Aufgabe_Model::class)->find( $this->request->getpost()['id'] )['mitglied_id'] === NULL ) $ajax_antwort['validation'] = 'Die Aufgabe darf nicht als offen oder erledigt markiert werden, wenn für die Aufgabe kein Mitglied eingeplant ist!';
+        else if( !auth()->user()->can( 'aufgaben.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
-            $aufgaben_Model = model(Aufgabe_Model::class);
+            $aufgabe_Model = model(Aufgabe_Model::class);
             $aufgabe = array(
                 'titel' => $this->request->getpost()['titel'],
             );
-            if( array_key_exists( 'zugeordnete_liste', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['zugeordnete_liste'] ) ) $aufgabe['zugeordnete_liste'] = $this->request->getpost()['zugeordnete_liste']; else $aufgabe['zugeordnete_liste'] = NULL; }
-            if( array_key_exists( 'zugeordnete_element_id', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['zugeordnete_element_id'] ) ) $aufgabe['zugeordnete_element_id'] = $this->request->getpost()['zugeordnete_element_id']; else $aufgabe['zugeordnete_element_id'] = NULL; }
-            if( array_key_exists( 'mitglied_id', $this->request->getpost() ) ) { if( !empty( $this->request->getpost()['mitglied_id'] ) ) $aufgabe['mitglied_id'] = $this->request->getpost()['mitglied_id']; else $aufgabe['mitglied_id'] = NULL; }
-            if( array_key_exists( 'erledigt', $this->request->getpost() ) AND !empty( $this->request->getpost()['erledigt'] ) ) $aufgabe['erledigt'] = $this->request->getpost()['erledigt']; else $aufgabe['erledigt'] = NULL;
+            if( array_key_exists( 'max_anzahl_mitglieder', $this->request->getpost() ) AND !empty( $this->request->getpost()['max_anzahl_mitglieder'] ) ) $aufgabe['max_anzahl_mitglieder'] = $this->request->getpost()['max_anzahl_mitglieder']; else $aufgabe['max_anzahl_mitglieder'] = NULL;
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $aufgabe['bemerkung'] = $this->request->getpost()['bemerkung']; else $aufgabe['bemerkung'] = NULL;
 
-            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $aufgaben_Model->update( $this->request->getpost()['id'], $aufgabe );
+            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $aufgabe_Model->update( $this->request->getpost()['id'], $aufgabe );
             else {
-                $aufgaben_Model->save( $aufgabe );
-                $ajax_antwort['aufgabe_id'] = (int)$aufgaben_Model->getInsertID();
+                $aufgabe_Model->save( $aufgabe );
+                $ajax_antwort['aufgabe_id'] = (int)$aufgabe_Model->getInsertID();
             }
         }
 
@@ -65,6 +46,89 @@ class Aufgaben extends BaseController {
         else if( !auth()->user()->can( 'aufgaben.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else model(Aufgabe_Model::class)->delete( $this->request->getPost()['id'] );
         
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    public function ajax_rueckmeldung_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+            'aufgabe_id' => [ 'label' => EIGENSCHAFTEN['aufgaben_rueckmeldungen']['aufgabe_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['aufgaben_rueckmeldungen']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'status' => [ 'label' => EIGENSCHAFTEN['aufgaben_rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben_rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        // else if( $this->request->getPost()['status'] == 0 ) $ajax_antwort['validation'] = 'Ein Löschen der Rückmeldung ist nicht möglich!';
+        // else if( Time::parse( model(Termin_Model::class)->find(
+        //             $this->request->getPost()['termin_id']
+        //          )['start'], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds(TERMINE_RUECKMELDUNG_FRIST) ) )
+        //             $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
+        else {
+            $rueckmeldung_Model = model(Rueckmeldung_Model::class);
+            $rueckmeldung = array(
+                'aufgabe_id' => $this->request->getpost()['aufgabe_id'],
+                'mitglied_id' => $this->request->getpost()['mitglied_id'],
+                'status' => $this->request->getpost()['status'],
+            );
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $rueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung']; else $rueckmeldung['bemerkung'] = NULL;
+
+            $rueckmeldung_Model->where( array( 'aufgabe_id' => $rueckmeldung['aufgabe_id'], 'mitglied_id' => $rueckmeldung['mitglied_id'] ) )->delete();
+            if( (int)$rueckmeldung['status'] > 0 ) {
+                $rueckmeldung_Model->save( $rueckmeldung );
+                $ajax_antwort['rueckmeldung_id'] = (int)$rueckmeldung_Model->getInsertID();
+            }
+        }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
+
+    public function ajax_rueckmeldung_bemerkung_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine_rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else {
+            $rueckmeldung_Model = model(Rueckmeldung_Model::class);
+            $rueckmeldung = array();
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $rueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung']; else $rueckmeldung['bemerkung'] = NULL;
+
+            $rueckmeldung_Model->update( $this->request->getpost()['id'], $rueckmeldung );
+        }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    public function ajax_zuordnung_termine_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+            'aufgabe_id' => [ 'label' => EIGENSCHAFTEN['aufgaben_zuordnungen_termine']['aufgabe_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'termin_id' => [ 'label' => EIGENSCHAFTEN['aufgaben_zuordnungen_termine']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'status' => [ 'label' => EIGENSCHAFTEN['aufgaben_zuordnungen_termine']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben_zuordnungen_termine']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else if( !auth()->user()->can( 'termine.aufgaben' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else {
+            $zuordnung_termine_Model = model(Zuordnung_Termine_Model::class);
+            $zuordnung_termine = array(
+                'aufgabe_id' => $this->request->getpost()['aufgabe_id'],
+                'termin_id' => $this->request->getpost()['termin_id'],
+                'status' => $this->request->getpost()['status'],
+            );
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $zuordnung_termine['bemerkung'] = $this->request->getpost()['bemerkung']; else $zuordnung_termine['bemerkung'] = NULL;
+
+            $zuordnung_termine_Model->where( array( 'aufgabe_id' => $zuordnung_termine['aufgabe_id'], 'termin_id' => $zuordnung_termine['termin_id'] ) )->delete();
+            if( (int)$zuordnung_termine['status'] > 0 ) {
+                $zuordnung_termine_Model->save( $zuordnung_termine );
+                $ajax_antwort['zuordnung_termine_id'] = (int)$zuordnung_termine_Model->getInsertID();
+            }
+        }
+
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }

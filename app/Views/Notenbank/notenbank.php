@@ -14,16 +14,5 @@
     view( 'Templates/modal', array( 'id' => 'titel_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'notenbank' ), 'btn' => array( 'klasse_id' => 'btn_titel_aktion' ), 'formular' =>
     view( 'Notenbank/titel_basiseigenschaften_formular' ) ) ) ) ); ?>
-
-<?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) { echo
-    view( 'Templates/modal', array( 'id' => 'zugeordnete_aufgaben_anzeigen', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['aktuelles_verzeichnis_zugeordnete_aufgaben'] ) ) ) ); ?>
-<?= view( 'Templates/modal', array( 'id' => 'mitglieder_aufgaben_erledigt_anzeigen', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['mitglieder_aufgaben_erledigt'] ) ) ) ); ?>
-    <?php if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'id' => 'aufgabe_basiseigenschaften', 'modal' =>
-    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'aufgaben' ), 'btn' => array( 'klasse_id' => 'btn_aufgabe_aktion' ), 'formular' =>
-    view( 'Aufgaben/aufgabe_basiseigenschaften_formular' ) ) ) ) ); ?>
-<?php } ?>
 <?= $this->endSection() ?>
 

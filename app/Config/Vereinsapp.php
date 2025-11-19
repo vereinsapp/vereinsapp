@@ -154,6 +154,18 @@ class Vereinsapp extends BaseConfig
             'listenstatistik' => array(),
         ),
 
+        'aufgaben_rueckmeldungen' => array(
+            'liste' => 'aufgaben_rueckmeldungen',
+            'filtern' => array(),
+            'sortieren' => array(),
+        ),
+
+        'aufgaben_zuordnungen_termine' => array(
+            'liste' => 'aufgaben_zuordnungen_termine',
+            'filtern' => array(),
+            'sortieren' => array(),
+        ),
+
         'termine' => array(
             'liste' => 'termine',
             'filtern' => array( 'start' => array( 'start' => HEUTE ), 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
@@ -238,7 +250,7 @@ class Vereinsapp extends BaseConfig
             'geburtstag' => array( 'beschriftung' => 'Geburtstag', 'typ' => 'zeitpunkt' ),      // JAVA
             'alter' => array( 'beschriftung' => 'Alter', 'typ' => 'zahl' ),                     // JAVA
             'alter_geburtstag' => array( 'beschriftung' => 'Nächstes Alter', 'typ' => 'zahl' ), // JAVA
-            'postleitzahl' => array( 'beschriftung' => 'PLZ', 'typ' => 'text' ),
+            'postleitzahl' => array( 'beschriftung' => 'PLZ', 'typ' => 'zahl' ),
             'wohnort' => array( 'beschriftung' => 'Wohnort', 'typ' => 'text' ),
             'geschlecht' => array( 'beschriftung' => 'Geschlecht', 'typ' => 'vorgegebene_werte' ),
             'register' => array( 'beschriftung' => 'Instrument', 'typ' => 'vorgegebene_werte' ),
@@ -269,15 +281,27 @@ class Vereinsapp extends BaseConfig
 
         'aufgaben' => array(
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
-            'zugeordnete_liste' => array( 'beschriftung' => 'Zugeordnete Liste', 'typ' => 'vorgegebene_werte' ),
-            'zugeordnete_element_id' => array( 'beschriftung' => 'Zugeordnete Element-ID', 'typ' => 'element_id' ),
-            'zugeordnetes_element' => array( 'beschriftung' => 'Zugeordnetes Element', 'typ' => 'text' ),   // JAVA
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
-            'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),
-            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'janein' ),                  // JAVA
+            'max_anzahl_mitglieder' => array( 'beschriftung' => 'Max. Anzahl an eingetragenen Mitgliedern', 'typ' => 'zahl' ),
+            // 'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),    // JAVA
+            // 'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'janein' ),  // JAVA
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),                  // PHP
+        ),
+
+        'aufgaben_rueckmeldungen' => array(
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
+            'aufgabe_id' => array( 'beschriftung' => 'Aufgabe-ID', 'typ' => 'element_id' ),
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
+            'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
+            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
+        ),
+
+        'aufgaben_zuordnungen_termine' => array(
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
+            'aufgabe_id' => array( 'beschriftung' => 'Aufgabe-ID', 'typ' => 'element_id' ),
+            'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'element_id' ),
+            'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
+            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
         ),
 
         'termine' => array(
@@ -290,7 +314,7 @@ class Vereinsapp extends BaseConfig
             'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text' ),
             'oeffentlich_janein' => array( 'beschriftung' => 'Öffentlich', 'typ' => 'janein' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'mitglieder_ids_eingeladen' => array( 'beschriftung' => 'Eingeladene Mitglieder', 'typ' => 'element_ids' ),     // JAVA
+            'mitglieder_ids_eingeladen' => array( 'beschriftung' => 'Eingeladene Mitglieder', 'typ' => 'element_ids' ), // JAVA
             'ich_eingeladen_janein' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'janein' ),              // JAVA
             'ich_rueckgemeldet_janein' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'janein' ), // JAVA
         ),
@@ -407,13 +431,12 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
+        ),
 
-            'zugeordnete_liste' => array(
-                'mitglieder' => array( 'beschriftung' => LISTEN['mitglieder']['beschriftung'] ),
-                'termine' => array( 'beschriftung' => LISTEN['termine']['beschriftung'] ),
-                'notenbank' => array( 'beschriftung' => LISTEN['notenbank']['beschriftung'] ),
-            ),
+        'aufgaben_rueckmeldungen' => array(
+        ),
 
+        'aufgaben_zuordnungen_termine' => array(
         ),
 
         'termine' => array(
@@ -499,14 +522,10 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            'offen' => array(
-                'beschriftung' => 'Alle offenen Aufgaben',
-                'filtern' => array( 'erledigt_janein' => array( 'inklusiv' => [ FALSE ] ), ),
-            ),
-            'alle_seit_jahresbeginn' => array(
-                'beschriftung' => 'Alle Aufgaben seit Jahresbeginn',
-                'filtern' => array( 'erstellung' => array( 'start' => JAHRESBEGINN ), ),
-            ),
+            // 'offen' => array(
+            //     'beschriftung' => 'Alle offenen Aufgaben',
+            //     'filtern' => array( 'erledigt_janein' => array( 'inklusiv' => [ FALSE ] ), ),
+            // ),
         ),
 
         'termine' => array(
@@ -589,11 +608,14 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            // 'zugeordnete_liste', muss auskommentiert sein solange die Aufgaben ausschließlich den anderen Controllern zugeordnet sind
-            // 'element_id',
-            // 'mitglied_id',
-            'erledigt_janein',
-            'erstellung',
+            'max_anzahl_mitglieder',
+            // 'erledigt_janein',
+        ),
+
+        'aufgaben_rueckmeldungen' => array(
+        ),
+
+        'aufgaben_zuordnungen_termine' => array(
         ),
 
         'termine' => array(
@@ -659,11 +681,15 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            // 'zugeordnete_liste', muss auskommentiert sein solange die Aufgaben ausschließlich den anderen Controllern zugeordnet sind
             'titel',
-            'mitglied_id',
-            'erledigt',
-            'erstellung',
+            'max_anzahl_mitglieder',
+            // 'erledigt',
+        ),
+
+        'aufgaben_rueckmeldungen' => array(
+        ),
+
+        'aufgaben_zuordnungen_termine' => array(
         ),
 
         'termine' => array(
@@ -715,6 +741,7 @@ class Vereinsapp extends BaseConfig
     public $gruppierbare_eigenschaften = array(
 
         'mitglieder' => array(
+            'alter',
             'wohnort',
             'geschlecht',
             'register',
@@ -728,9 +755,14 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            // 'zugeordnete_liste', muss auskommentiert sein solange die Aufgaben ausschließlich den anderen Controllern zugeordnet sind
-            'mitglied_id',
+            'max_anzahl_mitglieder',
             'erledigt_janein',
+        ),
+
+        'aufgaben_rueckmeldungen' => array(
+        ),
+
+        'aufgaben_zuordnungen_termine' => array(
         ),
 
         'termine' => array(
@@ -778,6 +810,19 @@ class Vereinsapp extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
+     * Rückmelde-Auswahlmöglichkeiten für Aufgaben
+     * --------------------------------------------------------------------------
+     *
+     * Auswahl an Möglichkeiten zur Rückmeldung für Aufgaben
+     */
+    public $aufgaben_rueckmeldung_auswahlmoeglichkeiten = array(
+        0 => array( 'farbe' => 'danger', 'aktiv' => 'ausplanen', 'passiv' => 'ausgeplant' ),
+        1 => array( 'farbe' => 'warning', 'aktiv' => 'einplanen', 'passiv' => 'eingeplant' ),
+        2 => array( 'farbe' => 'success', 'aktiv' => 'als erledigt markieren', 'passiv' => 'erledigt' ),
+    );
+
+    /**
+     * --------------------------------------------------------------------------
      * Termin-Kategorie filtern_mitglieder
      * --------------------------------------------------------------------------
      *
@@ -799,8 +844,8 @@ class Vereinsapp extends BaseConfig
      * Auswahl an Möglichkeiten zur Rückmeldung für Termine
      */
     public $termine_rueckmeldung_auswahlmoeglichkeiten = array(
-        1 => array( 'farbe' => 'success', 'aktiv' => 'ZUSAGEN', 'passiv' => 'ZUGESAGT' ),
-        2 => array( 'farbe' => 'danger', 'aktiv' => 'ABSAGEN', 'passiv' => 'ABGESAGT' ),
+        1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'-fill"></i>' ),
+        2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'-fill"></i>' ),
     );
 
     /**

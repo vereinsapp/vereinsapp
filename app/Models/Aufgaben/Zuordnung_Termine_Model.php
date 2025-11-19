@@ -4,27 +4,25 @@ namespace App\Models\Aufgaben;
 
 use CodeIgniter\Model;
 
-class Aufgabe_Model extends Model {
+class Zuordnung_Termine_Model extends Model {
    
-    protected $table          = 'aufgaben';
+    protected $table          = 'aufgaben_zuordnungen_termine';
     protected $primaryKey     = 'id';
     protected $allowedFields  = [
-        'titel',
-        'max_anzahl_mitglieder',
+        'aufgabe_id',
+        'termin_id',
+        'status',
         'bemerkung',
     ];
     protected $useTimestamps = TRUE;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
 
-    protected $useSoftDeletes = TRUE;
-
-    public function aufgaben_tabelle() {
+    public function zuordnungen_termine_tabelle() {
         $tabelle = array();
 
         foreach( $this->findAll() as $eintrag )
-            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'aufgaben' );
+            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'aufgaben_zuordnungen_termine' );
 
         return $tabelle;
     }

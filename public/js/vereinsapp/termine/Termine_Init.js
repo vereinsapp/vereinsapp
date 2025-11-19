@@ -125,7 +125,7 @@ EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
 };
 
 function Termine_Init() {
-    EVENT_VARIABLE_UPD_DOM_VOR_ENDE["termine_rueckmeldungen"] = [
+    EVENT_VARIABLE_UPD_DOM_NACH_LISTE["termine_rueckmeldungen"] = [
         function () {
             // RÜCKMELDUNG AKTUALISIEREN
             $("[data-liste='termine_rueckmeldungen']").each(function () {

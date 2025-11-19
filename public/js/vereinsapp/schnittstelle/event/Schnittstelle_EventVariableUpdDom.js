@@ -1,10 +1,5 @@
 function Schnittstelle_EventVariableUpdDom(liste) {
     if (liste in LISTEN) {
-        // SPEZIAL VOR LISTE AKTUALISIEREN
-        $.each(EVENT_VARIABLE_UPD_DOM_VOR_LISTE[liste], function () {
-            this();
-        });
-
         // LISTE AKTUALISIEREN
         $('.liste[data-liste="' + liste + '"]').each(function () {
             Liste_Aktualisieren($(this), liste);
@@ -38,7 +33,7 @@ function Schnittstelle_EventVariableUpdDom(liste) {
         });
 
         // SPEZIAL ZUM SCHLUSS AKTUALISIEREN
-        $.each(EVENT_VARIABLE_UPD_DOM_VOR_ENDE[liste], function () {
+        $.each(EVENT_VARIABLE_UPD_DOM_NACH_LISTE[liste], function () {
             this();
         });
     }

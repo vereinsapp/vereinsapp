@@ -1,90 +1,99 @@
-ELEMENTE.aufgabe.ergaenzen_aktion = function (aufgabe) {
-    if (aufgabe["erledigt"] !== null) aufgabe["erledigt_janein"] = true;
-    else aufgabe["erledigt_janein"] = false;
+ELEMENTE.aufgabe.ergaenzen_aktion = function (aufgabe) {};
 
-    if (aufgabe["zugeordnete_liste"] !== null && aufgabe["zugeordnete_element_id"] !== null)
-        aufgabe["zugeordnetes_element"] = { liste: aufgabe["zugeordnete_liste"], id: aufgabe["zugeordnete_element_id"] };
-    else aufgabe["zugeordnetes_element"] = null;
+ELEMENTE.aufgaben_rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
+    const rueckmeldung_id = rueckmeldung.id;
+
+    if ("aufgaben" in LISTEN) {
+        const aufgabe_id = Schnittstelle_VariableRausZurueck("aufgabe_id", rueckmeldung_id, "aufgaben_rueckmeldungen", undefined);
+
+        if (typeof aufgabe_id !== "undefined") {
+            const aufgabe = LISTEN.aufgaben.tabelle[aufgabe_id];
+
+            if (typeof aufgabe !== "undefined") {
+                if (!("zugeordnete_element_ids_nach_liste" in aufgabe)) aufgabe.zugeordnete_element_ids_nach_liste = new Object();
+                const zugeordnete_element_ids_nach_liste = aufgabe.zugeordnete_element_ids_nach_liste;
+
+                if (!("aufgaben_rueckmeldungen" in zugeordnete_element_ids_nach_liste))
+                    zugeordnete_element_ids_nach_liste.aufgaben_rueckmeldungen = new Array();
+                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.aufgaben_rueckmeldungen;
+                if (!zugeordnete_element_ids.includes(rueckmeldung_id))
+                    LISTEN.aufgaben.tabelle[aufgabe_id].zugeordnete_element_ids_nach_liste.aufgaben_rueckmeldungen.push(rueckmeldung_id);
+            }
+        }
+    }
+
+    if ("mitglieder" in LISTEN) {
+        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "aufgaben_rueckmeldungen", undefined);
+
+        if (typeof mitglied_id !== "undefined") {
+            const mitglied = LISTEN.mitglieder.tabelle[mitglied_id];
+
+            if (typeof mitglied !== "undefined") {
+                if (!("zugeordnete_element_ids_nach_liste" in mitglied)) mitglied.zugeordnete_element_ids_nach_liste = new Object();
+                const zugeordnete_element_ids_nach_liste = mitglied.zugeordnete_element_ids_nach_liste;
+
+                if (!("aufgaben_rueckmeldungen" in zugeordnete_element_ids_nach_liste))
+                    zugeordnete_element_ids_nach_liste.aufgaben_rueckmeldungen = new Array();
+                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.aufgaben_rueckmeldungen;
+                if (!zugeordnete_element_ids.includes(rueckmeldung_id))
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.aufgaben_rueckmeldungen.push(rueckmeldung_id);
+            }
+        }
+    }
 };
 
-EIGENSCHAFTEN.aufgaben.zugeordnete_liste.change_aktion = function ($zugeordnete_liste) {
-    const zugeordnete_liste = $zugeordnete_liste.val();
-    const $formular = $zugeordnete_liste.closest(".formular");
+ELEMENTE.anwesenheit.zuordnen_aktion = function (anwesenheit) {
+    const anwesenheit_id = anwesenheit.id;
 
-    $formular.find('.eingabe[data-eingabe="zugeordnete_element_id"]').each(function () {
-        const $zugeordnete_element_id = $(this);
-        if (zugeordnete_liste != "") $zugeordnete_element_id.attr("data-liste", zugeordnete_liste).val(null);
-        else $zugeordnete_element_id.removeAttr("data-liste").val(null);
+    if ("aufgaben" in LISTEN) {
+        const aufgabe_id = Schnittstelle_VariableRausZurueck("aufgabe_id", anwesenheit_id, "aufgaben_zuordnungen_termine", undefined);
 
-        if (
-            "change_aktion" in EIGENSCHAFTEN.aufgaben.zugeordnete_element_id &&
-            typeof EIGENSCHAFTEN.aufgaben.zugeordnete_element_id.change_aktion === "function"
-        )
-            EIGENSCHAFTEN.aufgaben.zugeordnete_element_id.change_aktion($zugeordnete_element_id);
-    });
+        if (typeof aufgabe_id !== "undefined") {
+            const aufgabe = LISTEN.aufgaben.tabelle[aufgabe_id];
 
-    $formular.find(".btn_element_zuordnen, .btn_zugeordnetes_element_loeschen").each(function () {
-        const $btn = $(this);
-        if (zugeordnete_liste != "") $btn.removeClass("disabled");
-        else $btn.addClass("disabled");
-    });
-};
+            if (typeof aufgabe !== "undefined") {
+                if (!("zugeordnete_element_ids_nach_liste" in aufgabe)) aufgabe.zugeordnete_element_ids_nach_liste = new Object();
+                const zugeordnete_element_ids_nach_liste = aufgabe.zugeordnete_element_ids_nach_liste;
 
-EIGENSCHAFTEN.aufgaben.zugeordnete_element_id.change_aktion = function ($zugeordnete_element_id) {
-    const zugeordnete_liste = $zugeordnete_element_id.attr("data-liste");
-    const zugeordnete_element_id = $zugeordnete_element_id.val();
+                if (!("aufgaben_zuordnungen_termine" in zugeordnete_element_ids_nach_liste))
+                    zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine = new Array();
+                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine;
+                if (!zugeordnete_element_ids.includes(anwesenheit_id))
+                    LISTEN.aufgaben.tabelle[aufgabe_id].zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine.push(anwesenheit_id);
+            }
+        }
+    }
 
-    $zugeordnete_element_id
-        .closest(".formular")
-        .find("#zugeordnetes_element.liste")
-        .each(function () {
-            const $zugeordnetes_element = $(this);
+    if ("mitglieder" in LISTEN) {
+        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", anwesenheit_id, "aufgaben_zuordnungen_termine", undefined);
 
-            if (typeof zugeordnete_liste !== "undefined")
-                $zugeordnetes_element
-                    .attr("data-liste", zugeordnete_liste)
-                    .attr("data-filtern", JsonStringifiedZurueck({ id: { inklusiv: [zugeordnete_element_id] } }), new Object());
-            else $zugeordnetes_element.removeAttr("data-liste").removeAttr("data-filtern");
+        if (typeof mitglied_id !== "undefined") {
+            const mitglied = LISTEN.mitglieder.tabelle[mitglied_id];
 
-            if (
-                "change_aktion" in EIGENSCHAFTEN.aufgaben.zugeordnetes_element &&
-                typeof EIGENSCHAFTEN.aufgaben.zugeordnetes_element.change_aktion === "function"
-            )
-                EIGENSCHAFTEN.aufgaben.zugeordnetes_element.change_aktion($zugeordnetes_element);
-        });
-};
+            if (typeof mitglied !== "undefined") {
+                if (!("zugeordnete_element_ids_nach_liste" in mitglied)) mitglied.zugeordnete_element_ids_nach_liste = new Object();
+                const zugeordnete_element_ids_nach_liste = mitglied.zugeordnete_element_ids_nach_liste;
 
-EIGENSCHAFTEN.aufgaben.zugeordnetes_element.change_aktion = function ($zugeordnetes_element) {
-    const zugeordnete_liste = $zugeordnetes_element.attr("data-liste");
-
-    if (typeof zugeordnete_liste !== "undefined") {
-        LISTEN[zugeordnete_liste].instanz["zugeordnetes_element"] = {
-            filtern: new Object(),
-            sortieren: undefined,
-            $blanko_element: LISTEN[zugeordnete_liste].instanz.HAUPTINSTANZ.$blanko_element.clone(),
-        };
-        Schnittstelle_EventVariableUpdDom(zugeordnete_liste);
-    } else $zugeordnetes_element.empty();
+                if (!("aufgaben_zuordnungen_termine" in zugeordnete_element_ids_nach_liste))
+                    zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine = new Array();
+                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine;
+                if (!zugeordnete_element_ids.includes(anwesenheit_id))
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine.push(anwesenheit_id);
+            }
+        }
+    }
 };
 
 function Aufgaben_Init() {
-    EVENT_VARIABLE_UPD_DOM_VOR_LISTE["aufgaben"] = [
+    EVENT_VARIABLE_UPD_DOM_NACH_LISTE["aufgaben_rueckmeldungen"] = [
         function () {
-            // ZUGEORDNETE AUFGABEN AKTUALISIEREN
-            $('.liste[data-liste="aufgaben"][data-zugeordnet_zu_instanz]').each(function () {
-                Aufgaben_ZugeordneteAufgabenAktualisieren($(this), $(this).attr("data-zugeordnet_zu_instanz"));
+            // RÜCKMELDUNG AKTUALISIEREN
+            $("[data-liste='aufgaben_rueckmeldungen']").each(function () {
+                Aufgaben_RueckmeldungAktualisieren($(this));
             });
         },
     ];
 
-    EVENT_VARIABLE_UPD_DOM_VOR_ENDE["aufgaben"] = [
-        function () {
-            // AUFGABE AKTUALISIEREN
-            $('.element[data-liste="aufgaben"]').each(function () {
-                Aufgaben_AufgabeAktualisieren($(this));
-            });
-        },
-    ];
     // AUFGABE ERSTELLEN
     $(document).on("click", ".btn_aufgabe_erstellen", function () {
         Aufgaben_AufgabeErstellen(
@@ -118,51 +127,35 @@ function Aufgaben_Init() {
         );
     });
 
-    // ELEMENT ZUORDNEN
-    $(document).on("click", ".btn_element_zuordnen", function () {
-        Aufgaben_AufgabeElementZuordnen(
-            $(this).hasClass("auswahl_einfordern"),
-            { $quelle_ziel: $(this), $modal: $(this).closest(".modal") },
-            $(this).attr("data-title"),
-            $(this).attr("data-liste")
+    // RÜCKMELDUNG ERSTELLEN
+    $(document).on("click", ".btn_rueckmeldung_erstellen", function () {
+        Aufgaben_RueckmeldungErstellen(
+            false,
+            { $btn_ausloesend: $(this) },
+            {
+                aufgabe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-status"), undefined),
+                bemerkung: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-bemerkung"), null),
+            },
+            undefined
         );
     });
 
-    // ZUGEORDNETES ELEMENT LÖSCHEN
-    $(document).on("click", ".btn_zugeordnetes_element_loeschen", function () {
-        Aufgaben_AufgabeZugeordnetesElementLoeschen({ $formular: $(this).closest(".formular") });
-    });
+    // AUFGABEN_ZUORDNUNGEN_TERMINE ZUORDNEN (MODAL) ÖFFNEN
+    $(document).on("click", ".btn_aufgaben_zuordnungen_termine_zuordnen", function () {
+        const liste = $(this).attr("data-liste");
+        const element_id = $(this).attr("data-element_id");
+        const title = $(this).attr("data-title");
 
-    // MITGLIED EINPLANEN
-    $(document).on("click", ".btn_aufgabe_mitglied_einplanen", function () {
-        Aufgaben_AufgabeMitgliedEinplanen(
-            $(this).hasClass("auswahl_einfordern"),
-            $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
-            { mitglied_id: $(this).attr("data-element_id"), aufgabe_id: $(this).attr("data-gegen_element_id") },
-            $(this).attr("data-title"),
-            $(this).attr("data-aufgabe_id")
-        );
-    });
+        let gegen_liste = $(this).attr("data-gegen_liste");
+        if (typeof gegen_liste === "undefined" && liste == "aufgaben") gegen_liste = "mitglieder";
+        else if (typeof gegen_liste === "undefined" && liste == "mitglieder") gegen_liste = "aufgaben";
 
-    // MITGLIED AUSPLANEN
-    $(document).on("click", ".btn_aufgabe_mitglied_ausplanen", function () {
-        Aufgaben_AufgabeMitgliedAusplanen(
-            $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
-            $(this).attr("data-title"),
-            $(this).attr("data-aufgabe_id")
-        );
-    });
-
-    // AUFGABE ALS OFEN/ERLEDIGT MARKIEREN
-    $(document).on("click", ".btn_aufgabe_offen_erledigt_markieren", function () {
-        Aufgaben_AufgabeOffenErledigtMarkieren(
-            $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
-            $(this).attr("data-title"),
-            $(this).attr("data-aufgabe_id")
-        );
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, liste + "_aufgaben_zuordnungen_termine_zuordnen");
+        $neues_modal.find("#aufgaben_zuordnungen_termine_zuordnen.liste").attr("data-gegen_liste", liste).attr("data-gegen_element_id", element_id);
+        Schnittstelle_DomModalOeffnen($neues_modal);
+        Schnittstelle_EventVariableUpdDom(gegen_liste);
     });
 
     // ZUGEORDNETE AUFGABEN ANZEIGEN

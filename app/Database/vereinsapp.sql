@@ -2,6 +2,12 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
 -- Datenbank: `vereinsapp`
 --
@@ -14,15 +20,44 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `vereinsapp_aufgaben` (
   `id` int(11) UNSIGNED NOT NULL,
-  `zugeordnete_liste` varchar(50) DEFAULT NULL,
-  `zugeordnete_element_id` int(11) UNSIGNED DEFAULT NULL,
   `titel` varchar(100) NOT NULL,
-  `mitglied_id` int(11) UNSIGNED DEFAULT NULL,
-  `erledigt` datetime DEFAULT NULL,
+  `max_anzahl_mitglieder` int(11) UNSIGNED DEFAULT NULL,
   `bemerkung` varchar(100) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `vereinsapp_aufgaben_rueckmeldungen`
+--
+
+CREATE TABLE `vereinsapp_aufgaben_rueckmeldungen` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `aufgabe_id` int(11) UNSIGNED NOT NULL,
+  `mitglied_id` int(11) UNSIGNED NOT NULL,
+  `status` int(11) UNSIGNED NOT NULL,
+  `bemerkung` varchar(100) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `vereinsapp_aufgaben_zuordnungen_termine`
+--
+
+CREATE TABLE `vereinsapp_aufgaben_zuordnungen_termine` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `aufgabe_id` int(11) UNSIGNED NOT NULL,
+  `termin_id` int(11) UNSIGNED NOT NULL,
+  `status` int(11) UNSIGNED NOT NULL,
+  `bemerkung` varchar(100) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -81,16 +116,16 @@ CREATE TABLE `vereinsapp_mitglieder` (
   `funktion` varchar(50) NOT NULL DEFAULT 'ohne',
   `vorstandschaft_janein` tinyint(1) NOT NULL DEFAULT 0,
   `aktiv_janein` tinyint(1) NOT NULL DEFAULT 1,
-  `real_janein` tinyint(1) NOT NULL DEFAULT 1
-  `bemerkung` varchar(100) DEFAULT NULL,
+  `real_janein` tinyint(1) NOT NULL DEFAULT 1,
+  `bemerkung` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Daten für Tabelle `vereinsapp_mitglieder`
 --
 
-INSERT INTO `vereinsapp_mitglieder` (`id`, `username`, `status`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`, `vorname`, `nachname`, `geburt`, `postleitzahl`, `wohnort`, `geschlecht`, `register`, `auto`, `funktion`, `vorstandschaft_janein`, `aktiv_janein`, `real_janein`) VALUES
-(1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'John', 'Doe', '2024-01-01 00:00:00', 12345, 'Musterstadt', 'd', 'ohne', 'ohne', 'ohne', 0, 1, 1);
+INSERT INTO `vereinsapp_mitglieder` (`id`, `username`, `status`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`, `vorname`, `nachname`, `geburt`, `postleitzahl`, `wohnort`, `geschlecht`, `register`, `auto`, `funktion`, `vorstandschaft_janein`, `aktiv_janein`, `real_janein`, `bemerkung`) VALUES
+(1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'John', 'Doe', '2024-01-01 00:00:00', 12345, 'Musterstadt', 'd', 'ohne', 'ohne', 'ohne', 0, 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -341,8 +376,23 @@ CREATE TABLE `vereinsapp_termine_rueckmeldungen` (
 -- Indizes für die Tabelle `vereinsapp_aufgaben`
 --
 ALTER TABLE `vereinsapp_aufgaben`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indizes für die Tabelle `vereinsapp_aufgaben_rueckmeldungen`
+--
+ALTER TABLE `vereinsapp_aufgaben_rueckmeldungen`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `aufgabe_id` (`aufgabe_id`),
   ADD KEY `mitglied_id` (`mitglied_id`);
+
+--
+-- Indizes für die Tabelle `vereinsapp_aufgaben_zuordnungen_termine`
+--
+ALTER TABLE `vereinsapp_aufgaben_zuordnungen_termine`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `aufgabe_id` (`aufgabe_id`),
+  ADD KEY `termin_id` (`termin_id`);
 
 --
 -- Indizes für die Tabelle `vereinsapp_migrations`
@@ -461,6 +511,18 @@ ALTER TABLE `vereinsapp_aufgaben`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT für Tabelle `vereinsapp_aufgaben_rueckmeldungen`
+--
+ALTER TABLE `vereinsapp_aufgaben_rueckmeldungen`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `vereinsapp_aufgaben_zuordnungen_termine`
+--
+ALTER TABLE `vereinsapp_aufgaben_zuordnungen_termine`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT für Tabelle `vereinsapp_migrations`
 --
 ALTER TABLE `vereinsapp_migrations`
@@ -555,10 +617,18 @@ ALTER TABLE `vereinsapp_termine_rueckmeldungen`
 --
 
 --
--- Constraints der Tabelle `vereinsapp_aufgaben`
+-- Constraints der Tabelle `vereinsapp_aufgaben_rueckmeldungen`
 --
-ALTER TABLE `vereinsapp_aufgaben`
-  ADD CONSTRAINT `vereinsapp_aufgaben_mitglied_id_foreign` FOREIGN KEY (`mitglied_id`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE;
+ALTER TABLE `vereinsapp_aufgaben_rueckmeldungen`
+  ADD CONSTRAINT `vereinsapp_aufgaben_rueckmeldungen_aufgabe_id_foreign` FOREIGN KEY (`aufgabe_id`) REFERENCES `vereinsapp_aufgaben` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `vereinsapp_aufgaben_rueckmeldungen_mitglied_id_foreign` FOREIGN KEY (`mitglied_id`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints der Tabelle `vereinsapp_aufgaben_zuordnungen_termine`
+--
+ALTER TABLE `vereinsapp_aufgaben_zuordnungen_termine`
+  ADD CONSTRAINT `vereinsapp_aufgaben_zuordnungen_termine_aufgabe_id_foreign` FOREIGN KEY (`aufgabe_id`) REFERENCES `vereinsapp_aufgaben` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `vereinsapp_aufgaben_zuordnungen_termine_termin_id_foreign` FOREIGN KEY (`termin_id`) REFERENCES `vereinsapp_termine` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints der Tabelle `vereinsapp_mitglieder_login_eingeloggt_bleiben`

@@ -155,16 +155,11 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/mitglieder/Mitglieder_MitgliederAufgabenErledigtAnzeigen.js?v='.VERSION,
 
         'js/vereinsapp/aufgaben/Aufgaben_Init.js?v='.VERSION,
-        'js/vereinsapp/aufgaben/Aufgaben_AufgabeAktualisieren.js?v='.VERSION,
         'js/vereinsapp/aufgaben/Aufgaben_AufgabeErstellen.js?v='.VERSION,
         'js/vereinsapp/aufgaben/Aufgaben_AufgabeAendern.js?v='.VERSION,
-        'js/vereinsapp/aufgaben/Aufgaben_AufgabeElementZuordnen.js?v='.VERSION,
-        'js/vereinsapp/aufgaben/Aufgaben_AufgabeZugeordnetesElementLoeschen.js?v='.VERSION,
-        'js/vereinsapp/aufgaben/Aufgaben_AufgabeMitgliedEinplanen.js?v='.VERSION,
-        'js/vereinsapp/aufgaben/Aufgaben_AufgabeMitgliedAusplanen.js?v='.VERSION,
-        'js/vereinsapp/aufgaben/Aufgaben_AufgabeOffenErledigtMarkieren.js?v='.VERSION,
+        'js/vereinsapp/aufgaben/Aufgaben_RueckmeldungErstellen.js?v='.VERSION,
+        'js/vereinsapp/aufgaben/Aufgaben_RueckmeldungAktualisieren.js?v='.VERSION,
         'js/vereinsapp/aufgaben/Aufgaben_ZugeordneteAufgabenAnzeigen.js?v='.VERSION,
-        'js/vereinsapp/aufgaben/Aufgaben_ZugeordneteAufgabenAktualisieren.js?v='.VERSION,
 
         'js/vereinsapp/termine/Termine_Init.js?v='.VERSION,
         'js/vereinsapp/termine/Termine_TerminErstellen.js?v='.VERSION,

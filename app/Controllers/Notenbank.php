@@ -14,40 +14,6 @@ class Notenbank extends BaseController {
         $this->viewdata['liste']['aktuelles_verzeichnis']['link'] = TRUE;
         $this->viewdata['liste']['aktuelles_verzeichnis']['vorschau'] = array( 'kategorie', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis' );
 
-        if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
-
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['aufgaben'] = array(
-                'klasse_id' => array('btn_zugeordnete_aufgaben_anzeigen'),
-                'title' => 'Zugeordnete Aufgaben',
-            );
-
-            $this->viewdata['liste']['aktuelles_verzeichnis_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-            unset( $this->viewdata['liste']['aktuelles_verzeichnis_zugeordnete_aufgaben']['filtern'] );
-            $this->viewdata['liste']['aktuelles_verzeichnis_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-            $this->viewdata['liste']['aktuelles_verzeichnis_zugeordnete_aufgaben']['vorschau'] = array('zugeordnetes_element');
-            $this->viewdata['liste']['aktuelles_verzeichnis_zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
-            $this->viewdata['liste']['aktuelles_verzeichnis_zugeordnete_aufgaben']['zugeordnet_zu_instanz'] = 'aktuelles_verzeichnis';
-
-            $this->viewdata['liste']['aktuelles_verzeichnis_zugeordnete_aufgaben']['werkzeugkasten']['statistiken'] = array(
-                'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
-                'title' => 'Eingeplante und erledigte Aufgaben',
-            );
-
-            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-                $this->viewdata['liste']['aktuelles_verzeichnis_zugeordnete_aufgaben']['werkzeugkasten']['erstellen'] = array(
-                    'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
-                    'title' => 'Aufgabe erstellen',
-                );
-                $this->viewdata['liste']['aktuelles_verzeichnis_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
-            }
-
-            $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
-            $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
-            $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-            $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
-
-        }
-
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_handle'] = TRUE;
@@ -85,16 +51,6 @@ class Notenbank extends BaseController {
 
         $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array( 'liste' => 'notenbank', 'link' => TRUE, 'element_id' => $titel_id, );
 
-        if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
-            $this->viewdata['liste']['titel_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-            unset($this->viewdata['liste']['titel_zugeordnete_aufgaben']['werkzeugkasten']);
-            $this->viewdata['liste']['titel_zugeordnete_aufgaben']['filtern'] = array( 'zugeordnete_liste' => array( 'inklusiv' => array( 'notenbank' ), ), 'zugeordnete_element_id' => array( 'inklusiv' => array( $titel_id ), ), );
-            $this->viewdata['liste']['titel_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-            $this->viewdata['liste']['titel_zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
-            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
-                $this->viewdata['liste']['titel_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
-        }
-
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_titel_aendern', 'formular_oeffnen'),
@@ -124,35 +80,6 @@ class Notenbank extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_notenbank() { $ajax_antwort[CSRF_NAME] = csrf_hash();
-        $validation_rules = array(
-            'ajax_id' => 'required|is_natural',
-        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else {
-            $ajax_antwort['tabelle'] = model(Titel_Model::class)->findAll();
-            foreach( $ajax_antwort['tabelle'] as $id => $titel ) {
-                $verzeichnis = null; foreach( directory_map( './storage/notenbank/', 1 ) as $verzeichnis_ )
-                    if( is_dir( './storage/notenbank/'.$verzeichnis_ ) AND
-                        substr( $verzeichnis_, 0, NOTENBANK_ANZAHL_ZIFFERN ) == str_pad( $titel['titel_nr'], NOTENBANK_ANZAHL_ZIFFERN ,'0', STR_PAD_LEFT ) )
-                        $verzeichnis = $verzeichnis_;
-
-                $titel['verzeichnis_basis'] = $verzeichnis; 
-                if( $verzeichnis !== null ) $titel['verzeichnis'] = $this->verzeichnis_indizieren( directory_map( './storage/notenbank/'.$verzeichnis ) ); 
-                else $titel['verzeichnis'] = $this->verzeichnis_indizieren( array() );
-                $ajax_antwort['tabelle'][ $id ] = json_decode( json_encode( $titel ), TRUE );
-                foreach( $ajax_antwort['tabelle'][ $id ] as $eigenschaft => $wert )
-                if( !array_key_exists( $eigenschaft, EIGENSCHAFTEN['notenbank'] ) ) unset( $ajax_antwort['tabelle'][ $id ][$eigenschaft] );
-                elseif( is_numeric( $wert ) ) {
-                    if( (int) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (int)$wert;
-                    elseif( (float) $wert == $wert ) $ajax_antwort['tabelle'][ $id ][ $eigenschaft ] = (float)$wert;
-                }
-            }
-        }
-
-        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
-        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
-    }
-
     public function ajax_titel_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
@@ -171,7 +98,7 @@ class Notenbank extends BaseController {
              OR ( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) AND !is_null( $validation_titel_nr_id ) AND !in_array( $this->request->getPost()['id'], $validation_titel_nr_id ) ) )
                 $ajax_antwort['validation']['titel_nr'] = EIGENSCHAFTEN['notenbank']['titel_nr']['beschriftung'].' wird bereits verwendet.';
         else {
-            $notenbank_Model = model(Titel_Model::class);
+            $titel_Model = model(Titel_Model::class);
             $titel = array(
                 'titel' => $this->request->getpost()['titel'],
                 'titel_nr' => $this->request->getPost()['titel_nr'],
@@ -180,10 +107,10 @@ class Notenbank extends BaseController {
             if( array_key_exists( 'komponist', $this->request->getpost() ) AND !empty( $this->request->getpost()['komponist'] ) ) $titel['komponist'] = $this->request->getpost()['komponist']; else $titel['komponist'] = NULL;
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $titel['bemerkung'] = $this->request->getpost()['bemerkung']; else $titel['bemerkung'] = NULL;
 
-            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $notenbank_Model->update( $this->request->getpost()['id'], $titel );
+            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $titel_Model->update( $this->request->getpost()['id'], $titel );
             else {
-                $notenbank_Model->save( $titel );
-                $ajax_antwort['titel_id'] = (int)$notenbank_Model->getInsertID();
+                $titel_Model->save( $titel );
+                $ajax_antwort['titel_id'] = (int)$titel_Model->getInsertID();
             }
         }
 

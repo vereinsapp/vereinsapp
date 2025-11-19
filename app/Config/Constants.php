@@ -122,6 +122,16 @@ defined('LISTEN') OR define( 'LISTEN', array(
         'controller' => 'aufgaben',
         'element' => 'aufgabe',
     ),
+    'aufgaben_rueckmeldungen' => array(
+        'beschriftung' => 'Rückmeldungen',
+        'controller' => 'aufgaben',
+        'element' => 'aufgaben_rueckmeldung',
+    ),
+    'aufgaben_zuordnungen_termine' => array(
+        'beschriftung' => 'Termin-Zuordnungen',
+        'controller' => 'aufgaben',
+        'element' => 'aufgaben_zurdonung_termine',
+    ),
 
     'termine' => array(
         'beschriftung' => 'Termine',
@@ -181,6 +191,16 @@ defined('ELEMENTE') OR define( 'ELEMENTE', array(
         'beschriftung' => 'Aufgabe',
         'liste' => 'aufgaben',
         'element_beschriftung' => array( array( 'eigenschaft' => 'titel' ) ),
+    ),
+    'aufgaben_rueckmeldung' => array(
+        'beschriftung' => 'Rückmeldung',
+        'liste' => 'aufgaben_rueckmeldungen',
+        'element_beschriftung' => array(),
+    ),
+    'aufgaben_zurdonung_termine' => array(
+        'beschriftung' => 'Termin-Zuordnung',
+        'liste' => 'aufgaben_zuordnungen_termine',
+        'element_beschriftung' => array(),
     ),
 
     'termin' => array(
@@ -307,6 +327,9 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
 
     'sichtbar' => array( 'bootstrap' => 'eye' ),
     'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),
+
+    'pos_rueckmeldung' => array( 'bootstrap' => 'hand-thumbs-up' ),
+    'neg_rueckmeldung' => array( 'bootstrap' => 'hand-thumbs-down' ),
 
     'offen' => array( 'bootstrap' => 'circle' ),
     'erledigt' => array( 'bootstrap' => 'check-circle' ),

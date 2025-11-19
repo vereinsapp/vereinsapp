@@ -64,39 +64,39 @@ class Mitglieder extends BaseController {
             );
         }
 
-        if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
+        // if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
-            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['aufgaben'] = array(
-                'klasse_id' => array('btn_zugeordnete_aufgaben_anzeigen'),
-                'title' => 'Zugeordnete Aufgaben',
-            );
+        //     $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['aufgaben'] = array(
+        //         'klasse_id' => array('btn_zugeordnete_aufgaben_anzeigen'),
+        //         'title' => 'Zugeordnete Aufgaben',
+        //     );
 
-            $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-            unset( $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['filtern'] );
-            $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-            $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['vorschau'] = array('zugeordnetes_element');
-            $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
-            $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['zugeordnet_zu_instanz'] = 'alle_mitglieder';
+        //     $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+        //     unset( $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['filtern'] );
+        //     $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+        //     $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['vorschau'] = array('zugeordnetes_element');
+        //     $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
+        //     $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['zugeordnet_zu_instanz'] = 'alle_mitglieder';
 
-            $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['werkzeugkasten']['statistiken'] = array(
-                'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
-                'title' => 'Eingeplante und erledigte Aufgaben',
-            );
+        //     $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['werkzeugkasten']['statistiken'] = array(
+        //         'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
+        //         'title' => 'Eingeplante und erledigte Aufgaben',
+        //     );
 
-            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-                $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['werkzeugkasten']['erstellen'] = array(
-                    'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
-                    'title' => 'Aufgabe erstellen',
-                );
-                $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
-            }
+        //     if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+        //         $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['werkzeugkasten']['erstellen'] = array(
+        //             'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
+        //             'title' => 'Aufgabe erstellen',
+        //         );
+        //         $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
+        //     }
 
-            $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
-            $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
-            $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-            $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
+        //     $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
+        //     $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
+        //     $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
+        //     $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
 
-        }
+        // }
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
@@ -222,27 +222,27 @@ class Mitglieder extends BaseController {
 
         }
 
-        if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
+        // if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
-            $this->viewdata['liste']['mitglied_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-            unset($this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['werkzeugkasten']);
-            $this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['filtern'] = array( 'zugeordnete_liste' => array( 'inklusiv' => array( 'mitglieder' ), ), 'zugeordnete_element_id' => array( 'inklusiv' => array( $mitglied_id ), ), );
-            $this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-            $this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
+        //     $this->viewdata['liste']['mitglied_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+        //     unset($this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['werkzeugkasten']);
+        //     $this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['filtern'] = array( 'zugeordnete_liste' => array( 'inklusiv' => array( 'mitglieder' ), ), 'zugeordnete_element_id' => array( 'inklusiv' => array( $mitglied_id ), ), );
+        //     $this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+        //     $this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
 
-            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-                $this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
+        //     if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+        //         $this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
 
-                $this->viewdata['liste']['aufgaben_offen_mitglied_geplant'] = HAUPTINSTANZEN['aufgaben'];
-                unset($this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['werkzeugkasten']);
-                $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['filtern'] = array( 'mitglied_id' => array( 'inklusiv' => array( $mitglied_id, ) ), 'erledigt_janein' => array( 'inklusiv' => array( FALSE ), ), );
-                $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-                $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['vorschau'] = array( 'zugeordnetes_element' );
-                $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
+        //         $this->viewdata['liste']['aufgaben_offen_mitglied_geplant'] = HAUPTINSTANZEN['aufgaben'];
+        //         unset($this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['werkzeugkasten']);
+        //         $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['filtern'] = array( 'mitglied_id' => array( 'inklusiv' => array( $mitglied_id, ) ), 'erledigt_janein' => array( 'inklusiv' => array( FALSE ), ), );
+        //         $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+        //         $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['vorschau'] = array( 'zugeordnetes_element' );
+        //         $this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
 
-            }
+        //     }
 
-        }
+        // }
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
@@ -311,7 +311,7 @@ class Mitglieder extends BaseController {
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) AND !(!empty( $this->request->getPost()['id'] ) AND ICH['id'] == $this->request->getPost()['id'] ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
-            $mitglieder_Model = model(Mitglied_Model::class);
+            $mitglied_Model = model(Mitglied_Model::class);
             $mitglied = array(
                 'username' => NULL,
                 'email' => $this->request->getPost()['email'],
@@ -331,13 +331,13 @@ class Mitglieder extends BaseController {
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $mitglied['bemerkung'] = $this->request->getpost()['bemerkung']; else $mitglied['bemerkung'] = NULL;
 
             if( !empty( $this->request->getPost()['id'] ) ) {
-                $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);
-                $mitglieder_Model->save( $mitglied );
+                $mitglied = $mitglied_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);
+                $mitglied_Model->save( $mitglied );
             } else {
                 helper('text'); $mitglied['password'] = random_string('crypto', 20);
-                $mitglieder_Model->save( new Mitglied( $mitglied ) );
-                $ajax_antwort['mitglied_id'] = (int)$mitglieder_Model->getInsertID();
-                $mitglieder_Model->addToDefaultGroup( $mitglieder_Model->findById( $ajax_antwort['mitglied_id'] ) );
+                $mitglied_Model->save( new Mitglied( $mitglied ) );
+                $ajax_antwort['mitglied_id'] = (int)$mitglied_Model->getInsertID();
+                $mitglied_Model->addToDefaultGroup( $mitglied_Model->findById( $ajax_antwort['mitglied_id'] ) );
             }
         }
 
@@ -356,12 +356,12 @@ class Mitglieder extends BaseController {
         else if( !auth()->user()->can( 'global.einstellungen' ) AND $this->request->getPost()['id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( !auth()->check( array( 'email' => model(Mitglied_Model::class)->findById( $this->request->getPost()['id'] )->email, 'password' => $this->request->getpost()['passwort_alt'] ) )->isOK() ) $ajax_antwort['validation'] = array( 'passwort_alt' => 'Das alte Passwort ist nicht korrekt.' );
         else {
-            $mitglieder_Model = model(Mitglied_Model::class);
+            $mitglied_Model = model(Mitglied_Model::class);
             $mitglied = array(
                 'password' => $this->request->getpost()['passwort_neu'],
             );
-            $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);
-            $mitglieder_Model->save( $mitglied );
+            $mitglied = $mitglied_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);
+            $mitglied_Model->save( $mitglied );
             
             $mitglied->undoForcePasswordReset();
         }
@@ -379,12 +379,12 @@ class Mitglieder extends BaseController {
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'global.einstellungen' ) AND $this->request->getPost()['id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
-            $mitglieder_Model = model(Mitglied_Model::class);
+            $mitglied_Model = model(Mitglied_Model::class);
             $mitglied = array(
                 'password' => $this->request->getpost()['passwort_neu'],
             );
-            $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);
-            $mitglieder_Model->save( $mitglied );
+            $mitglied = $mitglied_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);
+            $mitglied_Model->save( $mitglied );
 
             $mitglied->undoForcePasswordReset();
         }
@@ -488,8 +488,8 @@ class Mitglieder extends BaseController {
         else if( !setting('Auth.allowMagicLinkLogins') ) $ajax_antwort['validation'] = 'Einmal-Links sind nicht aktiviert!';
         // else if( empty( $this->request->getPost()['id'] ) ) $ajax_antwort['validation'] = 'Mitglied nicht gefunden!';
         else {
-            $mitglieder_Model = model(Mitglied_Model::class);
-            $mitglied = $mitglieder_Model->findById( $this->request->getPost()['id'] );
+            $mitglied_Model = model(Mitglied_Model::class);
+            $mitglied = $mitglied_Model->findById( $this->request->getPost()['id'] );
             if( $mitglied === NULL ) $ajax_antwort['validation'] = 'Mitglied nicht gefunden!';
             else {
                 $token = $this->einmal_link_token_generieren( $mitglied );

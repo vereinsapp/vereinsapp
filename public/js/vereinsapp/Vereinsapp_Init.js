@@ -2,7 +2,7 @@ const DATETIME = luxon.DateTime;
 
 $(document).ready(function () {
     Schnittstelle_AjaxInit(); // initialisiert auch AJAXSCHLANGE und CSRF
-    Schnittstelle_EventInit(); // initialisiert auch EVENT_VARIABLE_UPD_DOM_VOR_LISTE und EVENT_VARIABLE_UPD_DOM_VOR_ENDE
+    Schnittstelle_EventInit(); // initialisiert auch EVENT_VARIABLE_UPD_DOM_NACH_LISTE
     Schnittstelle_LocalstorageInit(); // initialisiert auch LOCALSTORAGE LEEREN ERZWINGEN
     Liste_Init();
     Schnittstelle_DomInit(); // initialisiert auch STATUS_SPINNER_CLASS, STATUS_SPINNER_HTML, TOASTS und MODALS
@@ -77,46 +77,23 @@ Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel)
 Ausloggen, bevor Einmal-Link benutzt wird
 Einzelne Module als Light-Version, einschaltbar über .env oder settings
 title ändern in beschriftung?
-anwesenheiten_dokumentieren für checkliste verallgemeinern (analog zu Schnittstelle_DomNeuesModalInitialisiertZurueck)
 Zustandsautomat für den Zustand der Vereinsapp einführen
 Select JANEIN als check umbauen
 Wartungsarbeiten per Filter handlen
 ics_export: muss sichergestellt sein, dass der Termin mindestens 24 Stunden in der Zukunft liegt?
 Besseres Symbol für _eigenschaft_loeschen und _eigenschaft_loeschen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
-_basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt (bspw. für neue Aufgabe)
+_basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 .btn in .formular mit ENTER betätigbar machen
+aufgaben direkt termine zuordnen (mit multi-select, analog zu filtern_mitglieder bei termine?)
+anwesenheiten umbenennen in termine_anwesenheiten (analog zu termine_rueckmeldungen)
+validation in den Controller prüfen auf beschriftung aus eigenschaften
+Vereinheitlichung von
+    Termine_RueckmeldungErstellen und Aufgaben_RueckmeldungErstellen
+    Termine_RueckmeldungAktualisieren und Aufgaben_RueckmeldungAktualisieren
+    anwesenheiten_dokumentieren für checkliste (analog zu Schnittstelle_DomNeuesModalInitialisiertZurueck)
+Wie umgehen mit
+    Mitglieder_MitgliederAufgabenErledigtAnzeigen
+    Aufgaben_ZugeordneteAufgabenAnzeigen
 
-AKUT
-Aufgaben überarbeiten
-    mitglied_id bei aufgaben etc. nachziehen (analog zu bemerkung)
-    mitgliedausplanen und mitgliedeinplanen in einer Funktion zusammenfassen?
-    Mehrere element_ids und mehrere mitglied_ids pro Aufgabe
-    Mitglied einplanen bereits bei der Erstellung einer Aufgabe
-
-ALTER TABLE `vereinsapp_aufgaben` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
-UPDATE `vereinsapp_aufgaben` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
-
-ALTER TABLE `vereinsapp_notenbank` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
-UPDATE `vereinsapp_notenbank` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
-
-ALTER TABLE `vereinsapp_notenbank` MODIFY `komponist` VARCHAR(100) NULL DEFAULT NULL;
-UPDATE `vereinsapp_notenbank` SET `komponist` = NULL WHERE `komponist` IS NOT NULL AND TRIM(`komponist`) = '';
-
-ALTER TABLE `vereinsapp_strafkatalog` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
-UPDATE `vereinsapp_strafkatalog` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
-
-ALTER TABLE `vereinsapp_strafkatalog_kassenbuch` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
-UPDATE `vereinsapp_strafkatalog_kassenbuch` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
-
-ALTER TABLE `vereinsapp_termine` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
-UPDATE `vereinsapp_termine` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
-
-ALTER TABLE `vereinsapp_termine_anwesenheiten` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
-UPDATE `vereinsapp_termine_anwesenheiten` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
-
-ALTER TABLE `vereinsapp_termine_rueckmeldungen` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
-UPDATE `vereinsapp_termine_rueckmeldungen` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
-
-ALTER TABLE `vereinsapp_mitglieder` ADD `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
 */
