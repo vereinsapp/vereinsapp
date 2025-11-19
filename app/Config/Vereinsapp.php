@@ -277,6 +277,7 @@ class Vereinsapp extends BaseConfig
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),                                         // PHP
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),                       // PHP
             'verfuegbares_recht_id' => array( 'beschriftung' => 'Verfuegbares-Recht-ID', 'typ' => 'element_id' ),   // PHP
+            'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),                                       // JAVA
         ),
 
         'aufgaben' => array(

@@ -12,7 +12,7 @@ class Aufgaben extends BaseController {
     public function ajax_aufgabe_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
+            'id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['aufgaben']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'max_anzahl_mitglieder' => [ 'label' => EIGENSCHAFTEN['aufgaben']['max_anzahl_mitglieder']['beschriftung'], 'rules' => [ 'field_exists' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
@@ -41,7 +41,7 @@ class Aufgaben extends BaseController {
     public function ajax_aufgabe_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'id' => [ 'label' => EIGENSCHAFTEN['aufgaben']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'aufgaben.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else model(Aufgabe_Model::class)->delete( $this->request->getPost()['id'] );
@@ -88,8 +88,8 @@ class Aufgaben extends BaseController {
     public function ajax_rueckmeldung_bemerkung_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine_rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
+            'id' => [ 'label' => EIGENSCHAFTEN['aufgaben_rueckmeldungen']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben_rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else {
             $rueckmeldung_Model = model(Rueckmeldung_Model::class);

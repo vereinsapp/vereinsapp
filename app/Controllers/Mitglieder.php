@@ -288,7 +288,7 @@ class Mitglieder extends BaseController {
     public function ajax_mitglied_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
+            'id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'email' => [ 'label' => EIGENSCHAFTEN['mitglieder']['email']['beschriftung'], 'rules' => [ 'required', 'valid_email' ] ],
             'vorname' => [ 'label' => EIGENSCHAFTEN['mitglieder']['vorname']['beschriftung'], 'rules' => [ 'required' ] ],
             'nachname' => [ 'label' => EIGENSCHAFTEN['mitglieder']['nachname']['beschriftung'], 'rules' => [ 'required' ] ],
@@ -348,10 +348,10 @@ class Mitglieder extends BaseController {
     public function ajax_mitglied_passwort_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'passwort_alt' => [ 'label' => 'Altes Passwort', 'rules' => [ 'required' ] ],
-            'passwort_neu' => [ 'label' => 'Neues Passwort', 'rules' => [ 'required', 'strong_password' ] ],
-            'passwort_neu2' => [ 'label' => 'Neues Passwort (Wiederholung)', 'rules' => [ 'required', 'matches[passwort_neu]' ] ],
+            'id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'passwort_alt' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_alt']['beschriftung'], 'rules' => [ 'required' ] ],
+            'passwort_neu' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu']['beschriftung'], 'rules' => [ 'required', 'strong_password' ] ],
+            'passwort_neu2' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu2']['beschriftung'], 'rules' => [ 'required', 'matches[passwort_neu]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'global.einstellungen' ) AND $this->request->getPost()['id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( !auth()->check( array( 'email' => model(Mitglied_Model::class)->findById( $this->request->getPost()['id'] )->email, 'password' => $this->request->getpost()['passwort_alt'] ) )->isOK() ) $ajax_antwort['validation'] = array( 'passwort_alt' => 'Das alte Passwort ist nicht korrekt.' );
@@ -373,9 +373,9 @@ class Mitglieder extends BaseController {
     public function ajax_mitglied_passwort_festlegen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'passwort_neu' => [ 'label' => 'Neues Passwort', 'rules' => [ 'required', 'strong_password' ] ],
-            'passwort_neu2' => [ 'label' => 'Neues Passwort (Wiederholung)', 'rules' => [ 'required', 'matches[passwort_neu]' ] ],
+            'id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'passwort_neu' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu']['beschriftung'], 'rules' => [ 'required', 'strong_password' ] ],
+            'passwort_neu2' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu2']['beschriftung'], 'rules' => [ 'required', 'matches[passwort_neu]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'global.einstellungen' ) AND $this->request->getPost()['id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
@@ -481,8 +481,8 @@ class Mitglieder extends BaseController {
     public function ajax_mitglied_einmal_link_erstellen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'email' => [ 'label' => 'Per Email verschicken', 'rules' => [ 'if_exist', 'in_list[ true, false ]' ] ],
+            'id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'email' => [ 'label' => EIGENSCHAFTEN['mitglieder']['email']['beschriftung'], 'rules' => [ 'if_exist', 'in_list[ true, false ]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( !setting('Auth.allowMagicLinkLogins') ) $ajax_antwort['validation'] = 'Einmal-Links sind nicht aktiviert!';
@@ -507,7 +507,7 @@ class Mitglieder extends BaseController {
     public function ajax_mitglied_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => 'ID', 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( $this->request->getPost()['id'] == ICH['id'] ) $ajax_antwort['validation'] = 'Du kannst dich nicht selbst löschen!';
@@ -523,7 +523,7 @@ class Mitglieder extends BaseController {
             'ajax_id' => 'required|is_natural',
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'verfuegbares_recht_id' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['verfuegbares_recht_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
-            'status' => [ 'label' => 'Status', 'rules' => [ 'required', 'is_natural' ] ],
+            'status' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.rechte' ) AND
                  !( auth()->user()->can( 'global.einstellungen' ) AND VERFUEGBARE_RECHTE['mitglieder.rechte']['id'] == $this->request->getPost()['verfuegbares_recht_id'] )
