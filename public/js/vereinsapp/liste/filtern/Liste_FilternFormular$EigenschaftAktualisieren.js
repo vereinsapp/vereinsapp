@@ -75,5 +75,8 @@ function Liste_FilternFormular$EigenschaftAktualisieren($eigenschaft, filtern_ei
                 // (noch) kein filtern möglich
                 break;
         }
-    else Schnittstelle_LogInDieKonsole("Es wurde versucht, eine Eigenschaft zu aktualisieren, die nicht existiert in FILTERBARE_EIGENSCHAFTEN.");
+    else
+        Schnittstelle_LogInDieKonsole(
+            "Es wurde versucht, die Eigenschaft " + eigenschaft + " zu aktualisieren, die nicht existiert in FILTERBARE_EIGENSCHAFTEN."
+        );
 }

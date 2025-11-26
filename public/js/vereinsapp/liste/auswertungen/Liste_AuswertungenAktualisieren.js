@@ -39,11 +39,11 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const auswertung_element_ids_nach_wert = new Object();
     $.each(
         Schnittstelle_VariableRausZurueck(
-            "zugeordnete_element_ids_nach_liste",
+            "zugeordnete_" + LISTEN[auswertungen].element + "_ids",
             $auswertungen.attr("data-gegen_element_id"),
             $auswertungen.attr("data-gegen_liste"),
-            { [auswertungen]: new Array() }
-        )[auswertungen],
+            new Array()
+        ),
         function (position, auswertung_element_id) {
             const element_id = Schnittstelle_VariableRausZurueck(
                 "id",

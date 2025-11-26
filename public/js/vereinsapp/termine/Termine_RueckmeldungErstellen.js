@@ -25,12 +25,10 @@ function Termine_RueckmeldungErstellen(formular_oeffnen, dom, data, title, rueck
             function (AJAX) {
                 // bereits vorhandene identische Rückmeldungen werden gelöscht
                 $.each(
-                    Schnittstelle_VariableRausZurueck("zugeordnete_element_ids_nach_liste", AJAX.data.termin_id, "termine", {
-                        termine_rueckmeldungen: new Array(),
-                    }).termine_rueckmeldungen,
-                    function (position, rueckmeldung_id) {
+                    Schnittstelle_VariableRausZurueck("zugeordnete_termine_rueckmeldung_ids", AJAX.data.termin_id, "termine", new Array()),
+                    function (position, zugeordnete_rueckmeldung_id) {
                         if (
-                            Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) ===
+                            Schnittstelle_VariableRausZurueck("mitglied_id", zugeordnete_rueckmeldung_id, "termine_rueckmeldungen", undefined) ===
                             AJAX.data.mitglied_id
                         )
                             Schnittstelle_VariableLoeschen(rueckmeldung_id, "termine_rueckmeldungen");

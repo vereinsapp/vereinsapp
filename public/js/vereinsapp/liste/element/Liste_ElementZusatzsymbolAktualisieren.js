@@ -118,7 +118,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                 const gefilterte_rueckmeldung_ids = new Array();
                 $.each(
                     Schnittstelle_VariableRausZurueck(
-                        "zugeordnete_element_ids_nach_liste",
+                        "zugeordnete_termine_rueckmeldung_ids",
                         Schnittstelle_VariableWertBereinigtZurueck(
                             $element.parents('.auswertungen[data-auswertungen="termine_rueckmeldungen"]').attr("data-gegen_element_id"),
                             undefined
@@ -127,10 +127,8 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                             $element.parents('.auswertungen[data-auswertungen="termine_rueckmeldungen"]').attr("data-gegen_liste"),
                             undefined
                         ),
-                        {
-                            termine_rueckmeldungen: new Array(),
-                        }
-                    ).termine_rueckmeldungen,
+                        new Array()
+                    ),
                     function (position, rueckmeldung_id) {
                         if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) === element_id)
                             gefilterte_rueckmeldung_ids.push(rueckmeldung_id);

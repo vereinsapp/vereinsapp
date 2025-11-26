@@ -3,10 +3,7 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste) {
     const tabelle_LocalStorage = new Array();
     $.each(LISTEN[liste].tabelle, function () {
         const element = this;
-        if ("id" in element) {
-            delete element.zugeordnete_element_ids_nach_liste;
-            tabelle_LocalStorage.push(element);
-        }
+        if ("id" in element) tabelle_LocalStorage.push(element);
     });
 
     // tabelle_LocalStorage wird im LocalStorage gespeichert

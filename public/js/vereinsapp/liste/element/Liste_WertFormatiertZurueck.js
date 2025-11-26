@@ -18,7 +18,6 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
             case "auto":
             case "funktion":
             case "kategorie":
-            case "zugeordnete_liste":
                 wert_formatiert = VORGEGEBENE_WERTE[liste][eigenschaft][wert].beschriftung;
                 break;
             case "vorstandschaft_janein":
@@ -65,11 +64,6 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
             case "mitglied_id":
                 if (wert !== null) wert_formatiert = Liste_ElementBeschriftungZurueck(wert, "mitglieder");
                 else wert_formatiert = "Mitglied nicht gefunden";
-                break;
-            case "zugeordnetes_element":
-                if (wert !== null && "liste" in wert && wert.liste !== null && "id" in wert && wert.id !== null)
-                    wert_formatiert = Liste_ElementBeschriftungZurueck(wert.id, wert.liste);
-                else wert_formatiert = "";
                 break;
             default:
                 wert_formatiert = wert;

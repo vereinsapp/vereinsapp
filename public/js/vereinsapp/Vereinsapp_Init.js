@@ -86,9 +86,10 @@ _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 Lässt sich filtern/sortieren/gruppieren_localstorage_speichern entfernen mittels $ziel?
 .btn in .formular mit ENTER betätigbar machen
+Mitglieder unter der Auswertung sind eigentlich Rückmeldungen (aber mitglied_id entsprechend formatiert)
 aufgaben direkt termine zuordnen (mit multi-select, analog zu filtern_mitglieder bei termine?)
 Vereinheitlichung von
-    Termine_RueckmeldungErstellen und Aufgaben_RueckmeldungErstellen
+    Termine_RueckmeldungErstellen/.btn_termine_rueckmeldung_erstellen und Aufgaben_RueckmeldungErstellen/.btn_aufgaben_rueckmeldung_erstellen
     Termine_RueckmeldungAktualisieren und Aufgaben_RueckmeldungAktualisieren
     anwesenheiten_dokumentieren für checkliste (analog zu Schnittstelle_DomNeuesModalInitialisiertZurueck)
 Wie umgehen mit

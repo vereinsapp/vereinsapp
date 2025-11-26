@@ -58,7 +58,6 @@ class Termine extends BaseController {
         //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
         //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['vorschau'] = array('zugeordnetes_element');
         //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['views'] = array( array( 'view' => 'Aufgaben/eingeplantes_mitglied' ), );
-        //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['zugeordnet_zu_instanz'] = 'bevorstehende_termine';
 
         //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['werkzeugkasten']['statistiken'] = array(
         //         'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),

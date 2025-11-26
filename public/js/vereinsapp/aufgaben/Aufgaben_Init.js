@@ -8,14 +8,10 @@ ELEMENTE.aufgaben_rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
             const aufgabe = LISTEN.aufgaben.tabelle[aufgabe_id];
 
             if (typeof aufgabe !== "undefined") {
-                if (!("zugeordnete_element_ids_nach_liste" in aufgabe)) aufgabe.zugeordnete_element_ids_nach_liste = new Object();
-                const zugeordnete_element_ids_nach_liste = aufgabe.zugeordnete_element_ids_nach_liste;
-
-                if (!("aufgaben_rueckmeldungen" in zugeordnete_element_ids_nach_liste))
-                    zugeordnete_element_ids_nach_liste.aufgaben_rueckmeldungen = new Array();
-                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.aufgaben_rueckmeldungen;
-                if (!zugeordnete_element_ids.includes(rueckmeldung_id))
-                    LISTEN.aufgaben.tabelle[aufgabe_id].zugeordnete_element_ids_nach_liste.aufgaben_rueckmeldungen.push(rueckmeldung_id);
+                if (!("zugeordnete_aufgaben_rueckmeldung_ids" in aufgabe))
+                    LISTEN.aufgaben.tabelle[aufgabe_id].zugeordnete_aufgaben_rueckmeldung_ids = [rueckmeldung_id];
+                else if (!aufgabe.zugeordnete_aufgaben_rueckmeldung_ids.includes(rueckmeldung_id))
+                    LISTEN.aufgaben.tabelle[aufgabe_id].zugeordnete_aufgaben_rueckmeldung_ids.push(rueckmeldung_id);
             }
         }
     }
@@ -27,14 +23,10 @@ ELEMENTE.aufgaben_rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
             const mitglied = LISTEN.mitglieder.tabelle[mitglied_id];
 
             if (typeof mitglied !== "undefined") {
-                if (!("zugeordnete_element_ids_nach_liste" in mitglied)) mitglied.zugeordnete_element_ids_nach_liste = new Object();
-                const zugeordnete_element_ids_nach_liste = mitglied.zugeordnete_element_ids_nach_liste;
-
-                if (!("aufgaben_rueckmeldungen" in zugeordnete_element_ids_nach_liste))
-                    zugeordnete_element_ids_nach_liste.aufgaben_rueckmeldungen = new Array();
-                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.aufgaben_rueckmeldungen;
-                if (!zugeordnete_element_ids.includes(rueckmeldung_id))
-                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.aufgaben_rueckmeldungen.push(rueckmeldung_id);
+                if (!("zugeordnete_aufgaben_rueckmeldung_ids" in mitglied))
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_aufgaben_rueckmeldung_ids = [rueckmeldung_id];
+                else if (!mitglied.zugeordnete_aufgaben_rueckmeldung_ids.includes(rueckmeldung_id))
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_aufgaben_rueckmeldung_ids.push(rueckmeldung_id);
             }
         }
     }
@@ -45,43 +37,33 @@ ELEMENTE.aufgaben_zuordnung_termine.zuordnen_aktion = function (zuordnung_termin
 
     if ("aufgaben" in LISTEN) {
         const aufgabe_id = Schnittstelle_VariableRausZurueck("aufgabe_id", zuordnung_termine_id, "aufgaben_zuordnungen_termine", undefined);
+
         if (typeof aufgabe_id !== "undefined") {
             const aufgabe = LISTEN.aufgaben.tabelle[aufgabe_id];
 
             if (typeof aufgabe !== "undefined") {
-                if (!("zugeordnete_element_ids_nach_liste" in aufgabe)) aufgabe.zugeordnete_element_ids_nach_liste = new Object();
-                const zugeordnete_element_ids_nach_liste = aufgabe.zugeordnete_element_ids_nach_liste;
-
-                if (!("aufgaben_zuordnungen_termine" in zugeordnete_element_ids_nach_liste))
-                    zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine = new Array();
-                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine;
-                if (!zugeordnete_element_ids.includes(zuordnung_termine_id))
-                    LISTEN.aufgaben.tabelle[aufgabe_id].zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine.push(zuordnung_termine_id);
+                if (!("zugeordnete_aufgaben_zuordnung_termine_ids" in aufgabe))
+                    LISTEN.aufgaben.tabelle[aufgabe_id].zugeordnete_aufgaben_zuordnung_termine_ids = [zuordnung_termine_id];
+                else if (!aufgabe.zugeordnete_aufgaben_zuordnung_termine_ids.includes(zuordnung_termine_id))
+                    LISTEN.aufgaben.tabelle[aufgabe_id].zugeordnete_aufgaben_zuordnung_termine_ids.push(zuordnung_termine_id);
             }
         }
     }
 
-    if ("mitglieder" in LISTEN) {
-        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", zuordnung_termine_id, "aufgaben_zuordnungen_termine", undefined);
+    if ("termine" in LISTEN) {
+        const termin_id = Schnittstelle_VariableRausZurueck("termin_id", zuordnung_termine_id, "aufgaben_zuordnungen_termine", undefined);
 
-        if (typeof mitglied_id !== "undefined") {
-            const mitglied = LISTEN.mitglieder.tabelle[mitglied_id];
+        if (typeof termin_id !== "undefined") {
+            const termin = LISTEN.termine.tabelle[termin_id];
 
-            if (typeof mitglied !== "undefined") {
-                if (!("zugeordnete_element_ids_nach_liste" in mitglied)) mitglied.zugeordnete_element_ids_nach_liste = new Object();
-                const zugeordnete_element_ids_nach_liste = mitglied.zugeordnete_element_ids_nach_liste;
-
-                if (!("aufgaben_zuordnungen_termine" in zugeordnete_element_ids_nach_liste))
-                    zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine = new Array();
-                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine;
-                if (!zugeordnete_element_ids.includes(zuordnung_termine_id))
-                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.aufgaben_zuordnungen_termine.push(zuordnung_termine_id);
+            if (typeof termin !== "undefined") {
+                if (!("zugeordnete_aufgaben_zuordnung_termine_ids" in termin))
+                    LISTEN.termine.tabelle[termin_id].zugeordnete_aufgaben_zuordnung_termine_ids = [zuordnung_termine_id];
+                else if (!termin.zugeordnete_aufgaben_zuordnung_termine_ids.includes(zuordnung_termine_id))
+                    LISTEN.termine.tabelle[termin_id].zugeordnete_aufgaben_zuordnung_termine_ids.push(zuordnung_termine_id);
             }
         }
     }
-};
-
-ELEMENTE.aufgabe.ergaenzen_aktion = function (aufgabe) {
 };
 
 function Aufgaben_Init() {
@@ -128,7 +110,7 @@ function Aufgaben_Init() {
     });
 
     // RÜCKMELDUNG ERSTELLEN
-    $(document).on("click", ".btn_rueckmeldung_erstellen", function () {
+    $(document).on("click", ".btn_aufgaben_rueckmeldung_erstellen", function () {
         Aufgaben_RueckmeldungErstellen(
             false,
             { $btn_ausloesend: $(this) },

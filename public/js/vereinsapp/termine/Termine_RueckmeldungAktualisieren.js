@@ -23,20 +23,20 @@ function Termine_RueckmeldungAktualisieren($rueckmeldung) {
             $du_bist_nicht_eingeladen.addClass("invisible");
             $mitglied_ist_nicht_eingeladen.addClass("invisible");
 
-            let rueckmeldung_id_;
+            let rueckmeldung_id;
             $.each(
-                Schnittstelle_VariableRausZurueck("zugeordnete_element_ids_nach_liste", termin_id, "termine", {
-                    termine_rueckmeldungen: new Array(),
-                }).termine_rueckmeldungen,
-                function (position, rueckmeldung_id) {
-                    if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) === mitglied_id)
-                        rueckmeldung_id_ = rueckmeldung_id;
+                Schnittstelle_VariableRausZurueck("zugeordnete_termine_rueckmeldung_ids", termin_id, "termine", new Array()),
+                function (position, zugeordnete_rueckmeldung_id) {
+                    if (
+                        Schnittstelle_VariableRausZurueck("mitglied_id", zugeordnete_rueckmeldung_id, "termine_rueckmeldungen", undefined) ===
+                        mitglied_id
+                    )
+                        rueckmeldung_id = zugeordnete_rueckmeldung_id;
                 }
             );
-            const rueckmeldung_id = rueckmeldung_id_;
             const bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", rueckmeldung_id, "termine_rueckmeldungen", null);
 
-            $rueckmeldung.find(".btn_rueckmeldung_erstellen").each(function () {
+            $rueckmeldung.find(".btn_termine_rueckmeldung_erstellen").each(function () {
                 const $btn_rueckmeldung_erstellen = $(this);
                 const $btn_rueckmeldung_bemerkung_aendern = $btn_rueckmeldung_erstellen.siblings(".btn_rueckmeldung_bemerkung_aendern");
                 const status = Schnittstelle_VariableWertBereinigtZurueck($btn_rueckmeldung_erstellen.attr("data-status"), undefined);

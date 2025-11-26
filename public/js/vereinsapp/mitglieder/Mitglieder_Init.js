@@ -8,13 +8,10 @@ ELEMENTE.vergebenes_recht.zuordnen_aktion = function (vergebenes_recht) {
             const mitglied = LISTEN.mitglieder.tabelle[mitglied_id];
 
             if (typeof mitglied !== "undefined") {
-                if (!("zugeordnete_element_ids_nach_liste" in mitglied)) mitglied.zugeordnete_element_ids_nach_liste = new Object();
-                const zugeordnete_element_ids_nach_liste = mitglied.zugeordnete_element_ids_nach_liste;
-
-                if (!("vergebene_rechte" in zugeordnete_element_ids_nach_liste)) zugeordnete_element_ids_nach_liste.vergebene_rechte = new Array();
-                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.vergebene_rechte;
-                if (!zugeordnete_element_ids.includes(vergebenes_recht_id))
-                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.vergebene_rechte.push(vergebenes_recht_id);
+                if (!("zugeordnete_vergebenes_recht_ids" in mitglied))
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_vergebenes_recht_ids = [vergebenes_recht_id];
+                else if (!mitglied.zugeordnete_vergebenes_recht_ids.includes(vergebenes_recht_id))
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_vergebenes_recht_ids.push(vergebenes_recht_id);
             }
         }
     }

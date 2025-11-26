@@ -8,14 +8,10 @@ ELEMENTE.termine_rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
             const termin = LISTEN.termine.tabelle[termin_id];
 
             if (typeof termin !== "undefined") {
-                if (!("zugeordnete_element_ids_nach_liste" in termin)) termin.zugeordnete_element_ids_nach_liste = new Object();
-                const zugeordnete_element_ids_nach_liste = termin.zugeordnete_element_ids_nach_liste;
-
-                if (!("termine_rueckmeldungen" in zugeordnete_element_ids_nach_liste))
-                    zugeordnete_element_ids_nach_liste.termine_rueckmeldungen = new Array();
-                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.termine_rueckmeldungen;
-                if (!zugeordnete_element_ids.includes(rueckmeldung_id))
-                    LISTEN.termine.tabelle[termin_id].zugeordnete_element_ids_nach_liste.termine_rueckmeldungen.push(rueckmeldung_id);
+                if (!("zugeordnete_termine_rueckmeldung_ids" in termin))
+                    LISTEN.termine.tabelle[termin_id].zugeordnete_termine_rueckmeldung_ids = [rueckmeldung_id];
+                else if (!termin.zugeordnete_termine_rueckmeldung_ids.includes(rueckmeldung_id))
+                    LISTEN.termine.tabelle[termin_id].zugeordnete_termine_rueckmeldung_ids.push(rueckmeldung_id);
             }
         }
     }
@@ -27,56 +23,44 @@ ELEMENTE.termine_rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
             const mitglied = LISTEN.mitglieder.tabelle[mitglied_id];
 
             if (typeof mitglied !== "undefined") {
-                if (!("zugeordnete_element_ids_nach_liste" in mitglied)) mitglied.zugeordnete_element_ids_nach_liste = new Object();
-                const zugeordnete_element_ids_nach_liste = mitglied.zugeordnete_element_ids_nach_liste;
-
-                if (!("termine_rueckmeldungen" in zugeordnete_element_ids_nach_liste))
-                    zugeordnete_element_ids_nach_liste.termine_rueckmeldungen = new Array();
-                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.termine_rueckmeldungen;
-                if (!zugeordnete_element_ids.includes(rueckmeldung_id))
-                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.termine_rueckmeldungen.push(rueckmeldung_id);
+                if (!("zugeordnete_termine_rueckmeldung_ids" in mitglied))
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_termine_rueckmeldung_ids = [rueckmeldung_id];
+                else if (!mitglied.zugeordnete_termine_rueckmeldung_ids.includes(rueckmeldung_id))
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_termine_rueckmeldung_ids.push(rueckmeldung_id);
             }
         }
     }
 };
 
-ELEMENTE.termine_anwesenheit.zuordnen_aktion = function (anwesenheit) {
-    const anwesenheit_id = anwesenheit.id;
+ELEMENTE.termine_anwesenheit.zuordnen_aktion = function (zuordnung_termine) {
+    const zuordnung_termine_id = zuordnung_termine.id;
 
     if ("termine" in LISTEN) {
-        const termin_id = Schnittstelle_VariableRausZurueck("termin_id", anwesenheit_id, "termine_anwesenheiten", undefined);
+        const termin_id = Schnittstelle_VariableRausZurueck("termin_id", zuordnung_termine_id, "termine_anwesenheiten", undefined);
 
         if (typeof termin_id !== "undefined") {
             const termin = LISTEN.termine.tabelle[termin_id];
 
             if (typeof termin !== "undefined") {
-                if (!("zugeordnete_element_ids_nach_liste" in termin)) termin.zugeordnete_element_ids_nach_liste = new Object();
-                const zugeordnete_element_ids_nach_liste = termin.zugeordnete_element_ids_nach_liste;
-
-                if (!("termine_anwesenheiten" in zugeordnete_element_ids_nach_liste))
-                    zugeordnete_element_ids_nach_liste.termine_anwesenheiten = new Array();
-                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.termine_anwesenheiten;
-                if (!zugeordnete_element_ids.includes(anwesenheit_id))
-                    LISTEN.termine.tabelle[termin_id].zugeordnete_element_ids_nach_liste.termine_anwesenheiten.push(anwesenheit_id);
+                if (!("zugeordnete_termine_anwesenheit_ids" in termin))
+                    LISTEN.termine.tabelle[termin_id].zugeordnete_termine_anwesenheit_ids = [zuordnung_termine_id];
+                else if (!termin.zugeordnete_termine_anwesenheit_ids.includes(zuordnung_termine_id))
+                    LISTEN.termine.tabelle[termin_id].zugeordnete_termine_anwesenheit_ids.push(zuordnung_termine_id);
             }
         }
     }
 
     if ("mitglieder" in LISTEN) {
-        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", anwesenheit_id, "termine_anwesenheiten", undefined);
+        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", zuordnung_termine_id, "termine_anwesenheiten", undefined);
 
         if (typeof mitglied_id !== "undefined") {
             const mitglied = LISTEN.mitglieder.tabelle[mitglied_id];
 
             if (typeof mitglied !== "undefined") {
-                if (!("zugeordnete_element_ids_nach_liste" in mitglied)) mitglied.zugeordnete_element_ids_nach_liste = new Object();
-                const zugeordnete_element_ids_nach_liste = mitglied.zugeordnete_element_ids_nach_liste;
-
-                if (!("termine_anwesenheiten" in zugeordnete_element_ids_nach_liste))
-                    zugeordnete_element_ids_nach_liste.termine_anwesenheiten = new Array();
-                const zugeordnete_element_ids = zugeordnete_element_ids_nach_liste.termine_anwesenheiten;
-                if (!zugeordnete_element_ids.includes(anwesenheit_id))
-                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_element_ids_nach_liste.termine_anwesenheiten.push(anwesenheit_id);
+                if (!("zugeordnete_termine_anwesenheit_ids" in mitglied))
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_termine_anwesenheit_ids = [zuordnung_termine_id];
+                else if (!mitglied.zugeordnete_termine_anwesenheit_ids.includes(zuordnung_termine_id))
+                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_termine_anwesenheit_ids.push(zuordnung_termine_id);
             }
         }
     }
@@ -117,8 +101,8 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
     termin["ich_eingeladen_janein"] = termin["mitglieder_ids_eingeladen"].includes(Number(ICH["id"]));
 
     termin["ich_rueckgemeldet_janein"] = false;
-    if ("zugeordnete_element_ids_nach_liste" in termin && "termine_rueckmeldungen" in termin["zugeordnete_element_ids_nach_liste"])
-        $.each(termin["zugeordnete_element_ids_nach_liste"].termine_rueckmeldungen, function (position, rueckmeldung_id) {
+    if ("zugeordnete_termine_rueckmeldung_ids" in termin)
+        $.each(termin["zugeordnete_termine_rueckmeldung_ids"], function (position, rueckmeldung_id) {
             if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == Number(ICH["id"])) {
                 termin["ich_rueckgemeldet_janein"] = true;
                 return false;
@@ -170,7 +154,7 @@ function Termine_Init() {
     });
 
     // RÜCKMELDUNG ERSTELLEN
-    $(document).on("click", ".btn_rueckmeldung_erstellen", function () {
+    $(document).on("click", ".btn_termine_rueckmeldung_erstellen", function () {
         Termine_RueckmeldungErstellen(
             false,
             { $btn_ausloesend: $(this) },
