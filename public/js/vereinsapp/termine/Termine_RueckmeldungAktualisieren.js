@@ -47,8 +47,8 @@ function Termine_RueckmeldungAktualisieren($rueckmeldung) {
                         .removeAttr("data-termin_id", termin_id)
                         .removeClass("btn-outline-" + TERMINE_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].farbe)
                         .addClass("btn-" + TERMINE_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].farbe)
-                        .html(TERMINE_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].passiv)
                         .prop("disabled", true);
+                    $btn_rueckmeldung_erstellen.find(".beschriftung").html(TERMINE_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].passiv);
 
                     $btn_rueckmeldung_bemerkung_aendern
                         .attr("data-element_id", rueckmeldung_id)
@@ -65,8 +65,8 @@ function Termine_RueckmeldungAktualisieren($rueckmeldung) {
                         .attr("data-termin_id", termin_id)
                         .addClass("btn-outline-" + TERMINE_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].farbe)
                         .removeClass("btn-" + TERMINE_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].farbe)
-                        .html(TERMINE_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].aktiv)
                         .prop("disabled", false);
+                    $btn_rueckmeldung_erstellen.find(".beschriftung").html(TERMINE_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].aktiv);
                 }
 
                 if (
@@ -86,10 +86,7 @@ function Termine_RueckmeldungAktualisieren($rueckmeldung) {
                 $mitglied_ist_nicht_eingeladen.addClass("invisible");
             } else {
                 $du_bist_nicht_eingeladen.addClass("invisible");
-                $mitglied_ist_nicht_eingeladen
-                    .removeClass("invisible")
-                    .find(".beschriftung")
-                    .text(Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder"));
+                $mitglied_ist_nicht_eingeladen.removeClass("invisible");
             }
         }
     } else {

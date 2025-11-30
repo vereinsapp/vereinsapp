@@ -5,9 +5,9 @@
             <label><span class="beschriftung">Sortieren nach</span></label>
         </div>
         <input type="radio" class="btn-check sortieren_richtung" name="sortieren_richtung" id="sortieren_richtung_asc" value="<?= SORT_ASC; ?>">
-        <label class="btn btn-outline-primary btn-lg" for="sortieren_richtung_asc"><i class="bi bi-<?= SYMBOLE['asc']['bootstrap']; ?>"></i></label>
+        <label class="btn btn-outline-primary btn-lg" for="sortieren_richtung_asc"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['asc']['bootstrap']; ?>"></i></span></label>
         <input type="radio" class="btn-check sortieren_richtung" name="sortieren_richtung" id="sortieren_richtung_desc" value="<?= SORT_DESC; ?>">
-        <label class="btn btn-outline-primary btn-lg" for="sortieren_richtung_desc"><i class="bi bi-<?= SYMBOLE['desc']['bootstrap']; ?>"></i></label>
-        <button type="button" class="btn btn_sortieren_eigenschaft_loeschen btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
+        <label class="btn btn-outline-primary btn-lg" for="sortieren_richtung_desc"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['desc']['bootstrap']; ?>"></i></span></label>
+        <button type="button" class="btn btn_sortieren_eigenschaft_loeschen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
     </div>
 </div>

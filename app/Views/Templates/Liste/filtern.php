@@ -16,7 +16,7 @@
             <input type="number" class="form-control filtern_ende" />
             <label><span class="beschriftung"></span> bis</label>
         </div>
-        <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
+        <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
     </div>
 
     <div class="input-group blanko filtern_eigenschaft invisible mb-1" data-typ="zeitpunkt">
@@ -29,16 +29,16 @@
             <input type="date" class="form-control filtern_ende" />
             <label><span class="beschriftung"></span> bis</label>
         </div>
-        <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
+        <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
     </div>
 
     <div class="card sichtbar blanko filtern_eigenschaft invisible mb-1" data-typ="vorgegebene_werte">
         <div class="card-body filtern_werte p-2">
 
                 <div class="btn-group btn-group-sm blanko filtern_wert me-1 mb-1" role="group">
-                    <button type="button" class="btn beschriftung btn-sm btn-outline-body disabled"></button>
-                    <button type="button" class="btn btn_filtern_wert_inklusiv_exklusiv btn-sm btn-outline-primary"><i class="bi bi-<?= SYMBOLE['inklusiv_exklusiv']['bootstrap'] ?>"></i></button>
-                    <button type="button" class="btn btn_filtern_wert_loeschen btn-sm btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap'] ?>"></i></button>
+                    <button type="button" class="btn btn_beschriftung btn-sm btn-outline-body disabled"><span class="beschriftung"></span></button>
+                    <button type="button" class="btn btn_filtern_wert_inklusiv_exklusiv btn-sm btn-outline-primary"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['inklusiv_exklusiv']['bootstrap'] ?>"></i></span></button>
+                    <button type="button" class="btn btn_filtern_wert_loeschen btn-sm btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap'] ?>"></i></span></button>
                 </div>
 
             </span><span class="filtern_exklusiv"></span>
@@ -49,7 +49,7 @@
                 </select>
                 <label><span class="beschriftung"></span></label>
             </div>
-            <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
+            <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
             </div>
     </div>
 
@@ -57,9 +57,9 @@
         <div class="card-body filtern_werte p-2">
 
                 <div class="btn-group btn-group-sm blanko filtern_wert me-1 mb-1" role="group">
-                    <button type="button" class="btn beschriftung btn-sm btn-outline-body disabled"></button>
-                    <button type="button" class="btn btn_filtern_wert_inklusiv_exklusiv btn-sm btn-outline-primary"><i class="bi bi-<?= SYMBOLE['inklusiv_exklusiv']['bootstrap'] ?>"></i></button>
-                    <button type="button" class="btn btn_filtern_wert_loeschen btn-sm btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap'] ?>"></i></button>
+                    <button type="button" class="btn btn_beschriftung btn-sm btn-outline-body disabled"><span class="beschriftung"></span></button>
+                    <button type="button" class="btn btn_filtern_wert_inklusiv_exklusiv btn-sm btn-outline-primary"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['inklusiv_exklusiv']['bootstrap'] ?>"></i></span></button>
+                    <button type="button" class="btn btn_filtern_wert_loeschen btn-sm btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap'] ?>"></i></span></button>
                 </div>
 
             </span><span class="filtern_exklusiv"></span>
@@ -70,7 +70,7 @@
                 </select>
                 <label><span class="beschriftung"></span></label>
             </div>
-            <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></button>
+            <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
             </div>
     </div>
 <?php /* (noch) kein filtern möglich für text, element_id, element_ids */ ?>

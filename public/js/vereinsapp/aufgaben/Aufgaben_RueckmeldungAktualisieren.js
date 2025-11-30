@@ -47,8 +47,8 @@ function Aufgaben_RueckmeldungAktualisieren($rueckmeldung) {
                         .removeAttr("data-aufgabe_id", aufgabe_id)
                         .removeClass("btn-outline-" + AUFGABEN_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].farbe)
                         .addClass("btn-" + AUFGABEN_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].farbe)
-                        .html(AUFGABEN_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].passiv)
                         .prop("disabled", true);
+                    $btn_rueckmeldung_erstellen.find(".beschriftung").html(AUFGABEN_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].passiv);
 
                     $btn_rueckmeldung_bemerkung_aendern
                         .attr("data-element_id", rueckmeldung_id)
@@ -65,8 +65,8 @@ function Aufgaben_RueckmeldungAktualisieren($rueckmeldung) {
                         .attr("data-aufgabe_id", aufgabe_id)
                         .addClass("btn-outline-" + AUFGABEN_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].farbe)
                         .removeClass("btn-" + AUFGABEN_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].farbe)
-                        .html(AUFGABEN_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].aktiv)
                         .prop("disabled", false);
+                    $btn_rueckmeldung_erstellen.find(".beschriftung").html(AUFGABEN_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN[status].aktiv);
                 }
 
                 if (
@@ -86,10 +86,7 @@ function Aufgaben_RueckmeldungAktualisieren($rueckmeldung) {
                 $mitglied_ist_nicht_eingeladen.addClass("invisible");
             } else {
                 $du_bist_nicht_eingeladen.addClass("invisible");
-                $mitglied_ist_nicht_eingeladen
-                    .removeClass("invisible")
-                    .find(".beschriftung")
-                    .text(Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder"));
+                $mitglied_ist_nicht_eingeladen.removeClass("invisible");
             }
         }
     } else {

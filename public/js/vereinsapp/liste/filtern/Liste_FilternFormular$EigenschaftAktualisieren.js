@@ -42,9 +42,10 @@ function Liste_FilternFormular$EigenschaftAktualisieren($eigenschaft, filtern_ei
                     $.each(filtern_eigenschaft[filtern_klasse], function (position, filtern_wert) {
                         const $neuer_filtern_wert = FILTERN.$blanko_filtern_wert.clone().removeClass("blanko invisible");
                         $neuer_filtern_wert.attr("data-wert", filtern_wert);
-                        $neuer_filtern_wert.find(".beschriftung").text(Liste_WertFormatiertZurueck(filtern_wert, eigenschaft, liste));
-                        if (filtern_klasse == "exklusiv") $neuer_filtern_wert.find(".beschriftung").addClass("text-decoration-line-through");
-                        else if (filtern_klasse == "inklusiv") $neuer_filtern_wert.find(".beschriftung").removeClass("text-decoration-line-through");
+                        const $neuer_filtern_wert_beschriftung = $neuer_filtern_wert.find(".btn_beschriftung").find(".beschriftung");
+                        $neuer_filtern_wert_beschriftung.text(Liste_WertFormatiertZurueck(filtern_wert, eigenschaft, liste));
+                        if (filtern_klasse == "exklusiv") $neuer_filtern_wert_beschriftung.addClass("text-decoration-line-through");
+                        else if (filtern_klasse == "inklusiv") $neuer_filtern_wert_beschriftung.removeClass("text-decoration-line-through");
                         $neuer_filtern_wert.appendTo($filtern_werte);
                     });
                 });
@@ -58,12 +59,12 @@ function Liste_FilternFormular$EigenschaftAktualisieren($eigenschaft, filtern_ei
                     $.each(filtern_eigenschaft[filtern_klasse], function (position, filtern_wert_janein) {
                         const $neuer_filtern_wert_janein = FILTERN.$blanko_filtern_wert.clone().removeClass("blanko invisible");
                         $neuer_filtern_wert_janein.attr("data-wert", Number(filtern_wert_janein));
-                        $neuer_filtern_wert_janein
-                            .find(".beschriftung")
-                            .text(Liste_WertFormatiertZurueck(JANEIN[Number(filtern_wert_janein)].wert, eigenschaft, liste));
-                        if (filtern_klasse == "exklusiv") $neuer_filtern_wert_janein.find(".beschriftung").addClass("text-decoration-line-through");
-                        else if (filtern_klasse == "inklusiv")
-                            $neuer_filtern_wert_janein.find(".beschriftung").removeClass("text-decoration-line-through");
+                        const $neuer_filtern_wert_beschriftung = $neuer_filtern_wert_janein.find(".btn_beschriftung").find(".beschriftung");
+                        $neuer_filtern_wert_beschriftung.text(
+                            Liste_WertFormatiertZurueck(JANEIN[Number(filtern_wert_janein)].wert, eigenschaft, liste)
+                        );
+                        if (filtern_klasse == "exklusiv") $neuer_filtern_wert_beschriftung.addClass("text-decoration-line-through");
+                        else if (filtern_klasse == "inklusiv") $neuer_filtern_wert_beschriftung.removeClass("text-decoration-line-through");
                         $neuer_filtern_wert_janein.appendTo($filtern_werte_janein);
                     });
                 });

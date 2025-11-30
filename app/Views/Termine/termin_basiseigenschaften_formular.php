@@ -46,6 +46,6 @@
 
 <div class="d-grid mb-2">
     <button type="button" class="btn btn_filtern_modal_oeffnen btn-outline-primary eingabe" data-eingabe="filtern_mitglieder" data-liste="mitglieder" data-title="<?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>">
-        <?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>
+        <span class="beschriftung"><?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?></span>
     </button>
 </div>

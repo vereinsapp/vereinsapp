@@ -1,4 +1,4 @@
-<div class="mb-2">Willst du für <span class="beschriftung"></span> wirklich einen Einmal-Link erstellen und anzeigen?</div>
+<div class="mb-2 formular_beschriftung">Willst du für <span class="beschriftung"></span> wirklich einen Einmal-Link erstellen und anzeigen?</div>
 
 <div class="input-group mb-2">
     <div class="form-floating">

@@ -7,7 +7,7 @@ foreach( $liste['werkzeugkasten'] as $symbol => $werkzeug) { ?><button type="but
     } ?>" data-title="<?= $werkzeug['title']; ?>" data-instanz="<?= $liste['id']; ?>"<?php
     if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
     if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php }
-    ?>><i class="bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?>"></i></button><?php }
+    ?>><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?>"></i></span></button><?php }
 ?></div><?php } ?>
 
 <?php if( array_key_exists( 'listenstatistik', $liste ) ) { ?><div class="listenstatistik_sammler invisible text-secondary text-end small mb-1"><span class="listenstatistik"<?php

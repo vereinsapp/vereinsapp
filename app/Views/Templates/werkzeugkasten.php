@@ -10,14 +10,14 @@
                     }
                     ?>" data-title="<?= $werkzeug['title']; ?>"<?php
                     if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php }
-                    ?> role="button">
+                    ?> role="button"><span class="beschriftung">
                     <i class="bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?> float-start me-2"></i>
                     <?= $werkzeug['title']; ?>
-                </li>
+                </span></li>
             <?php endforeach; ?></ul>
         </div>
         <div class="col-auto opacity-50 bg-white me-2">
-            <button type="button" class="btn btn-outline-secondary border-top-0 rounded-0 rounded-bottom" data-bs-dismiss="offcanvas"><i class="bi-<?= SYMBOLE[ 'werkzeuge' ]['bootstrap']; ?> h5"></i></button>
+            <button type="button" class="btn btn-outline-secondary border-top-0 rounded-0 rounded-bottom" data-bs-dismiss="offcanvas"><span class="beschriftung"><i class="bi-<?= SYMBOLE[ 'werkzeuge' ]['bootstrap']; ?> h5"></i></span></button>
         </div>
     </div>
 </div>

@@ -3,7 +3,7 @@
     if( isset( $liste ) ) { ?> data-liste = "<?= $liste; ?>"<?php }
     if( isset( $element_id ) ) { ?> data-element_id = "<?= $element_id; ?>"<?php }
     ?>>
-        <i class="bi-<?= SYMBOLE[ 'werkzeuge' ]['bootstrap']; ?> h5"></i>
+        <span class="beschriftung"><i class="bi-<?= SYMBOLE[ 'werkzeuge' ]['bootstrap']; ?> h5"></i></span>
     </button>
 </div>
 

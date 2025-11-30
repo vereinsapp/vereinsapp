@@ -7,7 +7,7 @@ foreach( $auswertungen['werkzeugkasten'] as $symbol => $werkzeug) { ?><button ty
     } ?>" data-title="<?= $werkzeug['title']; ?>" data-instanz="<?= $auswertungen['id']; ?>"<?php
     if( array_key_exists( 'liste', $auswertungen ) ) { ?> data-liste="<?= $auswertungen['liste']; ?>"<?php }
     if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php }
-    ?>><i class="bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?>"></i></button><?php }
+    ?>><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?>"></i></span></button><?php }
 ?></div><?php } ?>
 
 <ul id="<?= $auswertungen['id']; ?>" class="auswertungen text-center<?php

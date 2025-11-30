@@ -1,4 +1,4 @@
-<div class="mb-2">Du kannst ein neues Passwort festlegen, weil du bspw. gerade einen Einmal-Link verwendet hast.</div>
+<div class="mb-2 formular_beschriftung">Du kannst ein neues Passwort festlegen, weil du bspw. gerade einen Einmal-Link verwendet hast.</div>
 
 <div class="input-group mb-2">
     <div class="form-floating">

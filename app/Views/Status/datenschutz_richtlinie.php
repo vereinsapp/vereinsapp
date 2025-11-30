@@ -38,7 +38,7 @@
                 Bitte nimm zur Kenntnis, dass unsere Website möglicherweise nicht richtig funktioniert, wenn alle Cookies deaktiviert sind. Wenn du die Cookies in deinem Browser löschst, werden diese neu platziert, wenn du unsere Website erneut besuchst.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-success col-12" id="datenschutz_richtlinie_akzeptieren">Datenschutz-Richtlinie akzeptieren</button>
+                <button type="button" class="btn btn-outline-success col-12" id="datenschutz_richtlinie_akzeptieren"><span class="beschriftung">Datenschutz-Richtlinie akzeptieren</span></button>
             </div>
         </div>
     </div>

@@ -14,12 +14,10 @@ function Liste_FilternFormularInitialisieren($formular, ziel_id, liste) {
     $formular.find(".filtern_eigenschaft").remove();
     $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (position, eigenschaft) {
         const typ = EIGENSCHAFTEN[liste][eigenschaft].typ;
-        const beschriftung = EIGENSCHAFTEN[liste][eigenschaft].beschriftung;
-
         const $neue_filtern_eigenschaft = FILTERN.$blanko_filtern_eigenschaft[typ].clone().removeClass("blanko invisible");
 
         $neue_filtern_eigenschaft.attr("data-eigenschaft", eigenschaft).attr("data-liste", liste).attr("data-ziel_id", ziel_id);
-        $neue_filtern_eigenschaft.find(".beschriftung").text(beschriftung);
+        $neue_filtern_eigenschaft.find("label").find(".beschriftung").text(EIGENSCHAFTEN[liste][eigenschaft].beschriftung);
 
         if (typ == "vorgegebene_werte") {
             $neue_filtern_eigenschaft.find(".filtern_auswahl, .filtern_werte").empty();
