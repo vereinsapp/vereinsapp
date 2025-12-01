@@ -97,10 +97,11 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/auswertungen/Liste_AuswertungenAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/auswertungen/Liste_AuswertungAktualisieren.js?v='.VERSION,
         
-        'js/vereinsapp/liste/checkliste/Liste_ChecklisteInit.js?v='.VERSION,
-        'js/vereinsapp/liste/checkliste/Liste_CheckAendern.js?v='.VERSION,
-        'js/vereinsapp/liste/checkliste/Liste_RueckmeldungBemerkungAendern.js?v='.VERSION,
-        'js/vereinsapp/liste/checkliste/Liste_CheckAktualisieren.js?v='.VERSION,
+        'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungenInit.js?v='.VERSION,
+        'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungErstellen.js?v='.VERSION,
+        'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungAktualisieren.js?v='.VERSION,
+        'js/vereinsapp/liste/verknuepfungen/Liste_RueckmeldungBemerkungAendern.js?v='.VERSION,
+        'js/vereinsapp/liste/verknuepfungen/Liste_CheckAktualisieren.js?v='.VERSION,
 
         'js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisInit.js?v='.VERSION,
         'js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisAktualisieren.js?v='.VERSION,

@@ -1,15 +1,15 @@
-function Liste_ChecklisteInit() {
+function Liste_VerknuepfungenInit() {
     // CHECK ÄNDERN
     $(document).on("change", ".check", function () {
-        Liste_CheckAendern(
-            { $check: $(this), $element: $(this).closest(".element") },
+        Liste_VerknuepfungErstellen(
+            { $ausloesend: $(this).parents().first() },
             {
                 liste: $(this).closest(".element").attr("data-liste"),
                 element_id: $(this).val(),
                 gegen_liste: $(this).closest(".element").attr("data-gegen_liste"),
                 gegen_element_id: $(this).closest(".element").attr("data-gegen_element_id"),
-                checkliste: $(this).attr("data-checkliste"),
-                status: $(this).is(":checked"),
+                verknuepfungen: $(this).attr("data-verknuepfungen"),
+                status: Number($(this).is(":checked")),
             }
         );
     });

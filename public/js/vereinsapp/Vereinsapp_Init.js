@@ -93,10 +93,12 @@ Wie umgehen mit Button für Bemerkung, wenn Rückmeldung noch nicht existiert?
 Vereinheitlichung von
     Termine_RueckmeldungErstellen/.btn_termine_rueckmeldung_erstellen und Aufgaben_RueckmeldungErstellen/.btn_aufgaben_rueckmeldung_erstellen
     Termine_RueckmeldungAktualisieren und Aufgaben_RueckmeldungAktualisieren
-    anwesenheiten_dokumentieren für checkliste (analog zu Schnittstelle_DomNeuesModalInitialisiertZurueck)
+    anwesenheiten_dokumentieren für verknuepfungen (analog zu Schnittstelle_DomNeuesModalInitialisiertZurueck)
 Wie umgehen mit
     Mitglieder_MitgliederAufgabenErledigtAnzeigen
     Aufgaben_ZugeordneteAufgabenAnzeigen
+    Liste_CheckAktualisieren
 Bugfix Schnittstelle_VariableLoeschen
+Doppeltes einfügen eines Spinners verhindern
 
 */

@@ -12,7 +12,7 @@ foreach( $liste['werkzeugkasten'] as $symbol => $werkzeug) { ?><button type="but
 
 <?php if( array_key_exists( 'listenstatistik', $liste ) ) { ?><div class="listenstatistik_sammler invisible text-secondary text-end small mb-1"><span class="listenstatistik"<?php
     if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['id']; ?>" data-listenstatistik="anzahl"></span> Element(e)<?php
-    if( array_key_exists( 'checkliste', $liste ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i><span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['id']; ?>" data-listenstatistik="angewaehlt"></span> Element(e) angewählt<?php }
+    if( array_key_exists( 'verknuepfungen', $liste ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i><span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['id']; ?>" data-listenstatistik="angewaehlt"></span> Element(e) angewählt<?php }
     if( array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i>Summe: <span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['id']; ?>" data-listenstatistik="summe" data-eigenschaft="<?= $liste['listenstatistik']['summe']; ?>"></span><?php }
     if( array_key_exists( 'durchschnitt', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i>Durchschnitt: <span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['id']; ?>" data-listenstatistik="durchschnitt" data-eigenschaft="<?= $liste['listenstatistik']['durchschnitt']; ?>"></span><?php }
 ?></div><?php } ?>
@@ -31,7 +31,7 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
         if( is_array( $liste['klasse_id'] ) ) foreach( $liste['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;
         else echo ' '.$liste['klasse_id'];
     }
-    if( array_key_exists( 'checkliste', $liste ) ) echo ' d-grid';
+    if( array_key_exists( 'verknuepfungen', $liste ) ) echo ' d-grid';
     ?>"<?php
     if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
     if( array_key_exists( 'gegen_liste', $liste ) ) { ?> data-gegen_liste="<?= $liste['gegen_liste']; ?>"<?php }
@@ -44,8 +44,8 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
         <div class="text-truncate<?php
         if( array_key_exists( 'group-flush', $liste ) AND $liste['group-flush'] ) echo ' h5';
         ?>">
-<?php if( array_key_exists( 'checkliste', $liste ) ) { ?>
-            <div class="form-check form-switch"><label class="form-check-label d-block"><input class="form-check-input float-start me-3 check" type="checkbox" data-checkliste="<?= $liste['checkliste']; ?>" role="switch" />
+<?php if( array_key_exists( 'verknuepfungen', $liste ) ) { ?>
+            <div class="form-check form-switch"><label class="form-check-label d-block"><input class="form-check-input float-start me-3 check" type="checkbox" data-verknuepfungen="<?= $liste['verknuepfungen']; ?>" role="switch" />
 <?php } ?>
             <span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste ) ) { ?><?= $liste['beschriftung']; ?><?php } ?></span>
 <?php if( array_key_exists( 'werkzeugkasten_handle', $liste ) AND $liste['werkzeugkasten_handle'] ) { ?>
@@ -64,7 +64,7 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
 <?php if( array_key_exists( 'link', $liste ) AND $liste['link'] ) { ?>
             <a class="stretched-link"></a>
 <?php }?>
-<?php if( array_key_exists( 'checkliste', $liste ) ) { ?>
+<?php if( array_key_exists( 'verknuepfungen', $liste ) ) { ?>
             </label></div>
 <?php } ?>
         </div>

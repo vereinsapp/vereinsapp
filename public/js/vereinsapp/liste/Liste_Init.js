@@ -10,7 +10,7 @@ function Liste_Init() {
         });
     });
 
-    Liste_ChecklisteInit();
+    Liste_VerknuepfungenInit();
 
     Liste_AuswertungenInit();
 

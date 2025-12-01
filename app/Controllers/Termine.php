@@ -19,7 +19,7 @@ class Termine extends BaseController {
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'termine_anwesenheiten';
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['verknuepfungen'] = 'termine_anwesenheiten';
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'termine_rueckmeldungen', 'klasse' => array(
             'text-success' => array( 'status' => array( 'start' => array( 1 ), 'ende' => array( 1 ), ), ),
             'text-danger' => array( 'status' => array( 'start' => array( 2 ), 'ende' => array( 2 ), ), ),
@@ -156,7 +156,7 @@ class Termine extends BaseController {
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'termine_anwesenheiten';
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['verknuepfungen'] = 'termine_anwesenheiten';
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'termine_rueckmeldungen', 'klasse' => array(
             'text-success' => array( 'status' => array( 'start' => array( 1 ), 'ende' => array( 1 ), ), ),
             'text-danger' => array( 'status' => array( 'start' => array( 2 ), 'ende' => array( 2 ), ), ),

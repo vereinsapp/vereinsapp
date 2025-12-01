@@ -25,7 +25,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern']);
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['beschriftung'] = '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>';
-            $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'termine_anwesenheiten';
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['verknuepfungen'] = 'termine_anwesenheiten';
             
             $disabled_ids = array();
             if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) )
@@ -146,7 +146,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern']);
             $this->viewdata['liste']['anwesenheiten_dokumentieren']['beschriftung'] = '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>';
-            $this->viewdata['liste']['anwesenheiten_dokumentieren']['checkliste'] = 'termine_anwesenheiten';
+            $this->viewdata['liste']['anwesenheiten_dokumentieren']['verknuepfungen'] = 'termine_anwesenheiten';
 
             $disabled_ids = array();
             if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) )
@@ -180,7 +180,7 @@ class Mitglieder extends BaseController {
         if( auth()->user()->can( 'mitglieder.rechte' ) ) {
 
             $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
-            $this->viewdata['liste']['rechte_vergeben']['checkliste'] = 'vergebene_rechte';
+            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = 'vergebene_rechte';
             $this->viewdata['liste']['rechte_vergeben']['gegen_liste'] = 'mitglieder';
             $this->viewdata['liste']['rechte_vergeben']['gegen_element_id'] = $mitglied_id;
 

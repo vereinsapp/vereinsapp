@@ -108,7 +108,7 @@ class Vereinsapp extends BaseConfig
             // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion' ),
             // 'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
             'zusatzsymbol' => array('geburtstag'),
-            // 'checkliste' => 'vergebene_rechte',
+            // 'verknuepfungen' => 'vergebene_rechte',
             // 'gegen_liste' => 'termine',
             // 'gegen_element_id' => 42,
             // 'disabled' => array( 'liste' => 'liste','filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), ),
