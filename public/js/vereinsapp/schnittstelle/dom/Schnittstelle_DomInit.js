@@ -222,18 +222,6 @@ function Schnittstelle_DomInit() {
     });
 }
 
-function Schnittstelle_BtnWartenStart($btn_warten) {
-    $btn_warten.find(".beschriftung").addClass("invisible");
-    $btn_warten.find(".beschriftung").after(STATUS_SPINNER_HTML);
-    $btn_warten.prop("disabled", true);
-}
-
-function Schnittstelle_BtnWartenEnde($btn_warten) {
-    $btn_warten.prop("disabled", false);
-    $btn_warten.find("." + STATUS_SPINNER_CLASS).remove();
-    $btn_warten.find(".beschriftung").removeClass("invisible");
-}
-
 function Schnittstelle_JetztAktualisieren($jetzt) {
     $jetzt.text(DATETIME.now().toFormat("dd.MM.yyyy HH:mm:ss"));
 }

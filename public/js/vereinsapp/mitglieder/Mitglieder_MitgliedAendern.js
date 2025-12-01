@@ -6,8 +6,6 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
         Schnittstelle_DomModalOeffnen($neues_modal);
         Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "aendern", mitglied_id, "mitglieder");
     } else {
-        Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
-
         const ajax_dom = dom;
 
         if (!("email" in data)) data.email = Schnittstelle_VariableRausZurueck("email", mitglied_id, "mitglieder", undefined);
@@ -49,16 +47,12 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
                 Schnittstelle_VariableElementErgaenzen("mitglieder");
                 Schnittstelle_EventVariableUpdDom("mitglieder");
 
-                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
-                    Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                     Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
                     Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") + " wurde erfolgreich geändert.");
                 }
             },
             function (AJAX) {
-                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
-                    Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);

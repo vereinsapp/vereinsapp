@@ -1,6 +1,12 @@
 function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_aktion, rein_validation_neg_aktion) {
     const neue_ajax_id = AJAXSCHLANGE.length;
 
+    if ("$btn_ausloesend" in dom && dom.$btn_ausloesend.exists()) {
+        dom.$btn_ausloesend.find(".beschriftung").addClass("invisible");
+        dom.$btn_ausloesend.find(".beschriftung").after(STATUS_SPINNER_HTML);
+        dom.$btn_ausloesend.prop("disabled", true);
+    }
+
     if (!("ajax_id" in data)) data.ajax_id = neue_ajax_id;
 
     AJAXSCHLANGE[neue_ajax_id] = {
@@ -40,6 +46,12 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
                 // WENN DIE VALIDATION ERFOLGREICH DURCHLÄUFT
                 else {
                     if (typeof AJAX.rein_validation_pos_aktion === "function") AJAX.rein_validation_pos_aktion(AJAX);
+                }
+
+                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists()) {
+                    AJAX.dom.$btn_ausloesend.prop("disabled", false);
+                    AJAX.dom.$btn_ausloesend.find("." + STATUS_SPINNER_CLASS).remove();
+                    AJAX.dom.$btn_ausloesend.find(".beschriftung").removeClass("invisible");
                 }
             }
         },

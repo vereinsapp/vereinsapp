@@ -1,5 +1,6 @@
 function Liste_CheckAendern(dom, data) {
-    Schnittstelle_BtnWartenStart(dom.$check.parents().first());
+    dom.$btn_warten = dom.$check.parents().first();
+    delete dom.$check;
 
     data[LISTEN[data.liste].element + "_id"] = data.element_id;
     data[LISTEN[data.gegen_liste].element + "_id"] = data.gegen_element_id;
@@ -60,11 +61,8 @@ function Liste_CheckAendern(dom, data) {
             Schnittstelle_VariableElementZuordnen(AJAX.data.checkliste);
             Schnittstelle_VariableElementErgaenzen(AJAX.data.checkliste);
             Schnittstelle_EventVariableUpdDom(AJAX.data.checkliste);
-
-            if ("dom" in AJAX && "$check" in AJAX.dom && AJAX.dom.$check.exists()) Schnittstelle_BtnWartenEnde(AJAX.dom.$check.parents().first());
         },
         function (AJAX) {
-            if ("dom" in AJAX && "$check" in AJAX.dom && AJAX.dom.$check.exists()) Schnittstelle_BtnWartenEnde(AJAX.dom.$check.parents().first());
             if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
             Schnittstelle_DomToastFeuern(
                 Liste_ElementBeschriftungZurueck(AJAX.data.id, AJAX.data.checkliste) + " konnte nicht gespeichert werden.",

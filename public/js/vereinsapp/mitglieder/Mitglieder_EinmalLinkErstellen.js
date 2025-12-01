@@ -13,8 +13,6 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
         Schnittstelle_DomModalOeffnen($neues_modal);
         Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), undefined, mitglied_id, "mitglieder");
     } else {
-        Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
-
         const ajax_dom = dom;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         ajax_data.id = mitglied_id;
@@ -30,8 +28,6 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
                 Schnittstelle_VariableElementErgaenzen("mitglieder");
                 Schnittstelle_EventVariableUpdDom("mitglieder");
 
-                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
-                    Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if (AJAX.data.email) {
                     if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                         Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
@@ -49,8 +45,6 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
                 }
             },
             function (AJAX) {
-                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
-                    Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 if (AJAX.data.email)
                     Schnittstelle_DomToastFeuern(

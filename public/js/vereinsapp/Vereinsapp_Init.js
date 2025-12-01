@@ -89,6 +89,7 @@ Braucht es formular_beschriftung und beschriftung-span für Formulare (bspw in m
 .btn in .formular mit ENTER betätigbar machen
 Mitglieder unter der Auswertung sind eigentlich Rückmeldungen (aber mitglied_id entsprechend formatiert)
 aufgaben direkt termine zuordnen (mit multi-select, analog zu filtern_mitglieder bei termine?)
+Wie umgehen mit Button für Bemerkung, wenn Rückmeldung noch nicht existiert?
 Vereinheitlichung von
     Termine_RueckmeldungErstellen/.btn_termine_rueckmeldung_erstellen und Aufgaben_RueckmeldungErstellen/.btn_aufgaben_rueckmeldung_erstellen
     Termine_RueckmeldungAktualisieren und Aufgaben_RueckmeldungAktualisieren

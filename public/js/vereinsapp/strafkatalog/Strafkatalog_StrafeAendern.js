@@ -6,8 +6,6 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
         Schnittstelle_DomModalOeffnen($neues_modal);
         Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "aendern", strafe_id, "strafkatalog");
     } else {
-        Schnittstelle_BtnWartenStart(dom.$btn_ausloesend);
-
         const ajax_dom = dom;
 
         if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", strafe_id, "strafkatalog", undefined);
@@ -35,16 +33,12 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
                 // Schnittstelle_VariableElementErgaenzen("strafkatalog");
                 Schnittstelle_EventVariableUpdDom("strafkatalog");
 
-                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
-                    Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                     Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
                     Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(strafe_id, "strafkatalog") + " wurde erfolgreich geändert.");
                 }
             },
             function (AJAX) {
-                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
-                    Schnittstelle_BtnWartenEnde(AJAX.dom.$btn_ausloesend);
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
