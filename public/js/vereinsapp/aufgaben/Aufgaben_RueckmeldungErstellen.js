@@ -57,8 +57,8 @@ function Aufgaben_RueckmeldungErstellen(formular_oeffnen, dom, data, title, ruec
                         Liste_ElementBeschriftungZurueck(rueckmeldung_id, "aufgaben_rueckmeldungen") + " wurde erfolgreich erstellt."
                     );
                 }
-                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
-                    Aufgaben_RueckmeldungAktualisieren(AJAX.dom.$btn_ausloesend.closest("[data-liste='aufgaben_rueckmeldungen']"));
+                if ("dom" in AJAX && "$ausloesend" in AJAX.dom && AJAX.dom.$ausloesend.exists())
+                    Aufgaben_RueckmeldungAktualisieren(AJAX.dom.$ausloesend.closest("[data-liste='aufgaben_rueckmeldungen']"));
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");

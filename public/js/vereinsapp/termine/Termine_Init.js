@@ -124,7 +124,7 @@ function Termine_Init() {
     $(document).on("click", ".btn_termin_erstellen", function () {
         Termine_TerminErstellen(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             undefined
@@ -135,7 +135,7 @@ function Termine_Init() {
     $(document).on("click", ".btn_termin_aendern", function () {
         Termine_TerminAendern(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
@@ -146,7 +146,7 @@ function Termine_Init() {
     $(document).on("click", ".btn_termin_duplizieren", function () {
         Termine_TerminErstellen(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
@@ -157,7 +157,7 @@ function Termine_Init() {
     $(document).on("click", ".btn_termine_rueckmeldung_erstellen", function () {
         Termine_RueckmeldungErstellen(
             false,
-            { $btn_ausloesend: $(this) },
+            { $ausloesend: $(this) },
             {
                 termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),

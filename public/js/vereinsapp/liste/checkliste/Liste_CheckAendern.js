@@ -1,5 +1,10 @@
+/**
+ * @param {Object} dom
+ * @param {Object} data
+ */
+
 function Liste_CheckAendern(dom, data) {
-    dom.$btn_warten = dom.$check.parents().first();
+    dom.$ausloesend = dom.$check.parents().first();
     delete dom.$check;
 
     data[LISTEN[data.liste].element + "_id"] = data.element_id;

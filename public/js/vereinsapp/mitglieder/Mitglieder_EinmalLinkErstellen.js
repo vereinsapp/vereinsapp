@@ -40,8 +40,7 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
                 } else {
                     if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.find(".einmal_link").exists())
                         AJAX.dom.$formular.find(".einmal_link").val(AJAX.antwort.einmal_link);
-                    if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
-                        AJAX.dom.$btn_ausloesend.addClass("invisible");
+                    if ("dom" in AJAX && "$ausloesend" in AJAX.dom && AJAX.dom.$ausloesend.exists()) AJAX.dom.$ausloesend.addClass("invisible");
                 }
             },
             function (AJAX) {

@@ -57,8 +57,8 @@ function Termine_RueckmeldungErstellen(formular_oeffnen, dom, data, title, rueck
                         Liste_ElementBeschriftungZurueck(rueckmeldung_id, "termine_rueckmeldungen") + " wurde erfolgreich erstellt."
                     );
                 }
-                if ("dom" in AJAX && "$btn_ausloesend" in AJAX.dom && AJAX.dom.$btn_ausloesend.exists())
-                    Termine_RueckmeldungAktualisieren(AJAX.dom.$btn_ausloesend.closest("[data-liste='termine_rueckmeldungen']"));
+                if ("dom" in AJAX && "$ausloesend" in AJAX.dom && AJAX.dom.$ausloesend.exists())
+                    Termine_RueckmeldungAktualisieren(AJAX.dom.$ausloesend.closest("[data-liste='termine_rueckmeldungen']"));
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");

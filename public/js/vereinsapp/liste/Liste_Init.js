@@ -34,7 +34,7 @@ function Liste_Init() {
     $(document).on("click", ".btn_element_loeschen", function () {
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigung_einfordern"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal") },
+            { $ausloesend: $(this), $modal: $(this).closest(".modal") },
             { weiterleiten: $(this).attr("data-weiterleiten") },
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id")),
@@ -46,7 +46,7 @@ function Liste_Init() {
     $(document).on("click", ".btn_rueckmeldung_bemerkung_aendern", function () {
         Liste_RueckmeldungBemerkungAendern(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"))

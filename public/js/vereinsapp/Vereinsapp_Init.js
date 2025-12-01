@@ -97,5 +97,6 @@ Vereinheitlichung von
 Wie umgehen mit
     Mitglieder_MitgliederAufgabenErledigtAnzeigen
     Aufgaben_ZugeordneteAufgabenAnzeigen
+Bugfix Schnittstelle_VariableLoeschen
 
 */

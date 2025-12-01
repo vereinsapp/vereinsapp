@@ -80,7 +80,7 @@ function Aufgaben_Init() {
     $(document).on("click", ".btn_aufgabe_erstellen", function () {
         Aufgaben_AufgabeErstellen(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             undefined
@@ -91,7 +91,7 @@ function Aufgaben_Init() {
     $(document).on("click", ".btn_aufgabe_aendern", function () {
         Aufgaben_AufgabeAendern(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
@@ -102,7 +102,7 @@ function Aufgaben_Init() {
     $(document).on("click", ".btn_aufgabe_duplizieren", function () {
         Aufgaben_AufgabeErstellen(
             $(this).hasClass("formular_oeffnen"),
-            { $btn_ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
@@ -113,7 +113,7 @@ function Aufgaben_Init() {
     $(document).on("click", ".btn_aufgaben_rueckmeldung_erstellen", function () {
         Aufgaben_RueckmeldungErstellen(
             false,
-            { $btn_ausloesend: $(this) },
+            { $ausloesend: $(this) },
             {
                 aufgabe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
