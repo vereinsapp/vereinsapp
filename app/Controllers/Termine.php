@@ -15,7 +15,7 @@ class Termine extends BaseController {
         $this->viewdata['liste']['bevorstehende_termine']['group-flush'] = TRUE;
         $this->viewdata['liste']['bevorstehende_termine']['link'] = TRUE;
         $this->viewdata['liste']['bevorstehende_termine']['vorschau'] = array( 'start', 'ort' );
-        $this->viewdata['liste']['bevorstehende_termine']['views'] = array( array( 'view' => 'Termine/rueckmeldung_basiseigenschaften', 'data' => array( 'mitglied_id' => ICH['id'] ) ) );
+        $this->viewdata['liste']['bevorstehende_termine']['views'] = array( array( 'view' => 'Termine/rueckmeldung_auswahlmoeglichkeiten', 'data' => array( 'element_id' => ICH['id'] ) ) );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
@@ -116,7 +116,7 @@ class Termine extends BaseController {
 
         $this->viewdata['auswertungen'][ 'rueckmeldungen_termin' ] = array(
             'auswertungen' => 'termine_rueckmeldungen',
-            'auswahlmoeglichkeiten' => array_keys( TERMINE_RUECKMELDUNG_AUSWAHLMOEGLICHKEITEN ),
+            'auswahlmoeglichkeiten' => array_keys( VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'] ),
             'gruppieren' => 'register',
             'liste' => 'mitglieder',
             'filtern' => $this->filtern_mitglieder_kombiniert( $termin_id ),
@@ -333,7 +333,7 @@ class Termine extends BaseController {
         else if( $this->request->getPost()['status'] == 0 ) $ajax_antwort['validation'] = 'Ein Löschen der Rückmeldung ist nicht möglich!';
         else if( Time::parse( model(Termin_Model::class)->find(
                     $this->request->getPost()['termin_id']
-                 )['start'], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds(TERMINE_RUECKMELDUNG_FRIST) ) )
+                 )[ VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['eigenschaft'] ], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds( VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['frist'] ) ) )
                     $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
         else {
             $rueckmeldung_Model = model(Rueckmeldung_Model::class);

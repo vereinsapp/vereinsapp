@@ -70,8 +70,8 @@ $routes->group('aufgaben', static function ($routes) {
     $routes->post('ajax_aufgabe_speichern',                 'Aufgaben::ajax_aufgabe_speichern');
     $routes->post('ajax_aufgabe_loeschen',                  'Aufgaben::ajax_aufgabe_loeschen');
 
-    $routes->post('ajax_rueckmeldung_speichern',            'Aufgaben::ajax_rueckmeldung_speichern');
-    $routes->post('ajax_rueckmeldung_bemerkung_aendern',    'Aufgaben::ajax_rueckmeldung_bemerkung_aendern');
+    $routes->post('ajax_aufgaben_rueckmeldung_speichern',   'Aufgaben::ajax_rueckmeldung_speichern');
+    $routes->post('ajax_aufgaben_rueckmeldung_bemerkung_aendern', 'Aufgaben::ajax_rueckmeldung_bemerkung_aendern');
 
     $routes->post('ajax_aufgaben_zuordnung_termine_speichern','Aufgaben::ajax_zuordnung_termine_speichern');
 });
@@ -88,8 +88,8 @@ $routes->group('termine', static function ($routes) {
     $routes->post('ajax_termin_speichern',                  'Termine::ajax_termin_speichern');
     $routes->post('ajax_termin_loeschen',                   'Termine::ajax_termin_loeschen');
 
-    $routes->post('ajax_rueckmeldung_speichern',            'Termine::ajax_rueckmeldung_speichern');
-    $routes->post('ajax_rueckmeldung_bemerkung_aendern',    'Termine::ajax_rueckmeldung_bemerkung_aendern');
+    $routes->post('ajax_termine_rueckmeldung_speichern',    'Termine::ajax_rueckmeldung_speichern');
+    $routes->post('ajax_termine_rueckmeldung_bemerkung_aendern', 'Termine::ajax_rueckmeldung_bemerkung_aendern');
 
     $routes->post('ajax_termine_anwesenheit_speichern',     'Termine::ajax_anwesenheit_speichern');
 });

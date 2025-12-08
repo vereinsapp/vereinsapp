@@ -63,14 +63,14 @@ class Startseite extends BaseController {
             unset( $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['werkzeugkasten'] );
             unset( $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['listenstatistik'] );
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['filtern'] = array(
-                'start' => array( 'start' => Time::now( 'Europe/Berlin' )->addSeconds(TERMINE_RUECKMELDUNG_FRIST)->toDateTimeString(), ),
+                'start' => array( VERKNUEPFUNGEN['aufgaben_rueckmeldungen']['verknuepfung_moeglich_frist']['eigenschaft'] => Time::now( 'Europe/Berlin' )->addSeconds( VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['frist'] )->toDateTimeString(), ),
                 'ich_rueckgemeldet_janein' => array( 'inklusiv' => array( FALSE ), ),
                 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ), ),
             );
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['link'] = TRUE;
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['vorschau'] = array( 'start', 'ort' );
-            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['views'] = array( array( 'view' => 'Termine/rueckmeldung_basiseigenschaften', 'data' => array( 'mitglied_id' => ICH['id'] ) ) );
+            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['views'] = array( array( 'view' => 'Termine/rueckmeldung_auswahlmoeglichkeiten', 'data' => array( 'element_id' => ICH['id'] ) ) );
         }
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;

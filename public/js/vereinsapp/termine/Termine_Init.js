@@ -111,15 +111,6 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
 };
 
 function Termine_Init() {
-    EVENT_VARIABLE_UPD_DOM_NACH_LISTE["termine_rueckmeldungen"] = [
-        function () {
-            // RÜCKMELDUNG AKTUALISIEREN
-            $("[data-liste='termine_rueckmeldungen']").each(function () {
-                Termine_RueckmeldungAktualisieren($(this));
-            });
-        },
-    ];
-
     // TERMIN ERSTELLEN
     $(document).on("click", ".btn_termin_erstellen", function () {
         Termine_TerminErstellen(
@@ -150,21 +141,6 @@ function Termine_Init() {
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
-        );
-    });
-
-    // RÜCKMELDUNG ERSTELLEN
-    $(document).on("click", ".btn_termine_rueckmeldung_erstellen", function () {
-        Termine_RueckmeldungErstellen(
-            false,
-            { $ausloesend: $(this) },
-            {
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
-                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-status"), undefined),
-                bemerkung: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-bemerkung"), null),
-            },
-            undefined
         );
     });
 

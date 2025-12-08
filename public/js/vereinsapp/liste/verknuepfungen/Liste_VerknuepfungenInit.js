@@ -1,15 +1,43 @@
 function Liste_VerknuepfungenInit() {
+    // VERKNUEPFUNG ERSTELLEN
+    $(document).on("click", ".btn_verknuepfung_erstellen", function () {
+        Liste_VerknuepfungErstellen(
+            { $ausloesend: $(this) },
+            {
+                verknuepfungen: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-verknuepfungen"), undefined),
+                liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined),
+                element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id"), undefined),
+                gegen_liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_liste"), undefined),
+                gegen_element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_element_id"), undefined),
+                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-status"), undefined),
+                // bemerkung: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-bemerkung"), null),
+            }
+        );
+    });
+
+    // BEMERKUNG AENDERN
+    $(document).on("click", ".btn_verknuepfung_bemerkung_aendern", function () {
+        Liste_VerknuepfungBemerkungAendern(
+            $(this).hasClass("formular_oeffnen"),
+            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id")),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"))
+        );
+    });
+
     // CHECK ÄNDERN
     $(document).on("change", ".check", function () {
         Liste_VerknuepfungErstellen(
             { $ausloesend: $(this).parents().first() },
             {
+                verknuepfungen: $(this).attr("data-verknuepfungen"),
                 liste: $(this).closest(".element").attr("data-liste"),
                 element_id: $(this).val(),
                 gegen_liste: $(this).closest(".element").attr("data-gegen_liste"),
                 gegen_element_id: $(this).closest(".element").attr("data-gegen_element_id"),
-                verknuepfungen: $(this).attr("data-verknuepfungen"),
                 status: Number($(this).is(":checked")),
+                // bemerkung: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-bemerkung"), null),
             }
         );
     });

@@ -2,11 +2,9 @@ const DATETIME = luxon.DateTime;
 
 $(document).ready(function () {
     Schnittstelle_AjaxInit(); // initialisiert auch AJAXSCHLANGE und CSRF
-    Schnittstelle_EventInit(); // initialisiert auch EVENT_VARIABLE_UPD_DOM_NACH_LISTE
     Schnittstelle_LocalstorageInit(); // initialisiert auch LOCALSTORAGE LEEREN ERZWINGEN
     Liste_Init();
     Schnittstelle_DomInit(); // initialisiert auch STATUS_SPINNER_CLASS, STATUS_SPINNER_HTML, TOASTS und MODALS
-    Schnittstelle_LogInit();
 
     if (LOGGEDIN) {
         Mitglieder_Init();
@@ -89,16 +87,14 @@ Braucht es formular_beschriftung und beschriftung-span für Formulare (bspw in m
 .btn in .formular mit ENTER betätigbar machen
 Mitglieder unter der Auswertung sind eigentlich Rückmeldungen (aber mitglied_id entsprechend formatiert)
 aufgaben direkt termine zuordnen (mit multi-select, analog zu filtern_mitglieder bei termine?)
-Wie umgehen mit Button für Bemerkung, wenn Rückmeldung noch nicht existiert?
-Vereinheitlichung von
-    Termine_RueckmeldungErstellen/.btn_termine_rueckmeldung_erstellen und Aufgaben_RueckmeldungErstellen/.btn_aufgaben_rueckmeldung_erstellen
-    Termine_RueckmeldungAktualisieren und Aufgaben_RueckmeldungAktualisieren
-    anwesenheiten_dokumentieren für verknuepfungen (analog zu Schnittstelle_DomNeuesModalInitialisiertZurueck)
+data-element_id loswerden (vorausgesetzt, dass überall auch data-liste gesetzt ist)
 Wie umgehen mit
     Mitglieder_MitgliederAufgabenErledigtAnzeigen
     Aufgaben_ZugeordneteAufgabenAnzeigen
     Liste_CheckAktualisieren
 Bugfix Schnittstelle_VariableLoeschen
 Doppeltes einfügen eines Spinners verhindern
+btn_verknuepfung_bemerkung_aendern vereinheitlichen für alle Listen (nicht nur Verknüpfungen)
+Vereinheitlichung von anwesenheiten_dokumentieren für verknuepfungen (analog zu Schnittstelle_DomNeuesModalInitialisiertZurueck) + .verknuepfungen_auswahlmoeglichkeiten auch für check
 
 */

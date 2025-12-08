@@ -67,15 +67,6 @@ ELEMENTE.aufgaben_zuordnung_termine.zuordnen_aktion = function (zuordnung_termin
 };
 
 function Aufgaben_Init() {
-    EVENT_VARIABLE_UPD_DOM_NACH_LISTE["aufgaben_rueckmeldungen"] = [
-        function () {
-            // RÜCKMELDUNG AKTUALISIEREN
-            $("[data-liste='aufgaben_rueckmeldungen']").each(function () {
-                Aufgaben_RueckmeldungAktualisieren($(this));
-            });
-        },
-    ];
-
     // AUFGABE ERSTELLEN
     $(document).on("click", ".btn_aufgabe_erstellen", function () {
         Aufgaben_AufgabeErstellen(
@@ -106,21 +97,6 @@ function Aufgaben_Init() {
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
-        );
-    });
-
-    // RÜCKMELDUNG ERSTELLEN
-    $(document).on("click", ".btn_aufgaben_rueckmeldung_erstellen", function () {
-        Aufgaben_RueckmeldungErstellen(
-            false,
-            { $ausloesend: $(this) },
-            {
-                aufgabe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
-                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-status"), undefined),
-                bemerkung: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-bemerkung"), null),
-            },
-            undefined
         );
     });
 

@@ -37,6 +37,12 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
 
                 if ("info" in AJAX.antwort) Schnittstelle_LogInDieKonsole("INFO", JsonStringifiedZurueck(AJAX.antwort.info, undefined));
 
+                if ("dom" in AJAX && "$ausloesend" in AJAX.dom && AJAX.dom.$ausloesend.exists()) {
+                    AJAX.dom.$ausloesend.prop("disabled", false);
+                    AJAX.dom.$ausloesend.find("." + STATUS_SPINNER_CLASS).remove();
+                    AJAX.dom.$ausloesend.find(".beschriftung").removeClass("invisible");
+                }
+
                 // WENN DIE VALIDATION FEHLSCHLÄGT
                 if ("validation" in AJAX.antwort) {
                     Schnittstelle_LogInDieKonsole("VALIDATION", JsonStringifiedZurueck(AJAX.antwort.validation, undefined));
@@ -46,12 +52,6 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
                 // WENN DIE VALIDATION ERFOLGREICH DURCHLÄUFT
                 else {
                     if (typeof AJAX.rein_validation_pos_aktion === "function") AJAX.rein_validation_pos_aktion(AJAX);
-                }
-
-                if ("dom" in AJAX && "$ausloesend" in AJAX.dom && AJAX.dom.$ausloesend.exists()) {
-                    AJAX.dom.$ausloesend.prop("disabled", false);
-                    AJAX.dom.$ausloesend.find("." + STATUS_SPINNER_CLASS).remove();
-                    AJAX.dom.$ausloesend.find(".beschriftung").removeClass("invisible");
                 }
             }
         },

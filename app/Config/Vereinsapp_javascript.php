@@ -100,7 +100,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungenInit.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungErstellen.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungAktualisieren.js?v='.VERSION,
-        'js/vereinsapp/liste/verknuepfungen/Liste_RueckmeldungBemerkungAendern.js?v='.VERSION,
+        'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungBemerkungAendern.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_CheckAktualisieren.js?v='.VERSION,
 
         'js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisInit.js?v='.VERSION,
@@ -130,13 +130,11 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/schnittstelle/dom/Schnittstelle_DomModalSchliessen.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/dom/Schnittstelle_DomBestaetigungEinfordern.js?v='.VERSION,
         
-        'js/vereinsapp/schnittstelle/event/Schnittstelle_EventInit.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/event/Schnittstelle_EventSqlUpdLocalstorage.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/event/Schnittstelle_EventLocalstorageUpdVariable.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/event/Schnittstelle_EventVariableUpdLocalstorage.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/event/Schnittstelle_EventVariableUpdDom.js?v='.VERSION,
         
-        'js/vereinsapp/schnittstelle/log/Schnittstelle_LogInit.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/log/Schnittstelle_LogInDieKonsole.js?v='.VERSION,
 
     );
@@ -158,15 +156,11 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/aufgaben/Aufgaben_Init.js?v='.VERSION,
         'js/vereinsapp/aufgaben/Aufgaben_AufgabeErstellen.js?v='.VERSION,
         'js/vereinsapp/aufgaben/Aufgaben_AufgabeAendern.js?v='.VERSION,
-        'js/vereinsapp/aufgaben/Aufgaben_RueckmeldungErstellen.js?v='.VERSION,
-        'js/vereinsapp/aufgaben/Aufgaben_RueckmeldungAktualisieren.js?v='.VERSION,
         'js/vereinsapp/aufgaben/Aufgaben_ZugeordneteAufgabenAnzeigen.js?v='.VERSION,
 
         'js/vereinsapp/termine/Termine_Init.js?v='.VERSION,
         'js/vereinsapp/termine/Termine_TerminErstellen.js?v='.VERSION,
         'js/vereinsapp/termine/Termine_TerminAendern.js?v='.VERSION,
-        'js/vereinsapp/termine/Termine_RueckmeldungErstellen.js?v='.VERSION,
-        'js/vereinsapp/termine/Termine_RueckmeldungAktualisieren.js?v='.VERSION,
 
         'js/vereinsapp/strafkatalog/Strafkatalog_Init.js?v='.VERSION,
         'js/vereinsapp/strafkatalog/Strafkatalog_StrafeErstellen.js?v='.VERSION,

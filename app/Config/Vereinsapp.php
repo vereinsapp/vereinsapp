@@ -106,7 +106,7 @@ class Vereinsapp extends BaseConfig
             // 'title' => 'Titel für bspw. ein Modal',
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion' ),
-            // 'views' => view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ),
+            // 'views' => view( 'Termine/rueckmeldung_auswahlmoeglichkeiten', array( 'element_id' => ICH['id'] ) ),
             'zusatzsymbol' => array('geburtstag'),
             // 'verknuepfungen' => 'vergebene_rechte',
             // 'gegen_liste' => 'termine',
@@ -827,19 +827,6 @@ class Vereinsapp extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
-     * Rückmelde-Auswahlmöglichkeiten für Aufgaben
-     * --------------------------------------------------------------------------
-     *
-     * Auswahl an Möglichkeiten zur Rückmeldung für Aufgaben
-     */
-    public $aufgaben_rueckmeldung_auswahlmoeglichkeiten = array(
-        0 => array( 'farbe' => 'danger', 'aktiv' => 'ausplanen', 'passiv' => 'ausgeplant' ),
-        1 => array( 'farbe' => 'warning', 'aktiv' => 'einplanen', 'passiv' => 'eingeplant' ),
-        2 => array( 'farbe' => 'success', 'aktiv' => 'als erledigt markieren', 'passiv' => 'erledigt' ),
-    );
-
-    /**
-     * --------------------------------------------------------------------------
      * Termin-Kategorie filtern_mitglieder
      * --------------------------------------------------------------------------
      *
@@ -852,28 +839,6 @@ class Vereinsapp extends BaseConfig
         'auftritt' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ), ),
         'vorstandschaftssitzung' => array( 'vorstandschaft_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ), ),
     );
-
-    /**
-     * --------------------------------------------------------------------------
-     * Rückmelde-Auswahlmöglichkeiten für Termine
-     * --------------------------------------------------------------------------
-     *
-     * Auswahl an Möglichkeiten zur Rückmeldung für Termine
-     */
-    public $termine_rueckmeldung_auswahlmoeglichkeiten = array(
-        1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'-fill"></i>' ),
-        2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'-fill"></i>' ),
-    );
-
-    /**
-     * --------------------------------------------------------------------------
-     * Rückmelde-Frist für Termine
-     * --------------------------------------------------------------------------
-     *
-     * Frist in Sekunden, die man mindestens
-     * vor dem Start des Termins einhalten muss
-     */
-    public $termine_rueckmeldung_frist = 0;
 
     /**
      * --------------------------------------------------------------------------
@@ -952,6 +917,34 @@ class Vereinsapp extends BaseConfig
     public $notenbank_erlaubte_dateitypen_audio = array(
         'mp3',
         'm4a',
+    );
+
+    /**
+     * --------------------------------------------------------------------------
+     * Verknüpfungen
+     * --------------------------------------------------------------------------
+     * Auswahlmöglichkeiten zur Rückmeldung und
+     * Frist in Sekunden, die man mindestens vor dem Start einhalten muss
+     */
+    public $verknuepfungen = array(
+        'aufgaben_rueckmeldungen' => array(
+            'auswahlmoeglichkeiten' => array(
+                0 => array( 'farbe' => 'danger', 'aktiv' => 'ausplanen', 'passiv' => 'ausgeplant' ),
+                1 => array( 'farbe' => 'warning', 'aktiv' => 'einplanen', 'passiv' => 'eingeplant' ),
+                2 => array( 'farbe' => 'success', 'aktiv' => 'als erledigt markieren', 'passiv' => 'erledigt' ),
+            ),
+            'frist' => 0,
+            'verknuepfung_moeglich_id' => array( 'eigenschaft' => 'mitglieder_ids_eingeladen', 'frist' => NULL ),
+            'verknuepfung_moeglich_frist' => array( 'eigenschaft' => 'start', 'frist' => 0 ),
+        ),
+        'termine_rueckmeldungen' => array(
+            'auswahlmoeglichkeiten' => array(
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'-fill"></i>' ),
+                2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'-fill"></i>' ),
+            ),
+            'verknuepfung_moeglich_id' => array( 'eigenschaft' => 'mitglieder_ids_eingeladen', 'frist' => NULL ),
+            'verknuepfung_moeglich_frist' => array( 'eigenschaft' => 'start', 'frist' => 0 ),
+        ),
     );
 
     /**

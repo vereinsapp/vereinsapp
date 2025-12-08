@@ -63,7 +63,7 @@ class Aufgaben extends BaseController {
         // else if( $this->request->getPost()['status'] == 0 ) $ajax_antwort['validation'] = 'Ein Löschen der Rückmeldung ist nicht möglich!';
         // else if( Time::parse( model(Termin_Model::class)->find(
         //             $this->request->getPost()['termin_id']
-        //          )['start'], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds(TERMINE_RUECKMELDUNG_FRIST) ) )
+        //          )[ VERKNUEPFUNGEN['aufgaben_rueckmeldungen']['verknuepfung_moeglich_frist']['eigenschaft'] ], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds( VERKNUEPFUNGEN['aufgaben_rueckmeldungen']['verknuepfung_moeglich_frist']['frist'] ) ) )
         //             $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
         else {
             $rueckmeldung_Model = model(Rueckmeldung_Model::class);

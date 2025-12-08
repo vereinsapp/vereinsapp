@@ -20,7 +20,7 @@
     <div class="row g-0 my-1">
         <div class="col text-center text-nowrap fst-italic"><span class="eigenschaft" data-eigenschaft="bemerkung"></span></div>
     </div>
-<?= view( 'Termine/rueckmeldung_basiseigenschaften', array( 'mitglied_id' => ICH['id'] ) ); ?>
+<?= view( 'Termine/rueckmeldung_auswahlmoeglichkeiten', array( 'element_id' => ICH['id'] ) ); ?>
 </div>
 
 <div class="container mb-3">

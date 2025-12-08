@@ -1,1 +1,0 @@
-function Schnittstelle_LogInit() {}

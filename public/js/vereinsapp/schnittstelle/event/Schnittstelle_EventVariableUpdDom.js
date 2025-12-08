@@ -32,9 +32,9 @@ function Schnittstelle_EventVariableUpdDom(liste) {
             Liste_DateiAktualisieren($(this), liste);
         });
 
-        // SPEZIAL ZUM SCHLUSS AKTUALISIEREN
-        $.each(EVENT_VARIABLE_UPD_DOM_NACH_LISTE[liste], function () {
-            this();
+        // VERKNUEPFUNGEN_AUSWAHLMOGLICHKEITEN AKTUALISIEREN
+        $('.verknuepfungen_auswahlmoeglichkeiten[data-verknuepfungen="' + liste + '"]').each(function () {
+            Liste_VerknuepfungAktualisieren($(this), liste);
         });
     }
 
