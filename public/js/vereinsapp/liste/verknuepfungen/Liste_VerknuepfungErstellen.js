@@ -64,6 +64,7 @@ function Liste_VerknuepfungErstellen(dom, data) {
             Schnittstelle_VariableElementZuordnen(verknuepfungen);
             Schnittstelle_VariableElementErgaenzen(verknuepfungen);
             Schnittstelle_EventVariableUpdDom(verknuepfungen);
+            Schnittstelle_EventVariableUpdDom(gegen_liste);
         },
         function (AJAX) {
             if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");

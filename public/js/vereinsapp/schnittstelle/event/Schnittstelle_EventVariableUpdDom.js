@@ -31,11 +31,6 @@ function Schnittstelle_EventVariableUpdDom(liste) {
         $('.datei[data-liste="' + liste + '"]').each(function () {
             Liste_DateiAktualisieren($(this), liste);
         });
-
-        // VERKNUEPFUNGEN_AUSWAHLMOGLICHKEITEN AKTUALISIEREN
-        $('.verknuepfungen_auswahlmoeglichkeiten[data-verknuepfungen="' + liste + '"]').each(function () {
-            Liste_VerknuepfungAktualisieren($(this), liste);
-        });
     }
 
     $(".jetzt").each(function () {

@@ -16,17 +16,16 @@ class Termine extends BaseController {
         $this->viewdata['liste']['bevorstehende_termine']['link'] = TRUE;
         $this->viewdata['liste']['bevorstehende_termine']['vorschau'] = array( 'start', 'ort' );
         $this->viewdata['liste']['bevorstehende_termine']['verknuepfungen'] = array(
+            'typ' => 'auswahlmoeglichkeiten',
             'verknuepfungen' => 'termine_rueckmeldungen',
             'liste' => 'mitglieder',
             'element_id' => ICH['id'],
-            'gegen_liste' => 'termine',
             'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
-            'view' => 'Termine/rueckmeldung_auswahlmoeglichkeiten',
         );
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'verknuepfungen' => 'termine_anwesenheiten', 'view' => NULL, );
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'termine_rueckmeldungen', 'klasse' => array(
             'text-success' => array( 'status' => array( 'start' => array( 1 ), 'ende' => array( 1 ), ), ),
             'text-danger' => array( 'status' => array( 'start' => array( 2 ), 'ende' => array( 2 ), ), ),
@@ -65,12 +64,11 @@ class Termine extends BaseController {
         //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
         //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['vorschau'] = array('zugeordnetes_element');
         //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['verknuepfungen'] = array(
+        //         'typ' => 'auswahlmoeglichkeiten',
         //         'verknuepfungen' => 'termine_rueckmeldungen',
         //         'liste' => 'mitglieder',
         //         'element_id' => ICH['id'],
-        //         'gegen_liste' => 'termine',
         //         'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
-        //         'view' => 'Termine/rueckmeldung_auswahlmoeglichkeiten',
         //     );
 
         //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['werkzeugkasten']['statistiken'] = array(
@@ -170,7 +168,7 @@ class Termine extends BaseController {
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
-        $this->viewdata['liste']['anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'verknuepfungen' => 'termine_anwesenheiten', 'view' => NULL, );
+        $this->viewdata['liste']['anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'termine_rueckmeldungen', 'klasse' => array(
             'text-success' => array( 'status' => array( 'start' => array( 1 ), 'ende' => array( 1 ), ), ),
             'text-danger' => array( 'status' => array( 'start' => array( 2 ), 'ende' => array( 2 ), ), ),
@@ -203,12 +201,11 @@ class Termine extends BaseController {
         //     $this->viewdata['liste']['termin_zugeordnete_aufgaben']['filtern'] = array( 'zugeordnete_liste' => array( 'termine' => array( 'notenbank' ), ), 'zugeordnete_element_id' => array( 'inklusiv' => array( $termin_id ), ), );
         //     $this->viewdata['liste']['termin_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
         //     $this->viewdata['liste']['termin_zugeordnete_aufgaben']['verknuepfungen'] = array(
+        //         'typ' => 'auswahlmoeglichkeiten',
         //         'verknuepfungen' => 'termine_rueckmeldungen',
         //         'liste' => 'mitglieder',
         //         'element_id' => ICH['id'],
-        //         'gegen_liste' => 'termine',
         //         'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
-        //         'view' => 'Termine/rueckmeldung_auswahlmoeglichkeiten',
         //     );
         //     if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
         //         $this->viewdata['liste']['termin_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );

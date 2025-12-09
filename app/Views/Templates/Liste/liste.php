@@ -43,9 +43,8 @@ if( array_key_exists( 'gegen_element_id', $liste ) ) { ?> data-gegen_element_id=
         <div class="text-truncate<?php
         if( array_key_exists( 'group-flush', $liste ) AND $liste['group-flush'] ) echo ' h5';
         ?>">
-<?php if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'view', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['view'] === NULL ) { ?>
-            <input class="form-check-input float-start me-3 check" type="checkbox" data-verknuepfungen="<?= $liste['verknuepfungen']['verknuepfungen']; ?>" role="switch" />
-<?php } ?>
+<?php if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'typ', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['typ'] === 'check' )
+    echo view( 'Templates/Liste/verknuepfungen_'.$liste['verknuepfungen']['typ'], array( 'verknuepfungen' => $liste['verknuepfungen']['verknuepfungen'], ) ); ?>
             <label class="d-block">
                 <span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste ) ) { ?><?= $liste['beschriftung']; ?><?php } ?></span>
 <?php if( array_key_exists( 'werkzeugkasten_handle', $liste ) AND $liste['werkzeugkasten_handle'] ) { ?>
@@ -75,14 +74,8 @@ if( array_key_exists( 'gegen_element_id', $liste ) ) { ?> data-gegen_element_id=
         } ?></div>
 <?php } ?>
 
-<?php if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'view', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['view'] !== NULL )
-    echo view( $liste['verknuepfungen']['view'], array(
-        'verknuepfungen' => $liste['verknuepfungen']['verknuepfungen'],
-        'liste' => $liste['verknuepfungen']['liste'],
-        'element_id' => $liste['verknuepfungen']['element_id'],
-        'gegen_liste' => $liste['verknuepfungen']['gegen_liste'],
-        'auswahlmoeglichkeiten' => $liste['verknuepfungen']['auswahlmoeglichkeiten'],
-    ) ); ?>
+<?php if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'typ', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['typ'] === 'auswahlmoeglichkeiten' )
+    echo view( 'Templates/Liste/verknuepfungen_'.$liste['verknuepfungen']['typ'], array( 'verknuepfungen' => $liste['verknuepfungen']['verknuepfungen'], 'liste' => $liste['verknuepfungen']['liste'], 'element_id' => $liste['verknuepfungen']['element_id'], 'auswahlmoeglichkeiten' => $liste['verknuepfungen']['auswahlmoeglichkeiten'], ) ); ?>
 
     </li>
 

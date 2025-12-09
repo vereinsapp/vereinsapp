@@ -43,12 +43,11 @@ class Startseite extends BaseController {
         //     $this->viewdata['liste']['aufgaben_offen_startseite']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
         //     $this->viewdata['liste']['aufgaben_offen_startseite']['vorschau'] = array( 'zugeordnetes_element' );
         //     $this->viewdata['liste']['aufgaben_offen_startseite']['verknuepfungen'] = array(
+        //         'typ' => 'auswahlmoeglichkeiten',
         //         'verknuepfungen' => 'termine_rueckmeldungen',
         //         'liste' => 'mitglieder',
         //         'element_id' => ICH['id'],
-        //         'gegen_liste' => 'termine',
         //         'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
-        //         'view' => 'Termine/rueckmeldung_auswahlmoeglichkeiten',
         //     );
         // }
 
@@ -78,12 +77,11 @@ class Startseite extends BaseController {
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['vorschau'] = array( 'start', 'ort' );
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['verknuepfungen'] = array(
+                'typ' => 'auswahlmoeglichkeiten',
                 'verknuepfungen' => 'termine_rueckmeldungen',
                 'liste' => 'mitglieder',
                 'element_id' => ICH['id'],
-                'gegen_liste' => 'termine',
                 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
-                'view' => 'Termine/rueckmeldung_auswahlmoeglichkeiten',
             );
         }
 

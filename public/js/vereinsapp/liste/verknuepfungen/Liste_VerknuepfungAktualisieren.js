@@ -1,20 +1,16 @@
 /**
  * @param {JQuery} $verknuepfungen_auswahlmoeglichkeiten
+ * @param {string} gegen_liste
+ * @param {number} gegen_element_id
  * @param {string} verknuepfungen
  */
 
-function Liste_VerknuepfungAktualisieren($verknuepfungen_auswahlmoeglichkeiten, verknuepfungen) {
+function Liste_VerknuepfungAktualisieren($verknuepfungen_auswahlmoeglichkeiten, gegen_liste, gegen_element_id, verknuepfungen) {
     const $verknuepfung_moeglich = $verknuepfungen_auswahlmoeglichkeiten.find(".verknuepfung_moeglich");
     const $verknuepfung_nicht_moeglich = $verknuepfungen_auswahlmoeglichkeiten.find(".verknuepfung_nicht_moeglich");
 
     const liste = Schnittstelle_VariableWertBereinigtZurueck($verknuepfungen_auswahlmoeglichkeiten.attr("data-liste"), undefined);
     const element_id = Schnittstelle_VariableWertBereinigtZurueck($verknuepfungen_auswahlmoeglichkeiten.attr("data-element_id"), undefined);
-
-    const gegen_liste = Schnittstelle_VariableWertBereinigtZurueck($verknuepfungen_auswahlmoeglichkeiten.attr("data-gegen_liste"), undefined);
-    const gegen_element_id = Schnittstelle_VariableWertBereinigtZurueck(
-        $verknuepfungen_auswahlmoeglichkeiten.closest(".element[data-liste='" + gegen_liste + "'][data-element_id]").attr("data-element_id"),
-        undefined
-    );
 
     if (
         Schnittstelle_VariableRausZurueck(

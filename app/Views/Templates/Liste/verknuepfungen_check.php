@@ -1,0 +1,1 @@
+<input class="form-check-input float-start me-3 check" type="checkbox" data-verknuepfungen="<?= $liste['verknuepfungen']['verknuepfungen']; ?>" role="switch" />

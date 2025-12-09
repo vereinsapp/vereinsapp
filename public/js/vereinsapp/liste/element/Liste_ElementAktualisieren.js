@@ -64,17 +64,18 @@ function Liste_ElementAktualisieren($element, liste) {
         const $eigenschaft = $(this);
         const eigenschaft = $eigenschaft.attr("data-eigenschaft");
         $eigenschaft.html(
-            Liste_WertFormatiertZurueck(
-                Schnittstelle_VariableRausZurueck(eigenschaft, Number($element.attr("data-element_id")), liste, undefined),
-                eigenschaft,
-                liste
-            )
+            Liste_WertFormatiertZurueck(Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, undefined), eigenschaft, liste)
         );
     });
 
     // CHECK AKTUALISIEREN
     $element.find(".check").each(function () {
         Liste_CheckAktualisieren($(this), disabled, element_id, liste);
+    });
+
+    // VERKNUEPFUNGEN_AUSWAHLMOEGLICHKEITEN AKTUALISIEREN
+    $element.find(".verknuepfungen_auswahlmoeglichkeiten").each(function () {
+        Liste_VerknuepfungAktualisieren($(this), liste, element_id, $(this).attr("data-verknuepfungen"));
     });
 
     // LINK AKTUALISIEREN

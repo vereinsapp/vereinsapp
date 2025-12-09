@@ -18,7 +18,7 @@ class Einstellungen extends BaseController {
     public function einstellungen() {
 
         $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
-        $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'verknuepfungen' => 'vergebene_rechte', 'view' => NULL, );
+        $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', );
         $this->viewdata['liste']['rechte_vergeben']['gegen_liste'] = 'mitglieder';
         $this->viewdata['liste']['rechte_vergeben']['gegen_element_id'] = ICH['id'];
 

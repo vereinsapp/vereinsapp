@@ -1,4 +1,4 @@
-<div class="verknuepfungen_auswahlmoeglichkeiten" data-verknuepfungen="<?= $verknuepfungen ?>" data-liste="<?= $liste ?>" data-element_id="<?= $element_id ?>" data-gegen_liste="<?= $gegen_liste ?>" >
+<div class="verknuepfungen_auswahlmoeglichkeiten" data-verknuepfungen="<?= $verknuepfungen ?>" data-liste="<?= $liste ?>" data-element_id="<?= $element_id ?>">
     <div class="verknuepfung_moeglich invisible">
         <div class="btn-group btn-group-sm stretched-link-unwirksam d-flex" role="group">
             <button type="button" class="btn btn_verknuepfung_erstellen btn-outline-<?= $auswahlmoeglichkeiten[1]['farbe']; ?> w-25 flex-fill" data-status="1"><span class="beschriftung"><?= $auswahlmoeglichkeiten[1]['aktiv']; ?></span></button>

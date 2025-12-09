@@ -20,13 +20,7 @@
     <div class="row g-0 my-1">
         <div class="col text-center text-nowrap fst-italic"><span class="eigenschaft" data-eigenschaft="bemerkung"></span></div>
     </div>
-<?= view( 'Termine/rueckmeldung_auswahlmoeglichkeiten', array(
-    'verknuepfungen' => 'termine_rueckmeldungen',
-    'liste' => 'mitglieder',
-    'element_id' => ICH['id'],
-    'gegen_liste' => 'termine',
-    'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
- ) ); ?>
+<?= view( 'Templates/Liste/verknuepfungen_auswahlmoeglichkeiten', array( 'verknuepfungen' => 'termine_rueckmeldungen', 'liste' => 'mitglieder', 'element_id' => ICH['id'], 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], ) ); ?>
 </div>
 
 <div class="container mb-3">
