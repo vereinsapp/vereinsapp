@@ -5,9 +5,7 @@
 
 function Liste_VerknuepfungAktualisieren($verknuepfungen_auswahlmoeglichkeiten, verknuepfungen) {
     const $verknuepfung_moeglich = $verknuepfungen_auswahlmoeglichkeiten.find(".verknuepfung_moeglich");
-    const $keine_verknuepfung_moeglich = $verknuepfungen_auswahlmoeglichkeiten.find(".keine_verknuepfung_moeglich");
-    const $keine_verknuepfung_fuer_dich_moeglich = $verknuepfungen_auswahlmoeglichkeiten.find(".keine_verknuepfung_fuer_dich_moeglich");
-    const $keine_verknuepfung_fuer_mitglied_moeglich = $verknuepfungen_auswahlmoeglichkeiten.find(".keine_verknuepfung_fuer_mitglied_moeglich");
+    const $verknuepfung_nicht_moeglich = $verknuepfungen_auswahlmoeglichkeiten.find(".verknuepfung_nicht_moeglich");
 
     const liste = Schnittstelle_VariableWertBereinigtZurueck($verknuepfungen_auswahlmoeglichkeiten.attr("data-liste"), undefined);
     const element_id = Schnittstelle_VariableWertBereinigtZurueck($verknuepfungen_auswahlmoeglichkeiten.attr("data-element_id"), undefined);
@@ -28,9 +26,7 @@ function Liste_VerknuepfungAktualisieren($verknuepfungen_auswahlmoeglichkeiten, 
     ) {
         /* Verknüpfung ist für das Element möglich */
         $verknuepfung_moeglich.removeClass("invisible");
-        $keine_verknuepfung_moeglich.addClass("invisible");
-        $keine_verknuepfung_fuer_dich_moeglich.addClass("invisible");
-        $keine_verknuepfung_fuer_mitglied_moeglich.addClass("invisible");
+        $verknuepfung_nicht_moeglich.addClass("invisible");
 
         let verknuepfung_id = undefined;
         $.each(
@@ -114,25 +110,23 @@ function Liste_VerknuepfungAktualisieren($verknuepfungen_auswahlmoeglichkeiten, 
     } else {
         /* Verknüpfung ist für das Element nicht möglich */
         $verknuepfung_moeglich.addClass("invisible");
+        $verknuepfung_nicht_moeglich.removeClass("invisible");
 
         if (liste === "mitglieder") {
             /* Verknüpfung ist für dich oder für das Mitglied nicht möglich */
-            $keine_verknuepfung_moeglich.addClass("invisible");
 
             if (element_id === Number(ICH["id"])) {
                 /* Verknüpfung ist für dich nicht möglich */
-                $keine_verknuepfung_fuer_dich_moeglich.removeClass("invisible");
-                $keine_verknuepfung_fuer_mitglied_moeglich.addClass("invisible");
+                $verknuepfung_nicht_moeglich.text(VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich.keine_verknuepfung_fuer_dich_moeglich);
             } else {
                 /* Verknüpfung ist für das Mitglied nicht möglich */
-                $keine_verknuepfung_fuer_dich_moeglich.addClass("invisible");
-                $keine_verknuepfung_fuer_mitglied_moeglich.removeClass("invisible");
+                $verknuepfung_nicht_moeglich.text(
+                    VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich.keine_verknuepfung_fuer_mitglied_moeglich
+                );
             }
         } else {
             /* Verknüpfung ist nicht möglich */
-            $keine_verknuepfung_moeglich.removeClass("invisible");
-            $keine_verknuepfung_fuer_dich_moeglich.addClass("invisible");
-            $keine_verknuepfung_fuer_mitglied_moeglich.addClass("invisible");
+            $verknuepfung_nicht_moeglich.text(VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich.keine_verknuepfung_moeglich);
         }
     }
 }

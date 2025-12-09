@@ -24,6 +24,8 @@ if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sorta
 if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
 if( array_key_exists( 'filtern', $liste ) ) { ?> data-filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
+if( array_key_exists( 'gegen_liste', $liste ) ) { ?> data-gegen_liste="<?= $liste['gegen_liste']; ?>"<?php }
+if( array_key_exists( 'gegen_element_id', $liste ) ) { ?> data-gegen_element_id="<?= $liste['gegen_element_id']; ?>"<?php }
 ?>>
 
     <li class="blanko element invisible text-body list-group-item<?php
@@ -33,8 +35,6 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
     }
     ?>"<?php
     if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
-    if( array_key_exists( 'gegen_liste', $liste ) ) { ?> data-gegen_liste="<?= $liste['gegen_liste']; ?>"<?php }
-    if( array_key_exists( 'gegen_element_id', $liste ) ) { ?> data-gegen_element_id="<?= $liste['gegen_element_id']; ?>"<?php }
     if( array_key_exists( 'disabled', $liste ) ) { ?> data-disabled='<?= json_encode( $liste['disabled'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     if( array_key_exists( 'bedingte_formatierung', $liste ) ) { ?> data-bedingte_formatierung='<?= json_encode( $liste['bedingte_formatierung'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     if( array_key_exists( 'title', $liste ) ) { ?> data-title="<?= $liste['title'] ?>"<?php }
@@ -43,8 +43,8 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
         <div class="text-truncate<?php
         if( array_key_exists( 'group-flush', $liste ) AND $liste['group-flush'] ) echo ' h5';
         ?>">
-<?php if( array_key_exists( 'verknuepfungen', $liste ) ) { ?>
-            <input class="form-check-input float-start me-3 check" type="checkbox" data-verknuepfungen="<?= $liste['verknuepfungen']; ?>" role="switch" />
+<?php if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'view', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['view'] === NULL ) { ?>
+            <input class="form-check-input float-start me-3 check" type="checkbox" data-verknuepfungen="<?= $liste['verknuepfungen']['verknuepfungen']; ?>" role="switch" />
 <?php } ?>
             <label class="d-block">
                 <span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste ) ) { ?><?= $liste['beschriftung']; ?><?php } ?></span>
@@ -75,7 +75,14 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
         } ?></div>
 <?php } ?>
 
-<?php if( array_key_exists( 'views', $liste ) ) foreach( $liste['views'] as $view ) if( array_key_exists( 'data', $view ) ) echo view( $view['view'], $view['data'] ); else echo view( $view['view'] ); ?>
+<?php if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'view', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['view'] !== NULL )
+    echo view( $liste['verknuepfungen']['view'], array(
+        'verknuepfungen' => $liste['verknuepfungen']['verknuepfungen'],
+        'liste' => $liste['verknuepfungen']['liste'],
+        'element_id' => $liste['verknuepfungen']['element_id'],
+        'gegen_liste' => $liste['verknuepfungen']['gegen_liste'],
+        'auswahlmoeglichkeiten' => $liste['verknuepfungen']['auswahlmoeglichkeiten'],
+    ) ); ?>
 
     </li>
 

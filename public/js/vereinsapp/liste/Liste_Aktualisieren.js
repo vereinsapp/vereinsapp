@@ -35,14 +35,11 @@ function Liste_Aktualisieren($liste, liste) {
             // Element existiert noch nicht, also wird es an der sortierten Position hinzugefügt
             const $neues_element = LISTEN[liste].instanz[instanz].$blanko_element.clone().removeClass("blanko invisible");
 
-            $neues_element.attr("data-liste", liste).attr("data-element_id", element_id);
-
-            const gegen_liste = $liste.attr("data-gegen_liste");
-            const gegen_element_id = $liste.attr("data-gegen_element_id");
-            if (typeof $neues_element.attr("data-gegen_liste") === "undefined" && typeof gegen_liste !== "undefined")
-                $neues_element.attr("data-gegen_liste", gegen_liste);
-            if (typeof $neues_element.attr("data-gegen_element_id") === "undefined" && typeof gegen_element_id !== "undefined")
-                $neues_element.attr("data-gegen_element_id", gegen_element_id);
+            $neues_element
+                .attr("data-liste", liste)
+                .attr("data-element_id", element_id)
+                .attr("data-gegen_liste", $liste.attr("data-gegen_liste"))
+                .attr("data-gegen_element_id", $liste.attr("data-gegen_element_id"));
 
             if (position === 0) $neues_element.appendTo($liste);
             else $neues_element.insertAfter($liste.find('.element[data-element_id="' + tabelle_gefiltert_sortiert[position - 1]["id"] + '"]'));

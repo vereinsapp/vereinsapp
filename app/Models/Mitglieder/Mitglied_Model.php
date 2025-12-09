@@ -86,6 +86,8 @@ class Mitglied_Model extends UserModel {
                     'id' => $id++,
                     'mitglied_id' => $mitglied->id,
                     'verfuegbares_recht_id' => VERFUEGBARE_RECHTE[ $permission ]['id'],
+                    'status' => 1,
+                    'bemerkung' => NULL,
                 );
 
                 $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'vergebene_rechte' );

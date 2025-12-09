@@ -106,7 +106,14 @@ class Vereinsapp extends BaseConfig
             // 'title' => 'Titel für bspw. ein Modal',
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion' ),
-            // 'views' => view( 'Termine/rueckmeldung_auswahlmoeglichkeiten', array( 'element_id' => ICH['id'] ) ),
+            // 'verknuepfungen' => array(
+            //     'verknuepfungen' => 'termine_rueckmeldungen',
+            //     'liste' => 'mitglieder',
+            //     'element_id' => ICH['id'],
+            //     'gegen_liste' => 'termine',
+            //     'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
+            //     'view' => 'Termine/rueckmeldung_auswahlmoeglichkeiten',
+            // ),
             'zusatzsymbol' => array('geburtstag'),
             // 'verknuepfungen' => 'vergebene_rechte',
             // 'gegen_liste' => 'termine',
@@ -273,6 +280,7 @@ class Vereinsapp extends BaseConfig
             'passwort_alt' => array( 'beschriftung' => 'Altes Passwort', 'typ' => 'text' ),                 // PHP
             'passwort_neu' => array( 'beschriftung' => 'Neues Passwort', 'typ' => 'text' ),                 // PHP
             'passwort_neu2' => array( 'beschriftung' => 'Neues Passwort (Wiederholung)', 'typ' => 'text' ), // PHP
+            'zugeordnete_vergebenes_recht_ids' => array( 'beschriftung' => 'Zugeordnete vergebene Rechte', 'typ' => 'element_ids' ), // JAVA
             'zugeordnete_aufgaben_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Aufgaben-Rückmeldungen', 'typ' => 'element_ids' ), // JAVA
             'zugeordnete_termine_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Termine-Rückmeldungen', 'typ' => 'element_ids' ),   // JAVA
             'zugeordnete_termine_anwesenheit_ids' => array( 'beschriftung' => 'Zugeordnete Anwesenheiten', 'typ' => 'element_ids' ),            // JAVA
@@ -288,7 +296,8 @@ class Vereinsapp extends BaseConfig
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),                                         // PHP
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),                       // PHP
             'verfuegbares_recht_id' => array( 'beschriftung' => 'Verfuegbares-Recht-ID', 'typ' => 'element_id' ),   // PHP
-            'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),                                       // JAVA
+            'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),                                       // PHP
+            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),                                 // PHP
         ),
 
         'aufgaben' => array(
@@ -936,6 +945,11 @@ class Vereinsapp extends BaseConfig
             'frist' => 0,
             'verknuepfung_moeglich_id' => array( 'eigenschaft' => 'mitglieder_ids_eingeladen', 'frist' => NULL ),
             'verknuepfung_moeglich_frist' => array( 'eigenschaft' => 'start', 'frist' => 0 ),
+            'verknuepfung_nicht_moeglich' => array(
+                'keine_verknuepfung_moeglich' => 'Keine Rückmeldung möglich!',
+                'keine_verknuepfung_fuer_dich_moeglich' => 'Du bist nicht eingeplant und kannst deshalb keine Rückmeldung geben.',
+                'keine_verknuepfung_fuer_mitglied_moeglich' => 'Das Mitglied ist nicht eingeplant und kann deshalb keine Rückmeldung geben.',
+            ),
         ),
         'termine_rueckmeldungen' => array(
             'auswahlmoeglichkeiten' => array(
@@ -944,6 +958,11 @@ class Vereinsapp extends BaseConfig
             ),
             'verknuepfung_moeglich_id' => array( 'eigenschaft' => 'mitglieder_ids_eingeladen', 'frist' => NULL ),
             'verknuepfung_moeglich_frist' => array( 'eigenschaft' => 'start', 'frist' => 0 ),
+            'verknuepfung_nicht_moeglich' => array(
+                'keine_verknuepfung_moeglich' => 'Keine Rückmeldung möglich!',
+                'keine_verknuepfung_fuer_dich_moeglich' => 'Du bist nicht eingeladen und kannst deshalb keine Rückmeldung geben.',
+                'keine_verknuepfung_fuer_mitglied_moeglich' => 'Das Mitglied ist nicht eingeladen und kann deshalb keine Rückmeldung geben.',
+            ),
         ),
     );
 

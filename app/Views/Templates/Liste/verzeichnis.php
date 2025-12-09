@@ -23,8 +23,6 @@ if( array_key_exists( 'sortieren', $verzeichnis ) ) { ?> data-sortieren='<?= jso
                         echo '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span>';
                     } ?></div><?php } ?>
 
-<?php if( array_key_exists( 'views', $verzeichnis ) ) foreach( $verzeichnis['views'] as $view ) if( array_key_exists( 'data', $view ) ) echo view( $view['view'], $view['data'] ); else echo view( $view['view'] ); ?>
-
                 </li>
 
             </ul>

@@ -150,9 +150,8 @@ function Termine_Init() {
         const element_id = $(this).attr("data-element_id");
         const title = $(this).attr("data-title");
 
-        let gegen_liste = $(this).attr("data-gegen_liste");
-        if (typeof gegen_liste === "undefined" && liste == "termine") gegen_liste = "mitglieder";
-        else if (typeof gegen_liste === "undefined" && liste == "mitglieder") gegen_liste = "termine";
+        if (liste == "termine") gegen_liste = "mitglieder";
+        else if (liste == "mitglieder") gegen_liste = "termine";
 
         const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, liste + "_anwesenheiten_dokumentieren");
         $neues_modal.find("#anwesenheiten_dokumentieren.liste").attr("data-gegen_liste", liste).attr("data-gegen_element_id", element_id);
