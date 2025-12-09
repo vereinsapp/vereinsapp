@@ -2,9 +2,11 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
     const neue_ajax_id = AJAXSCHLANGE.length;
 
     if ("$ausloesend" in dom && dom.$ausloesend.exists()) {
-        dom.$ausloesend.find(".beschriftung").addClass("invisible");
-        dom.$ausloesend.find(".beschriftung").after(STATUS_SPINNER_HTML);
-        dom.$ausloesend.prop("disabled", true);
+        if (!dom.$ausloesend.find("." + STATUS_SPINNER_CLASS).exists()) {
+            dom.$ausloesend.find(".beschriftung").addClass("invisible");
+            dom.$ausloesend.find(".beschriftung").after(STATUS_SPINNER_HTML);
+            dom.$ausloesend.prop("disabled", true);
+        }
     }
 
     if (!("ajax_id" in data)) data.ajax_id = neue_ajax_id;

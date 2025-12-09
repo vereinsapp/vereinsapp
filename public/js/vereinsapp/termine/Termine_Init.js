@@ -146,19 +146,23 @@ function Termine_Init() {
 
     // RUECKMELDUNGEN VERWALTEN (MODAL) ÖFFNEN
     $(document).on("click", ".btn_termine_rueckmeldungen_verwalten", function () {
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck($(this).attr("data-title"), "termine_rueckmeldungen_verwalten_modal");
-        const $neue_liste = $neues_modal.find("#termine_rueckmeldungen_verwalten.liste");
-        $neue_liste.attr("data-gegen_liste", $(this).attr("data-liste")).attr("data-gegen_element_id", $(this).attr("data-element_id"));
-        Schnittstelle_DomModalOeffnen($neues_modal);
-        Schnittstelle_EventVariableUpdDom($neue_liste.attr("data-liste"));
+        Liste_VerknuepfungenModalOeffnen(
+            "termine_rueckmeldungen_verwalten_modal",
+            "termine_rueckmeldungen_verwalten",
+            $(this).attr("data-title"),
+            $(this).attr("data-element_id"),
+            $(this).attr("data-liste")
+        );
     });
 
     // ANWESENHEITEN DOKUMENTIEREN (MODAL) ÖFFNEN
     $(document).on("click", ".btn_termine_anwesenheiten_dokumentieren", function () {
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck($(this).attr("data-title"), "termine_anwesenheiten_dokumentieren_modal");
-        const $neue_liste = $neues_modal.find("#termine_anwesenheiten_dokumentieren.liste");
-        $neue_liste.attr("data-gegen_liste", $(this).attr("data-liste")).attr("data-gegen_element_id", $(this).attr("data-element_id"));
-        Schnittstelle_DomModalOeffnen($neues_modal);
-        Schnittstelle_EventVariableUpdDom($neue_liste.attr("data-liste"));
+        Liste_VerknuepfungenModalOeffnen(
+            "termine_anwesenheiten_dokumentieren_modal",
+            "termine_anwesenheiten_dokumentieren",
+            $(this).attr("data-title"),
+            $(this).attr("data-element_id"),
+            $(this).attr("data-liste")
+        );
     });
 }

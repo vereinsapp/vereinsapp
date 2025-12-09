@@ -91,12 +91,10 @@ data-element_id loswerden (vorausgesetzt, dass überall auch data-liste gesetzt 
 Wie umgehen mit
     Mitglieder_MitgliederAufgabenErledigtAnzeigen
     Aufgaben_ZugeordneteAufgabenAnzeigen
-    Liste_CheckAktualisieren
 Bugfix Schnittstelle_VariableLoeschen
 Bugfix Listenstatistik (aktualisieren braucht etwas Zeit?)
-Doppeltes einfügen eines Spinners verhindern
 btn_verknuepfung_bemerkung_aendern vereinheitlichen für alle Listen (nicht nur Verknüpfungen)
 btn_verknuepfung_bemerkung_aendern aktualisiert sich nur zeitverzögert
-Vereinheitlichung von termine_anwesenheiten_dokumentieren für verknuepfungen (analog zu Schnittstelle_DomNeuesModalInitialisiertZurueck) + .verknuepfungen_auswahlmoeglichkeiten auch für check
+.verknuepfungen_auswahlmoeglichkeiten auch für check (Liste_CheckAktualisieren loswerden)
 
 */
