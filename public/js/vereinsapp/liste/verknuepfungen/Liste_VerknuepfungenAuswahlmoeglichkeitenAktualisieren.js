@@ -7,7 +7,14 @@
  * @param {string} verknuepfungen
  */
 
-function Liste_VerknuepfungAktualisieren($verknuepfungen_auswahlmoeglichkeiten, liste, element_id, gegen_liste, gegen_element_id, verknuepfungen) {
+function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren(
+    $verknuepfungen_auswahlmoeglichkeiten,
+    liste,
+    element_id,
+    gegen_liste,
+    gegen_element_id,
+    verknuepfungen
+) {
     const $verknuepfung_moeglich = $verknuepfungen_auswahlmoeglichkeiten.find(".verknuepfung_moeglich");
     const $verknuepfung_nicht_moeglich = $verknuepfungen_auswahlmoeglichkeiten.find(".verknuepfung_nicht_moeglich");
 

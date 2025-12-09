@@ -75,7 +75,14 @@ function Liste_ElementAktualisieren($element, liste) {
 
     // VERKNUEPFUNGEN_AUSWAHLMOEGLICHKEITEN AKTUALISIEREN
     $element.find(".verknuepfungen_auswahlmoeglichkeiten").each(function () {
-        Liste_VerknuepfungAktualisieren($(this), liste, element_id, gegen_liste, gegen_element_id, $(this).attr("data-verknuepfungen"));
+        Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren(
+            $(this),
+            liste,
+            element_id,
+            gegen_liste,
+            gegen_element_id,
+            $(this).attr("data-verknuepfungen")
+        );
     });
 
     // LINK AKTUALISIEREN

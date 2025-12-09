@@ -99,7 +99,7 @@ class Vereinsapp_javascript extends BaseConfig
         
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungenInit.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungErstellen.js?v='.VERSION,
-        'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungAktualisieren.js?v='.VERSION,
+        'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungBemerkungAendern.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_CheckAktualisieren.js?v='.VERSION,
 
