@@ -13,8 +13,8 @@
         view( 'Templates/modal', array( 'id' => 'termin_basiseigenschaften', 'modal' =>
         view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'termine' ), 'btn' => array( 'klasse_id' => 'btn_termin_aktion' ), 'formular' =>
         view( 'Termine/termin_basiseigenschaften_formular' ) ) ) ) ); ?>
-<?= view( 'Templates/modal', array( 'id' => 'termine_anwesenheiten_dokumentieren', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ) ) ); ?>
+<?= view( 'Templates/modal', array( 'id' => 'termine_anwesenheiten_dokumentieren_modal', 'modal' =>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_anwesenheiten_dokumentieren'] ) ) ) ); ?>
 
 <?php /* if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) { echo
     view( 'Templates/modal', array( 'id' => 'zugeordnete_aufgaben_anzeigen', 'modal' =>

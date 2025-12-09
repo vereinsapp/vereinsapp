@@ -154,17 +154,11 @@ function Termine_Init() {
     });
 
     // ANWESENHEITEN DOKUMENTIEREN (MODAL) ÖFFNEN
-    $(document).on("click", ".btn_anwesenheiten_dokumentieren", function () {
-        const liste = $(this).attr("data-liste");
-        const element_id = $(this).attr("data-element_id");
-        const title = $(this).attr("data-title");
-
-        if (liste == "termine") gegen_liste = "mitglieder";
-        else if (liste == "mitglieder") gegen_liste = "termine";
-
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, liste + "_anwesenheiten_dokumentieren");
-        $neues_modal.find("#anwesenheiten_dokumentieren.liste").attr("data-gegen_liste", liste).attr("data-gegen_element_id", element_id);
+    $(document).on("click", ".btn_termine_anwesenheiten_dokumentieren", function () {
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck($(this).attr("data-title"), "termine_anwesenheiten_dokumentieren_modal");
+        const $neue_liste = $neues_modal.find("#termine_anwesenheiten_dokumentieren.liste");
+        $neue_liste.attr("data-gegen_liste", $(this).attr("data-liste")).attr("data-gegen_element_id", $(this).attr("data-element_id"));
         Schnittstelle_DomModalOeffnen($neues_modal);
-        Schnittstelle_EventVariableUpdDom(gegen_liste);
+        Schnittstelle_EventVariableUpdDom($neue_liste.attr("data-liste"));
     });
 }

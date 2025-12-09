@@ -312,7 +312,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'spacer' => array ( 'bootstrap' => 'dot' ),
 
     'termine_rueckmeldungen_verwalten' => array( 'bootstrap' => 'hand-thumbs-up' ),
-    'anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
+    'termine_anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
     'statistiken' => array( 'bootstrap' => 'graph-up-arrow' ),
     'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),
     'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),
