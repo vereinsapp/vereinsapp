@@ -952,6 +952,7 @@ class Vereinsapp extends BaseConfig
         ),
         'termine_rueckmeldungen' => array(
             'auswahlmoeglichkeiten' => array(
+                0 => array( 'farbe' => 'primary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['loeschen']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['loeschen']['bootstrap'].'-fill"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'-fill"></i>' ),
                 2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'-fill"></i>' ),
             ),

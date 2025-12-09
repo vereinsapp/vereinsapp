@@ -128,7 +128,7 @@ class Termine extends BaseController {
 
         $this->viewdata['auswertungen'][ 'rueckmeldungen_termin' ] = array(
             'auswertungen' => 'termine_rueckmeldungen',
-            'auswahlmoeglichkeiten' => array_keys( VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'] ),
+            'auswahlmoeglichkeiten' => array( 1, 2 ),
             'gruppieren' => 'register',
             'liste' => 'mitglieder',
             'filtern' => $this->filtern_mitglieder_kombiniert( $termin_id ),
@@ -348,7 +348,7 @@ class Termine extends BaseController {
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine_rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( $this->request->getPost()['status'] == 0 ) $ajax_antwort['validation'] = 'Ein Löschen der Rückmeldung ist nicht möglich!';
+        else if( !( array_key_exists( 'global.einstellungen', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'global.einstellungen' ) ) AND $this->request->getPost()['status'] == 0 ) $ajax_antwort['validation'] = 'Ein Löschen der Rückmeldung ist nicht möglich!';
         else if( Time::parse( model(Termin_Model::class)->find(
                     $this->request->getPost()['termin_id']
                  )[ VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['eigenschaft'] ], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds( VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['frist'] ) ) )
