@@ -74,7 +74,7 @@ function Liste_ElementAktualisieren($element, liste) {
 
     // CHECK AKTUALISIEREN
     $element.find(".check").each(function () {
-        Liste_CheckAktualisieren($(this), element_id, disabled, liste);
+        Liste_CheckAktualisieren($(this), disabled, element_id, liste);
     });
 
     // LINK AKTUALISIEREN

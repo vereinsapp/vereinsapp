@@ -31,7 +31,6 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
         if( is_array( $liste['klasse_id'] ) ) foreach( $liste['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;
         else echo ' '.$liste['klasse_id'];
     }
-    if( array_key_exists( 'verknuepfungen', $liste ) ) echo ' d-grid';
     ?>"<?php
     if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
     if( array_key_exists( 'gegen_liste', $liste ) ) { ?> data-gegen_liste="<?= $liste['gegen_liste']; ?>"<?php }
@@ -45,28 +44,27 @@ if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_enco
         if( array_key_exists( 'group-flush', $liste ) AND $liste['group-flush'] ) echo ' h5';
         ?>">
 <?php if( array_key_exists( 'verknuepfungen', $liste ) ) { ?>
-            <div class="form-check form-switch"><label class="form-check-label d-block"><input class="form-check-input float-start me-3 check" type="checkbox" data-verknuepfungen="<?= $liste['verknuepfungen']; ?>" role="switch" />
+            <input class="form-check-input float-start me-3 check" type="checkbox" data-verknuepfungen="<?= $liste['verknuepfungen']; ?>" role="switch" />
 <?php } ?>
-            <span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste ) ) { ?><?= $liste['beschriftung']; ?><?php } ?></span>
+            <label class="d-block">
+                <span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste ) ) { ?><?= $liste['beschriftung']; ?><?php } ?></span>
 <?php if( array_key_exists( 'werkzeugkasten_handle', $liste ) AND $liste['werkzeugkasten_handle'] ) { ?>
-            <i class="bi bi-<?= SYMBOLE['werkzeuge']['bootstrap']; ?> text-primary float-end ms-2 stretched-link-unwirksam" data-bs-toggle="offcanvas" data-bs-target="#werkzeugkasten" role="button"></i>
+                <i class="bi bi-<?= SYMBOLE['werkzeuge']['bootstrap']; ?> text-primary float-end ms-2 stretched-link-unwirksam" data-bs-toggle="offcanvas" data-bs-target="#werkzeugkasten" role="button"></i>
+<?php }
+      if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) { ?>
+                <i class="bi bi-<?= SYMBOLE['sortable']['bootstrap']; ?> text-primary float-end ms-2 stretched-link-unwirksam sortable_handle" role="button"></i>
+<?php }
+      if( array_key_exists( 'zusatzsymbol', $liste ) AND is_array( $liste['zusatzsymbol'] ) ) foreach( $liste['zusatzsymbol'] as $zusatzsymbol ) { ?>
+                <span class="zusatzsymbol float-end ms-2" data-zusatzsymbol="<?= $zusatzsymbol ?>"></span>
 <?php } ?>
-<?php if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) { ?>
-            <i class="bi bi-<?= SYMBOLE['sortable']['bootstrap']; ?> text-primary float-end ms-2 stretched-link-unwirksam sortable_handle" role="button"></i>
-<?php } ?>
-<?php if( array_key_exists( 'zusatzsymbol', $liste ) AND is_array( $liste['zusatzsymbol'] ) ) foreach( $liste['zusatzsymbol'] as $zusatzsymbol ) { ?>
-            <span class="zusatzsymbol float-end ms-2" data-zusatzsymbol="<?= $zusatzsymbol ?>"></span>
-<?php } ?>
-            <span class="zusatzsymbol float-end ms-2" data-zusatzsymbol="bemerkung"></span>
+                <span class="zusatzsymbol float-end ms-2" data-zusatzsymbol="bemerkung"></span>
 <?php if( array_key_exists( 'zusatzinfo', $liste ) AND is_array( $liste['zusatzinfo'] ) ) foreach( $liste['zusatzinfo'] as $zusatzinfo ) { ?>
-            <span class="zusatzinfo float-end ms-2" data-zusatzinfo="<?= $zusatzinfo ?>"></span>
-<?php } ?>
-<?php if( array_key_exists( 'link', $liste ) AND $liste['link'] ) { ?>
-            <a class="stretched-link"></a>
+                <span class="zusatzinfo float-end ms-2" data-zusatzinfo="<?= $zusatzinfo ?>"></span>
+<?php }
+      if( array_key_exists( 'link', $liste ) AND $liste['link'] ) { ?>
+                <a class="stretched-link"></a>
 <?php }?>
-<?php if( array_key_exists( 'verknuepfungen', $liste ) ) { ?>
-            </label></div>
-<?php } ?>
+            </label>
         </div>
 <?php if( array_key_exists( 'vorschau', $liste ) ) { ?>
         <div class="vorschau text-truncate text-secondary mb-1<?php
