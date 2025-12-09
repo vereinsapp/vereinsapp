@@ -26,16 +26,15 @@ function Liste_VerknuepfungErstellen(dom, data) {
 
             // bereits vorhandene identische Verknüpfungen werden gelöscht
             $.each(
-                Schnittstelle_VariableRausZurueck(
-                    "zugeordnete_" + LISTEN[verknuepfungen].element + "_ids",
-                    gegen_element_id,
-                    gegen_liste,
-                    new Array()
-                ),
+                Schnittstelle_VariableRausZurueck("zugeordnete_" + LISTEN[verknuepfungen].element + "_ids", element_id, liste, new Array()),
                 function (position, zugeordnete_verknuepfung_id) {
                     if (
-                        Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", zugeordnete_verknuepfung_id, verknuepfungen, undefined) ===
-                        element_id
+                        Schnittstelle_VariableRausZurueck(
+                            LISTEN[gegen_liste].element + "_id",
+                            zugeordnete_verknuepfung_id,
+                            verknuepfungen,
+                            undefined
+                        ) === gegen_element_id
                     )
                         Schnittstelle_VariableLoeschen(zugeordnete_verknuepfung_id, verknuepfungen);
                 }
@@ -64,7 +63,7 @@ function Liste_VerknuepfungErstellen(dom, data) {
             Schnittstelle_VariableElementZuordnen(verknuepfungen);
             Schnittstelle_VariableElementErgaenzen(verknuepfungen);
             Schnittstelle_EventVariableUpdDom(verknuepfungen);
-            Schnittstelle_EventVariableUpdDom(gegen_liste);
+            Schnittstelle_EventVariableUpdDom(liste);
         },
         function (AJAX) {
             if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");

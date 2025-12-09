@@ -2,7 +2,7 @@
 <?= $this->section( 'navbar' ); ?><?= view( 'Templates/navbar_int' ); ?><?= $this->endSection(); ?>
 <?= $this->section( 'containers' ); ?>
 
-<div class="container mb-3 element" data-liste="termine" data-element_id="<?= $element_id; ?>">
+<div class="container mb-3 element" data-liste="termine" data-element_id="<?= $element_id; ?>" data-gegen_liste="mitglieder" data-gegen_element_id="<?= ICH['id']; ?>">
 <?= view( 'Templates/Liste/element_navigation', array( 'element_navigation' => $element_navigation ) ); ?>
     <div class="h5 beschriftung text-center"><span class="eigenschaft" data-eigenschaft="titel"></span></div>
     <div class="row g-0 my-1">
@@ -54,6 +54,9 @@
 
 <?= view( 'Templates/modal', array( 'id' => 'termine_anwesenheiten_dokumentieren', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ) ) ); ?>
+<?php if( auth()->user()->can( 'termine.verwaltung' ) ) echo
+    view( 'Templates/modal', array( 'id' => 'termine_rueckmeldungen_verwalten_modal', 'modal' =>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_rueckmeldungen_verwalten'] ) ) ) ); ?>
 <?php if( auth()->user()->can( 'termine.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'id' => 'termin_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'termine' ), 'btn' => array( 'klasse_id' => 'btn_termin_aktion' ), 'formular' =>

@@ -51,11 +51,29 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
                 'klasse_id' => 'btn_anwesenheiten_dokumentieren',
-                'title' => 'Anwesenheiten dokumentieren',
+                'title' => 'Termin-Anwesenheiten dokumentieren',
             );
 
         }
-        
+
+        if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
+
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
+            unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array(
+                'typ' => 'auswahlmoeglichkeiten',
+                'verknuepfungen' => 'termine_rueckmeldungen',
+                'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
+            );
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['gegen_liste'] = 'mitglieder';
+
+            $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
+                'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',
+                'title' => 'Termin-Rückmeldungen verwalten',
+            );
+
+        }
+
         if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
             $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
@@ -178,7 +196,7 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['werkzeugkasten']['anwesenheiten_dokumentieren'] = array(
                 'klasse_id' => 'btn_anwesenheiten_dokumentieren',
-                'title' => 'Anwesenheiten dokumentieren',
+                'title' => 'Termin-Anwesenheiten dokumentieren',
             );
 
         }
@@ -201,18 +219,21 @@ class Mitglieder extends BaseController {
         }
 
         if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
-            $this->viewdata['liste']['bevorstehende_termine_mitglied'] = HAUPTINSTANZEN['termine'];
-            $this->viewdata['liste']['bevorstehende_termine_mitglied']['link'] = TRUE;
-            unset($this->viewdata['liste']['bevorstehende_termine_mitglied']['filtern']['ich_eingeladen_janein']);
-            $this->viewdata['liste']['bevorstehende_termine_mitglied']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
-            $this->viewdata['liste']['bevorstehende_termine_mitglied']['vorschau'] = array( 'start', 'ort' );
-            $this->viewdata['liste']['bevorstehende_termine_mitglied']['verknuepfungen'] = array(
+
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
+            unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array(
                 'typ' => 'auswahlmoeglichkeiten',
                 'verknuepfungen' => 'termine_rueckmeldungen',
-                'liste' => 'mitglieder',
-                'element_id' => $mitglied_id,
                 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
             );
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['gegen_liste'] = 'mitglieder';
+
+            $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
+                'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',
+                'title' => 'Termin-Rückmeldungen verwalten',
+            );
+
         }
 
         if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {

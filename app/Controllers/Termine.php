@@ -22,6 +22,8 @@ class Termine extends BaseController {
             'element_id' => ICH['id'],
             'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
         );
+        $this->viewdata['liste']['bevorstehende_termine']['gegen_liste'] = "mitglieder";
+        $this->viewdata['liste']['bevorstehende_termine']['gegen_element_id'] = ICH['id'];
 
         $this->viewdata['liste']['anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
         $this->viewdata['liste']['anwesenheiten_dokumentieren']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
@@ -94,6 +96,19 @@ class Termine extends BaseController {
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
 
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_handle'] = TRUE;
+
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['mitglieder'];
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array(
+                'typ' => 'auswahlmoeglichkeiten',
+                'verknuepfungen' => 'termine_rueckmeldungen',
+                'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
+            );
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['gegen_liste'] = 'termine';
+
+            $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
+                'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',
+                'title' => 'Rückmeldungen verwalten',
+            );
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_termin_aendern', 'formular_oeffnen'),
@@ -212,6 +227,21 @@ class Termine extends BaseController {
         // }
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
+            
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['mitglieder'];
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array(
+                'typ' => 'auswahlmoeglichkeiten',
+                'verknuepfungen' => 'termine_rueckmeldungen',
+                'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
+            );
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['gegen_liste'] = 'termine';
+
+            $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
+                'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',
+                'title' => 'Rückmeldungen verwalten',
+            );
+
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_termin_aendern', 'formular_oeffnen'),
                 'title' => 'Termin ändern',

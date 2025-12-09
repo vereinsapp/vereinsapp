@@ -75,7 +75,7 @@ if( array_key_exists( 'gegen_element_id', $liste ) ) { ?> data-gegen_element_id=
 <?php } ?>
 
 <?php if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'typ', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['typ'] === 'auswahlmoeglichkeiten' )
-    echo view( 'Templates/Liste/verknuepfungen_'.$liste['verknuepfungen']['typ'], array( 'verknuepfungen' => $liste['verknuepfungen']['verknuepfungen'], 'liste' => $liste['verknuepfungen']['liste'], 'element_id' => $liste['verknuepfungen']['element_id'], 'auswahlmoeglichkeiten' => $liste['verknuepfungen']['auswahlmoeglichkeiten'], ) ); ?>
+    echo view( 'Templates/Liste/verknuepfungen_'.$liste['verknuepfungen']['typ'], array( 'verknuepfungen' => $liste['verknuepfungen']['verknuepfungen'], 'auswahlmoeglichkeiten' => $liste['verknuepfungen']['auswahlmoeglichkeiten'], ) ); ?>
 
     </li>
 

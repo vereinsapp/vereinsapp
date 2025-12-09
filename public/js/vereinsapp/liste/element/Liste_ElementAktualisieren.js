@@ -1,5 +1,7 @@
 function Liste_ElementAktualisieren($element, liste) {
     const element_id = Number($element.attr("data-element_id"));
+    const gegen_liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-gegen_liste"), undefined);
+    const gegen_element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-gegen_element_id"), undefined);
 
     // ELEMENTE DISABLED
     let disabled = false;
@@ -29,8 +31,6 @@ function Liste_ElementAktualisieren($element, liste) {
     } else $element.find(".beschriftung").removeClass("text-secondary");
 
     // ELEMENT BEDINGT FORMATIEREN (ACHTUNG: REIHENFOLGE!)
-    const gegen_liste = $element.attr("data-gegen_liste");
-    const gegen_element_id = $element.attr("data-gegen_element_id");
     const bedingte_formatierung = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-bedingte_formatierung"), new Object());
 
     if (!("liste" in bedingte_formatierung)) bedingte_formatierung.liste = liste;
@@ -44,7 +44,7 @@ function Liste_ElementAktualisieren($element, liste) {
         $.each(bedingte_formatierung.klasse, function (klasse, filtern) {
             const filtern_ergaenzung = new Object();
             if (typeof gegen_liste !== "undefined" && typeof gegen_element_id !== "undefined") {
-                filtern_ergaenzung[LISTEN[gegen_liste].element + "_id"] = { inklusiv: [Number(gegen_element_id)] };
+                filtern_ergaenzung[LISTEN[gegen_liste].element + "_id"] = { inklusiv: [gegen_element_id] };
                 filtern_ergaenzung[LISTEN[liste].element + "_id"] = { inklusiv: [element_id] };
             } else filtern_ergaenzung.id = { inklusiv: [element_id] };
 
@@ -75,7 +75,7 @@ function Liste_ElementAktualisieren($element, liste) {
 
     // VERKNUEPFUNGEN_AUSWAHLMOEGLICHKEITEN AKTUALISIEREN
     $element.find(".verknuepfungen_auswahlmoeglichkeiten").each(function () {
-        Liste_VerknuepfungAktualisieren($(this), liste, element_id, $(this).attr("data-verknuepfungen"));
+        Liste_VerknuepfungAktualisieren($(this), liste, element_id, gegen_liste, gegen_element_id, $(this).attr("data-verknuepfungen"));
     });
 
     // LINK AKTUALISIEREN

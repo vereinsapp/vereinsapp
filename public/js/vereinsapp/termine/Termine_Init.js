@@ -83,28 +83,28 @@ EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
 };
 
 ELEMENTE.termin.ergaenzen_aktion = function (termin) {
-    termin["mitglieder_ids_eingeladen"] = new Array();
+    termin.mitglied_ids_eingeladen = new Array();
     $.each(
         Liste_TabelleGefiltertZurueck(
             LISTEN.mitglieder.tabelle,
             Liste_FilternMitPrioKombiniertZurueck(
-                Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin["kategorie"]], new Object()),
-                termin["filtern_mitglieder"],
+                Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin.kategorie], new Object()),
+                termin.filtern_mitglieder,
                 "mitglieder"
             ),
             "mitglieder"
         ),
         function () {
-            termin["mitglieder_ids_eingeladen"].push(this["id"]);
+            termin.mitglied_ids_eingeladen.push(this.id);
         }
     );
-    termin["ich_eingeladen_janein"] = termin["mitglieder_ids_eingeladen"].includes(Number(ICH["id"]));
+    termin.ich_eingeladen_janein = termin.mitglied_ids_eingeladen.includes(Number(ICH.id));
 
-    termin["ich_rueckgemeldet_janein"] = false;
+    termin.ich_rueckgemeldet_janein = false;
     if ("zugeordnete_termine_rueckmeldung_ids" in termin)
-        $.each(termin["zugeordnete_termine_rueckmeldung_ids"], function (position, rueckmeldung_id) {
-            if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == Number(ICH["id"])) {
-                termin["ich_rueckgemeldet_janein"] = true;
+        $.each(termin.zugeordnete_termine_rueckmeldung_ids, function (position, rueckmeldung_id) {
+            if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == Number(ICH.id)) {
+                termin.ich_rueckgemeldet_janein = true;
                 return false;
             }
         });
@@ -142,6 +142,15 @@ function Termine_Init() {
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
         );
+    });
+
+    // RUECKMELDUNGEN VERWALTEN (MODAL) ÖFFNEN
+    $(document).on("click", ".btn_termine_rueckmeldungen_verwalten", function () {
+        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck($(this).attr("data-title"), "termine_rueckmeldungen_verwalten_modal");
+        const $neue_liste = $neues_modal.find("#termine_rueckmeldungen_verwalten.liste");
+        $neue_liste.attr("data-gegen_liste", $(this).attr("data-liste")).attr("data-gegen_element_id", $(this).attr("data-element_id"));
+        Schnittstelle_DomModalOeffnen($neues_modal);
+        Schnittstelle_EventVariableUpdDom($neue_liste.attr("data-liste"));
     });
 
     // ANWESENHEITEN DOKUMENTIEREN (MODAL) ÖFFNEN

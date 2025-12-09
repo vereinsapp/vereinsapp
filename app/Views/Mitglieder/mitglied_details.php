@@ -35,11 +35,6 @@
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'] ) ); ?>
 </div><?php } ?>
 
-<?php if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) ) { ?><div class="container mb-3">
-    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="termine" data-instanz="bevorstehende_termine_mitglied">Termine</div>
-<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['bevorstehende_termine_mitglied'] ) ); ?>
-</div><?php } ?>
-
 <?php if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) { ?><div class="container mb-3">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="kassenbuch" data-instanz="kassenbuch_offene_eintraege_mitglied">Offene Kassenbucheinträge</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['kassenbuch_offene_eintraege_mitglied'] ) ); ?>
@@ -62,6 +57,9 @@
 <?php if( array_key_exists( LISTEN['termine_anwesenheiten']['controller'], CONTROLLERS ) ) echo
     view( 'Templates/modal', array( 'id' => 'mitglieder_anwesenheiten_dokumentieren', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['anwesenheiten_dokumentieren'] ) ) ) ); ?>
+<?php if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) ) echo
+    view( 'Templates/modal', array( 'id' => 'termine_rueckmeldungen_verwalten_modal', 'modal' =>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_rueckmeldungen_verwalten'] ) ) ) ); ?>
 <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'id' => 'mitglied_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_aktion' ), 'formular' =>

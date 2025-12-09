@@ -279,7 +279,7 @@ class Vereinsapp extends BaseConfig
             'passwort_alt' => array( 'beschriftung' => 'Altes Passwort', 'typ' => 'text' ),                 // PHP
             'passwort_neu' => array( 'beschriftung' => 'Neues Passwort', 'typ' => 'text' ),                 // PHP
             'passwort_neu2' => array( 'beschriftung' => 'Neues Passwort (Wiederholung)', 'typ' => 'text' ), // PHP
-            'zugeordnete_vergebenes_recht_ids' => array( 'beschriftung' => 'Zugeordnete vergebene Rechte', 'typ' => 'element_ids' ), // JAVA
+            'zugeordnete_vergebenes_recht_ids' => array( 'beschriftung' => 'Zugeordnete vergebene Rechte', 'typ' => 'element_ids' ),            // JAVA
             'zugeordnete_aufgaben_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Aufgaben-Rückmeldungen', 'typ' => 'element_ids' ), // JAVA
             'zugeordnete_termine_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Termine-Rückmeldungen', 'typ' => 'element_ids' ),   // JAVA
             'zugeordnete_termine_anwesenheit_ids' => array( 'beschriftung' => 'Zugeordnete Anwesenheiten', 'typ' => 'element_ids' ),            // JAVA
@@ -336,7 +336,7 @@ class Vereinsapp extends BaseConfig
             'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text' ),
             'oeffentlich_janein' => array( 'beschriftung' => 'Öffentlich', 'typ' => 'janein' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'mitglieder_ids_eingeladen' => array( 'beschriftung' => 'Eingeladene Mitglieder', 'typ' => 'element_ids' ), // JAVA
+            'mitglied_ids_eingeladen' => array( 'beschriftung' => 'Eingeladene Mitglieder', 'typ' => 'element_ids' ), // JAVA
             'ich_eingeladen_janein' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'janein' ),              // JAVA
             'ich_rueckgemeldet_janein' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'janein' ), // JAVA
             'zugeordnete_aufgaben_zuordnung_termine_ids' => array( 'beschriftung' => 'Zugeordnete Aufgaben', 'typ' => 'element_ids' ),  // JAVA
@@ -942,7 +942,7 @@ class Vereinsapp extends BaseConfig
                 2 => array( 'farbe' => 'success', 'aktiv' => 'als erledigt markieren', 'passiv' => 'erledigt' ),
             ),
             'frist' => 0,
-            'verknuepfung_moeglich_id' => array( 'eigenschaft' => 'mitglieder_ids_eingeladen', 'frist' => NULL ),
+            'verknuepfung_moeglich_id' => array( 'eigenschaft' => 'mitglied_ids_eingeladen', 'liste' => 'aufgaben' ),
             'verknuepfung_moeglich_frist' => array( 'eigenschaft' => 'start', 'frist' => 0 ),
             'verknuepfung_nicht_moeglich' => array(
                 'keine_verknuepfung_moeglich' => 'Keine Rückmeldung möglich!',
@@ -956,7 +956,7 @@ class Vereinsapp extends BaseConfig
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'-fill"></i>' ),
                 2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'-fill"></i>' ),
             ),
-            'verknuepfung_moeglich_id' => array( 'eigenschaft' => 'mitglieder_ids_eingeladen', 'frist' => NULL ),
+            'verknuepfung_moeglich_id' => array( 'eigenschaft' => 'mitglied_ids_eingeladen', 'liste' => 'termine' ),
             'verknuepfung_moeglich_frist' => array( 'eigenschaft' => 'start', 'frist' => 0 ),
             'verknuepfung_nicht_moeglich' => array(
                 'keine_verknuepfung_moeglich' => 'Keine Rückmeldung möglich!',

@@ -97,5 +97,8 @@ Bugfix Listenstatistik (aktualisieren braucht etwas Zeit?)
 Doppeltes einfügen eines Spinners verhindern
 btn_verknuepfung_bemerkung_aendern vereinheitlichen für alle Listen (nicht nur Verknüpfungen)
 Vereinheitlichung von anwesenheiten_dokumentieren für verknuepfungen (analog zu Schnittstelle_DomNeuesModalInitialisiertZurueck) + .verknuepfungen_auswahlmoeglichkeiten auch für check
+anwesenheiten_dokumentieren umbenennen in termine_anwesenheiten_dokumentieren
+Liste_VerknuepfungAktualisieren umbenennen in Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren
+btn_verknuepfung_bemerkung_aendern aktualisiert sich nur zeitverzögert
 
 */

@@ -46,13 +46,9 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
 
                 Schnittstelle_EventVariableUpdLocalstorage("termine");
                 Schnittstelle_EventLocalstorageUpdVariable("termine");
-                Schnittstelle_EventLocalstorageUpdVariable("termine_rueckmeldungen");
                 // Schnittstelle_VariableElementZuordnen("termine");
-                Schnittstelle_VariableElementZuordnen("termine_rueckmeldungen");
                 Schnittstelle_VariableElementErgaenzen("termine");
-                Schnittstelle_VariableElementErgaenzen("termine_rueckmeldungen");
                 Schnittstelle_EventVariableUpdDom("termine");
-                Schnittstelle_EventVariableUpdDom("termine_rueckmeldungen");
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                     Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
