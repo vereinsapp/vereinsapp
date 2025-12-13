@@ -2,11 +2,16 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
     const neue_ajax_id = AJAXSCHLANGE.length;
 
     if ("$ausloesend" in dom && dom.$ausloesend.exists()) {
-        if (!dom.$ausloesend.find("." + STATUS_SPINNER_CLASS).exists()) {
-            dom.$ausloesend.find(".beschriftung").addClass("invisible");
-            dom.$ausloesend.find(".beschriftung").after(STATUS_SPINNER_HTML);
-            dom.$ausloesend.prop("disabled", true);
-        }
+        dom.$ausloesend.find("." + STATUS_SPINNER_CLASS).remove();
+        dom.$ausloesend.find(".beschriftung").addClass("invisible");
+        dom.$ausloesend.find(".beschriftung").after(STATUS_SPINNER_HTML);
+
+        const $label = dom.$ausloesend.closest(".verknuepfungen_auswahlmoeglichkeiten").siblings("label");
+        $label.find("." + STATUS_SPINNER_CLASS).remove();
+        $label.find(".beschriftung").addClass("invisible");
+        $label.find(".beschriftung").after(STATUS_SPINNER_HTML);
+
+        dom.$ausloesend.prop("disabled", true);
     }
 
     if (!("ajax_id" in data)) data.ajax_id = neue_ajax_id;
@@ -41,8 +46,13 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
 
                 if ("dom" in AJAX && "$ausloesend" in AJAX.dom && AJAX.dom.$ausloesend.exists()) {
                     AJAX.dom.$ausloesend.prop("disabled", false);
+
                     AJAX.dom.$ausloesend.find("." + STATUS_SPINNER_CLASS).remove();
                     AJAX.dom.$ausloesend.find(".beschriftung").removeClass("invisible");
+
+                    const $label = AJAX.dom.$ausloesend.closest(".verknuepfungen_auswahlmoeglichkeiten").siblings("label");
+                    $label.find("." + STATUS_SPINNER_CLASS).remove();
+                    $label.find(".beschriftung").removeClass("invisible");
                 }
 
                 // WENN DIE VALIDATION FEHLSCHLÄGT

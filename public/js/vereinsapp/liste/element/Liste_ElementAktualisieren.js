@@ -68,15 +68,11 @@ function Liste_ElementAktualisieren($element, liste) {
         );
     });
 
-    // CHECK AKTUALISIEREN
-    $element.find(".check").each(function () {
-        Liste_CheckAktualisieren($(this), disabled, element_id, liste);
-    });
-
     // VERKNUEPFUNGEN_AUSWAHLMOEGLICHKEITEN AKTUALISIEREN
     $element.find(".verknuepfungen_auswahlmoeglichkeiten").each(function () {
         Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren(
             $(this),
+            disabled,
             liste,
             element_id,
             gegen_liste,

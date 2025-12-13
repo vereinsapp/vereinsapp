@@ -1,6 +1,21 @@
 ELEMENTE.vergebenes_recht.zuordnen_aktion = function (vergebenes_recht) {
     const vergebenes_recht_id = vergebenes_recht.id;
 
+    if ("verfuegbare_rechte" in LISTEN) {
+        const verfuegbares_recht_id = Schnittstelle_VariableRausZurueck("verfuegbares_recht_id", vergebenes_recht_id, "vergebene_rechte", undefined);
+
+        if (typeof verfuegbares_recht_id !== "undefined") {
+            const verfuegbares_recht = LISTEN.verfuegbare_rechte.tabelle[verfuegbares_recht_id];
+
+            if (typeof verfuegbares_recht !== "undefined") {
+                if (!("zugeordnete_vergebenes_recht_ids" in verfuegbares_recht))
+                    LISTEN.verfuegbare_rechte.tabelle[verfuegbares_recht_id].zugeordnete_vergebenes_recht_ids = [vergebenes_recht_id];
+                else if (!verfuegbares_recht.zugeordnete_vergebenes_recht_ids.includes(vergebenes_recht_id))
+                    LISTEN.verfuegbare_rechte.tabelle[verfuegbares_recht_id].zugeordnete_vergebenes_recht_ids.push(vergebenes_recht_id);
+            }
+        }
+    }
+
     if ("mitglieder" in LISTEN) {
         const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", vergebenes_recht_id, "vergebene_rechte", undefined);
 

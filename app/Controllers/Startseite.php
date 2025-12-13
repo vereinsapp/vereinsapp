@@ -69,7 +69,7 @@ class Startseite extends BaseController {
             unset( $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['werkzeugkasten'] );
             unset( $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['listenstatistik'] );
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['filtern'] = array(
-                'start' => array( VERKNUEPFUNGEN['aufgaben_rueckmeldungen']['verknuepfung_moeglich_frist']['eigenschaft'] => Time::now( 'Europe/Berlin' )->addSeconds( VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['frist'] )->toDateTimeString(), ),
+                'start' => array( VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['eigenschaft'] => Time::now( 'Europe/Berlin' )->addSeconds( VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['frist'] )->toDateTimeString(), ),
                 'ich_rueckgemeldet_janein' => array( 'inklusiv' => array( FALSE ), ),
                 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ), ),
             );

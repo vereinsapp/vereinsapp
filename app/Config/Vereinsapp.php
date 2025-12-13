@@ -935,29 +935,20 @@ class Vereinsapp extends BaseConfig
      * Frist in Sekunden, die man mindestens vor dem Start einhalten muss
      */
     public $verknuepfungen = array(
-        'aufgaben_rueckmeldungen' => array(
-            'auswahlmoeglichkeiten' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => 'ausplanen', 'passiv' => 'ausgeplant' ),
-                1 => array( 'farbe' => 'warning', 'aktiv' => 'einplanen', 'passiv' => 'eingeplant' ),
-                2 => array( 'farbe' => 'success', 'aktiv' => 'als erledigt markieren', 'passiv' => 'erledigt' ),
-            ),
-            'frist' => 0,
-            'verknuepfung_moeglich_id' => array( 'eigenschaft' => 'mitglied_ids_eingeladen', 'liste' => 'aufgaben' ),
-            'verknuepfung_moeglich_frist' => array( 'eigenschaft' => 'start', 'frist' => 0 ),
-            'verknuepfung_nicht_moeglich' => array(
-                'keine_verknuepfung_moeglich' => 'Keine Rückmeldung möglich!',
-                'keine_verknuepfung_fuer_dich_moeglich' => 'Du bist nicht eingeplant und kannst deshalb keine Rückmeldung geben.',
-                'keine_verknuepfung_fuer_mitglied_moeglich' => 'Das Mitglied ist nicht eingeplant und kann deshalb keine Rückmeldung geben.',
-            ),
+        'vergebene_rechte' => array(
+            'auswahlmoeglichkeiten' => array( 0 => array(), 1 => array(), ),
+        ),
+        'termine_anwesenheiten' => array(
+            'auswahlmoeglichkeiten' => array( 0 => array(), 1 => array(), ),
         ),
         'termine_rueckmeldungen' => array(
             'auswahlmoeglichkeiten' => array(
-                0 => array( 'farbe' => 'primary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['loeschen']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['loeschen']['bootstrap'].'-fill"></i>' ),
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['loeschen']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['loeschen']['bootstrap'].'-fill"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'-fill"></i>' ),
                 2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'-fill"></i>' ),
             ),
-            'verknuepfung_moeglich_id' => array( 'eigenschaft' => 'mitglied_ids_eingeladen', 'liste' => 'termine' ),
-            'verknuepfung_moeglich_frist' => array( 'eigenschaft' => 'start', 'frist' => 0 ),
+            'verknuepfung_moeglich_eingeladen' => array( 'eigenschaft' => 'mitglied_ids_eingeladen', 'liste' => 'termine' ),
+            'verknuepfung_moeglich_frist' => array( 'eigenschaft' => 'start', 'liste' => 'termine', 'frist' => 0 ),
             'verknuepfung_nicht_moeglich' => array(
                 'keine_verknuepfung_moeglich' => 'Keine Rückmeldung möglich!',
                 'keine_verknuepfung_fuer_dich_moeglich' => 'Du bist nicht eingeladen und kannst deshalb keine Rückmeldung geben.',

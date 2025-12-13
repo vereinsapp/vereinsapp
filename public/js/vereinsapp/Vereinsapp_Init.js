@@ -85,16 +85,14 @@ eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 Lässt sich filtern/sortieren/gruppieren_localstorage_speichern entfernen mittels $ziel?
 Braucht es formular_beschriftung und beschriftung-span für Formulare (bspw in mitglied_einmal_link_anzeigen_formular.php)?
 .btn in .formular mit ENTER betätigbar machen
+data-element_id loswerden (vorausgesetzt, dass überall auch data-liste gesetzt ist)
 Mitglieder unter der Auswertung sind eigentlich Rückmeldungen (aber mitglied_id entsprechend formatiert)
 aufgaben direkt termine zuordnen (mit multi-select, analog zu filtern_mitglieder bei termine?)
-data-element_id loswerden (vorausgesetzt, dass überall auch data-liste gesetzt ist)
-Wie umgehen mit
-    Mitglieder_MitgliederAufgabenErledigtAnzeigen
-    Aufgaben_ZugeordneteAufgabenAnzeigen
+Wie umgehen mit Mitglieder_MitgliederAufgabenErledigtAnzeigen und Aufgaben_ZugeordneteAufgabenAnzeigen
 Bugfix Schnittstelle_VariableLoeschen
 Bugfix Listenstatistik (aktualisieren braucht etwas Zeit?)
 btn_verknuepfung_bemerkung_aendern vereinheitlichen für alle Listen (nicht nur Verknüpfungen)
 btn_verknuepfung_bemerkung_aendern aktualisiert sich nur zeitverzögert
-.verknuepfungen_auswahlmoeglichkeiten auch für check (Liste_CheckAktualisieren loswerden)
+disabled und bedingte_formatierung überarbeiten (lediglich farb-klassen / disabled auf IDs beziehen)
 
 */
