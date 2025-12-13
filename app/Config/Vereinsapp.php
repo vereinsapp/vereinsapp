@@ -118,10 +118,7 @@ class Vereinsapp extends BaseConfig
             // 'gegen_liste' => 'termine',
             // 'gegen_element_id' => 42,
             // 'disabled' => array( 'liste' => 'liste','filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), ),
-            // 'bedingte_formatierung' => array( 'liste' => 'liste', 'klasse' => array(
-            //     'text-success' => array( 'status' => array( 'inklusiv' => array( 1 ), ), ),
-            //     'text-danger' => array( 'status' => array( 'inklusiv' => array( 2 ), ), ),
-            // ), ),
+            // 'bedingte_formatierung' => array( 'eigenschaft' => 'wert', 'klasse' => array( 'text-danger' => array( 'wert' => array( 'ende' =>  0, ), ), ), ),
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Mitglieder filtern', ),
                 'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Mitglieder sortieren', ),

@@ -1,7 +1,9 @@
 function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
-    const beschriftung = $auswertung.attr("data-beschriftung");
+    const beschriftung = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-beschriftung"), undefined);
     const liste = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-liste"), undefined);
     const element_ids = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-element_ids"), new Array());
+    const gegen_liste = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-gegen_liste"), undefined);
+    const gegen_element_id = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-gegen_element_id"), undefined);
     const auswertung_element_ids = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-auswertung_element_ids"), new Array());
 
     const element_ids_nach_status = new Array(new Array());
@@ -42,7 +44,10 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
         $.each(element_ids_nach_status[$ergebnis.attr("data-status")], function (position, element_id) {
             filtern.id.inklusiv.push(Number(element_id));
         });
-        $ergebnis.attr("data-filtern", JsonStringifiedZurueck(filtern, new Object()));
+        $ergebnis
+            .attr("data-filtern", JsonStringifiedZurueck(filtern, new Object()))
+            .attr("data-gegen_liste", gegen_liste)
+            .attr("data-gegen_element_id", gegen_element_id);
     });
 
     // BEINHALTETE LISTE AKTUALISIEREN

@@ -6,6 +6,8 @@
 function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
     const liste = $element.attr("data-liste");
     const element_id = Number($element.attr("data-element_id"));
+    const gegen_element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-gegen_element_id"), undefined);
+    const gegen_liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-gegen_liste"), undefined);
     const zusatzsymbol = $zusatzsymbol.attr("data-zusatzsymbol");
 
     $zusatzsymbol.find('[data-bs-toggle="popover"]').popover("hide");
@@ -114,33 +116,26 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
         case "bemerkung":
             let bemerkung;
 
-            if ($element.parents('.auswertungen[data-auswertungen="termine_rueckmeldungen"]').exists()) {
-                const gefilterte_rueckmeldung_ids = new Array();
+            if ($element.parents(".auswertungen[data-auswertungen]").exists()) {
+                const verknuepfungen = $element.closest(".auswertungen[data-auswertungen]").attr("data-auswertungen");
+
+                let verknuepfung_id = undefined;
                 $.each(
-                    Schnittstelle_VariableRausZurueck(
-                        "zugeordnete_termine_rueckmeldung_ids",
-                        Schnittstelle_VariableWertBereinigtZurueck(
-                            $element.parents('.auswertungen[data-auswertungen="termine_rueckmeldungen"]').attr("data-gegen_element_id"),
-                            undefined
-                        ),
-                        Schnittstelle_VariableWertBereinigtZurueck(
-                            $element.parents('.auswertungen[data-auswertungen="termine_rueckmeldungen"]').attr("data-gegen_liste"),
-                            undefined
-                        ),
-                        new Array()
-                    ),
-                    function (position, rueckmeldung_id) {
-                        if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) === element_id)
-                            gefilterte_rueckmeldung_ids.push(rueckmeldung_id);
+                    Schnittstelle_VariableRausZurueck("zugeordnete_" + LISTEN[verknuepfungen].element + "_ids", element_id, liste, new Array()),
+                    function (position, zugeordnete_verknuepfung_id) {
+                        if (
+                            Schnittstelle_VariableRausZurueck(
+                                LISTEN[gegen_liste].element + "_id",
+                                zugeordnete_verknuepfung_id,
+                                verknuepfungen,
+                                undefined
+                            ) === gegen_element_id
+                        )
+                            verknuepfung_id = zugeordnete_verknuepfung_id;
                     }
                 );
-                if (gefilterte_rueckmeldung_ids.length > 0)
-                    bemerkung = Schnittstelle_VariableRausZurueck(
-                        "bemerkung",
-                        gefilterte_rueckmeldung_ids[gefilterte_rueckmeldung_ids.length - 1],
-                        "termine_rueckmeldungen",
-                        null
-                    );
+
+                bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", verknuepfung_id, verknuepfungen, undefined);
             } else bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste, null);
 
             if (bemerkung !== null)
@@ -153,6 +148,40 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                 );
 
             [...$zusatzsymbol.find('[data-bs-toggle="popover"]')].map((popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl));
+            break;
+
+        // Zusatzsymbol für Termine-Rückmeldung
+        case "vergebene_rechte":
+        case "termine_anwesenheiten":
+        case "termine_rueckmeldungen":
+            const verknuepfungen = zusatzsymbol;
+
+            let verknuepfung_id = undefined;
+            $.each(
+                Schnittstelle_VariableRausZurueck("zugeordnete_" + LISTEN[verknuepfungen].element + "_ids", element_id, liste, new Array()),
+                function (position, zugeordnete_verknuepfung_id) {
+                    if (
+                        Schnittstelle_VariableRausZurueck(
+                            LISTEN[gegen_liste].element + "_id",
+                            zugeordnete_verknuepfung_id,
+                            verknuepfungen,
+                            undefined
+                        ) === gegen_element_id
+                    )
+                        verknuepfung_id = zugeordnete_verknuepfung_id;
+                }
+            );
+
+            const verknuepfung_status = Schnittstelle_VariableRausZurueck("status", verknuepfung_id, verknuepfungen, undefined);
+            if (typeof verknuepfung_status !== "undefined")
+                $zusatzsymbol.html(
+                    '<span class="text-' +
+                        VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[verknuepfung_status].farbe +
+                        '">' +
+                        VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[verknuepfung_status].aktiv +
+                        "</span>"
+                );
+
             break;
     }
 }

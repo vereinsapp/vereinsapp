@@ -28,17 +28,10 @@ class Termine extends BaseController {
         $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
         $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
         $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
-        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'termine_rueckmeldungen', 'klasse' => array(
-            'text-success' => array( 'status' => array( 'start' => array( 1 ), 'ende' => array( 1 ), ), ),
-            'text-danger' => array( 'status' => array( 'start' => array( 2 ), 'ende' => array( 2 ), ), ),
-        ), );
+        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_rueckmeldungen';
 
         $disabled_ids = array();
-        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) )
-            foreach( model(Termin_Model::class)->findAll() as $termin )$disabled_ids[] = $termin['id'];
-        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine','filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), );
-
-        if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
+        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
                 'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
                 'title' => 'Alle abwählen',
@@ -47,7 +40,9 @@ class Termine extends BaseController {
                 'klasse_id' => array('btn_alle_checks_anwaehlen', 'bestaetigung_einfordern'),
                 'title' => 'Alle anwählen',
             );
-        }
+        } else foreach( model(Termin_Model::class)->findAll() as $termin )$disabled_ids[] = $termin['id'];
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine', 'filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), );
+
 
         $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
             'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
@@ -183,17 +178,10 @@ class Termine extends BaseController {
         $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
         $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
         $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
-        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['bedingte_formatierung'] = array( 'liste' => 'termine_rueckmeldungen', 'klasse' => array(
-            'text-success' => array( 'status' => array( 'start' => array( 1 ), 'ende' => array( 1 ), ), ),
-            'text-danger' => array( 'status' => array( 'start' => array( 2 ), 'ende' => array( 2 ), ), ),
-        ), );
+        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_rueckmeldungen';
 
         $disabled_ids = array();
-        if( !( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) )
-            foreach( model(Termin_Model::class)->findAll() as $termin )$disabled_ids[] = $termin['id'];
-        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine','filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), );
-
-        if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
+        if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
                 'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
                 'title' => 'Alle abwählen',
@@ -202,7 +190,8 @@ class Termine extends BaseController {
                 'klasse_id' => array('btn_alle_checks_anwaehlen', 'bestaetigung_einfordern'),
                 'title' => 'Alle anwählen',
             );
-        }
+        } else foreach( model(Termin_Model::class)->findAll() as $termin )$disabled_ids[] = $termin['id'];
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine', 'filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), );
 
         $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
             'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',

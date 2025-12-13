@@ -17,7 +17,7 @@ function Liste_ElementAktualisieren($element, liste) {
     }
 
     // ACTION UND ROLE FORMATIEREN (ACHTUNG: REIHENFOLGE!)
-    if ($element.find(".check").exists() || $element.find("a.stretched-link").exists() || $element.is("[class*=btn_]")) {
+    if ($element.find("a.stretched-link").exists() || $element.find("[class*=btn_]").exists() || $element.find("[class*=chk_]").exists()) {
         $element.addClass("list-group-item-action");
         $element.attr("role", "button");
     }
@@ -31,33 +31,21 @@ function Liste_ElementAktualisieren($element, liste) {
     } else $element.find(".beschriftung").removeClass("text-secondary");
 
     // ELEMENT BEDINGT FORMATIEREN (ACHTUNG: REIHENFOLGE!)
-    const bedingte_formatierung = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-bedingte_formatierung"), new Object());
+    const bedingte_formatierung = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-bedingte_formatierung"), undefined);
+    if (
+        typeof bedingte_formatierung !== "undefined" &&
+        isObject(bedingte_formatierung) &&
+        "eigenschaft" in bedingte_formatierung &&
+        "klasse" in bedingte_formatierung
+    ) {
+        const $bedingte_formatierung = $element.find('.eigenschaft[data-eigenschaft="' + bedingte_formatierung.eigenschaft + '"]');
 
-    if (!("liste" in bedingte_formatierung)) bedingte_formatierung.liste = liste;
-
-    let $dom_bedingt_formatiert;
-    if ("eigenschaft" in bedingte_formatierung)
-        $dom_bedingt_formatiert = $element.find('.eigenschaft[data-eigenschaft="' + bedingte_formatierung.eigenschaft + '"]');
-    else $dom_bedingt_formatiert = $element.find(".beschriftung");
-
-    if ("klasse" in bedingte_formatierung)
         $.each(bedingte_formatierung.klasse, function (klasse, filtern) {
-            const filtern_ergaenzung = new Object();
-            if (typeof gegen_liste !== "undefined" && typeof gegen_element_id !== "undefined") {
-                filtern_ergaenzung[LISTEN[gegen_liste].element + "_id"] = { inklusiv: [gegen_element_id] };
-                filtern_ergaenzung[LISTEN[liste].element + "_id"] = { inklusiv: [element_id] };
-            } else filtern_ergaenzung.id = { inklusiv: [element_id] };
-
-            if (
-                Liste_TabelleGefiltertZurueck(
-                    LISTEN[bedingte_formatierung.liste].tabelle,
-                    Liste_FilternMitPrioKombiniertZurueck(filtern, filtern_ergaenzung, bedingte_formatierung.liste),
-                    bedingte_formatierung.liste
-                ).length > 0
-            )
-                $dom_bedingt_formatiert.addClass(klasse);
-            else $dom_bedingt_formatiert.removeClass(klasse);
+            if (Liste_TabelleGefiltertZurueck([LISTEN[liste].tabelle[element_id]], filtern, liste).length > 0)
+                $bedingte_formatierung.addClass(klasse);
+            else $bedingte_formatierung.removeClass(klasse);
         });
+    }
 
     // EIGENSCHAFTEN AKTUALISIEREN
     $element.find(".eigenschaft").each(function () {

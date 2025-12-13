@@ -90,9 +90,9 @@ Mitglieder unter der Auswertung sind eigentlich Rückmeldungen (aber mitglied_id
 aufgaben direkt termine zuordnen (mit multi-select, analog zu filtern_mitglieder bei termine?)
 Wie umgehen mit Mitglieder_MitgliederAufgabenErledigtAnzeigen und Aufgaben_ZugeordneteAufgabenAnzeigen
 Bugfix Schnittstelle_VariableLoeschen
-Bugfix Listenstatistik (aktualisieren braucht etwas Zeit?)
+Bugfix Listenstatistik (angewählt taucht auch bei nicht-chk-listen auf, aktualisieren braucht etwas Zeit?)
 btn_verknuepfung_bemerkung_aendern vereinheitlichen für alle Listen (nicht nur Verknüpfungen)
 btn_verknuepfung_bemerkung_aendern aktualisiert sich nur zeitverzögert
-disabled und bedingte_formatierung überarbeiten (lediglich farb-klassen / disabled auf IDs beziehen)
+disabled überarbeiten (disabled auf IDs beziehen)
 
 */

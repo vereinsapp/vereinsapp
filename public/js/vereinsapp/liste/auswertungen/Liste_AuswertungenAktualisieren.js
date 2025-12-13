@@ -1,5 +1,7 @@
 function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
-    const auswertungen_instanz = $auswertungen.attr("id");
+    const auswertungen_instanz = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("id"), undefined);
+    const gegen_liste = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-gegen_liste"), undefined);
+    const gegen_element_id = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-gegen_element_id"), undefined);
 
     // LISTE DEFINIEREN
     const liste = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-liste"), undefined);
@@ -38,25 +40,10 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const auswertung_element_ids = new Array();
     const auswertung_element_ids_nach_wert = new Object();
     $.each(
-        Schnittstelle_VariableRausZurueck(
-            "zugeordnete_" + LISTEN[auswertungen].element + "_ids",
-            $auswertungen.attr("data-gegen_element_id"),
-            $auswertungen.attr("data-gegen_liste"),
-            new Array()
-        ),
+        Schnittstelle_VariableRausZurueck("zugeordnete_" + LISTEN[auswertungen].element + "_ids", gegen_element_id, gegen_liste, new Array()),
         function (position, auswertung_element_id) {
-            const element_id = Schnittstelle_VariableRausZurueck(
-                "id",
-                Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_element_id, auswertungen, undefined),
-                liste,
-                undefined
-            );
-            const wert = Schnittstelle_VariableRausZurueck(
-                gruppieren,
-                Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_element_id, auswertungen, undefined),
-                liste,
-                undefined
-            );
+            const element_id = Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_element_id, auswertungen, undefined);
+            const wert = Schnittstelle_VariableRausZurueck(gruppieren, element_id, liste, undefined);
             if (element_ids.includes(element_id)) {
                 if (!auswertung_element_ids.includes(auswertung_element_id)) auswertung_element_ids.push(auswertung_element_id);
                 if (!(wert in auswertung_element_ids_nach_wert)) auswertung_element_ids_nach_wert[wert] = new Array();
@@ -87,6 +74,8 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
                 .attr("data-wert", wert)
                 .attr("data-liste", liste)
                 .attr("data-element_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
+                .attr("data-gegen_liste", gegen_liste)
+                .attr("data-gegen_element_id", gegen_element_id)
                 .attr("data-auswahlmoeglichkeiten", $auswertungen.attr("data-auswahlmoeglichkeiten"))
                 .attr("data-beschriftung", Liste_WertFormatiertZurueck(wert, gruppieren, liste));
 
@@ -105,6 +94,8 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
                 // .attr("data-wert", wert)
                 .attr("data-liste", liste)
                 .attr("data-element_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
+                .attr("data-gegen_liste", gegen_liste)
+                .attr("data-gegen_element_id", gegen_element_id)
                 .attr("data-auswahlmoeglichkeiten", $auswertungen.attr("data-auswahlmoeglichkeiten"))
                 .attr("data-beschriftung", Liste_WertFormatiertZurueck(wert, gruppieren, liste));
 
