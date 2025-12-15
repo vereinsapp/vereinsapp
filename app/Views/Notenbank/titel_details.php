@@ -28,6 +28,6 @@
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'notenbank' ), 'btn' => array( 'klasse_id' => 'btn_titel_aktion' ), 'formular' =>
     view( 'Notenbank/titel_basiseigenschaften_formular' ) ) ) ) ); ?>
 
-<?php if( isset( $werkzeugkasten ) AND is_array( $werkzeugkasten ) AND count( $werkzeugkasten ) > 0 AND auth()->user()->can( 'notenbank.verwaltung' ) ) echo
+<?php if( isset( $werkzeugkasten ) AND is_array( $werkzeugkasten ) AND count( $werkzeugkasten ) > 0 ) echo
     view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'notenbank', 'element_id' => $element_id ) ); ?>
 <?= $this->endSection() ?>

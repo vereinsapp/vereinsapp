@@ -95,8 +95,10 @@ Bugfix global.einstellungen darf man nicht einfach vergeben
 Bugfix Termine ohne Rückmeldung auf der Startseite (Keine Rückmeldung möglich)
 btn_verknuepfung_bemerkung_aendern vereinheitlichen für alle Listen (nicht nur Verknüpfungen)
 btn_verknuepfung_bemerkung_aendern aktualisiert sich nur zeitverzögert
-termine_anwesenheiten in Termine als normale Liste mit Zusatzsymbol falls keine bearbeitung erlaubt ist (nicht disabled)
 Auswertung für Anwesenheit eines Mitglieds in den Details anzeigen
 Rechte eines Mitglieds in ein Modal verschieben (analog zu Rückmeldungen)
+btn_alle_checks_anwaehlen und btn_alle_checks_abwaehlen entfernen
+Braucht es für 'typ' => 'auswahlmoeglichkeiten' unbedingt 'liste' => 'mitglieder' und 'element_id' => ICH['id']?
+Zusatzsymbol rechts und links einführen
 
 */

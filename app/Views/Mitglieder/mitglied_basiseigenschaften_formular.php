@@ -90,7 +90,7 @@
     <label><?= EIGENSCHAFTEN['mitglieder']['bemerkung']['beschriftung']; ?></label>
 </div>
 
-<?php if( array_key_exists( 'real_janein', EIGENSCHAFTEN['mitglieder'] ) AND auth()->user()->can( 'global.einstellungen' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) { ?><div class="row g-2">
+<?php if( array_key_exists( 'real_janein', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="row g-2">
     <div class="col"></div>
     <div class="col form-floating mb-2">
         <select class="form-select eingabe" data-eingabe="real_janein">

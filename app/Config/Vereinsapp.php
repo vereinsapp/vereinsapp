@@ -933,14 +933,20 @@ class Vereinsapp extends BaseConfig
      */
     public $verknuepfungen = array(
         'vergebene_rechte' => array(
-            'auswahlmoeglichkeiten' => array( 0 => array(), 1 => array(), ),
+            'auswahlmoeglichkeiten' => array(
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_vergebenes_recht']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_vergebenes_recht']['bootstrap'].'-fill"></i>' ),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_vergebenes_recht']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_vergebenes_recht']['bootstrap'].'-fill"></i>' ),
+             ),
         ),
         'termine_anwesenheiten' => array(
-            'auswahlmoeglichkeiten' => array( 0 => array(), 1 => array(), ),
+            'auswahlmoeglichkeiten' => array(
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_anwesenheit']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_anwesenheit']['bootstrap'].'-fill"></i>' ),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_anwesenheit']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_anwesenheit']['bootstrap'].'-fill"></i>' ),
+             ),
         ),
         'termine_rueckmeldungen' => array(
             'auswahlmoeglichkeiten' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['loeschen']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['loeschen']['bootstrap'].'-fill"></i>' ),
+                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung']['bootstrap'].'-fill"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'-fill"></i>' ),
                 2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'-fill"></i>' ),
             ),

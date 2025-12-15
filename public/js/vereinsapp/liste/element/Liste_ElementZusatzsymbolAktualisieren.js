@@ -172,7 +172,8 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                 }
             );
 
-            const verknuepfung_status = Schnittstelle_VariableRausZurueck("status", verknuepfung_id, verknuepfungen, undefined);
+            const verknuepfung_status = Schnittstelle_VariableRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
+
             if (typeof verknuepfung_status !== "undefined")
                 $zusatzsymbol.html(
                     '<span class="text-' +

@@ -52,6 +52,7 @@ class Notenbank extends BaseController {
         $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array( 'liste' => 'notenbank', 'link' => TRUE, 'element_id' => $titel_id, );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
+
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_titel_aendern', 'formular_oeffnen'),
                 'title' => 'Titel ändern',
@@ -66,6 +67,7 @@ class Notenbank extends BaseController {
                 'farbe' => 'danger',
                 'weiterleiten' => 'notenbank',
             );
+
         }
 
         $this->viewdata['element_navigation'] = array(

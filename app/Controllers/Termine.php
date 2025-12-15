@@ -29,10 +29,10 @@ class Termine extends BaseController {
 
         $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
         $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
-        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
-        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_rueckmeldungen';
-
         if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
+
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_rueckmeldungen';
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
                 'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
                 'title' => 'Alle abwählen',
@@ -48,6 +48,8 @@ class Termine extends BaseController {
             );
 
         } else {
+
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_anwesenheiten';
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element_ids_disabled'] = array();
             foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element_ids_disabled'][] = $mitglied->id;
 
@@ -55,6 +57,7 @@ class Termine extends BaseController {
                 'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
                 'title' => 'Anwesenheiten',
             );
+
         }
 
         // if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
@@ -96,9 +99,7 @@ class Termine extends BaseController {
 
         // }
 
-        if( auth()->user()->can( 'termine.verwaltung' ) ) {
-
-            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_handle'] = TRUE;
+        if( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['mitglieder'];
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array(
@@ -111,6 +112,12 @@ class Termine extends BaseController {
                 'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',
                 'title' => 'Rückmeldungen verwalten',
             );
+
+        }
+
+        if( auth()->user()->can( 'termine.verwaltung' ) ) {
+
+            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_termin_aendern', 'formular_oeffnen'),
@@ -185,10 +192,10 @@ class Termine extends BaseController {
 
         $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
         $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
-        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
-        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_rueckmeldungen';
-
         if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
+
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_rueckmeldungen';
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
                 'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
                 'title' => 'Alle abwählen',
@@ -204,6 +211,8 @@ class Termine extends BaseController {
             );
 
         } else {
+
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_anwesenheiten';
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element_ids_disabled'] = array();
             foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element_ids_disabled'][] = $mitglied->id;
 
@@ -211,12 +220,8 @@ class Termine extends BaseController {
                 'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
                 'title' => 'Anwesenheiten',
             );
-        }
 
-        $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
-            'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
-            'title' => 'Anwesenheiten dokumentieren',
-        );
+        }
 
         // if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
         //     $this->viewdata['liste']['termin_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
@@ -263,6 +268,7 @@ class Termine extends BaseController {
                 'farbe' => 'danger',
                 'weiterleiten' => 'termine',
             );
+
         }
 
         $this->viewdata['element_navigation'] = array(
@@ -384,8 +390,8 @@ class Termine extends BaseController {
             'status' => [ 'label' => EIGENSCHAFTEN['termine_rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['termine_rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( !( array_key_exists( 'global.einstellungen', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'global.einstellungen' ) ) AND $this->request->getPost()['status'] == 0 ) $ajax_antwort['validation'] = 'Ein Löschen der Rückmeldung ist nicht möglich!';
+        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( $this->request->getPost()['status'] == 0 AND !( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Ein Löschen der Rückmeldung ist nicht möglich!';
         else if( Time::parse( model(Termin_Model::class)->find(
                     $this->request->getPost()['termin_id']
                  )[ VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['eigenschaft'] ], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds( VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['frist'] ) ) )

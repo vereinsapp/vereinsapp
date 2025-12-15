@@ -6,13 +6,13 @@
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['bevorstehende_termine'] ) ); ?>
 </div>
 
-<?php if( auth()->user()->can( 'termine.verwaltung' ) ) echo
+<?php if( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'id' => 'termine_rueckmeldungen_verwalten_modal', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_rueckmeldungen_verwalten'] ) ) ) ); ?>
 <?php if( auth()->user()->can( 'termine.verwaltung' ) ) echo
-        view( 'Templates/modal', array( 'id' => 'termin_basiseigenschaften', 'modal' =>
-        view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'termine' ), 'btn' => array( 'klasse_id' => 'btn_termin_aktion' ), 'formular' =>
-        view( 'Termine/termin_basiseigenschaften_formular' ) ) ) ) ); ?>
+    view( 'Templates/modal', array( 'id' => 'termin_basiseigenschaften', 'modal' =>
+    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'termine' ), 'btn' => array( 'klasse_id' => 'btn_termin_aktion' ), 'formular' =>
+    view( 'Termine/termin_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?= view( 'Templates/modal', array( 'id' => 'termine_anwesenheiten_dokumentieren_modal', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_anwesenheiten_dokumentieren'] ) ) ) ); ?>
 

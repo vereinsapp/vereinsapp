@@ -329,11 +329,15 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'sichtbar' => array( 'bootstrap' => 'eye' ),
     'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),
 
+    'ohne_rueckmeldung' => array( 'bootstrap' => 'question' ),
     'pos_rueckmeldung' => array( 'bootstrap' => 'hand-thumbs-up' ),
     'neg_rueckmeldung' => array( 'bootstrap' => 'hand-thumbs-down' ),
-
-    'offen' => array( 'bootstrap' => 'circle' ),
+    'pos_anwesenheit' => array( 'bootstrap' => 'person-check' ),
+    'neg_anwesenheit' => array( 'bootstrap' => 'person-x' ),
+    'pos_vergebenes_recht' => array( 'bootstrap' => 'check-lg' ),
+    'neg_vergebenes_recht' => array( 'bootstrap' => 'x-lg' ),
     'erledigt' => array( 'bootstrap' => 'check-circle' ),
+    'offen' => array( 'bootstrap' => 'circle' ),
 
     'verzeichnis' => array( 'bootstrap' => 'folder' ),
     'verzeichnis_geoeffnet' => array( 'bootstrap' => 'folder2-open' ),

@@ -20,7 +20,7 @@ class Mitglieder extends BaseController {
         $this->viewdata['liste']['alle_mitglieder']['link'] = TRUE;
         $this->viewdata['liste']['alle_mitglieder']['vorschau'] = MITGLIEDER_EIGENSCHAFTEN_VORSCHAU;
 
-        if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
+        if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
@@ -38,11 +38,12 @@ class Mitglieder extends BaseController {
         }
 
         if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
-            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
+
             $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
                 'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_einfordern'),
                 'title' => 'Strafe einem Mitglied zuweisen',
             );
+
         }
 
         // if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
@@ -128,24 +129,17 @@ class Mitglieder extends BaseController {
 
         $this->viewdata['element_id'] = $mitglied_id;
 
-        if( auth()->user()->can( 'mitglieder.rechte' ) ) {
+        if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {
 
             $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
-            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', );
             $this->viewdata['liste']['rechte_vergeben']['gegen_liste'] = 'mitglieder';
             $this->viewdata['liste']['rechte_vergeben']['gegen_element_id'] = $mitglied_id;
-
-            $element_ids_disabled = array();
-            $element_ids_disabled[] = VERFUEGBARE_RECHTE['global.einstellungen']['id'];
-            if( !auth()->user()->can( 'global.einstellungen' ) ) $element_ids_disabled[] = VERFUEGBARE_RECHTE['mitglieder.rechte']['id'];
-            if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht )
-                if( $verfuegbares_recht['permission'] != 'global.einstellungen' AND $verfuegbares_recht['permission'] != 'mitglieder.rechte' )
-                    $element_ids_disabled[] = $verfuegbares_recht['id'];
-            $this->viewdata['liste']['rechte_vergeben']['element_ids_disabled'] = $element_ids_disabled;
+            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', );
+            $this->viewdata['liste']['rechte_vergeben']['element_ids_disabled'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
 
         }
 
-        if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
+        if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
@@ -322,7 +316,7 @@ class Mitglieder extends BaseController {
             'passwort_neu' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu']['beschriftung'], 'rules' => [ 'required', 'strong_password' ] ],
             'passwort_neu2' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu2']['beschriftung'], 'rules' => [ 'required', 'matches[passwort_neu]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->user()->can( 'global.einstellungen' ) AND $this->request->getPost()['id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( $this->request->getPost()['id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( !auth()->check( array( 'email' => model(Mitglied_Model::class)->findById( $this->request->getPost()['id'] )->email, 'password' => $this->request->getpost()['passwort_alt'] ) )->isOK() ) $ajax_antwort['validation'] = array( 'passwort_alt' => 'Das alte Passwort ist nicht korrekt.' );
         else {
             $mitglied_Model = model(Mitglied_Model::class);
@@ -346,7 +340,7 @@ class Mitglieder extends BaseController {
             'passwort_neu' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu']['beschriftung'], 'rules' => [ 'required', 'strong_password' ] ],
             'passwort_neu2' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu2']['beschriftung'], 'rules' => [ 'required', 'matches[passwort_neu]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->user()->can( 'global.einstellungen' ) AND $this->request->getPost()['id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( $this->request->getPost()['id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $mitglied_Model = model(Mitglied_Model::class);
             $mitglied = array(
@@ -494,9 +488,8 @@ class Mitglieder extends BaseController {
             'verfuegbares_recht_id' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['verfuegbares_recht_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'status' => [ 'label' => EIGENSCHAFTEN['vergebene_rechte']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->user()->can( 'mitglieder.rechte' ) AND
-                 !( auth()->user()->can( 'global.einstellungen' ) AND VERFUEGBARE_RECHTE['mitglieder.rechte']['id'] == $this->request->getPost()['verfuegbares_recht_id'] )
-            ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( !auth()->user()->can( 'global.einstellungen' ) AND !auth()->user()->can( 'mitglieder.rechte' ) )
+            $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $permission = NULL; foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['id'] == $this->request->getPost()['verfuegbares_recht_id'] ) $permission = $verfuegbares_recht['permission'];
             model(Mitglied_Model::class)->findById( $this->request->getPost()['mitglied_id'] )->removePermission( $permission );

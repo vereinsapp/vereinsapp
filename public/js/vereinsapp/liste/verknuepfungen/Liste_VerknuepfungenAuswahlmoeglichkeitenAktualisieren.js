@@ -55,7 +55,7 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren(
             }
         );
 
-        const verknuepfung_status = Schnittstelle_VariableRausZurueck("status", verknuepfung_id, verknuepfungen, undefined);
+        const verknuepfung_status = Schnittstelle_VariableRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
 
         // Label bearbeiten
         const ziel_id = zufaelligeZeichenketteZurueck(8);
@@ -128,9 +128,9 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren(
         });
 
         if (
-            /* Element ist disabled */
+            /* Element ist nicht disabled */
             !element_disabled &&
-            /* Frist für Verknüpfung ist abgelaufen */
+            /* Frist ist nicht definiert oder Frist für Verknüpfung ist nicht abgelaufen */
             (!("verknuepfung_moeglich_frist" in VERKNUEPFUNGEN[verknuepfungen]) ||
                 (VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.liste === liste &&
                     VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.eigenschaft in EIGENSCHAFTEN[liste] &&

@@ -80,7 +80,7 @@ class Mitglied_Model extends UserModel {
         $tabelle = array();
 
         $id = 1;
-        foreach( $this->findAll() as $mitglied ) if( auth()->user()->can( 'mitglieder.rechte' ) OR $mitglied->id == ICH['id'] )
+        foreach( $this->findAll() as $mitglied ) if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) OR $mitglied->id == ICH['id'] )
             foreach( $mitglied->getPermissions() as $permission ) if( array_key_exists( $permission, VERFUEGBARE_RECHTE ) ) {
                 $eintrag = array(
                     'id' => $id++,

@@ -39,6 +39,7 @@ class Strafkatalog extends BaseController {
                 'klasse_id' => array('btn_strafe_erstellen', 'formular_oeffnen'),
                 'title' => 'Strafe erstellen',
             );
+
         }
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
