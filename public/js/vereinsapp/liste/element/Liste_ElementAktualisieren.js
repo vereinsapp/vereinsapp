@@ -3,69 +3,45 @@ function Liste_ElementAktualisieren($element, liste) {
     const gegen_liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-gegen_liste"), undefined);
     const gegen_element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-gegen_element_id"), undefined);
 
-    // ELEMENTE DISABLED
-    let disabled = false;
-    const disabled_data = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-disabled"), new Object());
-    if (isObject(disabled_data.filtern) && disabled_data.liste in LISTEN) {
-        $.each(Liste_TabelleGefiltertZurueck(LISTEN[disabled_data.liste].tabelle, disabled_data.filtern, disabled_data.liste), function () {
-            const element = this;
-            if ("id" in element && element.id == element_id) {
-                disabled = true;
-                return;
-            }
-        });
-    }
-
-    // ACTION UND ROLE FORMATIEREN (ACHTUNG: REIHENFOLGE!)
-    if ($element.find("a.stretched-link").exists() || $element.find("[class*=btn_]").exists() || $element.find("[class*=chk_]").exists()) {
-        $element.addClass("list-group-item-action");
-        $element.attr("role", "button");
-    }
-
-    // ELEMENT DISABLED FORMATIEREN (ACHTUNG: REIHENFOLGE!)
-    if (disabled) {
-        $element.removeClass("list-group-item-action");
-        $element.removeAttr("role");
-        $element.find(".beschriftung").addClass("text-secondary");
-        $element.find("a.stretched-link").removeAttr("href");
-    } else $element.find(".beschriftung").removeClass("text-secondary");
-
-    // ELEMENT BEDINGT FORMATIEREN (ACHTUNG: REIHENFOLGE!)
-    const bedingte_formatierung = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-bedingte_formatierung"), undefined);
-    if (
-        typeof bedingte_formatierung !== "undefined" &&
-        isObject(bedingte_formatierung) &&
-        "eigenschaft" in bedingte_formatierung &&
-        "klasse" in bedingte_formatierung
-    ) {
-        const $bedingte_formatierung = $element.find('.eigenschaft[data-eigenschaft="' + bedingte_formatierung.eigenschaft + '"]');
-
-        $.each(bedingte_formatierung.klasse, function (klasse, filtern) {
-            if (Liste_TabelleGefiltertZurueck([LISTEN[liste].tabelle[element_id]], filtern, liste).length > 0)
-                $bedingte_formatierung.addClass(klasse);
-            else $bedingte_formatierung.removeClass(klasse);
-        });
-    }
-
     // EIGENSCHAFTEN AKTUALISIEREN
     $element.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
-        const eigenschaft = $eigenschaft.attr("data-eigenschaft");
+        const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($eigenschaft.attr("data-eigenschaft"), undefined);
+
         $eigenschaft.html(
             Liste_WertFormatiertZurueck(Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, undefined), eigenschaft, liste)
         );
+
+        const eigenschaften_bedingt_formatiert = Schnittstelle_VariableWertBereinigtZurueck(
+            $element.attr("data-eigenschaften_bedingt_formatiert"),
+            new Object()
+        );
+        if (isObject(eigenschaften_bedingt_formatiert) && eigenschaft in eigenschaften_bedingt_formatiert)
+            $.each(eigenschaften_bedingt_formatiert[eigenschaft], function (klasse, filtern) {
+                if (Liste_TabelleGefiltertZurueck([LISTEN[liste].tabelle[element_id]], filtern, liste).length > 0) $eigenschaft.addClass(klasse);
+                else $eigenschaft.removeClass(klasse);
+            });
     });
+
+    // ACTION UND ROLE DEFINIEREN
+    if ($element.find("a.stretched-link").exists() || $element.is("[class*=btn_]") || $element.find("[class*=chk_]").exists()) {
+        $element.addClass("list-group-item-action");
+        $element.attr("role", "button");
+    } else {
+        $element.removeClass("list-group-item-action");
+        $element.removeAttr("role");
+    }
 
     // VERKNUEPFUNGEN_AUSWAHLMOEGLICHKEITEN AKTUALISIEREN
     $element.find(".verknuepfungen_auswahlmoeglichkeiten").each(function () {
         Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren(
             $(this),
-            disabled,
+            $element.hasClass("disabled"),
             liste,
             element_id,
             gegen_liste,
             gegen_element_id,
-            $(this).attr("data-verknuepfungen")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-verknuepfungen"), undefined)
         );
     });
 

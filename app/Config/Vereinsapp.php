@@ -117,8 +117,8 @@ class Vereinsapp extends BaseConfig
             // 'verknuepfungen' => 'vergebene_rechte',
             // 'gegen_liste' => 'termine',
             // 'gegen_element_id' => 42,
-            // 'disabled' => array( 'liste' => 'liste','filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), ),
-            // 'bedingte_formatierung' => array( 'eigenschaft' => 'wert', 'klasse' => array( 'text-danger' => array( 'wert' => array( 'ende' =>  0, ), ), ), ),
+            // 'element_ids_disabled' => array(),
+            // 'eigenschaften_bedingt_formatiert' => array( 'wert' => array( 'text-danger' => array( 'wert' => array( 'ende' =>  0, ), ), ), ),
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Mitglieder filtern', ),
                 'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Mitglieder sortieren', ),
@@ -211,7 +211,7 @@ class Vereinsapp extends BaseConfig
             'sortieren' => array( 'eigenschaft' => 'erstellung', 'richtung' => SORT_DESC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'zusatzsymbol' => array('offen_erledigt'),
-            'bedingte_formatierung' => array( 'eigenschaft' => 'wert', 'klasse' => array( 'text-danger' => array( 'wert' => array( 'ende' =>  0, ), ), ), ),
+            'eigenschaften_bedingt_formatiert' => array( 'wert' => array( 'text-danger' => array( 'wert' => array( 'ende' =>  0, ), ), ), ),
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Kassenbuch filtern', ),
                 'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Kassenbuch sortieren', ),

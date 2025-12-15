@@ -1,6 +1,6 @@
 /**
  * @param {JQuery} $verknuepfungen_auswahlmoeglichkeiten
- * @param {boolean} disabled
+ * @param {boolean} element_disabled
  * @param {string} liste
  * @param {number} element_id
  * @param {string} gegen_liste
@@ -10,7 +10,7 @@
 
 function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren(
     $verknuepfungen_auswahlmoeglichkeiten,
-    disabled,
+    element_disabled,
     liste,
     element_id,
     gegen_liste,
@@ -59,12 +59,7 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren(
 
         // Label bearbeiten
         const ziel_id = zufaelligeZeichenketteZurueck(8);
-        $verknuepfungen_auswahlmoeglichkeiten
-            .siblings("label")
-            .addClass("form-check-label")
-            .attr("role", "button")
-            .attr("for", ziel_id)
-            .attr("disabled", disabled);
+        $verknuepfungen_auswahlmoeglichkeiten.siblings("label").addClass("form-check-label").attr("role", "button").attr("for", ziel_id);
 
         $verknuepfungen_auswahlmoeglichkeiten.find(".chk_verknuepfung_erstellen").each(function () {
             const $chk_verknuepfung_erstellen = $(this);
@@ -76,10 +71,7 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren(
                 .attr("data-gegen_element_id", gegen_element_id)
                 .attr("data-verknuepfungen", verknuepfungen);
 
-            $chk_verknuepfung_erstellen
-                .attr("checked", verknuepfung_status > 0)
-                .attr("id", ziel_id)
-                .attr("disabled", disabled);
+            $chk_verknuepfung_erstellen.prop("checked", verknuepfung_status > 0).attr("id", ziel_id);
         });
 
         $verknuepfungen_auswahlmoeglichkeiten.find(".btn_verknuepfung_erstellen").each(function () {
@@ -136,32 +128,35 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren(
         });
 
         if (
-            !("verknuepfung_moeglich_frist" in VERKNUEPFUNGEN[verknuepfungen]) ||
-            (VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.liste === liste &&
-                VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.eigenschaft in EIGENSCHAFTEN[liste] &&
-                !(
-                    Schnittstelle_VariableRausZurueck(
-                        VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.eigenschaft,
-                        element_id,
-                        liste,
-                        undefined
-                    ) < DATETIME.now().plus({ seconds: VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.frist })
-                )) ||
-            (VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.liste === gegen_liste &&
-                VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.eigenschaft in EIGENSCHAFTEN[gegen_liste] &&
-                !(
-                    Schnittstelle_VariableRausZurueck(
-                        VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.eigenschaft,
-                        gegen_element_id,
-                        gegen_liste,
-                        undefined
-                    ) < DATETIME.now().plus({ seconds: VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.frist })
-                ))
+            /* Element ist disabled */
+            !element_disabled &&
+            /* Frist für Verknüpfung ist abgelaufen */
+            (!("verknuepfung_moeglich_frist" in VERKNUEPFUNGEN[verknuepfungen]) ||
+                (VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.liste === liste &&
+                    VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.eigenschaft in EIGENSCHAFTEN[liste] &&
+                    !(
+                        Schnittstelle_VariableRausZurueck(
+                            VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.eigenschaft,
+                            element_id,
+                            liste,
+                            undefined
+                        ) < DATETIME.now().plus({ seconds: VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.frist })
+                    )) ||
+                (VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.liste === gegen_liste &&
+                    VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.eigenschaft in EIGENSCHAFTEN[gegen_liste] &&
+                    !(
+                        Schnittstelle_VariableRausZurueck(
+                            VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.eigenschaft,
+                            gegen_element_id,
+                            gegen_liste,
+                            undefined
+                        ) < DATETIME.now().plus({ seconds: VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.frist })
+                    )))
         ) {
         } else {
-            /* Frist für Verknüpfung ist abgelaufen */
-            $verknuepfungen_auswahlmoeglichkeiten.find(".btn_verknuepfung_erstellen").prop("disabled", true);
-            $verknuepfungen_auswahlmoeglichkeiten.find(".btn_verknuepfung_bemerkung_aendern").prop("disabled", true);
+            $verknuepfungen_auswahlmoeglichkeiten
+                .find(".btn_verknuepfung_erstellen, .chk_verknuepfung_erstellen, .btn_verknuepfung_bemerkung_aendern")
+                .prop("disabled", true);
         }
     } else {
         /* Verknüpfung ist für das Element nicht möglich */

@@ -26,6 +26,8 @@ if( array_key_exists( 'filtern', $liste ) ) { ?> data-filtern='<?= json_encode( 
 if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'gegen_liste', $liste ) ) { ?> data-gegen_liste="<?= $liste['gegen_liste']; ?>"<?php }
 if( array_key_exists( 'gegen_element_id', $liste ) ) { ?> data-gegen_element_id="<?= $liste['gegen_element_id']; ?>"<?php }
+if( array_key_exists( 'element_ids_disabled', $liste ) ) { ?> data-element_ids_disabled='<?= json_encode( $liste['element_ids_disabled'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
+if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-eigenschaften_bedingt_formatiert='<?= json_encode( $liste['eigenschaften_bedingt_formatiert'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 ?>>
 
     <li class="blanko element invisible text-body list-group-item<?php
@@ -35,8 +37,6 @@ if( array_key_exists( 'gegen_element_id', $liste ) ) { ?> data-gegen_element_id=
     }
     ?>"<?php
     if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
-    if( array_key_exists( 'disabled', $liste ) ) { ?> data-disabled='<?= json_encode( $liste['disabled'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
-    if( array_key_exists( 'bedingte_formatierung', $liste ) ) { ?> data-bedingte_formatierung='<?= json_encode( $liste['bedingte_formatierung'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     if( array_key_exists( 'title', $liste ) ) { ?> data-title="<?= $liste['title'] ?>"<?php }
     ?>>
 

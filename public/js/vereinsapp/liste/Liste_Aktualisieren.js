@@ -1,5 +1,6 @@
 function Liste_Aktualisieren($liste, liste) {
     const instanz = $liste.attr("id");
+    const element_ids_disabled = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-element_ids_disabled"), new Array());
 
     // TABELLE FILTERN
     const filtern_data = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-filtern"), new Object());
@@ -21,7 +22,7 @@ function Liste_Aktualisieren($liste, liste) {
     // ELEMENTE IM DOM LÖSCHEN
     $liste.find(".element").each(function () {
         const $element = $(this);
-        const element_id = Number($element.attr("data-element_id"));
+        const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-element_id"), undefined);
         const element = LISTEN[liste].tabelle[element_id];
         if (!tabelle_gefiltert_sortiert.includes(element)) $element.remove();
     });
@@ -29,31 +30,19 @@ function Liste_Aktualisieren($liste, liste) {
     // ELEMENTE IM DOM ERGÄNZEN UND SORTIEREN
     $.each(tabelle_gefiltert_sortiert, function (position, element) {
         const element_id = element["id"];
-        const $element = $liste.find('.element[data-element_id="' + element_id + '"]');
 
-        if (!$element.exists()) {
-            // Element existiert noch nicht, also wird es an der sortierten Position hinzugefügt
-            const $neues_element = LISTEN[liste].instanz[instanz].$blanko_element.clone().removeClass("blanko invisible");
+        let $element = $liste.find('.element[data-element_id="' + element_id + '"]');
+        if (!$element.exists()) $element = LISTEN[liste].instanz[instanz].$blanko_element.clone().removeClass("blanko invisible");
 
-            $neues_element
-                .attr("data-liste", liste)
-                .attr("data-element_id", element_id)
-                .attr("data-gegen_liste", $liste.attr("data-gegen_liste"))
-                .attr("data-gegen_element_id", $liste.attr("data-gegen_element_id"));
+        $element
+            .attr("data-liste", liste)
+            .attr("data-element_id", element_id)
+            .attr("data-gegen_liste", $liste.attr("data-gegen_liste"))
+            .attr("data-gegen_element_id", $liste.attr("data-gegen_element_id"))
+            .attr("data-eigenschaften_bedingt_formatiert", $liste.attr("data-eigenschaften_bedingt_formatiert"));
 
-            if (position === 0) $neues_element.appendTo($liste);
-            else $neues_element.insertAfter($liste.find('.element[data-element_id="' + tabelle_gefiltert_sortiert[position - 1]["id"] + '"]'));
-        } else {
-            // Element existiert bereits, also wird es nur einsortiert
-            if (position === 0) $element.appendTo($liste);
-            else $element.insertAfter($liste.find('.element[data-element_id="' + tabelle_gefiltert_sortiert[position - 1]["id"] + '"]'));
-        }
-    });
-
-    // ELEMENTE IM DOM SORTIEREN
-    $.each(tabelle_gefiltert_sortiert, function (position, element) {
-        const element_id = element["id"];
-        const $element = $liste.find('.element[data-element_id="' + element_id + '"]');
+        if (element_ids_disabled.includes(element_id)) $element.addClass("disabled");
+        else $element.removeClass("disabled");
 
         if (position === 0) $element.appendTo($liste);
         else $element.insertAfter($liste.find('.element[data-element_id="' + tabelle_gefiltert_sortiert[position - 1]["id"] + '"]'));

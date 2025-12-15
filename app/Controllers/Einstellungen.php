@@ -22,13 +22,13 @@ class Einstellungen extends BaseController {
         $this->viewdata['liste']['rechte_vergeben']['gegen_liste'] = 'mitglieder';
         $this->viewdata['liste']['rechte_vergeben']['gegen_element_id'] = ICH['id'];
 
-        $disabled_ids = array();
-        $disabled_ids[] = VERFUEGBARE_RECHTE['global.einstellungen']['id'];
-        if( !auth()->user()->can( 'global.einstellungen' ) ) $disabled_ids[] = VERFUEGBARE_RECHTE['mitglieder.rechte']['id'];
+        $element_ids_disabled = array();
+        $element_ids_disabled[] = VERFUEGBARE_RECHTE['global.einstellungen']['id'];
+        if( !auth()->user()->can( 'global.einstellungen' ) ) $element_ids_disabled[] = VERFUEGBARE_RECHTE['mitglieder.rechte']['id'];
         if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht )
             if( $verfuegbares_recht['permission'] != 'global.einstellungen' AND $verfuegbares_recht['permission'] != 'mitglieder.rechte' )
-                $disabled_ids[] = $verfuegbares_recht['id'];
-        $this->viewdata['liste']['rechte_vergeben']['disabled'] = array( 'liste' => 'verfuegbare_rechte','filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), );
+                $element_ids_disabled[] = $verfuegbares_recht['id'];
+        $this->viewdata['liste']['rechte_vergeben']['element_ids_disabled'] = $element_ids_disabled;
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         echo view( 'Einstellungen/einstellungen', $this->viewdata );

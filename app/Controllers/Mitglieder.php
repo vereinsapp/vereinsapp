@@ -20,34 +20,6 @@ class Mitglieder extends BaseController {
         $this->viewdata['liste']['alle_mitglieder']['link'] = TRUE;
         $this->viewdata['liste']['alle_mitglieder']['vorschau'] = MITGLIEDER_EIGENSCHAFTEN_VORSCHAU;
 
-        if( array_key_exists( LISTEN['termine_anwesenheiten']['controller'], CONTROLLERS ) ) {
-
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['termine'];
-            unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['beschriftung'] = '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>';
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_rueckmeldungen';
-
-            $disabled_ids = array();
-            if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
-                $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
-                    'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
-                    'title' => 'Alle abwählen',
-                );
-                $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
-                    'klasse_id' => array('btn_alle_checks_anwaehlen', 'bestaetigung_einfordern'),
-                    'title' => 'Alle anwählen',
-                );
-            } else foreach( model(Termin_Model::class)->findAll() as $termin )$disabled_ids[] = $termin['id'];
-                $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine', 'filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), );
-
-            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
-                'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
-                'title' => 'Termin-Anwesenheiten dokumentieren',
-            );
-
-        }
-
         if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
@@ -156,34 +128,6 @@ class Mitglieder extends BaseController {
 
         $this->viewdata['element_id'] = $mitglied_id;
 
-        if( array_key_exists( LISTEN['termine_anwesenheiten']['controller'], CONTROLLERS ) ) {
-
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['termine'];
-            unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['beschriftung'] = '<span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>';
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_rueckmeldungen';
-
-            $disabled_ids = array();
-            if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
-                $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
-                    'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
-                    'title' => 'Alle abwählen',
-                );
-                $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
-                    'klasse_id' => array('btn_alle_checks_anwaehlen', 'bestaetigung_einfordern'),
-                    'title' => 'Alle anwählen',
-                );
-            } else foreach( model(Termin_Model::class)->findAll() as $termin )$disabled_ids[] = $termin['id'];
-                $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['disabled'] = array( 'liste' => 'termine', 'filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), );
-
-            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
-                'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
-                'title' => 'Termin-Anwesenheiten dokumentieren',
-            );
-
-        }
-
         if( auth()->user()->can( 'mitglieder.rechte' ) ) {
 
             $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
@@ -191,13 +135,13 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['rechte_vergeben']['gegen_liste'] = 'mitglieder';
             $this->viewdata['liste']['rechte_vergeben']['gegen_element_id'] = $mitglied_id;
 
-            $disabled_ids = array();
-            $disabled_ids[] = VERFUEGBARE_RECHTE['global.einstellungen']['id'];
-            if( !auth()->user()->can( 'global.einstellungen' ) ) $disabled_ids[] = VERFUEGBARE_RECHTE['mitglieder.rechte']['id'];
+            $element_ids_disabled = array();
+            $element_ids_disabled[] = VERFUEGBARE_RECHTE['global.einstellungen']['id'];
+            if( !auth()->user()->can( 'global.einstellungen' ) ) $element_ids_disabled[] = VERFUEGBARE_RECHTE['mitglieder.rechte']['id'];
             if( !auth()->user()->can( 'mitglieder.rechte' ) ) foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht )
                 if( $verfuegbares_recht['permission'] != 'global.einstellungen' AND $verfuegbares_recht['permission'] != 'mitglieder.rechte' )
-                    $disabled_ids[] = $verfuegbares_recht['id'];
-            $this->viewdata['liste']['rechte_vergeben']['disabled'] = array( 'liste' => 'verfuegbare_rechte','filtern' => array( 'id' => array( 'inklusiv' => $disabled_ids, ), ), );
+                    $element_ids_disabled[] = $verfuegbares_recht['id'];
+            $this->viewdata['liste']['rechte_vergeben']['element_ids_disabled'] = $element_ids_disabled;
 
         }
 

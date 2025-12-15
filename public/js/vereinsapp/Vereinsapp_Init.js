@@ -91,8 +91,12 @@ aufgaben direkt termine zuordnen (mit multi-select, analog zu filtern_mitglieder
 Wie umgehen mit Mitglieder_MitgliederAufgabenErledigtAnzeigen und Aufgaben_ZugeordneteAufgabenAnzeigen
 Bugfix Schnittstelle_VariableLoeschen
 Bugfix Listenstatistik (angewählt taucht auch bei nicht-chk-listen auf, aktualisieren braucht etwas Zeit?)
+Bugfix global.einstellungen darf man nicht einfach vergeben
+Bugfix Termine ohne Rückmeldung auf der Startseite (Keine Rückmeldung möglich)
 btn_verknuepfung_bemerkung_aendern vereinheitlichen für alle Listen (nicht nur Verknüpfungen)
 btn_verknuepfung_bemerkung_aendern aktualisiert sich nur zeitverzögert
-disabled überarbeiten (disabled auf IDs beziehen)
+termine_anwesenheiten in Termine als normale Liste mit Zusatzsymbol falls keine bearbeitung erlaubt ist (nicht disabled)
+Auswertung für Anwesenheit eines Mitglieds in den Details anzeigen
+Rechte eines Mitglieds in ein Modal verschieben (analog zu Rückmeldungen)
 
 */

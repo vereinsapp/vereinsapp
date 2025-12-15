@@ -52,7 +52,7 @@ function Liste_Init() {
             ui.item.removeClass("border-top border-primary shadow");
         },
         update: function () {
-            $("#sortable_speichern").attr("disabled", false);
+            $("#sortable_speichern").prop("disabled", false);
         },
     });
 }
