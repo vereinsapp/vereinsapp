@@ -131,7 +131,7 @@ class Termine extends BaseController {
 
         $this->viewdata['element_id'] = $termin_id;
 
-        $this->viewdata['auswertungen'][ 'rueckmeldungen_termin' ] = array(
+        $this->viewdata['auswertungen']['rueckmeldungen_termin'] = array(
             'auswertungen' => 'termine_rueckmeldungen',
             'auswahlmoeglichkeiten' => array( 1, 2 ),
             'gruppieren' => 'register',
@@ -151,7 +151,7 @@ class Termine extends BaseController {
             'title' => 'Auswertung filtern',
         );
 
-        $this->viewdata['auswertungen'][ 'anwesenheiten_termin' ] = array(
+        $this->viewdata['auswertungen']['anwesenheiten_termin'] = array(
             'auswertungen' => 'termine_anwesenheiten',
             'auswahlmoeglichkeiten' => array( 1 ),
             'gruppieren' => 'register',

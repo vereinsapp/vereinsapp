@@ -815,13 +815,18 @@ class Vereinsapp extends BaseConfig
      *
      * Angezeigte Mitglieder-Eigenschaften als Vorschau
      */
-    public $mitglieder_eigenschaften_vorschau = array(
-        'register',
-        'geburtstag',
-        'alter',
-        'wohnort',
-        'auto',
-        'funktion',
+    public $mitglieder_eigenschaften_vorschau = array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion', );
+
+    /**
+     * --------------------------------------------------------------------------
+     * Mitglieder-Auswertungen
+     * --------------------------------------------------------------------------
+     *
+     * Vordefinierte Filter (nach Liste)
+     */
+    public $mitglieder_auswertungen_filtern = array(
+        'termine_rueckmeldungen' => array( 'start' => array( 'start' => JAHRESBEGINN ), ),
+        'termine_anwesenheiten' => array( 'start' => array( 'start' => JAHRESBEGINN ), 'kategorie' => array( 'inklusiv' => array( 'probe' ), ), ),
     );
 
     /**

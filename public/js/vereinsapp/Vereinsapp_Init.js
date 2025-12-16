@@ -89,14 +89,17 @@ data-element_id loswerden (vorausgesetzt, dass überall auch data-liste gesetzt 
 Zusatzsymbol rechts und links einführen
 Neue bootstrap icons Version einführen (unlock2 statt lock)
 Mitglieder unter der Auswertung sind eigentlich Rückmeldungen (aber mitglied_id entsprechend formatiert)
+Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details)
 aufgaben direkt termine zuordnen (mit multi-select, analog zu filtern_mitglieder bei termine?)
 Wie umgehen mit Mitglieder_MitgliederAufgabenErledigtAnzeigen und Aufgaben_ZugeordneteAufgabenAnzeigen
 Bugfix Schnittstelle_VariableLoeschen
 Bugfix Listenstatistik (angewählt taucht auch bei nicht-chk-listen auf, aktualisieren braucht etwas Zeit?)
 Bugfix global.einstellungen darf man nicht einfach vergeben
 Bugfix Termine ohne Rückmeldung auf der Startseite (Keine Rückmeldung möglich)
+Bugfix bemerkung undefined bei Auswertung Anwesenheiten
 btn_verknuepfung_bemerkung_aendern vereinheitlichen für alle Listen (nicht nur Verknüpfungen)
 btn_verknuepfung_bemerkung_aendern aktualisiert sich nur zeitverzögert
-Auswertung für Anwesenheit eines Mitglieds in den Details anzeigen
+kassenbuch_offene_eintraege_mitglied in Modal verschieben
+auswertungen->auswahlmoeglichkeiten aus VERKNUEPFUNGEN?
 
 */

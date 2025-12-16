@@ -138,6 +138,36 @@ class Mitglieder extends BaseController {
 
         $this->viewdata['element_id'] = $mitglied_id;
 
+        $this->viewdata['auswertungen']['rueckmeldungen_mitglied'] = array(
+            'auswertungen' => 'termine_rueckmeldungen',
+            'auswahlmoeglichkeiten' => array( 1, 2 ),
+            'gruppieren' => 'kategorie',
+            'liste' => 'termine',
+            'filtern' => MITGLIEDER_AUSWERTUNGEN_FILTERN['termine_rueckmeldungen'],
+            'gegen_liste' => 'mitglieder',
+            'gegen_element_id' => $mitglied_id,
+        );
+
+        $this->viewdata['auswertungen']['rueckmeldungen_mitglied']['werkzeugkasten']['filtern'] = array(
+            'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'),
+            'title' => 'Auswertung filtern',
+        );
+
+        $this->viewdata['auswertungen']['anwesenheiten_mitglied'] = array(
+            'auswertungen' => 'termine_anwesenheiten',
+            'auswahlmoeglichkeiten' => array( 1 ),
+            'gruppieren' => 'kategorie',
+            'liste' => 'termine',
+            'filtern' => MITGLIEDER_AUSWERTUNGEN_FILTERN['termine_anwesenheiten'],
+            'gegen_liste' => 'mitglieder',
+            'gegen_element_id' => $mitglied_id,
+        );
+
+        $this->viewdata['auswertungen']['anwesenheiten_mitglied']['werkzeugkasten']['filtern'] = array(
+            'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'),
+            'title' => 'Auswertung filtern',
+        );
+
         if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {
 
             $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
@@ -253,6 +283,7 @@ class Mitglieder extends BaseController {
         );
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
+        if( array_key_exists( 'auswertungen', $this->viewdata ) ) foreach( $this->viewdata['auswertungen'] as $id => $auswertungen ) $this->viewdata['auswertungen'][ $id ]['id'] = $id;
         echo view( 'Mitglieder/mitglied_details', $this->viewdata );
     }
     //------------------------------------------------------------------------------------------------------------------

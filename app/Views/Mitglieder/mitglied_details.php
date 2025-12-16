@@ -30,6 +30,26 @@
     </div>
 </div>
 
+<div class="container mb-3">
+    <ul class="nav nav-tabs">
+        <li class="col-6 nav-item collapsed text-center" data-bs-toggle="collapse" data-bs-target="#rueckmeldungen_container" role="button">
+            <a class="nav-link">Rückmeldungen</a>
+        </li>
+        <li class="col-6 nav-item text-center" data-bs-target="#anwesenheiten_container" role="button">
+            <a class="nav-link active">Anwesenheiten</a>
+        </li>
+    </ul>
+</div>
+
+<div class="container rueckmeldungen_anwesenheiten_parent mb-3">
+    <div id="rueckmeldungen_container" class="collapse tab_collapse no-transition" data-bs-parent=".rueckmeldungen_anwesenheiten_parent">
+<?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['rueckmeldungen_mitglied'], 'view' => 'Mitglieder/auswertung_rueckmeldungen' ) ); ?>
+    </div>
+    <div id="anwesenheiten_container" class="collapse tab_collapse no-transition show" data-bs-parent=".rueckmeldungen_anwesenheiten_parent">
+<?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['anwesenheiten_mitglied'], 'view' => 'Mitglieder/auswertung_anwesenheiten' ) ); ?>
+    </div>
+</div>
+
 <?php if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) { ?><div class="container mb-3">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="kassenbuch" data-instanz="kassenbuch_offene_eintraege_mitglied">Offene Kassenbucheinträge</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['kassenbuch_offene_eintraege_mitglied'] ) ); ?>
