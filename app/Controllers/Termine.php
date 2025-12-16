@@ -23,26 +23,24 @@ class Termine extends BaseController {
 
         $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
         unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
+
+        $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
+            'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
+            // 'title' => 'Anwesenheiten dokumentieren',
+        );
+
         if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
 
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_rueckmeldungen';
 
-            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
-                'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
-                'title' => 'Anwesenheiten dokumentieren',
-            );
+            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren']['title'] = 'Anwesenheiten dokumentieren';
 
         } else {
 
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_anwesenheiten';
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element_ids_disabled'] = array();
-            foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element_ids_disabled'][] = $mitglied->id;
 
-            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
-                'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
-                'title' => 'Anwesenheiten',
-            );
+            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren']['title'] = 'Anwesenheiten';
 
         }
 
@@ -175,26 +173,24 @@ class Termine extends BaseController {
 
         $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
         $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
+
+        $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
+            'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
+            // 'title' => 'Anwesenheiten dokumentieren',
+        );
+
         if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
 
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_rueckmeldungen';
 
-            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
-                'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
-                'title' => 'Anwesenheiten dokumentieren',
-            );
+            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren']['title'] = 'Anwesenheiten dokumentieren';
 
         } else {
 
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_anwesenheiten';
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element_ids_disabled'] = array();
-            foreach( model(Mitglied_Model::class)->findAll() as $mitglied ) $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element_ids_disabled'][] = $mitglied->id;
 
-            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
-                'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
-                'title' => 'Anwesenheiten',
-            );
+            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren']['title'] = 'Anwesenheiten';
 
         }
 

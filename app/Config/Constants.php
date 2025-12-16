@@ -309,6 +309,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'pfeil_rechts' => array( 'bootstrap' => 'arrow-right' ),
     'spacer' => array ( 'bootstrap' => 'dot' ),
 
+    'rechte_vergeben' => array( 'bootstrap' => 'lock' ),
     'termine_rueckmeldungen_verwalten' => array( 'bootstrap' => 'hand-thumbs-up' ),
     'termine_anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
     'statistiken' => array( 'bootstrap' => 'graph-up-arrow' ),

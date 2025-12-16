@@ -117,6 +117,17 @@ function Mitglieder_Init() {
         );
     });
 
+    // RECHTE VERGEBEN (MODAL) ÖFFNEN
+    $(document).on("click", ".btn_rechte_vergeben", function () {
+        Liste_VerknuepfungenModalOeffnen(
+            "rechte_vergeben_modal",
+            "rechte_vergeben",
+            $(this).attr("data-title"),
+            $(this).attr("data-element_id"),
+            $(this).attr("data-liste")
+        );
+    });
+
     // EINMAL-LINK PER EMAIL VERSCHICKEN
     $(document).on("click", ".btn_mitglied_einmal_link_email", function () {
         Mitglieder_EinmalLinkErstellen(

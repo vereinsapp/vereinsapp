@@ -20,6 +20,19 @@ class Mitglieder extends BaseController {
         $this->viewdata['liste']['alle_mitglieder']['link'] = TRUE;
         $this->viewdata['liste']['alle_mitglieder']['vorschau'] = MITGLIEDER_EIGENSCHAFTEN_VORSCHAU;
 
+        if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {
+
+            $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
+            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', );
+            $this->viewdata['liste']['rechte_vergeben']['element_ids_disabled'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
+
+            $this->viewdata['werkzeugkasten']['rechte_vergeben'] = array(
+                'klasse_id' => 'btn_rechte_vergeben',
+                'title' => 'Rechte vergeben',
+            );
+
+        }
+
         if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
@@ -128,10 +141,13 @@ class Mitglieder extends BaseController {
         if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {
 
             $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
-            $this->viewdata['liste']['rechte_vergeben']['gegen_liste'] = 'mitglieder';
-            $this->viewdata['liste']['rechte_vergeben']['gegen_element_id'] = $mitglied_id;
             $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', );
             $this->viewdata['liste']['rechte_vergeben']['element_ids_disabled'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
+
+            $this->viewdata['werkzeugkasten']['rechte_vergeben'] = array(
+                'klasse_id' => 'btn_rechte_vergeben',
+                'title' => 'Rechte vergeben',
+            );
 
         }
 

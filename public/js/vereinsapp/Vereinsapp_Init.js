@@ -86,6 +86,8 @@ Lässt sich filtern/sortieren/gruppieren_localstorage_speichern entfernen mittel
 Braucht es formular_beschriftung und beschriftung-span für Formulare (bspw in mitglied_einmal_link_anzeigen_formular.php)?
 .btn in .formular mit ENTER betätigbar machen
 data-element_id loswerden (vorausgesetzt, dass überall auch data-liste gesetzt ist)
+Zusatzsymbol rechts und links einführen
+Neue bootstrap icons Version einführen (unlock2 statt lock)
 Mitglieder unter der Auswertung sind eigentlich Rückmeldungen (aber mitglied_id entsprechend formatiert)
 aufgaben direkt termine zuordnen (mit multi-select, analog zu filtern_mitglieder bei termine?)
 Wie umgehen mit Mitglieder_MitgliederAufgabenErledigtAnzeigen und Aufgaben_ZugeordneteAufgabenAnzeigen
@@ -96,7 +98,5 @@ Bugfix Termine ohne Rückmeldung auf der Startseite (Keine Rückmeldung möglich
 btn_verknuepfung_bemerkung_aendern vereinheitlichen für alle Listen (nicht nur Verknüpfungen)
 btn_verknuepfung_bemerkung_aendern aktualisiert sich nur zeitverzögert
 Auswertung für Anwesenheit eines Mitglieds in den Details anzeigen
-Rechte eines Mitglieds in ein Modal verschieben (analog zu Rückmeldungen)
-Zusatzsymbol rechts und links einführen
 
 */
