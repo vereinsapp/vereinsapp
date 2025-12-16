@@ -99,6 +99,5 @@ Bugfix Termine ohne Rückmeldung auf der Startseite (Keine Rückmeldung möglich
 Bugfix bemerkung undefined bei Auswertung Anwesenheiten
 Bugfix btn_verknuepfung_bemerkung_aendern aktualisiert sich nur zeitverzögert
 btn_verknuepfung_bemerkung_aendern vereinheitlichen für alle Listen (nicht nur Verknüpfungen)
-kassenbuch_offene_eintraege_mitglied in Modal verschieben
 
 */

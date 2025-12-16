@@ -44,7 +44,7 @@ class Notenbank extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function titel( $titel_id ) {
+    public function titel( $titel_id ) { $titel_id = (int)$titel_id;
         if( empty( model(Titel_Model::class)->find( $titel_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 
         $this->viewdata['element_id'] = $titel_id;

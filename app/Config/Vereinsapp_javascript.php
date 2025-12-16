@@ -169,6 +169,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragErstellen.js?v='.VERSION,
         'js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragAendern.js?v='.VERSION,
         'js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragOffenErledigtMarkieren.js?v='.VERSION,
+        'js/vereinsapp/strafkatalog/Strafkatalog_OffeneKassenbucheintraegeVerwalten.js?v='.VERSION,
 
         'js/vereinsapp/notenbank/Notenbank_Init.js?v='.VERSION,
         'js/vereinsapp/notenbank/Notenbank_TitelErstellen.js?v='.VERSION,

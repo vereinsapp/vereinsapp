@@ -48,6 +48,20 @@ class Mitglieder extends BaseController {
 
         if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
 
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten'] = HAUPTINSTANZEN['kassenbuch'];
+            unset($this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['werkzeugkasten']);
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['filtern'] = array( 'mitglied_id' => array( 'inklusiv' => array() ), 'erledigt_janein' => array( 'inklusiv' => array( FALSE ), ), );
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['klasse_id'] = array('btn_kassenbucheintrag_offen_erledigt_markieren', 'bestaetigung_einfordern');
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['title'] = 'Kassenbucheintrag als offen/erledigt markieren';
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>';
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['vorschau'] = array( 'erstellung', 'wert' );
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['zusatzsymbol'] = array( 'offen_erledigt_markieren' );
+
+            $this->viewdata['werkzeugkasten']['offene_kassenbucheintraege_verwalten'] = array(
+                'klasse_id' => 'btn_offene_kassenbucheintraege_verwalten',
+                'title' => 'Offene Kassenbucheinträge',
+            );
+
             $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
                 'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_einfordern'),
                 'title' => 'Strafe einem Mitglied zuweisen',
@@ -133,7 +147,7 @@ class Mitglieder extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function mitglied( $mitglied_id ) {
+    public function mitglied( $mitglied_id ) { $mitglied_id = (int)$mitglied_id;
       if( empty( model(Mitglied_Model::class)->find( $mitglied_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 
         $this->viewdata['element_id'] = $mitglied_id;
@@ -196,14 +210,19 @@ class Mitglieder extends BaseController {
 
         if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
 
-            $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied'] = HAUPTINSTANZEN['kassenbuch'];
-            unset($this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['werkzeugkasten']);
-            $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['filtern'] = array( 'mitglied_id' => array( 'inklusiv' => array( $mitglied_id, ) ), 'erledigt_janein' => array( 'inklusiv' => array( FALSE ), ), );
-            $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['klasse_id'] = array('btn_kassenbucheintrag_offen_erledigt_markieren', 'bestaetigung_einfordern');
-            $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['title'] = 'Kassenbucheintrag als offen/erledigt markieren';
-            $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>';
-            $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['vorschau'] = array( 'erstellung', 'wert' );
-            $this->viewdata['liste']['kassenbuch_offene_eintraege_mitglied']['zusatzsymbol'] = array( 'offen_erledigt_markieren' );
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten'] = HAUPTINSTANZEN['kassenbuch'];
+            unset($this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['werkzeugkasten']);
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['filtern'] = array( 'mitglied_id' => array( 'inklusiv' => array( $mitglied_id, ) ), 'erledigt_janein' => array( 'inklusiv' => array( FALSE ), ), );
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['klasse_id'] = array('btn_kassenbucheintrag_offen_erledigt_markieren', 'bestaetigung_einfordern');
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['title'] = 'Kassenbucheintrag als offen/erledigt markieren';
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>';
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['vorschau'] = array( 'erstellung', 'wert' );
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['zusatzsymbol'] = array( 'offen_erledigt_markieren' );
+
+            $this->viewdata['werkzeugkasten']['offene_kassenbucheintraege_verwalten'] = array(
+                'klasse_id' => 'btn_offene_kassenbucheintraege_verwalten',
+                'title' => 'Offene Kassenbucheinträge',
+            );
 
             $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
                 'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_einfordern'),

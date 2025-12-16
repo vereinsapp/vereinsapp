@@ -126,7 +126,7 @@ class Termine extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function termin( $termin_id ) {
+    public function termin( $termin_id ) { $termin_id = (int)$termin_id;
         if( empty( model(Termin_Model::class)->find( $termin_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 
         $this->viewdata['element_id'] = $termin_id;

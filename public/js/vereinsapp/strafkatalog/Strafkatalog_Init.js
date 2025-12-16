@@ -1,6 +1,6 @@
 ELEMENTE.kassenbucheintrag.ergaenzen_aktion = function (kassenbucheintrag) {
-    if (typeof kassenbucheintrag["erledigt"] !== null) kassenbucheintrag["erledigt_janein"] = true;
-    else kassenbucheintrag["erledigt_janein"] = false;
+    if (kassenbucheintrag.erledigt !== null) kassenbucheintrag.erledigt_janein = true;
+    else kassenbucheintrag.erledigt_janein = false;
 };
 
 function Strafkatalog_Init() {
@@ -90,6 +90,16 @@ function Strafkatalog_Init() {
             { $ausloesend: $(this), $modal: $(this).closest(".modal") },
             $(this).attr("data-title"),
             $(this).attr("data-kassenbucheintrag_id")
+        );
+    });
+
+    // OFFENE KASSENBUCHEINTRÄGE VERWALTEN (MODAL) ÖFFNEN
+    $(document).on("click", ".btn_offene_kassenbucheintraege_verwalten", function () {
+        Strafkatalog_OffeneKassenbucheintraegeVerwalten(
+            "offene_kassenbucheintraege_verwalten_modal",
+            "offene_kassenbucheintraege_verwalten",
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id"), undefined)
         );
     });
 }

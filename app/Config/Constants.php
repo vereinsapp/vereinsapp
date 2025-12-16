@@ -312,6 +312,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'rechte_vergeben' => array( 'bootstrap' => 'lock' ),
     'termine_rueckmeldungen_verwalten' => array( 'bootstrap' => 'hand-thumbs-up' ),
     'termine_anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
+    'offene_kassenbucheintraege_verwalten' => array( 'bootstrap' => 'journal-check' ),
     'statistiken' => array( 'bootstrap' => 'graph-up-arrow' ),
     'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),
     'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),

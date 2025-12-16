@@ -50,11 +50,6 @@
     </div>
 </div>
 
-<?php if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) { ?><div class="container mb-3">
-    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="kassenbuch" data-instanz="kassenbuch_offene_eintraege_mitglied">Offene Kassenbucheinträge</div>
-<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['kassenbuch_offene_eintraege_mitglied'] ) ); ?>
-</div><?php } ?>
-
 <?php /* if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) { ?><div class="container mb-3">
     <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="aufgaben" data-instanz="aufgaben_offen_mitglied_geplant">Offene Aufgaben</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['aufgaben_offen_mitglied_geplant'] ) ); ?>
@@ -72,6 +67,9 @@
 <?php if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'id' => 'termine_rueckmeldungen_verwalten_modal', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_rueckmeldungen_verwalten'] ) ) ) ); ?>
+<?php if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) echo
+    view( 'Templates/modal', array( 'id' => 'offene_kassenbucheintraege_verwalten_modal', 'modal' =>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['offene_kassenbucheintraege_verwalten'] ) ) ) ); ?>
 <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'id' => 'mitglied_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_aktion' ), 'formular' =>
