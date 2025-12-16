@@ -7,13 +7,14 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
     const auswertung_element_ids = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-auswertung_element_ids"), new Array());
 
     const element_ids_nach_status = new Array(new Array());
-    $.each(element_ids, function (position, element_id) {
-        element_ids_nach_status[0].push(element_id);
+    $.each(Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-auswahlmoeglichkeiten"), new Array()), function (position, status) {
+        if (status === 0)
+            $.each(element_ids, function (position, element_id) {
+                element_ids_nach_status[0].push(element_id);
+            });
+        else element_ids_nach_status[status] = new Array();
     });
 
-    $.each(Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-auswahlmoeglichkeiten"), new Array()), function (position, status) {
-        element_ids_nach_status[Number(status)] = new Array();
-    });
     $.each(auswertung_element_ids, function (position, auswertung_element_id) {
         const status = Schnittstelle_VariableRausZurueck("status", auswertung_element_id, auswertungen, undefined);
         const element_id = Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_element_id, auswertungen, undefined);
@@ -27,7 +28,7 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
     // ERGEBNIS_ANZAHL AKTUALISIEREN
     $auswertung.find(".ergebnis_anzahl").each(function () {
         const $ergebnis_anzahl = $(this);
-        const status = $ergebnis_anzahl.attr("data-status");
+        const status = Schnittstelle_VariableWertBereinigtZurueck($ergebnis_anzahl.attr("data-status"), undefined);
 
         const ergebnis_anzahl = element_ids_nach_status[status].length;
         const ergebnis_referenz_anzahl = element_ids.length;
@@ -40,9 +41,10 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
     // ERGEBNIS AKTUALISIEREN
     $auswertung.find(".ergebnis").each(function () {
         const $ergebnis = $(this);
+        const status = Schnittstelle_VariableWertBereinigtZurueck($ergebnis.attr("data-status"), undefined);
         const filtern = { id: { inklusiv: new Array() } };
-        $.each(element_ids_nach_status[$ergebnis.attr("data-status")], function (position, element_id) {
-            filtern.id.inklusiv.push(Number(element_id));
+        $.each(element_ids_nach_status[status], function (position, element_id) {
+            filtern.id.inklusiv.push(element_id);
         });
         $ergebnis
             .attr("data-filtern", JsonStringifiedZurueck(filtern, new Object()))

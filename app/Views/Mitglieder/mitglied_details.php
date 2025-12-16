@@ -33,10 +33,10 @@
 <div class="container mb-3">
     <ul class="nav nav-tabs">
         <li class="col-6 nav-item collapsed text-center" data-bs-toggle="collapse" data-bs-target="#rueckmeldungen_container" role="button">
-            <a class="nav-link">Rückmeldungen</a>
+            <a class="nav-link">Termin-Rückmeldungen</a>
         </li>
         <li class="col-6 nav-item text-center" data-bs-target="#anwesenheiten_container" role="button">
-            <a class="nav-link active">Anwesenheiten</a>
+            <a class="nav-link active">Termin-Anwesenheiten</a>
         </li>
     </ul>
 </div>

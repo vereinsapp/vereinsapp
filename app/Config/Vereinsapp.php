@@ -164,7 +164,7 @@ class Vereinsapp extends BaseConfig
 
         'termine' => array(
             'liste' => 'termine',
-            'filtern' => array( 'start' => array( 'start' => HEUTE ), 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+            'filtern' => array( 'start' => array( 'start' => HEUTE ), 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ) ), ),
             'sortieren' => array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'zusatzsymbol' => array('kategorie'),
@@ -513,34 +513,34 @@ class Vereinsapp extends BaseConfig
         'mitglieder' => array(
             'alle_minderjaehrigen' => array(
                 'beschriftung' => 'Alle Minderjährigen',
-                'filtern' => array( 'alter' => array( 'ende' => 17.9999 ), 'real_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+                'filtern' => array( 'alter' => array( 'ende' => 17.9999 ), 'real_janein' => array( 'inklusiv' => array( TRUE ) ), ),
             ),
             'alle_volljaehrigen' => array(
                 'beschriftung' => 'Alle Volljährigen',
-                'filtern' => array( 'alter' => array( 'start' => 18 ), 'real_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+                'filtern' => array( 'alter' => array( 'start' => 18 ), 'real_janein' => array( 'inklusiv' => array( TRUE ) ), ),
             ),
             'funktionaere' => array(
                 'beschriftung' => 'Alle Funktionäre',
-                'filtern' => array( 'funktion' => array( 'exklusiv' => [ 'ohne' ] ), 'real_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+                'filtern' => array( 'funktion' => array( 'exklusiv' => array( 'ohne' ) ), 'real_janein' => array( 'inklusiv' => array( TRUE ) ), ),
             ),
             'vorstandschaft' => array(
                 'beschriftung' => 'Vorstandschaft',
-                'filtern' => array( 'vorstandschaft_janein' => array( 'inklusiv' => [ TRUE ] ), 'real_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+                'filtern' => array( 'vorstandschaft_janein' => array( 'inklusiv' => array( TRUE ) ), 'real_janein' => array( 'inklusiv' => array( TRUE ) ), ),
             ),
             'aktive_mitglieder' => array(
                 'beschriftung' => 'Aktive Mitglieder',
-                'filtern' => array( 'aktiv_janein' => array( 'inklusiv' => [ TRUE ] ), 'real_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+                'filtern' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ) ), 'real_janein' => array( 'inklusiv' => array( TRUE ) ), ),
             ),
             'alle_mitglieder' => array(
                 'beschriftung' => 'Alle Mitglieder',
-                'filtern' => array( 'aktiv_janein' => array(), 'real_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+                'filtern' => array( 'aktiv_janein' => array(), 'real_janein' => array( 'inklusiv' => array( TRUE ) ), ),
             ),
         ),
 
         'aufgaben' => array(
             // 'offen' => array(
             //     'beschriftung' => 'Alle offenen Aufgaben',
-            //     'filtern' => array( 'erledigt_janein' => array( 'inklusiv' => [ FALSE ] ), ),
+            //     'filtern' => array( 'erledigt_janein' => array( 'inklusiv' => array( FALSE ) ), ),
             // ),
         ),
 
@@ -551,30 +551,30 @@ class Vereinsapp extends BaseConfig
             ),
             'alle_auftritte' => array(
                 'beschriftung' => 'Alle anstehenden Auftritte',
-                'filtern' => array( 'kategorie' => array( 'inklusiv' => [ 'auftritt' ] ), ),
+                'filtern' => array( 'kategorie' => array( 'inklusiv' => array( 'auftritt' ) ), ),
             ),
             'ich_eingeladen' => array(
                 'beschriftung' => 'Alle Termine, zu denen ich eingeladen bin',
-                'filtern' => array( 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+                'filtern' => array( 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ) ), ),
             ),
             'ich_nicht_eingeladen' => array(
                 'beschriftung' => 'Alle Termine, zu denen ich nicht eingeladen bin',
-                'filtern' => array( 'ich_eingeladen_janein' => array( 'inklusiv' => [ FALSE ] ), ),
+                'filtern' => array( 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ) ), ),
             ),
             'ich_rueckgemeldet' => array(
                 'beschriftung' => 'Alle Termine, zu denen ich Rückmeldung gegeben habe',
-                'filtern' => array( 'ich_rueckgemeldet_janein' => array( 'inklusiv' => [ TRUE ] ), 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+                'filtern' => array( 'ich_rueckgemeldet_janein' => array( 'inklusiv' => array( TRUE ) ), 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ) ), ),
             ),
             'ich_nicht_rueckgemeldet' => array(
                 'beschriftung' => 'Alle Termine, zu denen ich keine Rückmeldung gegeben habe',
-                'filtern' => array( 'ich_rueckgemeldet_janein' => array( 'inklusiv' => [ FALSE ] ), 'ich_eingeladen_janein' => array( 'inklusiv' => [ TRUE ] ), ),
+                'filtern' => array( 'ich_rueckgemeldet_janein' => array( 'inklusiv' => array( TRUE ) ), 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ) ), ),
             ),
         ),
 
         'kassenbuch' => array(
             'offen' => array(
                 'beschriftung' => 'Alle offenen Einträge',
-                'filtern' => array( 'erledigt_janein' => array( 'inklusiv' => [ FALSE ] ), ),
+                'filtern' => array( 'erledigt_janein' => array( 'inklusiv' => array( TRUE ) ), ),
             ),
             'alle_seit_jahresbeginn' => array(
                 'beschriftung' => 'Alle Einträge seit Jahresbeginn',
