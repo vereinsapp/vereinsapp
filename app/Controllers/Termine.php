@@ -17,30 +17,16 @@ class Termine extends BaseController {
         $this->viewdata['liste']['bevorstehende_termine']['group-flush'] = TRUE;
         $this->viewdata['liste']['bevorstehende_termine']['link'] = TRUE;
         $this->viewdata['liste']['bevorstehende_termine']['vorschau'] = array( 'start', 'ort' );
-        $this->viewdata['liste']['bevorstehende_termine']['verknuepfungen'] = array(
-            'typ' => 'auswahlmoeglichkeiten',
-            'verknuepfungen' => 'termine_rueckmeldungen',
-            'liste' => 'mitglieder',
-            'element_id' => ICH['id'],
-            'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
-        );
+        $this->viewdata['liste']['bevorstehende_termine']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], );
         $this->viewdata['liste']['bevorstehende_termine']['gegen_liste'] = "mitglieder";
         $this->viewdata['liste']['bevorstehende_termine']['gegen_element_id'] = ICH['id'];
 
         $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
-        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
+        unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
         if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
 
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_rueckmeldungen';
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
-                'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
-                'title' => 'Alle abwählen',
-            );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
-                'klasse_id' => array('btn_alle_checks_anwaehlen', 'bestaetigung_einfordern'),
-                'title' => 'Alle anwählen',
-            );
 
             $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
                 'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
@@ -102,11 +88,8 @@ class Termine extends BaseController {
         if( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['mitglieder'];
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array(
-                'typ' => 'auswahlmoeglichkeiten',
-                'verknuepfungen' => 'termine_rueckmeldungen',
-                'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
-            );
+            unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']);
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], );
 
             $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
                 'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',
@@ -196,14 +179,6 @@ class Termine extends BaseController {
 
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_rueckmeldungen';
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_abwaehlen'] = array(
-                'klasse_id' => array('btn_alle_checks_abwaehlen', 'bestaetigung_einfordern'),
-                'title' => 'Alle abwählen',
-            );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeugkasten']['alle_checks_anwaehlen'] = array(
-                'klasse_id' => array('btn_alle_checks_anwaehlen', 'bestaetigung_einfordern'),
-                'title' => 'Alle anwählen',
-            );
 
             $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
                 'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
@@ -243,11 +218,7 @@ class Termine extends BaseController {
             
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['mitglieder'];
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array(
-                'typ' => 'auswahlmoeglichkeiten',
-                'verknuepfungen' => 'termine_rueckmeldungen',
-                'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
-            );
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], );
 
             $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
                 'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',

@@ -305,8 +305,6 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'inklusiv_exklusiv' => array( 'bootstrap' => 'transparency' ),
     'asc' => array( 'bootstrap' => 'sort-alpha-down' ),
     'desc' => array( 'bootstrap' => 'sort-alpha-up' ),
-    'alle_checks_anwaehlen' => array( 'bootstrap' => 'toggle-on' ),
-    'alle_checks_abwaehlen' => array( 'bootstrap' => 'toggle-off' ),
     'pfeil_links' => array( 'bootstrap' => 'arrow-left' ),
     'pfeil_rechts' => array( 'bootstrap' => 'arrow-right' ),
     'spacer' => array ( 'bootstrap' => 'dot' ),
