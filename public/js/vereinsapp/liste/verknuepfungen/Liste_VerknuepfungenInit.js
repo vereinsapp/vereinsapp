@@ -30,15 +30,4 @@ function Liste_VerknuepfungenInit() {
             }
         );
     });
-
-    // BEMERKUNG AENDERN
-    $(document).on("click", ".btn_element_bemerkung_aendern", function () {
-        Liste_ElementBemerkungAendern(
-            $(this).hasClass("formular_oeffnen"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"))
-        );
-    });
 }

@@ -13,7 +13,10 @@ function Liste_ListenstatistikAktualisieren($listenstatistik, liste) {
                 break;
             }
             case "angewaehlt": {
-                $listenstatistik.text($liste.find(".check:checked").length);
+                /* funktioniert aktuell nicht, weil Liste_Aktualisieren inkl. Liste_ListenstatistikAktualisieren aufgerufen wird,
+                 * bevor Liste_ElementAktualisieren inkl. Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren aufgerufen wird
+                 */
+                $listenstatistik.text($liste.find(".chk_verknuepfung_erstellen:checked").length);
                 break;
             }
             case "summe": {

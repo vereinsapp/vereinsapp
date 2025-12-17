@@ -135,7 +135,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                     }
                 );
 
-                bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", verknuepfung_id, verknuepfungen, undefined);
+                bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", verknuepfung_id, verknuepfungen, null);
             } else bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste, null);
 
             if (bemerkung !== null)

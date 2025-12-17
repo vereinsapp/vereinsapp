@@ -30,6 +30,18 @@ function Liste_Init() {
             EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].change_aktion($(this));
     });
 
+    // BEMERKUNG AENDERN
+    $(document).on("click", ".btn_element_bemerkung_aendern", function () {
+        Liste_ElementBemerkungAendern(
+            $(this).hasClass("formular_oeffnen"),
+            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-ziel_id")),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id")),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"))
+        );
+    });
+
     // ELEMENT LÖSCHEN
     $(document).on("click", ".btn_element_loeschen", function () {
         Liste_ElementLoeschen(
