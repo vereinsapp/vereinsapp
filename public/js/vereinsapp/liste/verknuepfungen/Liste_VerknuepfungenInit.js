@@ -32,8 +32,8 @@ function Liste_VerknuepfungenInit() {
     });
 
     // BEMERKUNG AENDERN
-    $(document).on("click", ".btn_verknuepfung_bemerkung_aendern", function () {
-        Liste_VerknuepfungBemerkungAendern(
+    $(document).on("click", ".btn_element_bemerkung_aendern", function () {
+        Liste_ElementBemerkungAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),

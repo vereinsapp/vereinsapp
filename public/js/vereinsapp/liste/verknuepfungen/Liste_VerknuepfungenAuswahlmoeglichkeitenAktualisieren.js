@@ -100,12 +100,12 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren(
             }
         });
 
-        $verknuepfungen_auswahlmoeglichkeiten.find(".btn_verknuepfung_bemerkung_aendern").each(function () {
-            const $btn_verknuepfung_bemerkung_aendern = $(this);
+        $verknuepfungen_auswahlmoeglichkeiten.find(".btn_element_bemerkung_aendern").each(function () {
+            const $btn_element_bemerkung_aendern = $(this);
 
-            $btn_verknuepfung_bemerkung_aendern.removeClass("btn-outline-primary");
+            $btn_element_bemerkung_aendern.removeClass("btn-outline-primary");
             $.each(VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten, function (status) {
-                $btn_verknuepfung_bemerkung_aendern
+                $btn_element_bemerkung_aendern
                     .removeClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[status].farbe)
                     .removeClass("btn-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[status].farbe);
             });
@@ -113,18 +113,18 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren(
             if (typeof verknuepfung_id !== "undefined") {
                 if (typeof verknuepfung_status !== "undefined") {
                     if (Schnittstelle_VariableRausZurueck("bemerkung", verknuepfung_id, verknuepfungen, null) !== null)
-                        $btn_verknuepfung_bemerkung_aendern.addClass(
+                        $btn_element_bemerkung_aendern.addClass(
                             "btn-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[verknuepfung_status].farbe
                         );
                     else
-                        $btn_verknuepfung_bemerkung_aendern.addClass(
+                        $btn_element_bemerkung_aendern.addClass(
                             "btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[verknuepfung_status].farbe
                         );
                 } else {
-                    $btn_verknuepfung_bemerkung_aendern.addClass("btn-outline-primary");
+                    $btn_element_bemerkung_aendern.addClass("btn-outline-primary");
                 }
-                $btn_verknuepfung_bemerkung_aendern.removeClass("invisible").attr("data-element_id", verknuepfung_id);
-            } else $btn_verknuepfung_bemerkung_aendern.addClass("btn-outline-primary").addClass("invisible").removeAttr("data-element_id");
+                $btn_element_bemerkung_aendern.removeClass("invisible").attr("data-element_id", verknuepfung_id);
+            } else $btn_element_bemerkung_aendern.addClass("btn-outline-primary").addClass("invisible").removeAttr("data-element_id");
         });
 
         if (
@@ -155,7 +155,7 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren(
         ) {
         } else {
             $verknuepfungen_auswahlmoeglichkeiten
-                .find(".btn_verknuepfung_erstellen, .chk_verknuepfung_erstellen, .btn_verknuepfung_bemerkung_aendern")
+                .find(".btn_verknuepfung_erstellen, .chk_verknuepfung_erstellen, .btn_element_bemerkung_aendern")
                 .prop("disabled", true);
         }
     } else {

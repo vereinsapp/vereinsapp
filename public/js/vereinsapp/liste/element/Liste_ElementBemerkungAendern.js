@@ -6,10 +6,10 @@
  * @param {string} liste
  */
 
-function Liste_VerknuepfungBemerkungAendern(formular_oeffnen, dom, data, element_id, liste) {
+function Liste_ElementBemerkungAendern(formular_oeffnen, dom, data, element_id, liste) {
     if (formular_oeffnen) {
         const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(undefined, "BEMERKUNG");
-        $neues_modal.find(".btn_verknuepfung_bemerkung_aendern").attr("data-liste", liste).attr("data-element_id", element_id);
+        $neues_modal.find(".btn_element_bemerkung_aendern").attr("data-liste", liste).attr("data-element_id", element_id);
         Schnittstelle_DomModalOeffnen($neues_modal);
         Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), undefined, element_id, liste);
     } else {
