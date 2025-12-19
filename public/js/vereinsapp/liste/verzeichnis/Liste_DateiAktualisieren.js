@@ -26,7 +26,7 @@ function Liste_DateiAktualisieren($datei, liste) {
     //     $datei
     //         .find(".audio")
     //         .html(
-    //             '<audio controls class="float-end ms-1 stretched-link-unwirksam" style="width: 50px; height:20px;" src="' +
+    //             '<audio controls class="float-end ms-1" style="width: 50px; height:20px;" src="' +
     //                 link +
     //                 '" type="audio/mpeg"></audio>'
     //         );

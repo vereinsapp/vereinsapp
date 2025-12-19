@@ -310,7 +310,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'spacer' => array ( 'bootstrap' => 'dot' ),
 
     'rechte_vergeben' => array( 'bootstrap' => 'lock' ),
-    'aufgaben_termine_zuordnen' => array( 'bootstrap' => 'calendar-check' ),
+    // 'aufgaben_termine_zuordnen' => array( 'bootstrap' => 'calendar-check' ),
     'termine_aufgaben_zuordnen' => array( 'bootstrap' => 'award' ),
     'termine_rueckmeldungen_verwalten' => array( 'bootstrap' => 'hand-thumbs-up' ),
     'termine_anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),

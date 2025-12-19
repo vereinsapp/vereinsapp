@@ -111,18 +111,7 @@ function Aufgaben_Init() {
         );
     });
 
-    // ZUORDNUNGEN TERMINE (MODAL) ÖFFNEN
-    $(document).on("click", ".btn_aufgaben_termine_zuordnen", function () {
-        Liste_VerknuepfungenModalOeffnen(
-            "aufgaben_termine_zuordnen_modal",
-            "aufgaben_termine_zuordnen",
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            $(this).attr("data-liste")
-        );
-    });
-
-    // ZUORDNUNGEN AUFGABEN (MODAL) ÖFFNEN
+    // TERMINE AUFGABEN ZUORDNEN (MODAL) ÖFFNEN
     $(document).on("click", ".btn_termine_aufgaben_zuordnen", function () {
         Liste_VerknuepfungenModalOeffnen(
             "termine_aufgaben_zuordnen_modal",
@@ -131,10 +120,5 @@ function Aufgaben_Init() {
             $(this).attr("data-element_id"),
             $(this).attr("data-liste")
         );
-    });
-
-    // ZUGEORDNETE AUFGABEN ANZEIGEN
-    $(document).on("click", ".btn_aufgaben_anzeigen", function () {
-        Aufgaben_ZugeordneteAufgabenAnzeigen($(this).attr("data-title"));
     });
 }

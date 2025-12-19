@@ -112,21 +112,6 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             );
             break;
 
-        // Zusatzsymbol für Termine-Zuordnen-Werkzeug
-        case "aufgaben_termine_zuordnen":
-            $zusatzsymbol.html(
-                '<i class="bi bi-' +
-                    SYMBOLE["aufgaben_termine_zuordnen"]["bootstrap"] +
-                    ' btn_aufgaben_termine_zuordnen text-primary" data-liste="' +
-                    liste +
-                    '" data-element_id="' +
-                    element_id +
-                    '" data-title="' +
-                    Liste_ElementBeschriftungZurueck(element_id, liste) +
-                    ' Termine zuordnen" role="button"></i>'
-            );
-            break;
-
         // Zusatzsymbol für Bemerkung bei Rückmeldung
         case "bemerkung":
             let bemerkung;
@@ -154,13 +139,16 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             } else bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste, null);
 
             if (bemerkung !== null)
-                $zusatzsymbol.html(
-                    '<i class="bi bi-' +
-                        SYMBOLE["bemerkung"]["bootstrap"] +
-                        ' stretched-link-unwirksam text-primary" data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="focus" tabindex="0" data-bs-placement="right" data-bs-content="' +
-                        bemerkung +
-                        '" role="button"></i>'
-                );
+                $zusatzsymbol
+                    .removeClass("invisible")
+                    .html(
+                        '<i class="bi bi-' +
+                            SYMBOLE["bemerkung"]["bootstrap"] +
+                            ' text-primary" data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="focus" tabindex="0" data-bs-placement="right" data-bs-content="' +
+                            bemerkung +
+                            '" role="button"></i>'
+                    );
+            else $zusatzsymbol.addClass("invisible").html("");
 
             [...$zusatzsymbol.find('[data-bs-toggle="popover"]')].map((popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl));
             break;

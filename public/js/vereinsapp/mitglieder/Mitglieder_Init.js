@@ -139,12 +139,4 @@ function Mitglieder_Init() {
             $(this).attr("data-element_id")
         );
     });
-
-    // AUFGABEN ERLEDIGT ANZEIGEN
-    $(document).on("click", ".btn_mitglieder_aufgaben_erledigt_anzeigen", function () {
-        Mitglieder_MitgliederAufgabenErledigtAnzeigen(
-            { $ausloesend: $(this), $liste: $('.liste[id="' + $(this).attr("data-instanz") + '"]') },
-            $(this).attr("data-title")
-        );
-    });
 }

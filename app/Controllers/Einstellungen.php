@@ -26,7 +26,7 @@ class Einstellungen extends BaseController {
             $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', );
             $this->viewdata['liste']['rechte_vergeben']['element_ids_disabled'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
 
-        } else $this->viewdata['liste']['rechte_vergeben']['zusatzsymbol'] = array( 'vergebene_rechte' );
+        } else $this->viewdata['liste']['rechte_vergeben']['zusatzsymbol'] = array( 'vergebene_rechte' ); // eigentlich braucht es hier noch ein Symbol vor der Beschriftung
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         echo view( 'Einstellungen/einstellungen', $this->viewdata );

@@ -39,6 +39,7 @@ class Termine extends BaseController {
         } else {
 
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_anwesenheiten' );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
 
             $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren']['title'] = 'Anwesenheiten';
 
@@ -46,50 +47,33 @@ class Termine extends BaseController {
 
         if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
-            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-
-                $this->viewdata['liste']['termine_aufgaben_zuordnen'] = HAUPTINSTANZEN['aufgaben'];
-                $this->viewdata['liste']['termine_aufgaben_zuordnen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', );
+            $this->viewdata['liste']['termine_aufgaben_zuordnen'] = HAUPTINSTANZEN['aufgaben'];
+            // unset($this->viewdata['liste']['termine_aufgaben_zuordnen']['filtern']);
 
             $this->viewdata['werkzeugkasten']['termine_aufgaben_zuordnen'] = array(
                 'klasse_id' => 'btn_termine_aufgaben_zuordnen',
-                'title' => 'Aufgaben zuordnen',
+                // 'title' => 'Aufgaben zuordnen',
             );
-
-            }
-
-            $this->viewdata['liste']['aufgaben_anzeigen'] = HAUPTINSTANZEN['aufgaben'];
-            $this->viewdata['liste']['aufgaben_anzeigen']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-
-            // $this->viewdata['liste']['aufgaben_anzeigen']['werkzeugkasten']['statistiken'] = array(
-            //     'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
-            //     'title' => 'Eingeplante und erledigte Aufgaben',
-            // );
 
             if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
-                $this->viewdata['liste']['aufgaben_anzeigen']['werkzeugkasten']['erstellen'] = array(
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', );
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeugkasten']['erstellen'] = array(
                     'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
                     'title' => 'Aufgabe erstellen',
                 );
-                $this->viewdata['liste']['aufgaben_anzeigen']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', 'aufgaben_termine_zuordnen', );
 
-            } else $this->viewdata['liste']['aufgaben_anzeigen']['zusatzsymbol'] = array( 'aufgaben_termine_zuordnen' );
+                $this->viewdata['werkzeugkasten']['termine_aufgaben_zuordnen']['title'] = 'Aufgaben zuordnen';
 
-            $this->viewdata['liste']['aufgaben_termine_zuordnen'] = HAUPTINSTANZEN['termine'];
-            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
-                $this->viewdata['liste']['aufgaben_termine_zuordnen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', );
-            else $this->viewdata['liste']['aufgaben_termine_zuordnen']['zusatzsymbol'] = array( 'aufgaben_zuordnungen_termine' );
+            } else {
 
-            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
-            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
-            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['zusatzsymbol'] = array( 'aufgaben_zuordnungen_termine' );
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
 
-            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['aufgaben'] = array(
-                'klasse_id' => array('btn_aufgaben_anzeigen'),
-                'title' => 'Aufgaben',
-            );
+                $this->viewdata['werkzeugkasten']['termine_aufgaben_zuordnen']['title'] = 'Aufgaben';
+
+            }
 
         }
 
@@ -200,6 +184,7 @@ class Termine extends BaseController {
         } else {
 
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_anwesenheiten' );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
 
             $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren']['title'] = 'Anwesenheiten';
 
@@ -207,47 +192,22 @@ class Termine extends BaseController {
 
         if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
-            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-
-                $this->viewdata['liste']['termine_aufgaben_zuordnen'] = HAUPTINSTANZEN['aufgaben'];
-                $this->viewdata['liste']['termine_aufgaben_zuordnen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', );
-
-            $this->viewdata['werkzeugkasten']['termine_aufgaben_zuordnen'] = array(
-                'klasse_id' => 'btn_termine_aufgaben_zuordnen',
-                'title' => 'Aufgaben zuordnen',
-            );
-
-            }
-
-            $this->viewdata['liste']['aufgaben_anzeigen'] = HAUPTINSTANZEN['aufgaben'];
-            $this->viewdata['liste']['aufgaben_anzeigen']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-
-            // $this->viewdata['liste']['aufgaben_anzeigen']['werkzeugkasten']['statistiken'] = array(
-            //     'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
-            //     'title' => 'Eingeplante und erledigte Aufgaben',
-            // );
+            $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
+            // unset($this->viewdata['liste']['zugeordnete_aufgaben']['filtern']);
+            $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
 
             if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
-                $this->viewdata['liste']['aufgaben_anzeigen']['werkzeugkasten']['erstellen'] = array(
+                $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', 'aufgaben_termine_zuordnen', );
+                $this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']['erstellen'] = array(
                     'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
                     'title' => 'Aufgabe erstellen',
                 );
-                $this->viewdata['liste']['aufgaben_anzeigen']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', 'aufgaben_termine_zuordnen', );
 
-            } else $this->viewdata['liste']['aufgaben_anzeigen']['zusatzsymbol'] = array( 'aufgaben_termine_zuordnen' );
-
-            $this->viewdata['liste']['aufgaben_termine_zuordnen'] = HAUPTINSTANZEN['termine'];
-            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
-                $this->viewdata['liste']['aufgaben_termine_zuordnen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', );
-            else $this->viewdata['liste']['aufgaben_termine_zuordnen']['zusatzsymbol'] = array( 'aufgaben_zuordnungen_termine' );
-
-            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
-            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
-            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
+            }
 
         }
+
 
         if( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
 

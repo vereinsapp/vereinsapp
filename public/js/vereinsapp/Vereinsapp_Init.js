@@ -92,7 +92,6 @@ Neue bootstrap icons Version einführen (unlock2 statt lock)
 Mitglieder unter der Auswertung sind eigentlich Rückmeldungen (aber mitglied_id entsprechend formatiert)
 ziel_id nur setzen, wenn noch keine id vorhanden ist (sonst die existierende id nehmen) -> eigene Funktion einführen?
 Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details)
-Wie umgehen mit Mitglieder_MitgliederAufgabenErledigtAnzeigen und Aufgaben_ZugeordneteAufgabenAnzeigen
 aufgaben direkt termine zuordnen (mit multi-select, analog zu filtern_mitglieder bei termine?)
 
 */

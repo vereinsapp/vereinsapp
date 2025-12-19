@@ -41,31 +41,34 @@ if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-e
     if( array_key_exists( 'title', $liste ) ) { ?> data-title="<?= $liste['title'] ?>"<?php }
     ?>>
 
-        <div class="text-truncate<?php
+        <div class="text-truncate d-flex flex-nowrap <?php
         if( array_key_exists( 'group-flush', $liste ) AND $liste['group-flush'] ) echo ' h5';
         ?>">
 <?php if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'typ', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['typ'] === 'check' )
     echo view( 'Templates/Liste/verknuepfungen_'.$liste['verknuepfungen']['typ'], array( 'verknuepfungen' => $liste['verknuepfungen']['verknuepfungen'], ) ); ?>
-            <label class="d-block">
+            <label class="flex-grow-1">
                 <span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste ) ) { ?><?= $liste['beschriftung']; ?><?php } ?></span>
-<?php if( array_key_exists( 'werkzeugkasten_handle', $liste ) AND $liste['werkzeugkasten_handle'] ) { ?>
-                <i class="bi bi-<?= SYMBOLE['werkzeuge']['bootstrap']; ?> text-primary float-end ms-2 stretched-link-unwirksam" data-bs-toggle="offcanvas" data-bs-target="#werkzeugkasten" role="button"></i>
+            </label>
+<?php if( array_key_exists( 'zusatzinfo', $liste ) AND is_array( $liste['zusatzinfo'] ) ) foreach( $liste['zusatzinfo'] as $zusatzinfo ) { ?>
+            <span class="zusatzinfo float-end flex-shrink-0 ms-2 stretched-link-unwirksam" data-zusatzinfo="<?= $zusatzinfo ?>"></span>
+<?php } ?>
+            <span class="zusatzsymbol float-end flex-shrink-0 ms-2 stretched-link-unwirksam" data-zusatzsymbol="bemerkung"></span>
+<?php if( array_key_exists( 'zusatzsymbol', $liste ) AND is_array( $liste['zusatzsymbol'] ) ) foreach( $liste['zusatzsymbol'] as $zusatzsymbol ) { ?>
+            <span class="zusatzsymbol float-end flex-shrink-0 ms-2 stretched-link-unwirksam" data-zusatzsymbol="<?= $zusatzsymbol ?>"></span>
+<?php } 
+      if( array_key_exists( 'zusatzinfo', $liste ) AND is_array( $liste['zusatzinfo'] ) ) foreach( $liste['zusatzinfo'] as $zusatzinfo ) { ?>
+            <span class="zusatzinfo float-end flex-shrink-0 ms-2 stretched-link-unwirksam" data-zusatzinfo="<?= $zusatzinfo ?>"></span>
 <?php }
       if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) { ?>
-                <i class="bi bi-<?= SYMBOLE['sortable']['bootstrap']; ?> text-primary float-end ms-2 stretched-link-unwirksam sortable_handle" role="button"></i>
+            <i class="bi bi-<?= SYMBOLE['sortable']['bootstrap']; ?> text-primary float-end flex-shrink-0 ms-2 stretched-link-unwirksam sortable_handle" role="button"></i>
 <?php }
-      if( array_key_exists( 'zusatzsymbol', $liste ) AND is_array( $liste['zusatzsymbol'] ) ) foreach( $liste['zusatzsymbol'] as $zusatzsymbol ) { ?>
-                <span class="zusatzsymbol float-end ms-2" data-zusatzsymbol="<?= $zusatzsymbol ?>"></span>
-<?php } ?>
-                <span class="zusatzsymbol float-end ms-2" data-zusatzsymbol="bemerkung"></span>
-<?php if( array_key_exists( 'zusatzinfo', $liste ) AND is_array( $liste['zusatzinfo'] ) ) foreach( $liste['zusatzinfo'] as $zusatzinfo ) { ?>
-                <span class="zusatzinfo float-end ms-2" data-zusatzinfo="<?= $zusatzinfo ?>"></span>
+      if( array_key_exists( 'werkzeugkasten_handle', $liste ) AND $liste['werkzeugkasten_handle'] ) { ?>
+            <i class="bi bi-<?= SYMBOLE['werkzeuge']['bootstrap']; ?> text-primary float-end flex-shrink-0 ms-2 stretched-link-unwirksam" data-bs-toggle="offcanvas" data-bs-target="#werkzeugkasten" role="button"></i>
 <?php }
       if( array_key_exists( 'link', $liste ) AND $liste['link'] ) { ?>
-                <a class="stretched-link"></a>
+            <a class="stretched-link"></a>
 <?php }?>
-            </label>
-        </div>
+</div>
 <?php if( array_key_exists( 'vorschau', $liste ) ) { ?>
         <div class="vorschau text-truncate text-secondary mb-1<?php
         if( !array_key_exists( 'group-flush', $liste ) OR !$liste['group-flush'] ) echo ' small';

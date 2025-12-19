@@ -23,15 +23,4 @@
 <?php if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) echo
     view( 'Templates/modal', array( 'id' => 'rechte_vergeben_modal', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'] ) ) ) ); ?>
-
-<?php /* if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) { echo
-    view( 'Templates/modal', array( 'id' => 'aufgaben_anzeigen', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['aufgaben_anzeigen'] ) ) ) ); ?>
-<?= view( 'Templates/modal', array( 'id' => 'mitglieder_aufgaben_erledigt_anzeigen', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['mitglieder_aufgaben_erledigt'] ) ) ) ); ?>
-    <?php if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'id' => 'aufgabe_basiseigenschaften', 'modal' =>
-    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'aufgaben' ), 'btn' => array( 'klasse_id' => 'btn_aufgabe_aktion' ), 'formular' =>
-    view( 'Aufgaben/aufgabe_basiseigenschaften_formular' ) ) ) ) ); ?>
-<?php } */ ?>
 <?= $this->endSection() ?>

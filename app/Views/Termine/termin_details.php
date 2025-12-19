@@ -43,17 +43,11 @@
     </div>
 </div>
 
-<?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) echo
-    view( 'Templates/modal', array( 'id' => 'aufgaben_anzeigen_modal', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['aufgaben_anzeigen'] ) ) ) ); ?>
-<?= view( 'Templates/modal', array( 'id' => 'aufgaben_termine_zuordnen_modal', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['aufgaben_termine_zuordnen'] ) ) ) ); ?>
-<?php if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'id' => 'termine_aufgaben_zuordnen_modal', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_aufgaben_zuordnen'] ) ) ) ); ?>
-<?php /* if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) echo
-    view( 'Templates/modal', array( 'id' => 'mitglieder_aufgaben_erledigt_anzeigen', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['mitglieder_aufgaben_erledigt'] ) ) ) ); */ ?>
+<?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) { ?><div class="container mb-3">
+    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="aufgaben" data-instanz="zugeordnete_aufgaben">Zugeordnete Aufgaben</div>
+<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['zugeordnete_aufgaben'] ) ); ?>
+</div><?php } ?>
+
 <?php if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'id' => 'aufgabe_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'aufgaben' ), 'btn' => array( 'klasse_id' => 'btn_aufgabe_aktion' ), 'formular' =>
