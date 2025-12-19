@@ -548,6 +548,7 @@ class Mitglieder extends BaseController {
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'global.einstellungen' ) AND !auth()->user()->can( 'mitglieder.rechte' ) )
             $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( (int)$this->request->getPost()['verfuegbares_recht_id'] === 8 ) $ajax_antwort['validation'] = 'Die Vergabe des Rechts für Globale Einstellungen kann nicht verändert werden.';
         else {
             $permission = NULL; foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['id'] == $this->request->getPost()['verfuegbares_recht_id'] ) $permission = $verfuegbares_recht['permission'];
             model(Mitglied_Model::class)->findById( $this->request->getPost()['mitglied_id'] )->removePermission( $permission );

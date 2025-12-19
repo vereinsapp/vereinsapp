@@ -20,8 +20,8 @@ function Liste_VerknuepfungErstellen(dom, data) {
         function (AJAX) {
             const verknuepfungen = AJAX.data.verknuepfungen;
             const liste = AJAX.data.liste;
-            const gegen_liste = AJAX.data.gegen_liste;
             const element_id = AJAX.data[LISTEN[liste].element + "_id"];
+            const gegen_liste = AJAX.data.gegen_liste;
             const gegen_element_id = AJAX.data[LISTEN[gegen_liste].element + "_id"];
 
             // bereits vorhandene identische Verknüpfungen werden gelöscht
@@ -62,13 +62,14 @@ function Liste_VerknuepfungErstellen(dom, data) {
             Schnittstelle_EventLocalstorageUpdVariable(verknuepfungen);
             Schnittstelle_VariableElementZuordnen(verknuepfungen);
             Schnittstelle_VariableElementErgaenzen(verknuepfungen);
+            Schnittstelle_VariableElementErgaenzen(liste);
             Schnittstelle_EventVariableUpdDom(verknuepfungen);
             Schnittstelle_EventVariableUpdDom(liste);
         },
         function (AJAX) {
             if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
             Schnittstelle_DomToastFeuern(
-                Liste_ElementBeschriftungZurueck(AJAX.data.id, verknuepfungen) + " konnte nicht gespeichert werden.",
+                Liste_ElementBeschriftungZurueck(AJAX.data.id, AJAX.data.verknuepfungen) + " konnte nicht gespeichert werden.",
                 "danger"
             );
         }
