@@ -25,8 +25,8 @@
     view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'] ) ) ) ); ?>
 
 <?php /* if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) { echo
-    view( 'Templates/modal', array( 'id' => 'zugeordnete_aufgaben_anzeigen', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['alle_mitglieder_zugeordnete_aufgaben'] ) ) ) ); ?>
+    view( 'Templates/modal', array( 'id' => 'aufgaben_anzeigen', 'modal' =>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['aufgaben_anzeigen'] ) ) ) ); ?>
 <?= view( 'Templates/modal', array( 'id' => 'mitglieder_aufgaben_erledigt_anzeigen', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['mitglieder_aufgaben_erledigt'] ) ) ) ); ?>
     <?php if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) echo

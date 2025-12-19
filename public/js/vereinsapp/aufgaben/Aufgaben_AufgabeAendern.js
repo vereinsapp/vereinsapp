@@ -37,13 +37,9 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
 
                 Schnittstelle_EventVariableUpdLocalstorage("aufgaben");
                 Schnittstelle_EventLocalstorageUpdVariable("aufgaben");
-                Schnittstelle_EventLocalstorageUpdVariable("aufgaben_rueckmeldungen");
                 // Schnittstelle_VariableElementZuordnen("aufgaben");
-                Schnittstelle_VariableElementZuordnen("aufgaben_rueckmeldungen");
                 Schnittstelle_VariableElementErgaenzen("aufgaben");
-                Schnittstelle_VariableElementErgaenzen("aufgaben_rueckmeldungen");
                 Schnittstelle_EventVariableUpdDom("aufgaben");
-                Schnittstelle_EventVariableUpdDom("aufgaben_rueckmeldungen");
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                     Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);

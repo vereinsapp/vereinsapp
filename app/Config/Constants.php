@@ -310,6 +310,8 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'spacer' => array ( 'bootstrap' => 'dot' ),
 
     'rechte_vergeben' => array( 'bootstrap' => 'lock' ),
+    'aufgaben_termine_zuordnen' => array( 'bootstrap' => 'calendar-check' ),
+    'termine_aufgaben_zuordnen' => array( 'bootstrap' => 'award' ),
     'termine_rueckmeldungen_verwalten' => array( 'bootstrap' => 'hand-thumbs-up' ),
     'termine_anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
     'offene_kassenbucheintraege_verwalten' => array( 'bootstrap' => 'journal-check' ),
@@ -317,6 +319,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),
     'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),
     'einmal_link_email' => array( 'bootstrap' => 'envelope' ),
+    'mitglied' => array ( 'bootstrap' => 'person' ),
 
     'geburtstag' => array( 'bootstrap' => 'cake2' ),
     'bemerkung' => array( 'bootstrap' => 'chat-dots' ),
@@ -329,13 +332,15 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'sichtbar' => array( 'bootstrap' => 'eye' ),
     'unsichtbar' => array( 'bootstrap' => 'eye-slash' ),
 
+    'pos_vergebenes_recht' => array( 'bootstrap' => 'check-lg' ),
+    'neg_vergebenes_recht' => array( 'bootstrap' => 'x-lg' ),
+    'pos_zuordnung_termine' => array( 'bootstrap' => 'check-lg' ),
+    'neg_zuordnung_termine' => array( 'bootstrap' => 'x-lg' ),
     'ohne_rueckmeldung' => array( 'bootstrap' => 'question' ),
     'pos_rueckmeldung' => array( 'bootstrap' => 'hand-thumbs-up' ),
     'neg_rueckmeldung' => array( 'bootstrap' => 'hand-thumbs-down' ),
     'pos_anwesenheit' => array( 'bootstrap' => 'person-check' ),
     'neg_anwesenheit' => array( 'bootstrap' => 'person-x' ),
-    'pos_vergebenes_recht' => array( 'bootstrap' => 'check-lg' ),
-    'neg_vergebenes_recht' => array( 'bootstrap' => 'x-lg' ),
     'erledigt' => array( 'bootstrap' => 'check-circle' ),
     'offen' => array( 'bootstrap' => 'circle' ),
 

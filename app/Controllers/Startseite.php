@@ -60,7 +60,7 @@ class Startseite extends BaseController {
                 'mitglied_id' => array( 'inklusiv' => array( ICH['id'] ), ),
                 'erledigt_janein' => array( 'inklusiv' => array( FALSE ), ),
             );
-            $this->viewdata['liste']['kassenbuch_offene_eintraege_startseite']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>';
+            $this->viewdata['liste']['kassenbuch_offene_eintraege_startseite']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> '.HAUPTINSTANZEN['kassenbuch']['beschriftung'];
             $this->viewdata['liste']['kassenbuch_offene_eintraege_startseite']['vorschau'] = array( 'erstellung', 'wert' );
         }
 

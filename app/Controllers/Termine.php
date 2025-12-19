@@ -32,61 +32,72 @@ class Termine extends BaseController {
         if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
 
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_rueckmeldungen';
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
 
             $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren']['title'] = 'Anwesenheiten dokumentieren';
 
         } else {
 
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_anwesenheiten';
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_anwesenheiten' );
 
             $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren']['title'] = 'Anwesenheiten';
 
         }
 
-        // if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
+        if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
-        //     $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['aufgaben'] = array(
-        //         'klasse_id' => array('btn_zugeordnete_aufgaben_anzeigen'),
-        //         'title' => 'Zugeordnete Aufgaben',
-        //     );
+            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
-        //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-        //     unset( $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['filtern'] );
-        //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-        //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['vorschau'] = array('zugeordnetes_element');
-        //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['verknuepfungen'] = array(
-        //         'typ' => 'auswahlmoeglichkeiten',
-        //         'verknuepfungen' => 'termine_rueckmeldungen',
-        //         'liste' => 'mitglieder',
-        //         'element_id' => ICH['id'],
-        //         'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
-        //     );
+                $this->viewdata['liste']['termine_aufgaben_zuordnen'] = HAUPTINSTANZEN['aufgaben'];
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', );
 
-        //     $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['werkzeugkasten']['statistiken'] = array(
-        //         'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
-        //         'title' => 'Eingeplante und erledigte Aufgaben',
-        //     );
+            $this->viewdata['werkzeugkasten']['termine_aufgaben_zuordnen'] = array(
+                'klasse_id' => 'btn_termine_aufgaben_zuordnen',
+                'title' => 'Aufgaben zuordnen',
+            );
 
-        //     if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-        //         $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['werkzeugkasten']['erstellen'] = array(
-        //             'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
-        //             'title' => 'Aufgabe erstellen',
-        //         );
-        //         $this->viewdata['liste']['bevorstehende_termine_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
-        //     }
+            }
 
-        //     $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
-        //     $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
-        //     $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-        //     $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
+            $this->viewdata['liste']['aufgaben_anzeigen'] = HAUPTINSTANZEN['aufgaben'];
+            $this->viewdata['liste']['aufgaben_anzeigen']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
 
-        // }
+            // $this->viewdata['liste']['aufgaben_anzeigen']['werkzeugkasten']['statistiken'] = array(
+            //     'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
+            //     'title' => 'Eingeplante und erledigte Aufgaben',
+            // );
+
+            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+
+                $this->viewdata['liste']['aufgaben_anzeigen']['werkzeugkasten']['erstellen'] = array(
+                    'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
+                    'title' => 'Aufgabe erstellen',
+                );
+                $this->viewdata['liste']['aufgaben_anzeigen']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', 'aufgaben_termine_zuordnen', );
+
+            } else $this->viewdata['liste']['aufgaben_anzeigen']['zusatzsymbol'] = array( 'aufgaben_termine_zuordnen' );
+
+            $this->viewdata['liste']['aufgaben_termine_zuordnen'] = HAUPTINSTANZEN['termine'];
+            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
+                $this->viewdata['liste']['aufgaben_termine_zuordnen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', );
+            else $this->viewdata['liste']['aufgaben_termine_zuordnen']['zusatzsymbol'] = array( 'aufgaben_zuordnungen_termine' );
+
+            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
+            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
+            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
+            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
+
+            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['aufgaben'] = array(
+                'klasse_id' => array('btn_aufgaben_anzeigen'),
+                'title' => 'Aufgaben',
+            );
+
+        }
 
         if( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['mitglieder'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']);
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], );
 
             $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
@@ -172,7 +183,7 @@ class Termine extends BaseController {
         );
 
         $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
-        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
+        unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
 
         $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
             'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
@@ -182,44 +193,78 @@ class Termine extends BaseController {
         if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
 
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_rueckmeldungen';
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
 
             $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren']['title'] = 'Anwesenheiten dokumentieren';
 
         } else {
 
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'][] = 'termine_anwesenheiten';
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_anwesenheiten' );
 
             $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren']['title'] = 'Anwesenheiten';
 
         }
 
-        // if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
-        //     $this->viewdata['liste']['termin_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-        //     unset($this->viewdata['liste']['termin_zugeordnete_aufgaben']['werkzeugkasten']);
-        //     $this->viewdata['liste']['termin_zugeordnete_aufgaben']['filtern'] = array( 'zugeordnete_liste' => array( 'termine' => array( 'notenbank' ), ), 'zugeordnete_element_id' => array( 'inklusiv' => array( $termin_id ), ), );
-        //     $this->viewdata['liste']['termin_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-        //     $this->viewdata['liste']['termin_zugeordnete_aufgaben']['verknuepfungen'] = array(
-        //         'typ' => 'auswahlmoeglichkeiten',
-        //         'verknuepfungen' => 'termine_rueckmeldungen',
-        //         'liste' => 'mitglieder',
-        //         'element_id' => ICH['id'],
-        //         'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
-        //     );
-        //     if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
-        //         $this->viewdata['liste']['termin_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
-        // }
+        if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
-        if( auth()->user()->can( 'termine.verwaltung' ) ) {
-            
+            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+
+                $this->viewdata['liste']['termine_aufgaben_zuordnen'] = HAUPTINSTANZEN['aufgaben'];
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', );
+
+            $this->viewdata['werkzeugkasten']['termine_aufgaben_zuordnen'] = array(
+                'klasse_id' => 'btn_termine_aufgaben_zuordnen',
+                'title' => 'Aufgaben zuordnen',
+            );
+
+            }
+
+            $this->viewdata['liste']['aufgaben_anzeigen'] = HAUPTINSTANZEN['aufgaben'];
+            $this->viewdata['liste']['aufgaben_anzeigen']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+
+            // $this->viewdata['liste']['aufgaben_anzeigen']['werkzeugkasten']['statistiken'] = array(
+            //     'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
+            //     'title' => 'Eingeplante und erledigte Aufgaben',
+            // );
+
+            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+
+                $this->viewdata['liste']['aufgaben_anzeigen']['werkzeugkasten']['erstellen'] = array(
+                    'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
+                    'title' => 'Aufgabe erstellen',
+                );
+                $this->viewdata['liste']['aufgaben_anzeigen']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', 'aufgaben_termine_zuordnen', );
+
+            } else $this->viewdata['liste']['aufgaben_anzeigen']['zusatzsymbol'] = array( 'aufgaben_termine_zuordnen' );
+
+            $this->viewdata['liste']['aufgaben_termine_zuordnen'] = HAUPTINSTANZEN['termine'];
+            if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) )
+                $this->viewdata['liste']['aufgaben_termine_zuordnen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', );
+            else $this->viewdata['liste']['aufgaben_termine_zuordnen']['zusatzsymbol'] = array( 'aufgaben_zuordnungen_termine' );
+
+            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
+            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['filtern'] = array( 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
+            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
+            // $this->viewdata['liste']['mitglieder_aufgaben_erledigt']['zusatzinfo'] = array( 'mitglied_zugeordnete_aufgaben_erledigt', 'mitglied_zugeordnete_aufgaben_eingeplant');
+
+        }
+
+        if( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
+
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['mitglieder'];
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
+            unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']);
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], );
 
             $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
                 'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',
                 'title' => 'Rückmeldungen verwalten',
             );
+
+        }
+
+        if( auth()->user()->can( 'termine.verwaltung' ) ) {
+
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_termin_aendern', 'formular_oeffnen'),
@@ -233,7 +278,6 @@ class Termine extends BaseController {
                 'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
                 'title' => 'Termin löschen',
                 'farbe' => 'danger',
-                'weiterleiten' => 'termine',
             );
 
         }

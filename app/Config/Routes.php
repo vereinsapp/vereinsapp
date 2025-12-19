@@ -73,7 +73,7 @@ $routes->group('aufgaben', static function ($routes) {
     $routes->post('ajax_aufgaben_rueckmeldung_speichern',   'Aufgaben::ajax_rueckmeldung_speichern');
     $routes->post('ajax_aufgaben_rueckmeldung_bemerkung_aendern', 'Aufgaben::ajax_rueckmeldung_bemerkung_aendern');
 
-    $routes->post('ajax_aufgaben_zuordnung_termine_speichern','Aufgaben::ajax_zuordnung_termine_speichern');
+    $routes->post('ajax_aufgaben_zuordnung_termine_speichern', 'Aufgaben::ajax_zuordnung_termine_speichern');
 });
 
 $routes->get('termin/(:num)',                               'Termine::termin/$1');

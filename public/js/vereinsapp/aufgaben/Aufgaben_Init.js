@@ -100,24 +100,41 @@ function Aufgaben_Init() {
         );
     });
 
-    // AUFGABEN_ZUORDNUNGEN_TERMINE ZUORDNEN (MODAL) ÖFFNEN
-    $(document).on("click", ".btn_aufgaben_zuordnungen_termine_zuordnen", function () {
-        const liste = $(this).attr("data-liste");
-        const element_id = $(this).attr("data-element_id");
-        const title = $(this).attr("data-title");
+    // RUECKMELDUNGEN VERWALTEN (MODAL) ÖFFNEN
+    $(document).on("click", ".btn_aufgaben_rueckmeldungen_verwalten", function () {
+        Liste_VerknuepfungenModalOeffnen(
+            "aufgaben_rueckmeldungen_verwalten_modal",
+            "aufgaben_rueckmeldungen_verwalten",
+            $(this).attr("data-title"),
+            $(this).attr("data-element_id"),
+            $(this).attr("data-liste")
+        );
+    });
 
-        let gegen_liste = $(this).attr("data-gegen_liste");
-        if (typeof gegen_liste === "undefined" && liste == "aufgaben") gegen_liste = "mitglieder";
-        else if (typeof gegen_liste === "undefined" && liste == "mitglieder") gegen_liste = "aufgaben";
+    // ZUORDNUNGEN TERMINE (MODAL) ÖFFNEN
+    $(document).on("click", ".btn_aufgaben_termine_zuordnen", function () {
+        Liste_VerknuepfungenModalOeffnen(
+            "aufgaben_termine_zuordnen_modal",
+            "aufgaben_termine_zuordnen",
+            $(this).attr("data-title"),
+            $(this).attr("data-element_id"),
+            $(this).attr("data-liste")
+        );
+    });
 
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, liste + "_aufgaben_zuordnungen_termine_zuordnen");
-        $neues_modal.find("#aufgaben_zuordnungen_termine_zuordnen.liste").attr("data-gegen_liste", liste).attr("data-gegen_element_id", element_id);
-        Schnittstelle_DomModalOeffnen($neues_modal);
-        Schnittstelle_EventVariableUpdDom(gegen_liste);
+    // ZUORDNUNGEN AUFGABEN (MODAL) ÖFFNEN
+    $(document).on("click", ".btn_termine_aufgaben_zuordnen", function () {
+        Liste_VerknuepfungenModalOeffnen(
+            "termine_aufgaben_zuordnen_modal",
+            "termine_aufgaben_zuordnen",
+            $(this).attr("data-title"),
+            $(this).attr("data-element_id"),
+            $(this).attr("data-liste")
+        );
     });
 
     // ZUGEORDNETE AUFGABEN ANZEIGEN
-    $(document).on("click", ".btn_zugeordnete_aufgaben_anzeigen", function () {
+    $(document).on("click", ".btn_aufgaben_anzeigen", function () {
         Aufgaben_ZugeordneteAufgabenAnzeigen($(this).attr("data-title"));
     });
 }

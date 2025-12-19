@@ -86,6 +86,7 @@ Lässt sich filtern/sortieren/gruppieren_localstorage_speichern entfernen mittel
 Braucht es formular_beschriftung und beschriftung-span für Formulare (bspw in mitglied_einmal_link_anzeigen_formular.php)?
 .btn in .formular mit ENTER betätigbar machen
 data-element_id loswerden (vorausgesetzt, dass überall auch data-liste gesetzt ist)
+Auswahl überarbeiten?
 Zusatzsymbol rechts und links einführen
 Neue bootstrap icons Version einführen (unlock2 statt lock)
 Mitglieder unter der Auswertung sind eigentlich Rückmeldungen (aber mitglied_id entsprechend formatiert)

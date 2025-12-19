@@ -37,6 +37,7 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], );
 
             $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
@@ -53,7 +54,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['filtern'] = array( 'mitglied_id' => array( 'inklusiv' => array() ), 'erledigt_janein' => array( 'inklusiv' => array( FALSE ), ), );
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['klasse_id'] = array('btn_kassenbucheintrag_offen_erledigt_markieren', 'bestaetigung_einfordern');
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['title'] = 'Kassenbucheintrag als offen/erledigt markieren';
-            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>';
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> '.HAUPTINSTANZEN['kassenbuch']['beschriftung'];
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['vorschau'] = array( 'erstellung', 'wert' );
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['zusatzsymbol'] = array( 'offen_erledigt_markieren' );
 
@@ -72,15 +73,15 @@ class Mitglieder extends BaseController {
         // if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
         //     $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['aufgaben'] = array(
-        //         'klasse_id' => array('btn_zugeordnete_aufgaben_anzeigen'),
+        //         'klasse_id' => array('btn_aufgaben_anzeigen'),
         //         'title' => 'Zugeordnete Aufgaben',
         //     );
 
-        //     $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-        //     unset( $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['filtern'] );
-        //     $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-        //     $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['vorschau'] = array('zugeordnetes_element');
-        //     $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['verknuepfungen'] = array(
+        //     $this->viewdata['liste']['aufgaben_anzeigen'] = HAUPTINSTANZEN['aufgaben'];
+        //     unset( $this->viewdata['liste']['aufgaben_anzeigen']['filtern'] );
+        //     $this->viewdata['liste']['aufgaben_anzeigen']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+        //     $this->viewdata['liste']['aufgaben_anzeigen']['vorschau'] = array('zugeordnetes_element');
+        //     $this->viewdata['liste']['aufgaben_anzeigen']['verknuepfungen'] = array(
         //         'typ' => 'auswahlmoeglichkeiten',
         //         'verknuepfungen' => 'termine_rueckmeldungen',
         //         'liste' => 'mitglieder',
@@ -88,17 +89,17 @@ class Mitglieder extends BaseController {
         //         'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
         //     );
 
-        //     $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['werkzeugkasten']['statistiken'] = array(
+        //     $this->viewdata['liste']['aufgaben_anzeigen']['werkzeugkasten']['statistiken'] = array(
         //         'klasse_id' => array('btn_mitglieder_aufgaben_erledigt_anzeigen'),
         //         'title' => 'Eingeplante und erledigte Aufgaben',
         //     );
 
         //     if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-        //         $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['werkzeugkasten']['erstellen'] = array(
+        //         $this->viewdata['liste']['aufgaben_anzeigen']['werkzeugkasten']['erstellen'] = array(
         //             'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
         //             'title' => 'Aufgabe erstellen',
         //         );
-        //         $this->viewdata['liste']['alle_mitglieder_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
+        //         $this->viewdata['liste']['aufgaben_anzeigen']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
         //     }
 
         //     $this->viewdata['liste']['mitglieder_aufgaben_erledigt'] = HAUPTINSTANZEN['mitglieder'];
@@ -199,6 +200,7 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], );
 
             $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
@@ -215,7 +217,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['filtern'] = array( 'mitglied_id' => array( 'inklusiv' => array( $mitglied_id, ) ), 'erledigt_janein' => array( 'inklusiv' => array( FALSE ), ), );
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['klasse_id'] = array('btn_kassenbucheintrag_offen_erledigt_markieren', 'bestaetigung_einfordern');
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['title'] = 'Kassenbucheintrag als offen/erledigt markieren';
-            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel"></span>';
+            $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> '.HAUPTINSTANZEN['kassenbuch']['beschriftung'];
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['vorschau'] = array( 'erstellung', 'wert' );
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['zusatzsymbol'] = array( 'offen_erledigt_markieren' );
 
@@ -246,7 +248,7 @@ class Mitglieder extends BaseController {
         //     );
 
         //     if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-        //         $this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'aendern', 'duplizieren', 'loeschen', );
+        //         $this->viewdata['liste']['mitglied_zugeordnete_aufgaben']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
 
         //         $this->viewdata['liste']['aufgaben_offen_mitglied_geplant'] = HAUPTINSTANZEN['aufgaben'];
         //         unset($this->viewdata['liste']['aufgaben_offen_mitglied_geplant']['werkzeugkasten']);

@@ -294,8 +294,6 @@ class Vereinsapp extends BaseConfig
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'max_anzahl_mitglieder' => array( 'beschriftung' => 'Max. Anzahl an eingetragenen Mitgliedern', 'typ' => 'zahl' ),
-            // 'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),    // JAVA
-            // 'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'janein' ),  // JAVA
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'zugeordnete_aufgaben_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Rückmeldungen', 'typ' => 'element_ids' ),  // JAVA
             'zugeordnete_aufgaben_zuordnung_termine_ids' => array( 'beschriftung' => 'Zugeordnete Termine', 'typ' => 'element_ids' ),   // JAVA
@@ -538,10 +536,6 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
-            // 'offen' => array(
-            //     'beschriftung' => 'Alle offenen Aufgaben',
-            //     'filtern' => array( 'erledigt_janein' => array( 'inklusiv' => array( FALSE ) ), ),
-            // ),
         ),
 
         'termine' => array(
@@ -625,7 +619,6 @@ class Vereinsapp extends BaseConfig
 
         'aufgaben' => array(
             'max_anzahl_mitglieder',
-            // 'erledigt_janein',
         ),
 
         'aufgaben_rueckmeldungen' => array(
@@ -699,7 +692,6 @@ class Vereinsapp extends BaseConfig
         'aufgaben' => array(
             'titel',
             'max_anzahl_mitglieder',
-            // 'erledigt',
         ),
 
         'aufgaben_rueckmeldungen' => array(
@@ -772,7 +764,6 @@ class Vereinsapp extends BaseConfig
 
         'aufgaben' => array(
             'max_anzahl_mitglieder',
-            'erledigt_janein',
         ),
 
         'aufgaben_rueckmeldungen' => array(
@@ -937,10 +928,10 @@ class Vereinsapp extends BaseConfig
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_vergebenes_recht']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_vergebenes_recht']['bootstrap'].'-fill"></i>' ),
              ),
         ),
-        'termine_anwesenheiten' => array(
+        'aufgaben_zuordnungen_termine' => array(
             'auswahlmoeglichkeiten' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_anwesenheit']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_anwesenheit']['bootstrap'].'-fill"></i>' ),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_anwesenheit']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_anwesenheit']['bootstrap'].'-fill"></i>' ),
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung_termine']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung_termine']['bootstrap'].'-fill"></i>' ),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung_termine']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung_termine']['bootstrap'].'-fill"></i>' ),
              ),
         ),
         'termine_rueckmeldungen' => array(
@@ -956,6 +947,12 @@ class Vereinsapp extends BaseConfig
                 'keine_verknuepfung_fuer_dich_moeglich' => 'Du bist nicht eingeladen und kannst deshalb keine Rückmeldung geben.',
                 'keine_verknuepfung_fuer_mitglied_moeglich' => 'Das Mitglied ist nicht eingeladen und kann deshalb keine Rückmeldung geben.',
             ),
+        ),
+        'termine_anwesenheiten' => array(
+            'auswahlmoeglichkeiten' => array(
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_anwesenheit']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_anwesenheit']['bootstrap'].'-fill"></i>' ),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_anwesenheit']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_anwesenheit']['bootstrap'].'-fill"></i>' ),
+             ),
         ),
     );
 

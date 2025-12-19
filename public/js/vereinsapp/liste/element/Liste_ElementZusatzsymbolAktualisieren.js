@@ -112,6 +112,21 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             );
             break;
 
+        // Zusatzsymbol für Termine-Zuordnen-Werkzeug
+        case "aufgaben_termine_zuordnen":
+            $zusatzsymbol.html(
+                '<i class="bi bi-' +
+                    SYMBOLE["aufgaben_termine_zuordnen"]["bootstrap"] +
+                    ' btn_aufgaben_termine_zuordnen text-primary" data-liste="' +
+                    liste +
+                    '" data-element_id="' +
+                    element_id +
+                    '" data-title="' +
+                    Liste_ElementBeschriftungZurueck(element_id, liste) +
+                    ' Termine zuordnen" role="button"></i>'
+            );
+            break;
+
         // Zusatzsymbol für Bemerkung bei Rückmeldung
         case "bemerkung":
             let bemerkung;
@@ -152,8 +167,9 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
 
         // Zusatzsymbol für Termine-Rückmeldung
         case "vergebene_rechte":
-        case "termine_anwesenheiten":
+        case "aufgaben_zuordnungen_termine":
         case "termine_rueckmeldungen":
+        case "termine_anwesenheiten":
             const verknuepfungen = zusatzsymbol;
 
             let verknuepfung_id = undefined;

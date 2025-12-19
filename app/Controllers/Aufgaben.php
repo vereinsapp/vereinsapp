@@ -5,6 +5,8 @@ use App\Models\Aufgaben\Aufgabe_Model;
 use App\Models\Aufgaben\Rueckmeldung_Model;
 use App\Models\Aufgaben\Zuordnung_Termine_Model;
 
+use App\Models\Mitglieder\Mitglied_Model;
+
 // use CodeIgniter\I18n\Time;
 
 class Aufgaben extends BaseController {
@@ -59,11 +61,11 @@ class Aufgaben extends BaseController {
             'status' => [ 'label' => EIGENSCHAFTEN['aufgaben_rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben_rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        // else if( $this->request->getPost()['status'] == 0 ) $ajax_antwort['validation'] = 'Ein Löschen der Rückmeldung ist nicht möglich!';
+        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( $this->request->getPost()['status'] == 0 AND !( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Ein Löschen der Rückmeldung ist nicht möglich!';
         // else if( Time::parse( model(Termin_Model::class)->find(
         //             $this->request->getPost()['termin_id']
-        //          )[ VERKNUEPFUNGEN['aufgaben_rueckmeldungen']['verknuepfung_moeglich_frist']['eigenschaft'] ], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds( VERKNUEPFUNGEN['aufgaben_rueckmeldungen']['verknuepfung_moeglich_frist']['frist'] ) ) )
+        //          )[ VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['eigenschaft'] ], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds( VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['frist'] ) ) )
         //             $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
         else {
             $rueckmeldung_Model = model(Rueckmeldung_Model::class);
@@ -112,7 +114,7 @@ class Aufgaben extends BaseController {
             'status' => [ 'label' => EIGENSCHAFTEN['aufgaben_zuordnungen_termine']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben_zuordnungen_termine']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->user()->can( 'termine.aufgaben' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( !auth()->user()->can( 'aufgaben.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $zuordnung_termine_Model = model(Zuordnung_Termine_Model::class);
             $zuordnung_termine = array(
