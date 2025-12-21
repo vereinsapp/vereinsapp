@@ -20,7 +20,7 @@ function Liste_FilternWertInExklusivVerschieben($filtern_wert, ziel_id, liste) {
 
     switch (EIGENSCHAFTEN[liste][eigenschaft].typ) {
         case "text":
-            // (noch) kein filtern möglich
+            // (noch) nicht möglich
             break;
         case "zahl":
         case "zeitpunkt":
@@ -29,6 +29,7 @@ function Liste_FilternWertInExklusivVerschieben($filtern_wert, ziel_id, liste) {
         case "vorgegebene_werte":
         case "janein":
         case "element_id":
+        case "element_ids":
             let filtern_wert_position, filtern_klasse_alt;
             $.each(["inklusiv", "exklusiv"], function (position, filtern_klasse) {
                 if (filtern_klasse in filtern_prio_hoch[eigenschaft] && filtern_prio_hoch[eigenschaft][filtern_klasse].includes(filtern_wert)) {
@@ -72,9 +73,6 @@ function Liste_FilternWertInExklusivVerschieben($filtern_wert, ziel_id, liste) {
                 // filtern_wert steht bereits in filtern_klasse_neu (und stand auch schon in filtern_klasse_alt), d.h. irgendwas läuft schief
             }
 
-            break;
-        case "element_ids":
-            // (noch) kein filtern möglich
             break;
     }
 

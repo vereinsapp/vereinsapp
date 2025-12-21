@@ -1,6 +1,5 @@
 function Liste_Aktualisieren($liste, liste) {
     const instanz = $liste.attr("id");
-    const element_ids_disabled = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-element_ids_disabled"), new Array());
 
     // TABELLE FILTERN
     const filtern_data = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-filtern"), new Object());
@@ -41,7 +40,8 @@ function Liste_Aktualisieren($liste, liste) {
             .attr("data-gegen_element_id", $liste.attr("data-gegen_element_id"))
             .attr("data-eigenschaften_bedingt_formatiert", $liste.attr("data-eigenschaften_bedingt_formatiert"));
 
-        if (element_ids_disabled.includes(element_id)) $element.addClass("disabled");
+        if (Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-element_ids_disabled"), new Array()).includes(element_id))
+            $element.addClass("disabled");
         else $element.removeClass("disabled");
 
         if (position === 0) $element.appendTo($liste);

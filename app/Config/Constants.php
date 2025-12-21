@@ -293,7 +293,6 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'loeschen' => array( 'bootstrap' => 'trash' ),
     'auswaehlen' => array( 'bootstrap' => 'box-arrow-in-down-left' ),
     'offen_erledigt_markieren' => array ( 'bootstrap' => 'check2-circle' ),
-    'strafe_zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
 
     'sortable' => array( 'bootstrap' => 'arrow-down-up' ),
     'collapse_oeffnen' => array( 'bootstrap' => 'caret-right' ),
@@ -314,6 +313,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'termine_aufgaben_zuordnen' => array( 'bootstrap' => 'award' ),
     'termine_rueckmeldungen_verwalten' => array( 'bootstrap' => 'hand-thumbs-up' ),
     'termine_anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
+    'strafe_zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
     'offene_kassenbucheintraege_verwalten' => array( 'bootstrap' => 'journal-check' ),
     'statistiken' => array( 'bootstrap' => 'graph-up-arrow' ),
     'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),

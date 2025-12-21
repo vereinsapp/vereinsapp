@@ -7,7 +7,7 @@ function Liste_TabelleGefiltertZurueck(tabelle, filtern, liste) {
             $.each(filtern, function (eigenschaft) {
                 switch (EIGENSCHAFTEN[liste][eigenschaft].typ) {
                     case "text":
-                        // (noch) kein filtern möglich
+                        // (noch) nicht möglich
                         break;
                     case "zahl":
                     case "zeitpunkt":
@@ -27,19 +27,42 @@ function Liste_TabelleGefiltertZurueck(tabelle, filtern, liste) {
                     case "element_id":
                         if ("inklusiv" in filtern[eigenschaft]) {
                             filtern_ergebnis_inklusiv = false;
-                            if (isArray(filtern[eigenschaft].inklusiv) && filtern[eigenschaft].inklusiv.includes(element[eigenschaft]))
+                            const element_id = element[eigenschaft];
+                            if (isArray(filtern[eigenschaft].inklusiv) && filtern[eigenschaft].inklusiv.includes(element_id)) {
                                 filtern_ergebnis_inklusiv = true;
+                            }
                             filtern_ergebnis &= filtern_ergebnis_inklusiv;
                         }
                         if ("exklusiv" in filtern[eigenschaft]) {
                             filtern_ergebnis_exklusiv = false;
-                            if (isArray(filtern[eigenschaft].exklusiv) && !filtern[eigenschaft].exklusiv.includes(element[eigenschaft]))
+                            const element_id = element[eigenschaft];
+                            if (isArray(filtern[eigenschaft].exklusiv) && !filtern[eigenschaft].exklusiv.includes(element_id)) {
                                 filtern_ergebnis_exklusiv = true;
+                            }
                             filtern_ergebnis &= filtern_ergebnis_exklusiv;
                         }
                         break;
                     case "element_ids":
-                        // (noch) kein filtern möglich
+                        if ("inklusiv" in filtern[eigenschaft]) {
+                            filtern_ergebnis_inklusiv = false;
+                            $.each(element[eigenschaft], function (position, element_id) {
+                                if (isArray(filtern[eigenschaft].inklusiv) && filtern[eigenschaft].inklusiv.includes(element_id)) {
+                                    filtern_ergebnis_inklusiv = true;
+                                    return false;
+                                }
+                            });
+                            filtern_ergebnis &= filtern_ergebnis_inklusiv;
+                        }
+                        if ("exklusiv" in filtern[eigenschaft]) {
+                            filtern_ergebnis_exklusiv = false;
+                            $.each(element[eigenschaft], function (position, element_id) {
+                                if (isArray(filtern[eigenschaft].exklusiv) && !filtern[eigenschaft].exklusiv.includes(element_id)) {
+                                    filtern_ergebnis_exklusiv = true;
+                                    return false;
+                                }
+                            });
+                            filtern_ergebnis &= filtern_ergebnis_exklusiv;
+                        }
                         break;
                 }
             });

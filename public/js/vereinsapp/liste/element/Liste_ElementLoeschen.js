@@ -25,14 +25,9 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, elemen
 
                 Schnittstelle_VariableLoeschen(AJAX.data.id, AJAX.data.liste);
 
-                Schnittstelle_EventVariableUpdLocalstorage(AJAX.data.liste);
-
                 const weiterleiten = AJAX.data.weiterleiten;
                 if (typeof weiterleiten !== "undefined") $(location).attr("href", SITE_URL + weiterleiten);
                 else {
-                    Schnittstelle_EventLocalstorageUpdVariable(AJAX.data.liste);
-                    Schnittstelle_VariableElementZuordnen(AJAX.data.liste);
-                    Schnittstelle_VariableElementErgaenzen(AJAX.data.liste);
                     Schnittstelle_EventVariableUpdDom(AJAX.data.liste);
 
                     if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);

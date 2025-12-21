@@ -162,7 +162,7 @@ function Termine_Init() {
             "termine_anwesenheiten_dokumentieren",
             $(this).attr("data-title"),
             $(this).attr("data-element_id"),
-            $(this).attr("data-liste")
+            "mitglieder"
         );
     });
 }

@@ -297,6 +297,7 @@ class Vereinsapp extends BaseConfig
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'zugeordnete_aufgaben_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Rückmeldungen', 'typ' => 'element_ids' ),  // JAVA
             'zugeordnete_aufgaben_zuordnung_termine_ids' => array( 'beschriftung' => 'Zugeordnete Termine', 'typ' => 'element_ids' ),   // JAVA
+            'zugeordnete_termin_ids_via_aufgaben_zuordnungen_termine' => array( 'beschriftung' => 'Zugeordnete Termine (via Termin-Zuordnungen)', 'typ' => 'element_ids' ),  // JAVA
         ),
 
         'aufgaben_rueckmeldungen' => array(
@@ -331,6 +332,7 @@ class Vereinsapp extends BaseConfig
             'zugeordnete_aufgaben_zuordnung_termine_ids' => array( 'beschriftung' => 'Zugeordnete Aufgaben', 'typ' => 'element_ids' ),  // JAVA
             'zugeordnete_termine_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Rückmeldungen', 'typ' => 'element_ids' ),   // JAVA
             'zugeordnete_termine_anwesenheit_ids' => array( 'beschriftung' => 'Zugeordnete Anwesenheiten', 'typ' => 'element_ids' ),    // JAVA
+            'zugeordnete_aufgabe_ids_via_aufgaben_zuordnungen_termine' => array( 'beschriftung' => 'Zugeordnete Aufgaben (via Termin-Zuordnungen)', 'typ' => 'element_ids' ),  // JAVA
         ),
 
         'termine_rueckmeldungen' => array(

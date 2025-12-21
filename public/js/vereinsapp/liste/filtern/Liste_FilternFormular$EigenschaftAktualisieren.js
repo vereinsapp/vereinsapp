@@ -4,7 +4,7 @@ function Liste_FilternFormular$EigenschaftAktualisieren($eigenschaft, filtern_ei
     if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft))
         switch (EIGENSCHAFTEN[liste][eigenschaft].typ) {
             case "text":
-                // (noch) kein filtern möglich
+                // (noch) nicht möglich
                 break;
             case "zahl":
             case "zeitpunkt":
@@ -73,7 +73,7 @@ function Liste_FilternFormular$EigenschaftAktualisieren($eigenschaft, filtern_ei
                 break;
             case "element_id":
             case "element_ids":
-                // (noch) kein filtern möglich
+                // (noch) kein Filter setzen möglich
                 break;
         }
     else

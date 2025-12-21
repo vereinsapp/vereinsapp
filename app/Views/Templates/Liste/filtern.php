@@ -73,5 +73,5 @@
             <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
             </div>
     </div>
-<?php /* (noch) kein filtern möglich für text, element_id, element_ids */ ?>
+<?php /* (noch) kein Filter setzen möglich für text, element_id, element_ids */ ?>
 </div>

@@ -4,35 +4,39 @@
  */
 
 function Schnittstelle_VariableLoeschen(element_id, liste) {
-    if (typeof element_id !== "undefined" && typeof liste !== "undefined") {
-        element_id = Number(element_id);
+    // Eigentliches Element löschen
+    LISTEN[liste].tabelle[element_id] = undefined;
+    Schnittstelle_EventVariableUpdLocalstorage(liste);
+    Schnittstelle_EventLocalstorageUpdVariable(liste);
+    Schnittstelle_VariableElementZuordnen(liste);
+    Schnittstelle_VariableElementErgaenzen(liste);
 
-        // Elemente in anderen Listen suchen und löschen, die auf das zu löschende Element verlinken (mittels [x]_id oder zugeordnete_[x]]_ids)
-        $.each(EIGENSCHAFTEN, function (gegen_liste, eigenschaften) {
-            if (LISTEN[liste].element + "_id" in eigenschaften) {
-                $.each(LISTEN[gegen_liste].tabelle, function () {
-                    const gegen_element = this;
-                    const gegen_element_id = gegen_element.id;
-                    if ("id" in gegen_element && gegen_element[LISTEN[liste].element + "_id"] == element_id)
-                        Schnittstelle_VariableLoeschen(gegen_element_id, gegen_liste);
-                });
-            }
-            if ("zugeordnete_" + LISTEN[liste].element + "_id" in eigenschaften)
-                $.each(LISTEN[gegen_liste].tabelle, function () {
-                    const gegen_element = this;
-                    const gegen_element_id = gegen_element.id;
-                    if ("id" in gegen_element && gegen_element["zugeordnete_" + LISTEN[liste].element + "_ids"].includes(element_id))
-                        LISTEN[gegen_liste].tabelle[gegen_element_id]["zugeordnete_" + LISTEN[liste].element + "_ids"] =
-                            Schnittstelle_VariableRausZurueck(
-                                "zugeordnete_" + LISTEN[liste].element + "_ids",
-                                gegen_element_id,
-                                gegen_liste,
-                                new Array()
-                            ).filter((id) => id != element_id);
-                });
+    // Elemente in anderen Listen suchen und auch die anderen Elemente löschen, die auf das zu löschende Element verlinken
+    $.each(EIGENSCHAFTEN, function (gegen_liste, eigenschaften) {
+        if (LISTEN[liste].element + "_id" in eigenschaften)
+            $.each(LISTEN[gegen_liste].tabelle, function () {
+                const gegen_element = this;
+                if ("id" in gegen_element) {
+                    if (gegen_element[LISTEN[liste].element + "_id"] === element_id) Schnittstelle_VariableLoeschen(gegen_element.id, gegen_liste);
+                }
+            });
+    });
+
+    // Zuordnungen auflösen
+    const gegen_liste_neu_zuordnen = new Array();
+    $.each(EIGENSCHAFTEN, function (gegen_liste, eigenschaften) {
+        if ("zugeordnete_" + LISTEN[liste].element + "_ids" in eigenschaften && !gegen_liste_neu_zuordnen.includes(gegen_liste))
+            gegen_liste_neu_zuordnen.push(gegen_liste);
+
+        $.each(Object.keys(LISTEN), function () {
+            if ("zugeordnete_" + LISTEN[this].element + "_ids_via_" + liste in eigenschaften && !gegen_liste_neu_zuordnen.includes(gegen_liste))
+                gegen_liste_neu_zuordnen.push(gegen_liste);
         });
-
-        // Eigentliches Element löschen
-        LISTEN[liste].tabelle[element_id] = undefined;
-    }
+    });
+    $.each(gegen_liste_neu_zuordnen, function () {
+        const gegen_liste = this;
+        Schnittstelle_EventLocalstorageUpdVariable(gegen_liste);
+        Schnittstelle_VariableElementZuordnen(gegen_liste);
+        Schnittstelle_VariableElementErgaenzen(gegen_liste);
+    });
 }

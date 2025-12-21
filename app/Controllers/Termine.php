@@ -59,6 +59,7 @@ class Termine extends BaseController {
 
                 $this->viewdata['liste']['termine_aufgaben_zuordnen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', );
                 $this->viewdata['liste']['termine_aufgaben_zuordnen']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
+
                 $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeugkasten']['erstellen'] = array(
                     'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
                     'title' => 'Aufgabe erstellen',
@@ -193,13 +194,23 @@ class Termine extends BaseController {
         if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
             $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-            // unset($this->viewdata['liste']['zugeordnete_aufgaben']['filtern']);
+            $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( 'zugeordnete_termin_ids_via_aufgaben_zuordnungen_termine' => array( 'inklusiv' => array( $termin_id ), ), );
             $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
 
             if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
-                $this->viewdata['liste']['zugeordnete_aufgaben']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', 'aufgaben_termine_zuordnen', );
-                $this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']['erstellen'] = array(
+                $this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']['auswaehlen'] = array(
+                    'klasse_id' => 'btn_termine_aufgaben_zuordnen',
+                    'title' => 'Aufgaben zuordnen',
+                );
+
+                $this->viewdata['liste']['termine_aufgaben_zuordnen'] = HAUPTINSTANZEN['aufgaben'];
+                // unset($this->viewdata['liste']['termine_aufgaben_zuordnen']['filtern']);
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', );
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['gegen_element_id'] = $termin_id;
+
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeugkasten']['erstellen'] = array(
                     'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
                     'title' => 'Aufgabe erstellen',
                 );
@@ -238,6 +249,7 @@ class Termine extends BaseController {
                 'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
                 'title' => 'Termin löschen',
                 'farbe' => 'danger',
+                'weiterleiten' => 'termine',
             );
 
         }
@@ -459,7 +471,7 @@ class Termine extends BaseController {
                 $filtern_kombiniert[$eigenschaft] = array();
                 switch( EIGENSCHAFTEN[$liste][$eigenschaft]['typ'] ) {
                     case 'text':
-                        // (noch) kein filtern möglich
+                        // (noch) nicht möglich
                         break;
                     case 'zahl':
                     case 'zeitpunkt':
@@ -473,6 +485,7 @@ class Termine extends BaseController {
                     case 'vorgegebene_werte':
                     case 'janein':
                     case 'element_id':
+                    case 'element_ids':
                         foreach( array( 'inklusiv', 'exklusiv' ) as $filtern_klasse ) {
                             if( array_key_exists( $eigenschaft, $filtern_prio_hoch ) ) {
                                 if( array_key_exists( $filtern_klasse, $filtern_prio_hoch[$eigenschaft] ) )

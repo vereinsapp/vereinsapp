@@ -18,7 +18,7 @@ function Liste_FilternAendern($quelle_ziel, ziel_id, liste) {
 
     switch (EIGENSCHAFTEN[liste][eigenschaft].typ) {
         case "text":
-            // (noch) kein filtern möglich
+            // (noch) nicht möglich
             break;
         case "zahl":
         case "zeitpunkt":
@@ -47,14 +47,12 @@ function Liste_FilternAendern($quelle_ziel, ziel_id, liste) {
             }
             break;
         case "element_id":
+        case "element_ids":
             const neuer_filtern_wert_id = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.find(".filtern_auswahl").val(), undefined);
             if (neuer_filtern_wert_id > 0) {
                 if (!("inklusiv" in filtern_eigenschaft)) filtern_eigenschaft.inklusiv = new Array();
                 if (!filtern_eigenschaft.inklusiv.includes(neuer_filtern_wert_id)) filtern_eigenschaft.inklusiv.push(neuer_filtern_wert_id);
             }
-            break;
-        case "element_ids":
-            // (noch) kein filtern möglich
             break;
     }
 

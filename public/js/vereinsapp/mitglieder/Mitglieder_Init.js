@@ -101,6 +101,17 @@ function Mitglieder_Init() {
         );
     });
 
+    // RECHTE VERGEBEN (MODAL) ÖFFNEN
+    $(document).on("click", ".btn_rechte_vergeben", function () {
+        Liste_VerknuepfungenModalOeffnen(
+            "rechte_vergeben_modal",
+            "rechte_vergeben",
+            $(this).attr("data-title"),
+            $(this).attr("data-element_id"),
+            "verfuegbare_rechte"
+        );
+    });
+
     // EINMAL-LINK ANZEIGEN
     $(document).on("click", ".btn_mitglied_einmal_link_anzeigen", function () {
         Mitglieder_EinmalLinkErstellen(
@@ -114,17 +125,6 @@ function Mitglieder_Init() {
             new Object(),
             $(this).attr("data-title"),
             $(this).attr("data-element_id")
-        );
-    });
-
-    // RECHTE VERGEBEN (MODAL) ÖFFNEN
-    $(document).on("click", ".btn_rechte_vergeben", function () {
-        Liste_VerknuepfungenModalOeffnen(
-            "rechte_vergeben_modal",
-            "rechte_vergeben",
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            $(this).attr("data-liste")
         );
     });
 

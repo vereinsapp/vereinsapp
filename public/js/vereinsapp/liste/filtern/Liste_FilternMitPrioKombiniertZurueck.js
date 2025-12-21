@@ -20,7 +20,7 @@ function Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_pri
             filtern_kombiniert[eigenschaft] = new Object();
             switch (EIGENSCHAFTEN[liste][eigenschaft].typ) {
                 case "text":
-                    // (noch) kein filtern möglich
+                    // (noch) nicht möglich
                     break;
                 case "zahl":
                 case "zeitpunkt":
@@ -34,6 +34,7 @@ function Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_pri
                 case "vorgegebene_werte":
                 case "janein":
                 case "element_id":
+                case "element_ids":
                     $.each(["inklusiv", "exklusiv"], function (position, filtern_klasse) {
                         if (eigenschaft in filtern_prio_hoch) {
                             if (filtern_klasse in filtern_prio_hoch[eigenschaft])
@@ -43,9 +44,6 @@ function Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_pri
                                 filtern_kombiniert[eigenschaft][filtern_klasse] = filtern_prio_niedrig[eigenschaft][filtern_klasse];
                         }
                     });
-                    break;
-                case "element_ids":
-                    // (noch) kein filtern möglich
                     break;
             }
         });
