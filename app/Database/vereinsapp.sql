@@ -266,6 +266,22 @@ CREATE TABLE `vereinsapp_notenbank` (
 -- --------------------------------------------------------
 
 --
+-- Tabellenstruktur für Tabelle `vereinsapp_notenbank_setliste`
+--
+
+CREATE TABLE `vereinsapp_notenbank_setliste` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `titel_id` int(11) UNSIGNED NOT NULL,
+  `termin_id` int(11) UNSIGNED NOT NULL,
+  `status` int(11) UNSIGNED NOT NULL,
+  `bemerkung` varchar(100) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Tabellenstruktur für Tabelle `vereinsapp_settings`
 --
 
@@ -460,6 +476,14 @@ ALTER TABLE `vereinsapp_notenbank`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indizes für die Tabelle `vereinsapp_notenbank_setliste`
+--
+ALTER TABLE `vereinsapp_notenbank_setliste`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `titel_id` (`titel_id`),
+  ADD KEY `termin_id` (`termin_id`);
+
+--
 -- Indizes für die Tabelle `vereinsapp_settings`
 --
 ALTER TABLE `vereinsapp_settings`
@@ -577,6 +601,12 @@ ALTER TABLE `vereinsapp_notenbank`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT für Tabelle `vereinsapp_notenbank_setliste`
+--
+ALTER TABLE `vereinsapp_notenbank_setliste`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT für Tabelle `vereinsapp_settings`
 --
 ALTER TABLE `vereinsapp_settings`
@@ -653,6 +683,13 @@ ALTER TABLE `vereinsapp_mitglieder_vergebene_rechte`
 --
 ALTER TABLE `vereinsapp_mitglieder_zugaenge`
   ADD CONSTRAINT `vereinsapp_mitglieder_zugaenge_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints der Tabelle `vereinsapp_notenbank_setliste`
+--
+ALTER TABLE `vereinsapp_notenbank_setliste`
+  ADD CONSTRAINT `vereinsapp_notenbank_setliste_titel_id_foreign` FOREIGN KEY (`titel_id`) REFERENCES `vereinsapp_notenbank` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `vereinsapp_notenbank_setliste_termin_id_foreign` FOREIGN KEY (`termin_id`) REFERENCES `vereinsapp_termine` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints der Tabelle `vereinsapp_strafkatalog_kassenbuch`

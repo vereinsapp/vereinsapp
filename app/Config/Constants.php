@@ -165,6 +165,11 @@ defined('LISTEN') OR define( 'LISTEN', array(
         'controller' => 'notenbank',
         'element' => 'titel',
     ),
+    'notenbank_setliste' => array(
+        'beschriftung' => 'Setlisteneintrag',
+        'controller' => 'notenbank',
+        'element' => 'notenbank_setlisteneintrag',
+    ),
 ) );
 
 defined('ELEMENTE') OR define( 'ELEMENTE', array(
@@ -247,6 +252,11 @@ defined('ELEMENTE') OR define( 'ELEMENTE', array(
             array( 'eigenschaft' => 'titel', 'prefix' => ' ' )
         ),
     ),
+    'notenbank_setlisteneintrag' => array(
+        'beschriftung' => 'Setlisteneintrag',
+        'liste' => 'notenbank_setliste',
+        'element_beschriftung' => array(),
+    ),
 ) );
 
 defined('JANEIN') OR define( 'JANEIN', array(
@@ -313,6 +323,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'termine_aufgaben_zuordnen' => array( 'bootstrap' => 'award' ),
     'termine_rueckmeldungen_verwalten' => array( 'bootstrap' => 'hand-thumbs-up' ),
     'termine_anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
+    'setliste_verwalten' => array ( 'bootstrap' => 'music-note-list' ),
     'strafe_zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
     'offene_kassenbucheintraege_verwalten' => array( 'bootstrap' => 'journal-check' ),
     'statistiken' => array( 'bootstrap' => 'graph-up-arrow' ),
@@ -341,6 +352,8 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'neg_rueckmeldung' => array( 'bootstrap' => 'hand-thumbs-down' ),
     'pos_anwesenheit' => array( 'bootstrap' => 'person-check' ),
     'neg_anwesenheit' => array( 'bootstrap' => 'person-x' ),
+    'pos_setliste' => array( 'bootstrap' => 'check-lg' ),
+    'neg_setliste' => array( 'bootstrap' => 'x-lg' ),
     'erledigt' => array( 'bootstrap' => 'check-circle' ),
     'offen' => array( 'bootstrap' => 'circle' ),
 

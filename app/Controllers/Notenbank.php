@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\Notenbank\Titel_Model;
-
+use App\Models\Notenbank\Setlisteneintrag_Model;
 
 
 class Notenbank extends BaseController {
@@ -128,6 +128,36 @@ class Notenbank extends BaseController {
         else if( !auth()->user()->can( 'notenbank.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else model(Titel_Model::class)->delete( $this->request->getPost()['id'] );
         
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    public function ajax_notenbank_setlisteneintrag_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+            'titel_id' => [ 'label' => EIGENSCHAFTEN['notenbank_setliste']['titel_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'termin_id' => [ 'label' => EIGENSCHAFTEN['notenbank_setliste']['termin_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'status' => [ 'label' => EIGENSCHAFTEN['notenbank_setliste']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['notenbank_setliste']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else if( !auth()->user()->can( 'notenbank.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else {
+            $setlisteneintrag_Model = model(Setlisteneintrag_Model::class);
+            $setlisteneintrag = array(
+                'titel_id' => $this->request->getpost()['titel_id'],
+                'termin_id' => $this->request->getpost()['termin_id'],
+                'status' => $this->request->getpost()['status'],
+            );
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $setlisteneintrag['bemerkung'] = $this->request->getpost()['bemerkung']; else $setlisteneintrag['bemerkung'] = NULL;
+
+            $setlisteneintrag_Model->where( array( 'titel_id' => $setlisteneintrag['titel_id'], 'termin_id' => $setlisteneintrag['termin_id'] ) )->delete();
+            if( (int)$setlisteneintrag['status'] > 0 ) {
+                $setlisteneintrag_Model->save( $setlisteneintrag );
+                $ajax_antwort['setlisteneintrag_id'] = (int)$setlisteneintrag_Model->getInsertID();
+            }
+        }
+
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }

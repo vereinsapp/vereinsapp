@@ -78,6 +78,39 @@ class Termine extends BaseController {
 
         }
 
+        if( array_key_exists( LISTEN['notenbank']['controller'], CONTROLLERS ) ) {
+
+            $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['notenbank'];
+            // unset($this->viewdata['liste']['setliste_verwalten']['filtern']);
+
+            $this->viewdata['werkzeugkasten']['setliste_verwalten'] = array(
+                'klasse_id' => 'btn_setliste_verwalten',
+                // 'title' => 'Setliste verwalten',
+            );
+
+            if( array_key_exists( 'notenbank.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'notenbank.verwaltung' ) ) {
+
+                $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'notenbank_setliste', );
+                $this->viewdata['liste']['setliste_verwalten']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
+
+                $this->viewdata['liste']['setliste_verwalten']['werkzeugkasten']['erstellen'] = array(
+                    'klasse_id' => array('btn_titel_erstellen', 'formular_oeffnen'),
+                    'title' => 'Titel erstellen',
+                );
+
+                $this->viewdata['werkzeugkasten']['setliste_verwalten']['title'] = 'Setliste verwalten';
+
+            } else {
+
+                $this->viewdata['liste']['setliste_verwalten']['zusatzsymbol'] = array( 'notenbank_setliste' );
+                $this->viewdata['liste']['setliste_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['notenbank']['bootstrap'].'"></i> '.HAUPTINSTANZEN['notenbank']['beschriftung'];
+
+                $this->viewdata['werkzeugkasten']['setliste_verwalten']['title'] = 'Setliste';
+
+            }
+
+        }
+
         if( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['mitglieder'];
@@ -219,6 +252,33 @@ class Termine extends BaseController {
 
         }
 
+        if( array_key_exists( LISTEN['notenbank']['controller'], CONTROLLERS ) ) {
+
+            $this->viewdata['liste']['zugeordnete_setliste'] = HAUPTINSTANZEN['notenbank'];
+            $this->viewdata['liste']['zugeordnete_setliste']['filtern'] = array( 'zugeordnete_termin_ids_via_notenbank_setliste' => array( 'inklusiv' => array( $termin_id ), ), );
+            $this->viewdata['liste']['zugeordnete_setliste']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['notenbank']['bootstrap'].'"></i> '.HAUPTINSTANZEN['notenbank']['beschriftung'];
+
+            if( array_key_exists( 'notenbank.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'notenbank.verwaltung' ) ) {
+
+                $this->viewdata['liste']['zugeordnete_setliste']['werkzeugkasten']['auswaehlen'] = array(
+                    'klasse_id' => 'btn_setliste_verwalten',
+                    'title' => 'Setliste verwalten',
+                );
+
+                $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['notenbank'];
+                // unset($this->viewdata['liste']['setliste_verwalten']['filtern']);
+                $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'notenbank_setliste', );
+                $this->viewdata['liste']['setliste_verwalten']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
+                $this->viewdata['liste']['setliste_verwalten']['gegen_element_id'] = $termin_id;
+
+                $this->viewdata['liste']['setliste_verwalten']['werkzeugkasten']['erstellen'] = array(
+                    'klasse_id' => array('btn_titel_erstellen', 'formular_oeffnen'),
+                    'title' => 'Titel erstellen',
+                );
+
+            }
+
+        }
 
         if( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
 

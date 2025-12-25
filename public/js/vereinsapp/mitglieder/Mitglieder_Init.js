@@ -108,7 +108,7 @@ function Mitglieder_Init() {
             "rechte_vergeben",
             $(this).attr("data-title"),
             $(this).attr("data-element_id"),
-            "verfuegbare_rechte"
+            "mitglieder"
         );
     });
 

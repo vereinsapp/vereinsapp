@@ -225,6 +225,12 @@ class Vereinsapp extends BaseConfig
             'listenstatistik' => array(),
         ),
 
+        'notenbank_setliste' => array(
+            'liste' => 'notenbank_setliste',
+            'filtern' => array(),
+            'sortieren' => array(),
+        ),
+
     );
 
     /**
@@ -332,7 +338,9 @@ class Vereinsapp extends BaseConfig
             'zugeordnete_aufgaben_zuordnung_termine_ids' => array( 'beschriftung' => 'Zugeordnete Aufgaben', 'typ' => 'element_ids' ),  // JAVA
             'zugeordnete_termine_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Rückmeldungen', 'typ' => 'element_ids' ),   // JAVA
             'zugeordnete_termine_anwesenheit_ids' => array( 'beschriftung' => 'Zugeordnete Anwesenheiten', 'typ' => 'element_ids' ),    // JAVA
+            'zugeordnete_notenbank_setlisteneintrag_ids' => array( 'beschriftung' => 'Zugeordnete Setliste', 'typ' => 'element_ids' ),  // JAVA
             'zugeordnete_aufgabe_ids_via_aufgaben_zuordnungen_termine' => array( 'beschriftung' => 'Zugeordnete Aufgaben (via Termin-Zuordnungen)', 'typ' => 'element_ids' ),  // JAVA
+            'zugeordnete_titel_ids_via_notenbank_setliste' => array( 'beschriftung' => 'Zugeordnete Titel (via Setlisteneintrag-Zuordnungen)', 'typ' => 'element_ids' ),  // JAVA
         ),
 
         'termine_rueckmeldungen' => array(
@@ -382,6 +390,16 @@ class Vereinsapp extends BaseConfig
             'anzahl_noten' => array( 'beschriftung' => 'Anzahl Noten', 'typ' => 'zahl' ),               // JAVA
             'anzahl_audio' => array( 'beschriftung' => 'Anzahl Audio', 'typ' => 'zahl' ),               // JAVA
             'anzahl_verzeichnis' => array( 'beschriftung' => 'Anzahl Verzeichnisse', 'typ' => 'zahl' ), // JAVA
+            'zugeordnete_notenbank_setlisteneintrag_ids' => array( 'beschriftung' => 'Zugeordnete Setliste', 'typ' => 'element_ids' ),  // JAVA
+            'zugeordnete_termin_ids_via_notenbank_setliste' => array( 'beschriftung' => 'Zugeordnete Termine (via Setliste)', 'typ' => 'element_ids' ),  // JAVA
+        ),
+
+        'notenbank_setliste' => array(
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
+            'titel_id' => array( 'beschriftung' => 'Titel-ID', 'typ' => 'element_id' ),
+            'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'element_id' ),
+            'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
+            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
         ),
 
     );
@@ -496,6 +514,9 @@ class Vereinsapp extends BaseConfig
                 'volkstuemlich' => array( 'beschriftung' => 'Volkstümlich', ),
             ),
 
+        ),
+
+        'notenbank_setliste' => array(
         ),
 
     );
@@ -662,6 +683,9 @@ class Vereinsapp extends BaseConfig
             'anzahl_verzeichnis',
         ),
 
+        'notenbank_setliste' => array(
+        ),
+
     );
 
     /**
@@ -739,6 +763,9 @@ class Vereinsapp extends BaseConfig
             'anzahl_verzeichnis',
         ),
 
+        'notenbank_setliste' => array(
+        ),
+
     );
     
     /**
@@ -797,6 +824,9 @@ class Vereinsapp extends BaseConfig
             'anzahl_noten',
             'anzahl_audio',
             'anzahl_verzeichnis',
+        ),
+
+        'notenbank_setliste' => array(
         ),
 
     );
@@ -954,6 +984,12 @@ class Vereinsapp extends BaseConfig
             'auswahlmoeglichkeiten' => array(
                 0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_anwesenheit']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_anwesenheit']['bootstrap'].'-fill"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_anwesenheit']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_anwesenheit']['bootstrap'].'-fill"></i>' ),
+             ),
+        ),
+        'notenbank_setliste' => array(
+            'auswahlmoeglichkeiten' => array(
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_setliste']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_setliste']['bootstrap'].'-fill"></i>' ),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_setliste']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_setliste']['bootstrap'].'-fill"></i>' ),
              ),
         ),
     );

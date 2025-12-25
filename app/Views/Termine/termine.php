@@ -13,6 +13,13 @@
     view( 'Templates/modal', array( 'id' => 'aufgabe_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'aufgaben' ), 'btn' => array( 'klasse_id' => 'btn_aufgabe_aktion' ), 'formular' =>
     view( 'Aufgaben/aufgabe_basiseigenschaften_formular' ) ) ) ) ); ?>
+<?php if( array_key_exists( LISTEN['notenbank']['controller'], CONTROLLERS ) ) echo
+    view( 'Templates/modal', array( 'id' => 'setliste_verwalten_modal', 'modal' =>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['setliste_verwalten'] ) ) ) ); ?>
+<?php if( array_key_exists( 'notenbank.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'notenbank.verwaltung' ) ) echo
+    view( 'Templates/modal', array( 'id' => 'titel_basiseigenschaften', 'modal' =>
+    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'notenbank' ), 'btn' => array( 'klasse_id' => 'btn_titel_aktion' ), 'formular' =>
+    view( 'Notenbank/titel_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?php if( array_key_exists( 'mitglieder.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'id' => 'termine_rueckmeldungen_verwalten_modal', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_rueckmeldungen_verwalten'] ) ) ) ); ?>

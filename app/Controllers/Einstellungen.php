@@ -12,6 +12,7 @@ use App\Models\Termine\Anwesenheit_Model;
 use App\Models\Strafkatalog\Strafe_Model;
 use App\Models\Strafkatalog\Kassenbucheintrag_Model;
 use App\Models\Notenbank\Titel_Model;
+use App\Models\Notenbank\Setlisteneintrag_Model;
 
 class Einstellungen extends BaseController {
 
@@ -50,6 +51,7 @@ class Einstellungen extends BaseController {
             if( array_key_exists( LISTEN['strafkatalog']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['strafkatalog'] = model(Strafe_Model::class)->strafkatalog_tabelle();
             if( array_key_exists( LISTEN['kassenbuch']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['kassenbuch'] = model(Kassenbucheintrag_Model::class)->kassenbuch_tabelle();
             if( array_key_exists( LISTEN['notenbank']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['notenbank'] = model(Titel_Model::class)->notenbank_tabelle();
+            if( array_key_exists( LISTEN['notenbank_setliste']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['notenbank_setliste'] = model(Setlisteneintrag_Model::class)->setliste_tabelle();
         }
         
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

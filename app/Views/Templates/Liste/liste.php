@@ -10,7 +10,7 @@ foreach( $liste['werkzeugkasten'] as $symbol => $werkzeug) { ?><button type="but
     ?>><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?>"></i></span></button><?php }
 ?></div><?php } ?>
 
-<?php if( array_key_exists( 'listenstatistik', $liste ) ) { ?><div class="listenstatistik_sammler invisible text-secondary text-end small mb-1"><span class="listenstatistik"<?php
+<?php if( array_key_exists( 'listenstatistik', $liste ) ) { ?><div class="listenstatistik_sammler text-secondary text-end small mb-1"><span class="listenstatistik"<?php
     if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['id']; ?>" data-listenstatistik="anzahl"></span> Element(e)<?php
     /* funktioniert aktuell nicht, weil Liste_Aktualisieren inkl. Liste_ListenstatistikAktualisieren aufgerufen wird, bevor Liste_ElementAktualisieren inkl. Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren aufgerufen wird */
     /* if( array_key_exists( 'verknuepfungen', $liste ) AND $liste['verknuepfungen']['typ'] === 'check' ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i><span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['id']; ?>" data-listenstatistik="angewaehlt"></span> Element(e) angewählt<?php } */
