@@ -168,6 +168,8 @@ class Termine extends BaseController {
             'filtern' => $this->filtern_mitglieder_kombiniert( $termin_id ),
             'gegen_liste' => 'termine',
             'gegen_element_id' => $termin_id,
+            'collapse' => TRUE,
+            'progress' => TRUE,
         );
 
         $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['gruppieren'] = array(
@@ -188,6 +190,8 @@ class Termine extends BaseController {
             'filtern' => $this->filtern_mitglieder_kombiniert( $termin_id ),
             'gegen_liste' => 'termine',
             'gegen_element_id' => $termin_id,
+            'collapse' => TRUE,
+            'progress' => TRUE,
         );
 
         $this->viewdata['auswertungen']['anwesenheiten_termin']['werkzeugkasten']['gruppieren'] = array(

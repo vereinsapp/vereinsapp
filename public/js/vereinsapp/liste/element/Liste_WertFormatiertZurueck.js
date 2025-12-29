@@ -63,7 +63,7 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
                 break;
             case "mitglied_id":
                 if (wert !== null) wert_formatiert = Liste_ElementBeschriftungZurueck(wert, "mitglieder");
-                else wert_formatiert = "Mitglied nicht gefunden";
+                else wert_formatiert = "undefiniert";
                 break;
             default:
                 wert_formatiert = wert;

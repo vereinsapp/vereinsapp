@@ -4,7 +4,7 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
     const element_ids = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-element_ids"), new Array());
     const gegen_liste = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-gegen_liste"), undefined);
     const gegen_element_id = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-gegen_element_id"), undefined);
-    const auswertung_element_ids = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-auswertung_element_ids"), new Array());
+    const auswertung_ids = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-auswertung_ids"), new Array());
 
     const element_ids_nach_status = new Array(new Array());
     $.each(Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-auswahlmoeglichkeiten"), new Array()), function (position, status) {
@@ -15,9 +15,9 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
         else element_ids_nach_status[status] = new Array();
     });
 
-    $.each(auswertung_element_ids, function (position, auswertung_element_id) {
-        const status = Schnittstelle_VariableRausZurueck("status", auswertung_element_id, auswertungen, undefined);
-        const element_id = Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_element_id, auswertungen, undefined);
+    $.each(auswertung_ids, function (position, auswertung_id) {
+        const status = Schnittstelle_VariableRausZurueck("status", auswertung_id, auswertungen, undefined);
+        const element_id = Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined);
         element_ids_nach_status[status].push(element_id);
         element_ids_nach_status[0] = element_ids_nach_status[0].filter((id) => id != element_id);
     });

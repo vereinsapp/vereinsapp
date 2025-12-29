@@ -20,9 +20,6 @@ if( array_key_exists( 'gegen_liste', $auswertungen ) ) { ?> data-gegen_liste="<?
 if( array_key_exists( 'gegen_element_id', $auswertungen ) ) { ?> data-gegen_element_id="<?= $auswertungen['gegen_element_id']; ?>"<?php }
 ?>>
 
-<?= view( $view ); ?>
+<?= view( $view, array( 'auswertung' => array( 'id' => $auswertungen['id'], 'collapse' => $auswertungen['collapse'], 'progress' => $auswertungen['progress'], ) ) ); ?>
 
 </ul>
-
-<?= view( $view.'_zusammenfassung', array( 'zusammenfassung' => array( 'instanz' => $auswertungen['id'], 'auswertungen' => $auswertungen['auswertungen'], 'liste' => $auswertungen['liste'], 'beschriftung' => "Summe", ), ) ); ?>
-

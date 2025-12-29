@@ -122,6 +122,8 @@ class Mitglieder extends BaseController {
             'filtern' => MITGLIEDER_AUSWERTUNGEN_FILTERN['termine_rueckmeldungen'],
             'gegen_liste' => 'mitglieder',
             'gegen_element_id' => $mitglied_id,
+            'collapse' => TRUE,
+            'progress' => TRUE,
         );
 
         $this->viewdata['auswertungen']['rueckmeldungen_mitglied']['werkzeugkasten']['filtern'] = array(
@@ -137,6 +139,8 @@ class Mitglieder extends BaseController {
             'filtern' => MITGLIEDER_AUSWERTUNGEN_FILTERN['termine_anwesenheiten'],
             'gegen_liste' => 'mitglieder',
             'gegen_element_id' => $mitglied_id,
+            'collapse' => TRUE,
+            'progress' => TRUE,
         );
 
         $this->viewdata['auswertungen']['anwesenheiten_mitglied']['werkzeugkasten']['filtern'] = array(

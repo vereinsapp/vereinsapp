@@ -30,7 +30,7 @@
     </div>
 </div>
 
-<div class="container mb-3">
+<?php if( array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) AND array_key_exists( LISTEN['termine_anwesenheiten']['controller'], CONTROLLERS ) ) { ?><div class="container mb-3">
     <ul class="nav nav-tabs">
         <li class="col-6 nav-item collapsed text-center" data-bs-toggle="collapse" data-bs-target="#rueckmeldungen_container" role="button">
             <a class="nav-link">Termin-Rückmeldungen</a>
@@ -48,7 +48,7 @@
     <div id="anwesenheiten_container" class="collapse tab_collapse no-transition show" data-bs-parent=".rueckmeldungen_anwesenheiten_parent">
 <?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['anwesenheiten_mitglied'], 'view' => 'Mitglieder/auswertung_anwesenheiten' ) ); ?>
     </div>
-</div>
+</div><?php } ?>
 
 <?php if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'id' => 'termine_rueckmeldungen_verwalten_modal', 'modal' =>

@@ -9,9 +9,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     // GRUPPIEREN DEFINIEREN
     const gruppieren_data = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-gruppieren"), undefined);
     const gruppieren_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].gruppieren;
-    let gruppieren;
-    if (typeof gruppieren_LocalStorage !== "undefined") gruppieren = gruppieren_LocalStorage;
-    else gruppieren = gruppieren_data;
+    const gruppieren = Liste_GruppierenMitPrioKombiniertZurueck(gruppieren_data, gruppieren_LocalStorage, liste);
 
     // TABELLE FILTERN
     const filtern_data = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-filtern"), new Object());
@@ -31,25 +29,25 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
         const wert = element[gruppieren];
         if (!gruppieren_werte.includes(wert)) gruppieren_werte.push(wert);
         if (!element_ids.includes(element_id)) element_ids.push(element_id);
-        if (!(wert in element_ids_nach_wert)) element_ids_nach_wert[wert] = new Array();
-        element_ids_nach_wert[wert].push(element_id);
+        if (!(wert in element_ids_nach_wert)) element_ids_nach_wert[wert] = [element_id];
+        else element_ids_nach_wert[wert].push(element_id);
     });
     const gruppieren_werte_sortiert = gruppieren_werte.sort();
 
-    // AUSWERTUNG_ELEMENT_IDS DEFINIEREN
-    const auswertung_element_ids = new Array();
-    const auswertung_element_ids_nach_wert = new Object();
+    // AUSWERTUNG_IDS DEFINIEREN
+    const auswertung_ids = new Array();
+    const auswertung_ids_nach_wert = new Object();
     $.each(
         Schnittstelle_VariableRausZurueck("zugeordnete_" + LISTEN[auswertungen].element + "_ids", gegen_element_id, gegen_liste, new Array()),
-        function (position, auswertung_element_id) {
-            const element_id = Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_element_id, auswertungen, undefined);
+        function (position, auswertung_id) {
+            const element_id = Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined);
             const wert = Schnittstelle_VariableRausZurueck(gruppieren, element_id, liste, undefined);
             if (element_ids.includes(element_id)) {
-                if (!auswertung_element_ids.includes(auswertung_element_id)) auswertung_element_ids.push(auswertung_element_id);
-                if (!(wert in auswertung_element_ids_nach_wert)) auswertung_element_ids_nach_wert[wert] = new Array();
-                auswertung_element_ids_nach_wert[wert].push(auswertung_element_id);
+                if (!auswertung_ids.includes(auswertung_id)) auswertung_ids.push(auswertung_id);
+                if (!(wert in auswertung_ids_nach_wert)) auswertung_ids_nach_wert[wert] = [auswertung_id];
+                else auswertung_ids_nach_wert[wert].push(auswertung_id);
             } else {
-                /* auswertung_element_id existiert zwar, aber zugehörige element_id wird garnicht berücksichtigt */
+                /* auswertung_id existiert zwar, aber zugehörige element_id wird garnicht berücksichtigt */
             }
         }
     );
@@ -62,57 +60,44 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     });
 
     // AUSWERTUNGEN IM DOM ERGÄNZEN
+    gruppieren_werte_sortiert.push(null); // für die Zusammenfassung
     $.each(gruppieren_werte_sortiert, function (position, wert) {
-        const $auswertung = $auswertungen.find('.auswertung[data-wert="' + wert + '"]');
-        if (!$auswertung.exists()) {
-            // Auswertung existiert noch nicht, also wird sie an der sortierten Position hinzugefügt
-            const $neue_auswertung = LISTEN[auswertungen].instanz[auswertungen_instanz].$blanko_auswertung.clone().removeClass("blanko invisible");
+        let $auswertung = $auswertungen.find('.auswertung[data-wert="' + wert + '"]');
+        if (!$auswertung.exists())
+            $auswertung = LISTEN[auswertungen].instanz[auswertungen_instanz].$blanko_auswertung.clone().removeClass("blanko invisible");
 
-            $neue_auswertung
-                .attr("data-auswertungen", auswertungen)
-                .attr("data-auswertung_element_ids", JsonStringifiedZurueck(auswertung_element_ids_nach_wert[wert], new Array()))
+        $auswertung
+            .attr("data-auswertungen", auswertungen)
+            .attr("data-liste", liste)
+            .attr("data-gegen_liste", gegen_liste)
+            .attr("data-gegen_element_id", gegen_element_id)
+            .attr("data-auswahlmoeglichkeiten", $auswertungen.attr("data-auswahlmoeglichkeiten"));
+
+        if (wert !== null) {
+            $auswertung
+                .attr("data-auswertung_ids", JsonStringifiedZurueck(auswertung_ids_nach_wert[wert], new Array()))
                 .attr("data-wert", wert)
-                .attr("data-liste", liste)
                 .attr("data-element_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
-                .attr("data-gegen_liste", gegen_liste)
-                .attr("data-gegen_element_id", gegen_element_id)
-                .attr("data-auswahlmoeglichkeiten", $auswertungen.attr("data-auswahlmoeglichkeiten"))
                 .attr("data-beschriftung", Liste_WertFormatiertZurueck(wert, gruppieren, liste));
 
             const ziel_id = zufaelligeZeichenketteZurueck(8);
-            $neue_auswertung.find('[data-bs-toggle="collapse"]').attr("data-bs-target", "#" + ziel_id);
-            $neue_auswertung.find(".toggle_symbol").attr("data-bs-target", "#" + ziel_id);
-            $neue_auswertung.find(".collapse").attr("id", ziel_id);
-
-            if (position === 0) $neue_auswertung.appendTo($auswertungen);
-            else $neue_auswertung.insertAfter($auswertungen.find('.auswertung[data-wert="' + gruppieren_werte_sortiert[position - 1] + '"]'));
+            $auswertung.find('[data-bs-toggle="collapse"]').attr("data-bs-target", "#" + ziel_id);
+            $auswertung.find(".toggle_symbol").attr("data-bs-target", "#" + ziel_id);
+            $auswertung.find(".auswertung_collapse").attr("id", ziel_id);
         } else {
-            // Auswertung existiert bereits, also wird sie nur einsortiert
             $auswertung
-                .attr("data-auswertungen", auswertungen)
-                .attr("data-auswertung_element_ids", JsonStringifiedZurueck(auswertung_element_ids_nach_wert[wert], new Array()))
-                // .attr("data-wert", wert)
-                .attr("data-liste", liste)
-                .attr("data-element_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
-                .attr("data-gegen_liste", gegen_liste)
-                .attr("data-gegen_element_id", gegen_element_id)
-                .attr("data-auswahlmoeglichkeiten", $auswertungen.attr("data-auswahlmoeglichkeiten"))
-                .attr("data-beschriftung", Liste_WertFormatiertZurueck(wert, gruppieren, liste));
+                .attr("data-auswertung_ids", JsonStringifiedZurueck(auswertung_ids, new Array()))
+                // .attr("data-element_ids", JsonStringifiedZurueck(element_ids, new Array()))
+                .attr("data-beschriftung", "Gesamt");
 
-            if (position === 0) $auswertung.appendTo($auswertungen);
-            else $auswertung.insertAfter($auswertungen.find('.auswertung[data-wert="' + gruppieren_werte_sortiert[position - 1] + '"]'));
+            $auswertung.find(".auswertung_progress").remove();
+            $auswertung.find('[data-bs-toggle="collapse"]').removeAttr("data-bs-toggle").removeAttr("role");
+            $auswertung.find(".toggle_symbol").remove();
+            $auswertung.find(".auswertung_collapse").remove();
         }
-    });
 
-    // ZUSAMMENFASSUNG AKTUALISIEREN
-    $(".auswertung.zusammenfassung[data-instanz='" + auswertungen_instanz + "']").each(function () {
-        const $zusammenfassung = $(this);
-        $zusammenfassung
-            .attr("data-auswertungen", auswertungen)
-            .attr("data-auswertung_element_ids", JsonStringifiedZurueck(auswertung_element_ids, new Array()))
-            .attr("data-liste", liste)
-            .attr("data-element_ids", JsonStringifiedZurueck(element_ids, new Array()))
-            .attr("data-auswahlmoeglichkeiten", $auswertungen.attr("data-auswahlmoeglichkeiten"));
+        if (position === 0) $auswertung.appendTo($auswertungen);
+        else $auswertung.insertAfter($auswertungen.find('.auswertung[data-wert="' + gruppieren_werte_sortiert[position - 1] + '"]'));
     });
 
     // ÜBERSCHRIFT AKTUALISIEREN

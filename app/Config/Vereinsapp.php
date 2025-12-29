@@ -6,6 +6,7 @@ use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\I18n\Time;
 defined('HEUTE') OR define( 'HEUTE', Time::today( 'Europe/Berlin' )->toDateTimeString() );
 defined('JAHRESBEGINN') OR define( 'JAHRESBEGINN', Time::today( 'Europe/Berlin' )->setMonth(1)->setDay(1)->setHour(0)->setMinute(0)->setSecond(0)->toDateTimeString() );
+defined('NAECHSTER_JAHRESBEGINN') OR define( 'NAECHSTER_JAHRESBEGINN', Time::today( 'Europe/Berlin' )->addYears(1)->setMonth(1)->setDay(1)->setHour(0)->setMinute(0)->setSecond(0)->toDateTimeString() );
 
 class Vereinsapp extends BaseConfig
 {
@@ -848,7 +849,7 @@ class Vereinsapp extends BaseConfig
      */
     public $mitglieder_auswertungen_filtern = array(
         'termine_rueckmeldungen' => array( 'start' => array( 'start' => JAHRESBEGINN ), ),
-        'termine_anwesenheiten' => array( 'start' => array( 'start' => JAHRESBEGINN ), 'kategorie' => array( 'inklusiv' => array( 'probe' ), ), ),
+        'termine_anwesenheiten' => array( 'start' => array( 'start' => JAHRESBEGINN, 'ende' => NAECHSTER_JAHRESBEGINN ), 'kategorie' => array( 'inklusiv' => array( 'probe' ), ), ),
     );
 
     /**
