@@ -144,7 +144,7 @@ function Termine_Init() {
         );
     });
 
-    // RUECKMELDUNGEN VERWALTEN (MODAL) ÖFFNEN
+    // RÜCKMELDUNGEN VERWALTEN (MODAL) ÖFFNEN
     $(document).on("click", ".btn_termine_rueckmeldungen_verwalten", function () {
         Liste_VerknuepfungenModalOeffnen(
             "termine_rueckmeldungen_verwalten_modal",
@@ -155,6 +155,22 @@ function Termine_Init() {
         );
     });
 
+    // RÜCKMELDUNG ERSTELLEN
+    $(document).on("click", '.btn_verknuepfung_erstellen[data-verknuepfungen="termine_rueckmeldungen"]', function () {
+        Liste_VerknuepfungErstellen(
+            { $ausloesend: $(this) },
+            {
+                verknuepfungen: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-verknuepfungen"), undefined),
+                liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined),
+                element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id"), undefined),
+                gegen_liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_liste"), undefined),
+                gegen_element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_element_id"), undefined),
+                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-status"), undefined),
+                // bemerkung: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-bemerkung"), null),
+            }
+        );
+    });
+
     // ANWESENHEITEN DOKUMENTIEREN (MODAL) ÖFFNEN
     $(document).on("click", ".btn_termine_anwesenheiten_dokumentieren", function () {
         Liste_VerknuepfungenModalOeffnen(
@@ -162,7 +178,23 @@ function Termine_Init() {
             "termine_anwesenheiten_dokumentieren",
             $(this).attr("data-title"),
             $(this).attr("data-element_id"),
-            "mitglieder"
+            "termine"
+        );
+    });
+
+    // ANWESENHEIT ÄNDERN
+    $(document).on("change", '.chk_verknuepfung_erstellen[data-verknuepfungen="termine_anwesenheiten"]', function () {
+        Liste_VerknuepfungErstellen(
+            { $ausloesend: $(this) },
+            {
+                verknuepfungen: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-verknuepfungen"), undefined),
+                liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined),
+                element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id"), undefined),
+                gegen_liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_liste"), undefined),
+                gegen_element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_element_id"), undefined),
+                status: Number($(this).is(":checked")),
+                // bemerkung: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-bemerkung"), null),
+            }
         );
     });
 }

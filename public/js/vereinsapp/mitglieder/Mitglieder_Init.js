@@ -112,6 +112,22 @@ function Mitglieder_Init() {
         );
     });
 
+    // RECHTE VERGEBEN
+    $(document).on("change", '.chk_verknuepfung_erstellen[data-verknuepfungen="vergebene_rechte"]', function () {
+        Liste_VerknuepfungErstellen(
+            { $ausloesend: $(this) },
+            {
+                verknuepfungen: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-verknuepfungen"), undefined),
+                liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined),
+                element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id"), undefined),
+                gegen_liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_liste"), undefined),
+                gegen_element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_element_id"), undefined),
+                status: Number($(this).is(":checked")),
+                // bemerkung: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-bemerkung"), null),
+            }
+        );
+    });
+
     // EINMAL-LINK ANZEIGEN
     $(document).on("click", ".btn_mitglied_einmal_link_anzeigen", function () {
         Mitglieder_EinmalLinkErstellen(

@@ -10,8 +10,6 @@ function Liste_Init() {
         });
     });
 
-    Liste_VerknuepfungenInit();
-
     Liste_AuswertungenInit();
 
     Liste_VerzeichnisInit();

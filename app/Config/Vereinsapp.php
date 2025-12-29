@@ -108,7 +108,6 @@ class Vereinsapp extends BaseConfig
             // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion' ),
             // 'verknuepfungen' => array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], ),
             'zusatzsymbol' => array('geburtstag'),
-            // 'verknuepfungen' => 'vergebene_rechte',
             // 'gegen_liste' => 'termine',
             // 'gegen_element_id' => 42,
             // 'element_ids_disabled' => array(),
