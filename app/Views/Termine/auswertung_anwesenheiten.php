@@ -12,11 +12,11 @@
         <div class="ergebnis_anzahl col-1 h5 float-end text-end" data-status=0></div>
     </div>
     <?php if( array_key_exists( 'collapse', $auswertung ) AND $auswertung['collapse'] ) { ?><div class="row g-0 collapse auswertung_collapse">
-        <ul id="<?= $auswertung['id']; ?>_ergebnis_1" class="ergebnis liste col-6 text-center text-<?= VERKNUEPFUNGEN['termine_anwesenheiten']['auswahlmoeglichkeiten'][1]['farbe']; ?>" data-liste="mitglieder" style="list-style-type: none;" data-status=1>
-            <li class="blanko element invisible"><span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span><span class="zusatzsymbol ms-2" data-zusatzsymbol="bemerkung"></span></li>
+        <ul id="<?= $auswertung['id']; ?>_ergebnis_1" class="ergebnis liste col-6 text-center text-<?= VERKNUEPFUNGEN['termine_anwesenheiten']['auswahlmoeglichkeiten'][1]['farbe']; ?>" data-liste="termine_anwesenheiten" style="list-style-type: none;" data-status=1>
+            <li class="blanko element invisible"><span class="eigenschaft" data-eigenschaft="mitglied_id"></span><span class="zusatzsymbol ms-2" data-zusatzsymbol="bemerkung"></span></li>
         </ul>
         <ul id="<?= $auswertung['id']; ?>_ergebnis_0" class="ergebnis liste col-6 text-center text-<?= VERKNUEPFUNGEN['termine_anwesenheiten']['auswahlmoeglichkeiten'][0]['farbe']; ?>" data-liste="mitglieder" style="list-style-type: none;" data-status=0>
-            <li class="blanko element invisible"><span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span><span class="zusatzsymbol ms-2" data-zusatzsymbol="bemerkung"></span></li>
+            <li class="blanko element invisible"><span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span></li>
         </ul>
     </div><?php } ?>
 </li>

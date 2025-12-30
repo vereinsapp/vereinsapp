@@ -114,30 +114,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
 
         // Zusatzsymbol für Bemerkung bei Rückmeldung
         case "bemerkung":
-            let bemerkung;
-
-            if ($element.parents(".auswertungen[data-auswertungen]").exists()) {
-                const verknuepfungen = $element.closest(".auswertungen[data-auswertungen]").attr("data-auswertungen");
-
-                let verknuepfung_id = undefined;
-                $.each(
-                    Schnittstelle_VariableRausZurueck("zugeordnete_" + LISTEN[verknuepfungen].element + "_ids", element_id, liste, new Array()),
-                    function (position, zugeordnete_verknuepfung_id) {
-                        if (
-                            Schnittstelle_VariableRausZurueck(
-                                LISTEN[gegen_liste].element + "_id",
-                                zugeordnete_verknuepfung_id,
-                                verknuepfungen,
-                                undefined
-                            ) === gegen_element_id
-                        )
-                            verknuepfung_id = zugeordnete_verknuepfung_id;
-                    }
-                );
-
-                bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", verknuepfung_id, verknuepfungen, null);
-            } else bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste, null);
-
+            const bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste, null);
             if (bemerkung !== null)
                 $zusatzsymbol
                     .removeClass("invisible")

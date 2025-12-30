@@ -18,7 +18,9 @@ function Liste_ElementAktualisieren($element, liste) {
         );
         if (isObject(eigenschaften_bedingt_formatiert) && eigenschaft in eigenschaften_bedingt_formatiert)
             $.each(eigenschaften_bedingt_formatiert[eigenschaft], function (klasse, filtern) {
-                if (Liste_TabelleGefiltertZurueck([LISTEN[liste].tabelle[element_id]], filtern, liste).length > 0) $eigenschaft.addClass(klasse);
+                const tabelle = new Array();
+                tabelle[element_id] = LISTEN[liste].tabelle[element_id];
+                if (Liste_TabelleGefiltertZurueck(tabelle, filtern, liste).length > 0) $eigenschaft.addClass(klasse);
                 else $eigenschaft.removeClass(klasse);
             });
     });

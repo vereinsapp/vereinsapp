@@ -65,6 +65,10 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
                 if (wert !== null) wert_formatiert = Liste_ElementBeschriftungZurueck(wert, "mitglieder");
                 else wert_formatiert = "undefiniert";
                 break;
+            case "termin_id":
+                if (wert !== null) wert_formatiert = Liste_ElementBeschriftungZurueck(wert, "termine");
+                else wert_formatiert = "undefiniert";
+                break;
             default:
                 wert_formatiert = wert;
         }
