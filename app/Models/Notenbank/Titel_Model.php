@@ -3,6 +3,7 @@
 namespace App\Models\Notenbank;
 
 use CodeIgniter\Model;
+use App\Models\Notenbank\Setlisteneintrag_Model;
 
 class Titel_Model extends Model {
    
@@ -21,6 +22,15 @@ class Titel_Model extends Model {
     protected $deletedField  = 'deleted_at';
 
     protected $useSoftDeletes = TRUE;
+    protected $afterDelete = [ 'softDeleteSetlisteneintrag' ];
+
+    protected function softDeleteSetlisteneintrag(array $data) {
+        $ids = $data['id'] ?? $data['ids'] ?? null;
+
+        if ($ids) model(Setlisteneintrag_Model::class)->whereIn('titel_id', (array)$ids)->delete();
+
+        return $data;
+    }
 
     public function notenbank_tabelle() {
         $tabelle = array();

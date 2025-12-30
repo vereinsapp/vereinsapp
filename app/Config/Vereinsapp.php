@@ -136,7 +136,11 @@ class Vereinsapp extends BaseConfig
             'liste' => 'vergebene_rechte',
             'filtern' => array(),
             'sortieren' => array(),
-            // 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="mitglied_vorname"> <span class="eigenschaft" data-eigenschaft="mitglied_nachname"></span>',
+            // 'werkzeugkasten' => array(
+            //     'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Vergebene Rechte filtern', ),
+            //     'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Vergebene Rechte sortieren', ),
+            // ),
+            // 'listenstatistik' => array(),
         ),
 
         'aufgaben' => array(
@@ -155,14 +159,22 @@ class Vereinsapp extends BaseConfig
             'liste' => 'aufgaben_rueckmeldungen',
             'filtern' => array(),
             'sortieren' => array(),
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="mitglied_vorname"> <span class="eigenschaft" data-eigenschaft="mitglied_nachname"></span>',
+            // 'werkzeugkasten' => array(
+            //     'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Rückmeldungen filtern', ),
+            //     'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Rückmeldungen sortieren', ),
+            // ),
+            // 'listenstatistik' => array(),
         ),
 
         'aufgaben_zuordnungen_termine' => array(
             'liste' => 'aufgaben_zuordnungen_termine',
             'filtern' => array(),
-            'sortieren' => array(),
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="termin_start"> <span class="eigenschaft" data-eigenschaft="termin_titel"></span>',
+            'sortieren' => array( 'eigenschaft' => 'aufgabe_titel', 'richtung' => SORT_ASC, ),
+            'werkzeugkasten' => array(
+                'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Termin-Zuordnungen filtern', ),
+                'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Termin-Zuordnungen sortieren', ),
+            ),
+            'listenstatistik' => array(),
         ),
 
         'termine' => array(
@@ -182,14 +194,22 @@ class Vereinsapp extends BaseConfig
             'liste' => 'termine_rueckmeldungen',
             'filtern' => array(),
             'sortieren' => array(),
-            // 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="mitglied_vorname"> <span class="eigenschaft" data-eigenschaft="mitglied_nachname"></span>',
+            // 'werkzeugkasten' => array(
+            //     'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Rückmeldungen filtern', ),
+            //     'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Rückmeldungen sortieren', ),
+            // ),
+            // 'listenstatistik' => array(),
         ),
 
         'termine_anwesenheiten' => array(
             'liste' => 'termine_anwesenheiten',
             'filtern' => array(),
             'sortieren' => array(),
-            // 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="mitglied_vorname"> <span class="eigenschaft" data-eigenschaft="mitglied_nachname"></span>',
+            // 'werkzeugkasten' => array(
+            //     'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Anwesenheiten filtern', ),
+            //     'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Anwesenheiten sortieren', ),
+            // ),
+            // 'listenstatistik' => array(),
         ),
 
         'strafkatalog' => array(
@@ -233,8 +253,12 @@ class Vereinsapp extends BaseConfig
         'notenbank_setliste' => array(
             'liste' => 'notenbank_setliste',
             'filtern' => array(),
-            'sortieren' => array(),
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel_titel"></span>',
+            'sortieren' => array( 'eigenschaft' => 'status', 'richtung' => SORT_ASC, ),
+            'werkzeugkasten' => array(
+                'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Setliste filtern', ),
+                'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'Setliste sortieren', ),
+            ),
+            'listenstatistik' => array(),
         ),
 
     );
@@ -332,9 +356,12 @@ class Vereinsapp extends BaseConfig
             'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'aufgabe_titel' => array( 'beschriftung' => 'Titel der Aufgabe', 'typ' => 'text' ),         // JAVA
-            'termin_start' => array( 'beschriftung' => 'Beginn des Termins', 'typ' => 'zeitpunkt' ),    // JAVA
-            'termin_titel' => array( 'beschriftung' => 'Titel des Termins', 'typ' => 'text' ),          // JAVA
+            'aufgabe_titel' => array( 'beschriftung' => 'Titel der Aufgabe', 'typ' => 'text' ),                 // JAVA
+            'aufgabe_max_anzahl_mitglieder' => array( 'beschriftung' => 'Max. Anzahl an eingetragenen Mitgliedern der Aufgabe', 'typ' => 'zahl' ), // JAVA
+            'termin_titel' => array( 'beschriftung' => 'Titel des Termins', 'typ' => 'text' ),                  // JAVA
+            'termin_start' => array( 'beschriftung' => 'Beginn des Termins', 'typ' => 'zeitpunkt' ),            // JAVA
+            'termin_ort' => array( 'beschriftung' => 'Ort des Termins', 'typ' => 'text' ),                      // JAVA
+            'termin_kategorie' => array( 'beschriftung' => 'Typ des Termins', 'typ' => 'vorgegebene_werte' ),   // JAVA
         ),
 
         'termine' => array(
@@ -422,12 +449,17 @@ class Vereinsapp extends BaseConfig
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'titel_id' => array( 'beschriftung' => 'Titel-ID', 'typ' => 'element_id' ),
             'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'element_id' ),
-            'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
+            'status' => array( 'beschriftung' => 'Position', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'titel_titel' => array( 'beschriftung' => 'Titel des Titels', 'typ' => 'text' ),            // JAVA
-            'titel_titel_nr' => array( 'beschriftung' => 'Titel-Nr. des Titels', 'typ' => 'zahl' ),     // JAVA
-            'termin_start' => array( 'beschriftung' => 'Beginn des Termins', 'typ' => 'zeitpunkt' ),    // JAVA
-            'termin_titel' => array( 'beschriftung' => 'Titel des Termins', 'typ' => 'text' ),          // JAVA
+            'titel_titel' => array( 'beschriftung' => 'Titel des Titels', 'typ' => 'text' ),                                // JAVA
+            'titel_titel_nr' => array( 'beschriftung' => 'Titel-Nr. des Titels', 'typ' => 'zahl' ),                         // JAVA
+            'titel_kategorie' => array( 'beschriftung' => 'Genre des Titels', 'typ' => 'vorgegebene_werte' ),               // JAVA
+            'titel_komponist' => array( 'beschriftung' => 'Komponist des Titels', 'typ' => 'text' ),                        // JAVA
+            'titel_anzahl_noten' => array( 'beschriftung' => 'Anzahl Noten des Titels', 'typ' => 'zahl' ),                  // JAVA
+            'titel_anzahl_audio' => array( 'beschriftung' => 'Anzahl Audio des Titels', 'typ' => 'zahl' ),                  // JAVA
+            'titel_anzahl_verzeichnis' => array( 'beschriftung' => 'Anzahl Verzeichnisse des Titels', 'typ' => 'zahl' ),    // JAVA
+            'termin_start' => array( 'beschriftung' => 'Beginn des Termins', 'typ' => 'zeitpunkt' ),                        // JAVA
+            'termin_titel' => array( 'beschriftung' => 'Titel des Termins', 'typ' => 'text' ),                              // JAVA
         ),
 
     );
@@ -499,6 +531,14 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben_zuordnungen_termine' => array(
+
+            'termin_kategorie' => array (
+                'allgemein' => array( 'beschriftung' => 'Allgemein', 'symbol' => '' ),
+                'auftritt' => array( 'beschriftung' => 'Auftritt', 'symbol' => '&#127930' ),
+                'probe' => array( 'beschriftung' => 'Musikprobe', 'symbol' => '&#128218' ),
+                'vorstandschaftssitzung' => array( 'beschriftung' => 'Vorstandschaftssitzung', 'symbol' => '&#128186' ),
+            ),
+
         ),
 
         'termine' => array(
@@ -545,6 +585,15 @@ class Vereinsapp extends BaseConfig
         ),
 
         'notenbank_setliste' => array(
+
+            'titel_kategorie' => array (
+                'ohne' => array( 'beschriftung' => 'Ohne Zuordnung', ),
+                'modern' => array( 'beschriftung' => 'Modern', ),
+                'klassik' => array( 'beschriftung' => 'Klassik', ),
+                'kirche' => array( 'beschriftung' => 'Kirche', ),
+                'volkstuemlich' => array( 'beschriftung' => 'Volkstümlich', ),
+            ),
+
         ),
 
     );
@@ -676,6 +725,7 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben_zuordnungen_termine' => array(
+            'aufgabe_max_anzahl_mitglieder',
         ),
 
         'termine' => array(
@@ -712,6 +762,12 @@ class Vereinsapp extends BaseConfig
         ),
 
         'notenbank_setliste' => array(
+            'status',
+            'titel_titel_nr',
+            'titel_kategorie',
+            'titel_anzahl_noten',
+            'titel_anzahl_audio',
+            'titel_anzahl_verzeichnis',
         ),
 
     );
@@ -752,6 +808,12 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben_zuordnungen_termine' => array(
+            'aufgabe_titel',
+            'aufgabe_max_anzahl_mitglieder',
+            'termin_titel',
+            'termin_start',
+            'termin_ort',
+            'termin_kategorie',
         ),
 
         'termine' => array(
@@ -792,6 +854,14 @@ class Vereinsapp extends BaseConfig
         ),
 
         'notenbank_setliste' => array(
+            'status',
+            'titel_titel',
+            'titel_titel_nr',
+            'titel_kategorie',
+            'titel_komponist',
+            'titel_anzahl_noten',
+            'titel_anzahl_audio',
+            'titel_anzahl_verzeichnis',
         ),
 
     );

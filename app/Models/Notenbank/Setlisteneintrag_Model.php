@@ -17,6 +17,9 @@ class Setlisteneintrag_Model extends Model {
     protected $useTimestamps = TRUE;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
+    protected $deletedField  = 'deleted_at';
+
+    protected $useSoftDeletes = TRUE;
 
     public function setliste_tabelle() {
         $tabelle = array();

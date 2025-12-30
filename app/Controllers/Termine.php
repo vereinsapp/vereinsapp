@@ -230,9 +230,9 @@ class Termine extends BaseController {
 
         if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
-            $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben'];
-            $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( 'zugeordnete_termin_ids_via_aufgaben_zuordnungen_termine' => array( 'inklusiv' => array( $termin_id ), ), );
-            $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
+            $this->viewdata['liste']['zugeordnete_aufgaben'] = HAUPTINSTANZEN['aufgaben_zuordnungen_termine'];
+            $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( 'termin_id' => array( 'inklusiv' => array( $termin_id ), ), );
+            $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="aufgabe_titel"></span>';
 
             if( array_key_exists( 'aufgaben.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
@@ -258,9 +258,9 @@ class Termine extends BaseController {
 
         if( array_key_exists( LISTEN['notenbank']['controller'], CONTROLLERS ) ) {
 
-            $this->viewdata['liste']['zugeordnete_setliste'] = HAUPTINSTANZEN['notenbank'];
-            $this->viewdata['liste']['zugeordnete_setliste']['filtern'] = array( 'zugeordnete_termin_ids_via_notenbank_setliste' => array( 'inklusiv' => array( $termin_id ), ), );
-            $this->viewdata['liste']['zugeordnete_setliste']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['notenbank']['bootstrap'].'"></i> '.HAUPTINSTANZEN['notenbank']['beschriftung'];
+            $this->viewdata['liste']['zugeordnete_setliste'] = HAUPTINSTANZEN['notenbank_setliste'];
+            $this->viewdata['liste']['zugeordnete_setliste']['filtern'] = array( 'termin_id' => array( 'inklusiv' => array( $termin_id ), ), );
+            $this->viewdata['liste']['zugeordnete_setliste']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['notenbank']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel_titel_nr"></span> <span class="eigenschaft" data-eigenschaft="titel_titel"></span>';
 
             if( array_key_exists( 'notenbank.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'notenbank.verwaltung' ) ) {
 

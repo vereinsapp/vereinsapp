@@ -75,6 +75,21 @@ ELEMENTE.notenbank_setlisteneintrag.ergaenzen_aktion = function (setlisteneintra
         setlisteneintrag.titel_titel = Schnittstelle_VariableRausZurueck("titel", setlisteneintrag.titel_id, "notenbank", undefined);
     if ("titel_id" in setlisteneintrag)
         setlisteneintrag.titel_titel_nr = Schnittstelle_VariableRausZurueck("titel_nr", setlisteneintrag.titel_id, "notenbank", undefined);
+    if ("titel_id" in setlisteneintrag)
+        setlisteneintrag.titel_kategorie = Schnittstelle_VariableRausZurueck("kategorie", setlisteneintrag.titel_id, "notenbank", undefined);
+    if ("titel_id" in setlisteneintrag)
+        setlisteneintrag.titel_komponist = Schnittstelle_VariableRausZurueck("komponist", setlisteneintrag.titel_id, "notenbank", undefined);
+    if ("titel_id" in setlisteneintrag)
+        setlisteneintrag.titel_anzahl_noten = Schnittstelle_VariableRausZurueck("anzahl_noten", setlisteneintrag.titel_id, "notenbank", undefined);
+    if ("titel_id" in setlisteneintrag)
+        setlisteneintrag.titel_anzahl_audio = Schnittstelle_VariableRausZurueck("anzahl_audio", setlisteneintrag.titel_id, "notenbank", undefined);
+    if ("titel_id" in setlisteneintrag)
+        setlisteneintrag.titel_anzahl_verzeichnis = Schnittstelle_VariableRausZurueck(
+            "anzahl_verzeichnis",
+            setlisteneintrag.titel_id,
+            "notenbank",
+            undefined
+        );
     if ("termin_id" in setlisteneintrag)
         setlisteneintrag.termin_start = Schnittstelle_VariableRausZurueck("start", setlisteneintrag.termin_id, "termine", undefined);
     if ("termin_id" in setlisteneintrag)

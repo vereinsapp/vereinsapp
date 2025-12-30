@@ -5,10 +5,7 @@ function Liste_TabelleGefiltertZurueck(tabelle, filtern, liste) {
         $.each(filtern.id.inklusiv, function (position, element_id) {
             tabelle_vorgefiltert.push(tabelle[element_id]);
         });
-    } else {
-        tabelle_vorgefiltert = tabelle;
-        if (liste in VERKNUEPFUNGEN) Schnittstelle_LogInDieKonsole(liste, "wird gefiltert ohne id.inklusiv!");
-    }
+    } else tabelle_vorgefiltert = tabelle;
 
     const tabelle_gefiltert = new Array();
     $.each(tabelle_vorgefiltert, function () {

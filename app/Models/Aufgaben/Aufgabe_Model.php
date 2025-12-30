@@ -3,6 +3,8 @@
 namespace App\Models\Aufgaben;
 
 use CodeIgniter\Model;
+use App\Models\Aufgaben\Rueckmeldung_Model;
+use App\Models\Aufgaben\Zuordnung_Termine_Model;
 
 class Aufgabe_Model extends Model {
    
@@ -19,6 +21,23 @@ class Aufgabe_Model extends Model {
     protected $deletedField  = 'deleted_at';
 
     protected $useSoftDeletes = TRUE;
+    protected $afterDelete = [ 'softDeleteRueckmeldung', 'softDeleteZuordnungTermine' ];
+
+    protected function softDeleteRueckmeldung(array $data) {
+        $ids = $data['id'] ?? $data['ids'] ?? null;
+
+        if ($ids) model(Rueckmeldung_Model::class)->whereIn('aufgabe_id', (array)$ids)->delete();
+
+        return $data;
+    }
+
+    protected function softDeleteZuordnungTermine(array $data) {
+        $ids = $data['id'] ?? $data['ids'] ?? null;
+
+        if ($ids) model(Zuordnung_Termine_Model::class)->whereIn('aufgabe_id', (array)$ids)->delete();
+
+        return $data;
+    }
 
     public function aufgaben_tabelle() {
         $tabelle = array();

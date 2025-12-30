@@ -13,13 +13,15 @@ function Schnittstelle_VariableLoeschen(element_id, liste) {
 
     // Elemente in anderen Listen suchen und auch die anderen Elemente löschen, die auf das zu löschende Element verlinken
     $.each(EIGENSCHAFTEN, function (gegen_liste, eigenschaften) {
-        if (LISTEN[liste].element + "_id" in eigenschaften)
+        if (LISTEN[liste].element + "_id" in eigenschaften) {
             $.each(LISTEN[gegen_liste].tabelle, function () {
                 const gegen_element = this;
                 if ("id" in gegen_element) {
                     if (gegen_element[LISTEN[liste].element + "_id"] === element_id) Schnittstelle_VariableLoeschen(gegen_element.id, gegen_liste);
                 }
             });
+            Schnittstelle_EventVariableUpdDom(gegen_liste);
+        }
     });
 
     // Zuordnungen auflösen

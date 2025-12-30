@@ -18,9 +18,11 @@ UPDATE `vereinsapp_termine` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL
 
 ALTER TABLE `vereinsapp_termine_anwesenheiten` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
 UPDATE `vereinsapp_termine_anwesenheiten` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
+ALTER TABLE `vereinsapp_termine_anwesenheiten` ADD `deleted_at` DATETIME NULL DEFAULT NULL AFTER `updated_at`; 
 
 ALTER TABLE `vereinsapp_termine_rueckmeldungen` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
 UPDATE `vereinsapp_termine_rueckmeldungen` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
+ALTER TABLE `vereinsapp_termine_rueckmeldungen` ADD `deleted_at` DATETIME NULL DEFAULT NULL AFTER `updated_at`; 
 
 ALTER TABLE `vereinsapp_mitglieder`ADD `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
 ALTER TABLE `vereinsapp_notenbank` MODIFY COLUMN `komponist` varchar(100) DEFAULT NULL AFTER `kategorie`;
@@ -39,6 +41,7 @@ CREATE TABLE `vereinsapp_aufgaben_zuordnungen_termine` (
   `bemerkung` varchar(100) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `vereinsapp_aufgaben_rueckmeldungen` (
@@ -49,6 +52,7 @@ CREATE TABLE `vereinsapp_aufgaben_rueckmeldungen` (
   `bemerkung` varchar(100) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `vereinsapp_notenbank_setliste` (
@@ -59,6 +63,7 @@ CREATE TABLE `vereinsapp_notenbank_setliste` (
   `bemerkung` varchar(100) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 ALTER TABLE `vereinsapp_aufgaben_zuordnungen_termine` ADD PRIMARY KEY (`id`), ADD KEY `aufgabe_id` (`aufgabe_id`), ADD KEY `termin_id` (`termin_id`);
