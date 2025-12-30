@@ -51,7 +51,7 @@ class Strafkatalog extends BaseController {
 
         $this->viewdata['liste']['aktuelles_kassenbuch'] = HAUPTINSTANZEN['kassenbuch'];
         $this->viewdata['liste']['aktuelles_kassenbuch']['group-flush'] = TRUE;
-        $this->viewdata['liste']['aktuelles_kassenbuch']['vorschau'] = array( 'erstellung', 'wert', 'mitglied_id' );
+        $this->viewdata['liste']['aktuelles_kassenbuch']['vorschau'] = array( 'erstellung', 'wert', 'mitglied' );
 
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
 

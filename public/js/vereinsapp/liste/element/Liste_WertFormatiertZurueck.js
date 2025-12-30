@@ -39,9 +39,11 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
                 else wert_formatiert = "nie";
                 break;
             case "start":
+            case "termin_start":
             case "ende":
                 wert_formatiert = WOCHENTAGE_KURZ[wert.weekday].beschriftung + ", " + wert.toFormat("dd.MM.yyyy HH:mm");
                 break;
+            case "titel_titel_nr":
             case "titel_nr":
                 wert_formatiert = "[" + wert + "]";
                 break;
@@ -60,14 +62,6 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
                 break;
             case "anzahl_verzeichnis":
                 wert_formatiert = wert + '<i class="bi bi-' + SYMBOLE["verzeichnis"]["bootstrap"] + '">';
-                break;
-            case "mitglied_id":
-                if (wert !== null) wert_formatiert = Liste_ElementBeschriftungZurueck(wert, "mitglieder");
-                else wert_formatiert = "undefiniert";
-                break;
-            case "termin_id":
-                if (wert !== null) wert_formatiert = Liste_ElementBeschriftungZurueck(wert, "termine");
-                else wert_formatiert = "undefiniert";
                 break;
             default:
                 wert_formatiert = wert;

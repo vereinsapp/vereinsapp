@@ -110,6 +110,28 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
         });
 };
 
+ELEMENTE.termine_rueckmeldung.ergaenzen_aktion = function (rueckmeldung) {
+    if ("termin_id" in rueckmeldung)
+        rueckmeldung.termin_start = Schnittstelle_VariableRausZurueck("start", rueckmeldung.termin_id, "termine", undefined);
+    if ("termin_id" in rueckmeldung)
+        rueckmeldung.termin_titel = Schnittstelle_VariableRausZurueck("titel", rueckmeldung.termin_id, "termine", undefined);
+    if ("mitglied_id" in rueckmeldung)
+        rueckmeldung.mitglied_vorname = Schnittstelle_VariableRausZurueck("vorname", rueckmeldung.mitglied_id, "mitglieder", undefined);
+    if ("mitglied_id" in rueckmeldung)
+        rueckmeldung.mitglied_nachname = Schnittstelle_VariableRausZurueck("nachname", rueckmeldung.mitglied_id, "mitglieder", undefined);
+};
+
+ELEMENTE.termine_anwesenheit.ergaenzen_aktion = function (anwesenheit) {
+    if ("termin_id" in anwesenheit)
+        anwesenheit.termin_start = Schnittstelle_VariableRausZurueck("start", anwesenheit.termin_id, "termine", undefined);
+    if ("termin_id" in anwesenheit)
+        anwesenheit.termin_titel = Schnittstelle_VariableRausZurueck("titel", anwesenheit.termin_id, "termine", undefined);
+    if ("mitglied_id" in anwesenheit)
+        anwesenheit.mitglied_vorname = Schnittstelle_VariableRausZurueck("vorname", anwesenheit.mitglied_id, "mitglieder", undefined);
+    if ("mitglied_id" in anwesenheit)
+        anwesenheit.mitglied_nachname = Schnittstelle_VariableRausZurueck("nachname", anwesenheit.mitglied_id, "mitglieder", undefined);
+};
+
 function Termine_Init() {
     // TERMIN ERSTELLEN
     $(document).on("click", ".btn_termin_erstellen", function () {

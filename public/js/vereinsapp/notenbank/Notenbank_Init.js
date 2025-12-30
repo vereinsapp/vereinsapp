@@ -70,6 +70,17 @@ ELEMENTE.titel.ergaenzen_aktion = function (titel) {
     titel["anzahl_verzeichnis"] = Liste_VerzeichnisAnzahlZurueck(titel["verzeichnis"]);
 };
 
+ELEMENTE.notenbank_setlisteneintrag.ergaenzen_aktion = function (setlisteneintrag) {
+    if ("titel_id" in setlisteneintrag)
+        setlisteneintrag.titel_titel = Schnittstelle_VariableRausZurueck("titel", setlisteneintrag.titel_id, "notenbank", undefined);
+    if ("titel_id" in setlisteneintrag)
+        setlisteneintrag.titel_titel_nr = Schnittstelle_VariableRausZurueck("titel_nr", setlisteneintrag.titel_id, "notenbank", undefined);
+    if ("termin_id" in setlisteneintrag)
+        setlisteneintrag.termin_start = Schnittstelle_VariableRausZurueck("start", setlisteneintrag.termin_id, "termine", undefined);
+    if ("termin_id" in setlisteneintrag)
+        setlisteneintrag.termin_titel = Schnittstelle_VariableRausZurueck("titel", setlisteneintrag.termin_id, "termine", undefined);
+};
+
 function Notenbank_Init() {
     // TITEL ERSTELLEN
     $(document).on("click", ".btn_titel_erstellen", function () {

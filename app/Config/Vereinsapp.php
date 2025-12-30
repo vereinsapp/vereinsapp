@@ -136,6 +136,7 @@ class Vereinsapp extends BaseConfig
             'liste' => 'vergebene_rechte',
             'filtern' => array(),
             'sortieren' => array(),
+            // 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="mitglied_vorname"> <span class="eigenschaft" data-eigenschaft="mitglied_nachname"></span>',
         ),
 
         'aufgaben' => array(
@@ -154,12 +155,14 @@ class Vereinsapp extends BaseConfig
             'liste' => 'aufgaben_rueckmeldungen',
             'filtern' => array(),
             'sortieren' => array(),
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="mitglied_vorname"> <span class="eigenschaft" data-eigenschaft="mitglied_nachname"></span>',
         ),
 
         'aufgaben_zuordnungen_termine' => array(
             'liste' => 'aufgaben_zuordnungen_termine',
             'filtern' => array(),
             'sortieren' => array(),
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="termin_start"> <span class="eigenschaft" data-eigenschaft="termin_titel"></span>',
         ),
 
         'termine' => array(
@@ -179,12 +182,14 @@ class Vereinsapp extends BaseConfig
             'liste' => 'termine_rueckmeldungen',
             'filtern' => array(),
             'sortieren' => array(),
+            // 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="mitglied_vorname"> <span class="eigenschaft" data-eigenschaft="mitglied_nachname"></span>',
         ),
 
         'termine_anwesenheiten' => array(
             'liste' => 'termine_anwesenheiten',
             'filtern' => array(),
             'sortieren' => array(),
+            // 'beschriftung' => '<span class="eigenschaft" data-eigenschaft="mitglied_vorname"> <span class="eigenschaft" data-eigenschaft="mitglied_nachname"></span>',
         ),
 
         'strafkatalog' => array(
@@ -229,6 +234,7 @@ class Vereinsapp extends BaseConfig
             'liste' => 'notenbank_setliste',
             'filtern' => array(),
             'sortieren' => array(),
+            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel_titel"></span>',
         ),
 
     );
@@ -289,11 +295,14 @@ class Vereinsapp extends BaseConfig
         ),
 
         'vergebene_rechte' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),                                         // PHP
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),                       // PHP
-            'verfuegbares_recht_id' => array( 'beschriftung' => 'Verfuegbares-Recht-ID', 'typ' => 'element_id' ),   // PHP
-            'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),                                       // PHP
-            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),                                 // PHP
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),                                             // PHP
+            'verfuegbares_recht_id' => array( 'beschriftung' => 'Verfuegbares-Recht-ID', 'typ' => 'element_id' ),       // PHP
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),                           // PHP
+            'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),                                           // PHP
+            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),                                     // PHP
+            'verfuegbares_recht_titel' => array( 'beschriftung' => 'Titel des verfügbaren Rechts', 'typ' => 'text' ),   // JAVA
+            'mitglied_vorname' => array( 'beschriftung' => 'Vorname des Mitglieds', 'typ' => 'text' ),                  // JAVA
+            'mitglied_nachname' => array( 'beschriftung' => 'Nachname des Mitglieds', 'typ' => 'text' ),                // JAVA
         ),
 
         'aufgaben' => array(
@@ -312,6 +321,9 @@ class Vereinsapp extends BaseConfig
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
+            'aufgabe_titel' => array( 'beschriftung' => 'Titel der Aufgabe', 'typ' => 'text' ),             // JAVA
+            'mitglied_vorname' => array( 'beschriftung' => 'Vorname des Mitglieds', 'typ' => 'text' ),      // JAVA
+            'mitglied_nachname' => array( 'beschriftung' => 'Nachname des Mitglieds', 'typ' => 'text' ),    // JAVA
         ),
 
         'aufgaben_zuordnungen_termine' => array(
@@ -320,6 +332,9 @@ class Vereinsapp extends BaseConfig
             'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
+            'aufgabe_titel' => array( 'beschriftung' => 'Titel der Aufgabe', 'typ' => 'text' ),         // JAVA
+            'termin_start' => array( 'beschriftung' => 'Beginn des Termins', 'typ' => 'zeitpunkt' ),    // JAVA
+            'termin_titel' => array( 'beschriftung' => 'Titel des Termins', 'typ' => 'text' ),          // JAVA
         ),
 
         'termine' => array(
@@ -332,7 +347,7 @@ class Vereinsapp extends BaseConfig
             'filtern_mitglieder' => array( 'beschriftung' => 'Personenkreis beschränken', 'typ' => 'text' ),
             'oeffentlich_janein' => array( 'beschriftung' => 'Öffentlich', 'typ' => 'janein' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'mitglied_ids_eingeladen' => array( 'beschriftung' => 'Eingeladene Mitglieder', 'typ' => 'element_ids' ), // JAVA
+            'mitglied_ids_eingeladen' => array( 'beschriftung' => 'Eingeladene Mitglieder', 'typ' => 'element_ids' ),   // JAVA
             'ich_eingeladen_janein' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'janein' ),              // JAVA
             'ich_rueckgemeldet_janein' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'janein' ), // JAVA
             'zugeordnete_aufgaben_zuordnung_termine_ids' => array( 'beschriftung' => 'Zugeordnete Aufgaben', 'typ' => 'element_ids' ),  // JAVA
@@ -349,6 +364,10 @@ class Vereinsapp extends BaseConfig
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
+            'termin_start' => array( 'beschriftung' => 'Beginn des Termins', 'typ' => 'zeitpunkt' ),        // JAVA
+            'termin_titel' => array( 'beschriftung' => 'Titel des Termins', 'typ' => 'text' ),              // JAVA
+            'mitglied_vorname' => array( 'beschriftung' => 'Vorname des Mitglieds', 'typ' => 'text' ),      // JAVA
+            'mitglied_nachname' => array( 'beschriftung' => 'Nachname des Mitglieds', 'typ' => 'text' ),    // JAVA
         ),
 
         'termine_anwesenheiten' => array(
@@ -357,6 +376,10 @@ class Vereinsapp extends BaseConfig
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
+            'termin_start' => array( 'beschriftung' => 'Beginn des Termins', 'typ' => 'zeitpunkt' ),        // JAVA
+            'termin_titel' => array( 'beschriftung' => 'Titel des Termins', 'typ' => 'text' ),              // JAVA
+            'mitglied_vorname' => array( 'beschriftung' => 'Vorname des Mitglieds', 'typ' => 'text' ),      // JAVA
+            'mitglied_nachname' => array( 'beschriftung' => 'Nachname des Mitglieds', 'typ' => 'text' ),    // JAVA
         ),
 
         'strafkatalog' => array(
@@ -372,6 +395,7 @@ class Vereinsapp extends BaseConfig
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'wert' => array( 'beschriftung' => 'Wert (in Euro)', 'typ' => 'zahl' ),
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
+            'mitglied' => array( 'beschriftung' => 'Mitglied', 'typ' => 'text' ),           // JAVA
             'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),
             'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'janein' ),  // JAVA
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
@@ -400,6 +424,10 @@ class Vereinsapp extends BaseConfig
             'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
+            'titel_titel' => array( 'beschriftung' => 'Titel des Titels', 'typ' => 'text' ),            // JAVA
+            'titel_titel_nr' => array( 'beschriftung' => 'Titel-Nr. des Titels', 'typ' => 'zahl' ),     // JAVA
+            'termin_start' => array( 'beschriftung' => 'Beginn des Termins', 'typ' => 'zeitpunkt' ),    // JAVA
+            'termin_titel' => array( 'beschriftung' => 'Titel des Termins', 'typ' => 'text' ),          // JAVA
         ),
 
     );
@@ -748,7 +776,7 @@ class Vereinsapp extends BaseConfig
         'kassenbuch' => array(
             'titel',
             'wert',
-            'mitglied_id',
+            'mitglied',
             'erledigt',
             'erstellung',
         ),
@@ -959,6 +987,10 @@ class Vereinsapp extends BaseConfig
                 0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_vergebenes_recht']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_vergebenes_recht']['bootstrap'].'-fill"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_vergebenes_recht']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_vergebenes_recht']['bootstrap'].'-fill"></i>' ),
              ),
+        ),
+        'aufgaben_rueckmeldungen' => array(
+            'auswahlmoeglichkeiten' => array(
+            ),
         ),
         'aufgaben_zuordnungen_termine' => array(
             'auswahlmoeglichkeiten' => array(

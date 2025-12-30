@@ -14,13 +14,13 @@
     </div>
     <?php if( array_key_exists( 'collapse', $auswertung ) AND $auswertung['collapse'] ) { ?><div class="row g-0 collapse auswertung_collapse">
         <ul id="<?= $auswertung['id']; ?>_ergebnis_1" class="ergebnis liste col-6 text-center text-<?= VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'][1]['farbe']; ?>" data-liste="termine_rueckmeldungen" style="list-style-type: none;" data-status=1>
-            <li class="blanko element invisible"><span class="eigenschaft" data-eigenschaft="termin_id"></span><span class="zusatzsymbol ms-2" data-zusatzsymbol="bemerkung"></span></li>
+            <li class="blanko element invisible"><span class="eigenschaft" data-eigenschaft="termin_start"></span> <span class="eigenschaft" data-eigenschaft="termin_titel"></span><span class="zusatzsymbol ms-2" data-zusatzsymbol="bemerkung"></span></li>
         </ul>
         <ul id="<?= $auswertung['id']; ?>_ergebnis_2" class="ergebnis liste col-6 text-center text-<?= VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'][2]['farbe']; ?>" data-liste="termine_rueckmeldungen" style="list-style-type: none;" data-status=2>
-            <li class="blanko element invisible"><span class="eigenschaft" data-eigenschaft="termin_id"></span><span class="zusatzsymbol ms-2" data-zusatzsymbol="bemerkung"></span></li>
+            <li class="blanko element invisible"><span class="eigenschaft" data-eigenschaft="termin_start"></span> <span class="eigenschaft" data-eigenschaft="termin_titel"></span><span class="zusatzsymbol ms-2" data-zusatzsymbol="bemerkung"></span></li>
         </ul>
         <div id="<?= $auswertung['id']; ?>_ergebnis_0" class="ergebnis liste col-12 text-center text-secondary small" data-liste="termine" data-status=0>
-            <span class="blanko element invisible"><span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span><span class="spacer">, </span></span>
+            <span class="blanko element invisible"><span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span><i class="bi bi-<?= SYMBOLE['ohne_rueckmeldung']['bootstrap']; ?> me-1"></i></span>
         </div>
     </div><?php } ?>
 </li>
