@@ -260,7 +260,7 @@ class Termine extends BaseController {
 
             $this->viewdata['liste']['zugeordnete_setliste'] = HAUPTINSTANZEN['notenbank_setliste'];
             $this->viewdata['liste']['zugeordnete_setliste']['filtern'] = array( 'termin_id' => array( 'inklusiv' => array( $termin_id ), ), );
-            $this->viewdata['liste']['zugeordnete_setliste']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['notenbank']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel_titel_nr"></span> <span class="eigenschaft" data-eigenschaft="titel_titel"></span>';
+            $this->viewdata['liste']['zugeordnete_setliste']['beschriftung'] = '<span class="eigenschaft text-secondary small" data-eigenschaft="status"></span> <i class="bi bi-'.SYMBOLE['notenbank']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel_titel_nr"></span> <span class="eigenschaft" data-eigenschaft="titel_titel"></span>';
 
             if( array_key_exists( 'notenbank.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
@@ -455,8 +455,9 @@ class Termine extends BaseController {
             $rueckmeldung_Model->where( array( 'termin_id' => $rueckmeldung['termin_id'], 'mitglied_id' => $rueckmeldung['mitglied_id'] ) )->delete();
             if( (int)$rueckmeldung['status'] > 0 ) {
                 $rueckmeldung_Model->save( $rueckmeldung );
-                $ajax_antwort['rueckmeldung_id'] = (int)$rueckmeldung_Model->getInsertID();
-            }
+                $ajax_antwort['termine_rueckmeldung_id'] = (int)$rueckmeldung_Model->getInsertID();
+                $ajax_antwort['dbdata'] = array( array( 'id' => $ajax_antwort['termine_rueckmeldung_id'], 'status' => $rueckmeldung['status'] ) );
+            } else $ajax_antwort['dbdata'] = array();
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -503,8 +504,9 @@ class Termine extends BaseController {
             $anwesenheit_Model->where( array( 'termin_id' => $anwesenheit['termin_id'], 'mitglied_id' => $anwesenheit['mitglied_id'] ) )->delete();
             if( (int)$anwesenheit['status'] > 0 ) {
                 $anwesenheit_Model->save( $anwesenheit );
-                $ajax_antwort['anwesenheit_id'] = (int)$anwesenheit_Model->getInsertID();
-            }
+                $ajax_antwort['termine_anwesenheit_id'] = (int)$anwesenheit_Model->getInsertID();
+                $ajax_antwort['dbdata'] = array( array( 'id' => $ajax_antwort['termine_anwesenheit_id'], 'status' => $anwesenheit['status'] ) );
+            } else $ajax_antwort['dbdata'] = array();
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

@@ -336,7 +336,7 @@ class Vereinsapp extends BaseConfig
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'zugeordnete_aufgaben_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Rückmeldungen', 'typ' => 'element_ids' ),  // JAVA
             'zugeordnete_aufgaben_zuordnung_termine_ids' => array( 'beschriftung' => 'Zugeordnete Termine', 'typ' => 'element_ids' ),   // JAVA
-            'zugeordnete_termin_ids_via_aufgaben_zuordnungen_termine' => array( 'beschriftung' => 'Zugeordnete Termine (via Termin-Zuordnungen)', 'typ' => 'element_ids' ),  // JAVA
+            // 'zugeordnete_termin_ids_via_aufgaben_zuordnungen_termine' => array( 'beschriftung' => 'Zugeordnete Termine (via Termin-Zuordnungen)', 'typ' => 'element_ids' ),  // JAVA
         ),
 
         'aufgaben_rueckmeldungen' => array(
@@ -381,8 +381,8 @@ class Vereinsapp extends BaseConfig
             'zugeordnete_termine_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Rückmeldungen', 'typ' => 'element_ids' ),   // JAVA
             'zugeordnete_termine_anwesenheit_ids' => array( 'beschriftung' => 'Zugeordnete Anwesenheiten', 'typ' => 'element_ids' ),    // JAVA
             'zugeordnete_notenbank_setlisteneintrag_ids' => array( 'beschriftung' => 'Zugeordnete Setliste', 'typ' => 'element_ids' ),  // JAVA
-            'zugeordnete_aufgabe_ids_via_aufgaben_zuordnungen_termine' => array( 'beschriftung' => 'Zugeordnete Aufgaben (via Termin-Zuordnungen)', 'typ' => 'element_ids' ),  // JAVA
-            'zugeordnete_titel_ids_via_notenbank_setliste' => array( 'beschriftung' => 'Zugeordnete Titel (via Setlisteneintrag-Zuordnungen)', 'typ' => 'element_ids' ),  // JAVA
+            // 'zugeordnete_aufgabe_ids_via_aufgaben_zuordnungen_termine' => array( 'beschriftung' => 'Zugeordnete Aufgaben (via Termin-Zuordnungen)', 'typ' => 'element_ids' ),  // JAVA
+            // 'zugeordnete_titel_ids_via_notenbank_setliste' => array( 'beschriftung' => 'Zugeordnete Titel (via Setlisteneintrag-Zuordnungen)', 'typ' => 'element_ids' ),  // JAVA
         ),
 
         'termine_rueckmeldungen' => array(
@@ -442,7 +442,7 @@ class Vereinsapp extends BaseConfig
             'anzahl_audio' => array( 'beschriftung' => 'Anzahl Audio', 'typ' => 'zahl' ),               // JAVA
             'anzahl_verzeichnis' => array( 'beschriftung' => 'Anzahl Verzeichnisse', 'typ' => 'zahl' ), // JAVA
             'zugeordnete_notenbank_setlisteneintrag_ids' => array( 'beschriftung' => 'Zugeordnete Setliste', 'typ' => 'element_ids' ),  // JAVA
-            'zugeordnete_termin_ids_via_notenbank_setliste' => array( 'beschriftung' => 'Zugeordnete Termine (via Setliste)', 'typ' => 'element_ids' ),  // JAVA
+            // 'zugeordnete_termin_ids_via_notenbank_setliste' => array( 'beschriftung' => 'Zugeordnete Termine (via Setliste)', 'typ' => 'element_ids' ),  // JAVA
         ),
 
         'notenbank_setliste' => array(

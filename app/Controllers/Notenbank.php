@@ -133,7 +133,7 @@ class Notenbank extends BaseController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    public function ajax_notenbank_setlisteneintrag_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+    public function ajax_setlisteneintrag_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
             'titel_id' => [ 'label' => EIGENSCHAFTEN['notenbank_setliste']['titel_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
@@ -153,8 +153,21 @@ class Notenbank extends BaseController {
 
             $setlisteneintrag_Model->where( array( 'titel_id' => $setlisteneintrag['titel_id'], 'termin_id' => $setlisteneintrag['termin_id'] ) )->delete();
             if( (int)$setlisteneintrag['status'] > 0 ) {
+                $andere_setlisteneintraege = $setlisteneintrag_Model->where( array( 'termin_id' => $setlisteneintrag['termin_id'] ) )->orderBy('status', 'DESC')->findAll();
+                if( count( $andere_setlisteneintraege ) > 0 ) $setlisteneintrag['status'] = (int)($andere_setlisteneintraege[0]['status']) + 1;
+                else $setlisteneintrag['status'] = 1;
+
                 $setlisteneintrag_Model->save( $setlisteneintrag );
-                $ajax_antwort['setlisteneintrag_id'] = (int)$setlisteneintrag_Model->getInsertID();
+                $ajax_antwort['notenbank_setlisteneintrag_id'] = (int)$setlisteneintrag_Model->getInsertID();
+                $ajax_antwort['dbdata'] = array( array( 'id' => $ajax_antwort['notenbank_setlisteneintrag_id'], 'status' => $setlisteneintrag['status'] ) );
+            } else {
+                $ajax_antwort['dbdata'] = array();
+                $neuer_status = 0;
+                foreach( $setlisteneintrag_Model->where( array( 'termin_id' => $setlisteneintrag['termin_id'] ) )->orderBy('status', 'ASC')->findAll() as $anderer_setlisteneintrag ) {
+                    $anderer_setlisteneintrag['status'] = ++$neuer_status;
+                    $setlisteneintrag_Model->update( $anderer_setlisteneintrag['id'], $anderer_setlisteneintrag );
+                    $ajax_antwort['dbdata'][] = array( 'id' => $anderer_setlisteneintrag['id'], 'status' => $anderer_setlisteneintrag['status'] );
+                }
             }
         }
 

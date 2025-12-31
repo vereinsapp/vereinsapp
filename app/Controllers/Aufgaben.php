@@ -79,8 +79,9 @@ class Aufgaben extends BaseController {
             $rueckmeldung_Model->where( array( 'aufgabe_id' => $rueckmeldung['aufgabe_id'], 'mitglied_id' => $rueckmeldung['mitglied_id'] ) )->delete();
             if( (int)$rueckmeldung['status'] > 0 ) {
                 $rueckmeldung_Model->save( $rueckmeldung );
-                $ajax_antwort['rueckmeldung_id'] = (int)$rueckmeldung_Model->getInsertID();
-            }
+                $ajax_antwort['aufgaben_rueckmeldung_id'] = (int)$rueckmeldung_Model->getInsertID();
+                $ajax_antwort['dbdata'] = array( array( 'id' => $ajax_antwort['aufgaben_rueckmeldung_id'], 'status' => $rueckmeldung['status'] ) );
+            } else $ajax_antwort['dbdata'] = array();
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
@@ -127,8 +128,9 @@ class Aufgaben extends BaseController {
             $zuordnung_termine_Model->where( array( 'aufgabe_id' => $zuordnung_termine['aufgabe_id'], 'termin_id' => $zuordnung_termine['termin_id'] ) )->delete();
             if( (int)$zuordnung_termine['status'] > 0 ) {
                 $zuordnung_termine_Model->save( $zuordnung_termine );
-                $ajax_antwort['zuordnung_termine_id'] = (int)$zuordnung_termine_Model->getInsertID();
-            }
+                $ajax_antwort['aufgaben_zuordnung_termine_id'] = (int)$zuordnung_termine_Model->getInsertID();
+                $ajax_antwort['dbdata'] = array( array( 'id' => $ajax_antwort['aufgaben_zuordnung_termine_id'], 'status' => $zuordnung_termine['status'] ) );
+            } else $ajax_antwort['dbdata'] = array();
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

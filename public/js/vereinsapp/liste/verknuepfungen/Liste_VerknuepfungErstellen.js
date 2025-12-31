@@ -58,6 +58,14 @@ function Liste_VerknuepfungErstellen(dom, data) {
                 });
             }
 
+            if ("dbdata" in AJAX.antwort && isArray(AJAX.antwort.dbdata))
+                $.each(AJAX.antwort.dbdata, function (position, element) {
+                    if ("id" in element)
+                        $.each(element, function (eigenschaft, wert) {
+                            Schnittstelle_VariableRein(wert, eigenschaft, Number(element.id), verknuepfungen);
+                        });
+                });
+
             Schnittstelle_EventVariableUpdLocalstorage(verknuepfungen);
             Schnittstelle_EventLocalstorageUpdVariable(verknuepfungen);
             Schnittstelle_VariableElementZuordnen(verknuepfungen);
