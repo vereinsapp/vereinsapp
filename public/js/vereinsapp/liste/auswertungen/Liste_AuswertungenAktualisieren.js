@@ -70,8 +70,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             .attr("data-auswertungen", auswertungen)
             .attr("data-liste", liste)
             .attr("data-gegen_liste", gegen_liste)
-            .attr("data-gegen_element_id", gegen_element_id)
-            .attr("data-auswahlmoeglichkeiten", $auswertungen.attr("data-auswahlmoeglichkeiten"));
+            .attr("data-gegen_element_id", gegen_element_id);
 
         if (wert !== null) {
             $auswertung

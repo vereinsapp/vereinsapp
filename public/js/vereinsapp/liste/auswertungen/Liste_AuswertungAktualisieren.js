@@ -5,7 +5,7 @@ function Liste_AuswertungAktualisieren($auswertung, auswertungen) {
     const auswertung_ids = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-auswertung_ids"), new Array());
 
     const ergebnis_nach_status = new Array();
-    $.each(Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-auswahlmoeglichkeiten"), new Array()), function (position, status) {
+    $.each(Object.keys(VERKNUEPFUNGEN[auswertungen].auswahlmoeglichkeiten), function (position, status) {
         ergebnis_nach_status[status] = new Array();
     });
 

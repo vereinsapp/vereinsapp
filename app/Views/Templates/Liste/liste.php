@@ -79,7 +79,7 @@ if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-e
 <?php } ?>
 
 <?php if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'typ', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['typ'] === 'auswahlmoeglichkeiten' )
-    echo view( 'Templates/Liste/verknuepfungen_'.$liste['verknuepfungen']['typ'], array( 'verknuepfungen' => $liste['verknuepfungen']['verknuepfungen'], 'auswahlmoeglichkeiten' => $liste['verknuepfungen']['auswahlmoeglichkeiten'], ) ); ?>
+    echo view( 'Templates/Liste/verknuepfungen_'.$liste['verknuepfungen']['typ'], array( 'verknuepfungen' => $liste['verknuepfungen']['verknuepfungen'], ) ); ?>
 
     </li>
 

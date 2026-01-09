@@ -17,7 +17,7 @@ class Termine extends BaseController {
         $this->viewdata['liste']['bevorstehende_termine']['group-flush'] = TRUE;
         $this->viewdata['liste']['bevorstehende_termine']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
         $this->viewdata['liste']['bevorstehende_termine']['vorschau'] = array( 'start', 'ort' );
-        $this->viewdata['liste']['bevorstehende_termine']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], );
+        $this->viewdata['liste']['bevorstehende_termine']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', );
         $this->viewdata['liste']['bevorstehende_termine']['gegen_liste'] = "mitglieder";
         $this->viewdata['liste']['bevorstehende_termine']['gegen_element_id'] = ICH['id'];
 
@@ -116,7 +116,7 @@ class Termine extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['mitglieder'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']);
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], );
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', );
 
             $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
                 'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',
@@ -162,7 +162,6 @@ class Termine extends BaseController {
 
         $this->viewdata['auswertungen']['rueckmeldungen_termin'] = array(
             'auswertungen' => 'termine_rueckmeldungen',
-            'auswahlmoeglichkeiten' => array_keys( VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'] ),
             'gruppieren' => 'register',
             'liste' => 'mitglieder',
             'filtern' => $this->filtern_mitglieder_kombiniert( $termin_id ),
@@ -184,7 +183,6 @@ class Termine extends BaseController {
 
         $this->viewdata['auswertungen']['anwesenheiten_termin'] = array(
             'auswertungen' => 'termine_anwesenheiten',
-            'auswahlmoeglichkeiten' => array_keys( VERKNUEPFUNGEN['termine_anwesenheiten']['auswahlmoeglichkeiten'] ),
             'gruppieren' => 'register',
             'liste' => 'mitglieder',
             'filtern' => $this->filtern_mitglieder_kombiniert( $termin_id ),
@@ -292,7 +290,7 @@ class Termine extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['mitglieder'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']);
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], );
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', );
 
             $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
                 'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',

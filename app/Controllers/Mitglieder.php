@@ -38,7 +38,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], );
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', );
 
             $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
                 'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',
@@ -116,7 +116,6 @@ class Mitglieder extends BaseController {
 
         $this->viewdata['auswertungen']['rueckmeldungen_mitglied'] = array(
             'auswertungen' => 'termine_rueckmeldungen',
-            'auswahlmoeglichkeiten' => array_keys( VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'] ),
             'gruppieren' => 'kategorie',
             'liste' => 'termine',
             'filtern' => MITGLIEDER_AUSWERTUNGEN_FILTERN['termine_rueckmeldungen'],
@@ -133,7 +132,6 @@ class Mitglieder extends BaseController {
 
         $this->viewdata['auswertungen']['anwesenheiten_mitglied'] = array(
             'auswertungen' => 'termine_anwesenheiten',
-            'auswahlmoeglichkeiten' => array_keys( VERKNUEPFUNGEN['termine_anwesenheiten']['auswahlmoeglichkeiten'] ),
             'gruppieren' => 'kategorie',
             'liste' => 'termine',
             'filtern' => MITGLIEDER_AUSWERTUNGEN_FILTERN['termine_anwesenheiten'],
@@ -166,7 +164,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], );
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', );
 
             $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
                 'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',

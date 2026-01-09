@@ -42,13 +42,7 @@ class Startseite extends BaseController {
         //     );
         //     $this->viewdata['liste']['aufgaben_offen_startseite']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
         //     $this->viewdata['liste']['aufgaben_offen_startseite']['vorschau'] = array( 'zugeordnetes_element' );
-        //     $this->viewdata['liste']['aufgaben_offen_startseite']['verknuepfungen'] = array(
-        //         'typ' => 'auswahlmoeglichkeiten',
-        //         'verknuepfungen' => 'termine_rueckmeldungen',
-        //         'liste' => 'mitglieder',
-        //         'element_id' => ICH['id'],
-        //         'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'],
-        //     );
+        //     $this->viewdata['liste']['aufgaben_offen_startseite']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'aufgaben_rueckmeldungen', );
         // }
 
         if( array_key_exists( LISTEN['strafkatalog']['controller'], CONTROLLERS ) ) {
@@ -76,7 +70,7 @@ class Startseite extends BaseController {
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['vorschau'] = array( 'start', 'ort' );
-            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], );
+            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', );
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['gegen_liste'] = "mitglieder";
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['gegen_element_id'] = ICH['id'];
         }
