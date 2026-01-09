@@ -21,28 +21,27 @@ class Termine extends BaseController {
         $this->viewdata['liste']['bevorstehende_termine']['gegen_liste'] = "mitglieder";
         $this->viewdata['liste']['bevorstehende_termine']['gegen_element_id'] = ICH['id'];
 
-        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
-        unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
-
-        $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
-            'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
-            // 'title' => 'Anwesenheiten dokumentieren',
-        );
-
         if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
 
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
+            unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
 
-            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren']['title'] = 'Anwesenheiten dokumentieren';
+            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
+                'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
+                'title' => 'Anwesenheiten dokumentieren',
+            );
 
-        } else {
-
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_anwesenheiten' );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-
-            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren']['title'] = 'Anwesenheiten';
-
+        // } else {
+        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
+        //     unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
+        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_anwesenheiten' );
+        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
+        //     $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
+        //         'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
+        //         'title' => 'Anwesenheiten',
+        //     );
         }
 
         if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
@@ -202,28 +201,27 @@ class Termine extends BaseController {
             'title' => 'Auswertung filtern',
         );
 
-        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
-        unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
-
-        $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
-            'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
-            // 'title' => 'Anwesenheiten dokumentieren',
-        );
-
         if( array_key_exists( 'termine.anwesenheiten', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.anwesenheiten' ) ) {
 
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
+            unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
 
-            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren']['title'] = 'Anwesenheiten dokumentieren';
+            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
+                'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
+                'title' => 'Anwesenheiten dokumentieren',
+            );
 
-        } else {
-
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_anwesenheiten' );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-
-            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren']['title'] = 'Anwesenheiten';
-
+        // } else {
+        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
+        //     unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
+        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_anwesenheiten' );
+        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
+        //     $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
+        //         'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
+        //         'title' => 'Anwesenheiten',
+        //     );
         }
 
         if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {

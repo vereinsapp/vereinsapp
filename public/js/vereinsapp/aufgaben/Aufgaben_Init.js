@@ -64,30 +64,6 @@ ELEMENTE.aufgaben_zuordnung_termine.zuordnen_aktion = function (zuordnung) {
             }
         }
     }
-
-    // if ("aufgaben" in LISTEN && "termine" in LISTEN) {
-    //     const aufgabe_id = Schnittstelle_VariableRausZurueck("aufgabe_id", zuordnung_id, "aufgaben_zuordnungen_termine", undefined);
-    //     const termin_id = Schnittstelle_VariableRausZurueck("termin_id", zuordnung_id, "aufgaben_zuordnungen_termine", undefined);
-
-    //     if (typeof aufgabe_id !== "undefined" && typeof termin_id !== "undefined") {
-    //         const aufgabe = LISTEN.aufgaben.tabelle[aufgabe_id];
-    //         const termin = LISTEN.termine.tabelle[termin_id];
-
-    //         if (typeof aufgabe !== "undefined") {
-    //             if (!("zugeordnete_termin_ids_via_aufgaben_zuordnungen_termine" in aufgabe))
-    //                 LISTEN.aufgaben.tabelle[aufgabe_id].zugeordnete_termin_ids_via_aufgaben_zuordnungen_termine = [termin_id];
-    //             else if (!aufgabe.zugeordnete_termin_ids_via_aufgaben_zuordnungen_termine.includes(termin_id))
-    //                 LISTEN.aufgaben.tabelle[aufgabe_id].zugeordnete_termin_ids_via_aufgaben_zuordnungen_termine.push(termin_id);
-    //         }
-
-    //         if (typeof termin !== "undefined") {
-    //             if (!("zugeordnete_aufgabe_ids_via_aufgaben_zuordnungen_termine" in termin))
-    //                 LISTEN.termine.tabelle[termin_id].zugeordnete_aufgabe_ids_via_aufgaben_zuordnungen_termine = [aufgabe_id];
-    //             else if (!termin.zugeordnete_aufgabe_ids_via_aufgaben_zuordnungen_termine.includes(aufgabe_id))
-    //                 LISTEN.termine.tabelle[termin_id].zugeordnete_aufgabe_ids_via_aufgaben_zuordnungen_termine.push(aufgabe_id);
-    //         }
-    //     }
-    // }
 };
 
 ELEMENTE.aufgaben_rueckmeldung.ergaenzen_aktion = function (rueckmeldung) {
@@ -176,7 +152,7 @@ function Aufgaben_Init() {
         Liste_VerknuepfungErstellen(
             { $ausloesend: $(this) },
             {
-                verknuepfungen: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-verknuepfungen"), undefined),
+                verknuepfungen: "aufgaben_zuordnungen_termine",
                 liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined),
                 element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id"), undefined),
                 gegen_liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_liste"), undefined),

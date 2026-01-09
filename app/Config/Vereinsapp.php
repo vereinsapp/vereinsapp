@@ -336,7 +336,6 @@ class Vereinsapp extends BaseConfig
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'zugeordnete_aufgaben_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Rückmeldungen', 'typ' => 'element_ids' ),  // JAVA
             'zugeordnete_aufgaben_zuordnung_termine_ids' => array( 'beschriftung' => 'Zugeordnete Termine', 'typ' => 'element_ids' ),   // JAVA
-            // 'zugeordnete_termin_ids_via_aufgaben_zuordnungen_termine' => array( 'beschriftung' => 'Zugeordnete Termine (via Termin-Zuordnungen)', 'typ' => 'element_ids' ),  // JAVA
         ),
 
         'aufgaben_rueckmeldungen' => array(
@@ -381,8 +380,6 @@ class Vereinsapp extends BaseConfig
             'zugeordnete_termine_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Rückmeldungen', 'typ' => 'element_ids' ),   // JAVA
             'zugeordnete_termine_anwesenheit_ids' => array( 'beschriftung' => 'Zugeordnete Anwesenheiten', 'typ' => 'element_ids' ),    // JAVA
             'zugeordnete_notenbank_setlisteneintrag_ids' => array( 'beschriftung' => 'Zugeordnete Setliste', 'typ' => 'element_ids' ),  // JAVA
-            // 'zugeordnete_aufgabe_ids_via_aufgaben_zuordnungen_termine' => array( 'beschriftung' => 'Zugeordnete Aufgaben (via Termin-Zuordnungen)', 'typ' => 'element_ids' ),  // JAVA
-            // 'zugeordnete_titel_ids_via_notenbank_setliste' => array( 'beschriftung' => 'Zugeordnete Titel (via Setlisteneintrag-Zuordnungen)', 'typ' => 'element_ids' ),  // JAVA
         ),
 
         'termine_rueckmeldungen' => array(
@@ -442,7 +439,6 @@ class Vereinsapp extends BaseConfig
             'anzahl_audio' => array( 'beschriftung' => 'Anzahl Audio', 'typ' => 'zahl' ),               // JAVA
             'anzahl_verzeichnis' => array( 'beschriftung' => 'Anzahl Verzeichnisse', 'typ' => 'zahl' ), // JAVA
             'zugeordnete_notenbank_setlisteneintrag_ids' => array( 'beschriftung' => 'Zugeordnete Setliste', 'typ' => 'element_ids' ),  // JAVA
-            // 'zugeordnete_termin_ids_via_notenbank_setliste' => array( 'beschriftung' => 'Zugeordnete Termine (via Setliste)', 'typ' => 'element_ids' ),  // JAVA
         ),
 
         'notenbank_setliste' => array(
@@ -1054,23 +1050,26 @@ class Vereinsapp extends BaseConfig
     public $verknuepfungen = array(
         'vergebene_rechte' => array(
             'auswahlmoeglichkeiten' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_vergebenes_recht']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_vergebenes_recht']['bootstrap'].'-fill"></i>' ),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_vergebenes_recht']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_vergebenes_recht']['bootstrap'].'-fill"></i>' ),
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung']['bootstrap'].'"></i>' ),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung']['bootstrap'].'"></i>' ),
              ),
         ),
         'aufgaben_rueckmeldungen' => array(
             'auswahlmoeglichkeiten' => array(
+                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung']['bootstrap'].'"></i>' ),
+                1 => array( 'farbe' => 'primary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['angenommen_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['angenommen_rueckmeldung']['bootstrap'].'-fill"></i>' ),
+                2 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['erledigt']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['erledigt']['bootstrap'].'"></i>' ),
             ),
         ),
         'aufgaben_zuordnungen_termine' => array(
             'auswahlmoeglichkeiten' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung_termine']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung_termine']['bootstrap'].'-fill"></i>' ),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung_termine']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung_termine']['bootstrap'].'-fill"></i>' ),
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung']['bootstrap'].'"></i>' ),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung']['bootstrap'].'"></i>' ),
              ),
         ),
         'termine_rueckmeldungen' => array(
             'auswahlmoeglichkeiten' => array(
-                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung']['bootstrap'].'-fill"></i>' ),
+                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung']['bootstrap'].'"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'-fill"></i>' ),
                 2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung']['bootstrap'].'-fill"></i>' ),
             ),
@@ -1084,14 +1083,14 @@ class Vereinsapp extends BaseConfig
         ),
         'termine_anwesenheiten' => array(
             'auswahlmoeglichkeiten' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_anwesenheit']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_anwesenheit']['bootstrap'].'-fill"></i>' ),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_anwesenheit']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_anwesenheit']['bootstrap'].'-fill"></i>' ),
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung']['bootstrap'].'"></i>'),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung']['bootstrap'].'"></i>' ),
              ),
         ),
         'notenbank_setliste' => array(
             'auswahlmoeglichkeiten' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_setliste']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_setliste']['bootstrap'].'-fill"></i>' ),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_setliste']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_setliste']['bootstrap'].'-fill"></i>' ),
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung']['bootstrap'].'"></i>'),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung']['bootstrap'].'"></i>' ),
              ),
         ),
     );

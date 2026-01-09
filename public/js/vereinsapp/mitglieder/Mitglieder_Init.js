@@ -131,7 +131,7 @@ function Mitglieder_Init() {
         Liste_VerknuepfungErstellen(
             { $ausloesend: $(this) },
             {
-                verknuepfungen: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-verknuepfungen"), undefined),
+                verknuepfungen: "vergebene_rechte",
                 liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined),
                 element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id"), undefined),
                 gegen_liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_liste"), undefined),

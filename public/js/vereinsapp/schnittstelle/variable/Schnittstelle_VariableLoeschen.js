@@ -13,7 +13,7 @@ function Schnittstelle_VariableLoeschen(element_id, liste) {
 
     // Zuordnungen auflösen
     $.each(EIGENSCHAFTEN, function (gegen_liste, eigenschaften) {
-        if ("zugeordnete_" + LISTEN[liste].element + "_ids" in eigenschaften) {
+        if ("zugeordnete_" + LISTEN[liste].element + "_ids" in eigenschaften)
             $.each(LISTEN[gegen_liste].tabelle, function () {
                 const gegen_element = this;
                 if ("id" in gegen_element) {
@@ -37,12 +37,6 @@ function Schnittstelle_VariableLoeschen(element_id, liste) {
                     );
                 }
             });
-        }
-
-        // $.each(Object.keys(LISTEN), function () {
-        //     if ("zugeordnete_" + LISTEN[this].element + "_ids_via_" + liste in eigenschaften) {
-        //     }
-        // });
     });
 
     // Elemente in anderen Listen suchen und auch die anderen Elemente löschen, die auf das zu löschende Element verlinken
