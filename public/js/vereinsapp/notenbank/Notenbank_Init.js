@@ -156,4 +156,8 @@ function Notenbank_Init() {
             }
         );
     });
+
+    $('.sortable[data-liste="notenbank_setliste"]').on("sortupdate update", function (event, ui) {
+        Liste_VerknuepfungStatusAendern({ $ausloesend: ui.item }, ui.item.index() + 1, ui.item.attr("data-element_id"), "notenbank_setliste");
+    });
 }

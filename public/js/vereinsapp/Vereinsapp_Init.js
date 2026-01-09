@@ -92,5 +92,6 @@ ziel_id nur setzen, wenn noch keine id vorhanden ist (sonst die existierende id 
 Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details)
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
 ...ids_via... entfernen?
+Link für Setliste einführen (link umdefinieren als array aus liste => ..., element_id => [eigenschaft, bspw. id oder titel_id])
 
 */

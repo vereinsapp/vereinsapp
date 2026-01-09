@@ -61,8 +61,5 @@ function Liste_Init() {
         stop: function (event, ui) {
             ui.item.removeClass("border-top border-primary shadow");
         },
-        update: function () {
-            $("#sortable_speichern").prop("disabled", false);
-        },
     });
 }

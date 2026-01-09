@@ -264,6 +264,8 @@ class Termine extends BaseController {
 
             if( array_key_exists( 'notenbank.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
+                $this->viewdata['liste']['zugeordnete_setliste']['sortable'] = TRUE;
+                
                 $this->viewdata['liste']['zugeordnete_setliste']['werkzeugkasten']['auswaehlen'] = array(
                     'klasse_id' => 'btn_setliste_verwalten',
                     'title' => 'Setliste verwalten',
