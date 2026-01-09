@@ -48,7 +48,14 @@ function Liste_ElementAktualisieren($element, liste) {
     });
 
     // LINK AKTUALISIEREN
-    $element.find("a.stretched-link").attr("href", SITE_URL + LISTEN[liste].controller + "/" + element_id);
+    const $link = $element.find("a.stretched-link");
+    const link_data = Schnittstelle_VariableWertBereinigtZurueck($link.attr("data-link"), new Object());
+    let parameter = "";
+    if ("eigenschaften" in link_data)
+        $.each(link_data.eigenschaften, function (position, eigenschaft) {
+            parameter += "/" + Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, undefined);
+        });
+    if ("liste" in link_data) $link.attr("href", SITE_URL + LISTEN[link_data.liste].controller + parameter);
 
     // WERKZEUGKASTEN AKTUALISIEREN
     $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-liste", liste).attr("data-element_id", element_id);

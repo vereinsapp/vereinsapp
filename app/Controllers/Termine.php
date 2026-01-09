@@ -15,7 +15,7 @@ class Termine extends BaseController {
 
         $this->viewdata['liste']['bevorstehende_termine'] = HAUPTINSTANZEN['termine'];
         $this->viewdata['liste']['bevorstehende_termine']['group-flush'] = TRUE;
-        $this->viewdata['liste']['bevorstehende_termine']['link'] = TRUE;
+        $this->viewdata['liste']['bevorstehende_termine']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
         $this->viewdata['liste']['bevorstehende_termine']['vorschau'] = array( 'start', 'ort' );
         $this->viewdata['liste']['bevorstehende_termine']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], );
         $this->viewdata['liste']['bevorstehende_termine']['gegen_liste'] = "mitglieder";
@@ -261,6 +261,7 @@ class Termine extends BaseController {
             $this->viewdata['liste']['zugeordnete_setliste'] = HAUPTINSTANZEN['notenbank_setliste'];
             $this->viewdata['liste']['zugeordnete_setliste']['filtern'] = array( 'termin_id' => array( 'inklusiv' => array( $termin_id ), ), );
             $this->viewdata['liste']['zugeordnete_setliste']['beschriftung'] = '<span class="eigenschaft text-secondary small" data-eigenschaft="status"></span> <i class="bi bi-'.SYMBOLE['notenbank']['bootstrap'].'"></i> <span class="eigenschaft" data-eigenschaft="titel_titel_nr"></span> <span class="eigenschaft" data-eigenschaft="titel_titel"></span>';
+            $this->viewdata['liste']['zugeordnete_setliste']['link'] = array( 'liste' => 'notenbank', 'eigenschaften' => array( 'titel_id', ), );
 
             if( array_key_exists( 'notenbank.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'notenbank.verwaltung' ) ) {
 

@@ -15,7 +15,7 @@ class Startseite extends BaseController {
         unset( $this->viewdata['liste']['anstehende_geburtstage']['filtern'] );
         $this->viewdata['liste']['anstehende_geburtstage']['filtern'] = array( 'geburtstag' => array( 'start' => Time::today( 'Europe/Berlin' )->toDateTimeString(), 'ende' => Time::today( 'Europe/Berlin' )->addDays(14)->subSeconds(1)->toDateTimeString(), ), 'real_janein' => array( 'inklusiv' => [ TRUE ] ), );
         $this->viewdata['liste']['anstehende_geburtstage']['sortieren'] = array( 'eigenschaft' => 'geburtstag', 'richtung' => SORT_ASC, );
-        $this->viewdata['liste']['anstehende_geburtstage']['link'] = TRUE;
+        $this->viewdata['liste']['anstehende_geburtstage']['link'] = array( 'liste' => 'mitglieder', 'eigenschaften' => array( 'id', ), );
         $this->viewdata['liste']['anstehende_geburtstage']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['geburtstag']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
         $this->viewdata['liste']['anstehende_geburtstage']['vorschau'] = array( 'geburtstag', 'alter_geburtstag' );
 
@@ -27,7 +27,7 @@ class Startseite extends BaseController {
                 'start' => array( 'start' => Time::today( 'Europe/Berlin' )->toDateTimeString(), 'ende' => Time::today( 'Europe/Berlin' )->addDays(14)->subSeconds(1)->toDateTimeString(), ),
                 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ), ),
             );
-            $this->viewdata['liste']['bevorstehende_termine_startseite']['link'] = TRUE;
+            $this->viewdata['liste']['bevorstehende_termine_startseite']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
             $this->viewdata['liste']['bevorstehende_termine_startseite']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
             $this->viewdata['liste']['bevorstehende_termine_startseite']['vorschau'] = array( 'start', 'ort' );
         }
@@ -73,7 +73,7 @@ class Startseite extends BaseController {
                 'ich_rueckgemeldet_janein' => array( 'inklusiv' => array( FALSE ), ),
                 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ), ),
             );
-            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['link'] = TRUE;
+            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['vorschau'] = array( 'start', 'ort' );
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'auswahlmoeglichkeiten' => VERKNUEPFUNGEN['termine_rueckmeldungen']['auswahlmoeglichkeiten'], );

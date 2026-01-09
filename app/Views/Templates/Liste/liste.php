@@ -65,8 +65,8 @@ if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-e
       if( array_key_exists( 'werkzeugkasten_handle', $liste ) AND $liste['werkzeugkasten_handle'] ) { ?>
             <i class="bi bi-<?= SYMBOLE['werkzeuge']['bootstrap']; ?> text-primary float-end flex-shrink-0 ms-2 stretched-link-unwirksam" data-bs-toggle="offcanvas" data-bs-target="#werkzeugkasten" role="button"></i>
 <?php }
-      if( array_key_exists( 'link', $liste ) AND $liste['link'] ) { ?>
-            <a class="stretched-link"></a>
+      if( array_key_exists( 'link', $liste ) AND is_array( $liste['link'] ) ) { ?>
+            <a class="stretched-link" data-link='<?= json_encode( $liste['link'], JSON_UNESCAPED_UNICODE ); ?>'></a>
 <?php }?>
 </div>
 <?php if( array_key_exists( 'vorschau', $liste ) ) { ?>

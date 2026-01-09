@@ -17,7 +17,7 @@ class Mitglieder extends BaseController {
 
         $this->viewdata['liste']['alle_mitglieder'] = HAUPTINSTANZEN['mitglieder'];
         $this->viewdata['liste']['alle_mitglieder']['group-flush'] = TRUE;
-        $this->viewdata['liste']['alle_mitglieder']['link'] = TRUE;
+        $this->viewdata['liste']['alle_mitglieder']['link'] = array( 'liste' => 'mitglieder', 'eigenschaften' => array( 'id', ), );
         $this->viewdata['liste']['alle_mitglieder']['vorschau'] = MITGLIEDER_EIGENSCHAFTEN_VORSCHAU;
 
         if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {
