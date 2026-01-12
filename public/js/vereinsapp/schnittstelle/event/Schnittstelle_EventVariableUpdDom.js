@@ -11,15 +11,17 @@ function Schnittstelle_EventVariableUpdDom(liste) {
         });
 
         // AUSWERTUNGEN AKTUALISIEREN
-        $('.auswertungen[data-auswertungen="' + liste + '"], .auswertungen[data-liste="' + liste + '"]').each(function () {
-            // , .auswertungen[data-gegen_liste="' + liste + '"]
-            Liste_AuswertungenAktualisieren($(this), $(this).attr("data-auswertungen"));
-        });
+        $.each(VERKNUEPFUNGEN, function (verknuepfungen, eigenschaften) {
+            if (liste === verknuepfungen || eigenschaften.verknuepfte_listen.includes(liste)) {
+                $('.auswertungen[data-auswertungen="' + verknuepfungen + '"]').each(function () {
+                    Liste_AuswertungenAktualisieren($(this), verknuepfungen);
+                });
 
-        // AUSWERTUNG AKTUALISIEREN
-        $('.auswertung[data-auswertungen="' + liste + '"], .auswertung[data-liste="' + liste + '"]').each(function () {
-            // , .auswertung[data-gegen_liste="' + liste + '"]
-            Liste_AuswertungAktualisieren($(this), $(this).attr("data-auswertungen"));
+                // AUSWERTUNG AKTUALISIEREN
+                $('.auswertung[data-auswertungen="' + verknuepfungen + '"]').each(function () {
+                    Liste_AuswertungAktualisieren($(this), verknuepfungen);
+                });
+            }
         });
 
         // VERZEICHNIS AKTUALISIEREN

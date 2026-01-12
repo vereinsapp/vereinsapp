@@ -2,7 +2,7 @@
 <?= $this->section( 'navbar' ); ?><?= view( 'Templates/navbar_int' ); ?><?= $this->endSection(); ?>
 <?= $this->section( 'containers' ); ?>
 
-<div class="container mb-3 element" data-liste="termine" data-element_id="<?= $element_id; ?>" data-gegen_liste="mitglieder" data-gegen_element_id="<?= ICH['id']; ?>">
+<div class="container mb-3 element" data-liste="termine" data-element_id="<?= $element_id; ?>" data-mitglied_id="<?= ICH['id']; ?>">
 <?= view( 'Templates/Liste/element_navigation', array( 'element_navigation' => $element_navigation ) ); ?>
     <div class="h5 beschriftung text-center"><span class="eigenschaft" data-eigenschaft="titel"></span></div>
     <div class="row g-0 my-1">
@@ -20,7 +20,7 @@
     <div class="row g-0 my-1">
         <div class="col text-center text-nowrap fst-italic"><span class="eigenschaft" data-eigenschaft="bemerkung"></span></div>
     </div>
-<?= view( 'Templates/Liste/verknuepfungen_auswahlmoeglichkeiten', array( 'verknuepfungen' => 'termine_rueckmeldungen', ) ); ?>
+<?= view( 'Templates/Liste/verknuepfungen_auswahlmoeglichkeiten', array( 'verknuepfungen' => array( 'verknuepfungen' => 'termine_rueckmeldungen', 'mitglied_id' => ICH['id'], ), ) ); ?>
 </div>
 
 <div class="container mb-3">

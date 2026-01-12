@@ -173,7 +173,7 @@ function Termine_Init() {
             "termine_rueckmeldungen_verwalten",
             $(this).attr("data-title"),
             $(this).attr("data-element_id"),
-            $(this).attr("data-liste")
+            "termine"
         );
     });
 
@@ -182,14 +182,11 @@ function Termine_Init() {
         Liste_VerknuepfungErstellen(
             { $ausloesend: $(this) },
             {
-                verknuepfungen: "termine_rueckmeldungen",
-                liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined),
-                element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id"), undefined),
-                gegen_liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_liste"), undefined),
-                gegen_element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_element_id"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
                 status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-status"), undefined),
-                // bemerkung: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-bemerkung"), null),
-            }
+            },
+            "termine_rueckmeldungen"
         );
     });
 
@@ -209,14 +206,11 @@ function Termine_Init() {
         Liste_VerknuepfungErstellen(
             { $ausloesend: $(this) },
             {
-                verknuepfungen: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-verknuepfungen"), undefined),
-                liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined),
-                element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id"), undefined),
-                gegen_liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_liste"), undefined),
-                gegen_element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_element_id"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
                 status: Number($(this).is(":checked")),
-                // bemerkung: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-bemerkung"), null),
-            }
+            },
+            "termine_anwesenheiten"
         );
     });
 }

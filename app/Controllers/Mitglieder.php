@@ -119,8 +119,7 @@ class Mitglieder extends BaseController {
             'gruppieren' => 'kategorie',
             'liste' => 'termine',
             'filtern' => MITGLIEDER_AUSWERTUNGEN_FILTERN['termine_rueckmeldungen'],
-            'gegen_liste' => 'mitglieder',
-            'gegen_element_id' => $mitglied_id,
+            'mitglied_id' => $mitglied_id,
             'collapse' => TRUE,
             'progress' => TRUE,
         );
@@ -135,8 +134,7 @@ class Mitglieder extends BaseController {
             'gruppieren' => 'kategorie',
             'liste' => 'termine',
             'filtern' => MITGLIEDER_AUSWERTUNGEN_FILTERN['termine_anwesenheiten'],
-            'gegen_liste' => 'mitglieder',
-            'gegen_element_id' => $mitglied_id,
+            'mitglied_id' => $mitglied_id,
             'collapse' => TRUE,
             'progress' => TRUE,
         );
@@ -149,7 +147,7 @@ class Mitglieder extends BaseController {
         if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {
 
             $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
-            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', );
+            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', 'mitglied_id' => $mitglied_id, );
             $this->viewdata['liste']['rechte_vergeben']['element_ids_disabled'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
 
             $this->viewdata['werkzeugkasten']['rechte_vergeben'] = array(
@@ -164,7 +162,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', );
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen',  'mitglied_id' => $mitglied_id);
 
             $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
                 'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',

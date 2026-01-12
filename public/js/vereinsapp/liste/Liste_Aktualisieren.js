@@ -36,9 +36,12 @@ function Liste_Aktualisieren($liste, liste) {
         $element
             .attr("data-liste", liste)
             .attr("data-element_id", element_id)
-            .attr("data-gegen_liste", $liste.attr("data-gegen_liste"))
-            .attr("data-gegen_element_id", $liste.attr("data-gegen_element_id"))
             .attr("data-eigenschaften_bedingt_formatiert", $liste.attr("data-eigenschaften_bedingt_formatiert"));
+
+        $.each(Object.keys(ELEMENTE), function (position, verknuepftes_element) {
+            const verknuepfte_element_id = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-" + verknuepftes_element + "_id"), undefined);
+            if (typeof verknuepfte_element_id !== "undefined") $element.attr("data-" + verknuepftes_element + "_id", verknuepfte_element_id);
+        });
 
         if (Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-element_ids_disabled"), new Array()).includes(element_id))
             $element.addClass("disabled");

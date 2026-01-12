@@ -1,7 +1,5 @@
 function Liste_ElementAktualisieren($element, liste) {
     const element_id = Number($element.attr("data-element_id"));
-    const gegen_liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-gegen_liste"), undefined);
-    const gegen_element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-gegen_element_id"), undefined);
 
     // EIGENSCHAFTEN AKTUALISIEREN
     $element.find(".eigenschaft").each(function () {
@@ -36,15 +34,7 @@ function Liste_ElementAktualisieren($element, liste) {
 
     // VERKNUEPFUNGEN_AUSWAHLMOEGLICHKEITEN AKTUALISIEREN
     $element.find(".verknuepfungen_auswahlmoeglichkeiten").each(function () {
-        Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren(
-            $(this),
-            $element.hasClass("disabled"),
-            liste,
-            element_id,
-            gegen_liste,
-            gegen_element_id,
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-verknuepfungen"), undefined)
-        );
+        Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren($(this), $element);
     });
 
     // LINK AKTUALISIEREN

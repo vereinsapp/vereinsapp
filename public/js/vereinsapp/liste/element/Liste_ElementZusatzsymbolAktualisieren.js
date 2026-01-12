@@ -4,11 +4,9 @@
  */
 
 function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
-    const liste = $element.attr("data-liste");
-    const element_id = Number($element.attr("data-element_id"));
-    const gegen_element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-gegen_element_id"), undefined);
-    const gegen_liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-gegen_liste"), undefined);
-    const zusatzsymbol = $zusatzsymbol.attr("data-zusatzsymbol");
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-liste"), undefined);
+    const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-element_id"), undefined);
+    const zusatzsymbol = Schnittstelle_VariableWertBereinigtZurueck($zusatzsymbol.attr("data-zusatzsymbol"), undefined);
 
     $zusatzsymbol.find('[data-bs-toggle="popover"]').popover("hide");
     $zusatzsymbol.empty();
@@ -57,7 +55,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
 
         // Zusatzsymbol für Datei
         case "datei":
-            const datei = $element.attr("data-datei");
+            const datei = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-datei"), undefined);
             const punkt = datei.lastIndexOf(".");
             const typ = datei.slice(punkt + 1);
             $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE[typ]["bootstrap"] + ' text-primary"></i>');
@@ -137,24 +135,41 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
         case "termine_anwesenheiten":
         case "notenbank_setliste":
             const verknuepfungen = zusatzsymbol;
+            const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
+            const verknuepfte_element_ids = new Object();
+            $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
+                const verknuepfte_element_id = Schnittstelle_VariableWertBereinigtZurueck(
+                    $element.attr("data-" + LISTEN[verknuepfte_liste].element + "_id"),
+                    undefined
+                );
+                if (typeof verknuepfte_element_id !== "undefined")
+                    verknuepfte_element_ids[LISTEN[verknuepfte_liste].element + "_id"] = verknuepfte_element_id;
+            });
+            verknuepfte_element_ids[LISTEN[liste].element + "_id"] = element_id;
 
             let verknuepfung_id = undefined;
             $.each(
-                Schnittstelle_VariableRausZurueck("zugeordnete_" + LISTEN[verknuepfungen].element + "_ids", element_id, liste, new Array()),
+                Schnittstelle_VariableRausZurueck(
+                    "zugeordnete_" + LISTEN[verknuepfungen].element + "_ids",
+                    verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
+                    verknuepfte_listen[0],
+                    new Array()
+                ),
                 function (position, zugeordnete_verknuepfung_id) {
                     if (
                         Schnittstelle_VariableRausZurueck(
-                            LISTEN[gegen_liste].element + "_id",
+                            LISTEN[verknuepfte_listen[1]].element + "_id",
                             zugeordnete_verknuepfung_id,
                             verknuepfungen,
                             undefined
-                        ) === gegen_element_id
+                        ) === verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"]
                     )
                         verknuepfung_id = zugeordnete_verknuepfung_id;
                 }
             );
 
-            const verknuepfung_status = Schnittstelle_VariableRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
+            let verknuepfung_status = Schnittstelle_VariableRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
+            if (verknuepfung_status > 0 && !(verknuepfung_status in VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten)) verknuepfung_status = 1;
 
             if (typeof verknuepfung_status !== "undefined")
                 $zusatzsymbol.html(

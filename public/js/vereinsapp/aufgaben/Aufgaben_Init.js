@@ -132,7 +132,20 @@ function Aufgaben_Init() {
             "aufgaben_rueckmeldungen_verwalten",
             $(this).attr("data-title"),
             $(this).attr("data-element_id"),
-            $(this).attr("data-liste")
+            "aufgaben"
+        );
+    });
+
+    // RÜCKMELDUNG ERSTELLEN
+    $(document).on("click", '.btn_verknuepfung_erstellen[data-verknuepfungen="aufgaben_rueckmeldungen"]', function () {
+        Liste_VerknuepfungErstellen(
+            { $ausloesend: $(this) },
+            {
+                aufgabe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-status"), undefined),
+            },
+            "aufgaben_rueckmeldungen"
         );
     });
 
@@ -152,14 +165,11 @@ function Aufgaben_Init() {
         Liste_VerknuepfungErstellen(
             { $ausloesend: $(this) },
             {
-                verknuepfungen: "aufgaben_zuordnungen_termine",
-                liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined),
-                element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id"), undefined),
-                gegen_liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_liste"), undefined),
-                gegen_element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_element_id"), undefined),
+                aufgabe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
                 status: Number($(this).is(":checked")),
-                // bemerkung: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-bemerkung"), null),
-            }
+            },
+            "aufgaben_zuordnungen_termine"
         );
     });
 }

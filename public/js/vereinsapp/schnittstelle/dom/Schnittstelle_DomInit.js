@@ -77,13 +77,13 @@ function Schnittstelle_DomInit() {
         Schnittstelle_DomModalOeffnen($modal);
 
         const $formular = $modal.find(".formular");
-        if (typeof $formular !== "undefined" && $formular.exists()) {
-            const liste = $formular.attr("data-liste");
-            const aktion = $formular.attr("data-aktion");
-            let element_id = $formular.attr("data-element_id");
-            if (typeof element_id !== "undefined") element_id = Number(element_id);
-            if (typeof liste !== "undefined") Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste);
-        }
+        if ($formular.exists())
+            Liste_ElementFormularInitialisieren(
+                $formular,
+                Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-aktion"), undefined),
+                Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-element_id"), undefined),
+                Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-liste"), undefined)
+            );
     });
 
     $(document).ajaxStart(function () {

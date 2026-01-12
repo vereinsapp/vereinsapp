@@ -1,40 +1,43 @@
 /**
  * @param {Object} dom
  * @param {Object} data
+ * @param {string} verknuepfungen
  */
 
-function Liste_VerknuepfungErstellen(dom, data) {
-    data[LISTEN[data.liste].element + "_id"] = data.element_id;
-    data[LISTEN[data.gegen_liste].element + "_id"] = data.gegen_element_id;
-    delete data.element_id;
-    delete data.gegen_element_id;
-
+function Liste_VerknuepfungErstellen(dom, data, verknuepfungen) {
     const ajax_dom = dom;
     const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
     if (!("bemerkung" in ajax_data) || isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
+    ajax_data.verknuepfungen = verknuepfungen;
 
     Schnittstelle_AjaxInDieSchlange(
-        LISTEN[data.verknuepfungen].controller + "/ajax_" + LISTEN[data.verknuepfungen].element + "_speichern",
+        LISTEN[verknuepfungen].controller + "/ajax_" + LISTEN[verknuepfungen].element + "_speichern",
         ajax_data,
         ajax_dom,
         function (AJAX) {
             const verknuepfungen = AJAX.data.verknuepfungen;
-            const liste = AJAX.data.liste;
-            const element_id = AJAX.data[LISTEN[liste].element + "_id"];
-            const gegen_liste = AJAX.data.gegen_liste;
-            const gegen_element_id = AJAX.data[LISTEN[gegen_liste].element + "_id"];
+            const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
+            const verknuepfte_element_ids = new Object();
+            $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
+                verknuepfte_element_ids[LISTEN[verknuepfte_liste].element + "_id"] = AJAX.data[LISTEN[verknuepfte_liste].element + "_id"];
+            });
 
             // bereits vorhandene identische Verknüpfungen werden gelöscht
             $.each(
-                Schnittstelle_VariableRausZurueck("zugeordnete_" + LISTEN[verknuepfungen].element + "_ids", element_id, liste, new Array()),
+                Schnittstelle_VariableRausZurueck(
+                    "zugeordnete_" + LISTEN[verknuepfungen].element + "_ids",
+                    verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
+                    verknuepfte_listen[0],
+                    new Array()
+                ),
                 function (position, zugeordnete_verknuepfung_id) {
                     if (
                         Schnittstelle_VariableRausZurueck(
-                            LISTEN[gegen_liste].element + "_id",
+                            LISTEN[verknuepfte_listen[1]].element + "_id",
                             zugeordnete_verknuepfung_id,
                             verknuepfungen,
                             undefined
-                        ) === gegen_element_id
+                        ) === verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"]
                     )
                         Schnittstelle_VariableLoeschen(zugeordnete_verknuepfung_id, verknuepfungen);
                 }
@@ -47,13 +50,7 @@ function Liste_VerknuepfungErstellen(dom, data) {
                 else AJAX.data.id = LISTEN[verknuepfungen].tabelle.length + 1;
 
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (
-                        eigenschaft != "ajax_id" &&
-                        eigenschaft != CSRF_NAME &&
-                        eigenschaft != "liste" &&
-                        eigenschaft != "gegen_liste" &&
-                        eigenschaft != "verknuepfungen"
-                    )
+                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME && eigenschaft != "verknuepfungen")
                         Schnittstelle_VariableRein(wert, eigenschaft, AJAX.data.id, verknuepfungen);
                 });
             }
@@ -70,9 +67,11 @@ function Liste_VerknuepfungErstellen(dom, data) {
             Schnittstelle_EventLocalstorageUpdVariable(verknuepfungen);
             Schnittstelle_VariableElementZuordnen(verknuepfungen);
             Schnittstelle_VariableElementErgaenzen(verknuepfungen);
-            Schnittstelle_VariableElementErgaenzen(liste);
+            Schnittstelle_VariableElementErgaenzen(verknuepfte_listen[0]);
+            Schnittstelle_VariableElementErgaenzen(verknuepfte_listen[1]);
             Schnittstelle_EventVariableUpdDom(verknuepfungen);
-            Schnittstelle_EventVariableUpdDom(liste);
+            Schnittstelle_EventVariableUpdDom(verknuepfte_listen[0]);
+            Schnittstelle_EventVariableUpdDom(verknuepfte_listen[1]);
         },
         function (AJAX) {
             if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");

@@ -1,7 +1,5 @@
 function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const auswertungen_instanz = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("id"), undefined);
-    const gegen_liste = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-gegen_liste"), undefined);
-    const gegen_element_id = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-gegen_element_id"), undefined);
 
     // LISTE DEFINIEREN
     const liste = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-liste"), undefined);
@@ -35,10 +33,27 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const gruppieren_werte_sortiert = gruppieren_werte.sort();
 
     // AUSWERTUNG_IDS DEFINIEREN
+    let andere_verknuepfte_liste = liste;
+    $.each(VERKNUEPFUNGEN[auswertungen].verknuepfte_listen, function (position, verknuepfte_liste) {
+        if (verknuepfte_liste !== liste) andere_verknuepfte_liste = verknuepfte_liste;
+        else {
+            /* nächster Schleifendurchlauf */
+        }
+    });
+    const andere_verknuepfte_element_id = Schnittstelle_VariableWertBereinigtZurueck(
+        $auswertungen.attr("data-" + LISTEN[andere_verknuepfte_liste].element + "_id"),
+        undefined
+    );
+
     const auswertung_ids = new Array();
     const auswertung_ids_nach_wert = new Object();
     $.each(
-        Schnittstelle_VariableRausZurueck("zugeordnete_" + LISTEN[auswertungen].element + "_ids", gegen_element_id, gegen_liste, new Array()),
+        Schnittstelle_VariableRausZurueck(
+            "zugeordnete_" + LISTEN[auswertungen].element + "_ids",
+            andere_verknuepfte_element_id,
+            andere_verknuepfte_liste,
+            new Array()
+        ),
         function (position, auswertung_id) {
             const element_id = Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined);
             const wert = Schnittstelle_VariableRausZurueck(gruppieren, element_id, liste, undefined);
@@ -66,11 +81,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
         if (!$auswertung.exists())
             $auswertung = LISTEN[auswertungen].instanz[auswertungen_instanz].$blanko_auswertung.clone().removeClass("blanko invisible");
 
-        $auswertung
-            .attr("data-auswertungen", auswertungen)
-            .attr("data-liste", liste)
-            .attr("data-gegen_liste", gegen_liste)
-            .attr("data-gegen_element_id", gegen_element_id);
+        $auswertung.attr("data-auswertungen", auswertungen).attr("data-liste", liste);
 
         if (wert !== null) {
             $auswertung
@@ -86,6 +97,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
         } else {
             $auswertung
                 .attr("data-auswertung_ids", JsonStringifiedZurueck(auswertung_ids, new Array()))
+                // .attr("data-wert", wert)
                 // .attr("data-element_ids", JsonStringifiedZurueck(element_ids, new Array()))
                 .attr("data-beschriftung", "Gesamt");
 

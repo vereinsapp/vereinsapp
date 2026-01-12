@@ -1,14 +1,11 @@
 ELEMENTE.kassenbucheintrag.ergaenzen_aktion = function (kassenbucheintrag) {
     if (kassenbucheintrag.erledigt !== null) kassenbucheintrag.erledigt_janein = true;
     else kassenbucheintrag.erledigt_janein = false;
-};
 
-ELEMENTE.kassenbucheintrag.ergaenzen_aktion = function (kassenbucheintrag) {
-    if ("mitglied_id" in kassenbucheintrag)
-        kassenbucheintrag.mitglied =
-            Schnittstelle_VariableRausZurueck("vorname", kassenbucheintrag.mitglied_id, "mitglieder", undefined) +
-            " " +
-            Schnittstelle_VariableRausZurueck("nachname", kassenbucheintrag.mitglied_id, "mitglieder", undefined);
+    kassenbucheintrag.mitglied =
+        Schnittstelle_VariableRausZurueck("vorname", kassenbucheintrag.mitglied_id, "mitglieder", undefined) +
+        " " +
+        Schnittstelle_VariableRausZurueck("nachname", kassenbucheintrag.mitglied_id, "mitglieder", undefined);
 };
 
 function Strafkatalog_Init() {

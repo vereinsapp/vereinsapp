@@ -85,12 +85,13 @@ Lässt sich filtern/sortieren/gruppieren_localstorage_speichern entfernen mittel
 ziel_id nur setzen, wenn noch keine id vorhanden ist (sonst die existierende id nehmen) -> eigene Funktion einführen?
 Braucht es formular_beschriftung und beschriftung-span für Formulare (bspw in mitglied_einmal_link_anzeigen_formular.php)?
 .btn in .formular mit ENTER betätigbar machen
-data-element_id loswerden (vorausgesetzt, dass überall auch data-liste gesetzt ist)
-Auswahl überarbeiten?
 Zusatzsymbol rechts und links einführen
 Neue bootstrap icons Version einführen (unlock2 statt lock)
 Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details)
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
 Bugfix "Es wurde versucht, die Eigenschaft undefined zu aktualisieren, die nicht existiert in FILTERBARE_EIGENSCHAFTEN."
+kassenbucheintrag.mitglied loswerden
+Auswahl überarbeiten?
+data-element_id (vorausgesetzt, dass überall auch data-liste gesetzt ist) und letzte gegen-Identifier loswerden
 
 */

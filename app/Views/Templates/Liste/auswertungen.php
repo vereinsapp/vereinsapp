@@ -16,8 +16,7 @@ if( array_key_exists( 'sortable', $auswertungen ) AND $auswertungen['sortable'] 
 if( array_key_exists( 'gruppieren', $auswertungen ) ) { ?> data-gruppieren='<?= $auswertungen['gruppieren']; ?>'<?php }
 if( array_key_exists( 'liste', $auswertungen ) ) { ?> data-liste='<?= $auswertungen['liste']; ?>'<?php }
 if( array_key_exists( 'filtern', $auswertungen ) ) { ?> data-filtern='<?= json_encode( $auswertungen['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
-if( array_key_exists( 'gegen_liste', $auswertungen ) ) { ?> data-gegen_liste="<?= $auswertungen['gegen_liste']; ?>"<?php }
-if( array_key_exists( 'gegen_element_id', $auswertungen ) ) { ?> data-gegen_element_id="<?= $auswertungen['gegen_element_id']; ?>"<?php }
+foreach( ELEMENTE as $element => $eigenschaften ) if( array_key_exists( $element.'_id', $auswertungen ) ) { ?> data-<?= $element; ?>_id="<?= $auswertungen[ $element.'_id' ]; ?>"<?php }
 ?>>
 
 <?= view( $view, array( 'auswertung' => array( 'id' => $auswertungen['id'], 'collapse' => $auswertungen['collapse'], 'progress' => $auswertungen['progress'], ) ) ); ?>

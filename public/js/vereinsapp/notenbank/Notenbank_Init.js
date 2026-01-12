@@ -122,14 +122,11 @@ function Notenbank_Init() {
         Liste_VerknuepfungErstellen(
             { $ausloesend: $(this) },
             {
-                verknuepfungen: "notenbank_setliste",
-                liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined),
-                element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id"), undefined),
-                gegen_liste: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_liste"), undefined),
-                gegen_element_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-gegen_element_id"), undefined),
+                titel_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
                 status: Number($(this).is(":checked")),
-                // bemerkung: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-bemerkung"), null),
-            }
+            },
+            "notenbank_setliste"
         );
     });
 

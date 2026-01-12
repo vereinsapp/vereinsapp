@@ -25,8 +25,7 @@ if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sorta
 if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
 if( array_key_exists( 'filtern', $liste ) ) { ?> data-filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
-if( array_key_exists( 'gegen_liste', $liste ) ) { ?> data-gegen_liste="<?= $liste['gegen_liste']; ?>"<?php }
-if( array_key_exists( 'gegen_element_id', $liste ) ) { ?> data-gegen_element_id="<?= $liste['gegen_element_id']; ?>"<?php }
+foreach( ELEMENTE as $element => $eigenschaften ) if( array_key_exists( $element.'_id', $liste ) ) { ?> data-<?= $element; ?>_id="<?= $liste[ $element.'_id' ]; ?>"<?php } // aktuell nur für einstellungen()
 if( array_key_exists( 'element_ids_disabled', $liste ) ) { ?> data-element_ids_disabled='<?= json_encode( $liste['element_ids_disabled'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-eigenschaften_bedingt_formatiert='<?= json_encode( $liste['eigenschaften_bedingt_formatiert'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 ?>>
@@ -45,7 +44,7 @@ if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-e
         if( array_key_exists( 'group-flush', $liste ) AND $liste['group-flush'] ) echo ' h5';
         ?>">
 <?php if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'typ', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['typ'] === 'check' )
-    echo view( 'Templates/Liste/verknuepfungen_'.$liste['verknuepfungen']['typ'], array( 'verknuepfungen' => $liste['verknuepfungen']['verknuepfungen'], ) ); ?>
+    echo view( 'Templates/Liste/verknuepfungen_'.$liste['verknuepfungen']['typ'], array( 'verknuepfungen' => $liste['verknuepfungen'], ) ); ?>
             <label class="flex-grow-1">
                 <span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste ) ) { ?><?= $liste['beschriftung']; ?><?php } ?></span>
             </label>
@@ -79,7 +78,7 @@ if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-e
 <?php } ?>
 
 <?php if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'typ', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['typ'] === 'auswahlmoeglichkeiten' )
-    echo view( 'Templates/Liste/verknuepfungen_'.$liste['verknuepfungen']['typ'], array( 'verknuepfungen' => $liste['verknuepfungen']['verknuepfungen'], ) ); ?>
+    echo view( 'Templates/Liste/verknuepfungen_'.$liste['verknuepfungen']['typ'], array( 'verknuepfungen' => $liste['verknuepfungen'], ) ); ?>
 
     </li>
 

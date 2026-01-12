@@ -19,15 +19,19 @@ class Einstellungen extends BaseController {
     public function einstellungen() {
 
         $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
-        $this->viewdata['liste']['rechte_vergeben']['gegen_liste'] = 'mitglieder';
-        $this->viewdata['liste']['rechte_vergeben']['gegen_element_id'] = ICH['id'];
 
         if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {
 
-            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', );
+            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', 'mitglied_id' => ICH['id'], );
             $this->viewdata['liste']['rechte_vergeben']['element_ids_disabled'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
 
-        } else $this->viewdata['liste']['rechte_vergeben']['zusatzsymbol'] = array( 'vergebene_rechte' ); // eigentlich braucht es hier noch ein Symbol vor der Beschriftung
+        } else {
+
+            // eigentlich braucht es hier noch ein Symbol vor der Beschriftung
+            $this->viewdata['liste']['rechte_vergeben']['zusatzsymbol'] = array( 'vergebene_rechte' );
+            $this->viewdata['liste']['rechte_vergeben']['mitglied_id'] = ICH['id'];
+
+        }
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
         echo view( 'Einstellungen/einstellungen', $this->viewdata );
