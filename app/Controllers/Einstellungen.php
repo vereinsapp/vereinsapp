@@ -33,7 +33,7 @@ class Einstellungen extends BaseController {
 
         }
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['id'] = $instanz;
+        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['instanz'] = $instanz;
         echo view( 'Einstellungen/einstellungen', $this->viewdata );
     }
 

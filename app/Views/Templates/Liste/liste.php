@@ -4,21 +4,21 @@ foreach( $liste['werkzeugkasten'] as $symbol => $werkzeug) { ?><button type="but
     if( array_key_exists( 'klasse_id', $werkzeug ) ) {
         if( is_array( $werkzeug['klasse_id'] ) ) foreach( $werkzeug['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;
         else echo ' '.$werkzeug['klasse_id'];
-    } ?>" data-title="<?= $werkzeug['title']; ?>" data-instanz="<?= $liste['id']; ?>"<?php
+    } ?>" data-title="<?= $werkzeug['title']; ?>" data-instanz="<?= $liste['instanz']; ?>"<?php
     if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
     if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php }
     ?>><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?>"></i></span></button><?php }
 ?></div><?php } ?>
 
 <?php if( array_key_exists( 'listenstatistik', $liste ) ) { ?><div class="listenstatistik_sammler text-secondary text-end small mb-1"><span class="listenstatistik"<?php
-    if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['id']; ?>" data-listenstatistik="anzahl"></span> Element(e)<?php
+    if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['instanz']; ?>" data-listenstatistik="anzahl"></span> Element(e)<?php
     /* funktioniert aktuell nicht, weil Liste_Aktualisieren inkl. Liste_ListenstatistikAktualisieren aufgerufen wird, bevor Liste_ElementAktualisieren inkl. Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren aufgerufen wird */
-    /* if( array_key_exists( 'verknuepfungen', $liste ) AND $liste['verknuepfungen']['typ'] === 'check' ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i><span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['id']; ?>" data-listenstatistik="angewaehlt"></span> Element(e) angewählt<?php } */
-    if( array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i>Summe: <span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['id']; ?>" data-listenstatistik="summe" data-eigenschaft="<?= $liste['listenstatistik']['summe']; ?>"></span><?php }
-    if( array_key_exists( 'durchschnitt', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i>Durchschnitt: <span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['id']; ?>" data-listenstatistik="durchschnitt" data-eigenschaft="<?= $liste['listenstatistik']['durchschnitt']; ?>"></span><?php }
+    /* if( array_key_exists( 'verknuepfungen', $liste ) AND $liste['verknuepfungen']['typ'] === 'check' ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i><span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['instanz']; ?>" data-listenstatistik="angewaehlt"></span> Element(e) angewählt<?php } */
+    if( array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i>Summe: <span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['instanz']; ?>" data-listenstatistik="summe" data-eigenschaft="<?= $liste['listenstatistik']['summe']; ?>"></span><?php }
+    if( array_key_exists( 'durchschnitt', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i>Durchschnitt: <span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['instanz']; ?>" data-listenstatistik="durchschnitt" data-eigenschaft="<?= $liste['listenstatistik']['durchschnitt']; ?>"></span><?php }
 ?></div><?php } ?>
 
-<ul id="<?= $liste['id']; ?>" class="liste list-group<?php
+<ul id="<?= $liste['instanz']; ?>" class="liste list-group<?php
 if( array_key_exists( 'group-flush', $liste ) AND $liste['group-flush'] ) echo ' list-group-flush';
 if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sortable';
 ?> mb-1"<?php

@@ -121,7 +121,7 @@ class Termine extends BaseController {
 
         }
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['id'] = $instanz;
+        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['instanz'] = $instanz;
         echo view( 'Termine/termine', $this->viewdata );
     }
 
@@ -293,8 +293,8 @@ class Termine extends BaseController {
             'sortieren' => HAUPTINSTANZEN['termine']['sortieren'],
         );
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['id'] = $instanz;
-        if( array_key_exists( 'auswertungen', $this->viewdata ) ) foreach( $this->viewdata['auswertungen'] as $instanz => $auswertungen ) $this->viewdata['auswertungen'][ $instanz ]['id'] = $instanz;
+        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['instanz'] = $instanz;
+        if( array_key_exists( 'auswertungen', $this->viewdata ) ) foreach( $this->viewdata['auswertungen'] as $instanz => $auswertungen ) $this->viewdata['auswertungen'][ $instanz ]['instanz'] = $instanz;
         echo view( 'Termine/termin_details', $this->viewdata );
     }
 

@@ -73,7 +73,7 @@ class Startseite extends BaseController {
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'mitglied_id' => ICH_ID, );
         }
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['id'] = $instanz;
+        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['instanz'] = $instanz;
         echo view( 'Startseite/startseite', $this->viewdata );
     }
 

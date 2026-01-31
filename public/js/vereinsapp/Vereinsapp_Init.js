@@ -96,10 +96,12 @@ WERKZEUGKASTEN AKTUALISIEREN mit $ziel statt mit element_id
 Lässt sich filtern/sortieren/gruppieren_localstorage_speichern entfernen mittels $ziel?
 ziel_id nur setzen, wenn noch keine id vorhanden ist (sonst die existierende id nehmen) -> eigene Funktion einführen?
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
+viewdata_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper? Vorkommen suchen mit echo view( in Controller)
 Alles mit ...Aktualisieren und ...Initialisieren mit $... im Funktionsnamen ergänzen und lediglich $... als Parameter übergeben
 LINK AKTUALISIEREN in eigene Funktion verschieben
 VORSCHAU-EIGENSCHAFT UND ZUGEHÖRIGEN SPACER IN DER VORSCHAU AUSBLENDEN in eigene Funktion verschieben
 Braucht es formular_beschriftung und beschriftung-span für Formulare (bspw in mitglied_einmal_link_anzeigen_formular.php)?
-id in liste, auswertung und verzeichnis umbenennen in instanz
+
+ERLEDIGT
 
 */

@@ -36,21 +36,21 @@
     </div>
 
     <div id="modals">
-<?= view( 'Templates/modal', array( 'id' => 'BESTAETIGUNG', 'modal' => view( 'Templates/bestaetigung' ) ) ); ?>
-<?= view( 'Templates/modal', array( 'id' => 'BEMERKUNG', 'modal_title' => 'Bemerkung ändern', 'modal' => view( 'Templates/Liste/formular', array( 'btn' => array( 'klasse_id' => 'btn_element_bemerkung_aendern' ), 'formular' => view( 'Templates/Liste/bemerkung_formular' ) ) ) ) ); ?>
-<?= view( 'Templates/modal', array( 'id' => 'FILTERN', 'modal' => view( 'Templates/Liste/filtern' ) ) ); ?>
-<?= view( 'Templates/modal', array( 'id' => 'SORTIEREN', 'modal' => view( 'Templates/Liste/sortieren' ) ) ); ?>
-<?= view( 'Templates/modal', array( 'id' => 'GRUPPIEREN', 'modal' => view( 'Templates/Liste/gruppieren' ) ) ); ?>
-<?= view( 'Templates/modal', array( 'id' => 'AUSWAHL', 'modal' => view( 'Templates/Liste/liste', array( 'liste' => array( 'id' => 'AUSWAHLLISTE', 'listenstatistik' => array(), 'werkzeugkasten' => array(
+<?= view( 'Templates/modal', array( 'modal_id' => 'BESTAETIGUNG', 'modal' => view( 'Templates/bestaetigung' ) ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'BEMERKUNG', 'modal_title' => 'Bemerkung ändern', 'modal' => view( 'Templates/Liste/formular', array( 'btn' => array( 'klasse_id' => 'btn_element_bemerkung_aendern' ), 'formular' => view( 'Templates/Liste/bemerkung_formular' ) ) ) ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'FILTERN', 'modal' => view( 'Templates/Liste/filtern' ) ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'SORTIEREN', 'modal' => view( 'Templates/Liste/sortieren' ) ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'GRUPPIEREN', 'modal' => view( 'Templates/Liste/gruppieren' ) ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'AUSWAHL', 'modal' => view( 'Templates/Liste/liste', array( 'liste' => array( 'instanz' => 'AUSWAHLLISTE', 'listenstatistik' => array(), 'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'filtern' ), 'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'sortieren' ) ) ) ) ) ) ); ?>
 <?php if( auth()->loggedIn() && auth()->user()->requiresPasswordReset() ) echo
-    view( 'Templates/modal', array( 'id' => 'passwort_festlegen', 'autoload' => TRUE, 'modal_title' => 'Neues Passwort festlegen', 'modal' =>
+    view( 'Templates/modal', array( 'modal_id' => 'passwort_festlegen', 'autoload' => TRUE, 'modal_title' => 'Neues Passwort festlegen', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder', 'mitglied_id' => ICH_ID ), 'btn' => array( 'klasse_id' => 'btn_mitglied_passwort_festlegen', 'beschriftung' => 'Neues Passwort festlegen' ), 'formular' =>
     view( 'Mitglieder/mitglied_passwort_festlegen_formular' ) ) ) ) ); ?>
     </div>
 
     <div id="hauptinstanzen" class="invisible">
-<?php foreach( HAUPTINSTANZEN as $liste => $eigenschaften ) { $eigenschaften['id'] = 'HAUPTINSTANZ'; echo view( 'Templates/Liste/liste', array( 'liste' => $eigenschaften ) ); } ?>
+<?php foreach( HAUPTINSTANZEN as $liste => $eigenschaften ) { $eigenschaften['instanz'] = 'HAUPTINSTANZ'; echo view( 'Templates/Liste/liste', array( 'liste' => $eigenschaften ) ); } ?>
     </div>
 
   </body>

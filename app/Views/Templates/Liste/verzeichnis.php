@@ -1,4 +1,4 @@
-<ul id="<?= $verzeichnis['id']; ?>" class="verzeichnis list-group<?php
+<ul id="<?= $verzeichnis['instanz']; ?>" class="verzeichnis list-group<?php
 ?> mb-1" data-liste="<?= $verzeichnis['liste']; ?>"<?php
 if( array_key_exists( 'filtern', $verzeichnis ) ) { ?> data-filtern='<?= json_encode( $verzeichnis['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'sortieren', $verzeichnis ) ) { ?> data-sortieren='<?= json_encode( $verzeichnis['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
