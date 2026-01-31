@@ -100,7 +100,6 @@ viewdata_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper? Vork
 Alles mit ...Aktualisieren und ...Initialisieren mit $... im Funktionsnamen ergänzen und lediglich $... als Parameter übergeben
 LINK AKTUALISIEREN in eigene Funktion verschieben
 VORSCHAU-EIGENSCHAFT UND ZUGEHÖRIGEN SPACER IN DER VORSCHAU AUSBLENDEN in eigene Funktion verschieben
-Braucht es formular_beschriftung und beschriftung-span für Formulare (bspw in mitglied_einmal_link_anzeigen_formular.php)?
 
 ERLEDIGT
 

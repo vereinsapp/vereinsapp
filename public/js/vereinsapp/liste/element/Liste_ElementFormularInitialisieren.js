@@ -1,6 +1,4 @@
 function Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste) {
-    $formular.find(".formular_beschriftung").find(".beschriftung").text(Liste_ElementBeschriftungZurueck(element_id, liste));
-
     $formular.find(".eingabe").each(function () {
         const $eingabe = $(this);
         const eingabe = $eingabe.attr("data-eingabe");

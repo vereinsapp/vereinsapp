@@ -3,15 +3,24 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
 
     if (bestaetigung_einfordern)
         Schnittstelle_DomBestaetigungEinfordern(
-            "Willst du wirklich " + Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") + " einen Einmal-Link per Email zuschicken?",
+            "Willst du wirklich für " +
+                Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") +
+                " einen neuen Einmal-Link erstellen und per Email verschicken?",
             title,
-            "btn_mitglied_einmal_link_email",
-            { liste: "mitglieder", mitglied_id: mitglied_id },
+            "btn_mitglied_einmal_link_erstellen",
+            { liste: "mitglieder", mitglied_id: mitglied_id, email: true },
         );
     else if (formular_oeffnen) {
         const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "mitglieder_einmal_link_anzeigen");
         Schnittstelle_DomModalOeffnen($neues_modal);
-        Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), undefined, mitglied_id, "mitglieder");
+        $neues_modal
+            .find(".beschriftung_mitglied_einmal_link_anzeigen")
+            .text(
+                "Willst du wirklich für " +
+                    Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") +
+                    " einen neuen Einmal-Link erstellen und anzeigen?",
+            );
+        $neues_modal.find(".btn_mitglied_einmal_link_erstellen").attr("data-mitglied_id", mitglied_id);
     } else {
         const ajax_dom = dom;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
@@ -38,8 +47,8 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
                         );
                     }
                 } else {
-                    if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.find(".einmal_link").exists())
-                        AJAX.dom.$formular.find(".einmal_link").val(AJAX.antwort.einmal_link);
+                    if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.find(".einmal_link").exists())
+                        AJAX.dom.$modal.find(".einmal_link").val(AJAX.antwort.einmal_link);
                     if ("dom" in AJAX && "$ausloesend" in AJAX.dom && AJAX.dom.$ausloesend.exists()) AJAX.dom.$ausloesend.addClass("invisible");
                 }
             },

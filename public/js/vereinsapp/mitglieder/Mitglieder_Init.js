@@ -142,29 +142,16 @@ function Mitglieder_Init() {
         );
     });
 
-    // EINMAL-LINK ANZEIGEN
-    $(document).on("click", ".btn_mitglied_einmal_link_anzeigen", function () {
+    // EINMAL-LINK ERSTELLEN
+    $(document).on("click", ".btn_mitglied_einmal_link_erstellen", function () {
         Mitglieder_EinmalLinkErstellen(
             $(this).hasClass("formular_oeffnen"),
             $(this).hasClass("bestaetigung_einfordern"),
             {
                 $ausloesend: $(this),
                 $modal: $(this).closest(".modal"),
-                $formular: $(this).closest(".formular"),
             },
-            new Object(),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
-        );
-    });
-
-    // EINMAL-LINK PER EMAIL VERSCHICKEN
-    $(document).on("click", ".btn_mitglied_einmal_link_email", function () {
-        Mitglieder_EinmalLinkErstellen(
-            $(this).hasClass("formular_oeffnen"),
-            $(this).hasClass("bestaetigung_einfordern"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal") },
-            { email: true },
+            { email: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-email"), undefined) },
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
         );

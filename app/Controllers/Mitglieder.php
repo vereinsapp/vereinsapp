@@ -75,12 +75,12 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
 
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
-                'klasse_id' => array('btn_mitglied_einmal_link_anzeigen', 'formular_oeffnen'),
-                'title' => 'Einmal-Link erstellen und anzeigen',
+                'klasse_id' => array('btn_mitglied_einmal_link_erstellen', 'formular_oeffnen'),
+                'title' => 'Einmal-Link anzeigen',
             );
             $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
-                'klasse_id' => array('btn_mitglied_einmal_link_email', 'bestaetigung_einfordern'),
-                'title' => 'Einmal-Link per Email zuschicken',
+                'klasse_id' => array('btn_mitglied_einmal_link_erstellen', 'bestaetigung_einfordern'),
+                'title' => 'Einmal-Link per Email verschicken',
             );
         
             $this->viewdata['werkzeugkasten']['aendern'] = array(
@@ -197,12 +197,12 @@ class Mitglieder extends BaseController {
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
-                'klasse_id' => array('btn_mitglied_einmal_link_anzeigen', 'formular_oeffnen'),
-                'title' => 'Einmal-Link erstellen und anzeigen',
+                'klasse_id' => array('btn_mitglied_einmal_link_erstellen', 'formular_oeffnen'),
+                'title' => 'Einmal-Link anzeigen',
             );
             $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
-                'klasse_id' => array('btn_mitglied_einmal_link_email', 'bestaetigung_einfordern'),
-                'title' => 'Einmal-Link per Email zuschicken',
+                'klasse_id' => array('btn_mitglied_einmal_link_erstellen', 'bestaetigung_einfordern'),
+                'title' => 'Einmal-Link per Email verschicken',
             );
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_mitglied_aendern', 'formular_oeffnen'),
