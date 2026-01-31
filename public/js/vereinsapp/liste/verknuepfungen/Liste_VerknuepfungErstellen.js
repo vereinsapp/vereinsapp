@@ -16,6 +16,8 @@ function Liste_VerknuepfungErstellen(dom, data, verknuepfungen) {
         ajax_dom,
         function (AJAX) {
             const verknuepfungen = AJAX.data.verknuepfungen;
+            delete AJAX.data.verknuepfungen;
+
             const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
             const verknuepfte_element_ids = new Object();
             $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
@@ -28,7 +30,7 @@ function Liste_VerknuepfungErstellen(dom, data, verknuepfungen) {
                     "zugeordnete_" + LISTEN[verknuepfungen].element + "_ids",
                     verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
                     verknuepfte_listen[0],
-                    new Array()
+                    new Array(),
                 ),
                 function (position, zugeordnete_verknuepfung_id) {
                     if (
@@ -36,22 +38,24 @@ function Liste_VerknuepfungErstellen(dom, data, verknuepfungen) {
                             LISTEN[verknuepfte_listen[1]].element + "_id",
                             zugeordnete_verknuepfung_id,
                             verknuepfungen,
-                            undefined
+                            undefined,
                         ) === verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"]
                     )
                         Schnittstelle_VariableLoeschen(zugeordnete_verknuepfung_id, verknuepfungen);
-                }
+                },
             );
 
             // eine neue Verknüpfung wird hinzugefügt
             if (AJAX.data.status > 0) {
                 if (typeof AJAX.antwort[LISTEN[verknuepfungen].element + "_id"] !== "undefined")
-                    AJAX.data.id = Number(AJAX.antwort[LISTEN[verknuepfungen].element + "_id"]);
-                else AJAX.data.id = LISTEN[verknuepfungen].tabelle.length + 1;
+                    AJAX.data[LISTEN[verknuepfungen].element + "_id"] = Number(AJAX.antwort[LISTEN[verknuepfungen].element + "_id"]);
+                else AJAX.data[LISTEN[verknuepfungen].element + "_id"] = LISTEN[verknuepfungen].tabelle.length + 1;
+                const verknuepfung_id = AJAX.data[LISTEN[verknuepfungen].element + "_id"];
+                delete AJAX.data[LISTEN[verknuepfungen].element + "_id"];
 
+                Schnittstelle_VariableRein(verknuepfung_id, "id", verknuepfung_id, verknuepfungen);
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME && eigenschaft != "verknuepfungen")
-                        Schnittstelle_VariableRein(wert, eigenschaft, AJAX.data.id, verknuepfungen);
+                    Schnittstelle_VariableRein(wert, eigenschaft, verknuepfung_id, verknuepfungen);
                 });
             }
 
@@ -76,9 +80,10 @@ function Liste_VerknuepfungErstellen(dom, data, verknuepfungen) {
         function (AJAX) {
             if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
             Schnittstelle_DomToastFeuern(
-                Liste_ElementBeschriftungZurueck(AJAX.data.id, AJAX.data.verknuepfungen) + " konnte nicht gespeichert werden.",
-                "danger"
+                Liste_ElementBeschriftungZurueck(AJAX.data[LISTEN[AJAX.data.verknuepfungen].element + "_id"], AJAX.data.verknuepfungen) +
+                    " konnte nicht gespeichert werden.",
+                "danger",
             );
-        }
+        },
     );
 }

@@ -2,7 +2,7 @@ function Liste_AuswertungenInit() {
     $.each(LISTEN, function (auswertungen) {
         $('.auswertungen[data-auswertungen="' + auswertungen + '"]').each(function () {
             const $auswertungen = $(this);
-            const instanz = $auswertungen.attr("id");
+            const instanz = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("id"), undefined);
 
             if (!(instanz in LISTEN[auswertungen].instanz)) LISTEN[auswertungen].instanz[instanz] = new Object();
 

@@ -1,6 +1,6 @@
 function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
     const verzeichnis_instanz = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-instanz"), $verzeichnis.attr("id"));
-    const element_id = Number($verzeichnis.attr("data-element_id"));
+    const element_id = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-" + LISTEN[liste].element + "_id"), undefined);
     const basis = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-basis"), new Array());
 
     if (basis.length > 0)
@@ -56,14 +56,14 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
             $neues_unterverzeichnis
                 .find(".verzeichnis")
                 .attr("data-instanz", verzeichnis_instanz)
-                .attr("data-element_id", element_id)
+                .attr("data-" + LISTEN[liste].element + "_id", element_id)
                 .attr("data-basis", JsonStringifiedZurueck(neue_basis, new Array()));
 
             // Unterverzeichnis wird hinzugefügt (je nachdem, wo es im Verzeichnis positioniert ist)
             if (position === 0) $neues_unterverzeichnis.appendTo($verzeichnis);
             else
                 $neues_unterverzeichnis.insertAfter(
-                    $verzeichnis.children('.unterverzeichnis[data-unterverzeichnis="' + unterverzeichnisse_gefiltert_sortiert[position - 1] + '"]')
+                    $verzeichnis.children('.unterverzeichnis[data-unterverzeichnis="' + unterverzeichnisse_gefiltert_sortiert[position - 1] + '"]'),
                 );
         }
     });
@@ -86,8 +86,8 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
                         $verzeichnis.children(
                             '.unterverzeichnis[data-unterverzeichnis="' +
                                 unterverzeichnisse_gefiltert_sortiert[unterverzeichnisse_gefiltert_sortiert.length - 1] +
-                                '"]'
-                        )
+                                '"]',
+                        ),
                     );
                 else $neue_datei.appendTo($verzeichnis);
             } else $neue_datei.insertAfter($verzeichnis.children('.datei[data-datei="' + dateien_gefiltert_sortiert[position - 1] + '"]'));
@@ -100,7 +100,7 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
         if (position === 0) $unterverzeichnis.appendTo($verzeichnis);
         else
             $unterverzeichnis.insertAfter(
-                $verzeichnis.children('.unterverzeichnis[data-unterverzeichnis="' + unterverzeichnisse_gefiltert_sortiert[position - 1] + '"]')
+                $verzeichnis.children('.unterverzeichnis[data-unterverzeichnis="' + unterverzeichnisse_gefiltert_sortiert[position - 1] + '"]'),
             );
     });
 
@@ -113,8 +113,8 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
                     $verzeichnis.children(
                         '.unterverzeichnis[data-unterverzeichnis="' +
                             unterverzeichnisse_gefiltert_sortiert[unterverzeichnisse_gefiltert_sortiert.length - 1] +
-                            '"]'
-                    )
+                            '"]',
+                    ),
                 );
             else $datei.appendTo($verzeichnis);
         } else $datei.insertAfter($verzeichnis.children('.datei[data-datei="' + dateien_gefiltert_sortiert[position - 1] + '"]'));

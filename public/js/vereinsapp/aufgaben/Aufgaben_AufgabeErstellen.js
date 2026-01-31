@@ -25,13 +25,16 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                if (typeof AJAX.antwort.aufgabe_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.aufgabe_id);
-                else AJAX.data.id = LISTEN["aufgaben"].tabelle.length + 1;
-                const aufgabe_id = AJAX.data.id;
+                if (typeof AJAX.antwort.aufgabe_id !== "undefined") AJAX.data.aufgabe_id = Number(AJAX.antwort.aufgabe_id);
+                else AJAX.data.aufgabe_id = LISTEN["aufgaben"].tabelle.length + 1;
+                const aufgabe_id = AJAX.data.aufgabe_id;
+                delete AJAX.data.aufgabe_id;
 
+                Schnittstelle_VariableRein(aufgabe_id, "id", aufgabe_id, "aufgaben");
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, aufgabe_id, "aufgaben");
+                    Schnittstelle_VariableRein(wert, eigenschaft, aufgabe_id, "aufgaben");
                 });
+
                 Schnittstelle_EventVariableUpdLocalstorage("aufgaben");
                 Schnittstelle_EventLocalstorageUpdVariable("aufgaben");
                 // Schnittstelle_VariableElementZuordnen("aufgaben");
@@ -45,7 +48,7 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-            }
+            },
         );
     }
 }

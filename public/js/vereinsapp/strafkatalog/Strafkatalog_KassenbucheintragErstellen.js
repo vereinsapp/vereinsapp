@@ -9,7 +9,7 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
         const ajax_dom = dom;
 
         if (!("erledigt" in data)) data.erledigt = DATETIME.now();
-        if (!("mitglied_id" in data)) data.mitglied_id = ICH["id"];
+        if (!("mitglied_id" in data)) data.mitglied_id = ICH.id;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         if (!("erledigt" in ajax_data) || !isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = null;
         else ajax_data.erledigt = ajax_data.erledigt.toISO();
@@ -20,13 +20,15 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                if (typeof AJAX.antwort.kassenbucheintrag_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.kassenbucheintrag_id);
-                else AJAX.data.id = LISTEN["kassenbuch"].tabelle.length + 1;
-                const kassenbucheintrag_id = AJAX.data.id;
+                if (typeof AJAX.antwort.kassenbucheintrag_id !== "undefined")
+                    AJAX.data.kassenbucheintrag_id = Number(AJAX.antwort.kassenbucheintrag_id);
+                else AJAX.data.kassenbucheintrag_id = LISTEN["kassenbuch"].tabelle.length + 1;
+                const kassenbucheintrag_id = AJAX.data.kassenbucheintrag_id;
+                delete AJAX.data.kassenbucheintrag_id;
 
+                Schnittstelle_VariableRein(kassenbucheintrag_id, "id", kassenbucheintrag_id, "kassenbuch");
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
-                        Schnittstelle_VariableRein(wert, eigenschaft, kassenbucheintrag_id, "kassenbuch");
+                    Schnittstelle_VariableRein(wert, eigenschaft, kassenbucheintrag_id, "kassenbuch");
                 });
                 Schnittstelle_VariableRein(DATETIME.now(), "erstellung", kassenbucheintrag_id, "kassenbuch");
 
@@ -43,7 +45,7 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-            }
+            },
         );
     }
 }

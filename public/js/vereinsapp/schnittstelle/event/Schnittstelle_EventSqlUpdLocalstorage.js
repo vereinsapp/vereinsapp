@@ -28,6 +28,6 @@ function Schnittstelle_EventSqlUpdLocalstorage() {
         },
         function (AJAX) {
             // rein_validation_neg_aktion:
-        }
+        },
     );
 }

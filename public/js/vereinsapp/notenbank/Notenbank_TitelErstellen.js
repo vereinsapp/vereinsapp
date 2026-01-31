@@ -16,12 +16,14 @@ function Notenbank_TitelErstellen(formular_oeffnen, dom, data, title, titel_id) 
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                if (typeof AJAX.antwort.titel_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.titel_id);
-                else AJAX.data.id = LISTEN["notenbank"].tabelle.length + 1;
-                const titel_id = AJAX.data.id;
+                if (typeof AJAX.antwort.titel_id !== "undefined") AJAX.data.titel_id = Number(AJAX.antwort.titel_id);
+                else AJAX.data.titel_id = LISTEN["notenbank"].tabelle.length + 1;
+                const titel_id = AJAX.data.titel_id;
+                delete AJAX.data.titel_id;
 
+                Schnittstelle_VariableRein(titel_id, "id", titel_id, "notenbank");
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, titel_id, "notenbank");
+                    Schnittstelle_VariableRein(wert, eigenschaft, titel_id, "notenbank");
                 });
 
                 Schnittstelle_EventVariableUpdLocalstorage("notenbank");
@@ -37,7 +39,7 @@ function Notenbank_TitelErstellen(formular_oeffnen, dom, data, title, titel_id) 
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-            }
+            },
         );
     }
 }

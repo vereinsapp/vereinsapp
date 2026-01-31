@@ -9,7 +9,7 @@ function Liste_ElementNavigationAktualisieren($element_navigation, $element, lis
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
         LISTEN[liste].tabelle,
         Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_LocalStorage, liste),
-        liste
+        liste,
     );
 
     // TABELLE SORTIEREN
@@ -17,15 +17,15 @@ function Liste_ElementNavigationAktualisieren($element_navigation, $element, lis
     const sortieren_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren", undefined); // Problem: LISTEN[liste].instanz[instanz].sortieren existiert nicht, weil keine .liste mit dieser instanz existiert
     const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(
         tabelle_gefiltert,
-        Liste_SortierenMitPrioKombiniertZurueck(sortieren_data, sortieren_LocalStorage, liste)
+        Liste_SortierenMitPrioKombiniertZurueck(sortieren_data, sortieren_LocalStorage, liste),
     );
 
     let vorherige_element_id = undefined;
     let naechste_element_id = undefined;
     $.each(tabelle_gefiltert_sortiert, function (position, element) {
-        if (element["id"] == Number($element.attr("data-element_id"))) {
-            if (position > 0) vorherige_element_id = tabelle_gefiltert_sortiert[position - 1]["id"];
-            if (position < tabelle_gefiltert_sortiert.length - 1) naechste_element_id = tabelle_gefiltert_sortiert[position + 1]["id"];
+        if (element.id === Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-" + LISTEN[liste].element + "_id"), undefined)) {
+            if (position > 0) vorherige_element_id = tabelle_gefiltert_sortiert[position - 1].id;
+            if (position < tabelle_gefiltert_sortiert.length - 1) naechste_element_id = tabelle_gefiltert_sortiert[position + 1].id;
         }
     });
 

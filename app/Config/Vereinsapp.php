@@ -110,7 +110,7 @@ class Vereinsapp extends BaseConfig
             // 'verknuepfungen' => array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', '[element]_id' => 42, ),
             'zusatzsymbol' => array('geburtstag'),
             // '[element]_id' => 42,
-            // 'element_ids_disabled' => array(),
+            // 'disabled_ids' => array(),
             // 'eigenschaften_bedingt_formatiert' => array( 'wert' => array( 'text-danger' => array( 'wert' => array( 'ende' =>  0, ), ), ), ),
             'werkzeugkasten' => array(
                 'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'Mitglieder filtern', ),

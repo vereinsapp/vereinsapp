@@ -13,7 +13,7 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
         if (!("kategorie" in data)) data.kategorie = Schnittstelle_VariableRausZurueck("kategorie", strafe_id, "strafkatalog", undefined);
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", strafe_id, "strafkatalog", null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
-        ajax_data.id = strafe_id;
+        ajax_data.strafe_id = strafe_id;
         if (isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
         Schnittstelle_AjaxInDieSchlange(
@@ -21,10 +21,11 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                const strafe_id = AJAX.data.id;
+                const strafe_id = AJAX.data.strafe_id;
+                delete AJAX.data.strafe_id;
+
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
-                        Schnittstelle_VariableRein(wert, eigenschaft, strafe_id, "strafkatalog");
+                    Schnittstelle_VariableRein(wert, eigenschaft, strafe_id, "strafkatalog");
                 });
 
                 Schnittstelle_EventVariableUpdLocalstorage("strafkatalog");
@@ -43,10 +44,10 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data.id, "strafkatalog") + " konnte nicht gespeichert werden.",
-                    "danger"
+                    Liste_ElementBeschriftungZurueck(AJAX.data.strafe_id, "strafkatalog") + " konnte nicht gespeichert werden.",
+                    "danger",
                 );
-            }
+            },
         );
     }
 }

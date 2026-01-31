@@ -6,20 +6,22 @@
 function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen_auswahlmoeglichkeiten, $element) {
     const $verknuepfung_moeglich = $verknuepfungen_auswahlmoeglichkeiten.find(".verknuepfung_moeglich");
     const $verknuepfung_nicht_moeglich = $verknuepfungen_auswahlmoeglichkeiten.find(".verknuepfung_nicht_moeglich");
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-liste"), undefined);
-    const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-element_id"), undefined);
     const verknuepfungen = Schnittstelle_VariableWertBereinigtZurueck($verknuepfungen_auswahlmoeglichkeiten.attr("data-verknuepfungen"), undefined);
+
+    // VERKNUEPFTE LISTEN DEFINIEREN
     const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
-    const verknuepfte_element_ids = new Object();
+
+    // VERKNUEPFTE ELEMENT_ID DEFINIEREN
+    const verknuepfte_element_id = new Object();
     $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
-        const verknuepfte_element_id = Schnittstelle_VariableWertBereinigtZurueck(
+        let element_id = Schnittstelle_VariableWertBereinigtZurueck(
             $verknuepfungen_auswahlmoeglichkeiten.attr("data-" + LISTEN[verknuepfte_liste].element + "_id"),
-            undefined
+            undefined,
         );
-        if (typeof verknuepfte_element_id !== "undefined")
-            verknuepfte_element_ids[LISTEN[verknuepfte_liste].element + "_id"] = verknuepfte_element_id;
+        if (typeof element_id === "undefined")
+            element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-" + LISTEN[verknuepfte_liste].element + "_id"), undefined);
+        if (typeof element_id !== "undefined") verknuepfte_element_id[LISTEN[verknuepfte_liste].element + "_id"] = element_id;
     });
-    verknuepfte_element_ids[LISTEN[liste].element + "_id"] = element_id;
 
     if (
         !("verknuepfung_moeglich_eingeladen" in VERKNUEPFUNGEN[verknuepfungen]) ||
@@ -27,18 +29,18 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen_
             VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_eingeladen.eigenschaft in EIGENSCHAFTEN[verknuepfte_listen[0]] &&
             Schnittstelle_VariableRausZurueck(
                 VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_eingeladen.eigenschaft,
-                verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
+                verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"],
                 verknuepfte_listen[0],
-                new Array()
-            ).includes(verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"])) ||
+                new Array(),
+            ).includes(verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"])) ||
         (VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_eingeladen.liste === verknuepfte_listen[1] &&
             VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_eingeladen.eigenschaft in EIGENSCHAFTEN[verknuepfte_listen[1]] &&
             Schnittstelle_VariableRausZurueck(
                 VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_eingeladen.eigenschaft,
-                verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"],
+                verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"],
                 verknuepfte_listen[1],
-                new Array()
-            ).includes(verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"]))
+                new Array(),
+            ).includes(verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"]))
     ) {
         /* Verknüpfung ist für das Element möglich */
         $verknuepfung_moeglich.removeClass("invisible");
@@ -48,9 +50,9 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen_
         $.each(
             Schnittstelle_VariableRausZurueck(
                 "zugeordnete_" + LISTEN[verknuepfungen].element + "_ids",
-                verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
+                verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"],
                 verknuepfte_listen[0],
-                new Array()
+                new Array(),
             ),
             function (position, zugeordnete_verknuepfung_id) {
                 if (
@@ -58,11 +60,11 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen_
                         LISTEN[verknuepfte_listen[1]].element + "_id",
                         zugeordnete_verknuepfung_id,
                         verknuepfungen,
-                        undefined
-                    ) === verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"]
+                        undefined,
+                    ) === verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"]
                 )
                     verknuepfung_id = zugeordnete_verknuepfung_id;
-            }
+            },
         );
 
         const verknuepfung_status = Schnittstelle_VariableRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
@@ -75,8 +77,8 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen_
             const $chk_verknuepfung_erstellen = $(this);
 
             $chk_verknuepfung_erstellen
-                .attr("data-" + LISTEN[verknuepfte_listen[0]].element + "_id", verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"])
-                .attr("data-" + LISTEN[verknuepfte_listen[1]].element + "_id", verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"])
+                .attr("data-" + LISTEN[verknuepfte_listen[0]].element + "_id", verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"])
+                .attr("data-" + LISTEN[verknuepfte_listen[1]].element + "_id", verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"])
                 .attr("data-verknuepfungen", verknuepfungen);
 
             $chk_verknuepfung_erstellen.prop("checked", verknuepfung_status > 0).attr("id", ziel_id);
@@ -87,8 +89,8 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen_
             const status = Schnittstelle_VariableWertBereinigtZurueck($btn_verknuepfung_erstellen.attr("data-status"), undefined);
 
             $btn_verknuepfung_erstellen
-                .attr("data-" + LISTEN[verknuepfte_listen[0]].element + "_id", verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"])
-                .attr("data-" + LISTEN[verknuepfte_listen[1]].element + "_id", verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"])
+                .attr("data-" + LISTEN[verknuepfte_listen[0]].element + "_id", verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"])
+                .attr("data-" + LISTEN[verknuepfte_listen[1]].element + "_id", verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"])
                 .attr("data-verknuepfungen", verknuepfungen);
 
             if (status === verknuepfung_status) {
@@ -109,28 +111,32 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen_
         $verknuepfungen_auswahlmoeglichkeiten.find(".btn_element_bemerkung_aendern").each(function () {
             const $btn_element_bemerkung_aendern = $(this);
 
-            $btn_element_bemerkung_aendern.removeClass("btn-outline-primary");
             $.each(VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten, function (status) {
                 $btn_element_bemerkung_aendern
-                    .removeClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[status].farbe)
-                    .removeClass("btn-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[status].farbe);
+                    .removeClass("btn-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[status].farbe)
+                    .removeClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[status].farbe);
             });
+            $btn_element_bemerkung_aendern.removeClass("btn-outline-primary");
 
             if (typeof verknuepfung_id !== "undefined") {
                 if (typeof verknuepfung_status !== "undefined") {
                     if (Schnittstelle_VariableRausZurueck("bemerkung", verknuepfung_id, verknuepfungen, null) !== null)
                         $btn_element_bemerkung_aendern.addClass(
-                            "btn-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[verknuepfung_status].farbe
+                            "btn-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[verknuepfung_status].farbe,
                         );
                     else
                         $btn_element_bemerkung_aendern.addClass(
-                            "btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[verknuepfung_status].farbe
+                            "btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[verknuepfung_status].farbe,
                         );
                 } else {
                     $btn_element_bemerkung_aendern.addClass("btn-outline-primary");
                 }
-                $btn_element_bemerkung_aendern.removeClass("invisible").attr("data-element_id", verknuepfung_id);
-            } else $btn_element_bemerkung_aendern.addClass("btn-outline-primary").addClass("invisible").removeAttr("data-element_id");
+                $btn_element_bemerkung_aendern.removeClass("invisible").attr("data-" + LISTEN[verknuepfungen].element + "_id", verknuepfung_id);
+            } else
+                $btn_element_bemerkung_aendern
+                    .addClass("btn-outline-primary")
+                    .addClass("invisible")
+                    .removeAttr("data-" + LISTEN[verknuepfungen].element + "_id");
         });
 
         if (
@@ -143,9 +149,9 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen_
                     !(
                         Schnittstelle_VariableRausZurueck(
                             VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.eigenschaft,
-                            verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
+                            verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"],
                             verknuepfte_listen[0],
-                            undefined
+                            undefined,
                         ) < DATETIME.now().plus({ seconds: VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.frist })
                     )) ||
                 (VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.liste === verknuepfte_listen[1] &&
@@ -153,9 +159,9 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen_
                     !(
                         Schnittstelle_VariableRausZurueck(
                             VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.eigenschaft,
-                            verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"],
+                            verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"],
                             verknuepfte_listen[1],
-                            undefined
+                            undefined,
                         ) < DATETIME.now().plus({ seconds: VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.frist })
                     )))
         ) {
@@ -169,10 +175,10 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen_
         $verknuepfung_moeglich.addClass("invisible");
         $verknuepfung_nicht_moeglich.removeClass("invisible");
 
-        if (verknuepfte_listen.includes("mitglieder") && verknuepfte_element_ids["mitglied_id"] === Number(ICH["id"])) {
+        if (verknuepfte_listen.includes("mitglieder") && verknuepfte_element_id["mitglied_id"] === ICH.id) {
             /* Verknüpfung ist für dich nicht möglich */
             $verknuepfung_nicht_moeglich.text(VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich.keine_verknuepfung_fuer_dich_moeglich);
-        } else if (verknuepfte_listen.includes("mitglieder") && verknuepfte_element_ids["mitglied_id"] !== Number(ICH["id"])) {
+        } else if (verknuepfte_listen.includes("mitglieder") && verknuepfte_element_id["mitglied_id"] !== ICH.id) {
             /* Verknüpfung ist für das Mitglied nicht möglich */
             $verknuepfung_nicht_moeglich.text(VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich.keine_verknuepfung_fuer_mitglied_moeglich);
         } else {

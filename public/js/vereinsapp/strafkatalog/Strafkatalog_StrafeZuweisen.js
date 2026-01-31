@@ -1,24 +1,13 @@
-function Strafkatalog_StrafeZuweisen(auswahl_einfordern, bestaetigung_einfordern, dom, data, title, element_id, liste) {
-    if (typeof element_id !== "undefined") element_id = Number(element_id);
-
-    if (typeof data.gegen_liste === "undefined" && liste == "strafkatalog") data.gegen_liste = "mitglieder";
-    else if (typeof data.gegen_liste === "undefined" && liste == "mitglieder") data.gegen_liste = "strafkatalog";
-
-    let strafe_id, mitglied_id;
-    if (liste == "strafkatalog" && data.gegen_liste == "mitglieder") {
-        strafe_id = element_id;
-        mitglied_id = data.gegen_element_id;
-    } else if (liste == "mitglieder" && data.gegen_liste == "strafkatalog") {
-        mitglied_id = element_id;
-        strafe_id = data.gegen_element_id;
-    }
-
-    if (auswahl_einfordern)
-        Liste_ElementAuswahlEinfordern($(), title, data.gegen_liste, "btn_strafe_zuweisen bestaetigung_einfordern", {
-            gegen_liste: liste,
-            gegen_element_id: element_id,
+function Strafkatalog_StrafeZuweisen(auswahl_einfordern, bestaetigung_einfordern, dom, title, strafe_id, mitglied_id, liste) {
+    if (auswahl_einfordern) {
+        if (liste === "strafkatalog") liste = "mitglieder";
+        else if (liste === "mitglieder") liste = "strafkatalog";
+        Liste_ElementAuswahlEinfordern($(), title, liste, "btn_strafe_zuweisen bestaetigung_einfordern", {
+            strafe_id: strafe_id,
+            mitglied_id: mitglied_id,
+            title: title,
         });
-    else if (bestaetigung_einfordern) {
+    } else if (bestaetigung_einfordern) {
         if (dom.$modal.exists()) Schnittstelle_DomModalSchliessen(dom.$modal);
 
         Schnittstelle_DomBestaetigungEinfordern(
@@ -29,7 +18,7 @@ function Strafkatalog_StrafeZuweisen(auswahl_einfordern, bestaetigung_einfordern
                 " zuweisen?",
             title,
             "btn_strafe_zuweisen",
-            { liste: liste, element_id: element_id, gegen_liste: data.gegen_liste, gegen_element_id: data.gegen_element_id }
+            { strafe_id: strafe_id, mitglied_id: mitglied_id },
         );
     } else
         Strafkatalog_KassenbucheintragErstellen(false, dom, {

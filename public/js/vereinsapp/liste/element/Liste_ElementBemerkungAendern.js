@@ -2,6 +2,7 @@
  * @param {boolean} formular_oeffnen
  * @param {Object} dom
  * @param {Object} data
+ * @param {string} ziel_id
  * @param {number} element_id
  * @param {string} liste
  */
@@ -17,7 +18,7 @@ function Liste_ElementBemerkungAendern(formular_oeffnen, dom, data, ziel_id, ele
         $neues_modal
             .find(".btn_element_bemerkung_aendern")
             .attr("data-liste", liste)
-            .attr("data-element_id", element_id)
+            .attr("data-" + LISTEN[liste].element + "_id", element_id)
             .attr("data-ziel_id", ziel_id);
         Schnittstelle_DomModalOeffnen($neues_modal);
         Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), undefined, element_id, liste);
@@ -27,7 +28,7 @@ function Liste_ElementBemerkungAendern(formular_oeffnen, dom, data, ziel_id, ele
 
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste, null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
-        ajax_data.id = element_id;
+        ajax_data[LISTEN[liste].element + "_id"] = element_id;
         ajax_data.liste = liste;
         if (isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
@@ -36,8 +37,9 @@ function Liste_ElementBemerkungAendern(formular_oeffnen, dom, data, ziel_id, ele
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                const element_id = AJAX.data.id;
                 const liste = AJAX.data.liste;
+                const element_id = AJAX.data[LISTEN[liste].element + "_id"];
+
                 Schnittstelle_VariableRein(AJAX.data.bemerkung, "bemerkung", element_id, liste);
 
                 Schnittstelle_EventVariableUpdLocalstorage(liste);
@@ -59,7 +61,7 @@ function Liste_ElementBemerkungAendern(formular_oeffnen, dom, data, ziel_id, ele
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Schnittstelle_DomToastFeuern("Bemerkung konnte nicht geändert werden.", "danger");
-            }
+            },
         );
     }
 }

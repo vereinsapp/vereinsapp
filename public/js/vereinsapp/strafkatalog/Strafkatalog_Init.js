@@ -15,8 +15,8 @@ function Strafkatalog_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            undefined
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            undefined,
         );
     });
 
@@ -26,8 +26,8 @@ function Strafkatalog_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-strafe_id"), undefined),
         );
     });
 
@@ -37,8 +37,8 @@ function Strafkatalog_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-strafe_id"), undefined),
         );
     });
 
@@ -48,10 +48,10 @@ function Strafkatalog_Init() {
             $(this).hasClass("auswahl_einfordern"),
             $(this).hasClass("bestaetigung_einfordern"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal") },
-            { gegen_liste: $(this).attr("data-gegen_liste"), gegen_element_id: $(this).attr("data-gegen_element_id") },
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            $(this).attr("data-liste")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-strafe_id"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined),
         );
     });
 
@@ -61,8 +61,8 @@ function Strafkatalog_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            undefined
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            undefined,
         );
     });
 
@@ -72,8 +72,8 @@ function Strafkatalog_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-kassenbucheintrag_id"), undefined),
         );
     });
 
@@ -83,8 +83,8 @@ function Strafkatalog_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-kassenbucheintrag_id"), undefined),
         );
     });
 
@@ -93,8 +93,8 @@ function Strafkatalog_Init() {
         Strafkatalog_KassenbucheintragOffenErledigtMarkieren(
             $(this).hasClass("bestaetigung_einfordern"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal") },
-            $(this).attr("data-title"),
-            $(this).attr("data-kassenbucheintrag_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-kassenbucheintrag_id"), undefined),
         );
     });
 
@@ -104,7 +104,7 @@ function Strafkatalog_Init() {
             "offene_kassenbucheintraege_verwalten_modal",
             "offene_kassenbucheintraege_verwalten",
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id"), undefined)
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
         );
     });
 }

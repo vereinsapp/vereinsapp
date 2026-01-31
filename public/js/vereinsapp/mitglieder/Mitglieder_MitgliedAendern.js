@@ -26,7 +26,7 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
             data.real_janein = Number(Schnittstelle_VariableRausZurueck("real_janein", mitglied_id, "mitglieder", undefined));
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", mitglied_id, "mitglieder", null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
-        ajax_data.id = mitglied_id;
+        ajax_data.mitglied_id = mitglied_id;
         if (isLuxonDateTime(ajax_data.geburt)) ajax_data.geburt = ajax_data.geburt.toISO();
         if (isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
@@ -35,10 +35,11 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                const mitglied_id = AJAX.data.id;
+                const mitglied_id = AJAX.data.mitglied_id;
+                delete AJAX.data.mitglied_id;
+
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
-                        Schnittstelle_VariableRein(wert, eigenschaft, mitglied_id, "mitglieder");
+                    Schnittstelle_VariableRein(wert, eigenschaft, mitglied_id, "mitglieder");
                 });
 
                 Schnittstelle_EventVariableUpdLocalstorage("mitglieder");
@@ -57,10 +58,10 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") + " konnte nicht gespeichert werden.",
-                    "danger"
+                    Liste_ElementBeschriftungZurueck(AJAX.data.mitglied_id, "mitglieder") + " konnte nicht gespeichert werden.",
+                    "danger",
                 );
-            }
+            },
         );
     }
 }

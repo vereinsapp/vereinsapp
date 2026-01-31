@@ -21,7 +21,7 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
             data.max_anzahl_mitglieder = Schnittstelle_VariableRausZurueck("max_anzahl_mitglieder", aufgabe_id, "aufgaben", null);
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", aufgabe_id, "aufgaben", null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
-        ajax_data.id = aufgabe_id;
+        ajax_data.aufgabe_id = aufgabe_id;
         if (isEmptyString(ajax_data.max_anzahl_mitglieder)) ajax_data.max_anzahl_mitglieder = null;
         if (isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
@@ -30,9 +30,11 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                const aufgabe_id = AJAX.data.id;
+                const aufgabe_id = AJAX.data.aufgabe_id;
+                delete AJAX.data.aufgabe_id;
+
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, aufgabe_id, "aufgaben");
+                    Schnittstelle_VariableRein(wert, eigenschaft, aufgabe_id, "aufgaben");
                 });
 
                 Schnittstelle_EventVariableUpdLocalstorage("aufgaben");
@@ -51,10 +53,10 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data.id, "aufgaben") + " konnte nicht gespeichert werden.",
-                    "danger"
+                    Liste_ElementBeschriftungZurueck(AJAX.data.aufgabe_id, "aufgaben") + " konnte nicht gespeichert werden.",
+                    "danger",
                 );
-            }
+            },
         );
     }
 }

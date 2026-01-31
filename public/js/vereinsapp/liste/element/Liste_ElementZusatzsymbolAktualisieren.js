@@ -5,7 +5,7 @@
 
 function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-liste"), undefined);
-    const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-element_id"), undefined);
+    const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-" + LISTEN[liste].element + "_id"), undefined);
     const zusatzsymbol = Schnittstelle_VariableWertBereinigtZurueck($zusatzsymbol.attr("data-zusatzsymbol"), undefined);
 
     $zusatzsymbol.find('[data-bs-toggle="popover"]').popover("hide");
@@ -37,7 +37,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                     LISTEN[liste].element +
                     "_id=" +
                     element_id +
-                    ' data-title="Kassenbucheintrag als offen/erledigt markieren" role="button"></i>'
+                    ' data-title="Kassenbucheintrag als offen/erledigt markieren" role="button"></i>',
             );
             break;
 
@@ -70,11 +70,13 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                     LISTEN[liste].element +
                     '_aendern formular_oeffnen text-primary" data-liste="' +
                     liste +
-                    '" data-element_id="' +
+                    '" data-' +
+                    LISTEN[liste].element +
+                    '_id="' +
                     element_id +
                     '" data-title="' +
                     Liste_ElementBeschriftungZurueck(element_id, liste) +
-                    ' ändern" role="button"></i>'
+                    ' ändern" role="button"></i>',
             );
             break;
 
@@ -87,11 +89,13 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                     LISTEN[liste].element +
                     '_duplizieren formular_oeffnen text-primary" data-liste="' +
                     liste +
-                    '" data-element_id="' +
+                    '" data-' +
+                    LISTEN[liste].element +
+                    '_id="' +
                     element_id +
                     '" data-title="' +
                     Liste_ElementBeschriftungZurueck(element_id, liste) +
-                    ' duplizieren" role="button"></i>'
+                    ' duplizieren" role="button"></i>',
             );
             break;
 
@@ -102,11 +106,13 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                     SYMBOLE["loeschen"]["bootstrap"] +
                     ' btn_element_loeschen bestaetigung_einfordern text-danger" data-liste="' +
                     liste +
-                    '" data-element_id="' +
+                    '" data-' +
+                    LISTEN[liste].element +
+                    '_id="' +
                     element_id +
                     '" data-title="' +
                     Liste_ElementBeschriftungZurueck(element_id, liste) +
-                    ' löschen" role="button"></i>'
+                    ' löschen" role="button"></i>',
             );
             break;
 
@@ -121,7 +127,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                             SYMBOLE["bemerkung"]["bootstrap"] +
                             ' text-primary" data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="focus" tabindex="0" data-bs-placement="right" data-bs-content="' +
                             bemerkung +
-                            '" role="button"></i>'
+                            '" role="button"></i>',
                     );
             else $zusatzsymbol.addClass("invisible").html("");
 
@@ -140,7 +146,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
                 const verknuepfte_element_id = Schnittstelle_VariableWertBereinigtZurueck(
                     $element.attr("data-" + LISTEN[verknuepfte_liste].element + "_id"),
-                    undefined
+                    undefined,
                 );
                 if (typeof verknuepfte_element_id !== "undefined")
                     verknuepfte_element_ids[LISTEN[verknuepfte_liste].element + "_id"] = verknuepfte_element_id;
@@ -153,7 +159,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                     "zugeordnete_" + LISTEN[verknuepfungen].element + "_ids",
                     verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
                     verknuepfte_listen[0],
-                    new Array()
+                    new Array(),
                 ),
                 function (position, zugeordnete_verknuepfung_id) {
                     if (
@@ -161,11 +167,11 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                             LISTEN[verknuepfte_listen[1]].element + "_id",
                             zugeordnete_verknuepfung_id,
                             verknuepfungen,
-                            undefined
+                            undefined,
                         ) === verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"]
                     )
                         verknuepfung_id = zugeordnete_verknuepfung_id;
-                }
+                },
             );
 
             let verknuepfung_status = Schnittstelle_VariableRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
@@ -177,7 +183,7 @@ function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                         VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[verknuepfung_status].farbe +
                         '">' +
                         VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[verknuepfung_status].aktiv +
-                        "</span>"
+                        "</span>",
                 );
 
             break;

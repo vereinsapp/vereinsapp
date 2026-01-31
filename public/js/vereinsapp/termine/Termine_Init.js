@@ -90,20 +90,20 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
             Liste_FilternMitPrioKombiniertZurueck(
                 Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin.kategorie], new Object()),
                 termin.filtern_mitglieder,
-                "mitglieder"
+                "mitglieder",
             ),
-            "mitglieder"
+            "mitglieder",
         ),
         function () {
             termin.mitglied_ids_eingeladen.push(this.id);
-        }
+        },
     );
-    termin.ich_eingeladen_janein = termin.mitglied_ids_eingeladen.includes(Number(ICH.id));
+    termin.ich_eingeladen_janein = termin.mitglied_ids_eingeladen.includes(ICH.id);
 
     termin.ich_rueckgemeldet_janein = false;
     if ("zugeordnete_termine_rueckmeldung_ids" in termin)
         $.each(termin.zugeordnete_termine_rueckmeldung_ids, function (position, rueckmeldung_id) {
-            if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == Number(ICH.id)) {
+            if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == ICH.id) {
                 termin.ich_rueckgemeldet_janein = true;
                 return false;
             }
@@ -139,8 +139,8 @@ function Termine_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            undefined
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            undefined,
         );
     });
 
@@ -150,8 +150,8 @@ function Termine_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
         );
     });
 
@@ -161,8 +161,8 @@ function Termine_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
         );
     });
 
@@ -171,9 +171,12 @@ function Termine_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "termine_rueckmeldungen_verwalten_modal",
             "termine_rueckmeldungen_verwalten",
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            "termine"
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            {
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
+            },
+            "termine_rueckmeldungen",
         );
     });
 
@@ -186,7 +189,7 @@ function Termine_Init() {
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
                 status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-status"), undefined),
             },
-            "termine_rueckmeldungen"
+            "termine_rueckmeldungen",
         );
     });
 
@@ -195,9 +198,12 @@ function Termine_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "termine_anwesenheiten_dokumentieren_modal",
             "termine_anwesenheiten_dokumentieren",
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            "termine"
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            {
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
+            },
+            "termine_anwesenheiten",
         );
     });
 
@@ -210,7 +216,7 @@ function Termine_Init() {
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
                 status: Number($(this).is(":checked")),
             },
-            "termine_anwesenheiten"
+            "termine_anwesenheiten",
         );
     });
 }

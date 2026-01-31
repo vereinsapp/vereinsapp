@@ -64,7 +64,7 @@ ELEMENTE.notenbank_setlisteneintrag.ergaenzen_aktion = function (setlisteneintra
             "anzahl_verzeichnis",
             setlisteneintrag.titel_id,
             "notenbank",
-            undefined
+            undefined,
         );
     if ("termin_id" in setlisteneintrag)
         setlisteneintrag.termin_start = Schnittstelle_VariableRausZurueck("start", setlisteneintrag.termin_id, "termine", undefined);
@@ -79,8 +79,8 @@ function Notenbank_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            undefined
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            undefined,
         );
     });
 
@@ -90,8 +90,8 @@ function Notenbank_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),
         );
     });
 
@@ -101,8 +101,8 @@ function Notenbank_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),
         );
     });
 
@@ -111,9 +111,12 @@ function Notenbank_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "setliste_verwalten_modal",
             "setliste_verwalten",
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            "termine"
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            {
+                titel_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
+            },
+            "notenbank_setliste",
         );
     });
 
@@ -126,11 +129,16 @@ function Notenbank_Init() {
                 termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
                 status: Number($(this).is(":checked")),
             },
-            "notenbank_setliste"
+            "notenbank_setliste",
         );
     });
 
     $('.sortable[data-liste="notenbank_setliste"]').on("sortupdate update", function (event, ui) {
-        Liste_VerknuepfungStatusAendern({ $ausloesend: ui.item }, ui.item.index() + 1, ui.item.attr("data-element_id"), "notenbank_setliste");
+        Liste_VerknuepfungStatusAendern(
+            { $ausloesend: ui.item },
+            ui.item.index() + 1,
+            ui.item.attr("data-notenbank_setlisteneintrag_id"),
+            "notenbank_setliste",
+        );
     });
 }

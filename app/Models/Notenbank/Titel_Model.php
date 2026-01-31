@@ -24,12 +24,12 @@ class Titel_Model extends Model {
     protected $useSoftDeletes = TRUE;
     protected $afterDelete = [ 'softDeleteSetlisteneintrag' ];
 
-    protected function softDeleteSetlisteneintrag(array $data) {
-        $ids = $data['id'] ?? $data['ids'] ?? null;
+    protected function softDeleteSetlisteneintrag(array $element) {
+        $element_ids = $element['id'] ?? $element['ids'] ?? null;
 
-        if ($ids) model(Setlisteneintrag_Model::class)->whereIn('titel_id', (array)$ids)->delete();
+        if ($element_ids) model(Setlisteneintrag_Model::class)->whereIn('titel_id', (array)$element_ids)->delete();
 
-        return $data;
+        return $element;
     }
 
     public function notenbank_tabelle() {

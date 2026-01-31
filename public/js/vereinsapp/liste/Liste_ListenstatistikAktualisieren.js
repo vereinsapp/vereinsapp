@@ -20,7 +20,7 @@ function Liste_ListenstatistikAktualisieren($listenstatistik, liste) {
             if (typeof eigenschaft !== "undefined" && EIGENSCHAFTEN[liste][eigenschaft].typ == "zahl") {
                 let summe = 0;
                 $liste.children().each(function () {
-                    summe += Number(Schnittstelle_VariableRausZurueck(eigenschaft, $(this).attr("data-element_id"), liste, 0));
+                    summe += Number(Schnittstelle_VariableRausZurueck(eigenschaft, $(this).attr("data-" + LISTEN[liste].element + "_id"), liste, 0));
                 });
                 $listenstatistik.text(Liste_WertFormatiertZurueck(summe, eigenschaft, liste));
             }
@@ -31,7 +31,7 @@ function Liste_ListenstatistikAktualisieren($listenstatistik, liste) {
             if (typeof instanz !== "undefined" && typeof eigenschaft !== "undefined" && EIGENSCHAFTEN[liste][eigenschaft].typ == "zahl") {
                 let summe = 0;
                 $liste.children().each(function () {
-                    summe += Number(Schnittstelle_VariableRausZurueck(eigenschaft, $(this).attr("data-element_id"), liste, 0));
+                    summe += Number(Schnittstelle_VariableRausZurueck(eigenschaft, $(this).attr("data-" + LISTEN[liste].element + "_id"), liste, 0));
                 });
                 $listenstatistik.text(Liste_WertFormatiertZurueck(summe / $liste.children().length, eigenschaft, liste));
             }

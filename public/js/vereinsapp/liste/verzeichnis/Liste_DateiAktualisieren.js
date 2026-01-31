@@ -1,12 +1,21 @@
 function Liste_DateiAktualisieren($datei, liste) {
     const datei = $datei.attr("data-datei");
     const $verzeichnis = $datei.closest(".verzeichnis");
-    const element_id = Number($verzeichnis.attr("data-element_id"));
 
     // const punkt = datei.lastIndexOf(".");
     // const typ = datei.slice(punkt + 1);
 
-    let link = BASE_URL + "storage/" + liste + "/" + Schnittstelle_VariableRausZurueck("verzeichnis_basis", element_id, liste, "");
+    let link =
+        BASE_URL +
+        "storage/" +
+        liste +
+        "/" +
+        Schnittstelle_VariableRausZurueck(
+            "verzeichnis_basis",
+            Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-" + LISTEN[liste].element + "_id"), undefined),
+            liste,
+            "",
+        );
     $.each(Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-basis"), new Array()), function (position, unterverzeichnis) {
         link += unterverzeichnis;
     });

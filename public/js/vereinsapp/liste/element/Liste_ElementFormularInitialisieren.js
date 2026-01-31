@@ -1,14 +1,11 @@
 function Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste) {
-    if (typeof element_id !== "undefined") Number(element_id);
-
-    if (typeof element_id !== "undefined")
-        $formular.find(".formular_beschriftung").find(".beschriftung").text(Liste_ElementBeschriftungZurueck(element_id, liste));
+    $formular.find(".formular_beschriftung").find(".beschriftung").text(Liste_ElementBeschriftungZurueck(element_id, liste));
 
     $formular.find(".eingabe").each(function () {
         const $eingabe = $(this);
         const eingabe = $eingabe.attr("data-eingabe");
 
-        // Wenn element_id definiert ist und es gerade um einen Button geht
+        // Wenn es um einen Button geht
         if ($eingabe.attr("type") == "button") $eingabe.attr("id", zufaelligeZeichenketteZurueck(8));
 
         let wert = Schnittstelle_VariableRausZurueck(eingabe, element_id, liste, undefined);
@@ -55,6 +52,6 @@ function Liste_ElementFormularInitialisieren($formular, aktion, element_id, list
         if ($btn_aktion.hasClass("btn_" + LISTEN[liste].element + "_aktion") && typeof aktion !== "undefined")
             $btn_aktion.addClass("btn_" + LISTEN[liste].element + "_" + aktion).removeClass("btn_" + LISTEN[liste].element + "_aktion");
 
-        if (typeof element_id !== "undefined") $btn_aktion.attr("data-element_id", element_id);
+        $btn_aktion.attr("data-" + LISTEN[liste].element + "_id", element_id);
     });
 }

@@ -1,6 +1,4 @@
 function Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, wert_nicht_gefunden) {
-    if (typeof element_id !== "undefined") element_id = Number(element_id);
-
     let wert_zurueck;
 
     if (

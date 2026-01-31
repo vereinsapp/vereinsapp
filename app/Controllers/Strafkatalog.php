@@ -42,7 +42,7 @@ class Strafkatalog extends BaseController {
 
         }
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
+        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['id'] = $instanz;
         echo view( 'Strafkatalog/strafkatalog', $this->viewdata );
     }
 
@@ -83,7 +83,7 @@ class Strafkatalog extends BaseController {
 
         }
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
+        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['id'] = $instanz;
         echo view( 'Strafkatalog/kassenbuch', $this->viewdata );
     }
 
@@ -91,7 +91,7 @@ class Strafkatalog extends BaseController {
     public function ajax_strafe_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => EIGENSCHAFTEN['strafkatalog']['id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
+            'strafe_id' => [ 'label' => EIGENSCHAFTEN['strafkatalog']['id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['strafkatalog']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'wert' => [ 'label' => EIGENSCHAFTEN['strafkatalog']['wert']['beschriftung'], 'rules' => [ 'required', 'decimal', 'greater_than_equal_to[0]' ] ],
             'kategorie' => [ 'label' => EIGENSCHAFTEN['strafkatalog']['kategorie']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['strafkatalog']['kategorie'] ) ).']' ] ],
@@ -108,7 +108,7 @@ class Strafkatalog extends BaseController {
             );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $strafe['bemerkung'] = $this->request->getpost()['bemerkung']; else $strafe['bemerkung'] = NULL;
 
-            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $strafe_Model->update( $this->request->getpost()['id'], $strafe );
+            if( array_key_exists( 'strafe_id', $this->request->getPost() ) AND !empty( $this->request->getPost()['strafe_id'] ) ) $strafe_Model->update( $this->request->getpost()['strafe_id'], $strafe );
             else {
                 $strafe_Model->save( $strafe );
                 $ajax_antwort['strafe_id'] = (int)$strafe_Model->getInsertID();
@@ -122,10 +122,10 @@ class Strafkatalog extends BaseController {
     public function ajax_strafe_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => EIGENSCHAFTEN['strafkatalog']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'strafe_id' => [ 'label' => EIGENSCHAFTEN['strafkatalog']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'strafkatalog.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else model(Strafe_Model::class)->delete( $this->request->getPost()['id'] );
+        else model(Strafe_Model::class)->delete( $this->request->getPost()['strafe_id'] );
         
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
@@ -135,7 +135,7 @@ class Strafkatalog extends BaseController {
     public function ajax_kassenbucheintrag_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
+            'kassenbucheintrag_id' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'wert' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['wert']['beschriftung'], 'rules' => [ 'required', 'decimal' ] ],
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
@@ -154,7 +154,7 @@ class Strafkatalog extends BaseController {
             if( array_key_exists( 'erledigt', $this->request->getpost() ) AND !empty( $this->request->getpost()['erledigt'] ) ) $kassenbucheintrag['erledigt'] = $this->request->getpost()['erledigt']; else $kassenbucheintrag['erledigt'] = NULL;
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $kassenbucheintrag['bemerkung'] = $this->request->getpost()['bemerkung']; else $kassenbucheintrag['bemerkung'] = NULL;
 
-            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $kassenbuch_Model->update( $this->request->getpost()['id'], $kassenbucheintrag );
+            if( array_key_exists( 'kassenbucheintrag_id', $this->request->getPost() ) AND !empty( $this->request->getPost()['kassenbucheintrag_id'] ) ) $kassenbuch_Model->update( $this->request->getpost()['kassenbucheintrag_id'], $kassenbucheintrag );
             else {
                 $kassenbuch_Model->save( $kassenbucheintrag );
                 $ajax_antwort['kassenbucheintrag_id'] = (int)$kassenbuch_Model->getInsertID();
@@ -168,10 +168,10 @@ class Strafkatalog extends BaseController {
     public function ajax_kassenbucheintrag_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'kassenbucheintrag_id' => [ 'label' => EIGENSCHAFTEN['kassenbuch']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'strafkatalog.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else model(Kassenbucheintrag_Model::class)->delete( $this->request->getPost()['id'] );
+        else model(Kassenbucheintrag_Model::class)->delete( $this->request->getPost()['kassenbucheintrag_id'] );
         
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );

@@ -14,7 +14,7 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
         dom.$ausloesend.prop("disabled", true);
     }
 
-    if (!("ajax_id" in data)) data.ajax_id = neue_ajax_id;
+    data.ajax_id = neue_ajax_id;
 
     AJAXSCHLANGE[neue_ajax_id] = {
         data: data,
@@ -32,15 +32,15 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
         success: function (antwort) {
             if (isObject(antwort) && "ajax_id" in antwort) {
                 const AJAX = AJAXSCHLANGE[Number(antwort.ajax_id)];
-
                 // antwort wird in der AJAXSCHLANGE gespeichert
                 AJAX.antwort = antwort;
+                delete AJAX.data.ajax_id;
 
                 // CSRF-hash wird gespeichert
                 CSRF[CSRF_NAME] = AJAX.antwort[CSRF_NAME];
-
                 // Spezialfall login-view
                 $('input[name="' + CSRF_NAME + '"]').val(CSRF[CSRF_NAME]);
+                delete AJAX.antwort[CSRF_NAME];
 
                 if ("info" in AJAX.antwort) Schnittstelle_LogInDieKonsole("INFO", JsonStringifiedZurueck(AJAX.antwort.info, undefined));
 

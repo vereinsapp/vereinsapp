@@ -39,7 +39,7 @@ class Notenbank extends BaseController {
 
         }
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
+        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['id'] = $instanz;
         echo view( 'Notenbank/notenbank', $this->viewdata );
     }
 
@@ -47,9 +47,9 @@ class Notenbank extends BaseController {
     public function titel( $titel_id ) { $titel_id = (int)$titel_id;
         if( empty( model(Titel_Model::class)->find( $titel_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 
-        $this->viewdata['element_id'] = $titel_id;
+        $this->viewdata['titel_id'] = $titel_id;
 
-        $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array( 'liste' => 'notenbank', 'link' => TRUE, 'element_id' => $titel_id, );
+        $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array( 'liste' => 'notenbank', 'link' => TRUE, 'titel_id' => $titel_id, );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
@@ -76,8 +76,8 @@ class Notenbank extends BaseController {
             'sortieren' => HAUPTINSTANZEN['notenbank']['sortieren'],
         );
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
-        if( array_key_exists( 'verzeichnis', $this->viewdata ) ) foreach( $this->viewdata['verzeichnis'] as $id => $verzeichnis ) $this->viewdata['verzeichnis'][ $id ]['id'] = $id;
+        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['id'] = $instanz;
+        if( array_key_exists( 'verzeichnis', $this->viewdata ) ) foreach( $this->viewdata['verzeichnis'] as $instanz => $verzeichnis ) $this->viewdata['verzeichnis'][ $instanz ]['id'] = $instanz;
         echo view( 'Notenbank/titel_details', $this->viewdata );
     }
 
@@ -85,7 +85,7 @@ class Notenbank extends BaseController {
     public function ajax_titel_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => EIGENSCHAFTEN['notenbank']['id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
+            'titel_id' => [ 'label' => EIGENSCHAFTEN['notenbank']['id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'titel' => [ 'label' => EIGENSCHAFTEN['notenbank']['titel']['beschriftung'], 'rules' => [ 'required' ] ],
             'titel_nr' => [ 'label' => EIGENSCHAFTEN['notenbank']['titel_nr']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'kategorie' => [ 'label' => EIGENSCHAFTEN['notenbank']['kategorie']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( VORGEGEBENE_WERTE['notenbank']['kategorie'] ) ).']' ] ],
@@ -96,8 +96,8 @@ class Notenbank extends BaseController {
         $validation_titel_nr_id = model(Titel_Model::class)->where( [ 'titel_nr' => $this->request->getPost()['titel_nr'] ] )->findColumn('id');
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'notenbank.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( ( !array_key_exists( 'id', $this->request->getPost() ) AND !is_null( $validation_titel_nr ) AND count( $validation_titel_nr ) > 0 )
-             OR ( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) AND !is_null( $validation_titel_nr_id ) AND !in_array( $this->request->getPost()['id'], $validation_titel_nr_id ) ) )
+        else if( ( !array_key_exists( 'titel_id', $this->request->getPost() ) AND !is_null( $validation_titel_nr ) AND count( $validation_titel_nr ) > 0 )
+             OR ( array_key_exists( 'titel_id', $this->request->getPost() ) AND !empty( $this->request->getPost()['titel_id'] ) AND !is_null( $validation_titel_nr_id ) AND !in_array( $this->request->getPost()['titel_id'], $validation_titel_nr_id ) ) )
                 $ajax_antwort['validation']['titel_nr'] = EIGENSCHAFTEN['notenbank']['titel_nr']['beschriftung'].' wird bereits verwendet.';
         else {
             $titel_Model = model(Titel_Model::class);
@@ -109,7 +109,7 @@ class Notenbank extends BaseController {
             if( array_key_exists( 'komponist', $this->request->getpost() ) AND !empty( $this->request->getpost()['komponist'] ) ) $titel['komponist'] = $this->request->getpost()['komponist']; else $titel['komponist'] = NULL;
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $titel['bemerkung'] = $this->request->getpost()['bemerkung']; else $titel['bemerkung'] = NULL;
 
-            if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $titel_Model->update( $this->request->getpost()['id'], $titel );
+            if( array_key_exists( 'titel_id', $this->request->getPost() ) AND !empty( $this->request->getPost()['titel_id'] ) ) $titel_Model->update( $this->request->getpost()['titel_id'], $titel );
             else {
                 $titel_Model->save( $titel );
                 $ajax_antwort['titel_id'] = (int)$titel_Model->getInsertID();
@@ -123,11 +123,11 @@ class Notenbank extends BaseController {
     public function ajax_titel_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => EIGENSCHAFTEN['notenbank']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'titel_id' => [ 'label' => EIGENSCHAFTEN['notenbank']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'notenbank.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else model(Titel_Model::class)->delete( $this->request->getPost()['id'] );
-        
+        else model(Titel_Model::class)->delete( $this->request->getPost()['titel_id'] );
+
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }
@@ -178,13 +178,13 @@ class Notenbank extends BaseController {
     public function ajax_setlisteneintrag_position_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => EIGENSCHAFTEN['notenbank_setliste']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'notenbank_setlisteneintrag_id' => [ 'label' => EIGENSCHAFTEN['notenbank_setliste']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'status' => [ 'label' => EIGENSCHAFTEN['notenbank_setliste']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'notenbank.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $setlisteneintrag_Model = model(Setlisteneintrag_Model::class);
-            $setlisteneintrag = $setlisteneintrag_Model->find( $this->request->getpost()['id'] );
+            $setlisteneintrag = $setlisteneintrag_Model->find( $this->request->getpost()['notenbank_setlisteneintrag_id'] );
             $alter_status = $setlisteneintrag['status'];
             $neuer_status = $this->request->getpost()['status'];
 

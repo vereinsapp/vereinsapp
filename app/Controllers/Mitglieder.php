@@ -24,7 +24,7 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
             $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', );
-            $this->viewdata['liste']['rechte_vergeben']['element_ids_disabled'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
+            $this->viewdata['liste']['rechte_vergeben']['disabled_ids'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
 
             $this->viewdata['werkzeugkasten']['rechte_vergeben'] = array(
                 'klasse_id' => 'btn_rechte_vergeben',
@@ -33,7 +33,7 @@ class Mitglieder extends BaseController {
 
         }
 
-        if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) {
+        if( auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
@@ -47,7 +47,7 @@ class Mitglieder extends BaseController {
 
         }
 
-        if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+        if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
 
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten'] = HAUPTINSTANZEN['kassenbuch'];
             unset($this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['werkzeugkasten']);
@@ -104,7 +104,7 @@ class Mitglieder extends BaseController {
 
         }
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
+        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['id'] = $instanz;
         echo view( 'Mitglieder/mitglieder', $this->viewdata );
     }
 
@@ -112,7 +112,7 @@ class Mitglieder extends BaseController {
     public function mitglied( $mitglied_id ) { $mitglied_id = (int)$mitglied_id;
       if( empty( model(Mitglied_Model::class)->find( $mitglied_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 
-        $this->viewdata['element_id'] = $mitglied_id;
+        $this->viewdata['mitglied_id'] = $mitglied_id;
 
         $this->viewdata['auswertungen']['rueckmeldungen_mitglied'] = array(
             'auswertungen' => 'termine_rueckmeldungen',
@@ -148,7 +148,7 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
             $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', 'mitglied_id' => $mitglied_id, );
-            $this->viewdata['liste']['rechte_vergeben']['element_ids_disabled'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
+            $this->viewdata['liste']['rechte_vergeben']['disabled_ids'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
 
             $this->viewdata['werkzeugkasten']['rechte_vergeben'] = array(
                 'klasse_id' => 'btn_rechte_vergeben',
@@ -157,7 +157,7 @@ class Mitglieder extends BaseController {
 
         }
 
-        if( array_key_exists( 'termine.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) {
+        if( auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
@@ -171,7 +171,7 @@ class Mitglieder extends BaseController {
 
         }
 
-        if( array_key_exists( 'strafkatalog.verwaltung', VERFUEGBARE_RECHTE ) AND auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+        if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
 
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten'] = HAUPTINSTANZEN['kassenbuch'];
             unset($this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['werkzeugkasten']);
@@ -231,15 +231,15 @@ class Mitglieder extends BaseController {
             'sortieren' => HAUPTINSTANZEN['mitglieder']['sortieren'],
         );
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $id => $liste ) $this->viewdata['liste'][ $id ]['id'] = $id;
-        if( array_key_exists( 'auswertungen', $this->viewdata ) ) foreach( $this->viewdata['auswertungen'] as $id => $auswertungen ) $this->viewdata['auswertungen'][ $id ]['id'] = $id;
+        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['id'] = $instanz;
+        if( array_key_exists( 'auswertungen', $this->viewdata ) ) foreach( $this->viewdata['auswertungen'] as $instanz => $auswertungen ) $this->viewdata['auswertungen'][ $instanz ]['id'] = $instanz;
         echo view( 'Mitglieder/mitglied_details', $this->viewdata );
     }
     //------------------------------------------------------------------------------------------------------------------
     public function ajax_mitglied_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
+            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'if_exist', 'is_natural_no_zero' ] ],
             'email' => [ 'label' => EIGENSCHAFTEN['mitglieder']['email']['beschriftung'], 'rules' => [ 'required', 'valid_email' ] ],
             'vorname' => [ 'label' => EIGENSCHAFTEN['mitglieder']['vorname']['beschriftung'], 'rules' => [ 'required' ] ],
             'nachname' => [ 'label' => EIGENSCHAFTEN['mitglieder']['nachname']['beschriftung'], 'rules' => [ 'required' ] ],
@@ -256,11 +256,11 @@ class Mitglieder extends BaseController {
         if( array_key_exists( 'aktiv_janein', EIGENSCHAFTEN['mitglieder'] ) ) $validation_rules['aktiv_janein'] = [ 'label' => EIGENSCHAFTEN['mitglieder']['aktiv_janein']['beschriftung'], 'rules' => [ 'required', 'in_list['.implode( ', ', array_keys( JANEIN ) ).']', ] ];
         if( array_key_exists( 'real_janein', EIGENSCHAFTEN['mitglieder'] ) ) $validation_rules['real_janein'] = [ 'label' => EIGENSCHAFTEN['mitglieder']['real_janein']['beschriftung'], 'rules' => [ 'if_exist', 'in_list['.implode( ', ', array_keys( JANEIN ) ).']', ] ];
 
-        if( array_key_exists( 'id', $this->request->getPost() ) AND !empty( $this->request->getPost()['id'] ) ) $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret,user_id,{id}]';
+        if( array_key_exists( 'mitglied_id', $this->request->getPost() ) AND !empty( $this->request->getPost()['mitglied_id'] ) ) $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret,user_id,{mitglied_id}]';
         else $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret]';
 
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->user()->can( 'mitglieder.verwaltung' ) AND !(!empty( $this->request->getPost()['id'] ) AND ICH['id'] == $this->request->getPost()['id'] ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( !auth()->user()->can( 'mitglieder.verwaltung' ) AND !(!empty( $this->request->getPost()['mitglied_id'] ) AND ICH['id'] == $this->request->getPost()['mitglied_id'] ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $mitglied_Model = model(Mitglied_Model::class);
             $mitglied = array(
@@ -281,8 +281,8 @@ class Mitglieder extends BaseController {
             if( array_key_exists( 'real_janein', EIGENSCHAFTEN['mitglieder'] ) AND array_key_exists( 'real_janein', $this->request->getpost() ) ) $mitglied['real_janein'] = $this->request->getpost()['real_janein'];
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $mitglied['bemerkung'] = $this->request->getpost()['bemerkung']; else $mitglied['bemerkung'] = NULL;
 
-            if( !empty( $this->request->getPost()['id'] ) ) {
-                $mitglied = $mitglied_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);
+            if( !empty( $this->request->getPost()['mitglied_id'] ) ) {
+                $mitglied = $mitglied_Model->findById( $this->request->getPost()['mitglied_id'] )->fill($mitglied);
                 $mitglied_Model->save( $mitglied );
             } else {
                 helper('text'); $mitglied['password'] = random_string('crypto', 20);
@@ -299,19 +299,19 @@ class Mitglieder extends BaseController {
     public function ajax_mitglied_passwort_aendern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'passwort_alt' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_alt']['beschriftung'], 'rules' => [ 'required' ] ],
             'passwort_neu' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu']['beschriftung'], 'rules' => [ 'required', 'strong_password' ] ],
             'passwort_neu2' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu2']['beschriftung'], 'rules' => [ 'required', 'matches[passwort_neu]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( $this->request->getPost()['id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( !auth()->check( array( 'email' => model(Mitglied_Model::class)->findById( $this->request->getPost()['id'] )->email, 'password' => $this->request->getpost()['passwort_alt'] ) )->isOK() ) $ajax_antwort['validation'] = array( 'passwort_alt' => 'Das alte Passwort ist nicht korrekt.' );
+        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( !auth()->check( array( 'email' => model(Mitglied_Model::class)->findById( $this->request->getPost()['mitglied_id'] )->email, 'password' => $this->request->getpost()['passwort_alt'] ) )->isOK() ) $ajax_antwort['validation'] = array( 'passwort_alt' => 'Das alte Passwort ist nicht korrekt.' );
         else {
             $mitglied_Model = model(Mitglied_Model::class);
             $mitglied = array(
                 'password' => $this->request->getpost()['passwort_neu'],
             );
-            $mitglied = $mitglied_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);
+            $mitglied = $mitglied_Model->findById( $this->request->getPost()['mitglied_id'] )->fill($mitglied);
             $mitglied_Model->save( $mitglied );
             
             $mitglied->undoForcePasswordReset();
@@ -324,17 +324,17 @@ class Mitglieder extends BaseController {
     public function ajax_mitglied_passwort_festlegen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'passwort_neu' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu']['beschriftung'], 'rules' => [ 'required', 'strong_password' ] ],
             'passwort_neu2' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu2']['beschriftung'], 'rules' => [ 'required', 'matches[passwort_neu]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( $this->request->getPost()['id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $mitglied_Model = model(Mitglied_Model::class);
             $mitglied = array(
                 'password' => $this->request->getpost()['passwort_neu'],
             );
-            $mitglied = $mitglied_Model->findById( $this->request->getPost()['id'] )->fill($mitglied);
+            $mitglied = $mitglied_Model->findById( $this->request->getPost()['mitglied_id'] )->fill($mitglied);
             $mitglied_Model->save( $mitglied );
 
             $mitglied->undoForcePasswordReset();
@@ -432,15 +432,15 @@ class Mitglieder extends BaseController {
     public function ajax_mitglied_einmal_link_erstellen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
             'email' => [ 'label' => EIGENSCHAFTEN['mitglieder']['email']['beschriftung'], 'rules' => [ 'if_exist', 'in_list[ true, false ]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( !setting('Auth.allowMagicLinkLogins') ) $ajax_antwort['validation'] = 'Einmal-Links sind nicht aktiviert!';
-        // else if( empty( $this->request->getPost()['id'] ) ) $ajax_antwort['validation'] = 'Mitglied nicht gefunden!';
+        // else if( empty( $this->request->getPost()['mitglied_id'] ) ) $ajax_antwort['validation'] = 'Mitglied nicht gefunden!';
         else {
             $mitglied_Model = model(Mitglied_Model::class);
-            $mitglied = $mitglied_Model->findById( $this->request->getPost()['id'] );
+            $mitglied = $mitglied_Model->findById( $this->request->getPost()['mitglied_id'] );
             if( $mitglied === NULL ) $ajax_antwort['validation'] = 'Mitglied nicht gefunden!';
             else {
                 $token = $this->einmal_link_token_generieren( $mitglied );
@@ -458,12 +458,11 @@ class Mitglieder extends BaseController {
     public function ajax_mitglied_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
         $validation_rules = array(
             'ajax_id' => 'required|is_natural',
-            'id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( $this->request->getPost()['id'] == ICH['id'] ) $ajax_antwort['validation'] = 'Du kannst dich nicht selbst löschen!';
-        else model(Mitglied_Model::class)->delete( $this->request->getPost()['id'], TRUE );
-
+        else if( $this->request->getPost()['mitglied_id'] == ICH['id'] ) $ajax_antwort['validation'] = 'Du kannst dich nicht selbst löschen!';
+        else model(Mitglied_Model::class)->delete( $this->request->getPost()['mitglied_id'], TRUE );
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }

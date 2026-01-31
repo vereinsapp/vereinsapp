@@ -1,7 +1,5 @@
 function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const auswertungen_instanz = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("id"), undefined);
-
-    // LISTE DEFINIEREN
     const liste = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-liste"), undefined);
 
     // GRUPPIEREN DEFINIEREN
@@ -15,7 +13,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
         LISTEN[liste].tabelle,
         Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_LocalStorage, liste),
-        liste
+        liste,
     );
 
     // GRUPPIEREN_WERTE UND ELEMENT_IDS DEFINIEREN
@@ -42,7 +40,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     });
     const andere_verknuepfte_element_id = Schnittstelle_VariableWertBereinigtZurueck(
         $auswertungen.attr("data-" + LISTEN[andere_verknuepfte_liste].element + "_id"),
-        undefined
+        undefined,
     );
 
     const auswertung_ids = new Array();
@@ -52,7 +50,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             "zugeordnete_" + LISTEN[auswertungen].element + "_ids",
             andere_verknuepfte_element_id,
             andere_verknuepfte_liste,
-            new Array()
+            new Array(),
         ),
         function (position, auswertung_id) {
             const element_id = Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined);
@@ -64,7 +62,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             } else {
                 /* auswertung_id existiert zwar, aber zugehörige element_id wird garnicht berücksichtigt */
             }
-        }
+        },
     );
 
     // AUSWERTUNGEN IM DOM LÖSCHEN
@@ -85,9 +83,9 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
 
         if (wert !== null) {
             $auswertung
-                .attr("data-auswertung_ids", JsonStringifiedZurueck(auswertung_ids_nach_wert[wert], new Array()))
+                .attr("data-" + LISTEN[auswertungen].element + "_ids", JsonStringifiedZurueck(auswertung_ids_nach_wert[wert], new Array()))
                 .attr("data-wert", wert)
-                .attr("data-element_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
+                .attr("data-" + LISTEN[liste].element + "_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
                 .attr("data-beschriftung", Liste_WertFormatiertZurueck(wert, gruppieren, liste));
 
             const ziel_id = zufaelligeZeichenketteZurueck(8);
@@ -96,9 +94,9 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
             $auswertung.find(".auswertung_collapse").attr("id", ziel_id);
         } else {
             $auswertung
-                .attr("data-auswertung_ids", JsonStringifiedZurueck(auswertung_ids, new Array()))
+                .attr("data-" + LISTEN[auswertungen].element + "_ids", JsonStringifiedZurueck(auswertung_ids, new Array()))
                 // .attr("data-wert", wert)
-                // .attr("data-element_ids", JsonStringifiedZurueck(element_ids, new Array()))
+                // .attr("data-" + LISTEN[liste].element + "_ids", JsonStringifiedZurueck(element_ids, new Array()))
                 .attr("data-beschriftung", "Gesamt");
 
             $auswertung.find(".auswertung_progress").remove();

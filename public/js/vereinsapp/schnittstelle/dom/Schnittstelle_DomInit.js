@@ -13,17 +13,17 @@ function Schnittstelle_DomInit() {
             const $blanko = $(this);
             // Wenn .blanko ein .modal ist
             if ($blanko.hasClass("modal")) {
-                const id = $blanko.attr("id");
-                if (!(id in MODALS)) {
-                    MODALS[id] = $blanko;
-                    if (MODALS[id].hasClass("autoload")) autoload.push(id);
+                const modal_id = $blanko.attr("id");
+                if (!(modal_id in MODALS)) {
+                    MODALS[modal_id] = $blanko;
+                    if (MODALS[modal_id].hasClass("autoload")) autoload.push(modal_id);
                 }
             }
             // Wenn .blanko ein .toast ist
             else if ($blanko.hasClass("toast") && !("$blanko_toast" in TOASTS)) TOASTS.$blanko_toast = $blanko;
             // Wenn .blanko ein .element ist
             else if ($blanko.hasClass("element")) {
-                const $liste = $blanko.closest(".liste[id]");
+                const $liste = $blanko.closest(".liste[id][data-liste]");
                 const instanz = $liste.attr("id");
                 const liste = $liste.attr("data-liste");
                 if (liste in LISTEN && instanz in LISTEN[liste].instanz && !("$blanko_element" in LISTEN[liste].instanz[instanz])) {
@@ -32,9 +32,9 @@ function Schnittstelle_DomInit() {
             }
             // Wenn .blanko eine .auswertung ist
             else if ($blanko.hasClass("auswertung")) {
-                const $auswertungen = $blanko.closest(".auswertungen[data-auswertungen][id]");
-                const auswertungen = $auswertungen.attr("data-auswertungen");
+                const $auswertungen = $blanko.closest(".auswertungen[id][data-auswertungen]");
                 const instanz = $auswertungen.attr("id");
+                const auswertungen = $auswertungen.attr("data-auswertungen");
                 if (
                     auswertungen in LISTEN &&
                     instanz in LISTEN[auswertungen].instanz &&
@@ -44,17 +44,17 @@ function Schnittstelle_DomInit() {
             }
             // Wenn .blanko ein .unterverzeichnis ist
             else if ($blanko.hasClass("unterverzeichnis")) {
-                const $verzeichnis = $blanko.closest(".verzeichnis[data-liste][id]");
-                const liste = $verzeichnis.attr("data-liste");
+                const $verzeichnis = $blanko.closest(".verzeichnis[id][data-liste]");
                 const instanz = $verzeichnis.attr("id");
+                const liste = $verzeichnis.attr("data-liste");
                 if (liste in LISTEN && instanz in LISTEN[liste].verzeichnis && !("$blanko_unterverzeichnis" in LISTEN[liste].verzeichnis[instanz]))
                     LISTEN[liste].verzeichnis[instanz].$blanko_unterverzeichnis = $blanko;
             }
             // Wenn .blanko eine .datei ist
             else if ($blanko.hasClass("datei")) {
-                const $verzeichnis = $blanko.closest(".verzeichnis[data-liste][id]");
-                const liste = $verzeichnis.attr("data-liste");
+                const $verzeichnis = $blanko.closest(".verzeichnis[id][data-liste]");
                 const instanz = $verzeichnis.attr("id");
+                const liste = $verzeichnis.attr("data-liste");
                 if (liste in LISTEN && instanz in LISTEN[liste].verzeichnis && !("$blanko_datei" in LISTEN[liste].verzeichnis[instanz]))
                     LISTEN[liste].verzeichnis[instanz].$blanko_datei = $blanko;
             }
@@ -77,13 +77,15 @@ function Schnittstelle_DomInit() {
         Schnittstelle_DomModalOeffnen($modal);
 
         const $formular = $modal.find(".formular");
-        if ($formular.exists())
+        if ($formular.exists()) {
+            const liste = Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-liste"), undefined);
             Liste_ElementFormularInitialisieren(
                 $formular,
                 Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-aktion"), undefined),
-                Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-element_id"), undefined),
-                Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-liste"), undefined)
+                Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-" + LISTEN[liste].element + "_id"), undefined),
+                liste,
             );
+        }
     });
 
     $(document).ajaxStart(function () {
@@ -117,13 +119,15 @@ function Schnittstelle_DomInit() {
     $(document).on("show.bs.offcanvas", "#werkzeugkasten", function (event) {
         const $werkzeuge = $(this).find(".werkzeug");
         const $werkzeugkasten_handle = $(event.relatedTarget);
-        const liste = $werkzeugkasten_handle.attr("data-liste");
-        const element_id = $werkzeugkasten_handle.attr("data-element_id");
 
-        if (typeof liste !== "undefined") $werkzeuge.attr("data-liste", liste);
-        else $werkzeuge.removeAttr("data-liste");
-        if (typeof element_id !== "undefined") $werkzeuge.attr("data-element_id", element_id);
-        else $werkzeuge.removeAttr("data-element_id");
+        const liste = $werkzeugkasten_handle.attr("data-liste");
+        if (typeof liste !== "undefined") {
+            $werkzeuge.attr("data-liste", liste);
+
+            const element_id = $werkzeugkasten_handle.attr("data-" + LISTEN[liste].element + "_id");
+            if (typeof element_id !== "undefined") $werkzeuge.attr("data-" + LISTEN[liste].element + "_id", element_id);
+            else $werkzeuge.removeAttr("data-" + LISTEN[liste].element + "_id");
+        } else $werkzeuge.removeAttr("data-liste");
     });
 
     $(document).on("hidden.bs.modal", ".modal", function () {

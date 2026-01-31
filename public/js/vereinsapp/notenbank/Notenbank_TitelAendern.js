@@ -14,7 +14,7 @@ function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
         if (!("komponist" in data)) data.komponist = Schnittstelle_VariableRausZurueck("komponist", titel_id, "notenbank", null);
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", titel_id, "notenbank", null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
-        ajax_data.id = titel_id;
+        ajax_data.titel_id = titel_id;
         if (isEmptyString(ajax_data.komponist)) ajax_data.komponist = null;
         if (isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
@@ -23,9 +23,11 @@ function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                const titel_id = AJAX.data.id;
+                const titel_id = AJAX.data.titel_id;
+                delete AJAX.data.titel_id;
+
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, titel_id, "notenbank");
+                    Schnittstelle_VariableRein(wert, eigenschaft, titel_id, "notenbank");
                 });
 
                 Schnittstelle_EventVariableUpdLocalstorage("notenbank");
@@ -44,10 +46,10 @@ function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data.id, "notenbank") + " konnte nicht gespeichert werden.",
-                    "danger"
+                    Liste_ElementBeschriftungZurueck(AJAX.data.titel_id, "notenbank") + " konnte nicht gespeichert werden.",
+                    "danger",
                 );
-            }
+            },
         );
     }
 }

@@ -27,7 +27,7 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
             data.oeffentlich_janein = Number(Schnittstelle_VariableRausZurueck("oeffentlich_janein", termin_id, "termine", undefined));
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", termin_id, "termine", null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
-        ajax_data.id = termin_id;
+        ajax_data.termin_id = termin_id;
         if (isLuxonDateTime(ajax_data.start)) ajax_data.start = ajax_data.start.toISO();
         if (isLuxonDateTime(ajax_data.ende)) ajax_data.ende = ajax_data.ende.toISO();
         else ajax_data.ende = ajax_data.start;
@@ -39,9 +39,11 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                const termin_id = AJAX.data.id;
+                const termin_id = AJAX.data.termin_id;
+                delete AJAX.data.termin_id;
+
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME) Schnittstelle_VariableRein(wert, eigenschaft, termin_id, "termine");
+                    Schnittstelle_VariableRein(wert, eigenschaft, termin_id, "termine");
                 });
 
                 Schnittstelle_EventVariableUpdLocalstorage("termine");
@@ -60,10 +62,10 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data.id, "termine") + " konnte nicht gespeichert werden.",
-                    "danger"
+                    Liste_ElementBeschriftungZurueck(AJAX.data.termin_id, "termine") + " konnte nicht gespeichert werden.",
+                    "danger",
                 );
-            }
+            },
         );
     }
 }

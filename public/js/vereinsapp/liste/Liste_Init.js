@@ -5,8 +5,11 @@ function Liste_Init() {
     $.each(LISTEN, function (liste) {
         LISTEN[liste].instanz = new Object();
         $('.liste[data-liste="' + liste + '"]').each(function () {
-            const instanz = $(this).attr("id");
-            LISTEN[liste].instanz[instanz] = { filtern: new Object(), sortieren: undefined, gruppieren: undefined };
+            LISTEN[liste].instanz[Schnittstelle_VariableWertBereinigtZurueck($(this).attr("id"), undefined)] = {
+                filtern: new Object(),
+                sortieren: undefined,
+                gruppieren: undefined,
+            };
         });
     });
 
@@ -30,25 +33,27 @@ function Liste_Init() {
 
     // BEMERKUNG AENDERN
     $(document).on("click", ".btn_element_bemerkung_aendern", function () {
+        const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"));
         Liste_ElementBemerkungAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-ziel_id")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"))
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id")),
+            liste,
         );
     });
 
     // ELEMENT LÖSCHEN
     $(document).on("click", ".btn_element_loeschen", function () {
+        const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"));
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigung_einfordern"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal") },
             { weiterleiten: $(this).attr("data-weiterleiten") },
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-element_id")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"))
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id")),
+            liste,
         );
     });
 

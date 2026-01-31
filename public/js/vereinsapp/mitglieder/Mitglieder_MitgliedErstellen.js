@@ -16,13 +16,14 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitgli
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                if (typeof AJAX.antwort.mitglied_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.mitglied_id);
-                else AJAX.data.id = LISTEN["mitglieder"].tabelle.length + 1;
-                const mitglied_id = AJAX.data.id;
+                if (typeof AJAX.antwort.mitglied_id !== "undefined") AJAX.data.mitglied_id = Number(AJAX.antwort.mitglied_id);
+                else AJAX.data.mitglied_id = LISTEN["mitglieder"].tabelle.length + 1;
+                const mitglied_id = AJAX.data.mitglied_id;
+                delete AJAX.data.mitglied_id;
 
+                Schnittstelle_VariableRein(mitglied_id, "id", mitglied_id, "mitglieder");
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
-                        Schnittstelle_VariableRein(wert, eigenschaft, mitglied_id, "mitglieder");
+                    Schnittstelle_VariableRein(wert, eigenschaft, mitglied_id, "mitglieder");
                 });
 
                 Schnittstelle_EventVariableUpdLocalstorage("mitglieder");
@@ -38,7 +39,7 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitgli
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-            }
+            },
         );
     }
 }

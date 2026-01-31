@@ -78,13 +78,13 @@ abstract class BaseController extends Controller
 
         if( str_contains( strtolower( (string) $this->request->getUserAgent() ), "whatsapp" ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 
-        $verfuegbare_rechte = array(); $id = 1;
+        $verfuegbare_rechte = array(); $verfuegbares_recht_id = 1;
         foreach( config('AuthGroups')->permissions as $permission => $titel ) if( strtok( $permission, '.' ) == "global" OR array_key_exists( strtok( $permission, '.' ), CONTROLLERS ) ) {
-            $verfuegbares_recht['id'] = $id;
+            $verfuegbares_recht['id'] = $verfuegbares_recht_id;
             $verfuegbares_recht['permission'] = $permission;
             $verfuegbares_recht['titel'] = $titel;
             $verfuegbare_rechte[$permission] = $verfuegbares_recht;
-            $id++;
+            $verfuegbares_recht_id++;
         }
         defined('VERFUEGBARE_RECHTE') OR define( 'VERFUEGBARE_RECHTE', $verfuegbare_rechte );
 

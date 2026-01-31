@@ -6,7 +6,7 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
             "Willst du wirklich " + Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") + " einen Einmal-Link per Email zuschicken?",
             title,
             "btn_mitglied_einmal_link_email",
-            { liste: "mitglieder", element_id: mitglied_id }
+            { liste: "mitglieder", mitglied_id: mitglied_id },
         );
     else if (formular_oeffnen) {
         const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "mitglieder_einmal_link_anzeigen");
@@ -15,7 +15,7 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
     } else {
         const ajax_dom = dom;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
-        ajax_data.id = mitglied_id;
+        ajax_data.mitglied_id = mitglied_id;
 
         Schnittstelle_AjaxInDieSchlange(
             "mitglieder/ajax_mitglied_einmal_link_erstellen",
@@ -33,8 +33,8 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
                         Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
                         Schnittstelle_DomToastFeuern(
                             "Einmal-Link für " +
-                                Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") +
-                                " wurde erfolgreich per Email zugeschickt."
+                                Liste_ElementBeschriftungZurueck(AJAX.data.mitglied_id, "mitglieder") +
+                                " wurde erfolgreich per Email zugeschickt.",
                         );
                     }
                 } else {
@@ -48,16 +48,16 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
                 if (AJAX.data.email)
                     Schnittstelle_DomToastFeuern(
                         "Einmal-Link für " +
-                            Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") +
+                            Liste_ElementBeschriftungZurueck(AJAX.data.mitglied_id, "mitglieder") +
                             " konnte nicht per Email zugeschickt werden.",
-                        "danger"
+                        "danger",
                     );
                 else
                     Schnittstelle_DomToastFeuern(
-                        "Einmal-Link für " + Liste_ElementBeschriftungZurueck(AJAX.data.id, "mitglieder") + " konnte nicht erstellt werden.",
-                        "danger"
+                        "Einmal-Link für " + Liste_ElementBeschriftungZurueck(AJAX.data.mitglied_id, "mitglieder") + " konnte nicht erstellt werden.",
+                        "danger",
                     );
-            }
+            },
         );
     }
 }

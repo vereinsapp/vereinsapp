@@ -9,7 +9,7 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
     const ajax_dom = dom;
     const ajax_data = new Object();
     ajax_data.verknuepfungen = verknuepfungen;
-    ajax_data.id = verknuepfung_id;
+    ajax_data[LISTEN[verknuepfungen].element + "_id"] = verknuepfung_id;
     ajax_data.status = status;
 
     Schnittstelle_AjaxInDieSchlange(
@@ -18,10 +18,12 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
         ajax_dom,
         function (AJAX) {
             const verknuepfungen = AJAX.data.verknuepfungen;
-            const verknuepfung_id = AJAX.data.id;
+            delete AJAX.data.verknuepfungen;
+            const verknuepfung_id = AJAX.data[LISTEN[verknuepfungen].element + "_id"];
+            delete AJAX.data[LISTEN[verknuepfungen].element + "_id"];
+
             $.each(AJAX.data, function (eigenschaft, wert) {
-                if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME && eigenschaft != "verknuepfungen")
-                    Schnittstelle_VariableRein(wert, eigenschaft, verknuepfung_id, verknuepfungen);
+                Schnittstelle_VariableRein(wert, eigenschaft, verknuepfung_id, verknuepfungen);
             });
 
             if ("dbdata" in AJAX.antwort && isArray(AJAX.antwort.dbdata))
@@ -40,15 +42,19 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
 
             if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                 Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
-                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(verknuepfung_id, verknuepfungen) + " wurde erfolgreich geändert.");
+                Schnittstelle_DomToastFeuern(
+                    Liste_ElementBeschriftungZurueck(AJAX.data[LISTEN[verknuepfungen].element + "_id"], verknuepfungen) +
+                        " wurde erfolgreich geändert.",
+                );
             }
         },
         function (AJAX) {
             if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
             Schnittstelle_DomToastFeuern(
-                Liste_ElementBeschriftungZurueck(AJAX.data.id, AJAX.data.verknuepfungen) + " konnte nicht gespeichert werden.",
-                "danger"
+                Liste_ElementBeschriftungZurueck(AJAX.data[LISTEN[AJAX.data.verknuepfungen].element + "_id"], AJAX.data.verknuepfungen) +
+                    " konnte nicht gespeichert werden.",
+                "danger",
             );
-        }
+        },
     );
 }

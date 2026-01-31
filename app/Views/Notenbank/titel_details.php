@@ -2,7 +2,7 @@
 <?= $this->section( 'navbar' ); ?><?= view( 'Templates/navbar_int' ); ?><?= $this->endSection(); ?>
 <?= $this->section( 'containers' ); ?>
 
-<div class="container mb-3 element" data-liste="notenbank" data-element_id="<?= $element_id; ?>">
+<div class="container mb-3 element" data-liste="notenbank" data-titel_id="<?= $titel_id; ?>">
 <?= view( 'Templates/Liste/element_navigation', array( 'element_navigation' => $element_navigation ) ); ?>
     <div class="text-center">
         <span class="eigenschaft" data-eigenschaft="titel_nr"></span>
@@ -29,5 +29,5 @@
     view( 'Notenbank/titel_basiseigenschaften_formular' ) ) ) ) ); ?>
 
 <?php if( isset( $werkzeugkasten ) AND is_array( $werkzeugkasten ) AND count( $werkzeugkasten ) > 0 ) echo
-    view( 'Templates/werkzeugkasten_handle', array( 'liste' => 'notenbank', 'element_id' => $element_id ) ); ?>
+    view( 'Templates/werkzeugkasten_handle', array( 'werkzeugkasten_handle' => array( 'liste' => 'notenbank', 'titel_id' => $titel_id ) ) ); ?>
 <?= $this->endSection() ?>

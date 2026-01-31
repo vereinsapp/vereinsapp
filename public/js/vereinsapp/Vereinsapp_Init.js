@@ -34,13 +34,15 @@ $(document).ready(function () {
     }
 
     // FORMULARE OHNE MODAL (DIREKT IM DOM) INITIALISIEREN, BSPW. MIT WERTEN BEFÜLLEN
-    $(".formular").each(function () {
-        const $formular = $(this);
-        const liste = $formular.attr("data-liste");
-        const aktion = $formular.attr("data-aktion");
-        let element_id = $formular.attr("data-element_id");
-        if (typeof element_id !== "undefined") element_id = Number(element_id);
-        if (typeof liste !== "undefined") Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste);
+    $(".formular[data-liste]").each(function () {
+        const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined);
+
+        Liste_ElementFormularInitialisieren(
+            $(this),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aktion"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id"), undefined),
+            liste,
+        );
     });
 
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
@@ -88,10 +90,20 @@ Braucht es formular_beschriftung und beschriftung-span für Formulare (bspw in m
 Zusatzsymbol rechts und links einführen
 Neue bootstrap icons Version einführen (unlock2 statt lock)
 Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details)
+Alles mit ...Aktualisieren und ...Initialisieren mit $... im Funktionsnamen ergänzen und lediglich $... als Parameter übergeben
+WERKZEUGKASTEN AKTUALISIEREN mit $ziel statt mit element_id
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
 Bugfix "Es wurde versucht, die Eigenschaft undefined zu aktualisieren, die nicht existiert in FILTERBARE_EIGENSCHAFTEN."
 kassenbucheintrag.mitglied loswerden
 Auswahl überarbeiten?
-data-element_id (vorausgesetzt, dass überall auch data-liste gesetzt ist) und letzte gegen-Identifier loswerden
+werkzeugkasten_handle als ganz normales Zusätzsymbol in der Liste umbauen (und folglich bspw. für Termine in der Termin-Übersicht andere Zusatzsymbole bspw. für Anwesenheiten dokumentieren einführen)
+auswertungen ersetzen durch verknuepfungen Auswertungen (allgemein Fokus mehr auf die Liste setzen?)
+LINK AKTUALISIEREN in eigene Funktion verschieben
+VORSCHAU-EIGENSCHAFT UND ZUGEHÖRIGEN SPACER IN DER VORSCHAU AUSBLENDEN in eigene Funktion verschieben
+Braucht es wirklich .formular_beschriftung in Formularen?
+mitglied_id in kassenbucheintrag als verknuepfung?
+id in liste, auswertung und verzeichnis umbenennen in instanz
+LISTEN[" vereinheitlichen in LISTEN.
+ICH["id"] / ICH['id'] / ICH.id vereinheitlichen zu ich_id
 
 */

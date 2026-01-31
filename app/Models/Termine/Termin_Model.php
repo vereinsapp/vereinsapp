@@ -30,36 +30,36 @@ class Termin_Model extends Model {
     protected $useSoftDeletes = TRUE;
     protected $afterDelete = [ 'softDeleteRueckmeldung', 'softDeleteAnwesenheit', 'softDeleteZuordnungTermine', 'softDeleteSetlisteneintrag' ];
 
-    protected function softDeleteRueckmeldung(array $data) {
-        $ids = $data['id'] ?? $data['ids'] ?? null;
+    protected function softDeleteRueckmeldung(array $element) {
+        $element_ids = $element['id'] ?? $element['ids'] ?? null;
 
-        if ($ids) model(Rueckmeldung_Model::class)->whereIn('termin_id', (array)$ids)->delete();
+        if ($element_ids) model(Rueckmeldung_Model::class)->whereIn('termin_id', (array)$element_ids)->delete();
 
-        return $data;
+        return $element;
     }
 
-    protected function softDeleteAnwesenheit(array $data) {
-        $ids = $data['id'] ?? $data['ids'] ?? null;
+    protected function softDeleteAnwesenheit(array $element) {
+        $element_ids = $element['id'] ?? $element['ids'] ?? null;
 
-        if ($ids) model(Anwesenheit_Model::class)->whereIn('termin_id', (array)$ids)->delete();
+        if ($element_ids) model(Anwesenheit_Model::class)->whereIn('termin_id', (array)$element_ids)->delete();
 
-        return $data;
+        return $element;
     }
 
-    protected function softDeleteZuordnungTermine(array $data) {
-        $ids = $data['id'] ?? $data['ids'] ?? null;
+    protected function softDeleteZuordnungTermine(array $element) {
+        $element_ids = $element['id'] ?? $element['ids'] ?? null;
 
-        if ($ids) model(Zuordnung_Termine_Model::class)->whereIn('termin_id', (array)$ids)->delete();
+        if ($element_ids) model(Zuordnung_Termine_Model::class)->whereIn('termin_id', (array)$element_ids)->delete();
 
-        return $data;
+        return $element;
     }
 
-    protected function softDeleteSetlisteneintrag(array $data) {
-        $ids = $data['id'] ?? $data['ids'] ?? null;
+    protected function softDeleteSetlisteneintrag(array $element) {
+        $element_ids = $element['id'] ?? $element['ids'] ?? null;
 
-        if ($ids) model(Setlisteneintrag_Model::class)->whereIn('termin_id', (array)$ids)->delete();
+        if ($element_ids) model(Setlisteneintrag_Model::class)->whereIn('termin_id', (array)$element_ids)->delete();
 
-        return $data;
+        return $element;
     }
 
     public function termine_tabelle() {

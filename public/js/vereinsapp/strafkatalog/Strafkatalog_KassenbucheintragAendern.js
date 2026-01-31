@@ -15,7 +15,7 @@ function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, dom, data, titl
         if (!("erledigt" in data)) data.erledigt = Schnittstelle_VariableRausZurueck("erledigt", kassenbucheintrag_id, "kassenbuch", null);
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", kassenbucheintrag_id, "kassenbuch", null);
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
-        ajax_data.id = kassenbucheintrag_id;
+        ajax_data.kassenbucheintrag_id = kassenbucheintrag_id;
         if (!isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = null;
         else ajax_data.erledigt = ajax_data.erledigt.toISO();
         if (isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
@@ -25,10 +25,11 @@ function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, dom, data, titl
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                const kassenbucheintrag_id = AJAX.data.id;
+                const kassenbucheintrag_id = AJAX.data.kassenbucheintrag_id;
+                delete AJAX.data.kassenbucheintrag_id;
+
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
-                        Schnittstelle_VariableRein(wert, eigenschaft, kassenbucheintrag_id, "kassenbuch");
+                    Schnittstelle_VariableRein(wert, eigenschaft, kassenbucheintrag_id, "kassenbuch");
                 });
 
                 Schnittstelle_EventVariableUpdLocalstorage("kassenbuch");
@@ -40,7 +41,7 @@ function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, dom, data, titl
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                     Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
                     Schnittstelle_DomToastFeuern(
-                        Liste_ElementBeschriftungZurueck(kassenbucheintrag_id, "kassenbuch") + " wurde erfolgreich geändert."
+                        Liste_ElementBeschriftungZurueck(kassenbucheintrag_id, "kassenbuch") + " wurde erfolgreich geändert.",
                     );
                 }
             },
@@ -49,10 +50,10 @@ function Strafkatalog_KassenbucheintragAendern(formular_oeffnen, dom, data, titl
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data.id, "kassenbuch") + " konnte nicht gespeichert werden.",
-                    "danger"
+                    Liste_ElementBeschriftungZurueck(AJAX.data.kassenbucheintrag_id, "kassenbuch") + " konnte nicht gespeichert werden.",
+                    "danger",
                 );
-            }
+            },
         );
     }
 }

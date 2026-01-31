@@ -15,19 +15,20 @@ function Strafkatalog_StrafeErstellen(formular_oeffnen, dom, data, title, strafe
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                if (typeof AJAX.antwort.strafe_id !== "undefined") AJAX.data.id = Number(AJAX.antwort.strafe_id);
-                else AJAX.data.id = LISTEN["strafkatalog"].tabelle.length + 1;
-                const strafe_id = AJAX.data.id;
+                if (typeof AJAX.antwort.strafe_id !== "undefined") AJAX.data.strafe_id = Number(AJAX.antwort.strafe_id);
+                else AJAX.data.strafe_id = LISTEN["strafkatalog"].tabelle.length + 1;
+                const strafe_id = AJAX.data.strafe_id;
+                delete AJAX.data.strafe_id;
 
+                Schnittstelle_VariableRein(strafe_id, "id", strafe_id, "strafkatalog");
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    if (eigenschaft != "ajax_id" && eigenschaft != CSRF_NAME)
-                        Schnittstelle_VariableRein(wert, eigenschaft, strafe_id, "strafkatalog");
+                    Schnittstelle_VariableRein(wert, eigenschaft, strafe_id, "strafkatalog");
                 });
 
                 Schnittstelle_EventVariableUpdLocalstorage("strafkatalog");
                 Schnittstelle_EventLocalstorageUpdVariable("strafkatalog");
                 // Schnittstelle_VariableElementZuordnen("strafkatalog");
-                // Schnittstelle_VariableElementErgaenzen("strafkatalog");
+                Schnittstelle_VariableElementErgaenzen("strafkatalog");
                 Schnittstelle_EventVariableUpdDom("strafkatalog");
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
@@ -37,7 +38,7 @@ function Strafkatalog_StrafeErstellen(formular_oeffnen, dom, data, title, strafe
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-            }
+            },
         );
     }
 }

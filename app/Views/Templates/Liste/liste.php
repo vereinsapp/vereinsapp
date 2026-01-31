@@ -26,7 +26,7 @@ if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; 
 if( array_key_exists( 'filtern', $liste ) ) { ?> data-filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 foreach( ELEMENTE as $element => $eigenschaften ) if( array_key_exists( $element.'_id', $liste ) ) { ?> data-<?= $element; ?>_id="<?= $liste[ $element.'_id' ]; ?>"<?php } // aktuell nur für einstellungen()
-if( array_key_exists( 'element_ids_disabled', $liste ) ) { ?> data-element_ids_disabled='<?= json_encode( $liste['element_ids_disabled'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
+if( array_key_exists( 'disabled_ids', $liste ) ) { ?> data-disabled_ids='<?= json_encode( $liste['disabled_ids'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-eigenschaften_bedingt_formatiert='<?= json_encode( $liste['eigenschaften_bedingt_formatiert'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 ?>>
 

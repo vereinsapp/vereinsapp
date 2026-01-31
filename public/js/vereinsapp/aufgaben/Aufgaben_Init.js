@@ -82,7 +82,7 @@ ELEMENTE.aufgaben_zuordnung_termine.ergaenzen_aktion = function (zuordnung) {
             "max_anzahl_mitglieder",
             zuordnung.aufgabe_id,
             "aufgaben",
-            undefined
+            undefined,
         );
     if ("termin_id" in zuordnung) zuordnung.termin_titel = Schnittstelle_VariableRausZurueck("titel", zuordnung.termin_id, "termine", undefined);
     if ("termin_id" in zuordnung) zuordnung.termin_start = Schnittstelle_VariableRausZurueck("start", zuordnung.termin_id, "termine", undefined);
@@ -98,8 +98,8 @@ function Aufgaben_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            undefined
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            undefined,
         );
     });
 
@@ -109,8 +109,8 @@ function Aufgaben_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
         );
     });
 
@@ -120,8 +120,8 @@ function Aufgaben_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
         );
     });
 
@@ -130,9 +130,12 @@ function Aufgaben_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "aufgaben_rueckmeldungen_verwalten_modal",
             "aufgaben_rueckmeldungen_verwalten",
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            "aufgaben"
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            {
+                aufgabe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+            },
+            "aufgaben_rueckmeldungen",
         );
     });
 
@@ -145,7 +148,7 @@ function Aufgaben_Init() {
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
                 status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-status"), undefined),
             },
-            "aufgaben_rueckmeldungen"
+            "aufgaben_rueckmeldungen",
         );
     });
 
@@ -154,9 +157,12 @@ function Aufgaben_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "termine_aufgaben_zuordnen_modal",
             "termine_aufgaben_zuordnen",
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            "termine"
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            {
+                aufgabe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
+            },
+            "aufgaben_zuordnungen_termine",
         );
     });
 
@@ -169,7 +175,7 @@ function Aufgaben_Init() {
                 termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
                 status: Number($(this).is(":checked")),
             },
-            "aufgaben_zuordnungen_termine"
+            "aufgaben_zuordnungen_termine",
         );
     });
 }

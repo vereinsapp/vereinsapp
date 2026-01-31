@@ -55,7 +55,7 @@ ELEMENTE.vergebenes_recht.ergaenzen_aktion = function (vergebenes_recht) {
             "titel",
             vergebenes_recht.verfuegbares_recht_id,
             "verfuegbare_rechte",
-            undefined
+            undefined,
         );
     if ("mitglied_id" in vergebenes_recht)
         vergebenes_recht.mitglied_vorname = Schnittstelle_VariableRausZurueck("vorname", vergebenes_recht.mitglied_id, "mitglieder", undefined);
@@ -70,8 +70,8 @@ function Mitglieder_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            undefined
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            undefined,
         );
     });
 
@@ -81,8 +81,8 @@ function Mitglieder_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
         );
     });
 
@@ -92,8 +92,8 @@ function Mitglieder_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
         );
     });
 
@@ -102,7 +102,7 @@ function Mitglieder_Init() {
         Mitglieder_PasswortAendern(
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
         );
     });
 
@@ -111,7 +111,7 @@ function Mitglieder_Init() {
         Mitglieder_PasswortFestlegen(
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
         );
     });
 
@@ -120,9 +120,12 @@ function Mitglieder_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "rechte_vergeben_modal",
             "rechte_vergeben",
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id"),
-            "mitglieder"
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            {
+                verfuegbares_recht_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-verfuegbares_recht_id"), undefined),
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+            },
+            "vergebene_rechte",
         );
     });
 
@@ -135,7 +138,7 @@ function Mitglieder_Init() {
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
                 status: Number($(this).is(":checked")),
             },
-            "vergebene_rechte"
+            "vergebene_rechte",
         );
     });
 
@@ -150,8 +153,8 @@ function Mitglieder_Init() {
                 $formular: $(this).closest(".formular"),
             },
             new Object(),
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
         );
     });
 
@@ -162,8 +165,8 @@ function Mitglieder_Init() {
             $(this).hasClass("bestaetigung_einfordern"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal") },
             { email: true },
-            $(this).attr("data-title"),
-            $(this).attr("data-element_id")
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
         );
     });
 }

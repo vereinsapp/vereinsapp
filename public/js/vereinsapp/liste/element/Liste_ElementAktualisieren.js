@@ -1,5 +1,5 @@
 function Liste_ElementAktualisieren($element, liste) {
-    const element_id = Number($element.attr("data-element_id"));
+    const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-" + LISTEN[liste].element + "_id"), undefined);
 
     // EIGENSCHAFTEN AKTUALISIEREN
     $element.find(".eigenschaft").each(function () {
@@ -7,12 +7,12 @@ function Liste_ElementAktualisieren($element, liste) {
         const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($eigenschaft.attr("data-eigenschaft"), undefined);
 
         $eigenschaft.html(
-            Liste_WertFormatiertZurueck(Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, undefined), eigenschaft, liste)
+            Liste_WertFormatiertZurueck(Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, undefined), eigenschaft, liste),
         );
 
         const eigenschaften_bedingt_formatiert = Schnittstelle_VariableWertBereinigtZurueck(
             $element.attr("data-eigenschaften_bedingt_formatiert"),
-            new Object()
+            new Object(),
         );
         if (isObject(eigenschaften_bedingt_formatiert) && eigenschaft in eigenschaften_bedingt_formatiert)
             $.each(eigenschaften_bedingt_formatiert[eigenschaft], function (klasse, filtern) {
@@ -40,15 +40,20 @@ function Liste_ElementAktualisieren($element, liste) {
     // LINK AKTUALISIEREN
     const $link = $element.find("a.stretched-link");
     const link_data = Schnittstelle_VariableWertBereinigtZurueck($link.attr("data-link"), new Object());
-    let parameter = "";
-    if ("eigenschaften" in link_data)
+    let href = SITE_URL;
+    if ("liste" in link_data) href += LISTEN[link_data.liste].controller;
+    else href += LISTEN[liste].controller;
+    if ("eigenschaften" in link_data && isArray(link_data.eigenschaften))
         $.each(link_data.eigenschaften, function (position, eigenschaft) {
-            parameter += "/" + Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, undefined);
+            href += "/" + Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, undefined);
         });
-    if ("liste" in link_data) $link.attr("href", SITE_URL + LISTEN[link_data.liste].controller + parameter);
+    $link.attr("href", href);
 
     // WERKZEUGKASTEN AKTUALISIEREN
-    $element.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-liste", liste).attr("data-element_id", element_id);
+    $element
+        .find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]')
+        .attr("data-liste", liste)
+        .attr("data-" + LISTEN[liste].element + "_id", element_id);
 
     // ZUSATZSYMBOL AKTUALISIEREN
     $element.find(".zusatzsymbol").each(function () {
