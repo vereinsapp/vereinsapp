@@ -6,7 +6,7 @@ $(document).ready(function () {
     Liste_Init();
     Schnittstelle_DomInit(); // initialisiert auch STATUS_SPINNER_CLASS, STATUS_SPINNER_HTML, TOASTS und MODALS
 
-    if (LOGGEDIN) {
+    if (ICH_ID !== null) {
         Mitglieder_Init();
         Aufgaben_Init();
         Termine_Init();
@@ -82,28 +82,24 @@ Wartungsarbeiten per Filter handlen
 ics_export: muss sichergestellt sein, dass der Termin mindestens 24 Stunden in der Zukunft liegt?
 Besseres Symbol für _eigenschaft_loeschen und _eigenschaft_loeschen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
 _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt
-eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
-Lässt sich filtern/sortieren/gruppieren_localstorage_speichern entfernen mittels $ziel?
-ziel_id nur setzen, wenn noch keine id vorhanden ist (sonst die existierende id nehmen) -> eigene Funktion einführen?
-Braucht es formular_beschriftung und beschriftung-span für Formulare (bspw in mitglied_einmal_link_anzeigen_formular.php)?
 .btn in .formular mit ENTER betätigbar machen
 Zusatzsymbol rechts und links einführen
 Neue bootstrap icons Version einführen (unlock2 statt lock)
 Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details)
-Alles mit ...Aktualisieren und ...Initialisieren mit $... im Funktionsnamen ergänzen und lediglich $... als Parameter übergeben
-WERKZEUGKASTEN AKTUALISIEREN mit $ziel statt mit element_id
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
 Bugfix "Es wurde versucht, die Eigenschaft undefined zu aktualisieren, die nicht existiert in FILTERBARE_EIGENSCHAFTEN."
-kassenbucheintrag.mitglied loswerden
 Auswahl überarbeiten?
+mitglied_id in kassenbucheintrag als verknuepfung (und kassenbucheintrag.mitglied loswerden)?
+auswertungen ersetzen durch verknuepfungen (allgemein Fokus mehr auf die Liste setzen?)
 werkzeugkasten_handle als ganz normales Zusätzsymbol in der Liste umbauen (und folglich bspw. für Termine in der Termin-Übersicht andere Zusatzsymbole bspw. für Anwesenheiten dokumentieren einführen)
-auswertungen ersetzen durch verknuepfungen Auswertungen (allgemein Fokus mehr auf die Liste setzen?)
+WERKZEUGKASTEN AKTUALISIEREN mit $ziel statt mit element_id
+Lässt sich filtern/sortieren/gruppieren_localstorage_speichern entfernen mittels $ziel?
+ziel_id nur setzen, wenn noch keine id vorhanden ist (sonst die existierende id nehmen) -> eigene Funktion einführen?
+eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
+Alles mit ...Aktualisieren und ...Initialisieren mit $... im Funktionsnamen ergänzen und lediglich $... als Parameter übergeben
 LINK AKTUALISIEREN in eigene Funktion verschieben
 VORSCHAU-EIGENSCHAFT UND ZUGEHÖRIGEN SPACER IN DER VORSCHAU AUSBLENDEN in eigene Funktion verschieben
-Braucht es wirklich .formular_beschriftung in Formularen?
-mitglied_id in kassenbucheintrag als verknuepfung?
+Braucht es formular_beschriftung und beschriftung-span für Formulare (bspw in mitglied_einmal_link_anzeigen_formular.php)?
 id in liste, auswertung und verzeichnis umbenennen in instanz
-LISTEN[" vereinheitlichen in LISTEN.
-ICH["id"] / ICH['id'] / ICH.id vereinheitlichen zu ich_id
 
 */

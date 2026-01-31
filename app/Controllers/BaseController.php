@@ -90,7 +90,8 @@ abstract class BaseController extends Controller
 
         defined('CSRF_NAME') OR define( 'CSRF_NAME', csrf_token() );
 
-        defined('ICH') OR define( 'ICH', $this->session->user );
+        if( auth()->loggedIn() ) defined('ICH_ID') OR define( 'ICH_ID', $this->session->user['id'] );
+        else defined('ICH_ID') OR define( 'ICH_ID', NULL );
 
         $this->viewdata = array();
     }

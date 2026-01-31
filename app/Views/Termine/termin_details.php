@@ -20,7 +20,7 @@
     <div class="row g-0 my-1">
         <div class="col text-center text-nowrap fst-italic"><span class="eigenschaft" data-eigenschaft="bemerkung"></span></div>
     </div>
-<?= view( 'Templates/Liste/verknuepfungen_auswahlmoeglichkeiten', array( 'verknuepfungen' => array( 'verknuepfungen' => 'termine_rueckmeldungen', 'mitglied_id' => ICH['id'], ), ) ); ?>
+<?= view( 'Templates/Liste/verknuepfungen_auswahlmoeglichkeiten', array( 'verknuepfungen' => array( 'verknuepfungen' => 'termine_rueckmeldungen', 'mitglied_id' => ICH_ID, ), ) ); ?>
 </div>
 
 <div class="container mb-3">

@@ -219,7 +219,7 @@ class Mitglieder extends BaseController {
                 'weiterleiten' => 'mitglieder',
             );
 
-        } elseif( ICH['id'] == $mitglied_id )
+        } elseif( $mitglied_id == ICH_ID )
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_mitglied_aendern', 'formular_oeffnen'),
                 'title' => 'Meine Daten ändern',
@@ -260,7 +260,7 @@ class Mitglieder extends BaseController {
         else $validation_rules['email']['rules'][] = 'is_unique[mitglieder_zugaenge.secret]';
 
         if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( !auth()->user()->can( 'mitglieder.verwaltung' ) AND !(!empty( $this->request->getPost()['mitglied_id'] ) AND ICH['id'] == $this->request->getPost()['mitglied_id'] ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( !auth()->user()->can( 'mitglieder.verwaltung' ) AND !(!empty( $this->request->getPost()['mitglied_id'] ) AND ICH_ID == $this->request->getPost()['mitglied_id'] ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $mitglied_Model = model(Mitglied_Model::class);
             $mitglied = array(
@@ -304,7 +304,7 @@ class Mitglieder extends BaseController {
             'passwort_neu' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu']['beschriftung'], 'rules' => [ 'required', 'strong_password' ] ],
             'passwort_neu2' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu2']['beschriftung'], 'rules' => [ 'required', 'matches[passwort_neu]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( $this->request->getPost()['mitglied_id'] != ICH_ID ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( !auth()->check( array( 'email' => model(Mitglied_Model::class)->findById( $this->request->getPost()['mitglied_id'] )->email, 'password' => $this->request->getpost()['passwort_alt'] ) )->isOK() ) $ajax_antwort['validation'] = array( 'passwort_alt' => 'Das alte Passwort ist nicht korrekt.' );
         else {
             $mitglied_Model = model(Mitglied_Model::class);
@@ -328,7 +328,7 @@ class Mitglieder extends BaseController {
             'passwort_neu' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu']['beschriftung'], 'rules' => [ 'required', 'strong_password' ] ],
             'passwort_neu2' => [ 'label' => EIGENSCHAFTEN['mitglieder']['passwort_neu2']['beschriftung'], 'rules' => [ 'required', 'matches[passwort_neu]' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( $this->request->getPost()['mitglied_id'] != ICH_ID ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else {
             $mitglied_Model = model(Mitglied_Model::class);
             $mitglied = array(
@@ -461,7 +461,7 @@ class Mitglieder extends BaseController {
             'mitglied_id' => [ 'label' => EIGENSCHAFTEN['mitglieder']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( !auth()->user()->can( 'mitglieder.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
-        else if( $this->request->getPost()['mitglied_id'] == ICH['id'] ) $ajax_antwort['validation'] = 'Du kannst dich nicht selbst löschen!';
+        else if( $this->request->getPost()['mitglied_id'] == ICH_ID ) $ajax_antwort['validation'] = 'Du kannst dich nicht selbst löschen!';
         else model(Mitglied_Model::class)->delete( $this->request->getPost()['mitglied_id'], TRUE );
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );

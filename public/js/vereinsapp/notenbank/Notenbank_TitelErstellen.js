@@ -17,7 +17,7 @@ function Notenbank_TitelErstellen(formular_oeffnen, dom, data, title, titel_id) 
             ajax_dom,
             function (AJAX) {
                 if (typeof AJAX.antwort.titel_id !== "undefined") AJAX.data.titel_id = Number(AJAX.antwort.titel_id);
-                else AJAX.data.titel_id = LISTEN["notenbank"].tabelle.length + 1;
+                else AJAX.data.titel_id = LISTEN.notenbank.tabelle.length + 1;
                 const titel_id = AJAX.data.titel_id;
                 delete AJAX.data.titel_id;
 

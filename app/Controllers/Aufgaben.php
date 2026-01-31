@@ -61,7 +61,7 @@ class Aufgaben extends BaseController {
             'status' => [ 'label' => EIGENSCHAFTEN['aufgaben_rueckmeldungen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
             'bemerkung' => [ 'label' => EIGENSCHAFTEN['aufgaben_rueckmeldungen']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
-        else if( $this->request->getPost()['mitglied_id'] != ICH['id'] AND !( auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else if( $this->request->getPost()['mitglied_id'] != ICH_ID AND !( auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( $this->request->getPost()['status'] == 0 AND !( auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Ein Löschen der Rückmeldung ist nicht möglich!';
         // else if( Time::parse( model(Termin_Model::class)->find(
         //             $this->request->getPost()['termin_id']

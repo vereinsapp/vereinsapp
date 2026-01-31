@@ -58,7 +58,7 @@ class Mitglied_Model extends UserModel {
                 if( $eintrag['erstellung'] != NULL ) $eintrag['erstellung'] = $eintrag['erstellung']->setTimezone('Europe/Berlin')->toDateTimeString();
                 $eintrag['letzte_aktivitaet'] = $eintrag_class->last_active;
                 if( $eintrag['letzte_aktivitaet'] != NULL ) $eintrag['letzte_aktivitaet'] = $eintrag['letzte_aktivitaet']->setTimezone('Europe/Berlin')->toDateTimeString();
-            } elseif( ICH['id'] == $eintrag['id'] )
+            } elseif( ICH_ID == $eintrag['id'] )
                 $eintrag['email'] = $eintrag_class->email;
 
             $tabelle[] = $this->eintrag_bereinigen( $eintrag, 'mitglieder' );
@@ -80,7 +80,7 @@ class Mitglied_Model extends UserModel {
         $tabelle = array();
 
         $vergebenes_recht_id = 1;
-        foreach( $this->findAll() as $mitglied ) if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) OR $mitglied->id == ICH['id'] )
+        foreach( $this->findAll() as $mitglied ) if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) OR $mitglied->id == ICH_ID )
             foreach( $mitglied->getPermissions() as $permission ) if( array_key_exists( $permission, VERFUEGBARE_RECHTE ) ) {
                 $eintrag = array(
                     'id' => $vergebenes_recht_id++,

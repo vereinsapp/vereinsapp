@@ -26,7 +26,7 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
             ajax_dom,
             function (AJAX) {
                 if (typeof AJAX.antwort.aufgabe_id !== "undefined") AJAX.data.aufgabe_id = Number(AJAX.antwort.aufgabe_id);
-                else AJAX.data.aufgabe_id = LISTEN["aufgaben"].tabelle.length + 1;
+                else AJAX.data.aufgabe_id = LISTEN.aufgaben.tabelle.length + 1;
                 const aufgabe_id = AJAX.data.aufgabe_id;
                 delete AJAX.data.aufgabe_id;
 

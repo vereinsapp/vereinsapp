@@ -98,12 +98,12 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
             termin.mitglied_ids_eingeladen.push(this.id);
         },
     );
-    termin.ich_eingeladen_janein = termin.mitglied_ids_eingeladen.includes(ICH.id);
+    termin.ich_eingeladen_janein = termin.mitglied_ids_eingeladen.includes(ICH_ID);
 
     termin.ich_rueckgemeldet_janein = false;
     if ("zugeordnete_termine_rueckmeldung_ids" in termin)
         $.each(termin.zugeordnete_termine_rueckmeldung_ids, function (position, rueckmeldung_id) {
-            if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == ICH.id) {
+            if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == ICH_ID) {
                 termin.ich_rueckgemeldet_janein = true;
                 return false;
             }

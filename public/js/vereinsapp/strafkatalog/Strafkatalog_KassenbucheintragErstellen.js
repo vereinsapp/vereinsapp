@@ -9,7 +9,7 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
         const ajax_dom = dom;
 
         if (!("erledigt" in data)) data.erledigt = DATETIME.now();
-        if (!("mitglied_id" in data)) data.mitglied_id = ICH.id;
+        if (!("mitglied_id" in data)) data.mitglied_id = ICH_ID;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         if (!("erledigt" in ajax_data) || !isLuxonDateTime(ajax_data.erledigt)) ajax_data.erledigt = null;
         else ajax_data.erledigt = ajax_data.erledigt.toISO();
@@ -22,7 +22,7 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
             function (AJAX) {
                 if (typeof AJAX.antwort.kassenbucheintrag_id !== "undefined")
                     AJAX.data.kassenbucheintrag_id = Number(AJAX.antwort.kassenbucheintrag_id);
-                else AJAX.data.kassenbucheintrag_id = LISTEN["kassenbuch"].tabelle.length + 1;
+                else AJAX.data.kassenbucheintrag_id = LISTEN.kassenbuch.tabelle.length + 1;
                 const kassenbucheintrag_id = AJAX.data.kassenbucheintrag_id;
                 delete AJAX.data.kassenbucheintrag_id;
 

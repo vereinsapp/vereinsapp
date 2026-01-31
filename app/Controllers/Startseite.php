@@ -37,7 +37,7 @@ class Startseite extends BaseController {
         //     unset( $this->viewdata['liste']['aufgaben_offen_startseite']['werkzeugkasten'] );
         //     unset( $this->viewdata['liste']['aufgaben_offen_startseite']['listenstatistik'] );
         //     $this->viewdata['liste']['aufgaben_offen_startseite']['filtern'] = array(
-        //         'mitglied_id' => array( 'inklusiv' => array( ICH['id'] ), ),
+        //         'mitglied_id' => array( 'inklusiv' => array( ICH_ID ), ),
         //         'erledigt_janein' => array( 'inklusiv' => array( FALSE ), ),
         //     );
         //     $this->viewdata['liste']['aufgaben_offen_startseite']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
@@ -51,7 +51,7 @@ class Startseite extends BaseController {
             unset( $this->viewdata['liste']['kassenbuch_offene_eintraege_startseite']['listenstatistik'] );
             unset( $this->viewdata['liste']['kassenbuch_offene_eintraege_startseite']['zusatzsymbol'] );
             $this->viewdata['liste']['kassenbuch_offene_eintraege_startseite']['filtern'] = array(
-                'mitglied_id' => array( 'inklusiv' => array( ICH['id'] ), ),
+                'mitglied_id' => array( 'inklusiv' => array( ICH_ID ), ),
                 'erledigt_janein' => array( 'inklusiv' => array( FALSE ), ),
             );
             $this->viewdata['liste']['kassenbuch_offene_eintraege_startseite']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> '.HAUPTINSTANZEN['kassenbuch']['beschriftung'];
@@ -70,7 +70,7 @@ class Startseite extends BaseController {
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['vorschau'] = array( 'start', 'ort' );
-            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'mitglied_id' => ICH['id'], );
+            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'mitglied_id' => ICH_ID, );
         }
 
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['id'] = $instanz;

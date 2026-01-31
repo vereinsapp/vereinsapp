@@ -16,7 +16,7 @@ function Strafkatalog_StrafeErstellen(formular_oeffnen, dom, data, title, strafe
             ajax_dom,
             function (AJAX) {
                 if (typeof AJAX.antwort.strafe_id !== "undefined") AJAX.data.strafe_id = Number(AJAX.antwort.strafe_id);
-                else AJAX.data.strafe_id = LISTEN["strafkatalog"].tabelle.length + 1;
+                else AJAX.data.strafe_id = LISTEN.strafkatalog.tabelle.length + 1;
                 const strafe_id = AJAX.data.strafe_id;
                 delete AJAX.data.strafe_id;
 

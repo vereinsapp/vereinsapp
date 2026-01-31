@@ -175,10 +175,10 @@ function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen_
         $verknuepfung_moeglich.addClass("invisible");
         $verknuepfung_nicht_moeglich.removeClass("invisible");
 
-        if (verknuepfte_listen.includes("mitglieder") && verknuepfte_element_id["mitglied_id"] === ICH.id) {
+        if (verknuepfte_listen.includes("mitglieder") && verknuepfte_element_id.mitglied_id === ICH_ID) {
             /* Verknüpfung ist für dich nicht möglich */
             $verknuepfung_nicht_moeglich.text(VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich.keine_verknuepfung_fuer_dich_moeglich);
-        } else if (verknuepfte_listen.includes("mitglieder") && verknuepfte_element_id["mitglied_id"] !== ICH.id) {
+        } else if (verknuepfte_listen.includes("mitglieder") && verknuepfte_element_id.mitglied_id !== ICH_ID) {
             /* Verknüpfung ist für das Mitglied nicht möglich */
             $verknuepfung_nicht_moeglich.text(VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich.keine_verknuepfung_fuer_mitglied_moeglich);
         } else {

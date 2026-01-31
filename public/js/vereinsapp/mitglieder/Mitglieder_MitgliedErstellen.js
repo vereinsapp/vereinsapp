@@ -17,7 +17,7 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitgli
             ajax_dom,
             function (AJAX) {
                 if (typeof AJAX.antwort.mitglied_id !== "undefined") AJAX.data.mitglied_id = Number(AJAX.antwort.mitglied_id);
-                else AJAX.data.mitglied_id = LISTEN["mitglieder"].tabelle.length + 1;
+                else AJAX.data.mitglied_id = LISTEN.mitglieder.tabelle.length + 1;
                 const mitglied_id = AJAX.data.mitglied_id;
                 delete AJAX.data.mitglied_id;
 

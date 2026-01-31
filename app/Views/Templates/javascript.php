@@ -3,8 +3,7 @@ const SITE_URL = '<?= site_url() ?>';
 const AKTIVER_CONTROLLER = '<?= AKTIVER_CONTROLLER ?>';
 const CSRF_NAME = '<?= CSRF_NAME ?>';
 const ERSTER_CSRF_HASH = '<?= csrf_hash() ?>';
-const ICH = <?= json_encode( ICH ) ?>;
-LOGGEDIN = <?php if( auth()->loggedIn() ) echo (int) TRUE; else echo (int) FALSE; ?>;
+const ICH_ID = <?= json_encode( ICH_ID ) ?>;
 FORCE_LOCALSTORAGE_RESET_ZEITPUNKT = '<?= FORCE_LOCALSTORAGE_RESET_ZEITPUNKT ?>';
 
 const JANEIN = <?= json_encode( JANEIN ) ?>;

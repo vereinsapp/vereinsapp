@@ -31,7 +31,7 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
             ajax_dom,
             function (AJAX) {
                 if (typeof AJAX.antwort.termin_id !== "undefined") AJAX.data.termin_id = Number(AJAX.antwort.termin_id);
-                else AJAX.data.termin_id = LISTEN["termine"].tabelle.length + 1;
+                else AJAX.data.termin_id = LISTEN.termine.tabelle.length + 1;
                 const termin_id = AJAX.data.termin_id;
                 delete AJAX.data.termin_id;
 
