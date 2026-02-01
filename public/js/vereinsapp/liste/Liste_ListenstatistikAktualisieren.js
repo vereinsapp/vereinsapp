@@ -1,7 +1,10 @@
-function Liste_ListenstatistikAktualisieren($listenstatistik, liste) {
-    const $listenstatistik_sammler = $listenstatistik.closest(".listenstatistik_sammler");
-    const instanz = $listenstatistik.attr("data-instanz");
-    const $liste = $("#" + instanz + ".liste");
+/**
+ * @param {JQuery} $listenstatistik
+ * @param {JQuery} $liste
+ */
+
+function Liste_ListenstatistikAktualisieren($listenstatistik, $liste) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-liste"), undefined);
 
     switch ($listenstatistik.attr("data-listenstatistik")) {
         case "anzahl": {
@@ -22,19 +25,9 @@ function Liste_ListenstatistikAktualisieren($listenstatistik, liste) {
                 $liste.children().each(function () {
                     summe += Number(Schnittstelle_VariableRausZurueck(eigenschaft, $(this).attr("data-" + LISTEN[liste].element + "_id"), liste, 0));
                 });
-                $listenstatistik.text(Liste_WertFormatiertZurueck(summe, eigenschaft, liste));
+                $listenstatistik.text(Schnittstelle_VariableWertFormatiertZurueck(summe, eigenschaft, liste));
             }
             break;
-        }
-        case "durchschnitt": {
-            const eigenschaft = $listenstatistik.attr("data-eigenschaft");
-            if (typeof instanz !== "undefined" && typeof eigenschaft !== "undefined" && EIGENSCHAFTEN[liste][eigenschaft].typ == "zahl") {
-                let summe = 0;
-                $liste.children().each(function () {
-                    summe += Number(Schnittstelle_VariableRausZurueck(eigenschaft, $(this).attr("data-" + LISTEN[liste].element + "_id"), liste, 0));
-                });
-                $listenstatistik.text(Liste_WertFormatiertZurueck(summe / $liste.children().length, eigenschaft, liste));
-            }
         }
     }
 }

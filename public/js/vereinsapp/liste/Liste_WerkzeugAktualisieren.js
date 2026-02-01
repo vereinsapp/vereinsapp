@@ -1,8 +1,15 @@
-function Liste_WerkzeugAktualisieren($werkzeug, liste) {
-    const instanz = $werkzeug.attr("data-instanz");
+/**
+ * @param {JQuery} $werkzeug
+ * @param {JQuery} $liste
+ */
+
+function Liste_WerkzeugAktualisieren($werkzeug, $liste) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-liste"), undefined);
+    const instanz = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("id"), undefined);
+
     let batch_hinzu = false;
     if ($werkzeug.hasClass("btn_filtern_modal_oeffnen")) {
-        const filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz).attr("data-filtern"), new Object());
+        const filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-filtern"), new Object());
         const filtern_prio_hoch = LISTEN[liste].instanz[instanz].filtern;
 
         $werkzeug
@@ -12,7 +19,7 @@ function Liste_WerkzeugAktualisieren($werkzeug, liste) {
         if (Object.keys(filtern_prio_hoch).length > 0) batch_hinzu = true;
         else batch_hinzu = false;
     } else if ($werkzeug.hasClass("btn_sortieren_modal_oeffnen")) {
-        const sortieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz).attr("data-sortieren"), undefined);
+        const sortieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-sortieren"), undefined);
         const sortieren_prio_hoch = LISTEN[liste].instanz[instanz].sortieren;
 
         $werkzeug
@@ -22,7 +29,7 @@ function Liste_WerkzeugAktualisieren($werkzeug, liste) {
         if (typeof sortieren_prio_hoch !== "undefined") batch_hinzu = true;
         else batch_hinzu = false;
     } else if ($werkzeug.hasClass("btn_gruppieren_modal_oeffnen")) {
-        const gruppieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz).attr("data-gruppieren"), undefined);
+        const gruppieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-gruppieren"), undefined);
         const gruppieren_prio_hoch = LISTEN[liste].instanz[instanz].gruppieren;
 
         $werkzeug

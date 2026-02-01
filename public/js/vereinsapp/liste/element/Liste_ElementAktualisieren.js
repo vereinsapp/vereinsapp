@@ -1,3 +1,8 @@
+/**
+ * @param {JQuery} $element
+ * @param {string} $liste
+ */
+
 function Liste_ElementAktualisieren($element, liste) {
     const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-" + LISTEN[liste].element + "_id"), undefined);
 
@@ -7,7 +12,11 @@ function Liste_ElementAktualisieren($element, liste) {
         const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($eigenschaft.attr("data-eigenschaft"), undefined);
 
         $eigenschaft.html(
-            Liste_WertFormatiertZurueck(Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, undefined), eigenschaft, liste),
+            Schnittstelle_VariableWertFormatiertZurueck(
+                Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, undefined),
+                eigenschaft,
+                liste,
+            ),
         );
 
         const eigenschaften_bedingt_formatiert = Schnittstelle_VariableWertBereinigtZurueck(
@@ -32,28 +41,21 @@ function Liste_ElementAktualisieren($element, liste) {
         $element.removeAttr("role");
     }
 
+    // WERKZEUGKASTEN AKTUALISIEREN
+    $element
+        .find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]')
+        .attr("data-liste", liste)
+        .attr("data-" + LISTEN[liste].element + "_id", element_id);
+
     // VERKNUEPFUNGEN_AUSWAHLMOEGLICHKEITEN AKTUALISIEREN
     $element.find(".verknuepfungen_auswahlmoeglichkeiten").each(function () {
         Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren($(this), $element);
     });
 
     // LINK AKTUALISIEREN
-    const $link = $element.find("a.stretched-link");
-    const link_data = Schnittstelle_VariableWertBereinigtZurueck($link.attr("data-link"), new Object());
-    let href = SITE_URL;
-    if ("liste" in link_data) href += LISTEN[link_data.liste].controller;
-    else href += LISTEN[liste].controller;
-    if ("eigenschaften" in link_data && isArray(link_data.eigenschaften))
-        $.each(link_data.eigenschaften, function (position, eigenschaft) {
-            href += "/" + Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, undefined);
-        });
-    $link.attr("href", href);
-
-    // WERKZEUGKASTEN AKTUALISIEREN
-    $element
-        .find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]')
-        .attr("data-liste", liste)
-        .attr("data-" + LISTEN[liste].element + "_id", element_id);
+    $element.find("a.stretched-link").each(function () {
+        Liste_ElementLinkAktualisieren($(this), $element);
+    });
 
     // ZUSATZSYMBOL AKTUALISIEREN
     $element.find(".zusatzsymbol").each(function () {
@@ -65,24 +67,13 @@ function Liste_ElementAktualisieren($element, liste) {
         Liste_ElementZusatzinfoAktualisieren($(this), $element);
     });
 
-    // VORSCHAU-EIGENSCHAFT UND ZUGEHÖRIGEN SPACER IN DER VORSCHAU AUSBLENDEN
-    const $vorschau_eigenschaften = $element.find(".vorschau").children(".eigenschaft");
-    $vorschau_eigenschaften.each(function (position) {
-        const $eigenschaft = $(this);
-        let $zugehoeriger_spacer;
-        if (position == $vorschau_eigenschaften.length - 1) $zugehoeriger_spacer = $eigenschaft.prev();
-        else $zugehoeriger_spacer = $eigenschaft.next();
-        if (isEmptyString($eigenschaft.text())) {
-            $eigenschaft.addClass("invisible");
-            $zugehoeriger_spacer.addClass("invisible");
-        } else {
-            $eigenschaft.removeClass("invisible");
-            $zugehoeriger_spacer.removeClass("invisible");
-        }
+    // VORSCHAU AKTUALISIEREN
+    $element.find(".vorschau").each(function () {
+        Liste_ElementVorschauAktualisieren($(this), $element);
     });
 
     // NAVIGATION AKTUALISIEREN
     $element.find(".element_navigation").each(function () {
-        Liste_ElementNavigationAktualisieren($(this), $element, liste);
+        Liste_ElementNavigationAktualisieren($(this), $element);
     });
 }

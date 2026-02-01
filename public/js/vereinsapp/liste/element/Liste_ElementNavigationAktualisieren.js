@@ -1,4 +1,10 @@
-function Liste_ElementNavigationAktualisieren($element_navigation, $element, liste) {
+/**
+ * @param {JQuery} $element_navigation
+ * @param {JQuery} $element
+ */
+
+function Liste_ElementNavigationAktualisieren($element_navigation, $element) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-liste"), undefined);
     const $vorheriges_element = $element_navigation.find(".vorheriges_element");
     const $naechstes_element = $element_navigation.find(".naechstes_element");
     const instanz = $element_navigation.attr("data-instanz");

@@ -1,4 +1,4 @@
-function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
+function Schnittstelle_VariableWertFormatiertZurueck(wert, eigenschaft, liste) {
     let wert_formatiert;
 
     if (typeof wert !== "undefined")
@@ -26,7 +26,8 @@ function Liste_WertFormatiertZurueck(wert, eigenschaft, liste) {
             case "erledigt_janein":
             case "ich_eingeladen_janein":
             case "ich_rueckgemeldet_janein":
-                if (wert == "true") wert = 1; // todo: es darf kein string "true" geben (nur boolean true)
+                if (wert == "true")
+                    wert = 1; // todo: es darf kein string "true" geben (nur boolean true)
                 else if (wert == "false") wert = 0; // todo: es darf kein string "false" geben (nur boolean false)
                 wert_formatiert = JANEIN[Number(wert)].beschriftung;
                 break;

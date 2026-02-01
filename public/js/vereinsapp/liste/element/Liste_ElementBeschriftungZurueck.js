@@ -10,10 +10,10 @@ function Liste_ElementBeschriftungZurueck(element_id, liste) {
         $.each(ELEMENTE[LISTEN[liste].element].element_beschriftung, function () {
             if ("prefix" in this) beschriftung += this.prefix;
             if ("eigenschaft" in this)
-                beschriftung += Liste_WertFormatiertZurueck(
+                beschriftung += Schnittstelle_VariableWertFormatiertZurueck(
                     Schnittstelle_VariableRausZurueck(this.eigenschaft, element_id, liste, undefined),
                     this.eigenschaft,
-                    liste
+                    liste,
                 );
             if ("suffix" in this) beschriftung += this.suffix;
         });

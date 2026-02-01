@@ -1,3 +1,8 @@
+/**
+ * @param {JQuery} $liste
+ * @param {string} liste
+ */
+
 function Liste_Aktualisieren($liste, liste) {
     const instanz = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("id"), undefined);
 
@@ -56,16 +61,16 @@ function Liste_Aktualisieren($liste, liste) {
 
     // ÜBERSCHRIFT AKTUALISIEREN
     $('.ueberschrift[data-instanz="' + instanz + '"]').each(function () {
-        Liste_UeberschriftAktualisieren($(this), liste);
+        Liste_UeberschriftAktualisieren($(this), $liste);
     });
 
     // WERKZEUG AKTUALISIEREN
     $('.werkzeug[data-instanz="' + instanz + '"]').each(function () {
-        Liste_WerkzeugAktualisieren($(this), liste);
+        Liste_WerkzeugAktualisieren($(this), $liste);
     });
 
     // LISTENSTATISTIK AKTUALISIEREN
     $('.listenstatistik[data-instanz="' + instanz + '"]').each(function () {
-        Liste_ListenstatistikAktualisieren($(this), liste);
+        Liste_ListenstatistikAktualisieren($(this), $liste);
     });
 }

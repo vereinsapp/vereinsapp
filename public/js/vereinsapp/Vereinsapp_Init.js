@@ -98,8 +98,6 @@ ziel_id nur setzen, wenn noch keine id vorhanden ist (sonst die existierende id 
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 viewdata_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper? Vorkommen suchen mit echo view( in Controller)
 Alles mit ...Aktualisieren und ...Initialisieren mit $... im Funktionsnamen ergänzen und lediglich $... als Parameter übergeben
-LINK AKTUALISIEREN in eigene Funktion verschieben
-VORSCHAU-EIGENSCHAFT UND ZUGEHÖRIGEN SPACER IN DER VORSCHAU AUSBLENDEN in eigene Funktion verschieben
 
 ERLEDIGT
 

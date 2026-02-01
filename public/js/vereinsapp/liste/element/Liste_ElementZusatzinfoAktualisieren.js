@@ -1,5 +1,10 @@
+/**
+ * @param {JQuery} $zusatzinfo
+ * @param {JQuery} $element
+ */
+
 function Liste_ElementZusatzinfoAktualisieren($zusatzinfo, $element) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-liste"), undefined);
+    // const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-liste"), undefined);
     const zusatzinfo = Schnittstelle_VariableWertBereinigtZurueck($zusatzinfo.attr("data-zusatzinfo"), undefined);
 
     // $zusatzinfo.find('[data-bs-toggle="popover"]').popover("hide");

@@ -10,12 +10,11 @@ foreach( $liste['werkzeugkasten'] as $symbol => $werkzeug) { ?><button type="but
     ?>><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?>"></i></span></button><?php }
 ?></div><?php } ?>
 
-<?php if( array_key_exists( 'listenstatistik', $liste ) ) { ?><div class="listenstatistik_sammler text-secondary text-end small mb-1"><span class="listenstatistik"<?php
+<?php if( array_key_exists( 'listenstatistik', $liste ) ) { ?><div class="text-end text-secondary small"><span class="listenstatistik"<?php
     if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['instanz']; ?>" data-listenstatistik="anzahl"></span> Element(e)<?php
     /* funktioniert aktuell nicht, weil Liste_Aktualisieren inkl. Liste_ListenstatistikAktualisieren aufgerufen wird, bevor Liste_ElementAktualisieren inkl. Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren aufgerufen wird */
     /* if( array_key_exists( 'verknuepfungen', $liste ) AND $liste['verknuepfungen']['typ'] === 'check' ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i><span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['instanz']; ?>" data-listenstatistik="angewaehlt"></span> Element(e) angewählt<?php } */
     if( array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i>Summe: <span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['instanz']; ?>" data-listenstatistik="summe" data-eigenschaft="<?= $liste['listenstatistik']['summe']; ?>"></span><?php }
-    if( array_key_exists( 'durchschnitt', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i>Durchschnitt: <span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['instanz']; ?>" data-listenstatistik="durchschnitt" data-eigenschaft="<?= $liste['listenstatistik']['durchschnitt']; ?>"></span><?php }
 ?></div><?php } ?>
 
 <ul id="<?= $liste['instanz']; ?>" class="liste list-group<?php
@@ -66,15 +65,12 @@ if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-e
 <?php }
       if( array_key_exists( 'link', $liste ) AND is_array( $liste['link'] ) ) { ?>
             <a class="stretched-link" data-link='<?= json_encode( $liste['link'], JSON_UNESCAPED_UNICODE ); ?>'></a>
-<?php }?>
-</div>
+<?php } ?>
+        </div>
 <?php if( array_key_exists( 'vorschau', $liste ) ) { ?>
-        <div class="vorschau text-truncate text-secondary mb-1<?php
-        if( !array_key_exists( 'group-flush', $liste ) OR !$liste['group-flush'] ) echo ' small';
-        ?>"><?php foreach( $liste['vorschau'] as $position => $vorschau ) {
-            if( $position !== 0 ) echo '<i class="bi bi-'.SYMBOLE['spacer']['bootstrap'].' spacer"></i>';
-            echo '<span class="eigenschaft" data-eigenschaft="'.$vorschau.'"></span>';
-        } ?></div>
+        <div class="vorschau text-truncate text-secondary mb-1<?php if( !array_key_exists( 'group-flush', $liste ) OR !$liste['group-flush'] ) echo ' small'; ?>"><?php
+            foreach( $liste['vorschau'] as $vorschau ) { ?><span class="eigenschaft" data-eigenschaft="<?= $vorschau ?>"></span><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap']; ?> spacer"></i><?php }
+        ?></div>
 <?php } ?>
 
 <?php if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'typ', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['typ'] === 'auswahlmoeglichkeiten' )

@@ -1,3 +1,8 @@
+/**
+ * @param {JQuery} $auswertungen
+ * @param {string} auswertungen
+ */
+
 function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
     const auswertungen_instanz = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("id"), undefined);
     const liste = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-liste"), undefined);
@@ -86,7 +91,7 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
                 .attr("data-" + LISTEN[auswertungen].element + "_ids", JsonStringifiedZurueck(auswertung_ids_nach_wert[wert], new Array()))
                 .attr("data-wert", wert)
                 .attr("data-" + LISTEN[liste].element + "_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
-                .attr("data-beschriftung", Liste_WertFormatiertZurueck(wert, gruppieren, liste));
+                .attr("data-beschriftung", Schnittstelle_VariableWertFormatiertZurueck(wert, gruppieren, liste));
 
             const ziel_id = zufaelligeZeichenketteZurueck(8);
             $auswertung.find('[data-bs-toggle="collapse"]').attr("data-bs-target", "#" + ziel_id);
@@ -111,16 +116,16 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
 
     // ÜBERSCHRIFT AKTUALISIEREN
     $('.ueberschrift[data-instanz="' + auswertungen_instanz + '"]').each(function () {
-        Liste_UeberschriftAktualisieren($(this), liste);
+        Liste_UeberschriftAktualisieren($(this), $auswertungen);
     });
 
     // WERKZEUG AKTUALISIEREN
     $('.werkzeug[data-instanz="' + auswertungen_instanz + '"]').each(function () {
-        Liste_WerkzeugAktualisieren($(this), liste);
+        Liste_WerkzeugAktualisieren($(this), $auswertungen);
     });
 
     // LISTENSTATISTIK AKTUALISIEREN
     $('.listenstatistik[data-instanz="' + auswertungen_instanz + '"]').each(function () {
-        Liste_ListenstatistikAktualisieren($(this), liste);
+        Liste_ListenstatistikAktualisieren($(this), $auswertungen);
     });
 }
