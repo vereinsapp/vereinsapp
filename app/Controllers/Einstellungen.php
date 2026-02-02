@@ -33,8 +33,7 @@ class Einstellungen extends BaseController {
 
         }
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['instanz'] = $instanz;
-        echo view( 'Einstellungen/einstellungen', $this->viewdata );
+        $this->viewdata_bereinigen(); echo view( 'Einstellungen/einstellungen', $this->viewdata );
     }
 
     public function ajax_tabellen() { $ajax_antwort[CSRF_NAME] = csrf_hash();

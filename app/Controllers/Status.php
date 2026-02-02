@@ -5,7 +5,7 @@ namespace App\Controllers;
 class Status extends BaseController {
 
     public function wartungsarbeiten() {
-        echo view( 'Status/wartungsarbeiten', $this->viewdata );
+        $this->viewdata_bereinigen(); echo view( 'Status/wartungsarbeiten', $this->viewdata );
     }
 
     public function ajax_datenschutz_richtlinie() { $ajax_antwort[CSRF_NAME] = csrf_hash();

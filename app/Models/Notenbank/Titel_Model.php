@@ -2,10 +2,10 @@
 
 namespace App\Models\Notenbank;
 
-use CodeIgniter\Model;
+use App\Models\BaseModel;
 use App\Models\Notenbank\Setlisteneintrag_Model;
 
-class Titel_Model extends Model {
+class Titel_Model extends BaseModel {
    
     protected $table          = 'notenbank';
     protected $primaryKey     = 'id';
@@ -65,15 +65,5 @@ class Titel_Model extends Model {
             else { /* alle anderen Dateitypen werden nicht berücksichtigt */ }
         }
         return $verzeichnis_indiziert;
-    }
-
-    private function eintrag_bereinigen( $eintrag, $liste ) {
-        foreach( $eintrag as $eigenschaft => $wert ) if( is_numeric( $wert ) )
-            if( array_key_exists( $liste, EIGENSCHAFTEN ) AND !array_key_exists( $eigenschaft, EIGENSCHAFTEN[$liste] ) ) unset( $eintrag[$eigenschaft] );
-            elseif( is_numeric( $wert ) ) {
-                if( (int) $wert == $wert ) $eintrag[ $eigenschaft ] = (int)$wert;
-                elseif( (float) $wert == $wert ) $eintrag[ $eigenschaft ] = (float)$wert;
-            }
-        return $eintrag;
     }
 }

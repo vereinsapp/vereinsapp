@@ -42,8 +42,7 @@ class Strafkatalog extends BaseController {
 
         }
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['instanz'] = $instanz;
-        echo view( 'Strafkatalog/strafkatalog', $this->viewdata );
+        $this->viewdata_bereinigen(); echo view( 'Strafkatalog/strafkatalog', $this->viewdata );
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -83,8 +82,7 @@ class Strafkatalog extends BaseController {
 
         }
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['instanz'] = $instanz;
-        echo view( 'Strafkatalog/kassenbuch', $this->viewdata );
+        $this->viewdata_bereinigen(); echo view( 'Strafkatalog/kassenbuch', $this->viewdata );
     }
 
     //------------------------------------------------------------------------------------------------------------------

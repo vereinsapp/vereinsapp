@@ -104,8 +104,7 @@ class Mitglieder extends BaseController {
 
         }
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['instanz'] = $instanz;
-        echo view( 'Mitglieder/mitglieder', $this->viewdata );
+        $this->viewdata_bereinigen(); echo view( 'Mitglieder/mitglieder', $this->viewdata );
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -231,9 +230,7 @@ class Mitglieder extends BaseController {
             'sortieren' => HAUPTINSTANZEN['mitglieder']['sortieren'],
         );
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['instanz'] = $instanz;
-        if( array_key_exists( 'auswertungen', $this->viewdata ) ) foreach( $this->viewdata['auswertungen'] as $instanz => $auswertungen ) $this->viewdata['auswertungen'][ $instanz ]['instanz'] = $instanz;
-        echo view( 'Mitglieder/mitglied_details', $this->viewdata );
+        $this->viewdata_bereinigen(); echo view( 'Mitglieder/mitglied_details', $this->viewdata );
     }
     //------------------------------------------------------------------------------------------------------------------
     public function ajax_mitglied_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();

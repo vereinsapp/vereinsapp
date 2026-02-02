@@ -2,11 +2,11 @@
 
 namespace App\Models\Aufgaben;
 
-use CodeIgniter\Model;
+use App\Models\BaseModel;
 use App\Models\Aufgaben\Rueckmeldung_Model;
 use App\Models\Aufgaben\Zuordnung_Termine_Model;
 
-class Aufgabe_Model extends Model {
+class Aufgabe_Model extends BaseModel {
    
     protected $table          = 'aufgaben';
     protected $primaryKey     = 'id';
@@ -46,15 +46,5 @@ class Aufgabe_Model extends Model {
             $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'aufgaben' );
 
         return $tabelle;
-    }
-
-    private function eintrag_bereinigen( $eintrag, $liste ) {
-        foreach( $eintrag as $eigenschaft => $wert ) if( is_numeric( $wert ) )
-            if( array_key_exists( $liste, EIGENSCHAFTEN ) AND !array_key_exists( $eigenschaft, EIGENSCHAFTEN[$liste] ) ) unset( $eintrag[$eigenschaft] );
-            elseif( is_numeric( $wert ) ) {
-                if( (int) $wert == $wert ) $eintrag[ $eigenschaft ] = (int)$wert;
-                elseif( (float) $wert == $wert ) $eintrag[ $eigenschaft ] = (float)$wert;
-            }
-        return $eintrag;
     }
 }

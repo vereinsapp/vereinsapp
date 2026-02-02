@@ -95,8 +95,6 @@ werkzeugkasten_handle als ganz normales Zusätzsymbol in der Liste umbauen (und 
 WERKZEUGKASTEN AKTUALISIEREN mit $ziel statt mit element_id
 Lässt sich filtern/sortieren/gruppieren_localstorage_speichern entfernen mittels $ziel?
 ziel_id nur setzen, wenn noch keine id vorhanden ist (sonst die existierende id nehmen) -> eigene Funktion einführen?
-eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
-viewdata_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper? Vorkommen suchen mit echo view( in Controller)
 
 ERLEDIGT
 

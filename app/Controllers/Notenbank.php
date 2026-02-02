@@ -39,8 +39,7 @@ class Notenbank extends BaseController {
 
         }
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['instanz'] = $instanz;
-        echo view( 'Notenbank/notenbank', $this->viewdata );
+        $this->viewdata_bereinigen(); echo view( 'Notenbank/notenbank', $this->viewdata );
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -76,9 +75,7 @@ class Notenbank extends BaseController {
             'sortieren' => HAUPTINSTANZEN['notenbank']['sortieren'],
         );
 
-        if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['instanz'] = $instanz;
-        if( array_key_exists( 'verzeichnis', $this->viewdata ) ) foreach( $this->viewdata['verzeichnis'] as $instanz => $verzeichnis ) $this->viewdata['verzeichnis'][ $instanz ]['instanz'] = $instanz;
-        echo view( 'Notenbank/titel_details', $this->viewdata );
+        $this->viewdata_bereinigen(); echo view( 'Notenbank/titel_details', $this->viewdata );
     }
 
     //------------------------------------------------------------------------------------------------------------------
