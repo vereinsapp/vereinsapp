@@ -37,7 +37,7 @@ function Liste_Init() {
         Liste_ElementBemerkungAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-ziel_id")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id")),
             liste,

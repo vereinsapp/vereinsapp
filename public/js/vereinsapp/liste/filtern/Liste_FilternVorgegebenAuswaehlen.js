@@ -16,5 +16,5 @@ function Liste_FilternVorgegebenAuswaehlen($vorgegebene_filter_auswahl, ziel_id,
             .trigger("change");
 
     // Schließen des Modals
-    Schnittstelle_DomModalSchliessen($vorgegebene_filter_auswahl.closest(".modal"));
+    Schnittstelle_Dom$ModalSchliessen($vorgegebene_filter_auswahl.closest(".modal"));
 }

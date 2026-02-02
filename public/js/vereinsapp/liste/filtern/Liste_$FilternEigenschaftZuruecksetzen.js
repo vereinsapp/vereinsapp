@@ -1,4 +1,4 @@
-function Liste_FilternEigenschaftZuruecksetzen($filtern_eigenschaft, ziel_id, liste) {
+function Liste_$FilternEigenschaftZuruecksetzen($filtern_eigenschaft, ziel_id, liste) {
     const eigenschaft = $filtern_eigenschaft.attr("data-eigenschaft");
 
     // Definition von filtern_prio_niedrig und filtern_prio_hoch

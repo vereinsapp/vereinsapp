@@ -1,5 +1,5 @@
-function Liste_FilternFormularInitialisieren($formular, ziel_id, liste) {
-    const $vorgegebene_filter = $formular.find(".vorgegebene_filter");
+function Liste_$FilternFormularInitialisieren($filtern_formular, ziel_id, liste) {
+    const $vorgegebene_filter = $filtern_formular.find(".vorgegebene_filter");
     const $vorgegebene_filter_auswahl = $vorgegebene_filter.find(".vorgegebene_filter_auswahl");
     $vorgegebene_filter_auswahl.empty();
     if (liste in VORGEGEBENE_FILTER) {
@@ -11,7 +11,7 @@ function Liste_FilternFormularInitialisieren($formular, ziel_id, liste) {
         $vorgegebene_filter.attr("data-liste", liste).attr("data-ziel_id", ziel_id).removeClass("invisible");
     } else $vorgegebene_filter.addClass("invisible");
 
-    $formular.find(".filtern_eigenschaft").remove();
+    $filtern_formular.find(".filtern_eigenschaft").remove();
     $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (position, eigenschaft) {
         const typ = EIGENSCHAFTEN[liste][eigenschaft].typ;
         const $neue_filtern_eigenschaft = FILTERN.$blanko_filtern_eigenschaft[typ].clone().removeClass("blanko invisible");
@@ -24,7 +24,7 @@ function Liste_FilternFormularInitialisieren($formular, ziel_id, liste) {
             $("<option selected></option>").appendTo($neue_filtern_eigenschaft.find(".filtern_auswahl"));
             $.each(VORGEGEBENE_WERTE[liste][eigenschaft], function (wert, eigenschaften) {
                 $('<option value="' + wert + '">' + eigenschaften.beschriftung + "</option>").appendTo(
-                    $neue_filtern_eigenschaft.find(".filtern_auswahl")
+                    $neue_filtern_eigenschaft.find(".filtern_auswahl"),
                 );
             });
         } else if (typ == "janein") {
@@ -32,12 +32,12 @@ function Liste_FilternFormularInitialisieren($formular, ziel_id, liste) {
             $("<option selected></option>").appendTo($neue_filtern_eigenschaft.find(".filtern_auswahl"));
             $.each(JANEIN, function (wert, eigenschaften) {
                 $('<option value="' + wert + '">' + eigenschaften.beschriftung + "</option>").appendTo(
-                    $neue_filtern_eigenschaft.find(".filtern_auswahl")
+                    $neue_filtern_eigenschaft.find(".filtern_auswahl"),
                 );
             });
         }
 
-        $neue_filtern_eigenschaft.appendTo($formular);
+        $neue_filtern_eigenschaft.appendTo($filtern_formular);
     });
 
     // Definition von filtern_prio_niedrig und filtern_prio_hoch
@@ -60,8 +60,8 @@ function Liste_FilternFormularInitialisieren($formular, ziel_id, liste) {
         Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_prio_hoch, liste),
         function (eigenschaft, filtern_eigenschaft_aktualisieren) {
             // Aktualisieren der $filtern_eigenschaft
-            const $filtern_eigenschaft = $formular.find('.filtern_eigenschaft[data-eigenschaft="' + eigenschaft + '"]');
+            const $filtern_eigenschaft = $filtern_formular.find('.filtern_eigenschaft[data-eigenschaft="' + eigenschaft + '"]');
             Liste_FilternFormular$EigenschaftAktualisieren($filtern_eigenschaft, filtern_eigenschaft_aktualisieren, liste);
-        }
+        },
     );
 }

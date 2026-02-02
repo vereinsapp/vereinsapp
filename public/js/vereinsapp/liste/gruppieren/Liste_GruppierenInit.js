@@ -16,10 +16,10 @@ function Liste_GruppierenInit() {
 
     // GRUPPIEREN ZURUECKSETZEN
     $(document).on("click", ".btn_gruppieren_eigenschaft_loeschen", function () {
-        Liste_GruppierenEigenschaftZuruecksetzen(
+        Liste_$GruppierenEigenschaftZuruecksetzen(
             $(this).closest(".gruppieren_eigenschaft"),
             $(this).closest(".gruppieren_eigenschaft").attr("data-ziel_id"),
-            $(this).closest(".gruppieren_eigenschaft").attr("data-liste")
+            $(this).closest(".gruppieren_eigenschaft").attr("data-liste"),
         );
     });
 }

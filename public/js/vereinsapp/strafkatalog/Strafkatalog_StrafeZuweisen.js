@@ -8,7 +8,7 @@ function Strafkatalog_StrafeZuweisen(auswahl_einfordern, bestaetigung_einfordern
             title: title,
         });
     } else if (bestaetigung_einfordern) {
-        if (dom.$modal.exists()) Schnittstelle_DomModalSchliessen(dom.$modal);
+        if (dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(dom.$modal);
 
         Schnittstelle_DomBestaetigungEinfordern(
             "Willst du wirklich " +

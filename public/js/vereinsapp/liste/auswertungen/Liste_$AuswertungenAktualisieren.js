@@ -3,7 +3,7 @@
  * @param {string} auswertungen
  */
 
-function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
+function Liste_$AuswertungenAktualisieren($auswertungen, auswertungen) {
     const auswertungen_instanz = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("id"), undefined);
     const liste = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-liste"), undefined);
 
@@ -116,16 +116,16 @@ function Liste_AuswertungenAktualisieren($auswertungen, auswertungen) {
 
     // ÜBERSCHRIFT AKTUALISIEREN
     $('.ueberschrift[data-instanz="' + auswertungen_instanz + '"]').each(function () {
-        Liste_UeberschriftAktualisieren($(this), $auswertungen);
+        Liste_Liste$UeberschriftAktualisieren($(this), $auswertungen);
     });
 
     // WERKZEUG AKTUALISIEREN
     $('.werkzeug[data-instanz="' + auswertungen_instanz + '"]').each(function () {
-        Liste_WerkzeugAktualisieren($(this), $auswertungen);
+        Liste_Liste$WerkzeugAktualisieren($(this), $auswertungen);
     });
 
     // LISTENSTATISTIK AKTUALISIEREN
     $('.listenstatistik[data-instanz="' + auswertungen_instanz + '"]').each(function () {
-        Liste_ListenstatistikAktualisieren($(this), $auswertungen);
+        Liste_Liste$ListenstatistikAktualisieren($(this), $auswertungen);
     });
 }

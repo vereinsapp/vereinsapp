@@ -2,9 +2,9 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitgli
     if (typeof mitglied_id !== "undefined") mitglied_id = Number(mitglied_id);
 
     if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "mitglied_basiseigenschaften");
-        Schnittstelle_DomModalOeffnen($neues_modal);
-        Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "erstellen", mitglied_id, "mitglieder");
+        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "mitglied_basiseigenschaften");
+        Schnittstelle_Dom$ModalOeffnen($neues_modal);
+        Liste_Element$FormularInitialisieren($neues_modal.find(".formular"), "erstellen", mitglied_id, "mitglieder");
     } else {
         const ajax_dom = dom;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
@@ -32,13 +32,13 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitgli
                 Schnittstelle_VariableElementErgaenzen("mitglieder");
                 Schnittstelle_EventVariableUpdDom("mitglieder");
 
-                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
+                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
                 Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") + " wurde erfolgreich erstellt.");
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
-                    Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
+                    Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
             },
         );
     }

@@ -8,7 +8,7 @@ function Liste_FilternInit() {
         Liste_FilternLocalStorageSpeichern(
             Schnittstelle_VariableWertBereinigtZurueck($(this).val(), undefined),
             $(this).attr("data-instanz"),
-            $(this).attr("data-liste")
+            $(this).attr("data-liste"),
         );
     });
 
@@ -23,7 +23,7 @@ function Liste_FilternInit() {
             $(this),
             $(this).closest(".vorgegebene_filter").attr("data-ziel_id"),
             $(this).val(),
-            $(this).closest(".vorgegebene_filter").attr("data-liste")
+            $(this).closest(".vorgegebene_filter").attr("data-liste"),
         );
     });
 
@@ -34,28 +34,28 @@ function Liste_FilternInit() {
 
     // FILTERN WERT ZWISCHEN INKLUSIV UND EXKLUSIV VERSCHIEBEN
     $(document).on("click", ".btn_filtern_wert_inklusiv_exklusiv", function () {
-        Liste_FilternWertInExklusivVerschieben(
+        Liste_$FilternWertInExklusivVerschieben(
             $(this).closest(".filtern_wert"),
             $(this).closest(".filtern_eigenschaft").attr("data-ziel_id"),
-            $(this).closest(".filtern_eigenschaft").attr("data-liste")
+            $(this).closest(".filtern_eigenschaft").attr("data-liste"),
         );
     });
 
     // FILTERN WERT LOESCHEN
     $(document).on("click", ".btn_filtern_wert_loeschen", function () {
-        Liste_FilternWertLoeschen(
+        Liste_$FilternWertLoeschen(
             $(this).closest(".filtern_wert"),
             $(this).closest(".filtern_eigenschaft").attr("data-ziel_id"),
-            $(this).closest(".filtern_eigenschaft").attr("data-liste")
+            $(this).closest(".filtern_eigenschaft").attr("data-liste"),
         );
     });
 
     // FILTERN EIGENSCHAFT ZURÜCKSETZEN
     $(document).on("click", ".btn_filtern_eigenschaft_loeschen", function () {
-        Liste_FilternEigenschaftZuruecksetzen(
+        Liste_$FilternEigenschaftZuruecksetzen(
             $(this).closest(".filtern_eigenschaft"),
             $(this).closest(".filtern_eigenschaft").attr("data-ziel_id"),
-            $(this).closest(".filtern_eigenschaft").attr("data-liste")
+            $(this).closest(".filtern_eigenschaft").attr("data-liste"),
         );
     });
 }

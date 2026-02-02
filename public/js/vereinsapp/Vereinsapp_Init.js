@@ -37,7 +37,7 @@ $(document).ready(function () {
     $(".formular[data-liste]").each(function () {
         const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined);
 
-        Liste_ElementFormularInitialisieren(
+        Liste_Element$FormularInitialisieren(
             $(this),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aktion"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id"), undefined),
@@ -48,10 +48,10 @@ $(document).ready(function () {
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
     if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined) === "undefined")
         Schnittstelle_AjaxInDieSchlange("status/ajax_datenschutz_richtlinie", new Object(), new Object(), function (AJAX) {
-            Schnittstelle_DomModalOeffnen(AJAX.antwort.html);
+            Schnittstelle_Dom$ModalOeffnen(AJAX.antwort.html);
             $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
                 Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DATETIME.now().toISO());
-                Schnittstelle_DomModalSchliessen($("#datenschutz_richtlinie_anzeigen"));
+                Schnittstelle_Dom$ModalSchliessen($("#datenschutz_richtlinie_anzeigen"));
             });
         });
 });
@@ -97,7 +97,6 @@ Lässt sich filtern/sortieren/gruppieren_localstorage_speichern entfernen mittel
 ziel_id nur setzen, wenn noch keine id vorhanden ist (sonst die existierende id nehmen) -> eigene Funktion einführen?
 eintrag_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper?)
 viewdata_bereinigen an einen neutralen Ort verschieben (Basismodel? Helper? Vorkommen suchen mit echo view( in Controller)
-Alles mit ...Aktualisieren und ...Initialisieren mit $... im Funktionsnamen ergänzen und lediglich $... als Parameter übergeben
 
 ERLEDIGT
 

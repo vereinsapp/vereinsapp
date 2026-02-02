@@ -138,7 +138,7 @@ function Termine_Init() {
         Termine_TerminErstellen(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             undefined,
         );
@@ -149,7 +149,7 @@ function Termine_Init() {
         Termine_TerminAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
         );
@@ -160,7 +160,7 @@ function Termine_Init() {
         Termine_TerminErstellen(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
         );

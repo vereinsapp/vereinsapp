@@ -3,7 +3,7 @@
  * @param {JQuery} $liste
  */
 
-function Liste_ListenstatistikAktualisieren($listenstatistik, $liste) {
+function Liste_Liste$ListenstatistikAktualisieren($listenstatistik, $liste) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-liste"), undefined);
 
     switch ($listenstatistik.attr("data-listenstatistik")) {
@@ -12,8 +12,8 @@ function Liste_ListenstatistikAktualisieren($listenstatistik, $liste) {
             break;
         }
         case "angewaehlt": {
-            /* funktioniert aktuell nicht, weil Liste_Aktualisieren inkl. Liste_ListenstatistikAktualisieren aufgerufen wird,
-             * bevor Liste_ElementAktualisieren inkl. Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren aufgerufen wird
+            /* funktioniert aktuell nicht, weil Liste_$ListeAktualisieren inkl. Liste_Liste$ListenstatistikAktualisieren aufgerufen wird,
+             * bevor Liste_$ElementAktualisieren inkl. Liste_$VerknuepfungenAuswahlmoeglichkeitenAktualisieren aufgerufen wird
              */
             $listenstatistik.text($liste.find(".chk_verknuepfung_erstellen:checked").length);
             break;

@@ -2,9 +2,9 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
     if (typeof kassenbucheintrag_id !== "undefined") kassenbucheintrag_id = Number(kassenbucheintrag_id);
 
     if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "kassenbucheintrag_basiseigenschaften");
-        Schnittstelle_DomModalOeffnen($neues_modal);
-        Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "erstellen", kassenbucheintrag_id, "kassenbuch");
+        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "kassenbucheintrag_basiseigenschaften");
+        Schnittstelle_Dom$ModalOeffnen($neues_modal);
+        Liste_Element$FormularInitialisieren($neues_modal.find(".formular"), "erstellen", kassenbucheintrag_id, "kassenbuch");
     } else {
         const ajax_dom = dom;
 
@@ -38,13 +38,13 @@ function Strafkatalog_KassenbucheintragErstellen(formular_oeffnen, dom, data, ti
                 Schnittstelle_VariableElementErgaenzen("kassenbuch");
                 Schnittstelle_EventVariableUpdDom("kassenbuch");
 
-                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
+                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
                 Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(kassenbucheintrag_id, "kassenbuch") + " wurde erfolgreich erstellt.");
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
-                    Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
+                    Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
             },
         );
     }

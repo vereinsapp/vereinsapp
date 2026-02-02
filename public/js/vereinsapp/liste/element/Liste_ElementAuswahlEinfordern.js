@@ -6,7 +6,7 @@ function Liste_ElementAuswahlEinfordern($ziel, title, liste, klasse_id, data = n
     if ($ziel.exists()) $ziel.attr("id", ziel_id);
     data.ziel_id = ziel_id;
 
-    const $neues_auswahl_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "AUSWAHL");
+    const $neues_auswahl_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "AUSWAHL");
 
     const $liste = $neues_auswahl_modal.find("#AUSWAHLLISTE.liste");
     $liste.attr("id", instanz).attr("data-liste", liste);
@@ -32,6 +32,6 @@ function Liste_ElementAuswahlEinfordern($ziel, title, liste, klasse_id, data = n
 
     LISTEN[liste].instanz[instanz] = { filtern: new Object(), sortieren: undefined, $blanko_element: $blanko_element };
 
-    Schnittstelle_DomModalOeffnen($neues_auswahl_modal);
+    Schnittstelle_Dom$ModalOeffnen($neues_auswahl_modal);
     Schnittstelle_EventVariableUpdDom(liste);
 }

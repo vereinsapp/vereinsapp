@@ -97,7 +97,7 @@ function Aufgaben_Init() {
         Aufgaben_AufgabeErstellen(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             undefined,
         );
@@ -108,7 +108,7 @@ function Aufgaben_Init() {
         Aufgaben_AufgabeAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
         );
@@ -119,7 +119,7 @@ function Aufgaben_Init() {
         Aufgaben_AufgabeErstellen(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
         );

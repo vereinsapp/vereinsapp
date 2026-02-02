@@ -11,8 +11,8 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
             { liste: "mitglieder", mitglied_id: mitglied_id, email: true },
         );
     else if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "mitglieder_einmal_link_anzeigen");
-        Schnittstelle_DomModalOeffnen($neues_modal);
+        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "mitglieder_einmal_link_anzeigen");
+        Schnittstelle_Dom$ModalOeffnen($neues_modal);
         $neues_modal
             .find(".beschriftung_mitglied_einmal_link_anzeigen")
             .text(
@@ -39,7 +39,7 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
 
                 if (AJAX.data.email) {
                     if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
-                        Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
+                        Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
                         Schnittstelle_DomToastFeuern(
                             "Einmal-Link für " +
                                 Liste_ElementBeschriftungZurueck(AJAX.data.mitglied_id, "mitglieder") +

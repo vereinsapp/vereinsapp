@@ -4,7 +4,7 @@ function Liste_SortierenInit() {
         Liste_SortierenLocalStorageSpeichern(
             Schnittstelle_VariableWertBereinigtZurueck($(this).val(), undefined),
             $(this).attr("data-instanz"),
-            $(this).attr("data-liste")
+            $(this).attr("data-liste"),
         );
     });
 
@@ -20,10 +20,10 @@ function Liste_SortierenInit() {
 
     // SORTIEREN ZURUECKSETZEN
     $(document).on("click", ".btn_sortieren_eigenschaft_loeschen", function () {
-        Liste_SortierenEigenschaftZuruecksetzen(
+        Liste_$SortierenEigenschaftZuruecksetzen(
             $(this).closest(".sortieren_eigenschaft"),
             $(this).closest(".sortieren_eigenschaft").attr("data-ziel_id"),
-            $(this).closest(".sortieren_eigenschaft").attr("data-liste")
+            $(this).closest(".sortieren_eigenschaft").attr("data-liste"),
         );
     });
 }

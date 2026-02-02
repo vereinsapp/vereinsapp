@@ -1,4 +1,4 @@
-function Liste_FilternWertInExklusivVerschieben($filtern_wert, ziel_id, liste) {
+function Liste_$FilternWertInExklusivVerschieben($filtern_wert, ziel_id, liste) {
     const $filtern_eigenschaft = $filtern_wert.closest(".filtern_eigenschaft");
     const eigenschaft = $filtern_eigenschaft.attr("data-eigenschaft");
     let filtern_wert = Schnittstelle_VariableWertBereinigtZurueck($filtern_wert.attr("data-wert"), undefined);

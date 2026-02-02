@@ -3,7 +3,7 @@
  * @param {JQuery} $element
  */
 
-function Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen_auswahlmoeglichkeiten, $element) {
+function Liste_$VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen_auswahlmoeglichkeiten, $element) {
     const $verknuepfung_moeglich = $verknuepfungen_auswahlmoeglichkeiten.find(".verknuepfung_moeglich");
     const $verknuepfung_nicht_moeglich = $verknuepfungen_auswahlmoeglichkeiten.find(".verknuepfung_nicht_moeglich");
     const verknuepfungen = Schnittstelle_VariableWertBereinigtZurueck($verknuepfungen_auswahlmoeglichkeiten.attr("data-verknuepfungen"), undefined);

@@ -29,7 +29,7 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, elemen
                 else {
                     Schnittstelle_EventVariableUpdDom(liste);
 
-                    if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
+                    if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
                     Schnittstelle_DomToastFeuern(beschriftung + " wurde gelöscht.", "danger");
                 }
             },

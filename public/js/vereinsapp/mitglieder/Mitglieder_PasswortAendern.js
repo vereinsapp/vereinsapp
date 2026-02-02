@@ -16,7 +16,7 @@ function Mitglieder_PasswortAendern(dom, data, mitglied_id) {
         function (AJAX) {
             if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
             else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
-                Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
+                Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
         },
     );
 }

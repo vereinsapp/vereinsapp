@@ -1,5 +1,5 @@
 function Schnittstelle_DomBestaetigungEinfordern(nachricht, title, btn_klasse_id, btn_data, btn_farbe) {
-    const $neues_bestaetigung_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "BESTAETIGUNG");
+    const $neues_bestaetigung_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "BESTAETIGUNG");
     const $bestaetigung = $neues_bestaetigung_modal.find(".bestaetigung");
 
     $bestaetigung.find(".nachricht").text(nachricht);
@@ -12,5 +12,5 @@ function Schnittstelle_DomBestaetigungEinfordern(nachricht, title, btn_klasse_id
         });
     if (typeof btn_farbe !== "undefined") $btn_bestaetigen.removeClass("btn-outline-success").addClass("btn-outline-" + btn_farbe);
 
-    Schnittstelle_DomModalOeffnen($neues_bestaetigung_modal);
+    Schnittstelle_Dom$ModalOeffnen($neues_bestaetigung_modal);
 }

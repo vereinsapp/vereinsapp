@@ -1,4 +1,4 @@
-function Schnittstelle_DomModalOeffnen($modal) {
+function Schnittstelle_Dom$ModalOeffnen($modal) {
     const $umgebung = $("#modals");
 
     if (isString($modal)) {

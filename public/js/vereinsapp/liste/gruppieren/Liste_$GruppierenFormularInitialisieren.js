@@ -1,6 +1,6 @@
-function Liste_GruppierenFormularInitialisieren($formular, ziel_id, liste) {
-    const $gruppieren_eigenschaft = $formular.find(".gruppieren_eigenschaft");
-    const $gruppieren_wert = $formular.find(".gruppieren_wert");
+function Liste_$GruppierenFormularInitialisieren($gruppieren_formular, ziel_id, liste) {
+    const $gruppieren_eigenschaft = $gruppieren_formular.find(".gruppieren_eigenschaft");
+    const $gruppieren_wert = $gruppieren_formular.find(".gruppieren_wert");
 
     $gruppieren_eigenschaft.attr("data-liste", liste).attr("data-ziel_id", ziel_id);
 

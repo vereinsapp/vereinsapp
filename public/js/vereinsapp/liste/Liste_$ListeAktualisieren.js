@@ -3,7 +3,7 @@
  * @param {string} liste
  */
 
-function Liste_Aktualisieren($liste, liste) {
+function Liste_$ListeAktualisieren($liste, liste) {
     const instanz = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("id"), undefined);
 
     // TABELLE FILTERN
@@ -61,16 +61,16 @@ function Liste_Aktualisieren($liste, liste) {
 
     // ÜBERSCHRIFT AKTUALISIEREN
     $('.ueberschrift[data-instanz="' + instanz + '"]').each(function () {
-        Liste_UeberschriftAktualisieren($(this), $liste);
+        Liste_Liste$UeberschriftAktualisieren($(this), $liste);
     });
 
     // WERKZEUG AKTUALISIEREN
     $('.werkzeug[data-instanz="' + instanz + '"]').each(function () {
-        Liste_WerkzeugAktualisieren($(this), $liste);
+        Liste_Liste$WerkzeugAktualisieren($(this), $liste);
     });
 
     // LISTENSTATISTIK AKTUALISIEREN
     $('.listenstatistik[data-instanz="' + instanz + '"]').each(function () {
-        Liste_ListenstatistikAktualisieren($(this), $liste);
+        Liste_Liste$ListenstatistikAktualisieren($(this), $liste);
     });
 }

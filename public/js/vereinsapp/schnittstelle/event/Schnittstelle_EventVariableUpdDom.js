@@ -2,36 +2,36 @@ function Schnittstelle_EventVariableUpdDom(liste) {
     if (liste in LISTEN) {
         // LISTE AKTUALISIEREN
         $('.liste[data-liste="' + liste + '"]').each(function () {
-            Liste_Aktualisieren($(this), liste);
+            Liste_$ListeAktualisieren($(this), liste);
         });
 
         // ELEMENT AKTUALISIEREN
         $('.element[data-liste="' + liste + '"]').each(function () {
-            Liste_ElementAktualisieren($(this), liste);
+            Liste_$ElementAktualisieren($(this), liste);
         });
 
         // AUSWERTUNGEN AKTUALISIEREN
         $.each(VERKNUEPFUNGEN, function (verknuepfungen, eigenschaften) {
             if (liste === verknuepfungen || eigenschaften.verknuepfte_listen.includes(liste)) {
                 $('.auswertungen[data-auswertungen="' + verknuepfungen + '"]').each(function () {
-                    Liste_AuswertungenAktualisieren($(this), verknuepfungen);
+                    Liste_$AuswertungenAktualisieren($(this), verknuepfungen);
                 });
 
                 // AUSWERTUNG AKTUALISIEREN
                 $('.auswertung[data-auswertungen="' + verknuepfungen + '"]').each(function () {
-                    Liste_AuswertungAktualisieren($(this), verknuepfungen);
+                    Liste_$AuswertungAktualisieren($(this), verknuepfungen);
                 });
             }
         });
 
         // VERZEICHNIS AKTUALISIEREN
         $('.verzeichnis[data-liste="' + liste + '"]').each(function () {
-            Liste_VerzeichnisAktualisieren($(this), liste);
+            Liste_$VerzeichnisAktualisieren($(this), liste);
         });
 
         // DATEI AKTUALISIEREN
         $('.datei[data-liste="' + liste + '"]').each(function () {
-            Liste_DateiAktualisieren($(this), liste);
+            Liste_$DateiAktualisieren($(this), liste);
         });
     }
 

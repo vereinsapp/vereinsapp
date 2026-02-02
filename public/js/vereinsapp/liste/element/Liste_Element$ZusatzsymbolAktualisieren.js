@@ -3,7 +3,7 @@
  * @param {JQuery} $element
  */
 
-function Liste_ElementZusatzsymbolAktualisieren($zusatzsymbol, $element) {
+function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-liste"), undefined);
     const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-" + LISTEN[liste].element + "_id"), undefined);
     const zusatzsymbol = Schnittstelle_VariableWertBereinigtZurueck($zusatzsymbol.attr("data-zusatzsymbol"), undefined);

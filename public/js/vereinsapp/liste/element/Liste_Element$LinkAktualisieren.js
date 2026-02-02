@@ -3,7 +3,7 @@
  * @param {JQuery} $element
  */
 
-function Liste_ElementLinkAktualisieren($link, $element) {
+function Liste_Element$LinkAktualisieren($link, $element) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-liste"), undefined);
     const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-" + LISTEN[liste].element + "_id"), undefined);
     const link_data = Schnittstelle_VariableWertBereinigtZurueck($link.attr("data-link"), new Object());

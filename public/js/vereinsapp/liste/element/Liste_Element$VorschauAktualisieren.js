@@ -3,7 +3,7 @@
  * @param {JQuery} $element
  */
 
-function Liste_ElementVorschauAktualisieren($vorschau, $element) {
+function Liste_Element$VorschauAktualisieren($vorschau, $element) {
     let $letzter_sichtbarer_spacer;
 
     $.each($vorschau.children(".eigenschaft"), function () {

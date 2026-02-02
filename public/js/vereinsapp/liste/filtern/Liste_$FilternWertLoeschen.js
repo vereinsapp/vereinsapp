@@ -1,4 +1,4 @@
-function Liste_FilternWertLoeschen($filtern_wert, ziel_id, liste) {
+function Liste_$FilternWertLoeschen($filtern_wert, ziel_id, liste) {
     const $filtern_eigenschaft = $filtern_wert.closest(".filtern_eigenschaft");
     const eigenschaft = $filtern_eigenschaft.attr("data-eigenschaft");
     let filtern_wert = Schnittstelle_VariableWertBereinigtZurueck($filtern_wert.attr("data-wert"), undefined);
@@ -76,6 +76,6 @@ function Liste_FilternWertLoeschen($filtern_wert, ziel_id, liste) {
     Liste_FilternFormular$EigenschaftAktualisieren(
         $filtern_eigenschaft,
         Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_prio_hoch, liste)[eigenschaft],
-        liste
+        liste,
     );
 }

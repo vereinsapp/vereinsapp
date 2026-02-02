@@ -72,14 +72,14 @@ function Schnittstelle_DomInit() {
     $("#hauptinstanzen").remove();
 
     $.each(autoload, function () {
-        const $modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(undefined, this);
+        const $modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, this);
 
-        Schnittstelle_DomModalOeffnen($modal);
+        Schnittstelle_Dom$ModalOeffnen($modal);
 
         const $formular = $modal.find(".formular");
         if ($formular.exists()) {
             const liste = Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-liste"), undefined);
-            Liste_ElementFormularInitialisieren(
+            Liste_Element$FormularInitialisieren(
                 $formular,
                 Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-aktion"), undefined),
                 Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-" + LISTEN[liste].element + "_id"), undefined),
@@ -139,7 +139,7 @@ function Schnittstelle_DomInit() {
 
         if (!$umgebung.find(".modal.show").exists() && $letztes_wartendes_modal.exists()) {
             $letztes_wartendes_modal.removeClass("warten");
-            Schnittstelle_DomModalOeffnen($letztes_wartendes_modal);
+            Schnittstelle_Dom$ModalOeffnen($letztes_wartendes_modal);
         }
     });
 

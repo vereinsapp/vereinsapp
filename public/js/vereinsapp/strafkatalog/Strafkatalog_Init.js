@@ -14,7 +14,7 @@ function Strafkatalog_Init() {
         Strafkatalog_StrafeErstellen(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             undefined,
         );
@@ -25,7 +25,7 @@ function Strafkatalog_Init() {
         Strafkatalog_StrafeAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-strafe_id"), undefined),
         );
@@ -36,7 +36,7 @@ function Strafkatalog_Init() {
         Strafkatalog_StrafeErstellen(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-strafe_id"), undefined),
         );
@@ -60,7 +60,7 @@ function Strafkatalog_Init() {
         Strafkatalog_KassenbucheintragErstellen(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             undefined,
         );
@@ -71,7 +71,7 @@ function Strafkatalog_Init() {
         Strafkatalog_KassenbucheintragAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-kassenbucheintrag_id"), undefined),
         );
@@ -82,7 +82,7 @@ function Strafkatalog_Init() {
         Strafkatalog_KassenbucheintragErstellen(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-kassenbucheintrag_id"), undefined),
         );

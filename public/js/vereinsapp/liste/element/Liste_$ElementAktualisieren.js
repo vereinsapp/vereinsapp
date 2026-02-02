@@ -3,7 +3,7 @@
  * @param {string} $liste
  */
 
-function Liste_ElementAktualisieren($element, liste) {
+function Liste_$ElementAktualisieren($element, liste) {
     const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-" + LISTEN[liste].element + "_id"), undefined);
 
     // EIGENSCHAFTEN AKTUALISIEREN
@@ -49,31 +49,31 @@ function Liste_ElementAktualisieren($element, liste) {
 
     // VERKNUEPFUNGEN_AUSWAHLMOEGLICHKEITEN AKTUALISIEREN
     $element.find(".verknuepfungen_auswahlmoeglichkeiten").each(function () {
-        Liste_VerknuepfungenAuswahlmoeglichkeitenAktualisieren($(this), $element);
+        Liste_$VerknuepfungenAuswahlmoeglichkeitenAktualisieren($(this), $element);
     });
 
     // LINK AKTUALISIEREN
     $element.find("a.stretched-link").each(function () {
-        Liste_ElementLinkAktualisieren($(this), $element);
+        Liste_Element$LinkAktualisieren($(this), $element);
     });
 
     // ZUSATZSYMBOL AKTUALISIEREN
     $element.find(".zusatzsymbol").each(function () {
-        Liste_ElementZusatzsymbolAktualisieren($(this), $element);
+        Liste_Element$ZusatzsymbolAktualisieren($(this), $element);
     });
 
     // ZUSATZINFO AKTUALISIEREN
     $element.find(".zusatzinfo").each(function () {
-        Liste_ElementZusatzinfoAktualisieren($(this), $element);
+        Liste_Element$ZusatzinfoAktualisieren($(this), $element);
     });
 
     // VORSCHAU AKTUALISIEREN
     $element.find(".vorschau").each(function () {
-        Liste_ElementVorschauAktualisieren($(this), $element);
+        Liste_Element$VorschauAktualisieren($(this), $element);
     });
 
     // NAVIGATION AKTUALISIEREN
     $element.find(".element_navigation").each(function () {
-        Liste_ElementNavigationAktualisieren($(this), $element);
+        Liste_Element$NavigationAktualisieren($(this), $element);
     });
 }

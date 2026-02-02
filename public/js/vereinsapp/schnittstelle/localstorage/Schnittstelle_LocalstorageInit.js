@@ -18,7 +18,7 @@ function Schnittstelle_LocalstorageInit() {
     )
         Schnittstelle_LocalstorageRein(
             "datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM,
-            datenschutz_richtlinie_string.substring(1, datenschutz_richtlinie_string.length - 1)
+            datenschutz_richtlinie_string.substring(1, datenschutz_richtlinie_string.length - 1),
         );
 
     // LOCALSTORAGE LEEREN
@@ -30,11 +30,11 @@ function Schnittstelle_LocalstorageInit() {
                 $btn_localstorage_leeren.attr("data-title"),
                 "btn_localstorage_leeren",
                 new Object(),
-                "danger"
+                "danger",
             );
         else {
             localstorage_leeren();
-            Schnittstelle_DomModalSchliessen($btn_localstorage_leeren.closest(".modal"));
+            Schnittstelle_Dom$ModalSchliessen($btn_localstorage_leeren.closest(".modal"));
             Schnittstelle_DomToastFeuern("Dein LocalStorage wurde erfolgreich geleert.");
         }
     });

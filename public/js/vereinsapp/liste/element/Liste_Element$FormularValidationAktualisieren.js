@@ -1,4 +1,4 @@
-function Liste_ElementFormularValidationAktualisieren($formular, validation) {
+function Liste_Element$FormularValidationAktualisieren($formular, validation) {
     $formular.find(".eingabe").each(function () {
         const $eingabe = $(this);
         const eingabe = $eingabe.attr("data-eingabe");

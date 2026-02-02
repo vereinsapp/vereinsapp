@@ -1,4 +1,4 @@
-function Liste_ElementFormularInitialisieren($formular, aktion, element_id, liste) {
+function Liste_Element$FormularInitialisieren($formular, aktion, element_id, liste) {
     $formular.find(".eingabe").each(function () {
         const $eingabe = $(this);
         const eingabe = $eingabe.attr("data-eingabe");

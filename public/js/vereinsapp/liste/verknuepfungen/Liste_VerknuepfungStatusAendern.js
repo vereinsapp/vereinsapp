@@ -41,7 +41,7 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
             Schnittstelle_EventVariableUpdDom(verknuepfungen);
 
             if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
-                Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
+                Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
                 Schnittstelle_DomToastFeuern(
                     Liste_ElementBeschriftungZurueck(AJAX.data[LISTEN[verknuepfungen].element + "_id"], verknuepfungen) +
                         " wurde erfolgreich geändert.",

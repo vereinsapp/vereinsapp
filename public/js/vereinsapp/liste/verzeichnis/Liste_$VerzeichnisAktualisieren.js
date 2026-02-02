@@ -3,7 +3,7 @@
  * @param {string} liste
  */
 
-function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
+function Liste_$VerzeichnisAktualisieren($verzeichnis, liste) {
     const verzeichnis_instanz = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-instanz"), $verzeichnis.attr("id"));
     const element_id = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-" + LISTEN[liste].element + "_id"), undefined);
     const basis = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-basis"), new Array());
@@ -127,21 +127,21 @@ function Liste_VerzeichnisAktualisieren($verzeichnis, liste) {
 
     // UNTERVERZEICHNISSE AKTUALISIEREN
     $verzeichnis.children(".unterverzeichnis").each(function () {
-        Liste_VerzeichnisAktualisieren($(this).find(".verzeichnis").first(), liste);
+        Liste_$VerzeichnisAktualisieren($(this).find(".verzeichnis").first(), liste);
     });
 
     // ÜBERSCHRIFT AKTUALISIEREN
     $('.ueberschrift[data-instanz="' + verzeichnis_instanz + '"]').each(function () {
-        Liste_UeberschriftAktualisieren($(this), $verzeichnis);
+        Liste_Liste$UeberschriftAktualisieren($(this), $verzeichnis);
     });
 
     // WERKZEUG AKTUALISIEREN
     $('.werkzeug[data-instanz="' + verzeichnis_instanz + '"]').each(function () {
-        Liste_WerkzeugAktualisieren($(this), $verzeichnis);
+        Liste_Liste$WerkzeugAktualisieren($(this), $verzeichnis);
     });
 
     // LISTENSTATISTIK AKTUALISIEREN
     $('.listenstatistik[data-instanz="' + verzeichnis_instanz + '"]').each(function () {
-        Liste_ListenstatistikAktualisieren($(this), $verzeichnis);
+        Liste_Liste$ListenstatistikAktualisieren($(this), $verzeichnis);
     });
 }

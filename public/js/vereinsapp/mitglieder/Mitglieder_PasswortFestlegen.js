@@ -10,13 +10,13 @@ function Mitglieder_PasswortFestlegen(dom, data, mitglied_id) {
         ajax_data,
         ajax_dom,
         function (AJAX) {
-            if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
+            if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
             Schnittstelle_DomToastFeuern("Du hast erfolgreich ein neues Passwort festgelegt.");
         },
         function (AJAX) {
             if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
             else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
-                Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
+                Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
         },
     );
 }

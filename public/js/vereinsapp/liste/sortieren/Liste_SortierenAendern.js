@@ -12,5 +12,5 @@ function Liste_SortierenAendern($quelle_ziel, ziel_id, liste) {
             .val(JsonStringifiedZurueck(sortieren, undefined))
             .trigger("change");
 
-    Schnittstelle_DomModalSchliessen($quelle_ziel.closest(".modal"));
+    Schnittstelle_Dom$ModalSchliessen($quelle_ziel.closest(".modal"));
 }

@@ -10,9 +10,9 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
     if (typeof termin_id !== "undefined") termin_id = Number(termin_id);
 
     if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "termin_basiseigenschaften");
-        Schnittstelle_DomModalOeffnen($neues_modal);
-        Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "erstellen", termin_id, "termine");
+        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "termin_basiseigenschaften");
+        Schnittstelle_Dom$ModalOeffnen($neues_modal);
+        Liste_Element$FormularInitialisieren($neues_modal.find(".formular"), "erstellen", termin_id, "termine");
     } else {
         const ajax_dom = dom;
 
@@ -46,13 +46,13 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
                 Schnittstelle_VariableElementErgaenzen("termine");
                 Schnittstelle_EventVariableUpdDom("termine");
 
-                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
+                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
                 Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(termin_id, "termine") + " wurde erfolgreich erstellt.");
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
-                    Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
+                    Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
             },
         );
     }

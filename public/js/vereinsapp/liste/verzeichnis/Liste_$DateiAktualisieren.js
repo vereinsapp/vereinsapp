@@ -1,4 +1,4 @@
-function Liste_DateiAktualisieren($datei, liste) {
+function Liste_$DateiAktualisieren($datei, liste) {
     const datei = $datei.attr("data-datei");
     const $verzeichnis = $datei.closest(".verzeichnis");
 
@@ -42,11 +42,11 @@ function Liste_DateiAktualisieren($datei, liste) {
 
     // ZUSATZSYMBOL AKTUALISIEREN
     $datei.find(".zusatzsymbol").each(function () {
-        Liste_ElementZusatzsymbolAktualisieren($(this), $datei);
+        Liste_Element$ZusatzsymbolAktualisieren($(this), $datei);
     });
 
     // ZUSATZINFO AKTUALISIEREN
     $datei.find(".zusatzinfo").each(function () {
-        Liste_ElementZusatzinfoAktualisieren($(this), $datei);
+        Liste_Element$ZusatzinfoAktualisieren($(this), $datei);
     });
 }

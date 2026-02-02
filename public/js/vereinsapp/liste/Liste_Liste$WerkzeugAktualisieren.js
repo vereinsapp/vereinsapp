@@ -3,7 +3,7 @@
  * @param {JQuery} $liste
  */
 
-function Liste_WerkzeugAktualisieren($werkzeug, $liste) {
+function Liste_Liste$WerkzeugAktualisieren($werkzeug, $liste) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-liste"), undefined);
     const instanz = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("id"), undefined);
 

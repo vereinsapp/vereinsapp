@@ -69,7 +69,7 @@ function Mitglieder_Init() {
         Mitglieder_MitgliedErstellen(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             undefined,
         );
@@ -80,7 +80,7 @@ function Mitglieder_Init() {
         Mitglieder_MitgliedAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
         );
@@ -91,7 +91,7 @@ function Mitglieder_Init() {
         Mitglieder_MitgliedErstellen(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
         );
@@ -101,7 +101,7 @@ function Mitglieder_Init() {
     $(document).on("click", ".btn_mitglied_passwort_aendern", function () {
         Mitglieder_PasswortAendern(
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
         );
     });
@@ -110,7 +110,7 @@ function Mitglieder_Init() {
     $(document).on("click", ".btn_mitglied_passwort_festlegen", function () {
         Mitglieder_PasswortFestlegen(
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_ElementFormularEigenschaftenWerteZurueck($(this).closest(".formular")),
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
         );
     });

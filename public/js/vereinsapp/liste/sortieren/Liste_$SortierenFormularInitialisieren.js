@@ -1,6 +1,6 @@
-function Liste_SortierenFormularInitialisieren($formular, ziel_id, liste) {
-    const $sortieren_eigenschaft = $formular.find(".sortieren_eigenschaft");
-    const $sortieren_wert = $formular.find(".sortieren_wert");
+function Liste_$SortierenFormularInitialisieren($sortieren_formular, ziel_id, liste) {
+    const $sortieren_eigenschaft = $sortieren_formular.find(".sortieren_eigenschaft");
+    const $sortieren_wert = $sortieren_formular.find(".sortieren_wert");
 
     $sortieren_eigenschaft.attr("data-liste", liste).attr("data-ziel_id", ziel_id);
 
@@ -29,7 +29,7 @@ function Liste_SortierenFormularInitialisieren($formular, ziel_id, liste) {
     const sortieren_kombiniert = Liste_SortierenMitPrioKombiniertZurueck(sortieren_prio_niedrig, sortieren_prio_hoch, liste);
     if (typeof sortieren_kombiniert !== "undefined") {
         $sortieren_wert.val(sortieren_kombiniert.eigenschaft);
-        $formular.find(".sortieren_richtung").prop("checked", false);
-        $formular.find('.sortieren_richtung[value="' + sortieren_kombiniert.richtung + '"]').prop("checked", true);
+        $sortieren_formular.find(".sortieren_richtung").prop("checked", false);
+        $sortieren_formular.find('.sortieren_richtung[value="' + sortieren_kombiniert.richtung + '"]').prop("checked", true);
     }
 }

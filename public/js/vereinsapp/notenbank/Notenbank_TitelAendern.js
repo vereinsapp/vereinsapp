@@ -2,9 +2,9 @@ function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
     if (typeof titel_id !== "undefined") titel_id = Number(titel_id);
 
     if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_DomNeuesModalInitialisiertZurueck(title, "titel_basiseigenschaften");
-        Schnittstelle_DomModalOeffnen($neues_modal);
-        Liste_ElementFormularInitialisieren($neues_modal.find(".formular"), "aendern", titel_id, "notenbank");
+        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "titel_basiseigenschaften");
+        Schnittstelle_Dom$ModalOeffnen($neues_modal);
+        Liste_Element$FormularInitialisieren($neues_modal.find(".formular"), "aendern", titel_id, "notenbank");
     } else {
         const ajax_dom = dom;
 
@@ -37,14 +37,14 @@ function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
                 Schnittstelle_EventVariableUpdDom("notenbank");
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
-                    Schnittstelle_DomModalSchliessen(AJAX.dom.$modal);
+                    Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
                     Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(titel_id, "notenbank") + " wurde erfolgreich geändert.");
                 }
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
-                    Liste_ElementFormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
+                    Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Schnittstelle_DomToastFeuern(
                     Liste_ElementBeschriftungZurueck(AJAX.data.titel_id, "notenbank") + " konnte nicht gespeichert werden.",
                     "danger",
