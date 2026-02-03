@@ -1,9 +1,9 @@
 /**
  * @param {JQuery} $element
- * @param {string} $liste
  */
 
-function Liste_$ElementAktualisieren($element, liste) {
+function Liste_$ElementAktualisieren($element) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-liste"), undefined);
     const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-" + LISTEN[liste].element + "_id"), undefined);
 
     // EIGENSCHAFTEN AKTUALISIEREN

@@ -49,7 +49,7 @@ function Liste_ElementBemerkungAendern(formular_oeffnen, dom, data, ziel_id, ele
                 Schnittstelle_EventVariableUpdDom(liste);
 
                 if ("dom" in AJAX && "$ziel" in AJAX.dom && AJAX.dom.$ziel.exists() && liste !== AJAX.dom.$ziel.attr("data-liste"))
-                    Liste_$ElementAktualisieren(AJAX.dom.$ziel, AJAX.dom.$ziel.attr("data-liste"));
+                    Liste_$ElementAktualisieren(AJAX.dom.$ziel);
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                     Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);

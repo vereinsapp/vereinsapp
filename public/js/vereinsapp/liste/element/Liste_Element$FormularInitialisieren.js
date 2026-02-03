@@ -1,10 +1,18 @@
+/**
+ * @param {JQuery} $formular
+ * @param {string} aktion
+ * @param {number} element_id
+ * @param {string} liste
+ */
+
 function Liste_Element$FormularInitialisieren($formular, aktion, element_id, liste) {
     $formular.find(".eingabe").each(function () {
         const $eingabe = $(this);
         const eingabe = $eingabe.attr("data-eingabe");
 
         // Wenn es um einen Button geht
-        if ($eingabe.attr("type") == "button") $eingabe.attr("id", zufaelligeZeichenketteZurueck(8));
+        const ziel_id = zufaelligeZeichenketteZurueck(8);
+        if ($eingabe.attr("type") == "button") $eingabe.attr("id", ziel_id);
 
         let wert = Schnittstelle_VariableRausZurueck(eingabe, element_id, liste, undefined);
         // Wenn aber nichts definiert ist, dann nimm den Standard-Wert (je nach Typ)
@@ -40,8 +48,7 @@ function Liste_Element$FormularInitialisieren($formular, aktion, element_id, lis
         // Oder wenn aber die Eigenschaft ein Array ist
         else if (isArray(wert)) wert_formatiert = JsonStringifiedZurueck(wert, new Array());
 
-        $eingabe.val(wert_formatiert);
-        if (typeof EIGENSCHAFTEN[liste][eingabe].change_aktion === "function") EIGENSCHAFTEN[liste][eingabe].change_aktion($eingabe);
+        $eingabe.val(wert_formatiert).trigger("change");
     });
 
     $formular.find("[class*=btn_" + LISTEN[liste].element + "_").each(function () {

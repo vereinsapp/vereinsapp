@@ -1,9 +1,9 @@
 /**
  * @param {JQuery} $liste
- * @param {string} liste
  */
 
-function Liste_$ListeAktualisieren($liste, liste) {
+function Liste_$ListeAktualisieren($liste) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-liste"), undefined);
     const instanz = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("id"), undefined);
 
     // TABELLE FILTERN

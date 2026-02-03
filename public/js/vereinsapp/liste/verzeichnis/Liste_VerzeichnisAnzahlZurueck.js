@@ -1,3 +1,8 @@
+/**
+ * @param {Object} verzeichnis
+ * @param {string} typ
+ */
+
 function Liste_VerzeichnisAnzahlZurueck(verzeichnis, typ = "verzeichnis") {
     let anzahl = 0;
 

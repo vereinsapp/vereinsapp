@@ -1,16 +1,26 @@
-function Liste_$FilternFormularInitialisieren($filtern_formular, ziel_id, liste) {
-    const $vorgegebene_filter = $filtern_formular.find(".vorgegebene_filter");
-    const $vorgegebene_filter_auswahl = $vorgegebene_filter.find(".vorgegebene_filter_auswahl");
-    $vorgegebene_filter_auswahl.empty();
-    if (liste in VORGEGEBENE_FILTER) {
-        $("<option selected></option>").appendTo($vorgegebene_filter_auswahl);
-        $.each(VORGEGEBENE_FILTER[liste], function (vorgegebene_filter_id, eigenschaften) {
-            $('<option value="' + vorgegebene_filter_id + '">' + eigenschaften.beschriftung + "</option>").appendTo($vorgegebene_filter_auswahl);
+/**
+ * @param {JQuery} $filtern_formular
+ */
+
+function Liste_$FilternFormularInitialisieren($filtern_formular) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_formular.attr("data-liste"), undefined);
+    const ziel_id = Schnittstelle_VariableWertBereinigtZurueck($filtern_formular.attr("data-ziel_id"), undefined);
+
+    // Initialiserung von $filtern_vorgegeben
+    const $filtern_vorgegeben = $filtern_formular.find(".filtern_vorgegeben");
+    const $filtern_vorgegeben_auswahl = $filtern_vorgegeben.find(".filtern_vorgegeben_auswahl");
+    $filtern_vorgegeben_auswahl.empty();
+    if (liste in FILTERN_VORGEGEBEN) {
+        $("<option selected></option>").appendTo($filtern_vorgegeben_auswahl);
+        $.each(FILTERN_VORGEGEBEN[liste], function (filtern_vorgegeben_id, eigenschaften) {
+            $('<option value="' + filtern_vorgegeben_id + '">' + eigenschaften.beschriftung + "</option>").appendTo($filtern_vorgegeben_auswahl);
         });
 
-        $vorgegebene_filter.attr("data-liste", liste).attr("data-ziel_id", ziel_id).removeClass("invisible");
-    } else $vorgegebene_filter.addClass("invisible");
+        $filtern_vorgegeben_auswahl.attr("data-liste", liste).attr("data-ziel_id", ziel_id);
+        $filtern_vorgegeben.removeClass("invisible");
+    } else $filtern_vorgegeben.addClass("invisible");
 
+    // Initialiserung von $filtern_eigenschaft
     $filtern_formular.find(".filtern_eigenschaft").remove();
     $.each(FILTERBARE_EIGENSCHAFTEN[liste], function (position, eigenschaft) {
         const typ = EIGENSCHAFTEN[liste][eigenschaft].typ;
@@ -50,7 +60,7 @@ function Liste_$FilternFormularInitialisieren($filtern_formular, ziel_id, liste)
         filtern_prio_hoch = new Object();
     }
 
-    // Überschreiben des value mit geänderten filtern_prio_hoch
+    // Überschreiben des bisherigen filtern_prio_hoch mit geändertem filtern_prio_hoch
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
             .val(JsonStringifiedZurueck(filtern_prio_hoch, new Object()))

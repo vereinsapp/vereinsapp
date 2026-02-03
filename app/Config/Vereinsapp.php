@@ -601,7 +601,7 @@ class Vereinsapp extends BaseConfig
      *
      * Vorgegebene Filter, die im Filtern-Modal ausgewählt werden können
      */
-    public $vorgegebene_filter = array(
+    public $filtern_vorgegeben = array(
 
         'mitglieder' => array(
             'alle_minderjaehrigen' => array(
@@ -648,7 +648,7 @@ class Vereinsapp extends BaseConfig
             ),
             'ich_nicht_eingeladen' => array(
                 'beschriftung' => 'Alle Termine, zu denen ich nicht eingeladen bin',
-                'filtern' => array( 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ) ), ),
+                'filtern' => array( 'ich_eingeladen_janein' => array( 'inklusiv' => array( FALSE ) ), ),
             ),
             'ich_rueckgemeldet' => array(
                 'beschriftung' => 'Alle Termine, zu denen ich Rückmeldung gegeben habe',
@@ -656,7 +656,7 @@ class Vereinsapp extends BaseConfig
             ),
             'ich_nicht_rueckgemeldet' => array(
                 'beschriftung' => 'Alle Termine, zu denen ich keine Rückmeldung gegeben habe',
-                'filtern' => array( 'ich_rueckgemeldet_janein' => array( 'inklusiv' => array( TRUE ) ), 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ) ), ),
+                'filtern' => array( 'ich_rueckgemeldet_janein' => array( 'inklusiv' => array( FALSE ) ), 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ) ), ),
             ),
         ),
 

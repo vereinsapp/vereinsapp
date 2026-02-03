@@ -14,22 +14,17 @@ function Liste_FilternInit() {
 
     // FILTERN MODAL ÖFFNEN
     $(document).on("click", ".btn_filtern_modal_oeffnen", function () {
-        Liste_FilternModalOeffnen($(this), $(this).attr("data-title"), $(this).attr("data-liste"));
+        Liste_FilternModalOeffnen($(this));
     });
 
     // VORGEGEBENE FILTER AUSWÄHLEN
-    $(document).on("change", ".vorgegebene_filter_auswahl", function () {
-        Liste_FilternVorgegebenAuswaehlen(
-            $(this),
-            $(this).closest(".vorgegebene_filter").attr("data-ziel_id"),
-            $(this).val(),
-            $(this).closest(".vorgegebene_filter").attr("data-liste"),
-        );
+    $(document).on("change", ".filtern_vorgegeben_auswahl", function () {
+        Liste_$FilternVorgegebenAuswahlAendern($(this));
     });
 
     // FILTERN ÄNDERN
     $(document).on("change", ".filtern_eigenschaft", function () {
-        Liste_FilternAendern($(this), $(this).attr("data-ziel_id"), $(this).attr("data-liste"));
+        Liste_$FilternEigenschaftAendern($(this));
     });
 
     // FILTERN WERT ZWISCHEN INKLUSIV UND EXKLUSIV VERSCHIEBEN
@@ -51,11 +46,7 @@ function Liste_FilternInit() {
     });
 
     // FILTERN EIGENSCHAFT ZURÜCKSETZEN
-    $(document).on("click", ".btn_filtern_eigenschaft_loeschen", function () {
-        Liste_$FilternEigenschaftZuruecksetzen(
-            $(this).closest(".filtern_eigenschaft"),
-            $(this).closest(".filtern_eigenschaft").attr("data-ziel_id"),
-            $(this).closest(".filtern_eigenschaft").attr("data-liste"),
-        );
+    $(document).on("click", ".btn_filtern_eigenschaft_zuruecksetzen", function () {
+        Liste_$FilternEigenschaftZuruecksetzen($(this).closest(".filtern_eigenschaft"));
     });
 }

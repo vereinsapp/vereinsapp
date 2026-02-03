@@ -1,3 +1,8 @@
+/**
+ * @param {JQuery} $formular
+ * @param {Object} validation
+ */
+
 function Liste_Element$FormularValidationAktualisieren($formular, validation) {
     $formular.find(".eingabe").each(function () {
         const $eingabe = $(this);

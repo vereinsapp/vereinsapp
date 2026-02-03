@@ -1,4 +1,9 @@
-function Liste_$AuswertungAktualisieren($auswertung, auswertungen) {
+/**
+ * @param {JQuery} $auswertung
+ */
+
+function Liste_$AuswertungAktualisieren($auswertung) {
+    const auswertungen = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-auswertungen"), undefined);
     const liste = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-liste"), undefined);
 
     // ERGEBNIS NACH STATUS ERMITTELN
@@ -52,9 +57,9 @@ function Liste_$AuswertungAktualisieren($auswertung, auswertungen) {
 
     // BEINHALTETE LISTE AKTUALISIEREN
     $auswertung.find('.liste[data-liste="' + liste + '"], .liste[data-liste="' + auswertungen + '"]').each(function () {
-        Liste_$ListeAktualisieren($(this), $(this).attr("data-liste"));
+        Liste_$ListeAktualisieren($(this));
     });
     $auswertung.find('.element[data-liste="' + liste + '"], .element[data-liste="' + auswertungen + '"]').each(function () {
-        Liste_$ElementAktualisieren($(this), $(this).attr("data-liste"));
+        Liste_$ElementAktualisieren($(this));
     });
 }

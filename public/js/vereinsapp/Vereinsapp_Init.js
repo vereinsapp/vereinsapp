@@ -80,7 +80,7 @@ Zustandsautomat für den Zustand der Vereinsapp einführen
 Select JANEIN als check umbauen
 Wartungsarbeiten per Filter handlen
 ics_export: muss sichergestellt sein, dass der Termin mindestens 24 Stunden in der Zukunft liegt?
-Besseres Symbol für _eigenschaft_loeschen und _eigenschaft_loeschen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
+Besseres Symbol für _eigenschaft_zuruecksetzen und _eigenschaft_zuruecksetzen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
 _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt
 .btn in .formular mit ENTER betätigbar machen
 Zusatzsymbol rechts und links einführen
@@ -93,8 +93,8 @@ mitglied_id in kassenbucheintrag als verknuepfung (und kassenbucheintrag.mitglie
 auswertungen ersetzen durch verknuepfungen (allgemein Fokus mehr auf die Liste setzen?)
 werkzeugkasten_handle als ganz normales Zusätzsymbol in der Liste umbauen (und folglich bspw. für Termine in der Termin-Übersicht andere Zusatzsymbole bspw. für Anwesenheiten dokumentieren einführen)
 WERKZEUGKASTEN AKTUALISIEREN mit $ziel statt mit element_id
-Lässt sich filtern/sortieren/gruppieren_localstorage_speichern entfernen mittels $ziel?
-ziel_id nur setzen, wenn noch keine id vorhanden ist (sonst die existierende id nehmen) -> eigene Funktion einführen?
+filtern/sortieren/gruppieren_localstorage_speichern vereinheitlichen und nach Schnittstelle_Dom verschieben
+ziel_id nur setzen, wenn noch keine id vorhanden ist (sonst die existierende id nehmen) -> eigene Funktion einführen? Schnittstelle_Dom$ZielVerknuepfenIdZurueck? (bspw. Liste_FilternModalOeffnen)
 
 ERLEDIGT
 

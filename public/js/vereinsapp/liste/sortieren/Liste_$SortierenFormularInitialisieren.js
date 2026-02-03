@@ -1,4 +1,14 @@
-function Liste_$SortierenFormularInitialisieren($sortieren_formular, ziel_id, liste) {
+/**
+ * @param {JQuery} $sortieren_formular
+ */
+
+function Liste_$SortierenFormularInitialisieren($sortieren_formular) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($sortieren_formular.attr("data-liste"), undefined);
+    const ziel_id = Schnittstelle_VariableWertBereinigtZurueck($sortieren_formular.attr("data-ziel_id"), undefined);
+
+    // Initialiserung von $sortieren_vorgegeben entfällt
+
+    // Initialiserung von $sortieren_eigenschaft
     const $sortieren_eigenschaft = $sortieren_formular.find(".sortieren_eigenschaft");
     const $sortieren_wert = $sortieren_formular.find(".sortieren_wert");
 
@@ -19,7 +29,7 @@ function Liste_$SortierenFormularInitialisieren($sortieren_formular, ziel_id, li
         sortieren_prio_hoch = undefined;
     }
 
-    // Überschreiben des value mit geänderten gruppieren_prio_hoch
+    // Überschreiben des bisherigen sortieren_prio_hoch mit geändertem sortieren_prio_hoch
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
             .val(JsonStringifiedZurueck(sortieren_prio_hoch, undefined))

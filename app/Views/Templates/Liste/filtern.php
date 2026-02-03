@@ -1,7 +1,7 @@
 <div class="formular">
 
-    <div class="form-floating vorgegebene_filter invisible mb-3">
-        <select class="form-select vorgegebene_filter_auswahl">
+    <div class="form-floating filtern_vorgegeben invisible mb-3">
+        <select class="form-select filtern_vorgegeben_auswahl">
         </select>
         <label>Vorgegebene Filter</label>
     </div>
@@ -16,7 +16,7 @@
             <input type="number" class="form-control filtern_ende" />
             <label><span class="beschriftung"></span> bis</label>
         </div>
-        <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
+        <button type="button" class="btn btn_filtern_eigenschaft_zuruecksetzen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
     </div>
 
     <div class="input-group blanko filtern_eigenschaft invisible mb-1" data-typ="zeitpunkt">
@@ -29,7 +29,7 @@
             <input type="date" class="form-control filtern_ende" />
             <label><span class="beschriftung"></span> bis</label>
         </div>
-        <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
+        <button type="button" class="btn btn_filtern_eigenschaft_zuruecksetzen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
     </div>
 
     <div class="card sichtbar blanko filtern_eigenschaft invisible mb-1" data-typ="vorgegebene_werte">
@@ -49,7 +49,7 @@
                 </select>
                 <label><span class="beschriftung"></span></label>
             </div>
-            <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
+            <button type="button" class="btn btn_filtern_eigenschaft_zuruecksetzen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
             </div>
     </div>
 
@@ -70,7 +70,7 @@
                 </select>
                 <label><span class="beschriftung"></span></label>
             </div>
-            <button type="button" class="btn btn_filtern_eigenschaft_loeschen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
+            <button type="button" class="btn btn_filtern_eigenschaft_zuruecksetzen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
             </div>
     </div>
 <?php /* (noch) kein Filter setzen möglich für text, element_id, element_ids */ ?>

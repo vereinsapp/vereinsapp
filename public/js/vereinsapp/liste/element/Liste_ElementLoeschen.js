@@ -1,3 +1,12 @@
+/**
+ * @param {boolean} bestaetigung_einfordern
+ * @param {Object} dom
+ * @param {Object} data
+ * @param {string} title
+ * @param {number} element_id
+ * @param {string} liste
+ */
+
 function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, element_id, liste) {
     if (bestaetigung_einfordern)
         Schnittstelle_DomBestaetigungEinfordern(

@@ -1,4 +1,14 @@
-function Liste_$GruppierenFormularInitialisieren($gruppieren_formular, ziel_id, liste) {
+/**
+ * @param {JQuery} $gruppieren_formular
+ */
+
+function Liste_$GruppierenFormularInitialisieren($gruppieren_formular) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_formular.attr("data-liste"), undefined);
+    const ziel_id = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_formular.attr("data-ziel_id"), undefined);
+
+    // Initialiserung von $gruppieren_vorgegeben entfällt
+
+    // Initialiserung von $gruppieren_eigenschaft
     const $gruppieren_eigenschaft = $gruppieren_formular.find(".gruppieren_eigenschaft");
     const $gruppieren_wert = $gruppieren_formular.find(".gruppieren_wert");
 
@@ -19,7 +29,7 @@ function Liste_$GruppierenFormularInitialisieren($gruppieren_formular, ziel_id, 
         gruppieren_prio_hoch = undefined;
     }
 
-    // Überschreiben des value mit geänderten gruppieren_prio_hoch
+    // Überschreiben des bisherigen gruppieren_prio_hoch mit geändertem gruppieren_prio_hoch
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
             .val(JsonStringifiedZurueck(gruppieren_prio_hoch, undefined))

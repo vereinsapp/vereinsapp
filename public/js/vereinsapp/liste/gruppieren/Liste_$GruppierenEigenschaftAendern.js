@@ -2,20 +2,20 @@
  * @param {JQuery} $gruppieren_eigenschaft
  */
 
-function Liste_$GruppierenEigenschaftZuruecksetzen($gruppieren_eigenschaft) {
+function Liste_$GruppierenEigenschaftAendern($gruppieren_eigenschaft) {
     const ziel_id = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_eigenschaft.attr("data-ziel_id"), undefined);
 
     // Definition von bisherigem gruppieren_prio_niedrig und gruppieren_prio_hoch entfällt,
     // weil gruppieren_prio_hoch überschrieben wird
     // und gruppieren_prio_niedrig nicht verwendet wird (weil Modal direkt geschlossen wird)
 
-    // Änderung von gruppieren_prio_hoch entfällt,
-    // weil sortieren_prio_hoch komplett entfernt wird
+    // Änderung von gruppieren_prio_hoch
+    const gruppieren_prio_hoch = $gruppieren_eigenschaft.closest(".formular").find(".gruppieren_wert").val();
 
-    // Entfernen des bisherigen gruppieren_prio_hoch
+    // Überschreiben des bisherigen gruppieren_prio_hoch mit geändertem gruppieren_prio_hoch
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
-            .removeAttr("value")
+            .val(JsonStringifiedZurueck(gruppieren_prio_hoch, undefined))
             .trigger("change");
 
     // Aktualisieren der $gruppieren_eigenschaft entfällt, weil Modal direkt geschlossen wird

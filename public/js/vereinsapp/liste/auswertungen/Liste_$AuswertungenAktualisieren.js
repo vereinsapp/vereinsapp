@@ -1,9 +1,9 @@
 /**
  * @param {JQuery} $auswertungen
- * @param {string} auswertungen
  */
 
-function Liste_$AuswertungenAktualisieren($auswertungen, auswertungen) {
+function Liste_$AuswertungenAktualisieren($auswertungen) {
+    const auswertungen = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-auswertungen"), undefined);
     const auswertungen_instanz = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("id"), undefined);
     const liste = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-liste"), undefined);
 

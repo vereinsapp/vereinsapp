@@ -1,7 +1,13 @@
-function Liste_$FilternEigenschaftZuruecksetzen($filtern_eigenschaft, ziel_id, liste) {
-    const eigenschaft = $filtern_eigenschaft.attr("data-eigenschaft");
+/**
+ * @param {JQuery} $filtern_eigenschaft
+ */
 
-    // Definition von filtern_prio_niedrig und filtern_prio_hoch
+function Liste_$FilternEigenschaftZuruecksetzen($filtern_eigenschaft) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("data-liste"), undefined);
+    const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("data-eigenschaft"), undefined);
+    const ziel_id = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("data-ziel_id"), undefined);
+
+    // Definition von bisherigem filtern_prio_niedrig und filtern_prio_hoch
     let filtern_prio_niedrig, filtern_prio_hoch;
     if (typeof ziel_id !== "undefined") {
         filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($("#" + ziel_id).attr("data-filtern_prio_niedrig"), new Object());
@@ -14,7 +20,7 @@ function Liste_$FilternEigenschaftZuruecksetzen($filtern_eigenschaft, ziel_id, l
     // Änderung von filtern_prio_hoch
     if (eigenschaft in filtern_prio_hoch) delete filtern_prio_hoch[eigenschaft];
 
-    // Überschreiben des value mit geänderten filtern_prio_hoch
+    // Überschreiben des bisherigen filtern_prio_hoch mit geändertem filtern_prio_hoch
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
             .val(JsonStringifiedZurueck(filtern_prio_hoch, new Object()))

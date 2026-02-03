@@ -1,3 +1,8 @@
+/**
+ * @param {number} element_id
+ * @param {string} liste
+ */
+
 function Liste_ElementBeschriftungZurueck(element_id, liste) {
     let beschriftung;
 

@@ -1,3 +1,6 @@
+/**
+ */
+
 function Liste_VerzeichnisInit() {
     $.each(LISTEN, function (liste) {
         LISTEN[liste].verzeichnis = new Object();

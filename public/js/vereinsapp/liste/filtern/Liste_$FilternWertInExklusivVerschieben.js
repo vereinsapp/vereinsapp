@@ -76,7 +76,7 @@ function Liste_$FilternWertInExklusivVerschieben($filtern_wert, ziel_id, liste) 
             break;
     }
 
-    // Überschreiben des value mit geänderten filtern_prio_hoch
+    // Überschreiben des bisherigen filtern_prio_hoch mit geändertem filtern_prio_hoch
     if (typeof ziel_id !== "undefined")
         $("#" + ziel_id)
             .val(JsonStringifiedZurueck(filtern_prio_hoch, new Object()))

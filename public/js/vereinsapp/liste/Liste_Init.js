@@ -28,7 +28,7 @@ function Liste_Init() {
             "change_aktion" in EIGENSCHAFTEN[$(this).parents("[data-liste]").first().attr("data-liste")][$(this).attr("data-eingabe")] &&
             typeof EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].change_aktion === "function"
         )
-            EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].change_aktion($(this));
+            EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].change_aktion($(this)); // Aktuell nur für termine.kategorie
     });
 
     // BEMERKUNG AENDERN

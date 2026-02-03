@@ -1,9 +1,9 @@
 /**
  * @param {JQuery} $verzeichnis
- * @param {string} liste
  */
 
-function Liste_$VerzeichnisAktualisieren($verzeichnis, liste) {
+function Liste_$VerzeichnisAktualisieren($verzeichnis) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-liste"), undefined);
     const verzeichnis_instanz = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-instanz"), $verzeichnis.attr("id"));
     const element_id = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-" + LISTEN[liste].element + "_id"), undefined);
     const basis = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-basis"), new Array());
@@ -127,7 +127,7 @@ function Liste_$VerzeichnisAktualisieren($verzeichnis, liste) {
 
     // UNTERVERZEICHNISSE AKTUALISIEREN
     $verzeichnis.children(".unterverzeichnis").each(function () {
-        Liste_$VerzeichnisAktualisieren($(this).find(".verzeichnis").first(), liste);
+        Liste_$VerzeichnisAktualisieren($(this).find(".verzeichnis").first());
     });
 
     // ÜBERSCHRIFT AKTUALISIEREN

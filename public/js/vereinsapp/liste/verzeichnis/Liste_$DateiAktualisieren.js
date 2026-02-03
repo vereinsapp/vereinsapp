@@ -1,4 +1,9 @@
-function Liste_$DateiAktualisieren($datei, liste) {
+/**
+ * @param {JQuery} $datei
+ */
+
+function Liste_$DateiAktualisieren($datei) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($datei.attr("data-liste"), undefined);
     const datei = $datei.attr("data-datei");
     const $verzeichnis = $datei.closest(".verzeichnis");
 

@@ -1,3 +1,6 @@
+/**
+ */
+
 function Liste_AuswertungenInit() {
     $.each(LISTEN, function (auswertungen) {
         $('.auswertungen[data-auswertungen="' + auswertungen + '"]').each(function () {

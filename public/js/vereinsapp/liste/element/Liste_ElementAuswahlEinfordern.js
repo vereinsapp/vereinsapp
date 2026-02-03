@@ -1,3 +1,11 @@
+/**
+ * @param {JQuery} $ziel
+ * @param {string} title
+ * @param {string} liste
+ * @param {string} klasse_id
+ * @param {Object} data
+ */
+
 function Liste_ElementAuswahlEinfordern($ziel, title, liste, klasse_id, data = new Object()) {
     const instanz = liste + "_auswahl";
 

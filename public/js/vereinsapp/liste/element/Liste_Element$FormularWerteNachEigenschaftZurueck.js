@@ -1,3 +1,7 @@
+/**
+ * @param {JQuery} $formular
+ */
+
 function Liste_Element$FormularWerteNachEigenschaftZurueck($formular) {
     const werte_nach_eigenschaft = new Object();
     $formular.find(".eingabe").each(function () {
