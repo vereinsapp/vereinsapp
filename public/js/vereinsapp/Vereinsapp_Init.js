@@ -88,13 +88,14 @@ Neue bootstrap icons Version einführen (unlock2 statt lock)
 Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details)
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
 Bugfix "Es wurde versucht, die Eigenschaft undefined zu aktualisieren, die nicht existiert in FILTERBARE_EIGENSCHAFTEN."
-Auswahl überarbeiten?
-mitglied_id in kassenbucheintrag als verknuepfung (und kassenbucheintrag.mitglied loswerden)?
+Auswahl überarbeiten? oder gleich entfernen?
 auswertungen ersetzen durch verknuepfungen (allgemein Fokus mehr auf die Liste setzen?)
+mitglied_id in kassenbucheintrag als verknuepfung (und kassenbucheintrag.mitglied loswerden)? Oder kassenbucheintrag als verknuepfung umbauen
+data-Prefix loswerden
 werkzeugkasten_handle als ganz normales Zusätzsymbol in der Liste umbauen (und folglich bspw. für Termine in der Termin-Übersicht andere Zusatzsymbole bspw. für Anwesenheiten dokumentieren einführen)
 WERKZEUGKASTEN AKTUALISIEREN mit $ziel statt mit element_id
-filtern/sortieren/gruppieren_localstorage_speichern vereinheitlichen und nach Schnittstelle_Dom verschieben
-ziel_id nur setzen, wenn noch keine id vorhanden ist (sonst die existierende id nehmen) -> eigene Funktion einführen? Schnittstelle_Dom$ZielVerknuepfenIdZurueck? (bspw. Liste_FilternModalOeffnen)
+filtern/sortieren/gruppieren_localstorage_speichern verallgemeinern und nach Schnittstelle_Dom verschieben
+Mit .filtern_vorgegeben die .filtern_eigenschaft befüllen (mittels Liste_$FilternEigenschaftAendern?)
 
 ERLEDIGT
 

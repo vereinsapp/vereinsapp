@@ -93,10 +93,10 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
                 .attr("data-" + LISTEN[liste].element + "_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
                 .attr("data-beschriftung", Schnittstelle_VariableWertFormatiertZurueck(wert, gruppieren, liste));
 
-            const ziel_id = zufaelligeZeichenketteZurueck(8);
-            $auswertung.find('[data-bs-toggle="collapse"]').attr("data-bs-target", "#" + ziel_id);
-            $auswertung.find(".toggle_symbol").attr("data-bs-target", "#" + ziel_id);
-            $auswertung.find(".auswertung_collapse").attr("id", ziel_id);
+            const $zugehoeriges_collapse = $auswertung.find(".auswertung_collapse");
+            $zugehoeriges_collapse.attr("id", zufaelligeZeichenketteZurueck(8));
+            $auswertung.find('[data-bs-toggle="collapse"]').attr("data-bs-target", "#" + $zugehoeriges_collapse.attr("id"));
+            $auswertung.find(".toggle_symbol").attr("data-bs-target", "#" + $zugehoeriges_collapse.attr("id"));
         } else {
             $auswertung
                 .attr("data-" + LISTEN[auswertungen].element + "_ids", JsonStringifiedZurueck(auswertung_ids, new Array()))

@@ -69,9 +69,9 @@ function Liste_$VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen
 
         const verknuepfung_status = Schnittstelle_VariableRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
 
-        // Label bearbeiten
-        const ziel_id = zufaelligeZeichenketteZurueck(8);
-        $verknuepfungen_auswahlmoeglichkeiten.siblings("label").addClass("form-check-label").attr("role", "button").attr("for", ziel_id);
+        // Zugehöriges Label bearbeiten
+        const $zugehoeriges_label = $verknuepfungen_auswahlmoeglichkeiten.siblings("label");
+        $zugehoeriges_label.addClass("form-check-label").attr("role", "button").attr("for", zufaelligeZeichenketteZurueck(8));
 
         $verknuepfungen_auswahlmoeglichkeiten.find(".chk_verknuepfung_erstellen").each(function () {
             const $chk_verknuepfung_erstellen = $(this);
@@ -81,7 +81,7 @@ function Liste_$VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen
                 .attr("data-" + LISTEN[verknuepfte_listen[1]].element + "_id", verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"])
                 .attr("data-verknuepfungen", verknuepfungen);
 
-            $chk_verknuepfung_erstellen.prop("checked", verknuepfung_status > 0).attr("id", ziel_id);
+            $chk_verknuepfung_erstellen.prop("checked", verknuepfung_status > 0).attr("id", $zugehoeriges_label.attr("for"));
         });
 
         $verknuepfungen_auswahlmoeglichkeiten.find(".btn_verknuepfung_erstellen").each(function () {

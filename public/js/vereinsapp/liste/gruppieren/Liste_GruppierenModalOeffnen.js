@@ -1,21 +1,17 @@
 /**
- * @param {JQuery} $btn_gruppieren_modal_oeffnen
+ * @param {JQuery} $gruppieren_prio
  */
 
-function Liste_GruppierenModalOeffnen($btn_gruppieren_modal_oeffnen) {
-    const $ziel = $btn_sortieren_modal_oeffnen;
-    const ziel_id = zufaelligeZeichenketteZurueck(8);
-    if (typeof $ziel !== "undefined" && $ziel.exists()) $ziel.attr("id", ziel_id);
-
+function Liste_GruppierenModalOeffnen($gruppieren_prio) {
     const $neues_gruppieren_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($btn_gruppieren_modal_oeffnen.attr("data-title"), undefined),
+        Schnittstelle_VariableWertBereinigtZurueck($gruppieren_prio.attr("data-title"), undefined),
         "GRUPPIEREN",
     );
-    Schnittstelle_Dom$ModalOeffnen($neues_gruppieren_modal);
 
     const $gruppieren_formular = $neues_gruppieren_modal.find(".formular");
-    $gruppieren_formular
-        .attr("data-ziel_id", ziel_id)
-        .attr("data-liste", Schnittstelle_VariableWertBereinigtZurueck($btn_gruppieren_modal_oeffnen.attr("data-liste"), undefined));
+    $gruppieren_formular.attr("data-liste", Schnittstelle_VariableWertBereinigtZurueck($gruppieren_prio.attr("data-liste"), undefined));
+
+    Schnittstelle_Dom$Quelle$ZielVerknuepfen($gruppieren_formular, $gruppieren_prio);
+    Schnittstelle_Dom$ModalOeffnen($neues_gruppieren_modal);
     Liste_$GruppierenFormularInitialisieren($gruppieren_formular);
 }

@@ -29,20 +29,12 @@ function Liste_FilternInit() {
 
     // FILTERN WERT ZWISCHEN INKLUSIV UND EXKLUSIV VERSCHIEBEN
     $(document).on("click", ".btn_filtern_wert_inklusiv_exklusiv", function () {
-        Liste_$FilternWertInExklusivVerschieben(
-            $(this).closest(".filtern_wert"),
-            $(this).closest(".filtern_eigenschaft").attr("data-ziel_id"),
-            $(this).closest(".filtern_eigenschaft").attr("data-liste"),
-        );
+        Liste_$FilternWertInExklusivVerschieben($(this).closest(".filtern_wert"));
     });
 
     // FILTERN WERT LOESCHEN
     $(document).on("click", ".btn_filtern_wert_loeschen", function () {
-        Liste_$FilternWertLoeschen(
-            $(this).closest(".filtern_wert"),
-            $(this).closest(".filtern_eigenschaft").attr("data-ziel_id"),
-            $(this).closest(".filtern_eigenschaft").attr("data-liste"),
-        );
+        Liste_$FilternWertLoeschen($(this).closest(".filtern_wert"), $(this).closest(".filtern_eigenschaft").attr("data-liste"));
     });
 
     // FILTERN EIGENSCHAFT ZURÜCKSETZEN

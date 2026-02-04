@@ -132,6 +132,9 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$NeuesModalInitialisiertZurueck.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$ModalSchliessen.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/dom/Schnittstelle_DomBestaetigungEinfordern.js?v='.VERSION,
+        'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$Quelle$ZielVerknuepfen.js?v='.VERSION,
+        'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$Quelle$ZielEntknuepfen.js?v='.VERSION,
+        'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$ZielZu$QuelleZurueck.js?v='.VERSION,
         
         'js/vereinsapp/schnittstelle/event/Schnittstelle_EventSqlUpdLocalstorage.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/event/Schnittstelle_EventLocalstorageUpdVariable.js?v='.VERSION,

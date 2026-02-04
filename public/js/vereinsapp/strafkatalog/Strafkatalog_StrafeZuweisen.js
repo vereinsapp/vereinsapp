@@ -2,7 +2,7 @@ function Strafkatalog_StrafeZuweisen(auswahl_einfordern, bestaetigung_einfordern
     if (auswahl_einfordern) {
         if (liste === "strafkatalog") liste = "mitglieder";
         else if (liste === "mitglieder") liste = "strafkatalog";
-        Liste_ElementAuswahlEinfordern($(), title, liste, "btn_strafe_zuweisen bestaetigung_einfordern", {
+        Liste_ElementAuswahlEinfordern(title, liste, "btn_strafe_zuweisen bestaetigung_einfordern", {
             strafe_id: strafe_id,
             mitglied_id: mitglied_id,
             title: title,

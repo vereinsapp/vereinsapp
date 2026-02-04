@@ -1,18 +1,12 @@
 /**
- * @param {JQuery} $ziel
  * @param {string} title
  * @param {string} liste
  * @param {string} klasse_id
  * @param {Object} data
  */
 
-function Liste_ElementAuswahlEinfordern($ziel, title, liste, klasse_id, data = new Object()) {
+function Liste_ElementAuswahlEinfordern(title, liste, klasse_id, data = new Object()) {
     const instanz = liste + "_auswahl";
-
-    // const $ziel = $ziel;
-    const ziel_id = zufaelligeZeichenketteZurueck(8);
-    if ($ziel.exists()) $ziel.attr("id", ziel_id);
-    data.ziel_id = ziel_id;
 
     const $neues_auswahl_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "AUSWAHL");
 

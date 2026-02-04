@@ -10,10 +10,6 @@ function Liste_Element$FormularInitialisieren($formular, aktion, element_id, lis
         const $eingabe = $(this);
         const eingabe = $eingabe.attr("data-eingabe");
 
-        // Wenn es um einen Button geht
-        const ziel_id = zufaelligeZeichenketteZurueck(8);
-        if ($eingabe.attr("type") == "button") $eingabe.attr("id", ziel_id);
-
         let wert = Schnittstelle_VariableRausZurueck(eingabe, element_id, liste, undefined);
         // Wenn aber nichts definiert ist, dann nimm den Standard-Wert (je nach Typ)
         if (typeof wert === "undefined") {

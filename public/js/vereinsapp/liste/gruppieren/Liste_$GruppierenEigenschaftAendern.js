@@ -3,21 +3,20 @@
  */
 
 function Liste_$GruppierenEigenschaftAendern($gruppieren_eigenschaft) {
-    const ziel_id = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_eigenschaft.attr("data-ziel_id"), undefined);
+    const $gruppieren_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($gruppieren_eigenschaft);
 
-    // Definition von bisherigem gruppieren_prio_niedrig und gruppieren_prio_hoch entfällt,
-    // weil gruppieren_prio_hoch überschrieben wird
-    // und gruppieren_prio_niedrig nicht verwendet wird (weil Modal direkt geschlossen wird)
+    // Definition von bisherigem gruppieren_prio_niedrig und gruppieren_prio_hoch
+    // entfällt, weil
+    // gruppieren_prio_hoch überschrieben wird und
+    // gruppieren_prio_niedrig nicht verwendet wird (weil Modal direkt geschlossen wird)
 
     // Änderung von gruppieren_prio_hoch
     const gruppieren_prio_hoch = $gruppieren_eigenschaft.closest(".formular").find(".gruppieren_wert").val();
 
     // Überschreiben des bisherigen gruppieren_prio_hoch mit geändertem gruppieren_prio_hoch
-    if (typeof ziel_id !== "undefined")
-        $("#" + ziel_id)
-            .val(JsonStringifiedZurueck(gruppieren_prio_hoch, undefined))
-            .trigger("change");
+    $gruppieren_prio.val(JsonStringifiedZurueck(gruppieren_prio_hoch, undefined)).trigger("change");
 
-    // Aktualisieren der $gruppieren_eigenschaft entfällt, weil Modal direkt geschlossen wird
+    // Aktualisieren der $gruppieren_eigenschaft
+    // entfällt, weil Modal direkt geschlossen wird
     Schnittstelle_Dom$ModalSchliessen($gruppieren_eigenschaft.closest(".modal"));
 }

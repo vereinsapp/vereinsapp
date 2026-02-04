@@ -4,7 +4,7 @@
 
 function Liste_$FilternVorgegebenAuswahlAendern($filtern_vorgegeben_auswahl) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_vorgegeben_auswahl.attr("data-liste"), undefined);
-    const ziel_id = Schnittstelle_VariableWertBereinigtZurueck($filtern_vorgegeben_auswahl.attr("data-ziel_id"), undefined);
+    const $filtern_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_vorgegeben_auswahl);
     const filtern_vorgegeben_id = Schnittstelle_VariableWertBereinigtZurueck($filtern_vorgegeben_auswahl.val(), undefined);
 
     let filtern_vorgegeben;
@@ -20,11 +20,8 @@ function Liste_$FilternVorgegebenAuswahlAendern($filtern_vorgegeben_auswahl) {
     });
 
     // Überschreiben des bisherigen filtern_prio_hoch mit geändertem filtern_prio_hoch
-    if (typeof ziel_id !== "undefined")
-        $("#" + ziel_id)
-            .val(JsonStringifiedZurueck(filtern_prio_hoch, new Object()))
-            .trigger("change");
+    $filtern_prio.val(JsonStringifiedZurueck(filtern_prio_hoch, new Object())).trigger("change");
 
-    // Schließen des Modals
+    // Aktualisieren der $filtern_eigenschaft entfällt, weil Modal direkt geschlossen wird
     Schnittstelle_Dom$ModalSchliessen($filtern_vorgegeben_auswahl.closest(".modal"));
 }

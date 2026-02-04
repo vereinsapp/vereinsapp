@@ -1,21 +1,17 @@
 /**
- * @param {JQuery} $btn_filtern_modal_oeffnen
+ * @param {JQuery} $filtern_prio
  */
 
-function Liste_FilternModalOeffnen($btn_filtern_modal_oeffnen) {
-    const $ziel = $btn_filtern_modal_oeffnen;
-    const ziel_id = zufaelligeZeichenketteZurueck(8);
-    if (typeof $ziel !== "undefined" && $ziel.exists()) $ziel.attr("id", ziel_id);
-
+function Liste_FilternModalOeffnen($filtern_prio) {
     const $neues_filtern_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($btn_filtern_modal_oeffnen.attr("data-title"), undefined),
+        Schnittstelle_VariableWertBereinigtZurueck($filtern_prio.attr("data-title"), undefined),
         "FILTERN",
     );
-    Schnittstelle_Dom$ModalOeffnen($neues_filtern_modal);
 
     const $filtern_formular = $neues_filtern_modal.find(".formular");
-    $filtern_formular
-        .attr("data-ziel_id", ziel_id)
-        .attr("data-liste", Schnittstelle_VariableWertBereinigtZurueck($btn_filtern_modal_oeffnen.attr("data-liste"), undefined));
+    $filtern_formular.attr("data-liste", Schnittstelle_VariableWertBereinigtZurueck($filtern_prio.attr("data-liste"), undefined));
+
+    Schnittstelle_Dom$Quelle$ZielVerknuepfen($filtern_formular, $filtern_prio);
+    Schnittstelle_Dom$ModalOeffnen($neues_filtern_modal);
     Liste_$FilternFormularInitialisieren($filtern_formular);
 }
