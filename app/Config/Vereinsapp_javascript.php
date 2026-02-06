@@ -67,7 +67,6 @@ class Vereinsapp_javascript extends BaseConfig
 
         'js/vereinsapp/liste/filtern/Liste_FilternInit.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_$FilternModalOeffnen.js?v='.VERSION,
-        'js/vereinsapp/liste/filtern/Liste_$FilternFormularInitialisieren.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_$FilternEigenschaftAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_$FilternEigenschaftAendern.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_$FilternEigenschaftWertInExklusivAendern.js?v='.VERSION,
@@ -80,7 +79,6 @@ class Vereinsapp_javascript extends BaseConfig
 
         'js/vereinsapp/liste/sortieren/Liste_SortierenInit.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_$SortierenModalOeffnen.js?v='.VERSION,
-        'js/vereinsapp/liste/sortieren/Liste_$SortierenFormularInitialisieren.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_$SortierenEigenschaftAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_$SortierenEigenschaftAendern.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_$SortierenEigenschaftZuruecksetzen.js?v='.VERSION,
@@ -90,7 +88,6 @@ class Vereinsapp_javascript extends BaseConfig
 
         'js/vereinsapp/liste/gruppieren/Liste_GruppierenInit.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_$GruppierenModalOeffnen.js?v='.VERSION,
-        'js/vereinsapp/liste/gruppieren/Liste_$GruppierenFormularInitialisieren.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_$GruppierenEigenschaftAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_$GruppierenEigenschaftAendern.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_$GruppierenEigenschaftZuruecksetzen.js?v='.VERSION,

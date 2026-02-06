@@ -1,10 +1,10 @@
-<div class="formular">
+<div class="form-floating filtern_vorgegeben invisible mb-3">
+    <select class="form-select filtern_vorgegeben_auswahl">
+    </select>
+    <label>Vorgegebene Filter</label>
+</div>
 
-    <div class="form-floating filtern_vorgegeben invisible mb-3">
-        <select class="form-select filtern_vorgegeben_auswahl">
-        </select>
-        <label>Vorgegebene Filter</label>
-    </div>
+<div class="filtern_eigenschaften">
 
     <div class="input-group blanko filtern_eigenschaft invisible mb-1" data-typ="zahl">
         <span class="input-group-text"><i class="bi bi-<?= SYMBOLE['zahlenraum']['bootstrap']; ?>"></i></span>

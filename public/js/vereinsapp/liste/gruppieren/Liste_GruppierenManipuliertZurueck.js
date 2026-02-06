@@ -5,7 +5,7 @@
  */
 
 function Liste_GruppierenManipuliertZurueck(gruppieren_basis, gruppieren_manip, liste) {
-    if (typeof gruppieren_manip === "undefined") {
+    if (typeof gruppieren_manip !== "undefined" && gruppieren_manip.length > 0) {
         const eigenschaft = gruppieren_manip;
         if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
             if (liste in GRUPPIERBARE_EIGENSCHAFTEN && GRUPPIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
@@ -24,7 +24,7 @@ function Liste_GruppierenManipuliertZurueck(gruppieren_basis, gruppieren_manip, 
             );
     }
 
-    if (typeof gruppieren_basis === "undefined") {
+    if (typeof gruppieren_basis !== "undefined" && gruppieren_basis.length > 0) {
         const eigenschaft = gruppieren_basis;
         if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
             if (liste in GRUPPIERBARE_EIGENSCHAFTEN && GRUPPIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
