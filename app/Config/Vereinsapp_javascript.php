@@ -74,7 +74,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/filtern/Liste_$FilternEigenschaftWertLoeschen.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_$FilternEigenschaftZuruecksetzen.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_$FilternVorgegebenAuswaehlen.js?v='.VERSION,
-        'js/vereinsapp/liste/filtern/Liste_FilternLocalStorageSpeichern.js?v='.VERSION,
+        'js/vereinsapp/liste/filtern/Liste_$FilternLocalStorageSpeichern.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_FilternMitPrioKombiniertZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_TabelleGefiltertZurueck.js?v='.VERSION,
 
@@ -84,7 +84,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/sortieren/Liste_$SortierenEigenschaftAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_$SortierenEigenschaftAendern.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_$SortierenEigenschaftZuruecksetzen.js?v='.VERSION,
-        'js/vereinsapp/liste/sortieren/Liste_SortierenLocalStorageSpeichern.js?v='.VERSION,
+        'js/vereinsapp/liste/sortieren/Liste_$SortierenLocalStorageSpeichern.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_SortierenMitPrioKombiniertZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_ArraySortiertZurueck.js?v='.VERSION,
 
@@ -94,7 +94,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/gruppieren/Liste_$GruppierenEigenschaftAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_$GruppierenEigenschaftAendern.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_$GruppierenEigenschaftZuruecksetzen.js?v='.VERSION,
-        'js/vereinsapp/liste/gruppieren/Liste_GruppierenLocalStorageSpeichern.js?v='.VERSION,
+        'js/vereinsapp/liste/gruppieren/Liste_$GruppierenLocalStorageSpeichern.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_GruppierenMitPrioKombiniertZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_ArrayGruppiertZurueck.js?v='.VERSION,
 

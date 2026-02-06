@@ -37,8 +37,8 @@ function Liste_TabelleGefiltertZurueck(tabelle, filtern, liste) {
                                 filtern_ergebnis &= filtern_ergebnis_ende;
                             }
                             break;
-                        case "vorgegebene_werte":
                         case "janein":
+                        case "vorgegebene_werte":
                         case "element_id":
                             if ("inklusiv" in filtern[eigenschaft]) {
                                 filtern_ergebnis_inklusiv = false;

@@ -42,7 +42,7 @@
 <?= view( 'Templates/modal', array( 'modal_id' => 'SORTIEREN', 'modal' => view( 'Templates/Liste/sortieren' ) ) ); ?>
 <?= view( 'Templates/modal', array( 'modal_id' => 'GRUPPIEREN', 'modal' => view( 'Templates/Liste/gruppieren' ) ) ); ?>
 <?= view( 'Templates/modal', array( 'modal_id' => 'AUSWAHL', 'modal' => view( 'Templates/Liste/liste', array( 'liste' => array( 'instanz' => 'AUSWAHLLISTE', 'listenstatistik' => array(), 'werkzeugkasten' => array(
-                'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage_speichern'), 'title' => 'filtern' ), 'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage_speichern'), 'title' => 'sortieren' ) ) ) ) ) ) ); ?>
+                'filtern' => array( 'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage'), 'title' => 'filtern' ), 'sortieren' => array( 'klasse_id' => array('btn_sortieren_modal_oeffnen', 'sortieren_localstorage'), 'title' => 'sortieren' ) ) ) ) ) ) ); ?>
 <?php if( auth()->loggedIn() && auth()->user()->requiresPasswordReset() ) echo
     view( 'Templates/modal', array( 'modal_id' => 'passwort_festlegen', 'autoload' => TRUE, 'modal_title' => 'Neues Passwort festlegen', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder', 'mitglied_id' => ICH_ID ), 'btn' => array( 'klasse_id' => 'btn_mitglied_passwort_festlegen', 'beschriftung' => 'Neues Passwort festlegen' ), 'formular' =>

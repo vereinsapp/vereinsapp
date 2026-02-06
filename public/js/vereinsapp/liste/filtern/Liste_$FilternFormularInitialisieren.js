@@ -29,18 +29,18 @@ function Liste_$FilternFormularInitialisieren($filtern_formular) {
             $neue_filtern_eigenschaft.attr("data-eigenschaft", eigenschaft).attr("data-liste", liste);
             $neue_filtern_eigenschaft.find("label").find(".beschriftung").text(EIGENSCHAFTEN[liste][eigenschaft].beschriftung);
 
-            if (typ == "vorgegebene_werte") {
+            if (typ == "janein") {
                 $neue_filtern_eigenschaft.find(".filtern_auswahl, .filtern_werte").empty();
                 $("<option selected></option>").appendTo($neue_filtern_eigenschaft.find(".filtern_auswahl"));
-                $.each(VORGEGEBENE_WERTE[liste][eigenschaft], function (wert, eigenschaften) {
+                $.each(JANEIN, function (wert, eigenschaften) {
                     $('<option value="' + wert + '">' + eigenschaften.beschriftung + "</option>").appendTo(
                         $neue_filtern_eigenschaft.find(".filtern_auswahl"),
                     );
                 });
-            } else if (typ == "janein") {
+            } else if (typ == "vorgegebene_werte") {
                 $neue_filtern_eigenschaft.find(".filtern_auswahl, .filtern_werte").empty();
                 $("<option selected></option>").appendTo($neue_filtern_eigenschaft.find(".filtern_auswahl"));
-                $.each(JANEIN, function (wert, eigenschaften) {
+                $.each(VORGEGEBENE_WERTE[liste][eigenschaft], function (wert, eigenschaften) {
                     $('<option value="' + wert + '">' + eigenschaften.beschriftung + "</option>").appendTo(
                         $neue_filtern_eigenschaft.find(".filtern_auswahl"),
                     );

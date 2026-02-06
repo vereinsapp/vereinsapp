@@ -31,16 +31,6 @@ function Liste_$FilternEigenschaftAendern($filtern_eigenschaft) {
                         else delete filtern_eigenschaft[filtern_klasse];
                     });
                     break;
-                case "vorgegebene_werte":
-                    const neuer_filtern_wert = Schnittstelle_VariableWertBereinigtZurueck(
-                        $filtern_eigenschaft.find(".filtern_auswahl").val(),
-                        undefined,
-                    );
-                    if (neuer_filtern_wert.length > 0) {
-                        if (!("inklusiv" in filtern_eigenschaft)) filtern_eigenschaft.inklusiv = new Array();
-                        if (!filtern_eigenschaft.inklusiv.includes(neuer_filtern_wert)) filtern_eigenschaft.inklusiv.push(neuer_filtern_wert);
-                    }
-                    break;
                 case "janein":
                     const neuer_filtern_wert_janein = Schnittstelle_VariableWertBereinigtZurueck(
                         $filtern_eigenschaft.find(".filtern_auswahl").val(),
@@ -50,6 +40,16 @@ function Liste_$FilternEigenschaftAendern($filtern_eigenschaft) {
                         if (!("inklusiv" in filtern_eigenschaft)) filtern_eigenschaft.inklusiv = new Array();
                         if (!filtern_eigenschaft.inklusiv.includes(JANEIN[neuer_filtern_wert_janein].wert))
                             filtern_eigenschaft.inklusiv.push(JANEIN[neuer_filtern_wert_janein].wert);
+                    }
+                    break;
+                case "vorgegebene_werte":
+                    const neuer_filtern_wert = Schnittstelle_VariableWertBereinigtZurueck(
+                        $filtern_eigenschaft.find(".filtern_auswahl").val(),
+                        undefined,
+                    );
+                    if (neuer_filtern_wert.length > 0) {
+                        if (!("inklusiv" in filtern_eigenschaft)) filtern_eigenschaft.inklusiv = new Array();
+                        if (!filtern_eigenschaft.inklusiv.includes(neuer_filtern_wert)) filtern_eigenschaft.inklusiv.push(neuer_filtern_wert);
                     }
                     break;
                 case "element_id":

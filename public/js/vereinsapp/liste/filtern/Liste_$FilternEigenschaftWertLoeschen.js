@@ -25,9 +25,9 @@ function Liste_$FilternEigenschaftWertLoeschen($filtern_eigenschaft, filtern_wer
                 case "zeitpunkt":
                     // (noch) keine Vielzahl an Werten
                     break;
-                case "vorgegebene_werte":
                 case "janein":
                     filtern_wert = JANEIN[filtern_wert].wert;
+                case "vorgegebene_werte":
                 case "element_id":
                 case "element_ids":
                     let filtern_wert_position, filtern_klasse_alt;

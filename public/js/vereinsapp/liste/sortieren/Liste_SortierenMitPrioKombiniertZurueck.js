@@ -5,25 +5,47 @@
  */
 
 function Liste_SortierenMitPrioKombiniertZurueck(sortieren_prio_niedrig, sortieren_prio_hoch, liste) {
-    let sortieren_kombiniert;
-
-    if (
-        (typeof sortieren_prio_niedrig === "undefined" ||
-            isEmptyString(sortieren_prio_niedrig) ||
-            Object.keys(sortieren_prio_niedrig).length === 0) &&
-        isObject(sortieren_prio_hoch) &&
-        Object.keys(sortieren_prio_hoch).length > 0
-    )
-        sortieren_kombiniert = sortieren_prio_hoch;
-    else if (
-        (typeof sortieren_prio_hoch === "undefined" || isEmptyString(sortieren_prio_hoch) || Object.keys(sortieren_prio_hoch).length === 0) &&
-        isObject(sortieren_prio_niedrig) &&
-        Object.keys(sortieren_prio_niedrig).length > 0
-    )
-        sortieren_kombiniert = sortieren_prio_niedrig;
-    else {
-        sortieren_kombiniert = sortieren_prio_hoch;
+    if (isObject(sortieren_prio_hoch) && "eigenschaft" in sortieren_prio_hoch && "richtung" in sortieren_prio_hoch) {
+        const eigenschaft = sortieren_prio_hoch.eigenschaft;
+        if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
+            if (liste in SORTIERBARE_EIGENSCHAFTEN && SORTIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
+                return sortieren_prio_hoch;
+            } else
+                Schnittstelle_LogInDieKonsole(
+                    "Liste_SortierenMitPrioKombiniertZurueck: Prio-Hoch-Eigenschaft " +
+                        eigenschaft +
+                        " existiert nicht in SORTIERBARE_EIGENSCHAFTEN." +
+                        liste +
+                        "!",
+                );
+        } else
+            Schnittstelle_LogInDieKonsole(
+                "Liste_SortierenMitPrioKombiniertZurueck: Prio-Hoch-Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
+            );
     }
 
-    return sortieren_kombiniert;
+    if (isObject(sortieren_prio_niedrig) && "eigenschaft" in sortieren_prio_niedrig && "richtung" in sortieren_prio_niedrig) {
+        const eigenschaft = sortieren_prio_niedrig.eigenschaft;
+        if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
+            if (liste in SORTIERBARE_EIGENSCHAFTEN && SORTIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
+                return sortieren_prio_niedrig;
+            } else
+                Schnittstelle_LogInDieKonsole(
+                    "Liste_SortierenMitPrioKombiniertZurueck: Prio-Niedrig-Eigenschaft " +
+                        eigenschaft +
+                        " existiert nicht in SORTIERBARE_EIGENSCHAFTEN." +
+                        liste +
+                        "!",
+                );
+        } else
+            Schnittstelle_LogInDieKonsole(
+                "Liste_SortierenMitPrioKombiniertZurueck: Prio-Niedrig-Eigenschaft " +
+                    eigenschaft +
+                    " existiert nicht in EIGENSCHAFTEN." +
+                    liste +
+                    "!",
+            );
+    }
+
+    return { eigenschaft: undefined, richtung: undefined };
 }

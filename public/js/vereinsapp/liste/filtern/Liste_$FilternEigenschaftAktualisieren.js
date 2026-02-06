@@ -52,23 +52,6 @@ function Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft) {
                         $filtern_klasse.val(wert_formatiert);
                     });
                     break;
-                case "vorgegebene_werte":
-                    const $filtern_werte = $filtern_eigenschaft.find(".filtern_werte").empty();
-
-                    $.each(Object.keys(filtern_eigenschaft), function (position, filtern_klasse) {
-                        $.each(filtern_eigenschaft[filtern_klasse], function (position, filtern_wert) {
-                            const $neuer_filtern_wert = FILTERN.$blanko_filtern_wert.clone().removeClass("blanko invisible");
-                            $neuer_filtern_wert.attr("data-wert", filtern_wert);
-                            const $neuer_filtern_wert_beschriftung = $neuer_filtern_wert.find(".btn_beschriftung").find(".beschriftung");
-                            $neuer_filtern_wert_beschriftung.text(Schnittstelle_VariableWertFormatiertZurueck(filtern_wert, eigenschaft, liste));
-                            if (filtern_klasse == "exklusiv") $neuer_filtern_wert_beschriftung.addClass("text-decoration-line-through");
-                            else if (filtern_klasse == "inklusiv") $neuer_filtern_wert_beschriftung.removeClass("text-decoration-line-through");
-                            $neuer_filtern_wert.appendTo($filtern_werte);
-                        });
-                    });
-
-                    $filtern_eigenschaft.find(".filtern_auswahl").val("");
-                    break;
                 case "janein":
                     const $filtern_werte_janein = $filtern_eigenschaft.find(".filtern_werte").empty();
 
@@ -83,6 +66,23 @@ function Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft) {
                             if (filtern_klasse == "exklusiv") $neuer_filtern_wert_beschriftung.addClass("text-decoration-line-through");
                             else if (filtern_klasse == "inklusiv") $neuer_filtern_wert_beschriftung.removeClass("text-decoration-line-through");
                             $neuer_filtern_wert_janein.appendTo($filtern_werte_janein);
+                        });
+                    });
+
+                    $filtern_eigenschaft.find(".filtern_auswahl").val("");
+                    break;
+                case "vorgegebene_werte":
+                    const $filtern_werte = $filtern_eigenschaft.find(".filtern_werte").empty();
+
+                    $.each(Object.keys(filtern_eigenschaft), function (position, filtern_klasse) {
+                        $.each(filtern_eigenschaft[filtern_klasse], function (position, filtern_wert) {
+                            const $neuer_filtern_wert = FILTERN.$blanko_filtern_wert.clone().removeClass("blanko invisible");
+                            $neuer_filtern_wert.attr("data-wert", filtern_wert);
+                            const $neuer_filtern_wert_beschriftung = $neuer_filtern_wert.find(".btn_beschriftung").find(".beschriftung");
+                            $neuer_filtern_wert_beschriftung.text(Schnittstelle_VariableWertFormatiertZurueck(filtern_wert, eigenschaft, liste));
+                            if (filtern_klasse == "exklusiv") $neuer_filtern_wert_beschriftung.addClass("text-decoration-line-through");
+                            else if (filtern_klasse == "inklusiv") $neuer_filtern_wert_beschriftung.removeClass("text-decoration-line-through");
+                            $neuer_filtern_wert.appendTo($filtern_werte);
                         });
                     });
 

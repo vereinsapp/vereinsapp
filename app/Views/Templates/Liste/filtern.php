@@ -32,7 +32,7 @@
         <button type="button" class="btn btn_filtern_eigenschaft_zuruecksetzen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
     </div>
 
-    <div class="card sichtbar blanko filtern_eigenschaft invisible mb-1" data-typ="vorgegebene_werte">
+    <div class="card sichtbar blanko filtern_eigenschaft invisible mb-1" data-typ="janein">
         <div class="card-body filtern_werte p-2">
 
                 <div class="btn-group btn-group-sm blanko filtern_wert me-1 mb-1" role="group">
@@ -53,7 +53,7 @@
             </div>
     </div>
 
-    <div class="card sichtbar blanko filtern_eigenschaft invisible mb-1" data-typ="janein">
+    <div class="card sichtbar blanko filtern_eigenschaft invisible mb-1" data-typ="vorgegebene_werte">
         <div class="card-body filtern_werte p-2">
 
                 <div class="btn-group btn-group-sm blanko filtern_wert me-1 mb-1" role="group">
