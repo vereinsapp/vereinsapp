@@ -14,12 +14,12 @@ function Liste_FilternInit() {
 
     // FILTERN MODAL ÖFFNEN
     $(document).on("click", ".btn_filtern_modal_oeffnen", function () {
-        Liste_FilternModalOeffnen($(this));
+        Liste_$FilternModalOeffnen($(this));
     });
 
     // VORGEGEBENE FILTER AUSWÄHLEN
-    $(document).on("change", ".filtern_vorgegeben_auswahl", function () {
-        Liste_$FilternVorgegebenAuswahlAendern($(this));
+    $(document).on("change", ".filtern_vorgegeben", function (e) {
+        Liste_$FilternVorgegebenAuswaehlen($(this), Schnittstelle_VariableWertBereinigtZurueck($(e.target).val(), undefined));
     });
 
     // FILTERN ÄNDERN
@@ -29,12 +29,18 @@ function Liste_FilternInit() {
 
     // FILTERN WERT ZWISCHEN INKLUSIV UND EXKLUSIV VERSCHIEBEN
     $(document).on("click", ".btn_filtern_wert_inklusiv_exklusiv", function () {
-        Liste_$FilternWertInExklusivVerschieben($(this).closest(".filtern_wert"));
+        Liste_$FilternEigenschaftWertInExklusivAendern(
+            $(this).closest(".filtern_eigenschaft"),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).closest(".filtern_wert").attr("data-wert"), undefined),
+        );
     });
 
     // FILTERN WERT LOESCHEN
     $(document).on("click", ".btn_filtern_wert_loeschen", function () {
-        Liste_$FilternWertLoeschen($(this).closest(".filtern_wert"), $(this).closest(".filtern_eigenschaft").attr("data-liste"));
+        Liste_$FilternEigenschaftWertLoeschen(
+            $(this).closest(".filtern_eigenschaft"),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).closest(".filtern_wert").attr("data-wert"), undefined),
+        );
     });
 
     // FILTERN EIGENSCHAFT ZURÜCKSETZEN

@@ -2,7 +2,7 @@
  * @param {JQuery} $sortieren_prio
  */
 
-function Liste_SortierenModalOeffnen($sortieren_prio) {
+function Liste_$SortierenModalOeffnen($sortieren_prio) {
     const $neues_sortieren_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(
         Schnittstelle_VariableWertBereinigtZurueck($sortieren_prio.attr("data-title"), undefined),
         "SORTIEREN",

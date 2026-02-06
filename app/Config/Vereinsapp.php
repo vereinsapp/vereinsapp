@@ -604,6 +604,10 @@ class Vereinsapp extends BaseConfig
     public $filtern_vorgegeben = array(
 
         'mitglieder' => array(
+            'zuruecksetzen' => array(
+                'beschriftung' => 'Alle Filter zurücksetzen',
+                'filtern' => array(),
+            ),
             'alle_minderjaehrigen' => array(
                 'beschriftung' => 'Alle Minderjährigen',
                 'filtern' => array( 'alter' => array( 'ende' => 17.9999 ), 'real_janein' => array( 'inklusiv' => array( TRUE ) ), ),
@@ -631,9 +635,17 @@ class Vereinsapp extends BaseConfig
         ),
 
         'aufgaben' => array(
+            'zuruecksetzen' => array(
+                'beschriftung' => 'Alle Filter zurücksetzen',
+                'filtern' => array(),
+            ),
         ),
 
         'termine' => array(
+            'zuruecksetzen' => array(
+                'beschriftung' => 'Alle Filter zurücksetzen',
+                'filtern' => array(),
+            ),
             'alle_seit_jahresbeginn' => array(
                 'beschriftung' => 'Alle Termine seit Jahresbeginn',
                 'filtern' => array( 'start' => array( 'start' => JAHRESBEGINN ), ),
@@ -661,6 +673,10 @@ class Vereinsapp extends BaseConfig
         ),
 
         'kassenbuch' => array(
+            'zuruecksetzen' => array(
+                'beschriftung' => 'Alle Filter zurücksetzen',
+                'filtern' => array(),
+            ),
             'offen' => array(
                 'beschriftung' => 'Alle offenen Einträge',
                 'filtern' => array( 'erledigt_janein' => array( 'inklusiv' => array( TRUE ) ), ),
@@ -672,6 +688,10 @@ class Vereinsapp extends BaseConfig
         ),
 
         'notenbank' => array(
+            'zuruecksetzen' => array(
+                'beschriftung' => 'Alle Filter zurücksetzen',
+                'filtern' => array(),
+            ),
             'standard_verzeichnis' => array(
                 'beschriftung' => 'Standard-Verzeichnis',
                 'filtern' => array( 'titel_nr' => array( 'ende' => 99 ), ),

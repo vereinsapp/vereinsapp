@@ -59,8 +59,6 @@ $(document).ready(function () {
 /* TODO
 
 FEATURES
-Verzeichnis filtern und sortieren
-Meta-Infos für Unterverzeichnisse und Dateien anzeigen
 Liste unformatiert in die Zwischenablage kopieren
 Terminserie / Regeltermine
 Mitglieder Lebenslauf
@@ -69,33 +67,38 @@ Shield-Rollen als Mitglieder-Funktion nutzen (inkl. Registerführer einführen)
 Link zu Github neben die Version
 
 SOFTWARE
-localstorage_reset_string und datenschutz_richtlinie_string entfernen (hinzugefügt im Juni 2025?)
-Funktion zur Erstellung eines Verzeichnisses, inkl. Kopieren von index.html aus dem übergeordneten Verzeichnis
-Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen
-Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel) und weiches Löschen für abhängige Tabellen einführen
-Ausloggen, bevor Einmal-Link benutzt wird
 Einzelne Module als Light-Version, einschaltbar über .env oder settings
-title ändern in beschriftung?
 Zustandsautomat für den Zustand der Vereinsapp einführen
-Select JANEIN als check umbauen
+Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel)
 Wartungsarbeiten per Filter handlen
-ics_export: muss sichergestellt sein, dass der Termin mindestens 24 Stunden in der Zukunft liegt?
+Ausloggen, bevor Einmal-Link benutzt wird
+Select JANEIN als check umbauen
 Besseres Symbol für _eigenschaft_zuruecksetzen und _eigenschaft_zuruecksetzen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
 _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt
+weiches Löschen für abhängige Tabellen einführen
+verzeichnis überarbeiten
+    Verzeichnis filtern und sortieren
+    Meta-Infos für Unterverzeichnisse und Dateien anzeigen
+    Funktion zur Erstellung eines Verzeichnisses, inkl. Kopieren von index.html aus dem übergeordneten Verzeichnis
 .btn in .formular mit ENTER betätigbar machen
+Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen (ausschließlich spezielle Zusatzsymbole wie beispiele Termin-Kategorie als hex-Symbole)
 Zusatzsymbol rechts und links einführen
 Neue bootstrap icons Version einführen (unlock2 statt lock)
 Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details)
+localstorage_reset_string und datenschutz_richtlinie_string entfernen (hinzugefügt im Juni 2025?)
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
 Bugfix "Es wurde versucht, die Eigenschaft undefined zu aktualisieren, die nicht existiert in FILTERBARE_EIGENSCHAFTEN."
+mitglied_id in kassenbucheintrag als verknuepfung (und kassenbucheintrag.mitglied loswerden)? Oder kassenbucheintrag als verknuepfung umbauen
 Auswahl überarbeiten? oder gleich entfernen?
 auswertungen ersetzen durch verknuepfungen (allgemein Fokus mehr auf die Liste setzen?)
-mitglied_id in kassenbucheintrag als verknuepfung (und kassenbucheintrag.mitglied loswerden)? Oder kassenbucheintrag als verknuepfung umbauen
 data-Prefix loswerden
 werkzeugkasten_handle als ganz normales Zusätzsymbol in der Liste umbauen (und folglich bspw. für Termine in der Termin-Übersicht andere Zusatzsymbole bspw. für Anwesenheiten dokumentieren einführen)
 WERKZEUGKASTEN AKTUALISIEREN mit $ziel statt mit element_id
 filtern/sortieren/gruppieren_localstorage_speichern verallgemeinern und nach Schnittstelle_Dom verschieben
-Mit .filtern_vorgegeben die .filtern_eigenschaft befüllen (mittels Liste_$FilternEigenschaftAendern?)
+
+Liste_$FilternEigenschaftAendern weiter vereinfachen, indem neuer_filtern_wert herausgezogen wird (Vereinfachung auch bei anderen Funktionen möglich?)
+$(e.target).val() in Liste_FilternInit auch für Liste_$FilternEigenschaftAendern, Liste_$FilternEigenschaftWertInExklusivAendern und Liste_$FilternEigenschaftWertLoeschen?
+Liste_GruppierenMitPrioKombiniertZurueck soll zumindest { eigenschaft: undefined, richtung: undefined } zurückgeben
 
 ERLEDIGT
 

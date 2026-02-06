@@ -1,3 +1,9 @@
+/**
+ * @param {Array} tabelle
+ * @param {Object} filtern
+ * @param {string} liste
+ */
+
 function Liste_TabelleGefiltertZurueck(tabelle, filtern, liste) {
     let tabelle_vorgefiltert;
     if (isObject(filtern) && "id" in filtern && isObject(filtern.id) && "inklusiv" in filtern.id && isArray(filtern.id.inklusiv)) {

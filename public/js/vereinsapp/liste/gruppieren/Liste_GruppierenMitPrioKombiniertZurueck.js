@@ -1,3 +1,9 @@
+/**
+ * @param {Object} gruppieren_prio_niedrig
+ * @param {Object} gruppieren_prio_hoch
+ * @param {string} liste
+ */
+
 function Liste_GruppierenMitPrioKombiniertZurueck(gruppieren_prio_niedrig, gruppieren_prio_hoch, liste) {
     let gruppieren_kombiniert;
 

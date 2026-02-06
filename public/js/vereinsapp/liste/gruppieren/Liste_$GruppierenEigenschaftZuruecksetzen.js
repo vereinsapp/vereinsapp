@@ -5,12 +5,10 @@
 function Liste_$GruppierenEigenschaftZuruecksetzen($gruppieren_eigenschaft) {
     const $gruppieren_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($gruppieren_eigenschaft);
 
-    // Definition von bisherigem gruppieren_prio_niedrig und gruppieren_prio_hoch
-    // entfällt, weil
-    // gruppieren_prio_hoch überschrieben wird und
-    // gruppieren_prio_niedrig nicht verwendet wird (weil Modal direkt geschlossen wird)
+    // Definition von gruppieren_prio_hoch
+    // entfällt, weil gruppieren_prio_hoch komplett überschrieben wird
 
-    // Änderung von gruppieren_prio_hoch
+    // Ändern von gruppieren_prio_hoch
     const gruppieren_prio_hoch = undefined;
 
     // Überschreiben des bisherigen gruppieren_prio_hoch mit geändertem gruppieren_prio_hoch

@@ -5,12 +5,10 @@
 function Liste_$SortierenEigenschaftZuruecksetzen($sortieren_eigenschaft) {
     const $sortieren_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($sortieren_eigenschaft);
 
-    // Definition von bisherigem sortieren_prio_niedrig und sortieren_prio_hoch
-    // entfällt, weil
-    // sortieren_prio_hoch überschrieben wird und
-    // sortieren_prio_niedrig nicht verwendet wird (weil Modal direkt geschlossen wird)
+    // Definition von sortieren_prio_hoch
+    // entfällt, weil sortieren_prio_hoch komplett überschrieben wird
 
-    // Änderung von sortieren_prio_hoch
+    // Ändern von sortieren_prio_hoch
     const sortieren_prio_hoch = undefined;
 
     // Überschreiben des bisherigen sortieren_prio_hoch mit geändertem sortieren_prio_hoch

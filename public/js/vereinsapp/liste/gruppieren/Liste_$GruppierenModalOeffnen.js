@@ -2,7 +2,7 @@
  * @param {JQuery} $gruppieren_prio
  */
 
-function Liste_GruppierenModalOeffnen($gruppieren_prio) {
+function Liste_$GruppierenModalOeffnen($gruppieren_prio) {
     const $neues_gruppieren_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(
         Schnittstelle_VariableWertBereinigtZurueck($gruppieren_prio.attr("data-title"), undefined),
         "GRUPPIEREN",

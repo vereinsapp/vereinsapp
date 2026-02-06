@@ -1,3 +1,8 @@
+/**
+ * @param {Array} array
+ * @param {Object} sortieren
+ */
+
 function Liste_ArraySortiertZurueck(array, sortieren) {
     if (isObject(sortieren) && "eigenschaft" in sortieren && "richtung" in sortieren)
         return array.sort((a, b) => {
@@ -61,7 +66,7 @@ function Liste_MultiArraySortiertZurueck(array, sortieren) {
             ],
             function (index, konvertierung) {
                 unix = unix.replaceAll(konvertierung[0], konvertierung[1]);
-            }
+            },
         );
 
         return unix;

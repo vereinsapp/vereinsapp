@@ -1,3 +1,9 @@
+/**
+ * @param {Object} sortieren_prio_niedrig
+ * @param {Object} sortieren_prio_hoch
+ * @param {string} liste
+ */
+
 function Liste_SortierenMitPrioKombiniertZurueck(sortieren_prio_niedrig, sortieren_prio_hoch, liste) {
     let sortieren_kombiniert;
 

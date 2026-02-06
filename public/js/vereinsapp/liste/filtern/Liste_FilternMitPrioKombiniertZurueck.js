@@ -1,3 +1,9 @@
+/**
+ * @param {Object} filtern_prio_niedrig
+ * @param {Object} filtern_prio_hoch
+ * @param {string} liste
+ */
+
 function Liste_FilternMitPrioKombiniertZurueck(filtern_prio_niedrig, filtern_prio_hoch, liste) {
     let filtern_kombiniert;
 

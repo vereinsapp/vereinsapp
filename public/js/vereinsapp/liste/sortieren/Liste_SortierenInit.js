@@ -13,7 +13,7 @@ function Liste_SortierenInit() {
 
     // SORTIEREN MODAL ÖFFNEN
     $(document).on("click", ".btn_sortieren_modal_oeffnen", function () {
-        Liste_SortierenModalOeffnen($(this));
+        Liste_$SortierenModalOeffnen($(this));
     });
 
     // SORTIEREN ÄNDERN
@@ -21,7 +21,7 @@ function Liste_SortierenInit() {
         Liste_$SortierenEigenschaftAendern($(this));
     });
 
-    // SORTIEREN EIGENSCHAFT ZURUECKSETZEN
+    // SORTIEREN EIGENSCHAFT ZURÜCKSETZEN
     $(document).on("click", ".btn_sortieren_eigenschaft_zuruecksetzen", function () {
         Liste_$SortierenEigenschaftZuruecksetzen($(this).closest(".sortieren_eigenschaft"));
     });

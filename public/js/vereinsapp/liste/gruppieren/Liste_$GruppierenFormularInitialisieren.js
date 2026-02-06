@@ -4,34 +4,32 @@
 
 function Liste_$GruppierenFormularInitialisieren($gruppieren_formular) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_formular.attr("data-liste"), undefined);
-    const $gruppieren_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($gruppieren_formular);
-    Schnittstelle_Dom$Quelle$ZielEntknuepfen($gruppieren_formular, $gruppieren_prio);
 
     // Initialiserung von $gruppieren_vorgegeben
-    // entfällt, weil
-    // $gruppieren_vorgegeben nicht implementiert
+    // entfällt, weil (noch) keine vorgegebene Filter für gruppieren existieren
 
     // Initialiserung von $gruppieren_eigenschaft
     const $gruppieren_eigenschaft = $gruppieren_formular.find(".gruppieren_eigenschaft");
-    const $gruppieren_wert = $gruppieren_formular.find(".gruppieren_wert");
-
     $gruppieren_eigenschaft.attr("data-liste", liste);
-
+    const $gruppieren_wert = $gruppieren_formular.find(".gruppieren_wert");
     $gruppieren_wert.empty();
-    $.each(GRUPPIERBARE_EIGENSCHAFTEN[liste], function (index, eigenschaft) {
-        $('<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[liste][eigenschaft].beschriftung + "</option>").appendTo($gruppieren_wert);
+    $.each(GRUPPIERBARE_EIGENSCHAFTEN[liste], function (position, eigenschaft) {
+        if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
+            $('<option value="' + eigenschaft + '">' + EIGENSCHAFTEN[liste][eigenschaft].beschriftung + "</option>").appendTo($gruppieren_wert);
+        } else
+            Schnittstelle_LogInDieKonsole(
+                "Liste_$GruppierenFormularInitialisieren: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
+            );
     });
 
-    // Definition von bisherigem gruppieren_prio_niedrig und gruppieren_prio_hoch
-    const gruppieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_prio.attr("data-gruppieren_prio_niedrig"), undefined);
-    const gruppieren_prio_hoch = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_prio.val(), undefined);
+    // Verknüpfung von $gruppieren_vorgegeben und $gruppieren_eigenschaft mit $gruppieren_prio
+    const $gruppieren_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($gruppieren_formular);
+    Schnittstelle_Dom$Quelle$ZielEntknuepfen($gruppieren_formular, $gruppieren_prio);
+    Schnittstelle_Dom$Quelle$ZielVerknuepfen($gruppieren_formular.find(".gruppieren_vorgegeben, .gruppieren_eigenschaft"), $gruppieren_prio);
 
-    // Überschreiben des bisherigen gruppieren_prio_hoch mit geändertem gruppieren_prio_hoch
-    // entfällt, da gruppieren_prio_hoch nicht geändert wurde
-
-    // Aktualisieren des $gruppieren_wert
-    const gruppieren_kombiniert = Liste_GruppierenMitPrioKombiniertZurueck(gruppieren_prio_niedrig, gruppieren_prio_hoch, liste);
-    if (typeof gruppieren_kombiniert !== "undefined") $gruppieren_wert.val(gruppieren_kombiniert);
-
-    Schnittstelle_Dom$Quelle$ZielVerknuepfen($gruppieren_eigenschaft, $gruppieren_prio);
+    $.each($gruppieren_formular.find(".gruppieren_eigenschaft"), function () {
+        const $gruppieren_eigenschaft = $(this);
+        // Aktualisieren der $gruppieren_eigenschaft
+        Liste_$GruppierenEigenschaftAktualisieren($gruppieren_eigenschaft);
+    });
 }

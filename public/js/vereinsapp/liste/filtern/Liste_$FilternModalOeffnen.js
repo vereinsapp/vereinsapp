@@ -2,7 +2,7 @@
  * @param {JQuery} $filtern_prio
  */
 
-function Liste_FilternModalOeffnen($filtern_prio) {
+function Liste_$FilternModalOeffnen($filtern_prio) {
     const $neues_filtern_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(
         Schnittstelle_VariableWertBereinigtZurueck($filtern_prio.attr("data-title"), undefined),
         "FILTERN",

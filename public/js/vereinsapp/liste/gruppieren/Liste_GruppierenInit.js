@@ -13,7 +13,7 @@ function Liste_GruppierenInit() {
 
     // GRUPPIEREN MODAL ÖFFNEN
     $(document).on("click", ".btn_gruppieren_modal_oeffnen", function () {
-        Liste_GruppierenModalOeffnen($(this));
+        Liste_$GruppierenModalOeffnen($(this));
     });
 
     // GRUPPIEREN ÄNDERN
@@ -21,7 +21,7 @@ function Liste_GruppierenInit() {
         Liste_$GruppierenEigenschaftAendern($(this));
     });
 
-    // GRUPPIEREN EIGENSCHAFT ZURUECKSETZEN
+    // GRUPPIEREN EIGENSCHAFT ZURÜCKSETZEN
     $(document).on("click", ".btn_gruppieren_eigenschaft_zuruecksetzen", function () {
         Liste_$GruppierenEigenschaftZuruecksetzen($(this).closest(".gruppieren_eigenschaft"));
     });
