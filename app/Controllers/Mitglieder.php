@@ -124,7 +124,7 @@ class Mitglieder extends BaseController {
         );
 
         $this->viewdata['auswertungen']['rueckmeldungen_mitglied']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage'),
+            'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'),
             'title' => 'Auswertung filtern',
         );
 
@@ -139,7 +139,7 @@ class Mitglieder extends BaseController {
         );
 
         $this->viewdata['auswertungen']['anwesenheiten_mitglied']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage'),
+            'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'),
             'title' => 'Auswertung filtern',
         );
 

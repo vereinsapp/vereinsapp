@@ -8,7 +8,7 @@ function Liste_GruppierenInit() {
     });
 
     // GRUPPIEREN MODAL ÖFFNEN
-    $(document).on("click", ".btn_gruppieren_modal_oeffnen", function () {
+    $(document).on("click", ".btn_gruppieren_manip", function () {
         Liste_$GruppierenModalOeffnen($(this));
     });
 

@@ -8,7 +8,7 @@ function Liste_Liste$WerkzeugAktualisieren($werkzeug, $liste) {
     const instanz = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("id"), undefined);
 
     let batch_hinzu = false;
-    if ($werkzeug.hasClass("btn_filtern_modal_oeffnen")) {
+    if ($werkzeug.hasClass("btn_filtern_manip")) {
         const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-filtern"), new Object());
         const filtern_manip = LISTEN[liste].instanz[instanz].filtern;
 
@@ -20,7 +20,7 @@ function Liste_Liste$WerkzeugAktualisieren($werkzeug, $liste) {
         $.each(Object.keys(filtern_manip), function (position, eigenschaft) {
             if (Object.keys(filtern_manip[eigenschaft]).length > 0) batch_hinzu = true;
         });
-    } else if ($werkzeug.hasClass("btn_sortieren_modal_oeffnen")) {
+    } else if ($werkzeug.hasClass("btn_sortieren_manip")) {
         const sortieren_basis = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-sortieren"), undefined);
         const sortieren_manip = LISTEN[liste].instanz[instanz].sortieren;
 
@@ -30,7 +30,7 @@ function Liste_Liste$WerkzeugAktualisieren($werkzeug, $liste) {
 
         if (typeof sortieren_manip !== "undefined" && Object.keys(sortieren_manip).length > 0) batch_hinzu = true;
         else batch_hinzu = false;
-    } else if ($werkzeug.hasClass("btn_gruppieren_modal_oeffnen")) {
+    } else if ($werkzeug.hasClass("btn_gruppieren_manip")) {
         const gruppieren_basis = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-gruppieren"), undefined);
         const gruppieren_manip = LISTEN[liste].instanz[instanz].gruppieren;
 

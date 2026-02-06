@@ -141,12 +141,12 @@ class Termine extends BaseController {
         );
 
         $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['gruppieren'] = array(
-            'klasse_id' => array('btn_gruppieren_modal_oeffnen', 'gruppieren_localstorage'),
+            'klasse_id' => array('btn_gruppieren_manip', 'gruppieren_localstorage'),
             'title' => 'Auswertung gruppieren',
         );
 
         $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage'),
+            'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'),
             'title' => 'Auswertung filtern',
         );
 
@@ -161,12 +161,12 @@ class Termine extends BaseController {
         );
 
         $this->viewdata['auswertungen']['anwesenheiten_termin']['werkzeugkasten']['gruppieren'] = array(
-            'klasse_id' => array('btn_gruppieren_modal_oeffnen', 'gruppieren_localstorage'),
+            'klasse_id' => array('btn_gruppieren_manip', 'gruppieren_localstorage'),
             'title' => 'Auswertung gruppieren',
         );
 
         $this->viewdata['auswertungen']['anwesenheiten_termin']['werkzeugkasten']['filtern'] = array(
-            'klasse_id' => array('btn_filtern_modal_oeffnen', 'filtern_localstorage'),
+            'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'),
             'title' => 'Auswertung filtern',
         );
 

@@ -9,7 +9,7 @@ function Liste_FilternInit() {
     });
 
     // FILTERN MODAL ÖFFNEN
-    $(document).on("click", ".btn_filtern_modal_oeffnen", function () {
+    $(document).on("click", ".btn_filtern_manip", function () {
         Liste_$FilternModalOeffnen($(this));
     });
 

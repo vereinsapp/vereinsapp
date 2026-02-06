@@ -6,15 +6,15 @@
 function Liste_$FilternVorgegebenAuswaehlen($filtern_vorgegeben, filtern_vorgegeben_id) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_vorgegeben.attr("data-liste"), undefined);
 
-    if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
-        if (liste in FILTERN_VORGEGEBEN && filtern_vorgegeben_id in FILTERN_VORGEGEBEN[liste]) {
-            const $filtern_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_vorgegeben);
+    if (liste in FILTERN_VORGEGEBEN && filtern_vorgegeben_id in FILTERN_VORGEGEBEN[liste]) {
+        const $filtern_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_vorgegeben);
 
-            // Definition von filtern_manip
-            // entfällt, weil filtern_manip komplett überschrieben wird
-            const filtern_manip = new Object();
-            const filtern_vorgegeben = FILTERN_VORGEGEBEN[liste][filtern_vorgegeben_id].filtern;
-            $.each(Object.keys(filtern_vorgegeben), function (position, eigenschaft) {
+        // Definition von filtern_manip
+        // entfällt, weil filtern_manip komplett überschrieben wird
+        const filtern_manip = new Object();
+        const filtern_vorgegeben = FILTERN_VORGEGEBEN[liste][filtern_vorgegeben_id].filtern;
+        $.each(Object.keys(filtern_vorgegeben), function (position, eigenschaft) {
+            if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
                 if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft))
                     filtern_manip[eigenschaft] = filtern_vorgegeben[eigenschaft];
                 else
@@ -25,23 +25,23 @@ function Liste_$FilternVorgegebenAuswaehlen($filtern_vorgegeben, filtern_vorgege
                             liste +
                             "!",
                     );
-            });
+            } else
+                Schnittstelle_LogInDieKonsole(
+                    "Liste_$FilternVorgegebenAuswaehlen: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
+                );
+        });
 
-            // Überschreiben des bisherigen filtern_manip mit neuem filtern_manip
-            $filtern_manip.val(JsonStringifiedZurueck(filtern_manip, new Object())).trigger("change");
+        // Überschreiben des bisherigen filtern_manip mit neuem filtern_manip
+        $filtern_manip.val(JsonStringifiedZurueck(filtern_manip, new Object())).trigger("change");
 
-            // Aktualisieren der $filtern_eigenschaft entfällt, weil Modal direkt geschlossen wird
-            Schnittstelle_Dom$ModalSchliessen($filtern_vorgegeben_auswahl.closest(".modal"));
-        } else
-            Schnittstelle_LogInDieKonsole(
-                "Liste_$FilternVorgegebenAuswaehlen: Vorgegebener Filter " +
-                    filtern_vorgegeben_id +
-                    " existiert nicht in FILTERN_VORGEGEBEN." +
-                    liste +
-                    "!",
-            );
+        // Aktualisieren der $filtern_eigenschaft entfällt, weil Modal direkt geschlossen wird
+        Schnittstelle_Dom$ModalSchliessen($filtern_vorgegeben.closest(".modal"));
     } else
         Schnittstelle_LogInDieKonsole(
-            "Liste_$FilternVorgegebenAuswaehlen: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
+            "Liste_$FilternVorgegebenAuswaehlen: Vorgegebener Filter " +
+                filtern_vorgegeben_id +
+                " existiert nicht in FILTERN_VORGEGEBEN." +
+                liste +
+                "!",
         );
 }

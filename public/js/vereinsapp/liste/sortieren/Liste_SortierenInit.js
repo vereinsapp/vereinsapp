@@ -8,7 +8,7 @@ function Liste_SortierenInit() {
     });
 
     // SORTIEREN MODAL ÖFFNEN
-    $(document).on("click", ".btn_sortieren_modal_oeffnen", function () {
+    $(document).on("click", ".btn_sortieren_manip", function () {
         Liste_$SortierenModalOeffnen($(this));
     });
 
