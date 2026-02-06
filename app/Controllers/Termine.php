@@ -487,52 +487,7 @@ class Termine extends BaseController {
             $filtern_mitglieder_kategorie = TERMINE_KATEGORIE_FILTERN_MITGLIEDER[ $termin['kategorie'] ];
         else $filtern_mitglieder_kategorie = array();
 
-        return $this->filtern_mit_prio_kombiniert( $filtern_mitglieder_kategorie, $filtern_mitglieder, 'mitglieder' );
-    }
-
-    protected function filtern_mit_prio_kombiniert( $filtern_prio_niedrig, $filtern_prio_hoch, $liste )  {
-        if( !is_array( $filtern_prio_niedrig ) ) $filtern_prio_niedrig = array();
-        if( !is_array( $filtern_prio_hoch ) ) $filtern_prio_hoch = array();
-
-        if( count( array_keys( $filtern_prio_niedrig ) ) === 0 AND count( array_keys( $filtern_prio_hoch ) ) > 0 ) $filtern_kombiniert = $filtern_prio_hoch;
-        else if( count( array_keys( $filtern_prio_hoch ) ) === 0  AND count( array_keys( $filtern_prio_niedrig ) ) > 0 ) $filtern_kombiniert = $filtern_prio_niedrig;
-        else {
-            $filtern_kombiniert = array();
-    
-            foreach( array_merge( array_keys( $filtern_prio_niedrig ), array_keys( $filtern_prio_hoch ) ) as $eigenschaft ) {
-                $filtern_kombiniert[$eigenschaft] = array();
-                switch( EIGENSCHAFTEN[$liste][$eigenschaft]['typ'] ) {
-                    case 'text':
-                        // (noch) nicht möglich
-                        break;
-                    case 'zahl':
-                    case 'zeitpunkt':
-                        foreach( array( 'start', 'ende' ) as $filtern_klasse ) {
-                            if( array_key_exists( $eigenschaft, $filtern_prio_hoch ) AND array_key_exists( $filtern_klasse, $filtern_prio_hoch[$eigenschaft] ) )
-                                $filtern_kombiniert[$eigenschaft][$filtern_klasse] = $filtern_prio_hoch[$eigenschaft][$filtern_klasse];
-                            else if( array_key_exists( $eigenschaft, $filtern_prio_niedrig ) AND array_key_exists( $filtern_klasse, $filtern_prio_niedrig[$eigenschaft] ) )
-                                $filtern_kombiniert[$eigenschaft][$filtern_klasse] = $filtern_prio_niedrig[$eigenschaft][$filtern_klasse];
-                        }
-                        break;
-                    case 'janein':
-                    case 'vorgegebene_werte':
-                    case 'element_id':
-                    case 'element_ids':
-                        foreach( array( 'inklusiv', 'exklusiv' ) as $filtern_klasse ) {
-                            if( array_key_exists( $eigenschaft, $filtern_prio_hoch ) ) {
-                                if( array_key_exists( $filtern_klasse, $filtern_prio_hoch[$eigenschaft] ) )
-                                    $filtern_kombiniert[$eigenschaft][$filtern_klasse] = $filtern_prio_hoch[$eigenschaft][$filtern_klasse];
-                            } if( array_key_exists( $eigenschaft, $filtern_prio_niedrig ) ) {
-                                if( array_key_exists( $filtern_klasse, $filtern_prio_niedrig[$eigenschaft] ) )
-                                    $filtern_kombiniert[$eigenschaft][$filtern_klasse] = $filtern_prio_niedrig[$eigenschaft][$filtern_klasse];
-                            }
-                        }
-                        break;
-                }
-            }
-        }
-    
-        return $filtern_kombiniert;
+        return $this->filtern_manipuliert_zurueck( $filtern_mitglieder_kategorie, $filtern_mitglieder, 'mitglieder' );
     }
 
     protected function json_export( $termine ) {

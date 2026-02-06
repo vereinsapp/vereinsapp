@@ -54,10 +54,10 @@ function Liste_$FilternFormularInitialisieren($filtern_formular) {
             );
     });
 
-    // Verknüpfung von $filtern_vorgegeben und $filtern_eigenschaft mit $filtern_prio
-    const $filtern_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_formular);
-    Schnittstelle_Dom$Quelle$ZielEntknuepfen($filtern_formular, $filtern_prio);
-    Schnittstelle_Dom$Quelle$ZielVerknuepfen($filtern_formular.find(".filtern_vorgegeben, .filtern_eigenschaft"), $filtern_prio);
+    // Verknüpfung von $filtern_vorgegeben und $filtern_eigenschaft mit $filtern_manip
+    const $filtern_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_formular);
+    Schnittstelle_Dom$Quelle$ZielEntknuepfen($filtern_formular, $filtern_manip);
+    Schnittstelle_Dom$Quelle$ZielVerknuepfen($filtern_formular.find(".filtern_vorgegeben, .filtern_eigenschaft"), $filtern_manip);
 
     $.each($filtern_formular.find(".filtern_eigenschaft"), function () {
         const $filtern_eigenschaft = $(this);

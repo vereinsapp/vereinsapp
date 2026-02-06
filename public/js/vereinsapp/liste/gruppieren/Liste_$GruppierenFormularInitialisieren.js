@@ -22,10 +22,10 @@ function Liste_$GruppierenFormularInitialisieren($gruppieren_formular) {
             );
     });
 
-    // Verknüpfung von $gruppieren_vorgegeben und $gruppieren_eigenschaft mit $gruppieren_prio
-    const $gruppieren_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($gruppieren_formular);
-    Schnittstelle_Dom$Quelle$ZielEntknuepfen($gruppieren_formular, $gruppieren_prio);
-    Schnittstelle_Dom$Quelle$ZielVerknuepfen($gruppieren_formular.find(".gruppieren_vorgegeben, .gruppieren_eigenschaft"), $gruppieren_prio);
+    // Verknüpfung von $gruppieren_vorgegeben und $gruppieren_eigenschaft mit $gruppieren_manip
+    const $gruppieren_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($gruppieren_formular);
+    Schnittstelle_Dom$Quelle$ZielEntknuepfen($gruppieren_formular, $gruppieren_manip);
+    Schnittstelle_Dom$Quelle$ZielVerknuepfen($gruppieren_formular.find(".gruppieren_vorgegeben, .gruppieren_eigenschaft"), $gruppieren_manip);
 
     $.each($gruppieren_formular.find(".gruppieren_eigenschaft"), function () {
         const $gruppieren_eigenschaft = $(this);

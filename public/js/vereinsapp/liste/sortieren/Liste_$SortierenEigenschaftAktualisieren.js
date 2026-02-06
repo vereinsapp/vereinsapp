@@ -4,16 +4,16 @@
 
 function Liste_$SortierenEigenschaftAktualisieren($sortieren_eigenschaft) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($sortieren_eigenschaft.attr("data-liste"), undefined);
-    const $sortieren_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($sortieren_eigenschaft);
+    const $sortieren_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($sortieren_eigenschaft);
 
     // Definition von sortieren_eigenschaft
-    const sortieren_prio = Liste_SortierenMitPrioKombiniertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($sortieren_prio.attr("data-sortieren_prio_niedrig"), undefined),
-        Schnittstelle_VariableWertBereinigtZurueck($sortieren_prio.val(), undefined),
+    const sortieren_manipuliert = Liste_SortierenManipuliertZurueck(
+        Schnittstelle_VariableWertBereinigtZurueck($sortieren_manip.attr("data-sortieren_basis"), undefined),
+        Schnittstelle_VariableWertBereinigtZurueck($sortieren_manip.val(), undefined),
         liste,
     );
     const sortieren_eigenschaft = { eigenschaft: undefined, richtung: undefined };
-    $.each(sortieren_prio, function (eigenschaft_richtung, wert) {
+    $.each(sortieren_manipuliert, function (eigenschaft_richtung, wert) {
         if (eigenschaft_richtung in sortieren_eigenschaft) sortieren_eigenschaft[eigenschaft_richtung] = wert;
     });
     const eigenschaft = sortieren_eigenschaft.eigenschaft;

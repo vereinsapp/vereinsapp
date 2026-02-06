@@ -9,34 +9,36 @@ function Liste_Liste$WerkzeugAktualisieren($werkzeug, $liste) {
 
     let batch_hinzu = false;
     if ($werkzeug.hasClass("btn_filtern_modal_oeffnen")) {
-        const filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-filtern"), new Object());
-        const filtern_prio_hoch = LISTEN[liste].instanz[instanz].filtern;
+        const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-filtern"), new Object());
+        const filtern_manip = LISTEN[liste].instanz[instanz].filtern;
 
         $werkzeug
-            .attr("data-filtern_prio_niedrig", JsonStringifiedZurueck(filtern_prio_niedrig, new Object()))
-            .val(JsonStringifiedZurueck(filtern_prio_hoch, new Object()));
+            .attr("data-filtern_basis", JsonStringifiedZurueck(filtern_basis, new Object()))
+            .val(JsonStringifiedZurueck(filtern_manip, new Object()));
 
-        if (Object.keys(filtern_prio_hoch).length > 0) batch_hinzu = true;
-        else batch_hinzu = false;
+        batch_hinzu = false;
+        $.each(Object.keys(filtern_manip), function (position, eigenschaft) {
+            if (Object.keys(filtern_manip[eigenschaft]).length > 0) batch_hinzu = true;
+        });
     } else if ($werkzeug.hasClass("btn_sortieren_modal_oeffnen")) {
-        const sortieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-sortieren"), undefined);
-        const sortieren_prio_hoch = LISTEN[liste].instanz[instanz].sortieren;
+        const sortieren_basis = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-sortieren"), undefined);
+        const sortieren_manip = LISTEN[liste].instanz[instanz].sortieren;
 
         $werkzeug
-            .attr("data-sortieren_prio_niedrig", JsonStringifiedZurueck(sortieren_prio_niedrig, undefined))
-            .val(JsonStringifiedZurueck(sortieren_prio_hoch, undefined));
+            .attr("data-sortieren_basis", JsonStringifiedZurueck(sortieren_basis, undefined))
+            .val(JsonStringifiedZurueck(sortieren_manip, undefined));
 
-        if (typeof sortieren_prio_hoch !== "undefined") batch_hinzu = true;
+        if (typeof sortieren_manip !== "undefined" && Object.keys(sortieren_manip).length > 0) batch_hinzu = true;
         else batch_hinzu = false;
     } else if ($werkzeug.hasClass("btn_gruppieren_modal_oeffnen")) {
-        const gruppieren_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-gruppieren"), undefined);
-        const gruppieren_prio_hoch = LISTEN[liste].instanz[instanz].gruppieren;
+        const gruppieren_basis = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-gruppieren"), undefined);
+        const gruppieren_manip = LISTEN[liste].instanz[instanz].gruppieren;
 
         $werkzeug
-            .attr("data-gruppieren_prio_niedrig", JsonStringifiedZurueck(gruppieren_prio_niedrig, undefined))
-            .val(JsonStringifiedZurueck(gruppieren_prio_hoch, undefined));
+            .attr("data-gruppieren_basis", JsonStringifiedZurueck(gruppieren_basis, undefined))
+            .val(JsonStringifiedZurueck(gruppieren_manip, undefined));
 
-        if (typeof gruppieren_prio_hoch !== "undefined") batch_hinzu = true;
+        if (typeof gruppieren_manip !== "undefined") batch_hinzu = true;
         else batch_hinzu = false;
     }
 

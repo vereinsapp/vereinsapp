@@ -3,16 +3,16 @@
  */
 
 function Liste_$GruppierenEigenschaftZuruecksetzen($gruppieren_eigenschaft) {
-    const $gruppieren_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($gruppieren_eigenschaft);
+    const $gruppieren_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($gruppieren_eigenschaft);
 
-    // Definition von gruppieren_prio_hoch
-    // entfällt, weil gruppieren_prio_hoch komplett überschrieben wird
+    // Definition von gruppieren_manip
+    // entfällt, weil gruppieren_manip komplett überschrieben wird
 
-    // Ändern von gruppieren_prio_hoch
-    const gruppieren_prio_hoch = undefined;
+    // Ändern von gruppieren_manip
+    const gruppieren_manip = undefined;
 
-    // Überschreiben des bisherigen gruppieren_prio_hoch mit geändertem gruppieren_prio_hoch
-    $gruppieren_prio.val(JsonStringifiedZurueck(gruppieren_prio_hoch, undefined)).trigger("change");
+    // Überschreiben des bisherigen gruppieren_manip mit geändertem gruppieren_manip
+    $gruppieren_manip.val(JsonStringifiedZurueck(gruppieren_manip, undefined)).trigger("change");
 
     // Aktualisieren der $gruppieren_eigenschaft
     // entfällt, weil Modal direkt geschlossen wird

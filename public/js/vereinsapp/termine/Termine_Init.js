@@ -69,17 +69,17 @@ ELEMENTE.termine_anwesenheit.zuordnen_aktion = function (anwesenheit) {
 EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
     const $filtern_mitglieder = $kategorie.closest(".formular").find('.eingabe[data-eingabe="filtern_mitglieder"]');
     if ($kategorie.val() in TERMINE_KATEGORIE_FILTERN_MITGLIEDER) {
-        const filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()], new Object());
-        const filtern_prio_hoch = new Object();
-        $.each(Object.keys(filtern_prio_niedrig), function (position, eigenschaft) {
+        const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()], new Object());
+        const filtern_manip = new Object();
+        $.each(Object.keys(filtern_basis), function (position, eigenschaft) {
             if ("termine" in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN.termine.includes(eigenschaft))
-                filtern_prio_hoch[eigenschaft] = filtern_prio_niedrig[eigenschaft];
+                filtern_manip[eigenschaft] = filtern_basis[eigenschaft];
         });
 
         $filtern_mitglieder
-            .attr("data-filtern_prio_niedrig", JsonStringifiedZurueck(filtern_prio_niedrig, new Object()))
-            .val(JsonStringifiedZurueck(filtern_prio_hoch, new Object()));
-    } else $filtern_mitglieder.removeAttr("data-filtern_prio_niedrig").val("");
+            .attr("data-filtern_basis", JsonStringifiedZurueck(filtern_basis, new Object()))
+            .val(JsonStringifiedZurueck(filtern_manip, new Object()));
+    } else $filtern_mitglieder.removeAttr("data-filtern_basis").val("");
 };
 
 ELEMENTE.termin.ergaenzen_aktion = function (termin) {
@@ -87,7 +87,7 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
     $.each(
         Liste_TabelleGefiltertZurueck(
             LISTEN.mitglieder.tabelle,
-            Liste_FilternMitPrioKombiniertZurueck(
+            Liste_FilternManipuliertZurueck(
                 Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin.kategorie], new Object()),
                 termin.filtern_mitglieder,
                 "mitglieder",

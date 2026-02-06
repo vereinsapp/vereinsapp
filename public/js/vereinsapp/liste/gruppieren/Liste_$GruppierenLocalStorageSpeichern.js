@@ -6,15 +6,15 @@ function Liste_$GruppierenLocalStorageSpeichern($gruppieren_localstorage) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_localstorage.attr("data-liste"), undefined);
     const instanz = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_localstorage.attr("data-instanz"), undefined);
 
-    // Definition von gruppieren_prio_hoch
-    const gruppieren_prio_hoch = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_localstorage.val(), undefined);
+    // Definition von gruppieren_manip
+    const gruppieren_manip = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_localstorage.val(), undefined);
 
     // Befüllung von gruppieren
     LISTEN[liste].instanz[instanz].gruppieren = undefined;
-    const eigenschaft = gruppieren_prio_hoch;
+    const eigenschaft = gruppieren_manip;
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in SORTIERBARE_EIGENSCHAFTEN && SORTIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
-            LISTEN[liste].instanz[instanz].gruppieren = gruppieren_prio_hoch;
+            LISTEN[liste].instanz[instanz].gruppieren = gruppieren_manip;
         } else
             Schnittstelle_LogInDieKonsole(
                 "Liste_$GruppierenLocalStorageSpeichern: Eigenschaft " + eigenschaft + " existiert nicht in SORTIERBARE_EIGENSCHAFTEN." + liste + "!",

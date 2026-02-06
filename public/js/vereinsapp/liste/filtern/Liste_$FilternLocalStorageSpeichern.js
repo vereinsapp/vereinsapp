@@ -6,15 +6,15 @@ function Liste_$FilternLocalStorageSpeichern($filtern_localstorage) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_localstorage.attr("data-liste"), undefined);
     const instanz = Schnittstelle_VariableWertBereinigtZurueck($filtern_localstorage.attr("data-instanz"), undefined);
 
-    // Definition von filtern_prio_hoch
-    const filtern_prio_hoch = Schnittstelle_VariableWertBereinigtZurueck($filtern_localstorage.val(), new Object());
+    // Definition von filtern_manip
+    const filtern_manip = Schnittstelle_VariableWertBereinigtZurueck($filtern_localstorage.val(), new Object());
 
     // Befüllung von filtern
     LISTEN[liste].instanz[instanz].filtern = new Object();
-    $.each(Object.keys(filtern_prio_hoch), function (position, eigenschaft) {
+    $.each(Object.keys(filtern_manip), function (position, eigenschaft) {
         if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
             if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
-                LISTEN[liste].instanz[instanz].filtern[eigenschaft] = filtern_prio_hoch[eigenschaft];
+                LISTEN[liste].instanz[instanz].filtern[eigenschaft] = filtern_manip[eigenschaft];
             } else
                 Schnittstelle_LogInDieKonsole(
                     "Liste_$FilternLocalStorageSpeichern: Eigenschaft " + eigenschaft + " existiert nicht in FILTERBARE_EIGENSCHAFTEN." + liste + "!",

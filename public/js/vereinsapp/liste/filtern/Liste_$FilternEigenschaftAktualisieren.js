@@ -5,18 +5,18 @@
 function Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("data-liste"), undefined);
     const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("data-eigenschaft"), undefined);
-    const $filtern_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_eigenschaft);
+    const $filtern_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_eigenschaft);
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
             // Definition von filtern_eigenschaft
-            const filtern_prio = Liste_FilternMitPrioKombiniertZurueck(
-                Schnittstelle_VariableWertBereinigtZurueck($filtern_prio.attr("data-filtern_prio_niedrig"), new Object()),
-                Schnittstelle_VariableWertBereinigtZurueck($filtern_prio.val(), new Object()),
+            const filtern_manipuliert = Liste_FilternManipuliertZurueck(
+                Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-filtern_basis"), new Object()),
+                Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.val(), new Object()),
                 liste,
             );
-            if (!(eigenschaft in filtern_prio)) filtern_prio[eigenschaft] = new Object();
-            const filtern_eigenschaft = filtern_prio[eigenschaft];
+            if (!(eigenschaft in filtern_manipuliert)) filtern_manipuliert[eigenschaft] = new Object();
+            const filtern_eigenschaft = filtern_manipuliert[eigenschaft];
 
             // Aktualisieren der $filtern_eigenschaft
             switch (EIGENSCHAFTEN[liste][eigenschaft].typ) {

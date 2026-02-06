@@ -8,15 +8,15 @@ function Liste_$FilternVorgegebenAuswaehlen($filtern_vorgegeben, filtern_vorgege
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in FILTERN_VORGEGEBEN && filtern_vorgegeben_id in FILTERN_VORGEGEBEN[liste]) {
-            const $filtern_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_vorgegeben);
+            const $filtern_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_vorgegeben);
 
-            // Definition von filtern_prio_hoch
-            // entfällt, weil filtern_prio_hoch komplett überschrieben wird
-            const filtern_prio_hoch = new Object();
+            // Definition von filtern_manip
+            // entfällt, weil filtern_manip komplett überschrieben wird
+            const filtern_manip = new Object();
             const filtern_vorgegeben = FILTERN_VORGEGEBEN[liste][filtern_vorgegeben_id].filtern;
             $.each(Object.keys(filtern_vorgegeben), function (position, eigenschaft) {
                 if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft))
-                    filtern_prio_hoch[eigenschaft] = filtern_vorgegeben[eigenschaft];
+                    filtern_manip[eigenschaft] = filtern_vorgegeben[eigenschaft];
                 else
                     Schnittstelle_LogInDieKonsole(
                         "Liste_$FilternVorgegebenAuswaehlen: Eigenschaft " +
@@ -27,8 +27,8 @@ function Liste_$FilternVorgegebenAuswaehlen($filtern_vorgegeben, filtern_vorgege
                     );
             });
 
-            // Überschreiben des bisherigen filtern_prio_hoch mit neuem filtern_prio_hoch
-            $filtern_prio.val(JsonStringifiedZurueck(filtern_prio_hoch, new Object())).trigger("change");
+            // Überschreiben des bisherigen filtern_manip mit neuem filtern_manip
+            $filtern_manip.val(JsonStringifiedZurueck(filtern_manip, new Object())).trigger("change");
 
             // Aktualisieren der $filtern_eigenschaft entfällt, weil Modal direkt geschlossen wird
             Schnittstelle_Dom$ModalSchliessen($filtern_vorgegeben_auswahl.closest(".modal"));

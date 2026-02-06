@@ -102,4 +102,49 @@ abstract class BaseController extends Controller
         if( array_key_exists( 'verzeichnis', $this->viewdata ) ) foreach( $this->viewdata['verzeichnis'] as $instanz => $verzeichnis ) $this->viewdata['verzeichnis'][ $instanz ]['instanz'] = $instanz;
     }
 
+    protected function filtern_manipuliert_zurueck( $filtern_basis, $filtern_manip, $liste )  {
+        if( !is_array( $filtern_basis ) ) $filtern_basis = array();
+        if( !is_array( $filtern_manip ) ) $filtern_manip = array();
+
+        if( count( array_keys( $filtern_basis ) ) === 0 AND count( array_keys( $filtern_manip ) ) > 0 ) $filtern_manipuliert = $filtern_manip;
+        else if( count( array_keys( $filtern_manip ) ) === 0  AND count( array_keys( $filtern_basis ) ) > 0 ) $filtern_manipuliert = $filtern_basis;
+        else {
+            $filtern_manipuliert = array();
+    
+            foreach( array_merge( array_keys( $filtern_basis ), array_keys( $filtern_manip ) ) as $eigenschaft ) {
+                $filtern_manipuliert[$eigenschaft] = array();
+                switch( EIGENSCHAFTEN[$liste][$eigenschaft]['typ'] ) {
+                    case 'text':
+                        // (noch) nicht möglich
+                        break;
+                    case 'zahl':
+                    case 'zeitpunkt':
+                        foreach( array( 'start', 'ende' ) as $filtern_klasse ) {
+                            if( array_key_exists( $eigenschaft, $filtern_manip ) AND array_key_exists( $filtern_klasse, $filtern_manip[$eigenschaft] ) )
+                                $filtern_manipuliert[$eigenschaft][$filtern_klasse] = $filtern_manip[$eigenschaft][$filtern_klasse];
+                            else if( array_key_exists( $eigenschaft, $filtern_basis ) AND array_key_exists( $filtern_klasse, $filtern_basis[$eigenschaft] ) )
+                                $filtern_manipuliert[$eigenschaft][$filtern_klasse] = $filtern_basis[$eigenschaft][$filtern_klasse];
+                        }
+                        break;
+                    case 'janein':
+                    case 'vorgegebene_werte':
+                    case 'element_id':
+                    case 'element_ids':
+                        foreach( array( 'inklusiv', 'exklusiv' ) as $filtern_klasse ) {
+                            if( array_key_exists( $eigenschaft, $filtern_manip ) ) {
+                                if( array_key_exists( $filtern_klasse, $filtern_manip[$eigenschaft] ) )
+                                    $filtern_manipuliert[$eigenschaft][$filtern_klasse] = $filtern_manip[$eigenschaft][$filtern_klasse];
+                            } if( array_key_exists( $eigenschaft, $filtern_basis ) ) {
+                                if( array_key_exists( $filtern_klasse, $filtern_basis[$eigenschaft] ) )
+                                    $filtern_manipuliert[$eigenschaft][$filtern_klasse] = $filtern_basis[$eigenschaft][$filtern_klasse];
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+    
+        return $filtern_manipuliert;
+    }
+
 }

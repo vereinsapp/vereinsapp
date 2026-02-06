@@ -8,19 +8,19 @@ function Liste_$SortierenEigenschaftAendern($sortieren_eigenschaft) {
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in SORTIERBARE_EIGENSCHAFTEN && SORTIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
-            const $sortieren_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($sortieren_eigenschaft);
+            const $sortieren_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($sortieren_eigenschaft);
 
-            // Definition von sortieren_prio_hoch
-            // entfällt, weil sortieren_prio_hoch komplett überschrieben wird
+            // Definition von sortieren_manip
+            // entfällt, weil sortieren_manip komplett überschrieben wird
 
-            // Ändern von sortieren_prio_hoch
-            const sortieren_prio_hoch = {
+            // Ändern von sortieren_manip
+            const sortieren_manip = {
                 eigenschaft: eigenschaft,
                 richtung: Schnittstelle_VariableWertBereinigtZurueck($sortieren_eigenschaft.find(".sortieren_richtung:checked").val(), undefined),
             };
 
-            // Überschreiben des bisherigen sortieren_prio_hoch mit geändertem sortieren_prio_hoch
-            $sortieren_prio.val(JsonStringifiedZurueck(sortieren_prio_hoch, undefined)).trigger("change");
+            // Überschreiben des bisherigen sortieren_manip mit geändertem sortieren_manip
+            $sortieren_manip.val(JsonStringifiedZurueck(sortieren_manip, undefined)).trigger("change");
 
             // Aktualisieren der $sortieren_eigenschaft
             // entfällt, weil Modal direkt geschlossen wird

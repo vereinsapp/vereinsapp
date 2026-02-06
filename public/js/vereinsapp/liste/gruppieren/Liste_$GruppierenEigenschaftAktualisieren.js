@@ -4,12 +4,12 @@
 
 function Liste_$GruppierenEigenschaftAktualisieren($gruppieren_eigenschaft) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_eigenschaft.attr("data-liste"), undefined);
-    const $gruppieren_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($gruppieren_eigenschaft);
+    const $gruppieren_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($gruppieren_eigenschaft);
 
     // Definition von gruppieren_eigenschaft
-    const gruppieren_eigenschaft = Liste_GruppierenMitPrioKombiniertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($gruppieren_prio.attr("data-gruppieren_prio_niedrig"), undefined),
-        Schnittstelle_VariableWertBereinigtZurueck($gruppieren_prio.val(), undefined),
+    const gruppieren_eigenschaft = Liste_GruppierenManipuliertZurueck(
+        Schnittstelle_VariableWertBereinigtZurueck($gruppieren_manip.attr("data-gruppieren_basis"), undefined),
+        Schnittstelle_VariableWertBereinigtZurueck($gruppieren_manip.val(), undefined),
         liste,
     );
     const eigenschaft = gruppieren_eigenschaft;

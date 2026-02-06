@@ -11,7 +11,7 @@ function Liste_$ListeAktualisieren($liste) {
     const filtern_LocalStorage = LISTEN[liste].instanz[instanz].filtern;
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
         LISTEN[liste].tabelle,
-        Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_LocalStorage, liste),
+        Liste_FilternManipuliertZurueck(filtern_data, filtern_LocalStorage, liste),
         liste,
     );
 
@@ -20,7 +20,7 @@ function Liste_$ListeAktualisieren($liste) {
     const sortieren_LocalStorage = LISTEN[liste].instanz[instanz].sortieren;
     const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(
         tabelle_gefiltert,
-        Liste_SortierenMitPrioKombiniertZurueck(sortieren_data, sortieren_LocalStorage, liste),
+        Liste_SortierenManipuliertZurueck(sortieren_data, sortieren_LocalStorage, liste),
     );
 
     // ELEMENTE IM DOM LÖSCHEN

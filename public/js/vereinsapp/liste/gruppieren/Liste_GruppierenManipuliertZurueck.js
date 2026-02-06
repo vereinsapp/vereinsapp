@@ -1,18 +1,18 @@
 /**
- * @param {Object} gruppieren_prio_niedrig
- * @param {Object} gruppieren_prio_hoch
+ * @param {Object} gruppieren_basis
+ * @param {Object} gruppieren_manip
  * @param {string} liste
  */
 
-function Liste_GruppierenMitPrioKombiniertZurueck(gruppieren_prio_niedrig, gruppieren_prio_hoch, liste) {
-    if (typeof gruppieren_prio_hoch === "undefined") {
-        const eigenschaft = gruppieren_prio_hoch;
+function Liste_GruppierenManipuliertZurueck(gruppieren_basis, gruppieren_manip, liste) {
+    if (typeof gruppieren_manip === "undefined") {
+        const eigenschaft = gruppieren_manip;
         if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
             if (liste in GRUPPIERBARE_EIGENSCHAFTEN && GRUPPIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
-                return gruppieren_prio_hoch;
+                return gruppieren_manip;
             } else
                 Schnittstelle_LogInDieKonsole(
-                    "Liste_GruppierenMitPrioKombiniertZurueck: Prio-Hoch-Eigenschaft " +
+                    "Liste_GruppierenManipuliertZurueck: manip-Eigenschaft " +
                         eigenschaft +
                         " existiert nicht in GRUPPIERBARE_EIGENSCHAFTEN." +
                         liste +
@@ -20,18 +20,18 @@ function Liste_GruppierenMitPrioKombiniertZurueck(gruppieren_prio_niedrig, grupp
                 );
         } else
             Schnittstelle_LogInDieKonsole(
-                "Liste_GruppierenMitPrioKombiniertZurueck: Prio-Hoch-Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
+                "Liste_GruppierenManipuliertZurueck: manip-Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
             );
     }
 
-    if (typeof gruppieren_prio_niedrig === "undefined") {
-        const eigenschaft = gruppieren_prio_niedrig;
+    if (typeof gruppieren_basis === "undefined") {
+        const eigenschaft = gruppieren_basis;
         if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
             if (liste in GRUPPIERBARE_EIGENSCHAFTEN && GRUPPIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
-                return gruppieren_prio_niedrig;
+                return gruppieren_basis;
             } else
                 Schnittstelle_LogInDieKonsole(
-                    "Liste_GruppierenMitPrioKombiniertZurueck: Prio-Niedrig-Eigenschaft " +
+                    "Liste_GruppierenManipuliertZurueck: basis-Eigenschaft " +
                         eigenschaft +
                         " existiert nicht in GRUPPIERBARE_EIGENSCHAFTEN." +
                         liste +
@@ -39,11 +39,7 @@ function Liste_GruppierenMitPrioKombiniertZurueck(gruppieren_prio_niedrig, grupp
                 );
         } else
             Schnittstelle_LogInDieKonsole(
-                "Liste_GruppierenMitPrioKombiniertZurueck: Prio-Niedrig-Eigenschaft " +
-                    eigenschaft +
-                    " existiert nicht in EIGENSCHAFTEN." +
-                    liste +
-                    "!",
+                "Liste_GruppierenManipuliertZurueck: basis-Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
             );
     }
 

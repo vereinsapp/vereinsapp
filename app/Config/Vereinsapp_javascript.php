@@ -75,7 +75,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/filtern/Liste_$FilternEigenschaftZuruecksetzen.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_$FilternVorgegebenAuswaehlen.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_$FilternLocalStorageSpeichern.js?v='.VERSION,
-        'js/vereinsapp/liste/filtern/Liste_FilternMitPrioKombiniertZurueck.js?v='.VERSION,
+        'js/vereinsapp/liste/filtern/Liste_FilternManipuliertZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_TabelleGefiltertZurueck.js?v='.VERSION,
 
         'js/vereinsapp/liste/sortieren/Liste_SortierenInit.js?v='.VERSION,
@@ -85,7 +85,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/sortieren/Liste_$SortierenEigenschaftAendern.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_$SortierenEigenschaftZuruecksetzen.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_$SortierenLocalStorageSpeichern.js?v='.VERSION,
-        'js/vereinsapp/liste/sortieren/Liste_SortierenMitPrioKombiniertZurueck.js?v='.VERSION,
+        'js/vereinsapp/liste/sortieren/Liste_SortierenManipuliertZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_ArraySortiertZurueck.js?v='.VERSION,
 
         'js/vereinsapp/liste/gruppieren/Liste_GruppierenInit.js?v='.VERSION,
@@ -95,7 +95,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/gruppieren/Liste_$GruppierenEigenschaftAendern.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_$GruppierenEigenschaftZuruecksetzen.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_$GruppierenLocalStorageSpeichern.js?v='.VERSION,
-        'js/vereinsapp/liste/gruppieren/Liste_GruppierenMitPrioKombiniertZurueck.js?v='.VERSION,
+        'js/vereinsapp/liste/gruppieren/Liste_GruppierenManipuliertZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_ArrayGruppiertZurueck.js?v='.VERSION,
 
         'js/vereinsapp/liste/auswertungen/Liste_AuswertungenInit.js?v='.VERSION,

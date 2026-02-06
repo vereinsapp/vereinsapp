@@ -10,14 +10,14 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
     // GRUPPIEREN DEFINIEREN
     const gruppieren_data = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-gruppieren"), undefined);
     const gruppieren_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].gruppieren;
-    const gruppieren = Liste_GruppierenMitPrioKombiniertZurueck(gruppieren_data, gruppieren_LocalStorage, liste);
+    const gruppieren = Liste_GruppierenManipuliertZurueck(gruppieren_data, gruppieren_LocalStorage, liste);
 
     // TABELLE FILTERN
     const filtern_data = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("data-filtern"), new Object());
     const filtern_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].filtern;
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
         LISTEN[liste].tabelle,
-        Liste_FilternMitPrioKombiniertZurueck(filtern_data, filtern_LocalStorage, liste),
+        Liste_FilternManipuliertZurueck(filtern_data, filtern_LocalStorage, liste),
         liste,
     );
 

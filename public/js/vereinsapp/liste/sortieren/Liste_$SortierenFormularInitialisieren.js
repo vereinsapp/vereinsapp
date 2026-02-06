@@ -22,10 +22,10 @@ function Liste_$SortierenFormularInitialisieren($sortieren_formular) {
             );
     });
 
-    // Verknüpfung von $sortieren_vorgegeben und $sortieren_eigenschaft mit $sortieren_prio
-    const $sortieren_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($sortieren_formular);
-    Schnittstelle_Dom$Quelle$ZielEntknuepfen($sortieren_formular, $sortieren_prio);
-    Schnittstelle_Dom$Quelle$ZielVerknuepfen($sortieren_formular.find(".sortieren_vorgegeben, .sortieren_eigenschaft"), $sortieren_prio);
+    // Verknüpfung von $sortieren_vorgegeben und $sortieren_eigenschaft mit $sortieren_manip
+    const $sortieren_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($sortieren_formular);
+    Schnittstelle_Dom$Quelle$ZielEntknuepfen($sortieren_formular, $sortieren_manip);
+    Schnittstelle_Dom$Quelle$ZielVerknuepfen($sortieren_formular.find(".sortieren_vorgegeben, .sortieren_eigenschaft"), $sortieren_manip);
 
     $.each($sortieren_formular.find(".sortieren_eigenschaft"), function () {
         const $sortieren_eigenschaft = $(this);

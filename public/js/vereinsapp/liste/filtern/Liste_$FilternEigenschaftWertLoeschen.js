@@ -9,14 +9,14 @@ function Liste_$FilternEigenschaftWertLoeschen($filtern_eigenschaft, filtern_wer
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
-            const $filtern_prio = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_eigenschaft);
+            const $filtern_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_eigenschaft);
 
-            // Definition von filtern_prio_hoch
-            const filtern_prio_hoch = Schnittstelle_VariableWertBereinigtZurueck($filtern_prio.val(), new Object());
-            if (!(eigenschaft in filtern_prio_hoch)) filtern_prio_hoch[eigenschaft] = new Object();
+            // Definition von filtern_manip
+            const filtern_manip = Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.val(), new Object());
+            if (!(eigenschaft in filtern_manip)) filtern_manip[eigenschaft] = new Object();
 
-            // Ändern von filtern_prio_hoch
-            const filtern_eigenschaft = filtern_prio_hoch[eigenschaft];
+            // Ändern von filtern_manip
+            const filtern_eigenschaft = filtern_manip[eigenschaft];
             switch (EIGENSCHAFTEN[liste][eigenschaft].typ) {
                 case "text":
                     // (noch) nicht möglich
@@ -40,28 +40,22 @@ function Liste_$FilternEigenschaftWertLoeschen($filtern_eigenschaft, filtern_wer
                     });
 
                     if (typeof filtern_wert_position !== "undefined" && typeof filtern_klasse_alt !== "undefined") {
-                        // filtern_wert_position und filtern_klasse_alt sind definiert, d.h. eigenschaft existiert in filtern_prio_hoch
+                        // filtern_wert_position und filtern_klasse_alt sind definiert, d.h. eigenschaft existiert in filtern_manip
                         filtern_eigenschaft[filtern_klasse_alt].splice(filtern_wert_position, 1);
                         if (filtern_eigenschaft[filtern_klasse_alt].length === 0) delete filtern_eigenschaft[filtern_klasse_alt];
                     } else {
-                        // filtern_wert_position oder filtern_klasse_alt ist nicht definiert, d.h. eigenschaft existiert noch nicht in filtern_prio_hoch
-                        const filtern_prio_niedrig = Schnittstelle_VariableWertBereinigtZurueck(
-                            $filtern_prio.attr("data-filtern_prio_niedrig"),
-                            new Object(),
-                        );
+                        // filtern_wert_position oder filtern_klasse_alt ist nicht definiert, d.h. eigenschaft existiert noch nicht in filtern_manip
+                        const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-filtern_basis"), new Object());
                         $.each(["inklusiv", "exklusiv"], function (position, filtern_klasse) {
-                            if (
-                                filtern_klasse in filtern_prio_niedrig[eigenschaft] &&
-                                filtern_prio_niedrig[eigenschaft][filtern_klasse].includes(filtern_wert)
-                            ) {
-                                filtern_wert_position = filtern_prio_niedrig[eigenschaft][filtern_klasse].indexOf(filtern_wert);
+                            if (filtern_klasse in filtern_basis[eigenschaft] && filtern_basis[eigenschaft][filtern_klasse].includes(filtern_wert)) {
+                                filtern_wert_position = filtern_basis[eigenschaft][filtern_klasse].indexOf(filtern_wert);
                                 filtern_klasse_alt = filtern_klasse;
                                 return;
                             }
                         });
 
                         if (typeof filtern_wert_position !== "undefined" && typeof filtern_klasse_alt !== "undefined") {
-                            // filtern_wert_position und filtern_klasse_alt sind definiert, d.h. eigenschaft existiert in filtern_prio_niedrig
+                            // filtern_wert_position und filtern_klasse_alt sind definiert, d.h. eigenschaft existiert in filtern_basis
                         } else {
                             // filtern_wert_position oder filtern_klasse_alt ist nicht definiert, d.h. irgendwas läuft schief
                         }
@@ -70,8 +64,8 @@ function Liste_$FilternEigenschaftWertLoeschen($filtern_eigenschaft, filtern_wer
                     break;
             }
 
-            // Überschreiben des bisherigen filtern_prio_hoch mit geändertem filtern_prio_hoch
-            $filtern_prio.val(JsonStringifiedZurueck(filtern_prio_hoch, new Object())).trigger("change");
+            // Überschreiben des bisherigen filtern_manip mit geändertem filtern_manip
+            $filtern_manip.val(JsonStringifiedZurueck(filtern_manip, new Object())).trigger("change");
 
             // Aktualisieren der $filtern_eigenschaft
             Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft);
