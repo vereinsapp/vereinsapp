@@ -32,8 +32,9 @@ class Notenbank extends BaseController {
                 'farbe' => 'danger',
             );
 
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['erstellen'] = array(
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['titel_erstellen'] = array(
                 'klasse_id' => array('btn_titel_erstellen', 'formular_oeffnen'),
+                'symbol' => 'erstellen',
                 'title' => 'Titel erstellen',
             );
 

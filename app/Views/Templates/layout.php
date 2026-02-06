@@ -41,8 +41,8 @@
 <?= view( 'Templates/modal', array( 'modal_id' => 'filtern_manip_modal', 'modal' => view( 'Templates/Liste/filtern' ) ) ); ?>
 <?= view( 'Templates/modal', array( 'modal_id' => 'sortieren_manip_modal', 'modal' => view( 'Templates/Liste/sortieren' ) ) ); ?>
 <?= view( 'Templates/modal', array( 'modal_id' => 'gruppieren_manip_modal', 'modal' => view( 'Templates/Liste/gruppieren' ) ) ); ?>
-<?= view( 'Templates/modal', array( 'modal_id' => 'AUSWAHL', 'modal' => view( 'Templates/Liste/liste', array( 'liste' => array( 'instanz' => 'AUSWAHLLISTE', 'listenstatistik' => array(), 'werkzeugkasten' => array(
-                'filtern' => array( 'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'), 'title' => 'filtern' ), 'sortieren' => array( 'klasse_id' => array('btn_sortieren_manip', 'sortieren_localstorage'), 'title' => 'sortieren' ) ) ) ) ) ) ); ?>
+<?= ''//view( 'Templates/modal', array( 'modal_id' => 'AUSWAHL', 'modal' => view( 'Templates/Liste/liste', array( 'liste' => array( 'instanz' => 'AUSWAHLLISTE', 'listenstatistik' => array(), 'werkzeugkasten' => array(
+      //          'filtern' => array( 'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'), 'title' => 'filtern' ), 'sortieren' => array( 'klasse_id' => array('btn_sortieren_manip', 'sortieren_localstorage'), 'title' => 'sortieren' ) ) ) ) ) ) ); ?>
 <?php if( auth()->loggedIn() && auth()->user()->requiresPasswordReset() ) echo
     view( 'Templates/modal', array( 'modal_id' => 'passwort_festlegen', 'autoload' => TRUE, 'modal_title' => 'Neues Passwort festlegen', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder', 'mitglied_id' => ICH_ID ), 'btn' => array( 'klasse_id' => 'btn_mitglied_passwort_festlegen', 'beschriftung' => 'Neues Passwort festlegen' ), 'formular' =>

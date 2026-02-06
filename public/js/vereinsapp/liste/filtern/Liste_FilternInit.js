@@ -1,6 +1,32 @@
+/**
+ */
+
 const FILTERN = new Object();
 FILTERN.$blanko_filtern_eigenschaft = new Object();
 FILTERN.$blanko_filtern_wert = new Object();
+
+FILTERN.$filtern_manip_aktualisieren_aktion = function ($filtern_manip) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-liste"), undefined);
+    const instanz = Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-instanz"), undefined);
+    const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck(
+        $("#" + instanz + "[data-liste=" + liste + "]").attr("data-filtern"),
+        new Object(),
+    );
+    const filtern_manip = LISTEN[liste].instanz[instanz].filtern;
+
+    $filtern_manip
+        .attr("data-filtern_basis", JsonStringifiedZurueck(filtern_basis, new Object()))
+        .val(JsonStringifiedZurueck(filtern_manip, new Object()));
+
+    // ROTER PUNKT AKTUALISIEREN
+    $filtern_manip.removeClass("position-relative").find("span.position-absolute").remove();
+    $.each(Object.keys(filtern_manip), function (position, eigenschaft) {
+        if (Object.keys(filtern_manip[eigenschaft]).length > 0)
+            $filtern_manip
+                .addClass("position-relative")
+                .append('<span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-danger border border-danger rounded-circle">');
+    });
+};
 
 function Liste_FilternInit() {
     // FILTERN IM LOCALSTORAGE SPEICHERN

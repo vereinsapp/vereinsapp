@@ -43,5 +43,5 @@ function Liste_GruppierenManipuliertZurueck(gruppieren_basis, gruppieren_manip, 
             );
     }
 
-    return { eigenschaft: undefined, richtung: undefined };
+    return undefined;
 }

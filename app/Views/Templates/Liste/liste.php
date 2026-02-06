@@ -1,13 +1,10 @@
 <?php if( array_key_exists( 'werkzeugkasten', $liste ) ) { ?><div class="text-end"><?php
-foreach( $liste['werkzeugkasten'] as $symbol => $werkzeug) { ?><button type="button" class="btn werkzeug text-<?php
+foreach( $liste['werkzeugkasten'] as $werkzeug_id => $werkzeug) { ?><button type="button" class="btn werkzeug text-<?php
     if( array_key_exists( 'farbe', $werkzeug ) ) echo $werkzeug['farbe']; else echo 'primary';
-    if( array_key_exists( 'klasse_id', $werkzeug ) ) {
-        if( is_array( $werkzeug['klasse_id'] ) ) foreach( $werkzeug['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;
-        else echo ' '.$werkzeug['klasse_id'];
-    } ?>" data-title="<?= $werkzeug['title']; ?>" data-instanz="<?= $liste['instanz']; ?>"<?php
-    if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
-    if( array_key_exists( 'weiterleiten', $werkzeug ) ) { ?> data-weiterleiten="<?= $werkzeug['weiterleiten']; ?>"<?php }
-    ?>><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ $symbol ]['bootstrap']; ?>"></i></span></button><?php }
+    if( is_array( $werkzeug['klasse_id'] ) ) foreach( $werkzeug['klasse_id'] as $klasse_id ) echo ' '.$klasse_id; else echo ' '.$werkzeug['klasse_id'];
+    ?>" data-werkzeug="<?= $werkzeug_id; ?>" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['instanz']; ?>"<?php
+    if( array_key_exists( 'title', $werkzeug ) ) { ?> data-title="<?= $werkzeug['title']; ?>"<?php }
+    ?>><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ $werkzeug['symbol'] ]['bootstrap']; ?>"></i></span></button><?php }
 ?></div><?php } ?>
 
 <?php if( array_key_exists( 'listenstatistik', $liste ) ) { ?><div class="text-end text-secondary small"><span class="listenstatistik"<?php

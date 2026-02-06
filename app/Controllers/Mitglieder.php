@@ -97,8 +97,9 @@ class Mitglieder extends BaseController {
                 'farbe' => 'danger',
             );
 
-            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['erstellen'] = array(
+            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['mitglied_erstellen'] = array(
                 'klasse_id' => array('btn_mitglied_erstellen', 'formular_oeffnen'),
+                'symbol' => 'erstellen',
                 'title' => 'Mitglied erstellen',
             );
 
@@ -123,8 +124,9 @@ class Mitglieder extends BaseController {
             'progress' => TRUE,
         );
 
-        $this->viewdata['auswertungen']['rueckmeldungen_mitglied']['werkzeugkasten']['filtern'] = array(
+        $this->viewdata['auswertungen']['rueckmeldungen_mitglied']['werkzeugkasten']['filtern_manip'] = array(
             'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'),
+            'symbol' => 'filtern',
             'title' => 'Auswertung filtern',
         );
 
@@ -138,8 +140,9 @@ class Mitglieder extends BaseController {
             'progress' => TRUE,
         );
 
-        $this->viewdata['auswertungen']['anwesenheiten_mitglied']['werkzeugkasten']['filtern'] = array(
+        $this->viewdata['auswertungen']['anwesenheiten_mitglied']['werkzeugkasten']['filtern_manip'] = array(
             'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'),
+            'symbol' => 'filtern',
             'title' => 'Auswertung filtern',
         );
 

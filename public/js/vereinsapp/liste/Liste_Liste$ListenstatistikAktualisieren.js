@@ -7,18 +7,16 @@ function Liste_Liste$ListenstatistikAktualisieren($listenstatistik, $liste) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-liste"), undefined);
 
     switch ($listenstatistik.attr("data-listenstatistik")) {
-        case "anzahl": {
+        case "anzahl":
             $listenstatistik.text($liste.children().length);
             break;
-        }
-        case "angewaehlt": {
+        case "angewaehlt":
             /* funktioniert aktuell nicht, weil Liste_$ListeAktualisieren inkl. Liste_Liste$ListenstatistikAktualisieren aufgerufen wird,
              * bevor Liste_$ElementAktualisieren inkl. Liste_$VerknuepfungenAuswahlmoeglichkeitenAktualisieren aufgerufen wird
              */
             $listenstatistik.text($liste.find(".chk_verknuepfung_erstellen:checked").length);
             break;
-        }
-        case "summe": {
+        case "summe":
             const eigenschaft = $listenstatistik.attr("data-eigenschaft");
             if (typeof eigenschaft !== "undefined" && EIGENSCHAFTEN[liste][eigenschaft].typ == "zahl") {
                 let summe = 0;
@@ -28,6 +26,5 @@ function Liste_Liste$ListenstatistikAktualisieren($listenstatistik, $liste) {
                 $listenstatistik.text(Schnittstelle_VariableWertFormatiertZurueck(summe, eigenschaft, liste));
             }
             break;
-        }
     }
 }

@@ -35,8 +35,9 @@ class Strafkatalog extends BaseController {
                 'farbe' => 'danger',
             );
 
-            $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten']['erstellen'] = array(
+            $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten']['strafe_erstellen'] = array(
                 'klasse_id' => array('btn_strafe_erstellen', 'formular_oeffnen'),
+                'symbol' => 'erstellen',
                 'title' => 'Strafe erstellen',
             );
 
@@ -75,8 +76,9 @@ class Strafkatalog extends BaseController {
                 'farbe' => 'danger',
             );
 
-            $this->viewdata['liste']['aktuelles_kassenbuch']['werkzeugkasten']['erstellen'] = array(
+            $this->viewdata['liste']['aktuelles_kassenbuch']['werkzeugkasten']['kassenbucheintrag_erstellen'] = array(
                 'klasse_id' => array('btn_kassenbucheintrag_erstellen', 'formular_oeffnen'),
+                'symbol' => 'erstellen',
                 'title' => 'Kassenbucheintrag erstellen',
             );
 

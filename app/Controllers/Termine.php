@@ -31,8 +31,9 @@ class Termine extends BaseController {
                 'title' => 'Aufgaben zuordnen',
             );
 
-            $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeugkasten']['erstellen'] = array(
+            $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeugkasten']['aufgabe_erstellen'] = array(
                 'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
+                'symbol' => 'erstellen',
                 'title' => 'Aufgabe erstellen',
             );
 
@@ -50,8 +51,9 @@ class Termine extends BaseController {
                 'title' => 'Setliste verwalten',
             );
 
-            $this->viewdata['liste']['setliste_verwalten']['werkzeugkasten']['erstellen'] = array(
+            $this->viewdata['liste']['setliste_verwalten']['werkzeugkasten']['titel_erstellen'] = array(
                 'klasse_id' => array('btn_titel_erstellen', 'formular_oeffnen'),
+                'symbol' => 'erstellen',
                 'title' => 'Titel erstellen',
             );
 
@@ -114,8 +116,9 @@ class Termine extends BaseController {
                 'farbe' => 'danger',
             );
 
-            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['erstellen'] = array(
+            $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten']['termin_erstellen'] = array(
                 'klasse_id' => array('btn_termin_erstellen', 'formular_oeffnen'),
+                'symbol' => 'erstellen',
                 'title' => 'Termin erstellen',
             );
 
@@ -140,13 +143,15 @@ class Termine extends BaseController {
             'progress' => TRUE,
         );
 
-        $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['gruppieren'] = array(
+        $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['gruppieren_manip'] = array(
             'klasse_id' => array('btn_gruppieren_manip', 'gruppieren_localstorage'),
+            'symbol' => 'gruppieren',
             'title' => 'Auswertung gruppieren',
         );
 
-        $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['filtern'] = array(
+        $this->viewdata['auswertungen']['rueckmeldungen_termin']['werkzeugkasten']['filtern_manip'] = array(
             'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'),
+            'symbol' => 'filtern',
             'title' => 'Auswertung filtern',
         );
 
@@ -160,13 +165,15 @@ class Termine extends BaseController {
             'progress' => TRUE,
         );
 
-        $this->viewdata['auswertungen']['anwesenheiten_termin']['werkzeugkasten']['gruppieren'] = array(
+        $this->viewdata['auswertungen']['anwesenheiten_termin']['werkzeugkasten']['gruppieren_manip'] = array(
             'klasse_id' => array('btn_gruppieren_manip', 'gruppieren_localstorage'),
+            'symbol' => 'gruppieren',
             'title' => 'Auswertung gruppieren',
         );
 
-        $this->viewdata['auswertungen']['anwesenheiten_termin']['werkzeugkasten']['filtern'] = array(
+        $this->viewdata['auswertungen']['anwesenheiten_termin']['werkzeugkasten']['filtern_manip'] = array(
             'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'),
+            'symbol' => 'filtern',
             'title' => 'Auswertung filtern',
         );
 
@@ -178,8 +185,9 @@ class Termine extends BaseController {
 
             if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
-                $this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']['auswaehlen'] = array(
+                $this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten']['aufgabe_zuordnen'] = array(
                     'klasse_id' => 'btn_termine_aufgaben_zuordnen',
+                    'symbol' => 'zuordnen',
                     'title' => 'Aufgaben zuordnen',
                 );
 
@@ -188,8 +196,9 @@ class Termine extends BaseController {
                 $this->viewdata['liste']['termine_aufgaben_zuordnen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', 'termin_id' => $termin_id, );
                 $this->viewdata['liste']['termine_aufgaben_zuordnen']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
 
-                $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeugkasten']['erstellen'] = array(
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeugkasten']['aufgabe_erstellen'] = array(
                     'klasse_id' => array('btn_aufgabe_erstellen', 'formular_oeffnen'),
+                    'symbol' => 'erstellen',
                     'title' => 'Aufgabe erstellen',
                 );
 
@@ -208,8 +217,9 @@ class Termine extends BaseController {
 
                 $this->viewdata['liste']['zugeordnete_setliste']['sortable'] = TRUE;
                 
-                $this->viewdata['liste']['zugeordnete_setliste']['werkzeugkasten']['auswaehlen'] = array(
+                $this->viewdata['liste']['zugeordnete_setliste']['werkzeugkasten']['titel_zuordnen'] = array(
                     'klasse_id' => 'btn_setliste_verwalten',
+                    'symbol' => 'zuordnen',
                     'title' => 'Setliste verwalten',
                 );
 
@@ -218,8 +228,9 @@ class Termine extends BaseController {
                 $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'notenbank_setliste', 'termin_id' => $termin_id, );
                 $this->viewdata['liste']['setliste_verwalten']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
 
-                $this->viewdata['liste']['setliste_verwalten']['werkzeugkasten']['erstellen'] = array(
+                $this->viewdata['liste']['setliste_verwalten']['werkzeugkasten']['titel_erstellen'] = array(
                     'klasse_id' => array('btn_titel_erstellen', 'formular_oeffnen'),
+                    'symbol' => 'erstellen',
                     'title' => 'Titel erstellen',
                 );
 
