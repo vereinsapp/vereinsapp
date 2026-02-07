@@ -25,12 +25,12 @@ if( array_key_exists( 'disabled_ids', $liste ) ) { ?> data-disabled_ids='<?= jso
 if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-eigenschaften_bedingt_formatiert='<?= json_encode( $liste['eigenschaften_bedingt_formatiert'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 ?>>
 
-    <li class="blanko element invisible text-body list-group-item<?php
+    <li class="text-body list-group-item<?php
     if( array_key_exists( 'klasse_id', $liste ) ) {
         if( is_array( $liste['klasse_id'] ) ) foreach( $liste['klasse_id'] as $klasse_id ) echo ' '.$klasse_id;
         else echo ' '.$liste['klasse_id'];
     }
-    ?>"<?php
+    ?> blanko invisible" data-blanko="element"<?php
     if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
     if( array_key_exists( 'title', $liste ) ) { ?> data-title="<?= $liste['title'] ?>"<?php }
     ?>>

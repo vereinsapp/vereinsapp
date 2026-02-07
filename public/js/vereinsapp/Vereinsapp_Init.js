@@ -1,4 +1,5 @@
 const DATETIME = luxon.DateTime;
+const BLANKOS = new Object();
 
 $(document).ready(function () {
     Schnittstelle_AjaxInit(); // initialisiert auch AJAXSCHLANGE und CSRF
@@ -93,8 +94,6 @@ data-Prefix loswerden
 werkzeugkasten_handle als ganz normales Zusätzsymbol in der Liste umbauen (und folglich bspw. für Termine in der Termin-Übersicht andere Zusatzsymbole bspw. für Anwesenheiten dokumentieren einführen)
 WERKZEUGKASTEN AKTUALISIEREN mit $ziel statt mit element_id
 Auswahl entfernen
-
-filtern/sortieren/gruppieren aus Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable und Schnittstelle_DomInit
 
 ERLEDIGT
 

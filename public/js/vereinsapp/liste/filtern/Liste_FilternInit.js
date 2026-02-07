@@ -5,6 +5,18 @@ const FILTERN = new Object();
 FILTERN.$blanko_filtern_eigenschaft = new Object();
 FILTERN.$blanko_filtern_wert = new Object();
 
+BLANKOS.filtern_eigenschaft = new Object();
+BLANKOS.filtern_eigenschaft.bereitstellen_aktion = function ($blanko) {
+    const typ = $blanko.attr("data-typ");
+    $blanko.removeAttr("data-typ");
+    if ("$blanko_filtern_eigenschaft" in FILTERN && !(typ in FILTERN.$blanko_filtern_eigenschaft)) FILTERN.$blanko_filtern_eigenschaft[typ] = $blanko;
+};
+
+BLANKOS.filtern_wert = new Object();
+BLANKOS.filtern_wert.bereitstellen_aktion = function ($blanko) {
+    if (!("$filtern_wert" in FILTERN)) FILTERN.$blanko_filtern_wert = $blanko;
+};
+
 WERKZEUGE.filtern_manip.aktualisieren_aktion = function ($filtern_manip) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-liste"), undefined);
     const instanz = Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-instanz"), undefined);

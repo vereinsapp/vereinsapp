@@ -4,6 +4,6 @@
  */
 
 function Liste_Liste$WerkzeugAktualisieren($werkzeug, $liste) {
-    if (typeof WERKZEUGE[$werkzeug.attr("data-werkzeug")].aktualisieren_aktion === "function")
-        WERKZEUGE[$werkzeug.attr("data-werkzeug")].aktualisieren_aktion($werkzeug);
+    const werkzeug = $werkzeug.attr("data-werkzeug");
+    if (typeof WERKZEUGE[werkzeug].aktualisieren_aktion === "function") WERKZEUGE[werkzeug].aktualisieren_aktion($werkzeug);
 }

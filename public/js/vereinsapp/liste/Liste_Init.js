@@ -1,6 +1,15 @@
 /**
  */
 
+BLANKOS.element = new Object();
+BLANKOS.element.bereitstellen_aktion = function ($blanko) {
+    const $liste = $blanko.closest(".liste[id][data-liste]");
+    const instanz = $liste.attr("id");
+    const liste = $liste.attr("data-liste");
+    if (liste in LISTEN && instanz in LISTEN[liste].instanz && !("$blanko_element" in LISTEN[liste].instanz[instanz]))
+        LISTEN[liste].instanz[instanz].$blanko_element = $blanko;
+};
+
 WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
     if (
         $(
