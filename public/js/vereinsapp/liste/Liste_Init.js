@@ -1,6 +1,20 @@
 /**
  */
 
+WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
+    if (
+        $(
+            "#" +
+                Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-instanz"), undefined) +
+                "[data-liste=" +
+                Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined) +
+                "]",
+        ).children().length === 0
+    )
+        $werkzeug.removeClass("text-primary").addClass("text-success");
+    else $werkzeug.addClass("text-primary").removeClass("text-success");
+};
+
 function Liste_Init() {
     $.each(LISTEN, function (liste) {
         LISTEN[liste].instanz = new Object();

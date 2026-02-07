@@ -91,6 +91,9 @@ ELEMENTE.aufgaben_zuordnung_termine.ergaenzen_aktion = function (zuordnung) {
         zuordnung.termin_kategorie = Schnittstelle_VariableRausZurueck("kategorie", zuordnung.termin_id, "termine", undefined);
 };
 
+WERKZEUGE.aufgabe_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
+WERKZEUGE.aufgabe_zuordnen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
+
 function Aufgaben_Init() {
     // AUFGABE ERSTELLEN
     $(document).on("click", ".btn_aufgabe_erstellen", function () {

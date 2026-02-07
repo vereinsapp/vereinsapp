@@ -1,10 +1,9 @@
 <?php if( array_key_exists( 'werkzeugkasten', $auswertungen ) ) { ?><div class="text-end"><?php
-foreach( $auswertungen['werkzeugkasten'] as $werkzeug_id => $werkzeug) { ?><button type="button" class="btn werkzeug text-<?php
-    if( array_key_exists( 'farbe', $werkzeug ) ) echo $werkzeug['farbe']; else echo 'primary';
-    if( is_array( $werkzeug['klasse_id'] ) ) foreach( $werkzeug['klasse_id'] as $klasse_id ) echo ' '.$klasse_id; else echo ' '.$werkzeug['klasse_id'];
-    ?>" data-werkzeug="<?= $werkzeug_id; ?>" data-liste="<?= $auswertungen['liste']; ?>" data-instanz="<?= $auswertungen['instanz']; ?>"<?php
-    if( array_key_exists( 'title', $werkzeug ) ) { ?> data-title="<?= $werkzeug['title']; ?>"<?php }
-    ?>><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ $werkzeug['symbol'] ]['bootstrap']; ?>"></i></span></button><?php }
+foreach( $auswertungen['werkzeugkasten'] as $werkzeug) { ?><button type="button" class="btn werkzeug <?= WERKZEUGE[ $werkzeug ]['klasse']; ?> text-<?php
+    if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo WERKZEUGE[ $werkzeug ]['farbe']; else echo 'primary';
+    ?>" data-werkzeug="<?= $werkzeug; ?>" data-liste="<?= $auswertungen['liste']; ?>" data-instanz="<?= $auswertungen['instanz']; ?>"<?php
+    if( array_key_exists( 'title', WERKZEUGE[ $werkzeug ] ) ) { ?> data-title="<?= WERKZEUGE[ $werkzeug ]['title']; ?>"<?php }
+    ?>><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?>"></i></span></button><?php }
 ?></div><?php } ?>
 
 <ul id="<?= $auswertungen['instanz']; ?>" class="auswertungen text-center<?php

@@ -63,6 +63,8 @@ ELEMENTE.vergebenes_recht.ergaenzen_aktion = function (vergebenes_recht) {
         vergebenes_recht.mitglied_nachname = Schnittstelle_VariableRausZurueck("nachname", vergebenes_recht.mitglied_id, "mitglieder", undefined);
 };
 
+WERKZEUGE.mitglied_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
+
 function Mitglieder_Init() {
     // MITGLIED ERSTELLEN
     $(document).on("click", ".btn_mitglied_erstellen", function () {

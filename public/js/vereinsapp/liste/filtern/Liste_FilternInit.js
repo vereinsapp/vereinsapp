@@ -5,7 +5,7 @@ const FILTERN = new Object();
 FILTERN.$blanko_filtern_eigenschaft = new Object();
 FILTERN.$blanko_filtern_wert = new Object();
 
-FILTERN.$filtern_manip_aktualisieren_aktion = function ($filtern_manip) {
+WERKZEUGE.filtern_manip.aktualisieren_aktion = function ($filtern_manip) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-liste"), undefined);
     const instanz = Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-instanz"), undefined);
     const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck(
@@ -14,7 +14,12 @@ FILTERN.$filtern_manip_aktualisieren_aktion = function ($filtern_manip) {
     );
     const filtern_manip = LISTEN[liste].instanz[instanz].filtern;
 
+    let title;
+    if ("title" in WERKZEUGE.filtern_manip) title = WERKZEUGE.filtern_manip.title;
+    else title = LISTEN[liste].beschriftung + " " + WERKZEUGE.filtern_manip.symbol;
+
     $filtern_manip
+        .attr("data-title", title)
         .attr("data-filtern_basis", JsonStringifiedZurueck(filtern_basis, new Object()))
         .val(JsonStringifiedZurueck(filtern_manip, new Object()));
 

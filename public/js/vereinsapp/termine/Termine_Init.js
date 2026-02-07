@@ -132,6 +132,8 @@ ELEMENTE.termine_anwesenheit.ergaenzen_aktion = function (anwesenheit) {
         anwesenheit.mitglied_nachname = Schnittstelle_VariableRausZurueck("nachname", anwesenheit.mitglied_id, "mitglieder", undefined);
 };
 
+WERKZEUGE.termin_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
+
 function Termine_Init() {
     // TERMIN ERSTELLEN
     $(document).on("click", ".btn_termin_erstellen", function () {

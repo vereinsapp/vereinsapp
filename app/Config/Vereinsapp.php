@@ -112,10 +112,7 @@ class Vereinsapp extends BaseConfig
             // '[element]_id' => 42,
             // 'disabled_ids' => array(),
             // 'eigenschaften_bedingt_formatiert' => array( 'wert' => array( 'text-danger' => array( 'wert' => array( 'ende' =>  0, ), ), ), ),
-            'werkzeugkasten' => array(
-                'filtern_manip' => array( 'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'), 'symbol' => 'filtern', 'title' => 'Mitglieder filtern', ),
-                'sortieren_manip' => array( 'klasse_id' => array('btn_sortieren_manip', 'sortieren_localstorage'), 'symbol' => 'sortieren', 'title' => 'Mitglieder sortieren', ),
-            ),
+            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array(),
         ),
 
@@ -124,10 +121,7 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array(),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            // 'werkzeugkasten' => array(
-            //     'filtern_manip' => array( 'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'), 'symbol' => 'filtern', 'title' => 'Verfügbare Rechte filtern', ),
-            //     'sortieren_manip' => array( 'klasse_id' => array('btn_sortieren_manip', 'sortieren_localstorage'), 'symbol' => 'sortieren', 'title' => 'Verfügbare Rechte sortieren', ),
-            // ),
+            'werkzeugkasten' => array(),
             // 'listenstatistik' => array(),
         ),
 
@@ -135,10 +129,7 @@ class Vereinsapp extends BaseConfig
             'liste' => 'vergebene_rechte',
             'filtern' => array(),
             'sortieren' => array(),
-            // 'werkzeugkasten' => array(
-            //     'filtern_manip' => array( 'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'), 'symbol' => 'filtern', 'title' => 'Vergebene Rechte filtern', ),
-            //     'sortieren_manip' => array( 'klasse_id' => array('btn_sortieren_manip', 'sortieren_localstorage'), 'symbol' => 'sortieren', 'title' => 'Vergebene Rechte sortieren', ),
-            // ),
+            'werkzeugkasten' => array(),
             // 'listenstatistik' => array(),
         ),
 
@@ -147,10 +138,7 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            'werkzeugkasten' => array(
-                'filtern_manip' => array( 'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'), 'symbol' => 'filtern', 'title' => 'Aufgaben filtern', ),
-                'sortieren_manip' => array( 'klasse_id' => array('btn_sortieren_manip', 'sortieren_localstorage'), 'symbol' => 'sortieren', 'title' => 'Aufgaben sortieren', ),
-            ),
+            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array(),
         ),
 
@@ -158,10 +146,7 @@ class Vereinsapp extends BaseConfig
             'liste' => 'aufgaben_rueckmeldungen',
             'filtern' => array(),
             'sortieren' => array(),
-            // 'werkzeugkasten' => array(
-            //     'filtern_manip' => array( 'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'), 'symbol' => 'filtern', 'title' => 'Rückmeldungen filtern', ),
-            //     'sortieren_manip' => array( 'klasse_id' => array('btn_sortieren_manip', 'sortieren_localstorage'), 'symbol' => 'sortieren', 'title' => 'Rückmeldungen sortieren', ),
-            // ),
+            'werkzeugkasten' => array(),
             // 'listenstatistik' => array(),
         ),
 
@@ -169,10 +154,7 @@ class Vereinsapp extends BaseConfig
             'liste' => 'aufgaben_zuordnungen_termine',
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'aufgabe_titel', 'richtung' => SORT_ASC, ),
-            'werkzeugkasten' => array(
-                'filtern_manip' => array( 'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'), 'symbol' => 'filtern', 'title' => 'Termin-Zuordnungen filtern', ),
-                'sortieren_manip' => array( 'klasse_id' => array('btn_sortieren_manip', 'sortieren_localstorage'), 'symbol' => 'sortieren', 'title' => 'Termin-Zuordnungen sortieren', ),
-            ),
+            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array(),
         ),
 
@@ -182,10 +164,7 @@ class Vereinsapp extends BaseConfig
             'sortieren' => array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'zusatzsymbol' => array('kategorie'),
-            'werkzeugkasten' => array(
-                'filtern_manip' => array( 'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'), 'symbol' => 'filtern', 'title' => 'Termine filtern', ),
-                'sortieren_manip' => array( 'klasse_id' => array('btn_sortieren_manip', 'sortieren_localstorage'), 'symbol' => 'sortieren', 'title' => 'Termine sortieren', ),
-            ),
+            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array(),
         ),
 
@@ -193,10 +172,7 @@ class Vereinsapp extends BaseConfig
             'liste' => 'termine_rueckmeldungen',
             'filtern' => array(),
             'sortieren' => array(),
-            // 'werkzeugkasten' => array(
-            //     'filtern_manip' => array( 'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'), 'symbol' => 'filtern', 'title' => 'Rückmeldungen filtern', ),
-            //     'sortieren_manip' => array( 'klasse_id' => array('btn_sortieren_manip', 'sortieren_localstorage'), 'symbol' => 'sortieren', 'title' => 'Rückmeldungen sortieren', ),
-            // ),
+            'werkzeugkasten' => array(),
             // 'listenstatistik' => array(),
         ),
 
@@ -204,10 +180,7 @@ class Vereinsapp extends BaseConfig
             'liste' => 'termine_anwesenheiten',
             'filtern' => array(),
             'sortieren' => array(),
-            // 'werkzeugkasten' => array(
-            //     'filtern_manip' => array( 'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'), 'symbol' => 'filtern', 'title' => 'Anwesenheiten filtern', ),
-            //     'sortieren_manip' => array( 'klasse_id' => array('btn_sortieren_manip', 'sortieren_localstorage'), 'symbol' => 'sortieren', 'title' => 'Anwesenheiten sortieren', ),
-            // ),
+            'werkzeugkasten' => array(),
             // 'listenstatistik' => array(),
         ),
 
@@ -216,10 +189,7 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            'werkzeugkasten' => array(
-                'filtern_manip' => array( 'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'), 'symbol' => 'filtern', 'title' => 'Strafkatalog filtern', ),
-                'sortieren_manip' => array( 'klasse_id' => array('btn_sortieren_manip', 'sortieren_localstorage'), 'symbol' => 'sortieren', 'title' => 'Strafkatalog sortieren', ),
-            ),
+            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array(),
         ),
 
@@ -230,10 +200,7 @@ class Vereinsapp extends BaseConfig
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
             'zusatzsymbol' => array('offen_erledigt'),
             'eigenschaften_bedingt_formatiert' => array( 'wert' => array( 'text-danger' => array( 'wert' => array( 'ende' =>  0, ), ), ), ),
-            'werkzeugkasten' => array(
-                'filtern_manip' => array( 'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'), 'symbol' => 'filtern', 'title' => 'Kassenbuch filtern', ),
-                'sortieren_manip' => array( 'klasse_id' => array('btn_sortieren_manip', 'sortieren_localstorage'), 'symbol' => 'sortieren', 'title' => 'Kassenbuch sortieren', ),
-            ),
+            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array( 'summe' => 'wert', ),
         ),
 
@@ -242,10 +209,7 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel_nr"></span> <span class="eigenschaft" data-eigenschaft="titel"></span>',
-            'werkzeugkasten' => array(
-                'filtern_manip' => array( 'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'), 'symbol' => 'filtern', 'title' => 'Notenbank filtern', ),
-                'sortieren_manip' => array( 'klasse_id' => array('btn_sortieren_manip', 'sortieren_localstorage'), 'symbol' => 'sortieren', 'title' => 'Notenbank sortieren', ),
-            ),
+            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array(),
         ),
 
@@ -253,10 +217,7 @@ class Vereinsapp extends BaseConfig
             'liste' => 'notenbank_setliste',
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'status', 'richtung' => SORT_ASC, ),
-            'werkzeugkasten' => array(
-                'filtern_manip' => array( 'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'), 'symbol' => 'filtern', 'title' => 'Setliste filtern', ),
-                'sortieren_manip' => array( 'klasse_id' => array('btn_sortieren_manip', 'sortieren_localstorage'), 'symbol' => 'sortieren', 'title' => 'Setliste sortieren', ),
-            ),
+            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array(),
         ),
 

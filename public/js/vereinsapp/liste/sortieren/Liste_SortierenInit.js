@@ -1,9 +1,7 @@
 /**
  */
 
-const SORTIEREN = new Object();
-
-SORTIEREN.$sortieren_manip_aktualisieren_aktion = function ($sortieren_manip) {
+WERKZEUGE.sortieren_manip.aktualisieren_aktion = function ($sortieren_manip) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($sortieren_manip.attr("data-liste"), undefined);
     const instanz = Schnittstelle_VariableWertBereinigtZurueck($sortieren_manip.attr("data-instanz"), undefined);
     const sortieren_basis = Schnittstelle_VariableWertBereinigtZurueck(
@@ -13,8 +11,12 @@ SORTIEREN.$sortieren_manip_aktualisieren_aktion = function ($sortieren_manip) {
     const sortieren_manip = LISTEN[liste].instanz[instanz].sortieren;
 
     $sortieren_manip
+        .attr("data-title", LISTEN[liste].beschriftung + " " + WERKZEUGE.sortieren_manip.symbol)
         .attr("data-sortieren_basis", JsonStringifiedZurueck(sortieren_basis, undefined))
         .val(JsonStringifiedZurueck(sortieren_manip, undefined));
+
+    if ($("#" + instanz + "[data-liste=" + liste + "]").children().length === 0) $sortieren_manip.addClass("invisible");
+    else $sortieren_manip.removeClass("invisible");
 
     // ROTER PUNKT AKTUALISIEREN
     $sortieren_manip.removeClass("position-relative").find("span.position-absolute").remove();

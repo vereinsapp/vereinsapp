@@ -1,9 +1,7 @@
 /**
  */
 
-const GRUPPIEREN = new Object();
-
-GRUPPIEREN.$gruppieren_manip_aktualisieren_aktion = function ($gruppieren_manip) {
+WERKZEUGE.gruppieren_manip.aktualisieren_aktion = function ($gruppieren_manip) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_manip.attr("data-liste"), undefined);
     const instanz = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_manip.attr("data-instanz"), undefined);
     const gruppieren_basis = Schnittstelle_VariableWertBereinigtZurueck(
@@ -13,8 +11,13 @@ GRUPPIEREN.$gruppieren_manip_aktualisieren_aktion = function ($gruppieren_manip)
     const gruppieren_manip = LISTEN[liste].instanz[instanz].gruppieren;
 
     $gruppieren_manip
+        .attr("data-title", LISTEN[liste].beschriftung + " " + WERKZEUGE.gruppieren_manip.symbol)
         .attr("data-gruppieren_basis", JsonStringifiedZurueck(gruppieren_basis, undefined))
         .val(JsonStringifiedZurueck(gruppieren_manip, undefined));
+
+    if ($("#" + instanz + "[data-liste=" + liste + "]").children().length <= 1)
+        $gruppieren_manip.addClass("invisible"); // nicht 0, weil zusammenfassung noch mit dabei ist
+    else $gruppieren_manip.removeClass("invisible");
 
     // ROTER PUNKT AKTUALISIEREN
     $gruppieren_manip.removeClass("position-relative").find("span.position-absolute").remove();

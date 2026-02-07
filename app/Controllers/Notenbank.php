@@ -17,6 +17,7 @@ class Notenbank extends BaseController {
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_handle'] = TRUE;
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten'][] = 'titel_erstellen';
 
             $this->viewdata['werkzeugkasten']['aendern'] = array(
                 'klasse_id' => array('btn_titel_aendern', 'formular_oeffnen'),
@@ -30,12 +31,6 @@ class Notenbank extends BaseController {
                 'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
                 'title' => 'Titel löschen',
                 'farbe' => 'danger',
-            );
-
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten']['titel_erstellen'] = array(
-                'klasse_id' => array('btn_titel_erstellen', 'formular_oeffnen'),
-                'symbol' => 'erstellen',
-                'title' => 'Titel erstellen',
             );
 
         }

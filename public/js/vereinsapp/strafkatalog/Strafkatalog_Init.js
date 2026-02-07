@@ -8,6 +8,9 @@ ELEMENTE.kassenbucheintrag.ergaenzen_aktion = function (kassenbucheintrag) {
         Schnittstelle_VariableRausZurueck("nachname", kassenbucheintrag.mitglied_id, "mitglieder", undefined);
 };
 
+WERKZEUGE.strafe_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
+WERKZEUGE.kassenbucheintrag_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
+
 function Strafkatalog_Init() {
     // STRAFE ERSTELLEN
     $(document).on("click", ".btn_strafe_erstellen", function () {

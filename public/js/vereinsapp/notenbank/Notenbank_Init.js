@@ -72,6 +72,9 @@ ELEMENTE.notenbank_setlisteneintrag.ergaenzen_aktion = function (setlisteneintra
         setlisteneintrag.termin_titel = Schnittstelle_VariableRausZurueck("titel", setlisteneintrag.termin_id, "termine", undefined);
 };
 
+WERKZEUGE.titel_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
+WERKZEUGE.setliste_verwalten.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
+
 function Notenbank_Init() {
     // TITEL ERSTELLEN
     $(document).on("click", ".btn_titel_erstellen", function () {

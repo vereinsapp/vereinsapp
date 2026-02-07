@@ -16,6 +16,7 @@ class Strafkatalog extends BaseController {
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
 
             $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten_handle'] = TRUE;
+            $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten'][] = 'strafe_erstellen';
 
             $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
                 'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_einfordern'),
@@ -35,12 +36,6 @@ class Strafkatalog extends BaseController {
                 'farbe' => 'danger',
             );
 
-            $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten']['strafe_erstellen'] = array(
-                'klasse_id' => array('btn_strafe_erstellen', 'formular_oeffnen'),
-                'symbol' => 'erstellen',
-                'title' => 'Strafe erstellen',
-            );
-
         }
 
         $this->viewdata_bereinigen(); echo view( 'Strafkatalog/strafkatalog', $this->viewdata );
@@ -56,6 +51,7 @@ class Strafkatalog extends BaseController {
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
 
             $this->viewdata['liste']['aktuelles_kassenbuch']['werkzeugkasten_handle'] = TRUE;
+            $this->viewdata['liste']['aktuelles_kassenbuch']['werkzeugkasten'][] = 'kassenbucheintrag_erstellen';
 
             $this->viewdata['werkzeugkasten']['offen_erledigt_markieren'] = array(
                 'klasse_id' => array('btn_kassenbucheintrag_offen_erledigt_markieren', 'bestaetigung_einfordern'),
@@ -74,12 +70,6 @@ class Strafkatalog extends BaseController {
                 'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
                 'title' => 'Kassenbucheintrag löschen',
                 'farbe' => 'danger',
-            );
-
-            $this->viewdata['liste']['aktuelles_kassenbuch']['werkzeugkasten']['kassenbucheintrag_erstellen'] = array(
-                'klasse_id' => array('btn_kassenbucheintrag_erstellen', 'formular_oeffnen'),
-                'symbol' => 'erstellen',
-                'title' => 'Kassenbucheintrag erstellen',
             );
 
         }

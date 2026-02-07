@@ -73,6 +73,7 @@ class Mitglieder extends BaseController {
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
+            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten'][] = 'mitglied_erstellen';
 
             $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
                 'klasse_id' => array('btn_mitglied_einmal_link_erstellen', 'formular_oeffnen'),
@@ -97,12 +98,6 @@ class Mitglieder extends BaseController {
                 'farbe' => 'danger',
             );
 
-            $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten']['mitglied_erstellen'] = array(
-                'klasse_id' => array('btn_mitglied_erstellen', 'formular_oeffnen'),
-                'symbol' => 'erstellen',
-                'title' => 'Mitglied erstellen',
-            );
-
         }
 
         $this->viewdata_bereinigen(); echo view( 'Mitglieder/mitglieder', $this->viewdata );
@@ -122,12 +117,7 @@ class Mitglieder extends BaseController {
             'mitglied_id' => $mitglied_id,
             'collapse' => TRUE,
             'progress' => TRUE,
-        );
-
-        $this->viewdata['auswertungen']['rueckmeldungen_mitglied']['werkzeugkasten']['filtern_manip'] = array(
-            'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'),
-            'symbol' => 'filtern',
-            'title' => 'Auswertung filtern',
+            'werkzeugkasten' => array( 'filtern_manip' ),
         );
 
         $this->viewdata['auswertungen']['anwesenheiten_mitglied'] = array(
@@ -138,12 +128,7 @@ class Mitglieder extends BaseController {
             'mitglied_id' => $mitglied_id,
             'collapse' => TRUE,
             'progress' => TRUE,
-        );
-
-        $this->viewdata['auswertungen']['anwesenheiten_mitglied']['werkzeugkasten']['filtern_manip'] = array(
-            'klasse_id' => array('btn_filtern_manip', 'filtern_localstorage'),
-            'symbol' => 'filtern',
-            'title' => 'Auswertung filtern',
+            'werkzeugkasten' => array( 'filtern_manip' ),
         );
 
         if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {

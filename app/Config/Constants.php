@@ -259,6 +259,21 @@ defined('ELEMENTE') OR define( 'ELEMENTE', array(
     ),
 ) );
 
+defined('WERKZEUGE') OR define( 'WERKZEUGE', array(
+    // Pflicht: klasse, symbol / Optional: farbe, title
+    'filtern_manip' => array( 'klasse' => 'btn_filtern_manip filtern_localstorage', 'symbol' => 'filtern', ),
+    'sortieren_manip' => array( 'klasse' => 'btn_sortieren_manip sortieren_localstorage', 'symbol' => 'sortieren', ),
+    'gruppieren_manip' => array( 'klasse' => 'btn_gruppieren_manip gruppieren_localstorage', 'symbol' => 'gruppieren', ),
+    "mitglied_erstellen" => array( 'klasse' => 'btn_mitglied_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Mitglied erstellen' ),
+    "aufgabe_erstellen" => array( 'klasse' => 'btn_aufgabe_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Aufgabe erstellen', ),
+    "aufgabe_zuordnen" => array( 'klasse' => 'btn_termine_aufgaben_zuordnen', 'symbol' => 'zuordnen', 'title' => 'Aufgaben zuordnen', ),
+    "termin_erstellen" => array( 'klasse' => 'btn_termin_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Termin erstellen', ),
+    "strafe_erstellen" => array( 'klasse' => 'btn_strafe_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Strafe erstellen', ),
+    "kassenbucheintrag_erstellen" => array( 'klasse' => 'btn_kassenbucheintrag_erstellen formular_oeffnen', 'symbol' => 'Kassenbucheintrag', 'title' => 'Mitglied erstellen', ),
+    "titel_erstellen" => array( 'klasse' => 'btn_titel_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Titel erstellen', ),
+    "setliste_verwalten" => array( 'klasse' => 'btn_setliste_verwalten', 'symbol' => 'zuordnen', 'title' => 'Setliste verwalten', ),
+) );
+
 defined('JANEIN') OR define( 'JANEIN', array(
 	0 => array( 'beschriftung' => 'Nein', 'wert' => FALSE ),
 	1 => array( 'beschriftung' => 'Ja', 'wert' => TRUE ),

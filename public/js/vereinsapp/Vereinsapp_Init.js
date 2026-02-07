@@ -87,12 +87,14 @@ Neue bootstrap icons Version einführen (unlock2 statt lock)
 Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details)
 localstorage_reset_string und datenschutz_richtlinie_string entfernen (hinzugefügt im Juni 2025?)
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
-mitglied_id in kassenbucheintrag als verknuepfung (und kassenbucheintrag.mitglied loswerden)? Oder kassenbucheintrag als verknuepfung umbauen
-Auswahl überarbeiten? oder gleich entfernen?
 auswertungen ersetzen durch verknuepfungen (allgemein Fokus mehr auf die Liste setzen?)
+mitglied_id in kassenbucheintrag als verknuepfung (und kassenbucheintrag.mitglied loswerden)? Oder kassenbucheintrag als verknuepfung umbauen
 data-Prefix loswerden
 werkzeugkasten_handle als ganz normales Zusätzsymbol in der Liste umbauen (und folglich bspw. für Termine in der Termin-Übersicht andere Zusatzsymbole bspw. für Anwesenheiten dokumentieren einführen)
 WERKZEUGKASTEN AKTUALISIEREN mit $ziel statt mit element_id
+Auswahl entfernen
+
+filtern/sortieren/gruppieren aus Schnittstelle_EventVariableUpdLocalstorage, Schnittstelle_EventLocalstorageUpdVariable und Schnittstelle_DomInit
 
 ERLEDIGT
 
