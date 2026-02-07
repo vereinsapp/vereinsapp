@@ -269,7 +269,7 @@ defined('WERKZEUGE') OR define( 'WERKZEUGE', array(
     "aufgabe_zuordnen" => array( 'klasse' => 'btn_termine_aufgaben_zuordnen', 'symbol' => 'zuordnen', 'title' => 'Aufgaben zuordnen', ),
     "termin_erstellen" => array( 'klasse' => 'btn_termin_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Termin erstellen', ),
     "strafe_erstellen" => array( 'klasse' => 'btn_strafe_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Strafe erstellen', ),
-    "kassenbucheintrag_erstellen" => array( 'klasse' => 'btn_kassenbucheintrag_erstellen formular_oeffnen', 'symbol' => 'Kassenbucheintrag', 'title' => 'Mitglied erstellen', ),
+    "kassenbucheintrag_erstellen" => array( 'klasse' => 'btn_kassenbucheintrag_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Kassenbucheintrag erstellen', ),
     "titel_erstellen" => array( 'klasse' => 'btn_titel_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Titel erstellen', ),
     "setliste_verwalten" => array( 'klasse' => 'btn_setliste_verwalten', 'symbol' => 'zuordnen', 'title' => 'Setliste verwalten', ),
 ) );

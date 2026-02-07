@@ -54,7 +54,6 @@ function Strafkatalog_Init() {
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-strafe_id"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined),
         );
     });
 

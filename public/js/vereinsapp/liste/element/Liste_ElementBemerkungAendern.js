@@ -8,7 +8,7 @@
 
 function Liste_ElementBemerkungAendern(formular_oeffnen, dom, data, element_id, liste) {
     if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, "BEMERKUNG");
+        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, "bemerkung_aendern_modal");
         const $btn_element_bemerkung_aendern = $neues_modal.find(".btn_element_bemerkung_aendern");
         $btn_element_bemerkung_aendern.attr("data-liste", liste).attr("data-" + LISTEN[liste].element + "_id", element_id);
         Schnittstelle_Dom$Quelle$ZielVerknuepfen($btn_element_bemerkung_aendern, dom.$ausloesend.closest(".element"));

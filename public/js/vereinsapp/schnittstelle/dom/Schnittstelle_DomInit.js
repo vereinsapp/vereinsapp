@@ -26,7 +26,7 @@ function Schnittstelle_DomInit() {
             const $blanko = $(this);
             const blanko = $(this).attr("data-blanko");
             $blanko.removeAttr("data-blanko").addClass(blanko);
-            Schnittstelle_LogInDieKonsole(BLANKOS, blanko);
+
             if (typeof BLANKOS[blanko].bereitstellen_aktion === "function") BLANKOS[blanko].bereitstellen_aktion($blanko);
         })
         .remove();

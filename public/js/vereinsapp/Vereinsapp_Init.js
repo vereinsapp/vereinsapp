@@ -93,7 +93,6 @@ mitglied_id in kassenbucheintrag als verknuepfung (und kassenbucheintrag.mitglie
 data-Prefix loswerden
 werkzeugkasten_handle als ganz normales Zusätzsymbol in der Liste umbauen (und folglich bspw. für Termine in der Termin-Übersicht andere Zusatzsymbole bspw. für Anwesenheiten dokumentieren einführen)
 WERKZEUGKASTEN AKTUALISIEREN mit $ziel statt mit element_id
-Auswahl entfernen
 
 ERLEDIGT
 

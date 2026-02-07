@@ -63,6 +63,11 @@ class Mitglieder extends BaseController {
                 'title' => 'Offene Kassenbucheinträge',
             );
 
+            $this->viewdata['liste']['strafe_zuweisen'] = HAUPTINSTANZEN['strafkatalog'];
+            // unset($this->viewdata['liste']['strafe_zuweisen']['filtern']);
+            $this->viewdata['liste']['strafe_zuweisen']['werkzeugkasten'][] = 'strafe_erstellen';
+            $this->viewdata['liste']['strafe_zuweisen']['klasse_id'] = array( 'btn_strafe_zuweisen', 'bestaetigung_einfordern' );
+
             $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
                 'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_einfordern'),
                 'title' => 'Strafe einem Mitglied zuweisen',
@@ -173,6 +178,11 @@ class Mitglieder extends BaseController {
                 'klasse_id' => 'btn_offene_kassenbucheintraege_verwalten',
                 'title' => 'Offene Kassenbucheinträge',
             );
+
+            $this->viewdata['liste']['strafe_zuweisen'] = HAUPTINSTANZEN['strafkatalog'];
+            // unset($this->viewdata['liste']['strafe_zuweisen']['filtern']);
+            $this->viewdata['liste']['strafe_zuweisen']['werkzeugkasten'][] = 'strafe_erstellen';
+            $this->viewdata['liste']['strafe_zuweisen']['klasse_id'] = array( 'btn_strafe_zuweisen', 'bestaetigung_einfordern' );
 
             $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
                 'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_einfordern'),

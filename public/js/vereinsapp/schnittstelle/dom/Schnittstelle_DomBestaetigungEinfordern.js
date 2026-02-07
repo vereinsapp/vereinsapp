@@ -1,5 +1,5 @@
 function Schnittstelle_DomBestaetigungEinfordern(nachricht, title, btn_klasse_id, btn_data, btn_farbe) {
-    const $neues_bestaetigung_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "BESTAETIGUNG");
+    const $neues_bestaetigung_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "bestaetigung_modal");
     const $bestaetigung = $neues_bestaetigung_modal.find(".bestaetigung");
 
     $bestaetigung.find(".nachricht").text(nachricht);

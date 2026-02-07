@@ -1,15 +1,18 @@
-function Strafkatalog_StrafeZuweisen(auswahl_einfordern, bestaetigung_einfordern, dom, title, strafe_id, mitglied_id, liste) {
+function Strafkatalog_StrafeZuweisen(auswahl_einfordern, bestaetigung_einfordern, dom, title, strafe_id, mitglied_id) {
     if (auswahl_einfordern) {
-        if (liste === "strafkatalog") liste = "mitglieder";
-        else if (liste === "mitglieder") liste = "strafkatalog";
-        Liste_ElementAuswahlEinfordern(title, liste, "btn_strafe_zuweisen bestaetigung_einfordern", {
-            strafe_id: strafe_id,
-            mitglied_id: mitglied_id,
-            title: title,
-        });
-    } else if (bestaetigung_einfordern) {
-        if (dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(dom.$modal);
+        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "strafe_zuweisen_modal");
+        const liste = Schnittstelle_VariableWertBereinigtZurueck(
+            $neues_modal.find("#strafe_zuweisen.liste[data-liste]").attr("data-liste"),
+            undefined,
+        );
+        LISTEN[liste].instanz.strafe_zuweisen.$blanko_element
+            .attr("data-title", title)
+            .attr("data-strafe_id", strafe_id)
+            .attr("data-mitglied_id", mitglied_id);
 
+        Schnittstelle_Dom$ModalOeffnen($neues_modal);
+        Schnittstelle_EventVariableUpdDom(liste);
+    } else if (bestaetigung_einfordern)
         Schnittstelle_DomBestaetigungEinfordern(
             "Willst du wirklich " +
                 Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") +
@@ -20,7 +23,7 @@ function Strafkatalog_StrafeZuweisen(auswahl_einfordern, bestaetigung_einfordern
             "btn_strafe_zuweisen",
             { strafe_id: strafe_id, mitglied_id: mitglied_id },
         );
-    } else
+    else
         Strafkatalog_KassenbucheintragErstellen(false, dom, {
             titel: Schnittstelle_VariableRausZurueck("titel", strafe_id, "strafkatalog", undefined),
             wert: Schnittstelle_VariableRausZurueck("wert", strafe_id, "strafkatalog", undefined),

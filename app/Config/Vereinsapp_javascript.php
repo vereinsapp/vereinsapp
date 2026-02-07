@@ -53,7 +53,6 @@ class Vereinsapp_javascript extends BaseConfig
 
         'js/vereinsapp/liste/element/Liste_ElementBemerkungAendern.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementLoeschen.js?v='.VERSION,
-        'js/vereinsapp/liste/element/Liste_ElementAuswahlEinfordern.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_$ElementAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$LinkAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$ZusatzsymbolAktualisieren.js?v='.VERSION,
