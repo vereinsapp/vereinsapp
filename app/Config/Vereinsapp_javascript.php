@@ -166,7 +166,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/strafkatalog/Strafkatalog_Init.js?v='.VERSION,
         'js/vereinsapp/strafkatalog/Strafkatalog_StrafeErstellen.js?v='.VERSION,
         'js/vereinsapp/strafkatalog/Strafkatalog_StrafeAendern.js?v='.VERSION,
-        'js/vereinsapp/strafkatalog/Strafkatalog_StrafeZuweisen.js?v='.VERSION,
         'js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragErstellen.js?v='.VERSION,
         'js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragAendern.js?v='.VERSION,
         'js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragOffenErledigtMarkieren.js?v='.VERSION,

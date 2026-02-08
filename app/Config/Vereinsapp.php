@@ -204,6 +204,14 @@ class Vereinsapp extends BaseConfig
             'listenstatistik' => array( 'summe' => 'wert', ),
         ),
 
+        'strafkatalog_zugewiesene_strafen' => array(
+            'liste' => 'strafkatalog_zugewiesene_strafen',
+            'filtern' => array(),
+            'sortieren' => array(),
+            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
+            'listenstatistik' => array(),
+        ),
+
         'notenbank' => array(
             'liste' => 'notenbank',
             'filtern' => array(),
@@ -386,6 +394,18 @@ class Vereinsapp extends BaseConfig
             'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),  // PHP
         ),
 
+        'strafkatalog_zugewiesene_strafen' => array(
+            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
+            'strafe_id' => array( 'beschriftung' => 'Strafe-ID', 'typ' => 'element_id' ),
+            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
+            'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
+            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
+            'strafe_titel' => array( 'beschriftung' => 'Titel der Strafe', 'typ' => 'text' ),               // JAVA
+            'strafe_wert' => array( 'beschriftung' => 'Wert der Strafe', 'typ' => 'zahl' ),                 // JAVA
+            'mitglied_vorname' => array( 'beschriftung' => 'Vorname des Mitglieds', 'typ' => 'text' ),      // JAVA
+            'mitglied_nachname' => array( 'beschriftung' => 'Nachname des Mitglieds', 'typ' => 'text' ),    // JAVA
+        ),
+
         'notenbank' => array(
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
@@ -526,6 +546,9 @@ class Vereinsapp extends BaseConfig
         ),
 
         'kassenbuch' => array(
+        ),
+
+        'strafkatalog_zugewiesene_strafen' => array(
         ),
 
         'notenbank' => array(
@@ -729,6 +752,9 @@ class Vereinsapp extends BaseConfig
             'erstellung',
         ),
 
+        'strafkatalog_zugewiesene_strafen' => array(
+        ),
+
         'notenbank' => array(
             'titel_nr',
             'kategorie',
@@ -819,6 +845,9 @@ class Vereinsapp extends BaseConfig
             'erstellung',
         ),
 
+        'strafkatalog_zugewiesene_strafen' => array(
+        ),
+
         'notenbank' => array(
             'titel',
             'titel_nr',
@@ -891,6 +920,9 @@ class Vereinsapp extends BaseConfig
 
         'kassenbuch' => array(
             'erledigt_janein',
+        ),
+
+        'strafkatalog_zugewiesene_strafen' => array(
         ),
 
         'notenbank' => array(
@@ -1069,6 +1101,13 @@ class Vereinsapp extends BaseConfig
             "verknuepfte_listen" => array( "termine", "mitglieder", ),
             'auswahlmoeglichkeiten' => array(
                 0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung']['bootstrap'].'"></i>'),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung']['bootstrap'].'"></i>' ),
+             ),
+        ),
+        'strafkatalog_zugewiesene_strafen' => array(
+            "verknuepfte_listen" => array( "strafkatalog", "mitglieder", ),
+            'auswahlmoeglichkeiten' => array(
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung']['bootstrap'].'"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung']['bootstrap'].'"></i>' ),
              ),
         ),

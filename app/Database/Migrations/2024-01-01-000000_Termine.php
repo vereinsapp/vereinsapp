@@ -40,7 +40,7 @@ class Termine extends Migration
         $this->forge->addKey('mitglied_id');
         $this->forge->addForeignKey('mitglied_id', 'mitglieder', 'id', '', 'CASCADE');
         $this->forge->createTable('termine_rueckmeldungen');
-        
+
         $this->forge->addField([
             'id'            => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => false,    'auto_increment' => true],
             'termin_id'     => ['type' => 'int',        'constraint' => 11,     'unsigned' => true, 'null' => false],

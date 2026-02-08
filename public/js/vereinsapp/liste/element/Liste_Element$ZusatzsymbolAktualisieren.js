@@ -139,6 +139,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
         case "aufgaben_zuordnungen_termine":
         case "termine_rueckmeldungen":
         case "termine_anwesenheiten":
+        case "strafkatalog_zugewiesene_strafen":
         case "notenbank_setliste":
             const verknuepfungen = zusatzsymbol;
             const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;

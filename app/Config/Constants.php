@@ -159,6 +159,11 @@ defined('LISTEN') OR define( 'LISTEN', array(
         'controller' => 'strafkatalog',
         'element' => 'kassenbucheintrag',
     ),
+    'strafkatalog_zugewiesene_strafen' => array(
+        'beschriftung' => 'Zugewiesene Strafen',
+        'controller' => 'strafkatalog',
+        'element' => 'strafkatalog_zugewiesene_strafe',
+    ),
 
     'notenbank' => array(
         'beschriftung' => 'Notenbank',
@@ -243,6 +248,11 @@ defined('ELEMENTE') OR define( 'ELEMENTE', array(
             array( 'eigenschaft' => 'wert', 'prefix' => ' (', 'suffix' => ')' )
         ),
     ),
+    'strafkatalog_zugewiesene_strafe' => array(
+        'beschriftung' => 'Zugewiesene Strafe',
+        'liste' => 'strafkatalog_zugewiesene_strafen',
+        'element_beschriftung' => array(),
+    ),
 
     'titel' => array(
         'beschriftung' => 'Titel',
@@ -290,7 +300,7 @@ defined('WERKZEUGE') OR define( 'WERKZEUGE', array(
     'strafe_aendern' => array( 'klasse' => 'btn_strafe_aendern formular_oeffnen', 'symbol' => 'aendern', 'title' => 'Strafe ändern', ),
     'strafe_duplizieren' => array( 'klasse' => 'btn_strafe_duplizieren formular_oeffnen', 'symbol' => 'duplizieren', 'title' => 'Strafe duplizieren', ),
     'strafe_loeschen' => array( 'klasse' => 'btn_element_loeschen bestaetigung_einfordern', 'symbol' => 'loeschen', 'title' => 'Strafe löschen', 'farbe' => 'danger', ),
-    'strafe_zuweisen' => array( 'klasse' => 'btn_strafe_zuweisen auswahl_einfordern', 'symbol' => 'strafe_zuweisen', 'title' => 'Strafe einem Mitglied zuweisen', ),
+    'strafen_zuweisen' => array( 'klasse' => 'btn_strafen_zuweisen', 'symbol' => 'strafen_zuweisen', 'title' => 'Strafe einem Mitglied zuweisen', ),
     'kassenbucheintrag_erstellen' => array( 'klasse' => 'btn_kassenbucheintrag_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Kassenbucheintrag erstellen', ),
     'kassenbucheintrag_aendern' => array( 'klasse' => 'btn_kassenbucheintrag_aendern formular_oeffnen', 'symbol' => 'aendern', 'title' => 'Mitglied ändern', ),
     'kassenbucheintrag_duplizieren' => array( 'klasse' => 'btn_kassenbucheintrag_duplizieren formular_oeffnen', 'symbol' => 'duplizieren', 'title' => 'Mitglied duplizieren', ),
@@ -368,7 +378,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'spacer' => array ( 'bootstrap' => 'dot' ),
 
     'rechte_vergeben' => array( 'bootstrap' => 'lock' ),
-    'strafe_zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
+    'strafen_zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
     'offene_kassenbucheintraege_verwalten' => array( 'bootstrap' => 'journal-check' ),
     'statistiken' => array( 'bootstrap' => 'graph-up-arrow' ),
     'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),

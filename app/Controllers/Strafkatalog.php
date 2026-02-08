@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Strafkatalog\Strafe_Model;
+use App\Models\Strafkatalog\Zugewiesene_Strafe_Model;
 use App\Models\Strafkatalog\Kassenbucheintrag_Model;
 
 class Strafkatalog extends BaseController {
@@ -18,12 +19,11 @@ class Strafkatalog extends BaseController {
             $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten_handle'] = TRUE;
             $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten'][] = 'strafe_erstellen';
 
-            $this->viewdata['liste']['strafe_zuweisen'] = HAUPTINSTANZEN['mitglieder'];
-            // unset($this->viewdata['liste']['strafe_zuweisen']['filtern']);
-            $this->viewdata['liste']['strafe_zuweisen']['werkzeugkasten'][] = 'strafe_erstellen';
-            $this->viewdata['liste']['strafe_zuweisen']['klasse_id'] = array( 'btn_strafe_zuweisen', 'bestaetigung_einfordern' );
+            $this->viewdata['liste']['strafen_zuweisen'] = HAUPTINSTANZEN['mitglieder'];
+            unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
+            $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'strafkatalog_zugewiesene_strafen', );
 
-            $this->viewdata['werkzeugkasten'][] = 'strafe_zuweisen';
+            $this->viewdata['werkzeugkasten'][] = 'strafen_zuweisen';
             $this->viewdata['werkzeugkasten'][] = 'strafe_aendern';
             $this->viewdata['werkzeugkasten'][] = 'strafe_duplizieren';
             $this->viewdata['werkzeugkasten'][] = 'strafe_loeschen';
@@ -141,6 +141,37 @@ class Strafkatalog extends BaseController {
         else if( !auth()->user()->can( 'strafkatalog.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else model(Kassenbucheintrag_Model::class)->delete( $this->request->getPost()['kassenbucheintrag_id'] );
         
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    public function ajax_zugewiesene_strafe_speichern() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+            'strafe_id' => [ 'label' => EIGENSCHAFTEN['strafkatalog_zugewiesene_strafen']['strafe_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'mitglied_id' => [ 'label' => EIGENSCHAFTEN['strafkatalog_zugewiesene_strafen']['mitglied_id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+            'status' => [ 'label' => EIGENSCHAFTEN['strafkatalog_zugewiesene_strafen']['status']['beschriftung'], 'rules' => [ 'required', 'is_natural' ] ],
+            'bemerkung' => [ 'label' => EIGENSCHAFTEN['strafkatalog_zugewiesene_strafen']['bemerkung']['beschriftung'], 'rules' => [ 'field_exists' ] ],
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else if( !auth()->user()->can( 'strafkatalog.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else {
+            $zugewiesene_strafe_Model = model(Zugewiesene_Strafe_Model::class);
+            $zugewiesene_strafe = array(
+                'strafe_id' => $this->request->getpost()['strafe_id'],
+                'mitglied_id' => $this->request->getpost()['mitglied_id'],
+                'status' => $this->request->getpost()['status'],
+            );
+            if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $zugewiesene_strafe['bemerkung'] = $this->request->getpost()['bemerkung']; else $zugewiesene_strafe['bemerkung'] = NULL;
+
+            $zugewiesene_strafe_Model->where( array( 'strafe_id' => $zugewiesene_strafe['strafe_id'], 'mitglied_id' => $zugewiesene_strafe['mitglied_id'] ) )->delete();
+            if( (int)$zugewiesene_strafe['status'] > 0 ) {
+                $zugewiesene_strafe_Model->save( $zugewiesene_strafe );
+                $ajax_antwort['strafkatalog_zugewiesene_strafe_id'] = (int)$zugewiesene_strafe_Model->getInsertID();
+                $ajax_antwort['dbdata'] = array( array( 'id' => $ajax_antwort['strafkatalog_zugewiesene_strafe_id'], 'status' => $zugewiesene_strafe['status'] ) );
+            } else $ajax_antwort['dbdata'] = array();
+        }
+
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
         echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
     }

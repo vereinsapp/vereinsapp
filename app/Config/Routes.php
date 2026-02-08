@@ -104,6 +104,8 @@ $routes->group('strafkatalog', static function ($routes) {
     
     $routes->post('ajax_kassenbucheintrag_speichern',       'Strafkatalog::ajax_kassenbucheintrag_speichern');
     $routes->post('ajax_kassenbucheintrag_loeschen',        'Strafkatalog::ajax_kassenbucheintrag_loeschen');
+
+    $routes->post('ajax_strafkatalog_zugewiesene_strafe_speichern', 'Strafkatalog::ajax_zugewiesene_strafe_speichern');
 });
 
 $routes->get('titel/(:num)',                                'Notenbank::titel/$1');
