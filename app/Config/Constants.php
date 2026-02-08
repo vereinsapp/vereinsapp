@@ -260,18 +260,51 @@ defined('ELEMENTE') OR define( 'ELEMENTE', array(
 ) );
 
 defined('WERKZEUGE') OR define( 'WERKZEUGE', array(
-    // Pflicht: klasse, symbol / Optional: farbe, title
+    // Pflicht: klasse, symbol / Optional: title, farbe, weiterleiten
     'filtern_manip' => array( 'klasse' => 'btn_filtern_manip filtern_localstorage', 'symbol' => 'filtern', ),
     'sortieren_manip' => array( 'klasse' => 'btn_sortieren_manip sortieren_localstorage', 'symbol' => 'sortieren', ),
     'gruppieren_manip' => array( 'klasse' => 'btn_gruppieren_manip gruppieren_localstorage', 'symbol' => 'gruppieren', ),
-    "mitglied_erstellen" => array( 'klasse' => 'btn_mitglied_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Mitglied erstellen' ),
-    "aufgabe_erstellen" => array( 'klasse' => 'btn_aufgabe_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Aufgabe erstellen', ),
-    "aufgabe_zuordnen" => array( 'klasse' => 'btn_termine_aufgaben_zuordnen', 'symbol' => 'zuordnen', 'title' => 'Aufgaben zuordnen', ),
-    "termin_erstellen" => array( 'klasse' => 'btn_termin_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Termin erstellen', ),
-    "strafe_erstellen" => array( 'klasse' => 'btn_strafe_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Strafe erstellen', ),
-    "kassenbucheintrag_erstellen" => array( 'klasse' => 'btn_kassenbucheintrag_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Kassenbucheintrag erstellen', ),
-    "titel_erstellen" => array( 'klasse' => 'btn_titel_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Titel erstellen', ),
-    "setliste_verwalten" => array( 'klasse' => 'btn_setliste_verwalten', 'symbol' => 'zuordnen', 'title' => 'Setliste verwalten', ),
+
+    'mitglied_erstellen' => array( 'klasse' => 'btn_mitglied_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Mitglied erstellen' ),
+    'mitglied_aendern' => array( 'klasse' => 'btn_mitglied_aendern formular_oeffnen', 'symbol' => 'aendern', 'title' => 'Mitglied ändern', ),
+    'mitglied_duplizieren' => array( 'klasse' => 'btn_mitglied_duplizieren formular_oeffnen', 'symbol' => 'duplizieren', 'title' => 'Mitglied duplizieren', ),
+    'mitglied_loeschen' => array( 'klasse' => 'btn_element_loeschen bestaetigung_einfordern', 'symbol' => 'loeschen', 'title' => 'Mitglied löschen', 'farbe' => 'danger', ),
+    'mitglied_loeschen_weiterleiten' => array( 'klasse' => 'btn_element_loeschen bestaetigung_einfordern', 'symbol' => 'loeschen', 'title' => 'Mitglied löschen', 'farbe' => 'danger', 'weiterleiten' => 'mitglieder', ),
+    'rechte_vergeben' => array( 'klasse' => 'btn_rechte_vergeben', 'symbol' => 'rechte_vergeben', 'title' => 'Rechte vergeben', ),
+    'einmal_link_anzeigen' => array( 'klasse' => 'btn_mitglied_einmal_link_erstellen formular_oeffnen', 'symbol' => 'einmal_link_anzeigen', 'title' => 'Einmal-Link anzeigen', ),
+    'einmal_link_email' => array( 'klasse' => 'btn_mitglied_einmal_link_erstellen bestaetigung_einfordern', 'symbol' => 'einmal_link_email', 'title' => 'Einmal-Link per Email verschicken', ),
+    'meine_daten_aendern' => array( 'klasse' => 'btn_mitglied_aendern formular_oeffnen', 'symbol' => 'aendern', 'title' => 'Meine Daten ändern', ),
+
+    'aufgabe_erstellen' => array( 'klasse' => 'btn_aufgabe_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Aufgabe erstellen', ),
+    'termine_aufgaben_zuordnen' => array( 'klasse' => 'btn_termine_aufgaben_zuordnen', 'symbol' => 'aufgaben', 'title' => 'Aufgaben zuordnen', ),
+
+    'termin_erstellen' => array( 'klasse' => 'btn_termin_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Termin erstellen', ),
+    'termin_aendern' => array( 'klasse' => 'btn_termin_aendern formular_oeffnen', 'symbol' => 'aendern', 'title' => 'Termin ändern', ),
+    'termin_duplizieren' => array( 'klasse' => 'btn_termin_duplizieren formular_oeffnen', 'symbol' => 'duplizieren', 'title' => 'Termin duplizieren', ),
+    'termin_loeschen' => array( 'klasse' => 'btn_element_loeschen bestaetigung_einfordern', 'symbol' => 'loeschen', 'title' => 'Termin löschen', 'farbe' => 'danger', ),
+    'termin_loeschen_weiterleiten' => array( 'klasse' => 'btn_element_loeschen bestaetigung_einfordern', 'symbol' => 'loeschen', 'title' => 'Termin löschen', 'farbe' => 'danger', 'weiterleiten' => 'termine', ),
+    'termine_rueckmeldungen_verwalten' => array( 'klasse' => 'btn_termine_rueckmeldungen_verwalten', 'symbol' => 'pos_rueckmeldung', 'title' => 'Termin-Rückmeldungen verwalten', ),
+    'termine_anwesenheiten_dokumentieren' => array( 'klasse' => 'btn_termine_anwesenheiten_dokumentieren', 'symbol' => 'pos_zuordnung', 'title' => 'Termin-Anwesenheiten dokumentieren', ),
+
+    'strafe_erstellen' => array( 'klasse' => 'btn_strafe_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Strafe erstellen', ),
+    'strafe_aendern' => array( 'klasse' => 'btn_strafe_aendern formular_oeffnen', 'symbol' => 'aendern', 'title' => 'Strafe ändern', ),
+    'strafe_duplizieren' => array( 'klasse' => 'btn_strafe_duplizieren formular_oeffnen', 'symbol' => 'duplizieren', 'title' => 'Strafe duplizieren', ),
+    'strafe_loeschen' => array( 'klasse' => 'btn_element_loeschen bestaetigung_einfordern', 'symbol' => 'loeschen', 'title' => 'Strafe löschen', 'farbe' => 'danger', ),
+    'strafe_zuweisen' => array( 'klasse' => 'btn_strafe_zuweisen auswahl_einfordern', 'symbol' => 'strafe_zuweisen', 'title' => 'Strafe einem Mitglied zuweisen', ),
+    'kassenbucheintrag_erstellen' => array( 'klasse' => 'btn_kassenbucheintrag_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Kassenbucheintrag erstellen', ),
+    'kassenbucheintrag_aendern' => array( 'klasse' => 'btn_kassenbucheintrag_aendern formular_oeffnen', 'symbol' => 'aendern', 'title' => 'Mitglied ändern', ),
+    'kassenbucheintrag_duplizieren' => array( 'klasse' => 'btn_kassenbucheintrag_duplizieren formular_oeffnen', 'symbol' => 'duplizieren', 'title' => 'Mitglied duplizieren', ),
+    'kassenbucheintrag_loeschen' => array( 'klasse' => 'btn_element_loeschen bestaetigung_einfordern', 'symbol' => 'loeschen', 'title' => 'Mitglied löschen', 'farbe' => 'danger', ),
+    'offene_kassenbucheintraege_verwalten' => array( 'klasse' => 'btn_offene_kassenbucheintraege_verwalten', 'symbol' => 'offene_kassenbucheintraege_verwalten', 'title' => 'Offene Kassenbucheinträge', ),
+    'kassenbucheintrag_offen_erledigt_markieren' => array( 'klasse' => 'btn_kassenbucheintrag_offen_erledigt_markieren bestaetigung_einfordern', 'symbol' => 'offen_erledigt_markieren', 'title' => 'Kassenbucheintrag als offen/erledigt markieren', ),
+
+    'titel_erstellen' => array( 'klasse' => 'btn_titel_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Titel erstellen', ),
+    'titel_aendern' => array( 'klasse' => 'btn_titel_aendern formular_oeffnen', 'symbol' => 'aendern', 'title' => 'Titel ändern', ),
+    'titel_duplizieren' => array( 'klasse' => 'btn_titel_duplizieren formular_oeffnen', 'symbol' => 'duplizieren', 'title' => 'Titel duplizieren', ),
+    'titel_loeschen' => array( 'klasse' => 'btn_element_loeschen bestaetigung_einfordern', 'symbol' => 'loeschen', 'title' => 'Titel löschen', 'farbe' => 'danger', ),
+    'titel_loeschen_weiterleiten' => array( 'klasse' => 'btn_element_loeschen bestaetigung_einfordern', 'symbol' => 'loeschen', 'title' => 'Titel löschen', 'farbe' => 'danger', 'weiterleiten' => 'notenbank', ),
+    'setliste_verwalten' => array( 'klasse' => 'btn_setliste_verwalten', 'symbol' => 'setliste', 'title' => 'Setliste verwalten', ),
+
 ) );
 
 defined('JANEIN') OR define( 'JANEIN', array(
@@ -307,6 +340,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'strafkatalog' => array ( 'bootstrap' => 'bank' ),
     'kassenbuch' => array( 'bootstrap' => 'journal-bookmark' ),
     'notenbank' => array ( 'bootstrap' => 'file-earmark-music' ),
+    'setliste' => array ( 'bootstrap' => 'music-note-list' ),
     'startseite' => array ( 'bootstrap' => '' ),
     'status' => array( 'bootstrap' => 'circle-fill' ),
     'logout' => array( 'bootstrap' => 'door-open' ),
@@ -316,7 +350,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'aendern' => array( 'bootstrap' => 'pencil' ),
     'duplizieren' => array( 'bootstrap' => 'files' ),
     'loeschen' => array( 'bootstrap' => 'trash' ),
-    'zuordnen' => array( 'bootstrap' => 'box-arrow-in-down-left' ),
+    // 'zuordnen' => array( 'bootstrap' => 'box-arrow-in-down-left' ),
     'offen_erledigt_markieren' => array ( 'bootstrap' => 'check2-circle' ),
 
     'sortable' => array( 'bootstrap' => 'arrow-down-up' ),
@@ -334,11 +368,6 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'spacer' => array ( 'bootstrap' => 'dot' ),
 
     'rechte_vergeben' => array( 'bootstrap' => 'lock' ),
-    // 'aufgaben_termine_zuordnen' => array( 'bootstrap' => 'calendar-check' ),
-    'termine_aufgaben_zuordnen' => array( 'bootstrap' => 'award' ),
-    'termine_rueckmeldungen_verwalten' => array( 'bootstrap' => 'hand-thumbs-up' ),
-    'termine_anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
-    'setliste_verwalten' => array ( 'bootstrap' => 'music-note-list' ),
     'strafe_zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
     'offene_kassenbucheintraege_verwalten' => array( 'bootstrap' => 'journal-check' ),
     'statistiken' => array( 'bootstrap' => 'graph-up-arrow' ),

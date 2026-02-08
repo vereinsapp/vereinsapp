@@ -27,10 +27,7 @@ class Termine extends BaseController {
             $this->viewdata['liste']['termine_aufgaben_zuordnen']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
             $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeugkasten'][] = 'aufgabe_erstellen';
 
-            $this->viewdata['werkzeugkasten']['termine_aufgaben_zuordnen'] = array(
-                'klasse_id' => 'btn_termine_aufgaben_zuordnen',
-                'title' => 'Aufgaben zuordnen',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'termine_aufgaben_zuordnen';
 
         }
 
@@ -42,10 +39,7 @@ class Termine extends BaseController {
             $this->viewdata['liste']['setliste_verwalten']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
             $this->viewdata['liste']['setliste_verwalten']['werkzeugkasten'][] = 'titel_erstellen';
 
-            $this->viewdata['werkzeugkasten']['setliste_verwalten'] = array(
-                'klasse_id' => 'btn_setliste_verwalten',
-                'title' => 'Setliste verwalten',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'setliste_verwalten';
 
         }
 
@@ -56,10 +50,7 @@ class Termine extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', );
 
-            $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
-                'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',
-                'title' => 'Rückmeldungen verwalten',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'termine_rueckmeldungen_verwalten';
 
         }
 
@@ -70,10 +61,7 @@ class Termine extends BaseController {
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
 
-            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
-                'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
-                'title' => 'Anwesenheiten dokumentieren',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'termine_anwesenheiten_dokumentieren';
 
         // } else {
 
@@ -81,10 +69,7 @@ class Termine extends BaseController {
         //     unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
         //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_anwesenheiten' );
         //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-        //     $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
-        //         'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
-        //         'title' => 'Anwesenheiten',
-        //     );
+        //     $this->viewdata['werkzeugkasten'][] = 'termine_anwesenheiten_dokumentieren';
 
         }
 
@@ -93,19 +78,9 @@ class Termine extends BaseController {
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten_handle'] = TRUE;
             $this->viewdata['liste']['bevorstehende_termine']['werkzeugkasten'][] = 'termin_erstellen';
 
-            $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'klasse_id' => array('btn_termin_aendern', 'formular_oeffnen'),
-                'title' => 'Termin ändern',
-            );
-            $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'klasse_id' => array('btn_termin_duplizieren', 'formular_oeffnen'),
-                'title' => 'Termin duplizieren',
-            );
-            $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
-                'title' => 'Termin löschen',
-                'farbe' => 'danger',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'termin_aendern';
+            $this->viewdata['werkzeugkasten'][] = 'termin_duplizieren';
+            $this->viewdata['werkzeugkasten'][] = 'termin_loeschen';
 
         }
 
@@ -148,7 +123,7 @@ class Termine extends BaseController {
 
             if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
-                $this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten'][] = 'aufgabe_zuordnen';
+                $this->viewdata['liste']['zugeordnete_aufgaben']['werkzeugkasten'][] = 'termine_aufgaben_zuordnen';
 
                 $this->viewdata['liste']['termine_aufgaben_zuordnen'] = HAUPTINSTANZEN['aufgaben'];
                 // unset($this->viewdata['liste']['termine_aufgaben_zuordnen']['filtern']);
@@ -190,10 +165,7 @@ class Termine extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', );
 
-            $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
-                'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',
-                'title' => 'Rückmeldungen verwalten',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'termine_rueckmeldungen_verwalten';
 
         }
 
@@ -204,10 +176,7 @@ class Termine extends BaseController {
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
 
-            $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
-                'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
-                'title' => 'Anwesenheiten dokumentieren',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'termine_anwesenheiten_dokumentieren';
 
         // } else {
 
@@ -215,30 +184,15 @@ class Termine extends BaseController {
         //     unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
         //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_anwesenheiten' );
         //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-        //     $this->viewdata['werkzeugkasten']['termine_anwesenheiten_dokumentieren'] = array(
-        //         'klasse_id' => 'btn_termine_anwesenheiten_dokumentieren',
-        //         'title' => 'Anwesenheiten',
-        //     );
+        //     $this->viewdata['werkzeugkasten'][] = 'termine_anwesenheiten_dokumentieren';
 
         }
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
 
-
-            $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'klasse_id' => array('btn_termin_aendern', 'formular_oeffnen'),
-                'title' => 'Termin ändern',
-            );
-            $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'klasse_id' => array('btn_termin_duplizieren', 'formular_oeffnen'),
-                'title' => 'Termin duplizieren',
-            );
-            $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
-                'title' => 'Termin löschen',
-                'farbe' => 'danger',
-                'weiterleiten' => 'termine',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'termin_aendern';
+            $this->viewdata['werkzeugkasten'][] = 'termin_duplizieren';
+            $this->viewdata['werkzeugkasten'][] = 'termin_loeschen_weiterleiten';
 
         }
 

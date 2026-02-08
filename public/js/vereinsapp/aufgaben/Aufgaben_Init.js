@@ -92,7 +92,7 @@ ELEMENTE.aufgaben_zuordnung_termine.ergaenzen_aktion = function (zuordnung) {
 };
 
 WERKZEUGE.aufgabe_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
-WERKZEUGE.aufgabe_zuordnen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
+WERKZEUGE.termine_aufgaben_zuordnen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
 
 function Aufgaben_Init() {
     // AUFGABE ERSTELLEN

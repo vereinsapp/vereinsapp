@@ -26,10 +26,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', );
             $this->viewdata['liste']['rechte_vergeben']['disabled_ids'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
 
-            $this->viewdata['werkzeugkasten']['rechte_vergeben'] = array(
-                'klasse_id' => 'btn_rechte_vergeben',
-                'title' => 'Rechte vergeben',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'rechte_vergeben';
 
         }
 
@@ -40,10 +37,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', );
 
-            $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
-                'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',
-                'title' => 'Termin-Rückmeldungen verwalten',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'termine_rueckmeldungen_verwalten';
 
         }
 
@@ -58,20 +52,14 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['vorschau'] = array( 'erstellung', 'wert' );
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['zusatzsymbol'] = array( 'offen_erledigt_markieren' );
 
-            $this->viewdata['werkzeugkasten']['offene_kassenbucheintraege_verwalten'] = array(
-                'klasse_id' => 'btn_offene_kassenbucheintraege_verwalten',
-                'title' => 'Offene Kassenbucheinträge',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'offene_kassenbucheintraege_verwalten';
 
             $this->viewdata['liste']['strafe_zuweisen'] = HAUPTINSTANZEN['strafkatalog'];
             // unset($this->viewdata['liste']['strafe_zuweisen']['filtern']);
             $this->viewdata['liste']['strafe_zuweisen']['werkzeugkasten'][] = 'strafe_erstellen';
             $this->viewdata['liste']['strafe_zuweisen']['klasse_id'] = array( 'btn_strafe_zuweisen', 'bestaetigung_einfordern' );
 
-            $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
-                'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_einfordern'),
-                'title' => 'Strafe einem Mitglied zuweisen',
-            );
+            $this->viewdata['werkzeugkasten'][]= 'strafe_zuweisen';
 
         }
 
@@ -80,28 +68,11 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten'][] = 'mitglied_erstellen';
 
-            $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
-                'klasse_id' => array('btn_mitglied_einmal_link_erstellen', 'formular_oeffnen'),
-                'title' => 'Einmal-Link anzeigen',
-            );
-            $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
-                'klasse_id' => array('btn_mitglied_einmal_link_erstellen', 'bestaetigung_einfordern'),
-                'title' => 'Einmal-Link per Email verschicken',
-            );
-        
-            $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'klasse_id' => array('btn_mitglied_aendern', 'formular_oeffnen'),
-                'title' => 'Mitglied ändern',
-            );
-            $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'klasse_id' => array('btn_mitglied_duplizieren', 'formular_oeffnen'),
-                'title' => 'Mitglied duplizieren',
-            );
-            $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
-                'title' => 'Mitglied löschen',
-                'farbe' => 'danger',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'einmal_link_anzeigen';
+            $this->viewdata['werkzeugkasten'][] = 'einmal_link_email';
+            $this->viewdata['werkzeugkasten'][] = 'mitglied_aendern';
+            $this->viewdata['werkzeugkasten'][] = 'mitglied_duplizieren';
+            $this->viewdata['werkzeugkasten'][] = 'mitglied_loeschen';
 
         }
 
@@ -142,10 +113,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', 'mitglied_id' => $mitglied_id, );
             $this->viewdata['liste']['rechte_vergeben']['disabled_ids'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
 
-            $this->viewdata['werkzeugkasten']['rechte_vergeben'] = array(
-                'klasse_id' => 'btn_rechte_vergeben',
-                'title' => 'Rechte vergeben',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'rechte_vergeben';
 
         }
 
@@ -156,10 +124,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen',  'mitglied_id' => $mitglied_id);
 
-            $this->viewdata['werkzeugkasten']['termine_rueckmeldungen_verwalten'] = array(
-                'klasse_id' => 'btn_termine_rueckmeldungen_verwalten',
-                'title' => 'Termin-Rückmeldungen verwalten',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'termine_rueckmeldungen_verwalten';
 
         }
 
@@ -174,53 +139,26 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['vorschau'] = array( 'erstellung', 'wert' );
             $this->viewdata['liste']['offene_kassenbucheintraege_verwalten']['zusatzsymbol'] = array( 'offen_erledigt_markieren' );
 
-            $this->viewdata['werkzeugkasten']['offene_kassenbucheintraege_verwalten'] = array(
-                'klasse_id' => 'btn_offene_kassenbucheintraege_verwalten',
-                'title' => 'Offene Kassenbucheinträge',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'offene_kassenbucheintraege_verwalten';
 
             $this->viewdata['liste']['strafe_zuweisen'] = HAUPTINSTANZEN['strafkatalog'];
             // unset($this->viewdata['liste']['strafe_zuweisen']['filtern']);
             $this->viewdata['liste']['strafe_zuweisen']['werkzeugkasten'][] = 'strafe_erstellen';
             $this->viewdata['liste']['strafe_zuweisen']['klasse_id'] = array( 'btn_strafe_zuweisen', 'bestaetigung_einfordern' );
 
-            $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
-                'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_einfordern'),
-                'title' => 'Strafe einem Mitglied zuweisen',
-            );
+            $this->viewdata['werkzeugkasten'][]= 'strafe_zuweisen';
 
         }
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
-            $this->viewdata['werkzeugkasten']['einmal_link_anzeigen'] = array(
-                'klasse_id' => array('btn_mitglied_einmal_link_erstellen', 'formular_oeffnen'),
-                'title' => 'Einmal-Link anzeigen',
-            );
-            $this->viewdata['werkzeugkasten']['einmal_link_email'] = array(
-                'klasse_id' => array('btn_mitglied_einmal_link_erstellen', 'bestaetigung_einfordern'),
-                'title' => 'Einmal-Link per Email verschicken',
-            );
-            $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'klasse_id' => array('btn_mitglied_aendern', 'formular_oeffnen'),
-                'title' => 'Mitglied ändern',
-            );
-            $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'klasse_id' => array('btn_mitglied_duplizieren', 'formular_oeffnen'),
-                'title' => 'Mitglied duplizieren',
-            );
-            $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
-                'title' => 'Mitglied löschen',
-                'farbe' => 'danger',
-                'weiterleiten' => 'mitglieder',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'einmal_link_anzeigen';
+            $this->viewdata['werkzeugkasten'][] = 'einmal_link_email';
+            $this->viewdata['werkzeugkasten'][] = 'mitglied_aendern';
+            $this->viewdata['werkzeugkasten'][] = 'mitglied_duplizieren';
+            $this->viewdata['werkzeugkasten'][] = 'mitglied_loeschen_weiterleiten';
 
-        } elseif( $mitglied_id == ICH_ID )
-            $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'klasse_id' => array('btn_mitglied_aendern', 'formular_oeffnen'),
-                'title' => 'Meine Daten ändern',
-            );
+        } elseif( $mitglied_id == ICH_ID ) $this->viewdata['werkzeugkasten'][] = 'meine_daten_aendern';
 
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'alle_mitglieder',

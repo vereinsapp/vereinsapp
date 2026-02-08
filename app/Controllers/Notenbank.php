@@ -19,19 +19,9 @@ class Notenbank extends BaseController {
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_handle'] = TRUE;
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten'][] = 'titel_erstellen';
 
-            $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'klasse_id' => array('btn_titel_aendern', 'formular_oeffnen'),
-                'title' => 'Titel ändern',
-            );
-            $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'klasse_id' => array('btn_titel_duplizieren', 'formular_oeffnen'),
-                'title' => 'Titel duplizieren',
-            );
-            $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
-                'title' => 'Titel löschen',
-                'farbe' => 'danger',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'titel_aendern';
+            $this->viewdata['werkzeugkasten'][] = 'titel_duplizieren';
+            $this->viewdata['werkzeugkasten'][] = 'titel_loeschen';
 
         }
 
@@ -48,20 +38,9 @@ class Notenbank extends BaseController {
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
-            $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'klasse_id' => array('btn_titel_aendern', 'formular_oeffnen'),
-                'title' => 'Titel ändern',
-            );
-            $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'klasse_id' => array('btn_titel_duplizieren', 'formular_oeffnen'),
-                'title' => 'Titel duplizieren',
-            );
-            $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
-                'title' => 'Titel löschen',
-                'farbe' => 'danger',
-                'weiterleiten' => 'notenbank',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'titel_aendern';
+            $this->viewdata['werkzeugkasten'][] = 'titel_duplizieren';
+            $this->viewdata['werkzeugkasten'][] = 'titel_loeschen_weiterleiten';
 
         }
 

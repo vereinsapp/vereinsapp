@@ -92,7 +92,6 @@ auswertungen ersetzen durch verknuepfungen (allgemein Fokus mehr auf die Liste s
 mitglied_id in kassenbucheintrag als verknuepfung (und kassenbucheintrag.mitglied loswerden)? Oder kassenbucheintrag als verknuepfung umbauen
 data-Prefix loswerden
 werkzeugkasten_handle als ganz normales Zusätzsymbol in der Liste umbauen (und folglich bspw. für Termine in der Termin-Übersicht andere Zusatzsymbole bspw. für Anwesenheiten dokumentieren einführen)
-WERKZEUGKASTEN AKTUALISIEREN mit $ziel statt mit element_id
 
 ERLEDIGT
 

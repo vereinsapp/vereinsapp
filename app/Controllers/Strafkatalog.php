@@ -23,23 +23,10 @@ class Strafkatalog extends BaseController {
             $this->viewdata['liste']['strafe_zuweisen']['werkzeugkasten'][] = 'strafe_erstellen';
             $this->viewdata['liste']['strafe_zuweisen']['klasse_id'] = array( 'btn_strafe_zuweisen', 'bestaetigung_einfordern' );
 
-            $this->viewdata['werkzeugkasten']['strafe_zuweisen'] = array(
-                'klasse_id' => array('btn_strafe_zuweisen', 'auswahl_einfordern'),
-                'title' => 'Strafe einem Mitglied zuweisen',
-            );
-            $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'klasse_id' => array('btn_strafe_aendern', 'formular_oeffnen'),
-                'title' => 'Strafe ändern',
-            );
-            $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'klasse_id' => array('btn_strafe_duplizieren', 'formular_oeffnen'),
-                'title' => 'Strafe duplizieren',
-            );
-            $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
-                'title' => 'Strafe löschen',
-                'farbe' => 'danger',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'strafe_zuweisen';
+            $this->viewdata['werkzeugkasten'][] = 'strafe_aendern';
+            $this->viewdata['werkzeugkasten'][] = 'strafe_duplizieren';
+            $this->viewdata['werkzeugkasten'][] = 'strafe_loeschen';
 
         }
 
@@ -58,24 +45,10 @@ class Strafkatalog extends BaseController {
             $this->viewdata['liste']['aktuelles_kassenbuch']['werkzeugkasten_handle'] = TRUE;
             $this->viewdata['liste']['aktuelles_kassenbuch']['werkzeugkasten'][] = 'kassenbucheintrag_erstellen';
 
-            $this->viewdata['werkzeugkasten']['offen_erledigt_markieren'] = array(
-                'klasse_id' => array('btn_kassenbucheintrag_offen_erledigt_markieren', 'bestaetigung_einfordern'),
-                'title' => 'Kassenbucheintrag als offen/erledigt markieren',
-            );
-
-            $this->viewdata['werkzeugkasten']['aendern'] = array(
-                'klasse_id' => array('btn_kassenbucheintrag_aendern', 'formular_oeffnen'),
-                'title' => 'Kassenbucheintrag ändern',
-            );
-            $this->viewdata['werkzeugkasten']['duplizieren'] = array(
-                'klasse_id' => array('btn_kassenbucheintrag_duplizieren', 'formular_oeffnen'),
-                'title' => 'Kassenbucheintrag duplizieren',
-            );
-            $this->viewdata['werkzeugkasten']['loeschen'] = array(
-                'klasse_id' => array('btn_element_loeschen', 'bestaetigung_einfordern'),
-                'title' => 'Kassenbucheintrag löschen',
-                'farbe' => 'danger',
-            );
+            $this->viewdata['werkzeugkasten'][] = 'kassenbucheintrag_offen_erledigt_markieren';
+            $this->viewdata['werkzeugkasten'][] = 'kassenbucheintrag_aendern';
+            $this->viewdata['werkzeugkasten'][] = 'kassenbucheintrag_duplizieren';
+            $this->viewdata['werkzeugkasten'][] = 'kassenbucheintrag_loeschen';
 
         }
 
