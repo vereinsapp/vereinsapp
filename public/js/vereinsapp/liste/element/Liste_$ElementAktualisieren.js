@@ -62,11 +62,6 @@ function Liste_$ElementAktualisieren($element) {
         Liste_Element$ZusatzsymbolAktualisieren($(this), $element);
     });
 
-    // ZUSATZINFO AKTUALISIEREN
-    $element.find(".zusatzinfo").each(function () {
-        Liste_Element$ZusatzinfoAktualisieren($(this), $element);
-    });
-
     // VORSCHAU AKTUALISIEREN
     $element.find(".vorschau").each(function () {
         Liste_Element$VorschauAktualisieren($(this), $element);

@@ -44,16 +44,10 @@ if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-e
             <label class="flex-grow-1">
                 <span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste ) ) { ?><?= $liste['beschriftung']; ?><?php } ?></span>
             </label>
-<?php if( array_key_exists( 'zusatzinfo', $liste ) AND is_array( $liste['zusatzinfo'] ) ) foreach( $liste['zusatzinfo'] as $zusatzinfo ) { ?>
-            <span class="zusatzinfo float-end flex-shrink-0 ms-2 stretched-link-unwirksam" data-zusatzinfo="<?= $zusatzinfo ?>"></span>
-<?php } ?>
             <span class="zusatzsymbol float-end flex-shrink-0 ms-2 stretched-link-unwirksam" data-zusatzsymbol="bemerkung"></span>
 <?php if( array_key_exists( 'zusatzsymbol', $liste ) AND is_array( $liste['zusatzsymbol'] ) ) foreach( $liste['zusatzsymbol'] as $zusatzsymbol ) { ?>
             <span class="zusatzsymbol float-end flex-shrink-0 ms-2 stretched-link-unwirksam" data-zusatzsymbol="<?= $zusatzsymbol ?>"></span>
 <?php } 
-      if( array_key_exists( 'zusatzinfo', $liste ) AND is_array( $liste['zusatzinfo'] ) ) foreach( $liste['zusatzinfo'] as $zusatzinfo ) { ?>
-            <span class="zusatzinfo float-end flex-shrink-0 ms-2 stretched-link-unwirksam" data-zusatzinfo="<?= $zusatzinfo ?>"></span>
-<?php }
       if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) { ?>
             <i class="bi bi-<?= SYMBOLE['sortable']['bootstrap']; ?> text-primary float-end flex-shrink-0 ms-2 stretched-link-unwirksam sortable_handle" role="button"></i>
 <?php }

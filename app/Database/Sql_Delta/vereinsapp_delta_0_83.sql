@@ -10,9 +10,6 @@ UPDATE `vereinsapp_notenbank` SET `komponist` = NULL WHERE `komponist` IS NOT NU
 ALTER TABLE `vereinsapp_strafkatalog` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
 UPDATE `vereinsapp_strafkatalog` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
 
-ALTER TABLE `vereinsapp_strafkatalog_kassenbuch` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
-UPDATE `vereinsapp_strafkatalog_kassenbuch` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
-
 ALTER TABLE `vereinsapp_termine` MODIFY `bemerkung` VARCHAR(100) NULL DEFAULT NULL;
 UPDATE `vereinsapp_termine` SET `bemerkung` = NULL WHERE `bemerkung` IS NOT NULL AND TRIM(`bemerkung`) = '';
 
@@ -99,4 +96,7 @@ ALTER TABLE `vereinsapp_strafkatalog_zugewiesene_strafen`
 ALTER TABLE `vereinsapp_notenbank_setliste`
   ADD CONSTRAINT `vereinsapp_notenbank_setliste_titel_id_foreign` FOREIGN KEY (`titel_id`) REFERENCES `vereinsapp_notenbank` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `vereinsapp_notenbank_setliste_termin_id_foreign` FOREIGN KEY (`termin_id`) REFERENCES `vereinsapp_termine` (`id`) ON DELETE CASCADE;
+
+DROP TABLE `vereinsapp_strafkatalog_kassenbuch`
+
 COMMIT;

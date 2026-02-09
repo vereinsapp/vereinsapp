@@ -53,9 +53,6 @@
 <?php if( auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'termine_rueckmeldungen_verwalten_modal', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_rueckmeldungen_verwalten'] ) ) ) ); ?>
-<?php if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'modal_id' => 'offene_kassenbucheintraege_verwalten_modal', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['offene_kassenbucheintraege_verwalten'] ) ) ) ); ?>
 <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'mitglied_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder' ), 'btn' => array( 'klasse_id' => 'btn_mitglied_aktion' ), 'formular' =>

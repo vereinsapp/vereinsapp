@@ -97,14 +97,10 @@ $routes->group('termine', static function ($routes) {
 $routes->group('strafkatalog', static function ($routes) {
     $routes->get('',                                        'Strafkatalog::strafkatalog');
     $routes->get('strafkatalog',                            'Strafkatalog::strafkatalog');
-    $routes->get('kassenbuch',                              'Strafkatalog::kassenbuch');
 
     $routes->post('ajax_strafe_speichern',                  'Strafkatalog::ajax_strafe_speichern');
     $routes->post('ajax_strafe_loeschen',                   'Strafkatalog::ajax_strafe_loeschen');
     
-    $routes->post('ajax_kassenbucheintrag_speichern',       'Strafkatalog::ajax_kassenbucheintrag_speichern');
-    $routes->post('ajax_kassenbucheintrag_loeschen',        'Strafkatalog::ajax_kassenbucheintrag_loeschen');
-
     $routes->post('ajax_strafkatalog_zugewiesene_strafe_speichern', 'Strafkatalog::ajax_zugewiesene_strafe_speichern');
 });
 

@@ -193,17 +193,6 @@ class Vereinsapp extends BaseConfig
             'listenstatistik' => array(),
         ),
 
-        'kassenbuch' => array(
-            'liste' => 'kassenbuch',
-            'filtern' => array(),
-            'sortieren' => array( 'eigenschaft' => 'erstellung', 'richtung' => SORT_DESC, ),
-            'beschriftung' => '<span class="eigenschaft" data-eigenschaft="titel"></span>',
-            'zusatzsymbol' => array('offen_erledigt'),
-            'eigenschaften_bedingt_formatiert' => array( 'wert' => array( 'text-danger' => array( 'wert' => array( 'ende' =>  0, ), ), ), ),
-            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'summe' => 'wert', ),
-        ),
-
         'strafkatalog_zugewiesene_strafen' => array(
             'liste' => 'strafkatalog_zugewiesene_strafen',
             'filtern' => array(),
@@ -382,18 +371,6 @@ class Vereinsapp extends BaseConfig
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
         ),
 
-        'kassenbuch' => array(
-            'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
-            'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
-            'wert' => array( 'beschriftung' => 'Wert (in Euro)', 'typ' => 'zahl' ),
-            'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
-            'mitglied' => array( 'beschriftung' => 'Mitglied', 'typ' => 'text' ),           // JAVA
-            'erledigt' => array( 'beschriftung' => 'Erledigung', 'typ' => 'zeitpunkt' ),
-            'erledigt_janein' => array( 'beschriftung' => 'Erledigt', 'typ' => 'janein' ),  // JAVA
-            'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'erstellung' => array( 'beschriftung' => 'Erstellung', 'typ' => 'zeitpunkt' ),  // PHP
-        ),
-
         'strafkatalog_zugewiesene_strafen' => array(
             'id' => array( 'beschriftung' => 'ID', 'typ' => 'element_id' ),
             'strafe_id' => array( 'beschriftung' => 'Strafe-ID', 'typ' => 'element_id' ),
@@ -545,9 +522,6 @@ class Vereinsapp extends BaseConfig
 
         ),
 
-        'kassenbuch' => array(
-        ),
-
         'strafkatalog_zugewiesene_strafen' => array(
         ),
 
@@ -656,21 +630,6 @@ class Vereinsapp extends BaseConfig
             ),
         ),
 
-        'kassenbuch' => array(
-            'zuruecksetzen' => array(
-                'beschriftung' => 'Alle Filter zurücksetzen',
-                'filtern' => array(),
-            ),
-            'offen' => array(
-                'beschriftung' => 'Alle offenen Einträge',
-                'filtern' => array( 'erledigt_janein' => array( 'inklusiv' => array( TRUE ) ), ),
-            ),
-            'alle_seit_jahresbeginn' => array(
-                'beschriftung' => 'Alle Einträge seit Jahresbeginn',
-                'filtern' => array( 'erstellung' => array( 'start' => JAHRESBEGINN ), ),
-            ),
-        ),
-
         'notenbank' => array(
             'zuruecksetzen' => array(
                 'beschriftung' => 'Alle Filter zurücksetzen',
@@ -743,13 +702,6 @@ class Vereinsapp extends BaseConfig
         'strafkatalog' => array(
             'wert',
             'kategorie',
-        ),
-
-        'kassenbuch' => array(
-            'wert',
-            // 'mitglied_id',
-            'erledigt_janein',
-            'erstellung',
         ),
 
         'strafkatalog_zugewiesene_strafen' => array(
@@ -837,14 +789,6 @@ class Vereinsapp extends BaseConfig
             'kategorie',
         ),
 
-        'kassenbuch' => array(
-            'titel',
-            'wert',
-            'mitglied',
-            'erledigt',
-            'erstellung',
-        ),
-
         'strafkatalog_zugewiesene_strafen' => array(
         ),
 
@@ -916,10 +860,6 @@ class Vereinsapp extends BaseConfig
 
         'strafkatalog' => array(
             'kategorie',
-        ),
-
-        'kassenbuch' => array(
-            'erledigt_janein',
         ),
 
         'strafkatalog_zugewiesene_strafen' => array(

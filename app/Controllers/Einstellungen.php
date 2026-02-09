@@ -10,7 +10,6 @@ use App\Models\Termine\Termin_Model;
 use App\Models\Termine\Rueckmeldung_Model as Termine_Rueckmeldung_Model;
 use App\Models\Termine\Anwesenheit_Model;
 use App\Models\Strafkatalog\Strafe_Model;
-use App\Models\Strafkatalog\Kassenbucheintrag_Model;
 use App\Models\Strafkatalog\Zugewiesene_Strafe_Model;
 use App\Models\Notenbank\Titel_Model;
 use App\Models\Notenbank\Setlisteneintrag_Model;
@@ -53,7 +52,6 @@ class Einstellungen extends BaseController {
             if( array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['termine_rueckmeldungen'] = model(Termine_Rueckmeldung_Model::class)->rueckmeldungen_tabelle();
             if( array_key_exists( LISTEN['termine_anwesenheiten']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['termine_anwesenheiten'] = model(Anwesenheit_Model::class)->anwesenheiten_tabelle();
             if( array_key_exists( LISTEN['strafkatalog']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['strafkatalog'] = model(Strafe_Model::class)->strafkatalog_tabelle();
-            if( array_key_exists( LISTEN['kassenbuch']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['kassenbuch'] = model(Kassenbucheintrag_Model::class)->kassenbuch_tabelle();
             if( array_key_exists( LISTEN['strafkatalog_zugewiesene_strafen']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['strafkatalog_zugewiesene_strafen'] = model(Zugewiesene_Strafe_Model::class)->zugewiesene_strafen_tabelle();
             if( array_key_exists( LISTEN['notenbank']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['notenbank'] = model(Titel_Model::class)->notenbank_tabelle();
             if( array_key_exists( LISTEN['notenbank_setliste']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['notenbank_setliste'] = model(Setlisteneintrag_Model::class)->setliste_tabelle();

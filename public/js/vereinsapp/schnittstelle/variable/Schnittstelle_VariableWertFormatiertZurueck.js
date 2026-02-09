@@ -23,7 +23,6 @@ function Schnittstelle_VariableWertFormatiertZurueck(wert, eigenschaft, liste) {
             case "vorstandschaft_janein":
             case "aktiv_janein":
             case "real_janein":
-            case "erledigt_janein":
             case "ich_eingeladen_janein":
             case "ich_rueckgemeldet_janein":
                 if (wert == "true")
@@ -33,7 +32,6 @@ function Schnittstelle_VariableWertFormatiertZurueck(wert, eigenschaft, liste) {
                 break;
             case "erstellung":
             case "letzte_aktivitaet":
-            case "erledigt":
             case "created_at":
             case "updated_at":
                 if (wert !== null) wert_formatiert = wert.toFormat("dd.MM.yyyy HH:mm");

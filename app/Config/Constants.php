@@ -154,11 +154,6 @@ defined('LISTEN') OR define( 'LISTEN', array(
         'controller' => 'strafkatalog',
         'element' => 'strafe',
     ),
-    'kassenbuch' => array(
-        'beschriftung' => 'Kassenbuch',
-        'controller' => 'strafkatalog',
-        'element' => 'kassenbucheintrag',
-    ),
     'strafkatalog_zugewiesene_strafen' => array(
         'beschriftung' => 'Zugewiesene Strafen',
         'controller' => 'strafkatalog',
@@ -240,14 +235,6 @@ defined('ELEMENTE') OR define( 'ELEMENTE', array(
             array( 'eigenschaft' => 'wert', 'prefix' => ' (', 'suffix' => ')' )
         ),
     ),
-    'kassenbucheintrag' => array(
-        'beschriftung' => 'Kassenbucheintrag',
-        'liste' => 'kassenbuch',
-        'element_beschriftung' => array(
-            array( 'eigenschaft' => 'titel' ),
-            array( 'eigenschaft' => 'wert', 'prefix' => ' (', 'suffix' => ')' )
-        ),
-    ),
     'strafkatalog_zugewiesene_strafe' => array(
         'beschriftung' => 'Zugewiesene Strafe',
         'liste' => 'strafkatalog_zugewiesene_strafen',
@@ -301,12 +288,6 @@ defined('WERKZEUGE') OR define( 'WERKZEUGE', array(
     'strafe_duplizieren' => array( 'klasse' => 'btn_strafe_duplizieren formular_oeffnen', 'symbol' => 'duplizieren', 'title' => 'Strafe duplizieren', ),
     'strafe_loeschen' => array( 'klasse' => 'btn_element_loeschen bestaetigung_einfordern', 'symbol' => 'loeschen', 'title' => 'Strafe löschen', 'farbe' => 'danger', ),
     'strafen_zuweisen' => array( 'klasse' => 'btn_strafen_zuweisen', 'symbol' => 'strafen_zuweisen', 'title' => 'Strafe einem Mitglied zuweisen', ),
-    'kassenbucheintrag_erstellen' => array( 'klasse' => 'btn_kassenbucheintrag_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Kassenbucheintrag erstellen', ),
-    'kassenbucheintrag_aendern' => array( 'klasse' => 'btn_kassenbucheintrag_aendern formular_oeffnen', 'symbol' => 'aendern', 'title' => 'Mitglied ändern', ),
-    'kassenbucheintrag_duplizieren' => array( 'klasse' => 'btn_kassenbucheintrag_duplizieren formular_oeffnen', 'symbol' => 'duplizieren', 'title' => 'Mitglied duplizieren', ),
-    'kassenbucheintrag_loeschen' => array( 'klasse' => 'btn_element_loeschen bestaetigung_einfordern', 'symbol' => 'loeschen', 'title' => 'Mitglied löschen', 'farbe' => 'danger', ),
-    'offene_kassenbucheintraege_verwalten' => array( 'klasse' => 'btn_offene_kassenbucheintraege_verwalten', 'symbol' => 'offene_kassenbucheintraege_verwalten', 'title' => 'Offene Kassenbucheinträge', ),
-    'kassenbucheintrag_offen_erledigt_markieren' => array( 'klasse' => 'btn_kassenbucheintrag_offen_erledigt_markieren bestaetigung_einfordern', 'symbol' => 'offen_erledigt_markieren', 'title' => 'Kassenbucheintrag als offen/erledigt markieren', ),
 
     'titel_erstellen' => array( 'klasse' => 'btn_titel_erstellen formular_oeffnen', 'symbol' => 'erstellen', 'title' => 'Titel erstellen', ),
     'titel_aendern' => array( 'klasse' => 'btn_titel_aendern formular_oeffnen', 'symbol' => 'aendern', 'title' => 'Titel ändern', ),
@@ -348,7 +329,6 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'aufgaben' => array ( 'bootstrap' => 'award' ),
     'termine' => array ( 'bootstrap' => 'calendar-event' ),
     'strafkatalog' => array ( 'bootstrap' => 'bank' ),
-    'kassenbuch' => array( 'bootstrap' => 'journal-bookmark' ),
     'notenbank' => array ( 'bootstrap' => 'file-earmark-music' ),
     'setliste' => array ( 'bootstrap' => 'music-note-list' ),
     'startseite' => array ( 'bootstrap' => '' ),
@@ -361,7 +341,6 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'duplizieren' => array( 'bootstrap' => 'files' ),
     'loeschen' => array( 'bootstrap' => 'trash' ),
     // 'zuordnen' => array( 'bootstrap' => 'box-arrow-in-down-left' ),
-    'offen_erledigt_markieren' => array ( 'bootstrap' => 'check2-circle' ),
 
     'sortable' => array( 'bootstrap' => 'arrow-down-up' ),
     'collapse_oeffnen' => array( 'bootstrap' => 'caret-right' ),
@@ -379,7 +358,6 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
 
     'rechte_vergeben' => array( 'bootstrap' => 'lock' ),
     'strafen_zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
-    'offene_kassenbucheintraege_verwalten' => array( 'bootstrap' => 'journal-check' ),
     'statistiken' => array( 'bootstrap' => 'graph-up-arrow' ),
     'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),
     'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),

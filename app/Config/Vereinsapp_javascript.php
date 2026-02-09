@@ -56,7 +56,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/element/Liste_$ElementAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$LinkAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$ZusatzsymbolAktualisieren.js?v='.VERSION,
-        'js/vereinsapp/liste/element/Liste_Element$ZusatzinfoAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$VorschauAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$NavigationAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$FormularInitialisieren.js?v='.VERSION,
@@ -166,10 +165,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/strafkatalog/Strafkatalog_Init.js?v='.VERSION,
         'js/vereinsapp/strafkatalog/Strafkatalog_StrafeErstellen.js?v='.VERSION,
         'js/vereinsapp/strafkatalog/Strafkatalog_StrafeAendern.js?v='.VERSION,
-        'js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragErstellen.js?v='.VERSION,
-        'js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragAendern.js?v='.VERSION,
-        'js/vereinsapp/strafkatalog/Strafkatalog_KassenbucheintragOffenErledigtMarkieren.js?v='.VERSION,
-        'js/vereinsapp/strafkatalog/Strafkatalog_OffeneKassenbucheintraegeVerwalten.js?v='.VERSION,
 
         'js/vereinsapp/notenbank/Notenbank_Init.js?v='.VERSION,
         'js/vereinsapp/notenbank/Notenbank_TitelErstellen.js?v='.VERSION,

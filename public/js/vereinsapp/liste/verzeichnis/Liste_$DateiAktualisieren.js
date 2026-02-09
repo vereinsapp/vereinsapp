@@ -49,9 +49,4 @@ function Liste_$DateiAktualisieren($datei) {
     $datei.find(".zusatzsymbol").each(function () {
         Liste_Element$ZusatzsymbolAktualisieren($(this), $datei);
     });
-
-    // ZUSATZINFO AKTUALISIEREN
-    $datei.find(".zusatzinfo").each(function () {
-        Liste_Element$ZusatzinfoAktualisieren($(this), $datei);
-    });
 }

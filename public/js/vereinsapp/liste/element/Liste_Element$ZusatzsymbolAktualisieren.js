@@ -19,28 +19,6 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                 $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["geburtstag"]["bootstrap"] + ' text-primary"></i>');
             break;
 
-        // Zusatzsymbol für offen_erledigt_markieren
-        case "offen_erledigt_markieren":
-            $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["offen_erledigt_markieren"]["bootstrap"] + ' text-primary"></i>');
-            break;
-
-        // Zusatzsymbol für offen_erledigt
-        case "offen_erledigt":
-            let offen_erledigt;
-            if (Schnittstelle_VariableRausZurueck("erledigt", element_id, liste, null) !== null) offen_erledigt = "erledigt";
-            else offen_erledigt = "offen";
-
-            $zusatzsymbol.html(
-                '<i class="bi bi-' +
-                    SYMBOLE[offen_erledigt]["bootstrap"] +
-                    ' btn_kassenbucheintrag_offen_erledigt_markieren bestaetigung_einfordern text-primary" data-' +
-                    LISTEN[liste].element +
-                    "_id=" +
-                    element_id +
-                    ' data-title="Kassenbucheintrag als offen/erledigt markieren" role="button"></i>',
-            );
-            break;
-
         // Zusatzsymbol für Kategorie
         case "kategorie":
             const kategorie = Schnittstelle_VariableRausZurueck("kategorie", element_id, liste, undefined);

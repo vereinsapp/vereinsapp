@@ -32,32 +32,6 @@ class Startseite extends BaseController {
             $this->viewdata['liste']['bevorstehende_termine_startseite']['vorschau'] = array( 'start', 'ort' );
         }
 
-        // if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
-        //     $this->viewdata['liste']['aufgaben_offen_startseite'] = HAUPTINSTANZEN['aufgaben'];
-        //     unset( $this->viewdata['liste']['aufgaben_offen_startseite']['werkzeugkasten'] );
-        //     unset( $this->viewdata['liste']['aufgaben_offen_startseite']['listenstatistik'] );
-        //     $this->viewdata['liste']['aufgaben_offen_startseite']['filtern'] = array(
-        //         'mitglied_id' => array( 'inklusiv' => array( ICH_ID ), ),
-        //         'erledigt_janein' => array( 'inklusiv' => array( FALSE ), ),
-        //     );
-        //     $this->viewdata['liste']['aufgaben_offen_startseite']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> '.HAUPTINSTANZEN['aufgaben']['beschriftung'];
-        //     $this->viewdata['liste']['aufgaben_offen_startseite']['vorschau'] = array( 'zugeordnetes_element' );
-        //     $this->viewdata['liste']['aufgaben_offen_startseite']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'aufgaben_rueckmeldungen', );
-        // }
-
-        if( array_key_exists( LISTEN['strafkatalog']['controller'], CONTROLLERS ) ) {
-            $this->viewdata['liste']['kassenbuch_offene_eintraege_startseite'] = HAUPTINSTANZEN['kassenbuch'];
-            unset( $this->viewdata['liste']['kassenbuch_offene_eintraege_startseite']['werkzeugkasten'] );
-            unset( $this->viewdata['liste']['kassenbuch_offene_eintraege_startseite']['listenstatistik'] );
-            unset( $this->viewdata['liste']['kassenbuch_offene_eintraege_startseite']['zusatzsymbol'] );
-            $this->viewdata['liste']['kassenbuch_offene_eintraege_startseite']['filtern'] = array(
-                'mitglied_id' => array( 'inklusiv' => array( ICH_ID ), ),
-                'erledigt_janein' => array( 'inklusiv' => array( FALSE ), ),
-            );
-            $this->viewdata['liste']['kassenbuch_offene_eintraege_startseite']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['kassenbuch']['bootstrap'].'"></i> '.HAUPTINSTANZEN['kassenbuch']['beschriftung'];
-            $this->viewdata['liste']['kassenbuch_offene_eintraege_startseite']['vorschau'] = array( 'erstellung', 'wert' );
-        }
-
         if( array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) {
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung'] = HAUPTINSTANZEN['termine'];
             unset( $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['werkzeugkasten'] );

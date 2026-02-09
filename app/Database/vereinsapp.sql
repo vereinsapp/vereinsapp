@@ -319,24 +319,6 @@ CREATE TABLE `vereinsapp_strafkatalog` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `vereinsapp_strafkatalog_kassenbuch`
---
-
-CREATE TABLE `vereinsapp_strafkatalog_kassenbuch` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `titel` varchar(100) NOT NULL,
-  `wert` decimal(10,2) NOT NULL,
-  `mitglied_id` int(11) UNSIGNED NOT NULL,
-  `erledigt` datetime DEFAULT NULL,
-  `bemerkung` varchar(100) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Tabellenstruktur für Tabelle `vereinsapp_strafkatalog_zugewiesene_strafen`
 --
 
@@ -518,13 +500,6 @@ ALTER TABLE `vereinsapp_strafkatalog`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `vereinsapp_strafkatalog_kassenbuch`
---
-ALTER TABLE `vereinsapp_strafkatalog_kassenbuch`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `mitglied_id` (`mitglied_id`);
-
---
 -- Indizes für die Tabelle `vereinsapp_strafkatalog_zugewiesene_strafen`
 --
 ALTER TABLE `vereinsapp_strafkatalog_zugewiesene_strafen`
@@ -649,12 +624,6 @@ ALTER TABLE `vereinsapp_strafkatalog`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT für Tabelle `vereinsapp_strafkatalog_kassenbuch`
---
-ALTER TABLE `vereinsapp_strafkatalog_kassenbuch`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT für Tabelle `vereinsapp_strafkatalog_zugewiesene_strafen`
 --
 ALTER TABLE `vereinsapp_strafkatalog_zugewiesene_strafen`
@@ -726,12 +695,6 @@ ALTER TABLE `vereinsapp_mitglieder_zugaenge`
 ALTER TABLE `vereinsapp_notenbank_setliste`
   ADD CONSTRAINT `vereinsapp_notenbank_setliste_titel_id_foreign` FOREIGN KEY (`titel_id`) REFERENCES `vereinsapp_notenbank` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `vereinsapp_notenbank_setliste_termin_id_foreign` FOREIGN KEY (`termin_id`) REFERENCES `vereinsapp_termine` (`id`) ON DELETE CASCADE;
-
---
--- Constraints der Tabelle `vereinsapp_strafkatalog_kassenbuch`
---
-ALTER TABLE `vereinsapp_strafkatalog_kassenbuch`
-  ADD CONSTRAINT `vereinsapp_strafkatalog_kassenbuch_mitglied_id_foreign` FOREIGN KEY (`mitglied_id`) REFERENCES `vereinsapp_mitglieder` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints der Tabelle `vereinsapp_strafkatalog_zugewiesene_strafen`
