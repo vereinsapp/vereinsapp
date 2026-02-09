@@ -16,6 +16,12 @@ class Notenbank extends BaseController {
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
+            $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['termine'];
+            unset($this->viewdata['liste']['setliste_verwalten']['filtern']['ich_eingeladen_janein']);
+            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'notenbank_setliste', );
+
+            $this->viewdata['werkzeugkasten'][] = 'setliste_verwalten';
+
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_handle'] = TRUE;
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten'][] = 'titel_erstellen';
 
@@ -37,6 +43,12 @@ class Notenbank extends BaseController {
         $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array( 'liste' => 'notenbank', 'link' => TRUE, 'titel_id' => $titel_id, );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
+
+            $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['termine'];
+            unset($this->viewdata['liste']['setliste_verwalten']['filtern']['ich_eingeladen_janein']);
+            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'notenbank_setliste', );
+
+            $this->viewdata['werkzeugkasten'][] = 'setliste_verwalten';
 
             $this->viewdata['werkzeugkasten'][] = 'titel_aendern';
             $this->viewdata['werkzeugkasten'][] = 'titel_duplizieren';

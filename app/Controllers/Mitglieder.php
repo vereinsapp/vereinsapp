@@ -41,6 +41,28 @@ class Mitglieder extends BaseController {
 
         }
 
+        if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
+
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['termine'];
+            unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['ich_eingeladen_janein']);
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['start'] = array( 'start' => JAHRESBEGINN, 'ende' => MORGEN );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
+
+            $this->viewdata['werkzeugkasten'][] = 'termine_anwesenheiten_dokumentieren';
+
+        }
+
+        if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+
+            $this->viewdata['liste']['strafen_zuweisen'] = HAUPTINSTANZEN['strafkatalog'];
+            unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
+            $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'strafkatalog_zugewiesene_strafen', );
+
+            $this->viewdata['werkzeugkasten'][] = 'strafen_zuweisen';
+
+        }
+
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
             $this->viewdata['liste']['alle_mitglieder']['werkzeugkasten_handle'] = TRUE;
@@ -100,9 +122,31 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen',  'mitglied_id' => $mitglied_id);
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', );
 
             $this->viewdata['werkzeugkasten'][] = 'termine_rueckmeldungen_verwalten';
+
+        }
+
+        if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
+
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['termine'];
+            unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['ich_eingeladen_janein']);
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['start'] = array( 'start' => JAHRESBEGINN, 'ende' => MORGEN );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
+
+            $this->viewdata['werkzeugkasten'][] = 'termine_anwesenheiten_dokumentieren';
+
+        }
+
+        if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+
+            $this->viewdata['liste']['strafen_zuweisen'] = HAUPTINSTANZEN['strafkatalog'];
+            unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
+            $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'strafkatalog_zugewiesene_strafen', );
+
+            $this->viewdata['werkzeugkasten'][] = 'strafen_zuweisen';
 
         }
 

@@ -83,13 +83,13 @@ verzeichnis überarbeiten
     Funktion zur Erstellung eines Verzeichnisses, inkl. Kopieren von index.html aus dem übergeordneten Verzeichnis
 .btn in .formular mit ENTER betätigbar machen
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen (ausschließlich spezielle Zusatzsymbole wie beispiele Termin-Kategorie als hex-Symbole)
-Zusatzsymbol rechts und links einführen
 Neue bootstrap icons Version einführen (unlock2 statt lock)
 Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details)
 localstorage_reset_string und datenschutz_richtlinie_string entfernen (hinzugefügt im Juni 2025?)
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
+kacheln-View ergänzen (analog zu liste-View)
 data-Prefix loswerden
-werkzeugkasten_handle als ganz normales Zusätzsymbol in der Liste umbauen (und folglich bspw. für Termine in der Termin-Übersicht andere Zusatzsymbole bspw. für Anwesenheiten dokumentieren einführen)
+Mehrere Verknüpfungen mit gleichen element_id zulassen
 
 ERLEDIGT
 

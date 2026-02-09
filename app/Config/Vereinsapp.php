@@ -5,6 +5,7 @@ namespace Config;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\I18n\Time;
 defined('HEUTE') OR define( 'HEUTE', Time::today( 'Europe/Berlin' )->toDateTimeString() );
+defined('MORGEN') OR define( 'MORGEN', Time::today( 'Europe/Berlin' )->addDays(1)->toDateTimeString() );
 defined('JAHRESBEGINN') OR define( 'JAHRESBEGINN', Time::today( 'Europe/Berlin' )->setMonth(1)->setDay(1)->setHour(0)->setMinute(0)->setSecond(0)->toDateTimeString() );
 defined('NAECHSTER_JAHRESBEGINN') OR define( 'NAECHSTER_JAHRESBEGINN', Time::today( 'Europe/Berlin' )->addYears(1)->setMonth(1)->setDay(1)->setHour(0)->setMinute(0)->setSecond(0)->toDateTimeString() );
 
@@ -1047,8 +1048,9 @@ class Vereinsapp extends BaseConfig
         'strafkatalog_zugewiesene_strafen' => array(
             "verknuepfte_listen" => array( "strafkatalog", "mitglieder", ),
             'auswahlmoeglichkeiten' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung']['bootstrap'].'"></i>' ),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung']['bootstrap'].'"></i>' ),
+                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung']['bootstrap'].'"></i>' ),
+                1 => array( 'farbe' => 'warning', 'aktiv' => '<i class="bi bi-'.SYMBOLE['offen']['bootstrap'].'"></i>' ),
+                2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung']['bootstrap'].'"></i>' ),
              ),
         ),
         'notenbank_setliste' => array(

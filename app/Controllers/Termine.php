@@ -19,7 +19,7 @@ class Termine extends BaseController {
         $this->viewdata['liste']['bevorstehende_termine']['vorschau'] = array( 'start', 'ort' );
         $this->viewdata['liste']['bevorstehende_termine']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'mitglied_id' => ICH_ID, );
 
-        if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) {
+        if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
             $this->viewdata['liste']['termine_aufgaben_zuordnen'] = HAUPTINSTANZEN['aufgaben'];
             // unset($this->viewdata['liste']['termine_aufgaben_zuordnen']['filtern']);
@@ -31,7 +31,7 @@ class Termine extends BaseController {
 
         }
 
-        if( array_key_exists( LISTEN['notenbank']['controller'], CONTROLLERS ) AND auth()->user()->can( 'notenbank.verwaltung' ) ) {
+        if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
             $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['notenbank'];
             // unset($this->viewdata['liste']['setliste_verwalten']['filtern']);
@@ -43,7 +43,7 @@ class Termine extends BaseController {
 
         }
 
-        if( auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
+        if( auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['mitglieder'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']);
@@ -145,7 +145,6 @@ class Termine extends BaseController {
             if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
                 $this->viewdata['liste']['zugeordnete_setliste']['sortable'] = TRUE;
-                
                 $this->viewdata['liste']['zugeordnete_setliste']['werkzeugkasten'][] = 'setliste_verwalten';
 
                 $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['notenbank'];
@@ -158,7 +157,7 @@ class Termine extends BaseController {
 
         }
 
-        if( auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) {
+        if( auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['mitglieder'];
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
