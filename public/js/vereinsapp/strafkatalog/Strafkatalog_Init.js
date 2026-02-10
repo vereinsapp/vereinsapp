@@ -82,14 +82,14 @@ function Strafkatalog_Init() {
         );
     });
 
-    // ZUGEWIESENE STRAFE ÄNDERN
-    $(document).on("change", '.chk_verknuepfung_erstellen[data-verknuepfungen="strafkatalog_zugewiesene_strafen"]', function () {
+    // ZUGEWIESENE STRAFE ERSTELLEN
+    $(document).on("click", '.btn_verknuepfung_erstellen[data-verknuepfungen="strafkatalog_zugewiesene_strafen"]', function () {
         Liste_VerknuepfungErstellen(
             { $ausloesend: $(this) },
             {
                 strafe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-strafe_id"), undefined),
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
-                status: Number($(this).is(":checked")),
+                status: 1,
             },
             "strafkatalog_zugewiesene_strafen",
         );

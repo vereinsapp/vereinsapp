@@ -20,7 +20,8 @@ class Strafkatalog extends BaseController {
 
             $this->viewdata['liste']['strafen_zuweisen'] = HAUPTINSTANZEN['mitglieder'];
             unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
-            $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'strafkatalog_zugewiesene_strafen', );
+            $this->viewdata['liste']['strafen_zuweisen']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
+            $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = array( 'typ' => 'element_auswahl', 'verknuepfungen' => 'strafkatalog_zugewiesene_strafen', );
 
             $this->viewdata['werkzeugkasten'][] = 'strafen_zuweisen';
             $this->viewdata['werkzeugkasten'][] = 'strafe_aendern';
@@ -94,7 +95,9 @@ class Strafkatalog extends BaseController {
             );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $zugewiesene_strafe['bemerkung'] = $this->request->getpost()['bemerkung']; else $zugewiesene_strafe['bemerkung'] = NULL;
 
-            $zugewiesene_strafe_Model->where( array( 'strafe_id' => $zugewiesene_strafe['strafe_id'], 'mitglied_id' => $zugewiesene_strafe['mitglied_id'] ) )->delete();
+            if ( VERKNUEPFUNGEN['strafkatalog_zugewiesene_strafen']['nur_eins_erlaubt_janein'] )
+                $zugewiesene_strafe_Model->where( array( 'strafe_id' => $zugewiesene_strafe['strafe_id'], 'mitglied_id' => $zugewiesene_strafe['mitglied_id'] ) )->delete();
+
             if( (int)$zugewiesene_strafe['status'] > 0 ) {
                 $zugewiesene_strafe_Model->save( $zugewiesene_strafe );
                 $ajax_antwort['strafkatalog_zugewiesene_strafe_id'] = (int)$zugewiesene_strafe_Model->getInsertID();

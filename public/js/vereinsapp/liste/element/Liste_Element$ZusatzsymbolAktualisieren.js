@@ -154,14 +154,14 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             );
 
             let verknuepfung_status = Schnittstelle_VariableRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
-            if (verknuepfung_status > 0 && !(verknuepfung_status in VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten)) verknuepfung_status = 1;
+            if (verknuepfung_status > 0 && !(verknuepfung_status in VERKNUEPFUNGEN[verknuepfungen].status_erlaubt)) verknuepfung_status = 1;
 
             if (typeof verknuepfung_status !== "undefined")
                 $zusatzsymbol.html(
                     '<span class="text-' +
-                        VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[verknuepfung_status].farbe +
+                        VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[verknuepfung_status].farbe +
                         '">' +
-                        VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[verknuepfung_status].aktiv +
+                        VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[verknuepfung_status].aktiv +
                         "</span>",
                 );
 

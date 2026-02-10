@@ -18,7 +18,7 @@ class Notenbank extends BaseController {
 
             $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['setliste_verwalten']['filtern']['ich_eingeladen_janein']);
-            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'notenbank_setliste', );
+            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'notenbank_setliste', );
 
             $this->viewdata['werkzeugkasten'][] = 'setliste_verwalten';
 
@@ -46,7 +46,7 @@ class Notenbank extends BaseController {
 
             $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['setliste_verwalten']['filtern']['ich_eingeladen_janein']);
-            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'notenbank_setliste', );
+            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'notenbank_setliste', );
 
             $this->viewdata['werkzeugkasten'][] = 'setliste_verwalten';
 
@@ -135,7 +135,9 @@ class Notenbank extends BaseController {
             );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $setlisteneintrag['bemerkung'] = $this->request->getpost()['bemerkung']; else $setlisteneintrag['bemerkung'] = NULL;
 
-            $setlisteneintrag_Model->where( array( 'titel_id' => $setlisteneintrag['titel_id'], 'termin_id' => $setlisteneintrag['termin_id'] ) )->delete();
+            if ( VERKNUEPFUNGEN['notenbank_setliste']['nur_eins_erlaubt_janein'] )
+                $setlisteneintrag_Model->where( array( 'titel_id' => $setlisteneintrag['titel_id'], 'termin_id' => $setlisteneintrag['termin_id'] ) )->delete();
+
             if( (int)$setlisteneintrag['status'] > 0 ) {
                 $andere_setlisteneintraege = $setlisteneintrag_Model->where( array( 'termin_id' => $setlisteneintrag['termin_id'] ) )->orderBy('status', 'DESC')->findAll();
                 if( count( $andere_setlisteneintraege ) > 0 ) $setlisteneintrag['status'] = (int)($andere_setlisteneintraege[0]['status']) + 1;

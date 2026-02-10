@@ -8,7 +8,7 @@ function Liste_$AuswertungAktualisieren($auswertung) {
 
     // ERGEBNIS NACH STATUS ERMITTELN
     const ergebnis_nach_status = new Array();
-    $.each(Object.keys(VERKNUEPFUNGEN[auswertungen].auswahlmoeglichkeiten), function (position, status) {
+    $.each(Object.keys(VERKNUEPFUNGEN[auswertungen].status_erlaubt), function (position, status) {
         ergebnis_nach_status[status] = new Array();
     });
     ergebnis_nach_status[0] = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("data-" + LISTEN[liste].element + "_ids"), new Array());

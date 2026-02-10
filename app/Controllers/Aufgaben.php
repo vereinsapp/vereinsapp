@@ -76,7 +76,9 @@ class Aufgaben extends BaseController {
             );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $rueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung']; else $rueckmeldung['bemerkung'] = NULL;
 
-            $rueckmeldung_Model->where( array( 'aufgabe_id' => $rueckmeldung['aufgabe_id'], 'mitglied_id' => $rueckmeldung['mitglied_id'] ) )->delete();
+            if ( VERKNUEPFUNGEN['aufgaben_rueckmeldungen']['nur_eins_erlaubt_janein'] )
+                $rueckmeldung_Model->where( array( 'aufgabe_id' => $rueckmeldung['aufgabe_id'], 'mitglied_id' => $rueckmeldung['mitglied_id'] ) )->delete();
+
             if( (int)$rueckmeldung['status'] > 0 ) {
                 $rueckmeldung_Model->save( $rueckmeldung );
                 $ajax_antwort['aufgaben_rueckmeldung_id'] = (int)$rueckmeldung_Model->getInsertID();
@@ -125,7 +127,9 @@ class Aufgaben extends BaseController {
             );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $zuordnung_termine['bemerkung'] = $this->request->getpost()['bemerkung']; else $zuordnung_termine['bemerkung'] = NULL;
 
-            $zuordnung_termine_Model->where( array( 'aufgabe_id' => $zuordnung_termine['aufgabe_id'], 'termin_id' => $zuordnung_termine['termin_id'] ) )->delete();
+            if ( VERKNUEPFUNGEN['aufgaben_zuordnungen_termine']['nur_eins_erlaubt_janein'] )
+                $zuordnung_termine_Model->where( array( 'aufgabe_id' => $zuordnung_termine['aufgabe_id'], 'termin_id' => $zuordnung_termine['termin_id'] ) )->delete();
+
             if( (int)$zuordnung_termine['status'] > 0 ) {
                 $zuordnung_termine_Model->save( $zuordnung_termine );
                 $ajax_antwort['aufgaben_zuordnung_termine_id'] = (int)$zuordnung_termine_Model->getInsertID();

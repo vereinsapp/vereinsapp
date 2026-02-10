@@ -23,7 +23,7 @@ class Mitglieder extends BaseController {
         if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {
 
             $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
-            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', );
+            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'vergebene_rechte', );
             $this->viewdata['liste']['rechte_vergeben']['disabled_ids'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
 
             $this->viewdata['werkzeugkasten'][] = 'rechte_vergeben';
@@ -35,7 +35,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', );
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'status_auswahl', 'verknuepfungen' => 'termine_rueckmeldungen', );
 
             $this->viewdata['werkzeugkasten'][] = 'termine_rueckmeldungen_verwalten';
 
@@ -46,7 +46,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['ich_eingeladen_janein']);
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['start'] = array( 'start' => JAHRESBEGINN, 'ende' => MORGEN );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'termine_anwesenheiten', );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
 
             $this->viewdata['werkzeugkasten'][] = 'termine_anwesenheiten_dokumentieren';
@@ -57,7 +57,7 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['liste']['strafen_zuweisen'] = HAUPTINSTANZEN['strafkatalog'];
             unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
-            $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'strafkatalog_zugewiesene_strafen', );
+            $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'strafkatalog_zugewiesene_strafen', );
 
             $this->viewdata['werkzeugkasten'][] = 'strafen_zuweisen';
 
@@ -110,7 +110,7 @@ class Mitglieder extends BaseController {
         if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {
 
             $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
-            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', 'mitglied_id' => $mitglied_id, );
+            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'vergebene_rechte', 'mitglied_id' => $mitglied_id, );
             $this->viewdata['liste']['rechte_vergeben']['disabled_ids'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
 
             $this->viewdata['werkzeugkasten'][] = 'rechte_vergeben';
@@ -122,7 +122,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', );
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'status_auswahl', 'verknuepfungen' => 'termine_rueckmeldungen', );
 
             $this->viewdata['werkzeugkasten'][] = 'termine_rueckmeldungen_verwalten';
 
@@ -133,7 +133,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['ich_eingeladen_janein']);
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['start'] = array( 'start' => JAHRESBEGINN, 'ende' => MORGEN );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'termine_anwesenheiten', );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
 
             $this->viewdata['werkzeugkasten'][] = 'termine_anwesenheiten_dokumentieren';
@@ -144,7 +144,7 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['liste']['strafen_zuweisen'] = HAUPTINSTANZEN['strafkatalog'];
             unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
-            $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'strafkatalog_zugewiesene_strafen', );
+            $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'strafkatalog_zugewiesene_strafen', );
 
             $this->viewdata['werkzeugkasten'][] = 'strafen_zuweisen';
 
@@ -413,8 +413,8 @@ class Mitglieder extends BaseController {
         else if( (int)$this->request->getPost()['verfuegbares_recht_id'] === 8 ) $ajax_antwort['validation'] = 'Die Vergabe des Rechts für Globale Einstellungen kann nicht verändert werden.';
         else {
             $permission = NULL; foreach( VERFUEGBARE_RECHTE as $verfuegbares_recht ) if( $verfuegbares_recht['id'] == $this->request->getPost()['verfuegbares_recht_id'] ) $permission = $verfuegbares_recht['permission'];
-            model(Mitglied_Model::class)->findById( $this->request->getPost()['mitglied_id'] )->removePermission( $permission );
             if( filter_var( $this->request->getpost()['status'], FILTER_VALIDATE_BOOLEAN) ) model(Mitglied_Model::class)->findById( $this->request->getPost()['mitglied_id'] )->addPermission( $permission );
+            else model(Mitglied_Model::class)->findById( $this->request->getPost()['mitglied_id'] )->removePermission( $permission );
         }
         
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

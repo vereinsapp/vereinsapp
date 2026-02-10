@@ -71,7 +71,7 @@ function Liste_$VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen
 
         // Zugehöriges Label bearbeiten
         const $zugehoeriges_label = $verknuepfungen_auswahlmoeglichkeiten.siblings("label");
-        $zugehoeriges_label.addClass("form-check-label").attr("role", "button").attr("for", zufaelligeZeichenketteZurueck(8));
+        $zugehoeriges_label.addClass("form-check-label").attr("for", zufaelligeZeichenketteZurueck(8));
 
         $verknuepfungen_auswahlmoeglichkeiten.find(".chk_verknuepfung_erstellen").each(function () {
             const $chk_verknuepfung_erstellen = $(this);
@@ -95,38 +95,36 @@ function Liste_$VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen
 
             if (status === verknuepfung_status) {
                 $btn_verknuepfung_erstellen
-                    .removeClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[status].farbe)
-                    .addClass("btn-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[status].farbe)
+                    .removeClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
+                    .addClass("btn-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
                     .prop("disabled", true);
-                $btn_verknuepfung_erstellen.find(".beschriftung").html(VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[status].passiv);
+                $btn_verknuepfung_erstellen.find(".beschriftung").html(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].passiv);
             } else {
                 $btn_verknuepfung_erstellen
-                    .addClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[status].farbe)
-                    .removeClass("btn-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[status].farbe)
+                    .addClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
+                    .removeClass("btn-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
                     .prop("disabled", false);
-                $btn_verknuepfung_erstellen.find(".beschriftung").html(VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[status].aktiv);
+                $btn_verknuepfung_erstellen.find(".beschriftung").html(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].aktiv);
             }
         });
 
         $verknuepfungen_auswahlmoeglichkeiten.find(".btn_element_bemerkung_aendern").each(function () {
             const $btn_element_bemerkung_aendern = $(this);
 
-            $.each(VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten, function (status) {
+            $.each(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt, function (status) {
                 $btn_element_bemerkung_aendern
-                    .removeClass("btn-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[status].farbe)
-                    .removeClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[status].farbe);
+                    .removeClass("btn-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
+                    .removeClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe);
             });
             $btn_element_bemerkung_aendern.removeClass("btn-outline-primary");
 
             if (typeof verknuepfung_id !== "undefined") {
                 if (typeof verknuepfung_status !== "undefined") {
                     if (Schnittstelle_VariableRausZurueck("bemerkung", verknuepfung_id, verknuepfungen, null) !== null)
-                        $btn_element_bemerkung_aendern.addClass(
-                            "btn-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[verknuepfung_status].farbe,
-                        );
+                        $btn_element_bemerkung_aendern.addClass("btn-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[verknuepfung_status].farbe);
                     else
                         $btn_element_bemerkung_aendern.addClass(
-                            "btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].auswahlmoeglichkeiten[verknuepfung_status].farbe,
+                            "btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[verknuepfung_status].farbe,
                         );
                 } else {
                     $btn_element_bemerkung_aendern.addClass("btn-outline-primary");

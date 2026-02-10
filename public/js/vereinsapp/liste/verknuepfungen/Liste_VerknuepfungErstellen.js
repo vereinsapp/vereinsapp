@@ -25,25 +25,26 @@ function Liste_VerknuepfungErstellen(dom, data, verknuepfungen) {
             });
 
             // bereits vorhandene identische Verknüpfungen werden gelöscht
-            $.each(
-                Schnittstelle_VariableRausZurueck(
-                    "zugeordnete_" + LISTEN[verknuepfungen].element + "_ids",
-                    verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
-                    verknuepfte_listen[0],
-                    new Array(),
-                ),
-                function (position, zugeordnete_verknuepfung_id) {
-                    if (
-                        Schnittstelle_VariableRausZurueck(
-                            LISTEN[verknuepfte_listen[1]].element + "_id",
-                            zugeordnete_verknuepfung_id,
-                            verknuepfungen,
-                            undefined,
-                        ) === verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"]
-                    )
-                        Schnittstelle_VariableLoeschen(zugeordnete_verknuepfung_id, verknuepfungen);
-                },
-            );
+            if (VERKNUEPFUNGEN[verknuepfungen].nur_eins_erlaubt_janein)
+                $.each(
+                    Schnittstelle_VariableRausZurueck(
+                        "zugeordnete_" + LISTEN[verknuepfungen].element + "_ids",
+                        verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
+                        verknuepfte_listen[0],
+                        new Array(),
+                    ),
+                    function (position, zugeordnete_verknuepfung_id) {
+                        if (
+                            Schnittstelle_VariableRausZurueck(
+                                LISTEN[verknuepfte_listen[1]].element + "_id",
+                                zugeordnete_verknuepfung_id,
+                                verknuepfungen,
+                                undefined,
+                            ) === verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"]
+                        )
+                            Schnittstelle_VariableLoeschen(zugeordnete_verknuepfung_id, verknuepfungen);
+                    },
+                );
 
             // eine neue Verknüpfung wird hinzugefügt
             if (AJAX.data.status > 0) {

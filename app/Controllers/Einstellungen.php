@@ -22,7 +22,7 @@ class Einstellungen extends BaseController {
 
         if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {
 
-            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'vergebene_rechte', 'mitglied_id' => ICH_ID, );
+            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'vergebene_rechte', 'mitglied_id' => ICH_ID, );
             $this->viewdata['liste']['rechte_vergeben']['disabled_ids'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
 
         } else {

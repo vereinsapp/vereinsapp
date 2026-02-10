@@ -17,13 +17,13 @@ class Termine extends BaseController {
         $this->viewdata['liste']['bevorstehende_termine']['group-flush'] = TRUE;
         $this->viewdata['liste']['bevorstehende_termine']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
         $this->viewdata['liste']['bevorstehende_termine']['vorschau'] = array( 'start', 'ort' );
-        $this->viewdata['liste']['bevorstehende_termine']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', 'mitglied_id' => ICH_ID, );
+        $this->viewdata['liste']['bevorstehende_termine']['verknuepfungen'] = array( 'typ' => 'status_auswahl', 'verknuepfungen' => 'termine_rueckmeldungen', 'mitglied_id' => ICH_ID, );
 
         if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
             $this->viewdata['liste']['termine_aufgaben_zuordnen'] = HAUPTINSTANZEN['aufgaben'];
             // unset($this->viewdata['liste']['termine_aufgaben_zuordnen']['filtern']);
-            $this->viewdata['liste']['termine_aufgaben_zuordnen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', );
+            $this->viewdata['liste']['termine_aufgaben_zuordnen']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', );
             $this->viewdata['liste']['termine_aufgaben_zuordnen']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
             $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeugkasten'][] = 'aufgabe_erstellen';
 
@@ -35,7 +35,7 @@ class Termine extends BaseController {
 
             $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['notenbank'];
             // unset($this->viewdata['liste']['setliste_verwalten']['filtern']);
-            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'notenbank_setliste', );
+            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'notenbank_setliste', );
             $this->viewdata['liste']['setliste_verwalten']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
             $this->viewdata['liste']['setliste_verwalten']['werkzeugkasten'][] = 'titel_erstellen';
 
@@ -48,7 +48,7 @@ class Termine extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['mitglieder'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']);
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', );
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'status_auswahl', 'verknuepfungen' => 'termine_rueckmeldungen', );
 
             $this->viewdata['werkzeugkasten'][] = 'termine_rueckmeldungen_verwalten';
 
@@ -58,7 +58,7 @@ class Termine extends BaseController {
 
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
             unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'termine_anwesenheiten', );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
 
             $this->viewdata['werkzeugkasten'][] = 'termine_anwesenheiten_dokumentieren';
@@ -127,7 +127,7 @@ class Termine extends BaseController {
 
                 $this->viewdata['liste']['termine_aufgaben_zuordnen'] = HAUPTINSTANZEN['aufgaben'];
                 // unset($this->viewdata['liste']['termine_aufgaben_zuordnen']['filtern']);
-                $this->viewdata['liste']['termine_aufgaben_zuordnen']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', 'termin_id' => $termin_id, );
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'aufgaben_zuordnungen_termine', 'termin_id' => $termin_id, );
                 $this->viewdata['liste']['termine_aufgaben_zuordnen']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
                 $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeugkasten'][] = 'aufgabe_erstellen';
 
@@ -149,7 +149,7 @@ class Termine extends BaseController {
 
                 $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['notenbank'];
                 // unset($this->viewdata['liste']['setliste_verwalten']['filtern']);
-                $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'notenbank_setliste', 'termin_id' => $termin_id, );
+                $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'notenbank_setliste', 'termin_id' => $termin_id, );
                 $this->viewdata['liste']['setliste_verwalten']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
                 $this->viewdata['liste']['setliste_verwalten']['werkzeugkasten'][] = 'titel_erstellen';
 
@@ -162,7 +162,7 @@ class Termine extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = HAUPTINSTANZEN['mitglieder'];
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'auswahlmoeglichkeiten', 'verknuepfungen' => 'termine_rueckmeldungen', );
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = array( 'typ' => 'status_auswahl', 'verknuepfungen' => 'termine_rueckmeldungen', );
 
             $this->viewdata['werkzeugkasten'][] = 'termine_rueckmeldungen_verwalten';
 
@@ -172,7 +172,7 @@ class Termine extends BaseController {
 
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = HAUPTINSTANZEN['mitglieder'];
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'check', 'verknuepfungen' => 'termine_anwesenheiten', );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'termine_anwesenheiten', );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
 
             $this->viewdata['werkzeugkasten'][] = 'termine_anwesenheiten_dokumentieren';
@@ -327,7 +327,9 @@ class Termine extends BaseController {
             );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $rueckmeldung['bemerkung'] = $this->request->getpost()['bemerkung']; else $rueckmeldung['bemerkung'] = NULL;
 
-            $rueckmeldung_Model->where( array( 'termin_id' => $rueckmeldung['termin_id'], 'mitglied_id' => $rueckmeldung['mitglied_id'] ) )->delete();
+            if ( VERKNUEPFUNGEN['termine_rueckmeldungen']['nur_eins_erlaubt_janein'] )
+                $rueckmeldung_Model->where( array( 'termin_id' => $rueckmeldung['termin_id'], 'mitglied_id' => $rueckmeldung['mitglied_id'] ) )->delete();
+
             if( (int)$rueckmeldung['status'] > 0 ) {
                 $rueckmeldung_Model->save( $rueckmeldung );
                 $ajax_antwort['termine_rueckmeldung_id'] = (int)$rueckmeldung_Model->getInsertID();
@@ -376,7 +378,9 @@ class Termine extends BaseController {
             );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $anwesenheit['bemerkung'] = $this->request->getpost()['bemerkung']; else $anwesenheit['bemerkung'] = NULL;
 
-            $anwesenheit_Model->where( array( 'termin_id' => $anwesenheit['termin_id'], 'mitglied_id' => $anwesenheit['mitglied_id'] ) )->delete();
+            if ( VERKNUEPFUNGEN['termine_anwesenheiten']['nur_eins_erlaubt_janein'] )
+                $anwesenheit_Model->where( array( 'termin_id' => $anwesenheit['termin_id'], 'mitglied_id' => $anwesenheit['mitglied_id'] ) )->delete();
+
             if( (int)$anwesenheit['status'] > 0 ) {
                 $anwesenheit_Model->save( $anwesenheit );
                 $ajax_antwort['termine_anwesenheit_id'] = (int)$anwesenheit_Model->getInsertID();
