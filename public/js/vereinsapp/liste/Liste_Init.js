@@ -72,9 +72,11 @@ function Liste_Init() {
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigung_einfordern"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal") },
-            { weiterleiten: $(this).attr("data-weiterleiten") },
+            {
+                [LISTEN[liste].element + "_id"]: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id")),
+                weiterleiten: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-weiterleiten")),
+            },
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id")),
             liste,
         );
     });

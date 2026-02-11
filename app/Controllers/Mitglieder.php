@@ -57,7 +57,8 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['liste']['strafen_zuweisen'] = HAUPTINSTANZEN['strafkatalog'];
             unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
-            $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'strafkatalog_zugewiesene_strafen', );
+            $this->viewdata['liste']['strafen_zuweisen']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['strafkatalog']['bootstrap'].'"></i> '.HAUPTINSTANZEN['strafkatalog']['beschriftung'];
+            $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = array( 'typ' => 'element_auswahl', 'verknuepfungen' => 'strafkatalog_zugewiesene_strafen', );
 
             $this->viewdata['werkzeugkasten'][] = 'strafen_zuweisen';
 
@@ -144,7 +145,8 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['liste']['strafen_zuweisen'] = HAUPTINSTANZEN['strafkatalog'];
             unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
-            $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'strafkatalog_zugewiesene_strafen', );
+            $this->viewdata['liste']['strafen_zuweisen']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['strafkatalog']['bootstrap'].'"></i> '.HAUPTINSTANZEN['strafkatalog']['beschriftung'];
+            $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = array( 'typ' => 'element_auswahl', 'verknuepfungen' => 'strafkatalog_zugewiesene_strafen', );
 
             $this->viewdata['werkzeugkasten'][] = 'strafen_zuweisen';
 

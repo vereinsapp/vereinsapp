@@ -10,6 +10,8 @@ function Liste_VerknuepfungenModalOeffnen(modal_id, instanz, title, verknuepfte_
     const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, modal_id);
     const liste = Schnittstelle_VariableWertBereinigtZurueck($neues_modal.find("#" + instanz + ".liste[data-liste]").attr("data-liste"), undefined);
 
+    LISTEN[liste].instanz[instanz].$blanko_element.attr("data-title", title);
+
     const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
     $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
         const element_id = verknuepfte_element_id[LISTEN[verknuepfte_liste].element + "_id"];

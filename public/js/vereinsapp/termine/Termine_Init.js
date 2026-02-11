@@ -185,12 +185,14 @@ function Termine_Init() {
     // RÜCKMELDUNG ERSTELLEN
     $(document).on("click", '.btn_verknuepfung_erstellen[data-verknuepfungen="termine_rueckmeldungen"]', function () {
         Liste_VerknuepfungErstellen(
-            { $ausloesend: $(this) },
+            $(this).hasClass("bestaetigung_einfordern"),
+            { $ausloesend: $(this), $modal: $(this).closest(".modal") },
             {
                 termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
                 status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-status"), undefined),
             },
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             "termine_rueckmeldungen",
         );
     });
@@ -212,12 +214,14 @@ function Termine_Init() {
     // ANWESENHEIT ÄNDERN
     $(document).on("change", '.chk_verknuepfung_erstellen[data-verknuepfungen="termine_anwesenheiten"]', function () {
         Liste_VerknuepfungErstellen(
-            { $ausloesend: $(this) },
+            $(this).hasClass("bestaetigung_einfordern"),
+            { $ausloesend: $(this), $modal: $(this).closest(".modal") },
             {
                 termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
                 status: Number($(this).is(":checked")),
             },
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             "termine_anwesenheiten",
         );
     });

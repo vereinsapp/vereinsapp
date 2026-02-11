@@ -89,6 +89,7 @@ localstorage_reset_string und datenschutz_richtlinie_string entfernen (hinzugef�
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
 kacheln-View erg채nzen (analog zu liste-View)
 data-Prefix loswerden
+Schnittstelle_VariableWertFormatiertZurueck verschieben nach Liste (auch umbenennen)
 klasse_id in views Schnittstelle_DomBestaetigungEinfordern zu werkzeug umbauen
 Best채tigung einfordern einf체hren f체r Verkn체pfung erstellen
 

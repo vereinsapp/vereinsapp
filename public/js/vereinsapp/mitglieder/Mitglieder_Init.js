@@ -134,12 +134,14 @@ function Mitglieder_Init() {
     // RECHTE VERGEBEN
     $(document).on("change", '.chk_verknuepfung_erstellen[data-verknuepfungen="vergebene_rechte"]', function () {
         Liste_VerknuepfungErstellen(
-            { $ausloesend: $(this) },
+            $(this).hasClass("bestaetigung_einfordern"),
+            { $ausloesend: $(this), $modal: $(this).closest(".modal") },
             {
                 verfuegbares_recht_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-verfuegbares_recht_id"), undefined),
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
                 status: Number($(this).is(":checked")),
             },
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             "vergebene_rechte",
         );
     });

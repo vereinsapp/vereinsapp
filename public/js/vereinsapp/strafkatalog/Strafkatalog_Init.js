@@ -85,12 +85,14 @@ function Strafkatalog_Init() {
     // ZUGEWIESENE STRAFE ERSTELLEN
     $(document).on("click", '.btn_verknuepfung_erstellen[data-verknuepfungen="strafkatalog_zugewiesene_strafen"]', function () {
         Liste_VerknuepfungErstellen(
-            { $ausloesend: $(this) },
+            $(this).hasClass("bestaetigung_einfordern"),
+            { $ausloesend: $(this), $modal: $(this).closest(".modal") },
             {
                 strafe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-strafe_id"), undefined),
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
                 status: 1,
             },
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             "strafkatalog_zugewiesene_strafen",
         );
     });

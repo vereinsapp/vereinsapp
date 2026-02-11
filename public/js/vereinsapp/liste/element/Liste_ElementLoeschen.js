@@ -3,24 +3,23 @@
  * @param {Object} dom
  * @param {Object} data
  * @param {string} title
- * @param {number} element_id
  * @param {string} liste
  */
 
-function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, element_id, liste) {
+function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, liste) {
+    data.liste = liste;
+
     if (bestaetigung_einfordern)
         Schnittstelle_DomBestaetigungEinfordern(
-            "Willst du wirklich " + Liste_ElementBeschriftungZurueck(element_id, liste) + " löschen?",
+            "Willst du wirklich " + Liste_ElementBeschriftungZurueck(data[LISTEN[liste].element + "_id"], liste) + " löschen?",
             title,
             "btn_element_loeschen",
-            { liste: liste, [LISTEN[liste].element + "_id"]: element_id, weiterleiten: data.weiterleiten },
+            data,
             "danger",
         );
     else {
         const ajax_dom = dom;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
-        ajax_data[LISTEN[liste].element + "_id"] = element_id;
-        ajax_data.liste = liste;
 
         Schnittstelle_AjaxInDieSchlange(
             LISTEN[liste].controller + "/ajax_" + LISTEN[liste].element + "_loeschen",
