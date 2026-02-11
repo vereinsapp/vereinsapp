@@ -42,7 +42,9 @@ function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_i
                 Schnittstelle_EventVariableUpdDom("aufgaben");
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(aufgabe_id, "aufgaben") + " wurde erfolgreich erstellt.");
+                Schnittstelle_DomToastFeuern(
+                    Liste_ElementTextMitBeschriftungErsetztZurueck("{aufgaben} wurde erfolgreich erstellt.", { aufgabe_id: aufgabe_id }),
+                );
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");

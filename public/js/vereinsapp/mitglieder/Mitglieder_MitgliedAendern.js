@@ -50,7 +50,9 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                     Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                    Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") + " wurde erfolgreich geändert.");
+                    Schnittstelle_DomToastFeuern(
+                        Liste_ElementTextMitBeschriftungErsetztZurueck("{mitglieder} wurde erfolgreich geändert.", { mitglied_id: mitglied_id }),
+                    );
                 }
             },
             function (AJAX) {
@@ -58,7 +60,9 @@ function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, title, mitglied
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data.mitglied_id, "mitglieder") + " konnte nicht gespeichert werden.",
+                    Liste_ElementTextMitBeschriftungErsetztZurueck("{mitglieder} konnte nicht gespeichert werden.", {
+                        mitglied_id: AJAX.data.mitglied_id,
+                    }),
                     "danger",
                 );
             },

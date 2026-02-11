@@ -38,7 +38,9 @@ function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                     Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                    Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(titel_id, "notenbank") + " wurde erfolgreich geändert.");
+                    Schnittstelle_DomToastFeuern(
+                        Liste_ElementTextMitBeschriftungErsetztZurueck("{notenbank} wurde erfolgreich geändert.", { titel_id: titel_id }),
+                    );
                 }
             },
             function (AJAX) {
@@ -46,7 +48,9 @@ function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data.titel_id, "notenbank") + " konnte nicht gespeichert werden.",
+                    Liste_ElementTextMitBeschriftungErsetztZurueck("{notenbank} konnte nicht gespeichert werden.", {
+                        titel_id: AJAX.data.titel_id,
+                    }),
                     "danger",
                 );
             },

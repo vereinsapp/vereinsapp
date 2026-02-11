@@ -11,7 +11,9 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, liste)
 
     if (bestaetigung_einfordern)
         Schnittstelle_DomBestaetigungEinfordern(
-            "Willst du wirklich " + Liste_ElementBeschriftungZurueck(data[LISTEN[liste].element + "_id"], liste) + " löschen?",
+            Liste_ElementTextMitBeschriftungErsetztZurueck("Willst du wirklich {" + liste + "} löschen?", {
+                [LISTEN[liste].element + "_id"]: data[LISTEN[liste].element + "_id"],
+            }),
             title,
             "btn_element_loeschen",
             data,
@@ -28,7 +30,9 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, liste)
             function (AJAX) {
                 const liste = AJAX.data.liste;
                 const element_id = AJAX.data[LISTEN[liste].element + "_id"];
-                const beschriftung = Liste_ElementBeschriftungZurueck(element_id, liste); // Beschriftung speichern, bevor Element gelöscht wird
+                const toast_text = Liste_ElementTextMitBeschriftungErsetztZurueck("{" + liste + "} wurde gelöscht.", {
+                    [LISTEN[liste].element + "_id"]: element_id,
+                }); // Toast-Text zwischenspeichern, bevor Element gelöscht wird
 
                 Schnittstelle_VariableLoeschen(element_id, liste);
 
@@ -38,15 +42,15 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, liste)
                     Schnittstelle_EventVariableUpdDom(liste);
 
                     if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                    Schnittstelle_DomToastFeuern(beschriftung + " wurde gelöscht.", "danger");
+                    Schnittstelle_DomToastFeuern(toast_text, "danger");
                 }
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data[LISTEN[AJAX.data.liste].element + "_id"], AJAX.data.liste) +
-                        " konnte nicht gelöscht werden.",
-                    "danger",
+                    Liste_ElementTextMitBeschriftungErsetztZurueck("{" + AJAX.data.liste + "} konnte nicht gelöscht werden.", {
+                        [LISTEN[AJAX.data.liste].element + "_id"]: AJAX.data[LISTEN[AJAX.data.liste].element + "_id"],
+                    }),
                 );
             },
         );

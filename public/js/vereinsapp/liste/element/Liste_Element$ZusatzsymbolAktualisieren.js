@@ -42,55 +42,70 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
         // Zusatzsymbol für Ändern-Werkzeug
         case "aendern":
             $zusatzsymbol.html(
-                '<i class="bi bi-' +
-                    SYMBOLE["aendern"]["bootstrap"] +
-                    " btn_" +
-                    LISTEN[liste].element +
-                    '_aendern formular_oeffnen text-primary" data-liste="' +
-                    liste +
-                    '" data-' +
-                    LISTEN[liste].element +
-                    '_id="' +
-                    element_id +
-                    '" data-title="' +
-                    Liste_ElementBeschriftungZurueck(element_id, liste) +
-                    ' ändern" role="button"></i>',
+                Liste_ElementTextMitBeschriftungErsetztZurueck(
+                    '<i class="bi bi-' +
+                        SYMBOLE.aendern.bootstrap +
+                        " btn_" +
+                        LISTEN[liste].element +
+                        '_aendern formular_oeffnen text-primary" data-liste="' +
+                        liste +
+                        '" data-' +
+                        LISTEN[liste].element +
+                        '_id="' +
+                        element_id +
+                        '" data-title="{' +
+                        liste +
+                        '} ändern" role="button"></i>',
+                    {
+                        [LISTEN[liste].element + "_id"]: element_id,
+                    },
+                ),
             );
             break;
 
         // Zusatzsymbol für Duplizieren-Werkzeug
         case "duplizieren":
             $zusatzsymbol.html(
-                '<i class="bi bi-' +
-                    SYMBOLE["duplizieren"]["bootstrap"] +
-                    " btn_" +
-                    LISTEN[liste].element +
-                    '_duplizieren formular_oeffnen text-primary" data-liste="' +
-                    liste +
-                    '" data-' +
-                    LISTEN[liste].element +
-                    '_id="' +
-                    element_id +
-                    '" data-title="' +
-                    Liste_ElementBeschriftungZurueck(element_id, liste) +
-                    ' duplizieren" role="button"></i>',
+                Liste_ElementTextMitBeschriftungErsetztZurueck(
+                    '<i class="bi bi-' +
+                        SYMBOLE.duplizieren.bootstrap +
+                        " btn_" +
+                        LISTEN[liste].element +
+                        '_duplizieren formular_oeffnen text-primary" data-liste="' +
+                        liste +
+                        '" data-' +
+                        LISTEN[liste].element +
+                        '_id="' +
+                        element_id +
+                        '" data-title="{' +
+                        liste +
+                        '} duplizieren" role="button"></i>',
+                    {
+                        [LISTEN[liste].element + "_id"]: element_id,
+                    },
+                ),
             );
             break;
 
         // Zusatzsymbol für Löschen-Werkzeug
         case "loeschen":
             $zusatzsymbol.html(
-                '<i class="bi bi-' +
-                    SYMBOLE["loeschen"]["bootstrap"] +
-                    ' btn_element_loeschen bestaetigung_einfordern text-danger" data-liste="' +
-                    liste +
-                    '" data-' +
-                    LISTEN[liste].element +
-                    '_id="' +
-                    element_id +
-                    '" data-title="' +
-                    Liste_ElementBeschriftungZurueck(element_id, liste) +
-                    ' löschen" role="button"></i>',
+                Liste_ElementTextMitBeschriftungErsetztZurueck(
+                    '<i class="bi bi-' +
+                        SYMBOLE.loeschen.bootstrap +
+                        ' btn_element_loeschen bestaetigung_einfordern text-danger" data-liste="' +
+                        liste +
+                        '" data-' +
+                        LISTEN[liste].element +
+                        '_id="' +
+                        element_id +
+                        '" data-title="{' +
+                        liste +
+                        '} löschen" role="button"></i>',
+                    {
+                        [LISTEN[liste].element + "_id"]: element_id,
+                    },
+                ),
             );
             break;
 

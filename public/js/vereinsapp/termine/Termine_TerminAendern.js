@@ -54,7 +54,9 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                     Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                    Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(termin_id, "termine") + " wurde erfolgreich geändert.");
+                    Schnittstelle_DomToastFeuern(
+                        Liste_ElementTextMitBeschriftungErsetztZurueck("{termine} wurde erfolgreich geändert.", { termin_id: termin_id }),
+                    );
                 }
             },
             function (AJAX) {
@@ -62,7 +64,9 @@ function Termine_TerminAendern(formular_oeffnen, dom, data, title, termin_id) {
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data.termin_id, "termine") + " konnte nicht gespeichert werden.",
+                    Liste_ElementTextMitBeschriftungErsetztZurueck("{termine} konnte nicht gespeichert werden.", {
+                        termin_id: AJAX.data.termin_id,
+                    }),
                     "danger",
                 );
             },

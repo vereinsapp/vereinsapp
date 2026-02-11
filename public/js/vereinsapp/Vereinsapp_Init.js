@@ -91,7 +91,6 @@ kacheln-View ergänzen (analog zu liste-View)
 data-Prefix loswerden
 Schnittstelle_VariableWertFormatiertZurueck verschieben nach Liste (auch umbenennen)
 klasse_id in views Schnittstelle_DomBestaetigungEinfordern zu werkzeug umbauen
-Bestätigung einfordern einführen für Verknüpfung erstellen
 
 ERLEDIGT
 

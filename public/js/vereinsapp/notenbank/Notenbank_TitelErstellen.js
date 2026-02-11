@@ -33,7 +33,9 @@ function Notenbank_TitelErstellen(formular_oeffnen, dom, data, title, titel_id) 
                 Schnittstelle_EventVariableUpdDom("notenbank");
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(titel_id, "notenbank") + " wurde erfolgreich erstellt.");
+                Schnittstelle_DomToastFeuern(
+                    Liste_ElementTextMitBeschriftungErsetztZurueck("{notenbank} wurde erfolgreich erstellt.", { titel_id: titel_id }),
+                );
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");

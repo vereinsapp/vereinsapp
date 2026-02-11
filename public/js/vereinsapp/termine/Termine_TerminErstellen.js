@@ -47,7 +47,9 @@ function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) 
                 Schnittstelle_EventVariableUpdDom("termine");
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(termin_id, "termine") + " wurde erfolgreich erstellt.");
+                Schnittstelle_DomToastFeuern(
+                    Liste_ElementTextMitBeschriftungErsetztZurueck("{termine} wurde erfolgreich erstellt.", { termin_id: termin_id }),
+                );
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");

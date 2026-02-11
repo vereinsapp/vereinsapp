@@ -11,7 +11,7 @@ function Liste_VerknuepfungErstellen(bestaetigung_einfordern, dom, data, title, 
 
     if (bestaetigung_einfordern)
         Schnittstelle_DomBestaetigungEinfordern(
-            "Willst du wirklich {mitglieder} die Strafe {strafkatalog} zuweisen?",
+            Liste_ElementTextMitBeschriftungErsetztZurueck("Willst du wirklich {mitglieder} die Strafe {strafkatalog} zuweisen?", data),
             title,
             "btn_verknuepfung_erstellen",
             data,
@@ -94,8 +94,9 @@ function Liste_VerknuepfungErstellen(bestaetigung_einfordern, dom, data, title, 
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data[LISTEN[AJAX.data.verknuepfungen].element + "_id"], AJAX.data.verknuepfungen) +
-                        " konnte nicht gespeichert werden.",
+                    Liste_ElementTextMitBeschriftungErsetztZurueck("{" + AJAX.data.verknuepfungen + "} konnte nicht gespeichert werden.", {
+                        [LISTEN[AJAX.data.verknuepfungen].element + "_id"]: AJAX.data[LISTEN[AJAX.data.verknuepfungen].element + "_id"],
+                    }),
                     "danger",
                 );
             },

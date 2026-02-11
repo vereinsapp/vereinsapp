@@ -32,7 +32,9 @@ function Strafkatalog_StrafeErstellen(formular_oeffnen, dom, data, title, strafe
                 Schnittstelle_EventVariableUpdDom("strafkatalog");
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(strafe_id, "strafkatalog") + " wurde erfolgreich erstellt.");
+                Schnittstelle_DomToastFeuern(
+                    Liste_ElementTextMitBeschriftungErsetztZurueck("{strafkatalog} wurde erfolgreich erstellt.", { strafe_id: strafe_id }),
+                );
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");

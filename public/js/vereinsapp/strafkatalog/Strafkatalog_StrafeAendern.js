@@ -36,7 +36,9 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                     Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                    Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(strafe_id, "strafkatalog") + " wurde erfolgreich geändert.");
+                    Schnittstelle_DomToastFeuern(
+                        Liste_ElementTextMitBeschriftungErsetztZurueck("{strafkatalog} wurde erfolgreich geändert.", { strafe_id: strafe_id }),
+                    );
                 }
             },
             function (AJAX) {
@@ -44,7 +46,9 @@ function Strafkatalog_StrafeAendern(formular_oeffnen, dom, data, title, strafe_i
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data.strafe_id, "strafkatalog") + " konnte nicht gespeichert werden.",
+                    Liste_ElementTextMitBeschriftungErsetztZurueck("{strafkatalog} konnte nicht gespeichert werden.", {
+                        strafe_id: AJAX.data.strafe_id,
+                    }),
                     "danger",
                 );
             },

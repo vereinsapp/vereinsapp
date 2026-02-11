@@ -45,7 +45,9 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                     Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                    Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(aufgabe_id, "aufgaben") + " wurde erfolgreich geändert.");
+                    Schnittstelle_DomToastFeuern(
+                        Liste_ElementTextMitBeschriftungErsetztZurueck("{aufgaben} wurde erfolgreich geändert.", { aufgabe_id: aufgabe_id }),
+                    );
                 }
             },
             function (AJAX) {
@@ -53,7 +55,9 @@ function Aufgaben_AufgabeAendern(formular_oeffnen, dom, data, title, aufgabe_id)
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementBeschriftungZurueck(AJAX.data.aufgabe_id, "aufgaben") + " konnte nicht gespeichert werden.",
+                    Liste_ElementTextMitBeschriftungErsetztZurueck("{aufgaben} konnte nicht gespeichert werden.", {
+                        aufgabe_id: AJAX.data.aufgabe_id,
+                    }),
                     "danger",
                 );
             },

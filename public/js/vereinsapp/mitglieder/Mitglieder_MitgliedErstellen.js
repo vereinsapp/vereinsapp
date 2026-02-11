@@ -33,7 +33,9 @@ function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitgli
                 Schnittstelle_EventVariableUpdDom("mitglieder");
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                Schnittstelle_DomToastFeuern(Liste_ElementBeschriftungZurueck(mitglied_id, "mitglieder") + " wurde erfolgreich erstellt.");
+                Schnittstelle_DomToastFeuern(
+                    Liste_ElementTextMitBeschriftungErsetztZurueck("{mitglieder} wurde erfolgreich erstellt.", { mitglied_id: mitglied_id }),
+                );
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
