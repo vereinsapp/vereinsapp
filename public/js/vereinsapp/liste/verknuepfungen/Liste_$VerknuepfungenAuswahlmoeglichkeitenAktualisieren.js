@@ -14,13 +14,10 @@ function Liste_$VerknuepfungenAuswahlmoeglichkeitenAktualisieren($verknuepfungen
     // VERKNUEPFTE ELEMENT_ID DEFINIEREN
     const verknuepfte_element_id = new Object();
     $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
-        let element_id = Schnittstelle_VariableWertBereinigtZurueck(
-            $verknuepfungen_auswahlmoeglichkeiten.attr("data-" + LISTEN[verknuepfte_liste].element + "_id"),
+        verknuepfte_element_id[LISTEN[verknuepfte_liste].element + "_id"] = Schnittstelle_VariableWertBereinigtZurueck(
+            $element.attr("data-" + LISTEN[verknuepfte_liste].element + "_id"),
             undefined,
         );
-        if (typeof element_id === "undefined")
-            element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-" + LISTEN[verknuepfte_liste].element + "_id"), undefined);
-        if (typeof element_id !== "undefined") verknuepfte_element_id[LISTEN[verknuepfte_liste].element + "_id"] = element_id;
     });
 
     if (

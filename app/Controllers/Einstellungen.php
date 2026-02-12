@@ -19,19 +19,14 @@ class Einstellungen extends BaseController {
     public function einstellungen() {
 
         $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
+        $this->viewdata['liste']['rechte_vergeben']['mitglied_id'] = ICH_ID;
 
         if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {
 
-            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'vergebene_rechte', 'mitglied_id' => ICH_ID, );
+            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'vergebene_rechte', );
             $this->viewdata['liste']['rechte_vergeben']['disabled_ids'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
 
-        } else {
-
-            // eigentlich braucht es hier noch ein Symbol vor der Beschriftung
-            $this->viewdata['liste']['rechte_vergeben']['zusatzsymbol'] = array( 'vergebene_rechte' );
-            $this->viewdata['liste']['rechte_vergeben']['mitglied_id'] = ICH_ID;
-
-        }
+        } else $this->viewdata['liste']['rechte_vergeben']['zusatzsymbol'] = array( 'vergebene_rechte' ); // eigentlich braucht es hier noch ein Symbol vor der Beschriftung
 
         $this->viewdata_bereinigen(); echo view( 'Einstellungen/einstellungen', $this->viewdata );
     }

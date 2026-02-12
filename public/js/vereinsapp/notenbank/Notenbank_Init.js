@@ -124,14 +124,14 @@ function Notenbank_Init() {
     });
 
     // SETLISTE VERWALTEN
-    $(document).on("change", '.chk_verknuepfung_erstellen[data-verknuepfungen="notenbank_setliste"]', function () {
+    $(document).on("click", '.btn_verknuepfung_erstellen[data-verknuepfungen="notenbank_setliste"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigung_einfordern"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal") },
             {
                 titel_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),
                 termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
-                status: Number($(this).is(":checked")),
+                status: 1,
             },
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
             "notenbank_setliste",

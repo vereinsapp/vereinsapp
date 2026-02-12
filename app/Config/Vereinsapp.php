@@ -107,7 +107,7 @@ class Vereinsapp extends BaseConfig
             // 'title' => 'Titel für bspw. ein Modal',
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion' ),
-            // 'verknuepfungen' => array( 'typ' => 'status_auswahl', 'verknuepfungen' => 'termine_rueckmeldungen', '[element]_id' => 42, ),
+            // 'verknuepfungen' => array( 'typ' => 'status_auswahl', 'verknuepfungen' => 'termine_rueckmeldungen', ),
             'zusatzsymbol' => array('geburtstag'),
             // '[element]_id' => 42,
             // 'disabled_ids' => array(),
@@ -1058,7 +1058,7 @@ class Vereinsapp extends BaseConfig
         ),
         'notenbank_setliste' => array(
             "verknuepfte_listen" => array( "notenbank", "termine", ),
-            'nur_eins_erlaubt_janein' =>  TRUE,
+            'nur_eins_erlaubt_janein' =>  FALSE,
             'status_erlaubt' => array(
                 0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung']['bootstrap'].'"></i>'),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung']['bootstrap'].'"></i>' ),

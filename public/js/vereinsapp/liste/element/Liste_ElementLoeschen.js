@@ -36,9 +36,21 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, liste)
 
                 Schnittstelle_VariableLoeschen(element_id, liste);
 
+                if ("dbdata" in AJAX.antwort && isArray(AJAX.antwort.dbdata))
+                    $.each(AJAX.antwort.dbdata, function (position, element) {
+                        if ("id" in element)
+                            $.each(element, function (eigenschaft, wert) {
+                                Schnittstelle_VariableRein(wert, eigenschaft, Number(element.id), liste);
+                            });
+                    });
+
                 const weiterleiten = AJAX.data.weiterleiten;
                 if (typeof weiterleiten !== "undefined") $(location).attr("href", SITE_URL + weiterleiten);
                 else {
+                    Schnittstelle_EventVariableUpdLocalstorage(liste);
+                    Schnittstelle_EventLocalstorageUpdVariable(liste);
+                    Schnittstelle_VariableElementZuordnen(liste);
+                    Schnittstelle_VariableElementErgaenzen(liste);
                     Schnittstelle_EventVariableUpdDom(liste);
 
                     if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);

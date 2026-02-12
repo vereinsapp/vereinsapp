@@ -116,6 +116,7 @@ $routes->group('notenbank', static function ($routes) {
 
     $routes->post('ajax_notenbank_setlisteneintrag_speichern', 'Notenbank::ajax_setlisteneintrag_speichern');
     $routes->post('ajax_notenbank_setlisteneintrag_status_aendern', 'Notenbank::ajax_setlisteneintrag_position_aendern');
+    $routes->post('ajax_notenbank_setlisteneintrag_loeschen', 'Notenbank::ajax_setlisteneintrag_loeschen');
 });
 
 $routes->group('status', static function ($routes) {

@@ -89,7 +89,8 @@ function Liste_VerknuepfungErstellen(bestaetigung_einfordern, dom, data, title, 
                 Schnittstelle_EventVariableUpdDom(verknuepfte_listen[0]);
                 Schnittstelle_EventVariableUpdDom(verknuepfte_listen[1]);
 
-                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
+                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists() && AJAX.dom.$modal.find(".bestaetigung").exists())
+                    Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");

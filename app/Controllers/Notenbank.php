@@ -18,7 +18,8 @@ class Notenbank extends BaseController {
 
             $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['setliste_verwalten']['filtern']['ich_eingeladen_janein']);
-            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'notenbank_setliste', );
+            $this->viewdata['liste']['setliste_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
+            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'element_auswahl', 'verknuepfungen' => 'notenbank_setliste', );
 
             $this->viewdata['werkzeugkasten'][] = 'setliste_verwalten';
 
@@ -46,7 +47,8 @@ class Notenbank extends BaseController {
 
             $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['setliste_verwalten']['filtern']['ich_eingeladen_janein']);
-            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'janein_auswahl', 'verknuepfungen' => 'notenbank_setliste', );
+            $this->viewdata['liste']['setliste_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
+            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'element_auswahl', 'verknuepfungen' => 'notenbank_setliste', );
 
             $this->viewdata['werkzeugkasten'][] = 'setliste_verwalten';
 
@@ -174,15 +176,16 @@ class Notenbank extends BaseController {
             $alter_status = $setlisteneintrag['status'];
             $neuer_status = $this->request->getpost()['status'];
 
+            $ajax_antwort['dbdata'] = array();
             if( $alter_status < $neuer_status ) {
-                foreach( $setlisteneintrag_Model->where( array( 'termin_id' => $setlisteneintrag['termin_id'] ) )->orderBy('status', 'DESC')->findAll() as $anderer_setlisteneintrag )
+                foreach( $setlisteneintrag_Model->where( array( 'termin_id' => $setlisteneintrag['termin_id'] ) )->orderBy('status', 'ASC')->findAll() as $anderer_setlisteneintrag )
                     if( (int)$anderer_setlisteneintrag['id'] !== (int)$setlisteneintrag['id'] AND $anderer_setlisteneintrag['status'] <= $neuer_status AND $anderer_setlisteneintrag['status'] > $alter_status ) {
                         $anderer_setlisteneintrag['status'] = (int)$anderer_setlisteneintrag['status'] - 1;
                         $setlisteneintrag_Model->update( $anderer_setlisteneintrag['id'], $anderer_setlisteneintrag );
                         $ajax_antwort['dbdata'][] = array( 'id' => $anderer_setlisteneintrag['id'], 'status' => $anderer_setlisteneintrag['status'] );
                     }
             } else if( $alter_status > $neuer_status ) {
-                foreach( $setlisteneintrag_Model->where( array( 'termin_id' => $setlisteneintrag['termin_id'] ) )->orderBy('status', 'DESC')->findAll() as $anderer_setlisteneintrag )
+                foreach( $setlisteneintrag_Model->where( array( 'termin_id' => $setlisteneintrag['termin_id'] ) )->orderBy('status', 'ASC')->findAll() as $anderer_setlisteneintrag )
                     if( (int)$anderer_setlisteneintrag['id'] !== (int)$setlisteneintrag['id'] AND $anderer_setlisteneintrag['status'] >= $neuer_status AND $anderer_setlisteneintrag['status'] < $alter_status ) {
                         $anderer_setlisteneintrag['status'] = (int)$anderer_setlisteneintrag['status'] + 1;
                         $setlisteneintrag_Model->update( $anderer_setlisteneintrag['id'], $anderer_setlisteneintrag );
@@ -193,6 +196,31 @@ class Notenbank extends BaseController {
             $setlisteneintrag['status'] = $neuer_status;
             $setlisteneintrag_Model->update( $setlisteneintrag['id'], $setlisteneintrag );
             $ajax_antwort['dbdata'][] = array( 'id' => $setlisteneintrag['id'], 'status' => $neuer_status );
+        }
+
+        $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];
+        echo json_encode( $ajax_antwort, JSON_UNESCAPED_UNICODE );
+    }
+
+    public function ajax_setlisteneintrag_loeschen() { $ajax_antwort[CSRF_NAME] = csrf_hash();
+        $validation_rules = array(
+            'ajax_id' => 'required|is_natural',
+            'notenbank_setlisteneintrag_id' => [ 'label' => EIGENSCHAFTEN['notenbank_setliste']['id']['beschriftung'], 'rules' => [ 'required', 'is_natural_no_zero' ] ],
+        ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
+        else if( !auth()->user()->can( 'notenbank.verwaltung' ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
+        else {
+            $setlisteneintrag_Model = model(Setlisteneintrag_Model::class);
+            $setlisteneintrag = $setlisteneintrag_Model->find( $this->request->getpost()['notenbank_setlisteneintrag_id'] );
+
+            $ajax_antwort['dbdata'] = array();
+            foreach( $setlisteneintrag_Model->where( array( 'termin_id' => $setlisteneintrag['termin_id'] ) )->orderBy('status', 'ASC')->findAll() as $anderer_setlisteneintrag )
+                if( (int)$anderer_setlisteneintrag['status'] > $setlisteneintrag['status'] ) {
+                    $anderer_setlisteneintrag['status'] = (int)$anderer_setlisteneintrag['status'] - 1;
+                    $setlisteneintrag_Model->update( $anderer_setlisteneintrag['id'], $anderer_setlisteneintrag );
+                    $ajax_antwort['dbdata'][] = array( 'id' => $anderer_setlisteneintrag['id'], 'status' => $anderer_setlisteneintrag['status'] );
+                }
+
+            $setlisteneintrag_Model->delete( $setlisteneintrag['id'] );
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

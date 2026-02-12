@@ -91,6 +91,7 @@ kacheln-View ergänzen (analog zu liste-View)
 data-Prefix loswerden
 Schnittstelle_VariableWertFormatiertZurueck verschieben nach Liste (auch umbenennen)
 klasse_id in views Schnittstelle_DomBestaetigungEinfordern zu werkzeug umbauen
+VERKNUEPFUNGEN-Typ und -bestaetigung_einfordern zentral in Vereinsapp-config definieren
 
 ERLEDIGT
 
