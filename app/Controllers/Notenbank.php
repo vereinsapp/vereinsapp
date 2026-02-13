@@ -19,7 +19,7 @@ class Notenbank extends BaseController {
             $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['setliste_verwalten']['filtern']['ich_eingeladen_janein']);
             $this->viewdata['liste']['setliste_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
-            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'element_auswahl', 'verknuepfungen' => 'notenbank_setliste', );
+            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = 'notenbank_setliste';
 
             $this->viewdata['werkzeugkasten'][] = 'setliste_verwalten';
 
@@ -48,7 +48,7 @@ class Notenbank extends BaseController {
             $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['termine'];
             unset($this->viewdata['liste']['setliste_verwalten']['filtern']['ich_eingeladen_janein']);
             $this->viewdata['liste']['setliste_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
-            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = array( 'typ' => 'element_auswahl', 'verknuepfungen' => 'notenbank_setliste', );
+            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = 'notenbank_setliste';
 
             $this->viewdata['werkzeugkasten'][] = 'setliste_verwalten';
 

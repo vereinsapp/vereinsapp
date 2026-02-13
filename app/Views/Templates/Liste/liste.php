@@ -27,18 +27,18 @@ if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-e
 ?>>
 
     <li class="text-body list-group-item<?php
-    if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'typ', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['typ'] === 'element_auswahl' ) echo ' btn_verknuepfung_erstellen bestaetigung_einfordern';
+    if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'element_auswahl' ) echo ' btn_verknuepfung_erstellen';
+    if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'element_auswahl' AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['bestaetigung_einfordern'] === TRUE ) echo ' bestaetigung_einfordern';
     ?> blanko invisible" data-blanko="element"<?php
     if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
     if( array_key_exists( 'title', $liste ) ) { ?> data-title="<?= $liste['title'] ?>"<?php }
-    if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'typ', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['typ'] === 'element_auswahl' ) { ?> data-verknuepfungen="<?= $liste['verknuepfungen']['verknuepfungen'] ?>"<?php }
+    if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'element_auswahl' ) { ?> data-verknuepfungen="<?= $liste['verknuepfungen'] ?>"<?php }
     ?>>
 
         <div class="text-truncate d-flex flex-nowrap <?php
         if( array_key_exists( 'group-flush', $liste ) AND $liste['group-flush'] ) echo ' h5';
         ?>">
-<?php if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'typ', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['typ'] === 'janein_auswahl' )
-    echo view( 'Templates/Liste/verknuepfungen_'.$liste['verknuepfungen']['typ'], array( 'verknuepfungen' => $liste['verknuepfungen']['verknuepfungen'], ) ); ?>
+<?php if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'janein_auswahl' ) echo view( 'Templates/Liste/verknuepfungen_janein_auswahl', array( 'verknuepfungen' => $liste['verknuepfungen'], ) ); ?>
             <label class="flex-grow-1">
                 <span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste ) ) { ?><?= $liste['beschriftung']; ?><?php } ?></span>
             </label>
@@ -62,8 +62,7 @@ if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-e
         ?></div>
 <?php } ?>
 
-<?php if( array_key_exists( 'verknuepfungen', $liste ) AND array_key_exists( 'typ', $liste['verknuepfungen'] ) AND $liste['verknuepfungen']['typ'] === 'status_auswahl' )
-    echo view( 'Templates/Liste/verknuepfungen_'.$liste['verknuepfungen']['typ'], array( 'verknuepfungen' => $liste['verknuepfungen']['verknuepfungen'], ) ); ?>
+<?php if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'status_auswahl' ) echo view( 'Templates/Liste/verknuepfungen_status_auswahl', array( 'verknuepfungen' => $liste['verknuepfungen'], ) ); ?>
 
     </li>
 

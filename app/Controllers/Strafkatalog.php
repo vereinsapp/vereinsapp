@@ -21,7 +21,7 @@ class Strafkatalog extends BaseController {
             $this->viewdata['liste']['strafen_zuweisen'] = HAUPTINSTANZEN['mitglieder'];
             unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
             $this->viewdata['liste']['strafen_zuweisen']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.HAUPTINSTANZEN['mitglieder']['beschriftung'];
-            $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = array( 'typ' => 'element_auswahl', 'verknuepfungen' => 'strafkatalog_zugewiesene_strafen', );
+            $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = 'strafkatalog_zugewiesene_strafen';
 
             $this->viewdata['werkzeugkasten'][] = 'strafen_zuweisen';
             $this->viewdata['werkzeugkasten'][] = 'strafe_aendern';

@@ -88,10 +88,10 @@ Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bs
 localstorage_reset_string und datenschutz_richtlinie_string entfernen (hinzugefügt im Juni 2025?)
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
 kacheln-View ergänzen (analog zu liste-View)
+Aufgaben detaillieren
 data-Prefix loswerden
 Schnittstelle_VariableWertFormatiertZurueck verschieben nach Liste (auch umbenennen)
 klasse_id in views Schnittstelle_DomBestaetigungEinfordern zu werkzeug umbauen
-VERKNUEPFUNGEN-Typ und -bestaetigung_einfordern zentral in Vereinsapp-config definieren
 
 ERLEDIGT
 

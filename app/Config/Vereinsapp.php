@@ -107,7 +107,7 @@ class Vereinsapp extends BaseConfig
             // 'title' => 'Titel für bspw. ein Modal',
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion' ),
-            // 'verknuepfungen' => array( 'typ' => 'status_auswahl', 'verknuepfungen' => 'termine_rueckmeldungen', ),
+            // 'verknuepfungen' => 'termine_rueckmeldungen',
             'zusatzsymbol' => array('geburtstag'),
             // '[element]_id' => 42,
             // 'disabled_ids' => array(),
@@ -999,16 +999,20 @@ class Vereinsapp extends BaseConfig
      */
     public $verknuepfungen = array(
         'vergebene_rechte' => array(
-            "verknuepfte_listen" => array( "verfuegbare_rechte", "mitglieder", ),
-            'nur_eins_erlaubt_janein' =>  TRUE,
+            'verknuepfte_listen' => array( 'verfuegbare_rechte', 'mitglieder', ),
+            'typ' => 'janein_auswahl',
+            'bestaetigung_einfordern' => FALSE,
+            'nur_eins_erlaubt_janein' => TRUE,
             'status_erlaubt' => array(
                 0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung']['bootstrap'].'"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung']['bootstrap'].'"></i>' ),
              ),
         ),
         'aufgaben_rueckmeldungen' => array(
-            "verknuepfte_listen" => array( "aufgaben", "mitglieder", ),
-            'nur_eins_erlaubt_janein' =>  TRUE,
+            'verknuepfte_listen' => array( 'aufgaben', 'mitglieder', ),
+            'typ' => 'status_auswahl',
+            'bestaetigung_einfordern' => FALSE,
+            'nur_eins_erlaubt_janein' => TRUE,
             'status_erlaubt' => array(
                 0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung']['bootstrap'].'"></i>' ),
                 1 => array( 'farbe' => 'primary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['angenommen_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['angenommen_rueckmeldung']['bootstrap'].'-fill"></i>' ),
@@ -1016,16 +1020,20 @@ class Vereinsapp extends BaseConfig
             ),
         ),
         'aufgaben_zuordnungen_termine' => array(
-            "verknuepfte_listen" => array( "aufgaben", "termine", ),
-            'nur_eins_erlaubt_janein' =>  TRUE,
+            'verknuepfte_listen' => array( 'aufgaben', 'termine', ),
+            'typ' => 'janein_auswahl',
+            'bestaetigung_einfordern' => FALSE,
+            'nur_eins_erlaubt_janein' => TRUE,
             'status_erlaubt' => array(
                 0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung']['bootstrap'].'"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung']['bootstrap'].'"></i>' ),
              ),
         ),
         'termine_rueckmeldungen' => array(
-            "verknuepfte_listen" => array( "termine", "mitglieder", ),
-            'nur_eins_erlaubt_janein' =>  TRUE,
+            'verknuepfte_listen' => array( 'termine', 'mitglieder', ),
+            'typ' => 'status_auswahl',
+            'bestaetigung_einfordern' => FALSE,
+            'nur_eins_erlaubt_janein' => TRUE,
             'status_erlaubt' => array(
                 0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung']['bootstrap'].'"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung']['bootstrap'].'-fill"></i>' ),
@@ -1040,16 +1048,20 @@ class Vereinsapp extends BaseConfig
             ),
         ),
         'termine_anwesenheiten' => array(
-            "verknuepfte_listen" => array( "termine", "mitglieder", ),
-            'nur_eins_erlaubt_janein' =>  TRUE,
+            'verknuepfte_listen' => array( 'termine', 'mitglieder', ),
+            'typ' => 'janein_auswahl',
+            'bestaetigung_einfordern' => FALSE,
+            'nur_eins_erlaubt_janein' => TRUE,
             'status_erlaubt' => array(
                 0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung']['bootstrap'].'"></i>'),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung']['bootstrap'].'"></i>' ),
              ),
         ),
         'strafkatalog_zugewiesene_strafen' => array(
-            "verknuepfte_listen" => array( "strafkatalog", "mitglieder", ),
-            'nur_eins_erlaubt_janein' =>  FALSE,
+            'verknuepfte_listen' => array( 'strafkatalog', 'mitglieder', ),
+            'typ' => 'element_auswahl',
+            'bestaetigung_einfordern' => TRUE,
+            'nur_eins_erlaubt_janein' => FALSE,
             'status_erlaubt' => array(
                 0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung']['bootstrap'].'"></i>' ),
                 1 => array( 'farbe' => 'warning', 'aktiv' => '<i class="bi bi-'.SYMBOLE['offen']['bootstrap'].'"></i>' ),
@@ -1057,8 +1069,10 @@ class Vereinsapp extends BaseConfig
              ),
         ),
         'notenbank_setliste' => array(
-            "verknuepfte_listen" => array( "notenbank", "termine", ),
-            'nur_eins_erlaubt_janein' =>  FALSE,
+            'verknuepfte_listen' => array( 'notenbank', 'termine', ),
+            'typ' => 'element_auswahl',
+            'bestaetigung_einfordern' => FALSE,
+            'nur_eins_erlaubt_janein' => FALSE,
             'status_erlaubt' => array(
                 0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung']['bootstrap'].'"></i>'),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung']['bootstrap'].'"></i>' ),

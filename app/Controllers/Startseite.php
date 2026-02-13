@@ -42,7 +42,7 @@ class Startseite extends BaseController {
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['vorschau'] = array( 'start', 'ort' );
-            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['verknuepfungen'] = array( 'typ' => 'status_auswahl', 'verknuepfungen' => 'termine_rueckmeldungen', );
+            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['verknuepfungen'] = 'termine_rueckmeldungen';
         }
 
         $this->viewdata_bereinigen(); echo view( 'Startseite/startseite', $this->viewdata );

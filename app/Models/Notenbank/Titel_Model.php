@@ -64,6 +64,7 @@ class Titel_Model extends BaseModel {
                 $verzeichnis_indiziert['dateien'][] = $unterverzeichnis;
             else { /* alle anderen Dateitypen werden nicht berücksichtigt */ }
         }
+        sort($verzeichnis_indiziert['dateien']);
         return $verzeichnis_indiziert;
     }
 }
