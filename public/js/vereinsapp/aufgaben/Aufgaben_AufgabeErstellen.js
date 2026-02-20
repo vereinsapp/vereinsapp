@@ -7,12 +7,12 @@
  */
 
 function Aufgaben_AufgabeErstellen(formular_oeffnen, dom, data, title, aufgabe_id) {
-    if (typeof aufgabe_id !== "undefined") aufgabe_id = Number(aufgabe_id);
-
     if (formular_oeffnen) {
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "aufgabe_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
-        Liste_Element$FormularInitialisieren($neues_modal.find(".formular"), "erstellen", aufgabe_id, "aufgaben");
+        const $neues_formular = $neues_modal.find(".formular");
+        $neues_formular.attr("data-werkzeug", "aufgabe_erstellen").attr("data-liste", "aufgaben").attr("data-aufgabe_id", aufgabe_id);
+        Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;
 

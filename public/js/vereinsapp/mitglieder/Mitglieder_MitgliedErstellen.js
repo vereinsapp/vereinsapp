@@ -1,10 +1,10 @@
 function Mitglieder_MitgliedErstellen(formular_oeffnen, dom, data, title, mitglied_id) {
-    if (typeof mitglied_id !== "undefined") mitglied_id = Number(mitglied_id);
-
     if (formular_oeffnen) {
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "mitglied_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
-        Liste_Element$FormularInitialisieren($neues_modal.find(".formular"), "erstellen", mitglied_id, "mitglieder");
+        const $neues_formular = $neues_modal.find(".formular");
+        $neues_formular.attr("data-werkzeug", "mitglied_erstellen").attr("data-liste", "mitglieder").attr("data-mitglied_id", mitglied_id);
+        Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());

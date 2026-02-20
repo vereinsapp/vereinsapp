@@ -66,20 +66,9 @@ ELEMENTE.vergebenes_recht.ergaenzen_aktion = function (vergebenes_recht) {
 WERKZEUGE.mitglied_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
 
 function Mitglieder_Init() {
-    // MITGLIED ERSTELLEN
+    // MITGLIED ERSTELLEN / DUPLIZIEREN
     $(document).on("click", ".btn_mitglied_erstellen", function () {
         Mitglieder_MitgliedErstellen(
-            $(this).hasClass("formular_oeffnen"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
-            undefined,
-        );
-    });
-
-    // MITGLIED ÄNDERN
-    $(document).on("click", ".btn_mitglied_aendern", function () {
-        Mitglieder_MitgliedAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
@@ -88,9 +77,9 @@ function Mitglieder_Init() {
         );
     });
 
-    // MITGLIED DUPLIZIEREN
-    $(document).on("click", ".btn_mitglied_duplizieren", function () {
-        Mitglieder_MitgliedErstellen(
+    // MITGLIED ÄNDERN
+    $(document).on("click", ".btn_mitglied_aendern", function () {
+        Mitglieder_MitgliedAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),

@@ -28,8 +28,7 @@
     view( 'Templates/Liste/liste', array( 'liste' => $liste['setliste_verwalten'] ) ) ) ); ?>
 <?php if( auth()->user()->can( 'notenbank.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'titel_basiseigenschaften', 'modal' =>
-    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'notenbank' ), 'btn' => array( 'klasse_id' => 'btn_titel_aktion' ), 'formular' =>
-    view( 'Notenbank/titel_basiseigenschaften_formular' ) ) ) ) ); ?>
+    view( 'Templates/Liste/formular', array( 'formular' => view( 'Notenbank/titel_basiseigenschaften_formular' ) ) ) ) ); ?>
 
 <?php if( isset( $werkzeugkasten ) AND is_array( $werkzeugkasten ) AND count( $werkzeugkasten ) > 0 ) echo
     view( 'Templates/werkzeugkasten_handle', array( 'werkzeugkasten_handle' => array( 'liste' => 'notenbank', 'titel_id' => $titel_id ) ) ); ?>

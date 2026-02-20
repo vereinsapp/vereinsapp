@@ -9,11 +9,14 @@
 function Liste_ElementBemerkungAendern(formular_oeffnen, dom, data, element_id, liste) {
     if (formular_oeffnen) {
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, "bemerkung_aendern_modal");
-        const $btn_element_bemerkung_aendern = $neues_modal.find(".btn_element_bemerkung_aendern");
-        $btn_element_bemerkung_aendern.attr("data-liste", liste).attr("data-" + LISTEN[liste].element + "_id", element_id);
-        Schnittstelle_Dom$Quelle$ZielVerknuepfen($btn_element_bemerkung_aendern, dom.$ausloesend.closest(".element"));
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
-        Liste_Element$FormularInitialisieren($neues_modal.find(".formular"), undefined, element_id, liste);
+        const $neues_formular = $neues_modal.find(".formular");
+        $neues_formular
+            .attr("data-werkzeug", "bemerkung_aendern")
+            .attr("data-liste", liste)
+            .attr("data-" + LISTEN[liste].element + "_id", element_id);
+        Schnittstelle_Dom$Quelle$ZielVerknuepfen($neues_formular.find(".formular_werkzeug").find(".werkzeug"), dom.$ausloesend.closest(".element"));
+        Liste_Element$FormularInitialisieren($neues_modal.find(".formular"));
     } else {
         dom.$element = Schnittstelle_Dom$ZielZu$QuelleZurueck(dom.$ausloesend);
         Schnittstelle_Dom$Quelle$ZielEntknuepfen(dom.$ausloesend, dom.$element);

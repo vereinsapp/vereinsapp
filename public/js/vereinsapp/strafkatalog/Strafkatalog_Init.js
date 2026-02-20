@@ -35,20 +35,9 @@ ELEMENTE.strafkatalog_zugewiesene_strafe.zuordnen_aktion = function (zugewiesene
 WERKZEUGE.strafe_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
 
 function Strafkatalog_Init() {
-    // STRAFE ERSTELLEN
+    // STRAFE ERSTELLEN / DUPLIZIEREN
     $(document).on("click", ".btn_strafe_erstellen", function () {
         Strafkatalog_StrafeErstellen(
-            $(this).hasClass("formular_oeffnen"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
-            undefined,
-        );
-    });
-
-    // STRAFE ÄNDERN
-    $(document).on("click", ".btn_strafe_aendern", function () {
-        Strafkatalog_StrafeAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
@@ -57,9 +46,9 @@ function Strafkatalog_Init() {
         );
     });
 
-    // STRAFE DUPLIZIEREN
-    $(document).on("click", ".btn_strafe_duplizieren", function () {
-        Strafkatalog_StrafeErstellen(
+    // STRAFE ÄNDERN
+    $(document).on("click", ".btn_strafe_aendern", function () {
+        Strafkatalog_StrafeAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),

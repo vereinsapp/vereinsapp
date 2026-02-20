@@ -37,12 +37,10 @@ WERKZEUGE.filtern_manip.aktualisieren_aktion = function ($filtern_manip) {
 
     // ROTER PUNKT AKTUALISIEREN
     $filtern_manip.removeClass("position-relative").find("span.position-absolute").remove();
-    $.each(Object.keys(filtern_manip), function (position, eigenschaft) {
-        if (Object.keys(filtern_manip[eigenschaft]).length > 0)
-            $filtern_manip
-                .addClass("position-relative")
-                .append('<span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-danger border border-danger rounded-circle">');
-    });
+    if (Object.keys(filtern_manip).length > 0)
+        $filtern_manip
+            .addClass("position-relative")
+            .append('<span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-danger border border-danger rounded-circle">');
 };
 
 function Liste_FilternInit() {

@@ -135,20 +135,9 @@ ELEMENTE.termine_anwesenheit.ergaenzen_aktion = function (anwesenheit) {
 WERKZEUGE.termin_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
 
 function Termine_Init() {
-    // TERMIN ERSTELLEN
+    // TERMIN ERSTELLEN / DUPLIZIEREN
     $(document).on("click", ".btn_termin_erstellen", function () {
         Termine_TerminErstellen(
-            $(this).hasClass("formular_oeffnen"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
-            undefined,
-        );
-    });
-
-    // TERMIN ÄNDERN
-    $(document).on("click", ".btn_termin_aendern", function () {
-        Termine_TerminAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
@@ -157,9 +146,9 @@ function Termine_Init() {
         );
     });
 
-    // TERMIN DUPLIZIEREN
-    $(document).on("click", ".btn_termin_duplizieren", function () {
-        Termine_TerminErstellen(
+    // TERMIN ÄNDERN
+    $(document).on("click", ".btn_termin_aendern", function () {
+        Termine_TerminAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),

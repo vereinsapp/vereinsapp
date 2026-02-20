@@ -2,8 +2,6 @@
 
 <?= $formular ?>
 
-    <div class="d-grid"><button type="button" class="btn <?php if( isset($btn) AND array_key_exists( 'klasse_id', $btn ) ) echo $btn['klasse_id']; ?> btn-outline-success"><span class="beschriftung"><?php
-    if( isset($btn['beschriftung']) AND array_key_exists( 'beschriftung', $btn ) ) echo $btn['beschriftung']; else echo 'Speichern';
-    ?></span></button></div>
+    <div class="d-grid formular_werkzeug"><button type="button" class="btn werkzeug btn-outline-success"><span class="beschriftung">Speichern</span></button></div>
 
 </div>

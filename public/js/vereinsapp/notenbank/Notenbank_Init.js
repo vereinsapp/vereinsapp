@@ -76,20 +76,9 @@ WERKZEUGE.titel_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIER
 WERKZEUGE.setliste_verwalten.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
 
 function Notenbank_Init() {
-    // TITEL ERSTELLEN
+    // TITEL ERSTELLEN / DUPLIZIEREN
     $(document).on("click", ".btn_titel_erstellen", function () {
         Notenbank_TitelErstellen(
-            $(this).hasClass("formular_oeffnen"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
-            undefined,
-        );
-    });
-
-    // TITEL ÄNDERN
-    $(document).on("click", ".btn_titel_aendern", function () {
-        Notenbank_TitelAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
@@ -98,9 +87,9 @@ function Notenbank_Init() {
         );
     });
 
-    // TITEL DUPLIZIEREN
-    $(document).on("click", ".btn_titel_duplizieren", function () {
-        Notenbank_TitelErstellen(
+    // TITEL ÄNDERN
+    $(document).on("click", ".btn_titel_aendern", function () {
+        Notenbank_TitelAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),

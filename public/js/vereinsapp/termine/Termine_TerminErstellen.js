@@ -7,12 +7,12 @@
  */
 
 function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) {
-    if (typeof termin_id !== "undefined") termin_id = Number(termin_id);
-
     if (formular_oeffnen) {
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "termin_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
-        Liste_Element$FormularInitialisieren($neues_modal.find(".formular"), "erstellen", termin_id, "termine");
+        const $neues_formular = $neues_modal.find(".formular");
+        $neues_formular.attr("data-werkzeug", "termin_erstellen").attr("data-liste", "termine").attr("data-termin_id", termin_id);
+        Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;
 

@@ -1,10 +1,10 @@
 function Notenbank_TitelAendern(formular_oeffnen, dom, data, title, titel_id) {
-    if (typeof titel_id !== "undefined") titel_id = Number(titel_id);
-
     if (formular_oeffnen) {
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "titel_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
-        Liste_Element$FormularInitialisieren($neues_modal.find(".formular"), "aendern", titel_id, "notenbank");
+        const $neues_formular = $neues_modal.find(".formular");
+        $neues_formular.attr("data-werkzeug", "titel_aendern").attr("data-liste", "notenbank").attr("data-titel_id", titel_id);
+        Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;
 

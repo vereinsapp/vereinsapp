@@ -2,12 +2,14 @@ const STATUS_SPINNER_CLASS = "spinner-border";
 const STATUS_SPINNER_HTML =
     '<span class="' + STATUS_SPINNER_CLASS + ' spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></span>';
 
+const AUTOLOAD_MODALS = new Array();
+
 BLANKOS.modal = new Object();
 BLANKOS.modal.bereitstellen_aktion = function ($blanko) {
     const modal_id = $blanko.attr("id");
     if (!(modal_id in MODALS)) {
         MODALS[modal_id] = $blanko;
-        if (MODALS[modal_id].hasClass("autoload")) autoload.push(modal_id);
+        if (MODALS[modal_id].hasClass("autoload")) AUTOLOAD_MODALS.push(modal_id);
     }
 };
 BLANKOS.toast = new Object();
@@ -19,8 +21,6 @@ const TOASTS = new Object(); // enthält lediglich $blanko_toast
 const MODALS = new Object();
 
 function Schnittstelle_DomInit() {
-    const autoload = new Array();
-
     $(".blanko")
         .each(function () {
             const $blanko = $(this);
@@ -32,21 +32,11 @@ function Schnittstelle_DomInit() {
         .remove();
     $("#hauptinstanzen").remove();
 
-    $.each(autoload, function () {
+    $.each(AUTOLOAD_MODALS, function () {
         const $modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, this);
-
         Schnittstelle_Dom$ModalOeffnen($modal);
-
         const $formular = $modal.find(".formular");
-        if ($formular.exists()) {
-            const liste = Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-liste"), undefined);
-            Liste_Element$FormularInitialisieren(
-                $formular,
-                Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-aktion"), undefined),
-                Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-" + LISTEN[liste].element + "_id"), undefined),
-                liste,
-            );
-        }
+        if ($formular.exists()) Liste_Element$FormularInitialisieren($formular);
     });
 
     $(document).ajaxStart(function () {

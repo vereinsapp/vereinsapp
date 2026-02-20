@@ -36,14 +36,7 @@ $(document).ready(function () {
 
     // FORMULARE OHNE MODAL (DIREKT IM DOM) INITIALISIEREN, BSPW. MIT WERTEN BEFÜLLEN
     $(".formular[data-liste]").each(function () {
-        const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined);
-
-        Liste_Element$FormularInitialisieren(
-            $(this),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aktion"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id"), undefined),
-            liste,
-        );
+        Liste_Element$FormularInitialisieren($(this));
     });
 
     // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
@@ -91,7 +84,14 @@ kacheln-View ergänzen (analog zu liste-View)
 Aufgaben detaillieren
 data-Prefix loswerden
 Schnittstelle_VariableWertFormatiertZurueck verschieben nach Liste (auch umbenennen)
+Bugfix meine_daten_aendern schreibt Mitglied ändern ins Formular-Werkzeug
+.btn_ ersetzen durch .werkzeug[data-werkzeug=""]
 klasse_id in views Schnittstelle_DomBestaetigungEinfordern zu werkzeug umbauen
+klasse in werkzeug umbauen zu btn und bestaetigung_einfordern etc. zu janein
+#hauptinstanzen entfernen
+FORMULARE OHNE MODAL (DIREKT IM DOM) INITIALISIEREN verschieben nach Schnittstelle_DomInit?
+title großteils entfernen weil der über das Werkzeug gegeben ist?
+datenschutzrichtlinie immer in layout laden (kein ajax)
 
 ERLEDIGT
 

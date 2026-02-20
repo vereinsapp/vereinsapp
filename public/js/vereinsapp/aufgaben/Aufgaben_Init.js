@@ -95,20 +95,9 @@ WERKZEUGE.aufgabe_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISI
 WERKZEUGE.termine_aufgaben_zuordnen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
 
 function Aufgaben_Init() {
-    // AUFGABE ERSTELLEN
+    // AUFGABE ERSTELLEN / DUPLIZIEREN
     $(document).on("click", ".btn_aufgabe_erstellen", function () {
         Aufgaben_AufgabeErstellen(
-            $(this).hasClass("formular_oeffnen"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
-            undefined,
-        );
-    });
-
-    // AUFGABE ÄNDERN
-    $(document).on("click", ".btn_aufgabe_aendern", function () {
-        Aufgaben_AufgabeAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
@@ -117,9 +106,9 @@ function Aufgaben_Init() {
         );
     });
 
-    // AUFGABE DUPLIZIEREN
-    $(document).on("click", ".btn_aufgabe_duplizieren", function () {
-        Aufgaben_AufgabeErstellen(
+    // AUFGABE ÄNDERN
+    $(document).on("click", ".btn_aufgabe_aendern", function () {
+        Aufgaben_AufgabeAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),

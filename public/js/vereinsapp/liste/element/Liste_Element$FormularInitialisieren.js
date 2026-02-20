@@ -1,11 +1,12 @@
 /**
  * @param {JQuery} $formular
- * @param {string} aktion
- * @param {number} element_id
- * @param {string} liste
  */
 
-function Liste_Element$FormularInitialisieren($formular, aktion, element_id, liste) {
+function Liste_Element$FormularInitialisieren($formular) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-liste"), undefined);
+    const element_id = Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-" + LISTEN[liste].element + "_id"), undefined);
+    const werkzeug = Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-werkzeug"), undefined);
+
     $formular.find(".eingabe").each(function () {
         const $eingabe = $(this);
         const eingabe = $eingabe.attr("data-eingabe");
@@ -47,12 +48,13 @@ function Liste_Element$FormularInitialisieren($formular, aktion, element_id, lis
         $eingabe.val(wert_formatiert).trigger("change");
     });
 
-    $formular.find("[class*=btn_" + LISTEN[liste].element + "_").each(function () {
-        const $btn_aktion = $(this);
-
-        if ($btn_aktion.hasClass("btn_" + LISTEN[liste].element + "_aktion") && typeof aktion !== "undefined")
-            $btn_aktion.addClass("btn_" + LISTEN[liste].element + "_" + aktion).removeClass("btn_" + LISTEN[liste].element + "_aktion");
-
-        $btn_aktion.attr("data-" + LISTEN[liste].element + "_id", element_id);
-    });
+    const $formular_werkzeug = $formular.find(".formular_werkzeug").find(".werkzeug");
+    $formular_werkzeug
+        .attr("data-werkzeug", werkzeug)
+        .attr("data-liste", liste)
+        .attr("data-" + LISTEN[liste].element + "_id", element_id);
+    if (typeof werkzeug !== "undefined") {
+        $formular_werkzeug.addClass(WERKZEUGE[werkzeug].btn);
+        $formular_werkzeug.find(".beschriftung").text(WERKZEUGE[werkzeug].title);
+    }
 }

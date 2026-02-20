@@ -11,6 +11,5 @@
     view( 'Templates/Liste/liste', array( 'liste' => $liste['strafen_zuweisen'] ) ) ) ); ?>
 <?php if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'strafe_basiseigenschaften', 'modal' =>
-    view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'strafkatalog' ), 'btn' => array( 'klasse_id' => 'btn_strafe_aktion' ), 'formular' =>
-    view( 'Strafkatalog/strafe_basiseigenschaften_formular' ) ) ) ) ); ?>
+    view( 'Templates/Liste/formular', array( 'formular' => view( 'Strafkatalog/strafe_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?= $this->endSection() ?>
