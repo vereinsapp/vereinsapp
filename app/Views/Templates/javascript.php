@@ -11,9 +11,7 @@ const WOCHENTAGE_KURZ = <?= json_encode( WOCHENTAGE_KURZ ) ?>;
 const WOCHENTAGE_LANG = <?= json_encode( WOCHENTAGE_LANG ) ?>;
 
 const LISTEN = <?= json_encode( LISTEN ) ?>;
-const ELEMENTE = <?= json_encode( ELEMENTE ) ?>;
 const WERKZEUGE = <?= json_encode( WERKZEUGE ) ?>;
-const HAUPTINSTANZEN = <?= json_encode( HAUPTINSTANZEN ) ?>;
 const EIGENSCHAFTEN = <?= json_encode( EIGENSCHAFTEN ) ?>;
 const VORGEGEBENE_WERTE = <?= json_encode( VORGEGEBENE_WERTE ) ?>;
 const FILTERN_VORGEGEBEN = <?= json_encode( FILTERN_VORGEGEBEN ) ?>;

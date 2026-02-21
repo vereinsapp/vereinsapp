@@ -43,9 +43,12 @@ function Liste_$ListeAktualisieren($liste) {
             .attr("data-" + LISTEN[liste].element + "_id", element_id)
             .attr("data-eigenschaften_bedingt_formatiert", $liste.attr("data-eigenschaften_bedingt_formatiert"));
 
-        $.each(Object.keys(ELEMENTE), function (position, verknuepftes_element) {
-            const verknuepfte_element_id = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-" + verknuepftes_element + "_id"), undefined);
-            if (typeof verknuepfte_element_id !== "undefined") $element.attr("data-" + verknuepftes_element + "_id", verknuepfte_element_id);
+        $.each(Object.keys(LISTEN), function (position, liste) {
+            const verknuepfte_element_id = Schnittstelle_VariableWertBereinigtZurueck(
+                $liste.attr("data-" + LISTEN[liste].element + "_id"),
+                undefined,
+            );
+            if (typeof verknuepfte_element_id !== "undefined") $element.attr("data-" + LISTEN[liste].element + "_id", verknuepfte_element_id);
         });
 
         if (Schnittstelle_VariableWertBereinigtZurueck($liste.attr("data-disabled_ids"), new Array()).includes(element_id))

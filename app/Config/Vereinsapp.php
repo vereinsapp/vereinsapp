@@ -92,10 +92,168 @@ class Vereinsapp extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
-     * Hauptinstanzen
+     * Werkzeuge
      * --------------------------------------------------------------------------
      */
-    public $hauptinstanzen = array(
+    public $werkzeuge = array(
+        // Pflicht: btn, symbol / Optional: filtern_localstorage, sortieren_localstorage, gruppieren_localstorage, formular_oeffnen, bestaetigung_einfordern, title, farbe, weiterleiten
+        'filtern_manip' => array( 'btn' => 'btn_filtern_manip', 'filtern_localstorage' => TRUE, 'symbol' => 'filtern', ),
+        'sortieren_manip' => array( 'btn' => 'btn_sortieren_manip', 'sortieren_localstorage' => TRUE, 'symbol' => 'sortieren', ),
+        'gruppieren_manip' => array( 'btn' => 'btn_gruppieren_manip', 'gruppieren_localstorage' => TRUE, 'symbol' => 'gruppieren', ),
+        'bemerkung_aendern' => array( 'btn' => 'btn_element_bemerkung_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'bemerkung', ),
+
+        'mitglied_erstellen' => array( 'btn' => 'btn_mitglied_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'erstellen', 'title' => 'Mitglied erstellen' ),
+        'mitglied_aendern' => array( 'btn' => 'btn_mitglied_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Mitglied ändern', ),
+        'mitglied_duplizieren' => array( 'btn' => 'btn_mitglied_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'duplizieren', 'title' => 'Mitglied duplizieren', ),
+        'mitglied_loeschen' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Mitglied löschen', 'farbe' => 'danger', ),
+        'mitglied_loeschen_weiterleiten' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Mitglied löschen', 'farbe' => 'danger', 'weiterleiten' => 'mitglieder', ),
+        'rechte_vergeben' => array( 'btn' => 'btn_rechte_vergeben', 'symbol' => 'rechte_vergeben', 'title' => 'Rechte vergeben', ),
+        'einmal_link_anzeigen' => array( 'btn' => 'btn_mitglied_einmal_link_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'einmal_link_anzeigen', 'title' => 'Einmal-Link anzeigen', ),
+        'einmal_link_email' => array( 'btn' => 'btn_mitglied_einmal_link_erstellen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'einmal_link_email', 'title' => 'Einmal-Link per Email verschicken', ),
+        'passwort_aendern' => array( 'btn' => 'btn_mitglied_passwort_aendern', 'symbol' => 'passwort_aendern', 'title' => 'Mein Passwort ändern', ),
+        'passwort_festlegen' => array( 'btn' => 'btn_mitglied_passwort_festlegen', 'symbol' => 'passwort_aendern', 'title' => 'Neues Passwort festlegen', ),
+        'meine_daten_aendern' => array( 'btn' => 'btn_mitglied_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Meine Daten ändern', ),
+
+        'aufgabe_erstellen' => array( 'btn' => 'btn_aufgabe_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'erstellen', 'title' => 'Aufgabe erstellen', ),
+        'aufgabe_aendern' => array( 'btn' => 'btn_aufgabe_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Aufgabe ändern', ),
+        'aufgabe_duplizieren' => array( 'btn' => 'btn_aufgabe_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'duplizieren', 'title' => 'Aufgabe duplizieren', ),
+        'aufgabe_loeschen' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Aufgabe löschen', 'farbe' => 'danger', ),
+        'termine_aufgaben_zuordnen' => array( 'btn' => 'btn_termine_aufgaben_zuordnen', 'symbol' => 'aufgaben', 'title' => 'Aufgaben zuordnen', ),
+
+        'termin_erstellen' => array( 'btn' => 'btn_termin_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'erstellen', 'title' => 'Termin erstellen', ),
+        'termin_aendern' => array( 'btn' => 'btn_termin_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Termin ändern', ),
+        'termin_duplizieren' => array( 'btn' => 'btn_termin_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'duplizieren', 'title' => 'Termin duplizieren', ),
+        'termin_loeschen' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Termin löschen', 'farbe' => 'danger', ),
+        'termin_loeschen_weiterleiten' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Termin löschen', 'farbe' => 'danger', 'weiterleiten' => 'termine', ),
+        'termine_rueckmeldungen_verwalten' => array( 'btn' => 'btn_termine_rueckmeldungen_verwalten', 'symbol' => 'pos_rueckmeldung', 'title' => 'Termin-Rückmeldungen verwalten', ),
+        'termine_anwesenheiten_dokumentieren' => array( 'btn' => 'btn_termine_anwesenheiten_dokumentieren', 'symbol' => 'pos_zuordnung', 'title' => 'Termin-Anwesenheiten dokumentieren', ),
+
+        'strafe_erstellen' => array( 'btn' => 'btn_strafe_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'erstellen', 'title' => 'Strafe erstellen', ),
+        'strafe_aendern' => array( 'btn' => 'btn_strafe_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Strafe ändern', ),
+        'strafe_duplizieren' => array( 'btn' => 'btn_strafe_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'duplizieren', 'title' => 'Strafe duplizieren', ),
+        'strafe_loeschen' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Strafe löschen', 'farbe' => 'danger', ),
+        'strafen_zuweisen' => array( 'btn' => 'btn_strafen_zuweisen', 'symbol' => 'strafen_zuweisen', 'title' => 'Strafe einem Mitglied zuweisen', ),
+
+        'titel_erstellen' => array( 'btn' => 'btn_titel_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'erstellen', 'title' => 'Titel erstellen', ),
+        'titel_aendern' => array( 'btn' => 'btn_titel_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Titel ändern', ),
+        'titel_duplizieren' => array( 'btn' => 'btn_titel_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'duplizieren', 'title' => 'Titel duplizieren', ),
+        'titel_loeschen' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Titel löschen', 'farbe' => 'danger', ),
+        'titel_loeschen_weiterleiten' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Titel löschen', 'farbe' => 'danger', 'weiterleiten' => 'notenbank', ),
+        'setliste_verwalten' => array( 'btn' => 'btn_setliste_verwalten', 'symbol' => 'setliste', 'title' => 'Setliste verwalten', ),
+
+    );
+
+    /**
+     * --------------------------------------------------------------------------
+     * Listen
+     * --------------------------------------------------------------------------
+     */
+    public $listen = array(
+        'mitglieder' => array(
+            'beschriftung' => 'Mitglieder',
+            'controller' => 'mitglieder',
+            'element' => 'mitglied',
+            'element_beschriftung' => 'Mitglied',
+            'element_beschriftung_erweitert' => array(
+                array( 'eigenschaft' => 'vorname' ),
+                array( 'eigenschaft' => 'nachname', 'prefix' => ' ' )
+            ),
+        ),
+        'verfuegbare_rechte' => array(
+            'beschriftung' => 'Verfügbare Rechte',
+            'controller' => 'mitglieder',
+            'element' => 'verfuegbares_recht',
+            'element_beschriftung' => 'Verfügbares Recht',
+        ),
+        'vergebene_rechte' => array(
+            'beschriftung' => 'Vergebene Rechte',
+            'controller' => 'mitglieder',
+            'element' => 'vergebenes_recht',
+            'element_beschriftung' => 'Vergebenes Recht',
+        ),
+
+        'aufgaben' => array(
+            'beschriftung' => 'Aufgaben',
+            'controller' => 'aufgaben',
+            'element' => 'aufgabe',
+            'element_beschriftung' => 'Aufgabe',
+            'element_beschriftung_erweitert' => array( array( 'eigenschaft' => 'titel' ) ),
+        ),
+        'aufgaben_rueckmeldungen' => array(
+            'beschriftung' => 'Rückmeldungen',
+            'controller' => 'aufgaben',
+            'element' => 'aufgaben_rueckmeldung',
+            'element_beschriftung' => 'Rückmeldung',
+        ),
+        'aufgaben_zuordnungen_termine' => array(
+            'beschriftung' => 'Termin-Zuordnungen',
+            'controller' => 'aufgaben',
+            'element' => 'aufgaben_zuordnung_termine',
+            'element_beschriftung' => 'Termin-Zuordnung',
+        ),
+
+        'termine' => array(
+            'beschriftung' => 'Termine',
+            'controller' => 'termine',
+            'element' => 'termin',
+            'element_beschriftung' => 'Termin',
+            'element_beschriftung_erweitert' => array(
+                array( 'eigenschaft' => 'titel' ),
+                array( 'eigenschaft' => 'start', 'prefix' => ' (', 'suffix' => ')' )
+            ),
+        ),
+        'termine_rueckmeldungen' => array(
+            'beschriftung' => 'Rückmeldungen',
+            'controller' => 'termine',
+            'element' => 'termine_rueckmeldung',
+            'element_beschriftung' => 'Rückmeldung',
+        ),
+        'termine_anwesenheiten' => array(
+            'beschriftung' => 'Anwesenheiten',
+            'controller' => 'termine',
+            'element' => 'termine_anwesenheit',
+            'element_beschriftung' => 'Anwesenheit',
+        ),
+
+        'strafkatalog' => array(
+            'beschriftung' => 'Strafkatalog',
+            'controller' => 'strafkatalog',
+            'element' => 'strafe',
+            'element_beschriftung' => 'Strafe',
+            'element_beschriftung_erweitert' => array(
+                array( 'eigenschaft' => 'titel' ),
+                array( 'eigenschaft' => 'wert', 'prefix' => ' (', 'suffix' => ')' )
+            ),
+        ),
+        'strafkatalog_zugewiesene_strafen' => array(
+            'beschriftung' => 'Zugewiesene Strafen',
+            'controller' => 'strafkatalog',
+            'element' => 'strafkatalog_zugewiesene_strafe',
+            'element_beschriftung' => 'Zugewiesene Strafe',
+        ),
+
+        'notenbank' => array(
+            'beschriftung' => 'Notenbank',
+            'controller' => 'notenbank',
+            'element' => 'titel',
+            'element_beschriftung' => 'Titel',
+            'element_beschriftung_erweitert' => array(
+                array( 'eigenschaft' => 'titel_nr' ),
+                array( 'eigenschaft' => 'titel', 'prefix' => ' ' )
+            ),
+        ),
+        'notenbank_setliste' => array(
+            'beschriftung' => 'Setlisteneintrag',
+            'controller' => 'notenbank',
+            'element' => 'notenbank_setlisteneintrag',
+            'element_beschriftung' => 'Setlisteneintrag',
+        ),
+    );
+
+    /**
+     * Viewdata
+     */
+    public $viewdata = array(
 
         'mitglieder' => array(
             'liste' => 'mitglieder',
@@ -221,9 +379,7 @@ class Vereinsapp extends BaseConfig
     );
 
     /**
-     * --------------------------------------------------------------------------
      * Eigenschaften
-     * --------------------------------------------------------------------------
      *
      * Die Indices dürfen nicht verändert werden!
      * Es sollte lediglich die Beschriftung verändert werden.
@@ -418,9 +574,7 @@ class Vereinsapp extends BaseConfig
     );
 
     /**
-     * --------------------------------------------------------------------------
      * Vorgegebene Werte zu Eigenschaften
-     * --------------------------------------------------------------------------
      *
      * Werte, die zu den Eigenschaften vorgegeben sind
      * und bspw. ausgewählt werden können
@@ -553,9 +707,7 @@ class Vereinsapp extends BaseConfig
 
     
     /**
-     * --------------------------------------------------------------------------
      * Vorgegebene Filter
-     * --------------------------------------------------------------------------
      *
      * Vorgegebene Filter, die im Filtern-Modal ausgewählt werden können
      */
@@ -652,9 +804,7 @@ class Vereinsapp extends BaseConfig
     );
 
     /**
-     * --------------------------------------------------------------------------
      * Filterbare Eigenschaften
-     * --------------------------------------------------------------------------
      *
      * Eigenschaften, die filterbar sein sollen
      */
@@ -727,9 +877,7 @@ class Vereinsapp extends BaseConfig
     );
 
     /**
-     * --------------------------------------------------------------------------
      * Sortierbare Eigenschaften
-     * --------------------------------------------------------------------------
      *
      * Eigenschaften, die sortierbar sein sollen
      */
@@ -816,9 +964,7 @@ class Vereinsapp extends BaseConfig
     );
     
     /**
-     * --------------------------------------------------------------------------
      * Gruppierbare Eigenschaften
-     * --------------------------------------------------------------------------
      *
      * Eigenschaften, die gruppierbar sein sollen
      */
@@ -878,18 +1024,14 @@ class Vereinsapp extends BaseConfig
     );
 
     /**
-     * --------------------------------------------------------------------------
      * Mitglieder-Eigenschaften Vorschau
-     * --------------------------------------------------------------------------
      *
      * Angezeigte Mitglieder-Eigenschaften als Vorschau
      */
     public $mitglieder_eigenschaften_vorschau = array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion', );
 
     /**
-     * --------------------------------------------------------------------------
      * Mitglieder-Auswertungen
-     * --------------------------------------------------------------------------
      *
      * Vordefinierte Filter (nach Liste)
      */
@@ -899,9 +1041,7 @@ class Vereinsapp extends BaseConfig
     );
 
     /**
-     * --------------------------------------------------------------------------
      * Termin-Kategorie filtern_mitglieder
-     * --------------------------------------------------------------------------
      *
      * Voreinstellungen für Termin-Kategorien
      * entsprechend dem Standard-Schema für Filtern
@@ -914,9 +1054,7 @@ class Vereinsapp extends BaseConfig
     );
 
     /**
-     * --------------------------------------------------------------------------
      * JSON-Export der öffentlichen Termine
-     * --------------------------------------------------------------------------
      *
      * Name der Datei, die beim Export der öffentlichen Termine
      * in ein json-Format verwendet bzw. erstellt wird
@@ -935,9 +1073,7 @@ class Vereinsapp extends BaseConfig
     );
 
     /**
-     * --------------------------------------------------------------------------
      * ICS-Export der Termine
-     * --------------------------------------------------------------------------
      *
      * Verzeichnis, das beim Export der Termine
      * in ein ics-Format verwendet bzw. erstellt wird
@@ -951,9 +1087,7 @@ class Vereinsapp extends BaseConfig
     public $termine_ics_export_dateiname = 'termine.ics';
 
     /**
-     * --------------------------------------------------------------------------
      * Notenbank Verzeichnis Anzahl Ziffern
-     * --------------------------------------------------------------------------
      *
      * Anzahl der Ziffern zu Beginn des Verzeichnis-Namens im storage
      * (Ziffern entsprechen der Titel-Nr. und damit orientiert sich die Anzahl
@@ -963,9 +1097,7 @@ class Vereinsapp extends BaseConfig
     public $notenbank_verzeichnis = '';
 
     /**
-     * --------------------------------------------------------------------------
      * Notenbank Verzeichnis Anzahl Ziffern
-     * --------------------------------------------------------------------------
      *
      * Anzahl der Ziffern zu Beginn des Verzeichnis-Namens im storage
      * (Ziffern entsprechen der Titel-Nr. und damit orientiert sich die Anzahl
@@ -974,9 +1106,7 @@ class Vereinsapp extends BaseConfig
     public $notenbank_anzahl_ziffern = 3;
 
     /**
-     * --------------------------------------------------------------------------
      * Notenbank Verzeichnis erlaubte Dateitypen
-     * --------------------------------------------------------------------------
      *
      * Erlaubte Dateitypen für Noten
      */
@@ -993,9 +1123,7 @@ class Vereinsapp extends BaseConfig
     );
 
     /**
-     * --------------------------------------------------------------------------
      * Verknüpfungen
-     * --------------------------------------------------------------------------
      */
     public $verknuepfungen = array(
         'vergebene_rechte' => array(
@@ -1081,6 +1209,14 @@ class Vereinsapp extends BaseConfig
     );
 
     /**
+     * JSON-Export Verzeichnis
+     *
+     * Verzeichnis, das beim Export einer Liste
+     * in ein json-Format verwendet bzw. erstellt wird
+     */
+    public $json_export_verzeichnis = 'json_export/';
+
+    /**
      * --------------------------------------------------------------------------
      * Datenschutz-Richtlinie
      * --------------------------------------------------------------------------
@@ -1088,7 +1224,7 @@ class Vereinsapp extends BaseConfig
      * Zeitstempel, zu dem die Datenschutz-Richtlinie veröfentlicht wurde
      */
     public $datenschutz_richtlinie_datum = 20210629;
-    
+
     /**
      * --------------------------------------------------------------------------
      * AJAX-Zykluszeit
@@ -1097,7 +1233,7 @@ class Vereinsapp extends BaseConfig
      * Zeit in Sekunden bis zum nächsten Schleifendurchgang
      */
     public $ajax_zykluszeit = 15;
-    
+
     /**
      * --------------------------------------------------------------------------
      * Kasten "Weiter zur Website von ..."
@@ -1106,21 +1242,11 @@ class Vereinsapp extends BaseConfig
      * Kasten "Weiter zur Website von ..." auf der Login-Seite aktivieren
      */
     public $kasten_weiter_zur_website_von_login = FALSE;
-    
+
     /**
      * Kasten "Weiter zur Website von ..." auf der Startseite aktivieren
      */
     public $kasten_weiter_zur_website_von_startseite = FALSE;
-
-    /**
-     * --------------------------------------------------------------------------
-     * JSON-Export Verzeichnis
-     * --------------------------------------------------------------------------
-     *
-     * Verzeichnis, das beim Export einer Liste
-     * in ein json-Format verwendet bzw. erstellt wird
-     */
-    public $json_export_verzeichnis = 'json_export/';
 
     /**
      * --------------------------------------------------------------------------

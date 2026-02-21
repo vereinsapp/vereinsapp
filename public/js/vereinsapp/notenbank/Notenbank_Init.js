@@ -1,4 +1,4 @@
-ELEMENTE.notenbank_setlisteneintrag.zuordnen_aktion = function (setlisteneintrag) {
+LISTEN.notenbank_setliste.element_zuordnen_aktion = function (setlisteneintrag) {
     const setlisteneintrag_id = setlisteneintrag.id;
 
     if ("notenbank" in LISTEN) {
@@ -32,7 +32,7 @@ ELEMENTE.notenbank_setlisteneintrag.zuordnen_aktion = function (setlisteneintrag
     }
 };
 
-ELEMENTE.titel.ergaenzen_aktion = function (titel) {
+LISTEN.notenbank.element_ergaenzen_aktion = function (titel) {
     titel["anzahl_noten"] = 0;
     $.each(NOTENBANK_ERLAUBTE_DATEITYPEN_NOTEN, function (index, typ) {
         titel["anzahl_noten"] += Liste_VerzeichnisAnzahlZurueck(titel["verzeichnis"], typ);
@@ -46,7 +46,7 @@ ELEMENTE.titel.ergaenzen_aktion = function (titel) {
     titel["anzahl_verzeichnis"] = Liste_VerzeichnisAnzahlZurueck(titel["verzeichnis"]);
 };
 
-ELEMENTE.notenbank_setlisteneintrag.ergaenzen_aktion = function (setlisteneintrag) {
+LISTEN.notenbank_setliste.element_ergaenzen_aktion = function (setlisteneintrag) {
     if ("titel_id" in setlisteneintrag)
         setlisteneintrag.titel_titel = Schnittstelle_VariableRausZurueck("titel", setlisteneintrag.titel_id, "notenbank", undefined);
     if ("titel_id" in setlisteneintrag)

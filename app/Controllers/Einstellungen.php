@@ -18,7 +18,7 @@ class Einstellungen extends BaseController {
 
     public function einstellungen() {
 
-        $this->viewdata['liste']['rechte_vergeben'] = HAUPTINSTANZEN['verfuegbare_rechte'];
+        $this->viewdata['liste']['rechte_vergeben'] = VIEWDATA['verfuegbare_rechte'];
         $this->viewdata['liste']['rechte_vergeben']['mitglied_id'] = ICH_ID;
 
         if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {

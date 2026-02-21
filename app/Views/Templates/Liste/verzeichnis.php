@@ -2,7 +2,7 @@
 ?> mb-1" data-liste="<?= $verzeichnis['liste']; ?>"<?php
 if( array_key_exists( 'filtern', $verzeichnis ) ) { ?> data-filtern='<?= json_encode( $verzeichnis['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'sortieren', $verzeichnis ) ) { ?> data-sortieren='<?= json_encode( $verzeichnis['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
-foreach( ELEMENTE as $element => $eigenschaften ) if( array_key_exists( $element.'_id', $verzeichnis ) ) { ?> data-<?= $element; ?>_id="<?= $verzeichnis[ $element.'_id' ]; ?>"<?php }
+foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $liste_ ]['element'].'_id', $verzeichnis ) ) { ?> data-<?= LISTEN[ $liste_ ]['element']; ?>_id="<?= $verzeichnis[ LISTEN[ $liste_ ]['element'].'_id' ]; ?>"<?php }
 ?>>
 
     <li class="text-body list-group-item p-0 blanko invisible" data-blanko="unterverzeichnis">

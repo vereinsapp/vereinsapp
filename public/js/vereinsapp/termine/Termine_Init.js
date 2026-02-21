@@ -1,4 +1,4 @@
-ELEMENTE.termine_rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
+LISTEN.termine_rueckmeldungen.element_zuordnen_aktion = function (rueckmeldung) {
     const rueckmeldung_id = rueckmeldung.id;
 
     if ("termine" in LISTEN) {
@@ -32,7 +32,7 @@ ELEMENTE.termine_rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
     }
 };
 
-ELEMENTE.termine_anwesenheit.zuordnen_aktion = function (anwesenheit) {
+LISTEN.termine_anwesenheiten.element_zuordnen_aktion = function (anwesenheit) {
     const anwesenheit_id = anwesenheit.id;
 
     if ("termine" in LISTEN) {
@@ -82,7 +82,7 @@ EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
     } else $filtern_mitglieder.removeAttr("data-filtern_basis").val("");
 };
 
-ELEMENTE.termin.ergaenzen_aktion = function (termin) {
+LISTEN.termine.element_ergaenzen_aktion = function (termin) {
     termin.mitglied_ids_eingeladen = new Array();
     $.each(
         Liste_TabelleGefiltertZurueck(
@@ -110,7 +110,7 @@ ELEMENTE.termin.ergaenzen_aktion = function (termin) {
         });
 };
 
-ELEMENTE.termine_rueckmeldung.ergaenzen_aktion = function (rueckmeldung) {
+LISTEN.termine_rueckmeldungen.element_ergaenzen_aktion = function (rueckmeldung) {
     if ("termin_id" in rueckmeldung)
         rueckmeldung.termin_start = Schnittstelle_VariableRausZurueck("start", rueckmeldung.termin_id, "termine", undefined);
     if ("termin_id" in rueckmeldung)
@@ -121,7 +121,7 @@ ELEMENTE.termine_rueckmeldung.ergaenzen_aktion = function (rueckmeldung) {
         rueckmeldung.mitglied_nachname = Schnittstelle_VariableRausZurueck("nachname", rueckmeldung.mitglied_id, "mitglieder", undefined);
 };
 
-ELEMENTE.termine_anwesenheit.ergaenzen_aktion = function (anwesenheit) {
+LISTEN.termine_anwesenheiten.element_ergaenzen_aktion = function (anwesenheit) {
     if ("termin_id" in anwesenheit)
         anwesenheit.termin_start = Schnittstelle_VariableRausZurueck("start", anwesenheit.termin_id, "termine", undefined);
     if ("termin_id" in anwesenheit)

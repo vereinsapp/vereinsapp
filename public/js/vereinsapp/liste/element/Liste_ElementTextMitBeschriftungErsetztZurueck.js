@@ -13,28 +13,25 @@ function Liste_ElementTextMitBeschriftungErsetztZurueck(text, element_id) {
             return match; // Original bei Exception beibehalten
         }
     });
-}
 
-function element_beschriftung_zurueck(element_id, liste) {
-    let beschriftung;
+    function element_beschriftung_zurueck(element_id, liste) {
+        let beschriftung;
 
-    if (
-        typeof element_id !== "undefined" &&
-        "element_beschriftung" in ELEMENTE[LISTEN[liste].element] &&
-        ELEMENTE[LISTEN[liste].element].element_beschriftung.length > 0
-    ) {
-        beschriftung = "";
-        $.each(ELEMENTE[LISTEN[liste].element].element_beschriftung, function () {
-            if ("prefix" in this) beschriftung += this.prefix;
-            if ("eigenschaft" in this)
-                beschriftung += Schnittstelle_VariableWertFormatiertZurueck(
-                    Schnittstelle_VariableRausZurueck(this.eigenschaft, element_id, liste, undefined),
-                    this.eigenschaft,
-                    liste,
-                );
-            if ("suffix" in this) beschriftung += this.suffix;
-        });
-    } else beschriftung = ELEMENTE[LISTEN[liste].element].beschriftung;
+        if (typeof element_id !== "undefined" && "element_beschriftung_erweitert" in LISTEN[liste]) {
+            beschriftung = "";
+            $.each(LISTEN[liste].element_beschriftung_erweitert, function () {
+                if ("prefix" in this) beschriftung += this.prefix;
+                if ("eigenschaft" in this)
+                    beschriftung += Schnittstelle_VariableWertFormatiertZurueck(
+                        Schnittstelle_VariableRausZurueck(this.eigenschaft, element_id, liste, undefined),
+                        this.eigenschaft,
+                        liste,
+                    );
+                if ("suffix" in this) beschriftung += this.suffix;
+            });
+            if (beschriftung === "") beschriftung = LISTEN[liste].element_beschriftung;
+        } else beschriftung = LISTEN[liste].element_beschriftung;
 
-    return beschriftung;
+        return beschriftung;
+    }
 }

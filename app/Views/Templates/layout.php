@@ -47,9 +47,5 @@
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder', 'mitglied_id' => ICH_ID, 'werkzeug' => 'passwort_festlegen', ), 'formular' => view( 'Mitglieder/mitglied_passwort_festlegen_formular' ) ) ) ) ); ?>
     </div>
 
-    <div id="hauptinstanzen" class="invisible">
-<?php foreach( HAUPTINSTANZEN as $liste => $eigenschaften ) { $eigenschaften['instanz'] = 'HAUPTINSTANZ'; echo view( 'Templates/Liste/liste', array( 'liste' => $eigenschaften ) ); } ?>
-    </div>
-
   </body>
 </html>

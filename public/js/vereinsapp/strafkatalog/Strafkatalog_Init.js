@@ -1,4 +1,4 @@
-ELEMENTE.strafkatalog_zugewiesene_strafe.zuordnen_aktion = function (zugewiesene_strafe) {
+LISTEN.strafkatalog_zugewiesene_strafen.element_zuordnen_aktion = function (zugewiesene_strafe) {
     const zugewiesene_strafe_id = zugewiesene_strafe.id;
 
     if ("strafkatalog" in LISTEN) {

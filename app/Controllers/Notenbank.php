@@ -9,16 +9,16 @@ class Notenbank extends BaseController {
 
     public function notenbank() {
 
-        $this->viewdata['liste']['aktuelles_verzeichnis'] = HAUPTINSTANZEN['notenbank'];
+        $this->viewdata['liste']['aktuelles_verzeichnis'] = VIEWDATA['notenbank'];
         $this->viewdata['liste']['aktuelles_verzeichnis']['group-flush'] = TRUE;
         $this->viewdata['liste']['aktuelles_verzeichnis']['link'] = array( 'liste' => 'notenbank', 'eigenschaften' => array( 'id', ), );
         $this->viewdata['liste']['aktuelles_verzeichnis']['vorschau'] = array( 'kategorie', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis' );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
-            $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['termine'];
+            $this->viewdata['liste']['setliste_verwalten'] = VIEWDATA['termine'];
             unset($this->viewdata['liste']['setliste_verwalten']['filtern']['ich_eingeladen_janein']);
-            $this->viewdata['liste']['setliste_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
+            $this->viewdata['liste']['setliste_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.VIEWDATA['termine']['beschriftung'];
             $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = 'notenbank_setliste';
 
             $this->viewdata['werkzeugkasten'][] = 'setliste_verwalten';
@@ -45,9 +45,9 @@ class Notenbank extends BaseController {
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
-            $this->viewdata['liste']['setliste_verwalten'] = HAUPTINSTANZEN['termine'];
+            $this->viewdata['liste']['setliste_verwalten'] = VIEWDATA['termine'];
             unset($this->viewdata['liste']['setliste_verwalten']['filtern']['ich_eingeladen_janein']);
-            $this->viewdata['liste']['setliste_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.HAUPTINSTANZEN['termine']['beschriftung'];
+            $this->viewdata['liste']['setliste_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.VIEWDATA['termine']['beschriftung'];
             $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = 'notenbank_setliste';
 
             $this->viewdata['werkzeugkasten'][] = 'setliste_verwalten';
@@ -60,8 +60,8 @@ class Notenbank extends BaseController {
 
         $this->viewdata['element_navigation'] = array(
             'instanz' => 'aktuelles_verzeichnis',
-            'filtern' => HAUPTINSTANZEN['notenbank']['filtern'],
-            'sortieren' => HAUPTINSTANZEN['notenbank']['sortieren'],
+            'filtern' => VIEWDATA['notenbank']['filtern'],
+            'sortieren' => VIEWDATA['notenbank']['sortieren'],
         );
 
         $this->viewdata_bereinigen(); echo view( 'Notenbank/titel_details', $this->viewdata );

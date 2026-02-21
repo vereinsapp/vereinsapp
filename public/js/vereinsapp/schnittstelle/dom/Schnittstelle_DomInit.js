@@ -30,7 +30,6 @@ function Schnittstelle_DomInit() {
             if (typeof BLANKOS[blanko].bereitstellen_aktion === "function") BLANKOS[blanko].bereitstellen_aktion($blanko);
         })
         .remove();
-    $("#hauptinstanzen").remove();
 
     $.each(AUTOLOAD_MODALS, function () {
         const $modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, this);

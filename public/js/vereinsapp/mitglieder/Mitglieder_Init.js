@@ -1,4 +1,4 @@
-ELEMENTE.vergebenes_recht.zuordnen_aktion = function (vergebenes_recht) {
+LISTEN.vergebene_rechte.element_zuordnen_aktion = function (vergebenes_recht) {
     const vergebenes_recht_id = vergebenes_recht.id;
 
     if ("verfuegbare_rechte" in LISTEN) {
@@ -32,7 +32,7 @@ ELEMENTE.vergebenes_recht.zuordnen_aktion = function (vergebenes_recht) {
     }
 };
 
-ELEMENTE.mitglied.ergaenzen_aktion = function (mitglied) {
+LISTEN.mitglieder.element_ergaenzen_aktion = function (mitglied) {
     if ("vorstandschaft_janein" in mitglied && mitglied.vorstandschaft_janein == 1) mitglied.vorstandschaft_janein = true;
     else mitglied.vorstandschaft_janein = false;
     if ("aktiv_janein" in mitglied && mitglied.aktiv_janein == 1) mitglied.aktiv_janein = true;
@@ -49,7 +49,7 @@ ELEMENTE.mitglied.ergaenzen_aktion = function (mitglied) {
     }
 };
 
-ELEMENTE.vergebenes_recht.ergaenzen_aktion = function (vergebenes_recht) {
+LISTEN.vergebene_rechte.element_ergaenzen_aktion = function (vergebenes_recht) {
     if ("verfuegbares_recht_id" in vergebenes_recht)
         vergebenes_recht.verfuegbares_recht_titel = Schnittstelle_VariableRausZurueck(
             "titel",

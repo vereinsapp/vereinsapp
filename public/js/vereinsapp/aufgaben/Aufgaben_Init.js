@@ -1,4 +1,4 @@
-ELEMENTE.aufgaben_rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
+LISTEN.aufgaben_rueckmeldungen.element_zuordnen_aktion = function (rueckmeldung) {
     const rueckmeldung_id = rueckmeldung.id;
 
     if ("aufgaben" in LISTEN) {
@@ -32,7 +32,7 @@ ELEMENTE.aufgaben_rueckmeldung.zuordnen_aktion = function (rueckmeldung) {
     }
 };
 
-ELEMENTE.aufgaben_zuordnung_termine.zuordnen_aktion = function (zuordnung) {
+LISTEN.aufgaben_zuordnungen_termine.element_zuordnen_aktion = function (zuordnung) {
     const zuordnung_id = zuordnung.id;
 
     if ("aufgaben" in LISTEN) {
@@ -66,7 +66,7 @@ ELEMENTE.aufgaben_zuordnung_termine.zuordnen_aktion = function (zuordnung) {
     }
 };
 
-ELEMENTE.aufgaben_rueckmeldung.ergaenzen_aktion = function (rueckmeldung) {
+LISTEN.aufgaben_rueckmeldungen.element_ergaenzen_aktion = function (rueckmeldung) {
     if ("aufgabe_id" in rueckmeldung)
         rueckmeldung.aufgabe_titel = Schnittstelle_VariableRausZurueck("titel", rueckmeldung.aufgabe_id, "aufgaben", undefined);
     if ("mitglied_id" in rueckmeldung)
@@ -75,7 +75,7 @@ ELEMENTE.aufgaben_rueckmeldung.ergaenzen_aktion = function (rueckmeldung) {
         rueckmeldung.mitglied_nachname = Schnittstelle_VariableRausZurueck("nachname", rueckmeldung.mitglied_id, "mitglieder", undefined);
 };
 
-ELEMENTE.aufgaben_zuordnung_termine.ergaenzen_aktion = function (zuordnung) {
+LISTEN.aufgaben_zuordnungen_termine.element_ergaenzen_aktion = function (zuordnung) {
     if ("aufgabe_id" in zuordnung) zuordnung.aufgabe_titel = Schnittstelle_VariableRausZurueck("titel", zuordnung.aufgabe_id, "aufgaben", undefined);
     if ("aufgabe_id" in zuordnung)
         zuordnung.aufgabe_max_anzahl_mitglieder = Schnittstelle_VariableRausZurueck(
