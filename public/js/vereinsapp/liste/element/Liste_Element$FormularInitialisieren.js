@@ -48,13 +48,12 @@ function Liste_Element$FormularInitialisieren($formular) {
         $eingabe.val(wert_formatiert).trigger("change");
     });
 
-    const $formular_werkzeug = $formular.find(".formular_werkzeug").find(".werkzeug");
-    $formular_werkzeug
-        .attr("data-werkzeug", werkzeug)
-        .attr("data-liste", liste)
-        .attr("data-" + LISTEN[liste].element + "_id", element_id);
-    if (typeof werkzeug !== "undefined") {
-        $formular_werkzeug.addClass(WERKZEUGE[werkzeug].btn);
+    const $formular_werkzeug = $formular.find(".formular_werkzeug");
+    if (typeof werkzeug !== "undefined" && werkzeug in WERKZEUGE) {
+        $formular_werkzeug.removeClass("formular_werkzeug").addClass("werkzeug").attr("data-werkzeug", werkzeug).addClass(WERKZEUGE[werkzeug].btn);
+        if ("farbe" in WERKZEUGE[werkzeug])
+            $formular_werkzeug.removeClass("btn-outline-success").addClass("btn-outline-" + WERKZEUGE[werkzeug].farbe);
         $formular_werkzeug.find(".beschriftung").text(WERKZEUGE[werkzeug].title);
     }
+    $formular_werkzeug.attr("data-liste", liste).attr("data-" + LISTEN[liste].element + "_id", element_id);
 }

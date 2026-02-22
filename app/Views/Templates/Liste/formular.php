@@ -2,6 +2,6 @@
 
 <?= $formular ?>
 
-    <div class="d-grid formular_werkzeug"><button type="button" class="btn werkzeug btn-outline-success"><span class="beschriftung">Speichern</span></button></div>
+    <div class="d-grid"><button type="button" class="btn formular_werkzeug btn-outline-success"><span class="beschriftung">Speichern</span></button></div>
 
 </div>

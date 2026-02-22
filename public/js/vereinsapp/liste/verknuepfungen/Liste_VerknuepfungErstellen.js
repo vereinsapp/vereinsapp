@@ -13,7 +13,7 @@ function Liste_VerknuepfungErstellen(bestaetigung_einfordern, dom, data, title, 
         Schnittstelle_DomBestaetigungEinfordern(
             Liste_ElementTextMitBeschriftungErsetztZurueck("Willst du wirklich {mitglieder} die Strafe {strafkatalog} zuweisen?", data),
             title,
-            "btn_verknuepfung_erstellen",
+            LISTEN[verknuepfungen].element + "_erstellen",
             data,
         );
     else {

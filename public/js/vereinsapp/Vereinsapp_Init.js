@@ -86,8 +86,6 @@ data-Prefix loswerden
 Schnittstelle_VariableWertFormatiertZurueck verschieben nach Liste (auch umbenennen)
 Bugfix meine_daten_aendern schreibt Mitglied ändern ins Formular-Werkzeug
 .btn_ ersetzen durch .werkzeug[data-werkzeug=""]
-klasse_id in views Schnittstelle_DomBestaetigungEinfordern zu werkzeug umbauen
-klasse in werkzeug umbauen zu btn und bestaetigung_einfordern etc. zu janein
 FORMULARE OHNE MODAL (DIREKT IM DOM) INITIALISIEREN verschieben nach Schnittstelle_DomInit?
 title großteils entfernen weil der über das Werkzeug gegeben ist?
 datenschutzrichtlinie immer in layout laden (kein ajax)

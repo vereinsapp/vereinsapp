@@ -15,7 +15,7 @@ function Liste_ElementBemerkungAendern(formular_oeffnen, dom, data, element_id, 
             .attr("data-werkzeug", "bemerkung_aendern")
             .attr("data-liste", liste)
             .attr("data-" + LISTEN[liste].element + "_id", element_id);
-        Schnittstelle_Dom$Quelle$ZielVerknuepfen($neues_formular.find(".formular_werkzeug").find(".werkzeug"), dom.$ausloesend.closest(".element"));
+        Schnittstelle_Dom$Quelle$ZielVerknuepfen($neues_formular.find(".formular_werkzeug"), dom.$ausloesend.closest(".element"));
         Liste_Element$FormularInitialisieren($neues_modal.find(".formular"));
     } else {
         dom.$element = Schnittstelle_Dom$ZielZu$QuelleZurueck(dom.$ausloesend);

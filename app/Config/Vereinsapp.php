@@ -101,6 +101,7 @@ class Vereinsapp extends BaseConfig
         'sortieren_manip' => array( 'btn' => 'btn_sortieren_manip', 'sortieren_localstorage' => TRUE, 'symbol' => 'sortieren', ),
         'gruppieren_manip' => array( 'btn' => 'btn_gruppieren_manip', 'gruppieren_localstorage' => TRUE, 'symbol' => 'gruppieren', ),
         'bemerkung_aendern' => array( 'btn' => 'btn_element_bemerkung_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'bemerkung', ),
+        'localstorage_leeren' => array( 'btn' => 'btn_localstorage_leeren', 'symbol' => 'loeschen', 'title' => 'Localstorage leeren', 'farbe' => 'danger', ),
 
         'mitglied_erstellen' => array( 'btn' => 'btn_mitglied_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'erstellen', 'title' => 'Mitglied erstellen' ),
         'mitglied_aendern' => array( 'btn' => 'btn_mitglied_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Mitglied ändern', ),
@@ -108,6 +109,7 @@ class Vereinsapp extends BaseConfig
         'mitglied_loeschen' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Mitglied löschen', 'farbe' => 'danger', ),
         'mitglied_loeschen_weiterleiten' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Mitglied löschen', 'farbe' => 'danger', 'weiterleiten' => 'mitglieder', ),
         'rechte_vergeben' => array( 'btn' => 'btn_rechte_vergeben', 'symbol' => 'rechte_vergeben', 'title' => 'Rechte vergeben', ),
+        'vergebenes_recht_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'pos_zuordnung', 'title' => 'Recht vergeben', ),
         'einmal_link_anzeigen' => array( 'btn' => 'btn_mitglied_einmal_link_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'einmal_link_anzeigen', 'title' => 'Einmal-Link anzeigen', ),
         'einmal_link_email' => array( 'btn' => 'btn_mitglied_einmal_link_erstellen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'einmal_link_email', 'title' => 'Einmal-Link per Email verschicken', ),
         'passwort_aendern' => array( 'btn' => 'btn_mitglied_passwort_aendern', 'symbol' => 'passwort_aendern', 'title' => 'Mein Passwort ändern', ),
@@ -119,6 +121,8 @@ class Vereinsapp extends BaseConfig
         'aufgabe_duplizieren' => array( 'btn' => 'btn_aufgabe_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'duplizieren', 'title' => 'Aufgabe duplizieren', ),
         'aufgabe_loeschen' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Aufgabe löschen', 'farbe' => 'danger', ),
         'termine_aufgaben_zuordnen' => array( 'btn' => 'btn_termine_aufgaben_zuordnen', 'symbol' => 'aufgaben', 'title' => 'Aufgaben zuordnen', ),
+        'aufgaben_zuordnung_termine_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'pos_zuordnung', 'title' => 'Zuordnung machen', ),
+        'aufgaben_rueckmeldung_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'angenommen_rueckmeldung', 'title' => 'Rückmeldung machen', ),
 
         'termin_erstellen' => array( 'btn' => 'btn_termin_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'erstellen', 'title' => 'Termin erstellen', ),
         'termin_aendern' => array( 'btn' => 'btn_termin_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Termin ändern', ),
@@ -126,13 +130,16 @@ class Vereinsapp extends BaseConfig
         'termin_loeschen' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Termin löschen', 'farbe' => 'danger', ),
         'termin_loeschen_weiterleiten' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Termin löschen', 'farbe' => 'danger', 'weiterleiten' => 'termine', ),
         'termine_rueckmeldungen_verwalten' => array( 'btn' => 'btn_termine_rueckmeldungen_verwalten', 'symbol' => 'pos_rueckmeldung', 'title' => 'Termin-Rückmeldungen verwalten', ),
+        'termine_rueckmeldung_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'angenommen_rueckmeldung', 'title' => 'Rückmeldung machen', ),
         'termine_anwesenheiten_dokumentieren' => array( 'btn' => 'btn_termine_anwesenheiten_dokumentieren', 'symbol' => 'pos_zuordnung', 'title' => 'Termin-Anwesenheiten dokumentieren', ),
+        'termine_anwesenheit_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'pos_zuordnung', 'title' => 'Termin-Anwesenheit dokumentieren', ),
 
         'strafe_erstellen' => array( 'btn' => 'btn_strafe_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'erstellen', 'title' => 'Strafe erstellen', ),
         'strafe_aendern' => array( 'btn' => 'btn_strafe_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Strafe ändern', ),
         'strafe_duplizieren' => array( 'btn' => 'btn_strafe_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'duplizieren', 'title' => 'Strafe duplizieren', ),
         'strafe_loeschen' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Strafe löschen', 'farbe' => 'danger', ),
         'strafen_zuweisen' => array( 'btn' => 'btn_strafen_zuweisen', 'symbol' => 'strafen_zuweisen', 'title' => 'Strafe einem Mitglied zuweisen', ),
+        'strafkatalog_zugewiesene_strafe_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'strafen_zuweisen', 'title' => 'Strafe einem Mitglied zuweisen', ),
 
         'titel_erstellen' => array( 'btn' => 'btn_titel_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'erstellen', 'title' => 'Titel erstellen', ),
         'titel_aendern' => array( 'btn' => 'btn_titel_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Titel ändern', ),
@@ -140,6 +147,7 @@ class Vereinsapp extends BaseConfig
         'titel_loeschen' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Titel löschen', 'farbe' => 'danger', ),
         'titel_loeschen_weiterleiten' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Titel löschen', 'farbe' => 'danger', 'weiterleiten' => 'notenbank', ),
         'setliste_verwalten' => array( 'btn' => 'btn_setliste_verwalten', 'symbol' => 'setliste', 'title' => 'Setliste verwalten', ),
+        'notenbank_setlisteneintrag_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'pos_zuordnung', 'title' => 'Titel hinzufügen', ),
 
     );
 

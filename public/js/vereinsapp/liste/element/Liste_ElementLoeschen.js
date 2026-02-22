@@ -15,9 +15,8 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, liste)
                 [LISTEN[liste].element + "_id"]: data[LISTEN[liste].element + "_id"],
             }),
             title,
-            "btn_element_loeschen",
+            LISTEN[liste].element + "_loeschen",
             data,
-            "danger",
         );
     else {
         const ajax_dom = dom;

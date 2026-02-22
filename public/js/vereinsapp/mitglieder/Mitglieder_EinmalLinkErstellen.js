@@ -8,7 +8,7 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
                 { mitglied_id: mitglied_id },
             ),
             title,
-            "btn_mitglied_einmal_link_erstellen",
+            "einmal_link_email",
             { liste: "mitglieder", mitglied_id: mitglied_id, email: true },
         );
     else if (formular_oeffnen) {

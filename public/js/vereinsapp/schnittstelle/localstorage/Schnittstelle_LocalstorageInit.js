@@ -27,10 +27,9 @@ function Schnittstelle_LocalstorageInit() {
         if ($btn_localstorage_leeren.hasClass("bestaetigung_einfordern"))
             Schnittstelle_DomBestaetigungEinfordern(
                 "Willst du wirklich deinen LocalStorage leeren?",
-                $btn_localstorage_leeren.attr("data-title"),
-                "btn_localstorage_leeren",
+                Schnittstelle_VariableWertBereinigtZurueck($btn_localstorage_leeren.attr("data-title")),
+                "localstorage_leeren",
                 new Object(),
-                "danger",
             );
         else {
             localstorage_leeren();

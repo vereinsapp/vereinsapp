@@ -1,16 +1,24 @@
-function Schnittstelle_DomBestaetigungEinfordern(nachricht, title, btn_klasse_id, btn_data, btn_farbe) {
+function Schnittstelle_DomBestaetigungEinfordern(nachricht, title, werkzeug, data) {
     const $neues_bestaetigung_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "bestaetigung_modal");
     const $bestaetigung = $neues_bestaetigung_modal.find(".bestaetigung");
 
-    $bestaetigung.find(".nachricht").text(nachricht);
+    $bestaetigung.find(".bestaetigung_nachricht").text(nachricht);
 
-    const $btn_bestaetigen = $bestaetigung.find(".btn_bestaetigen");
-    $btn_bestaetigen.addClass(btn_klasse_id).removeClass("btn_bestaetigen");
-    if (typeof btn_data !== "undefined" && isObject(btn_data))
-        $.each(btn_data, function (eigenschaft, wert) {
-            $btn_bestaetigen.attr("data-" + eigenschaft, wert);
+    const $bestaetigung_werkzeug = $bestaetigung.find(".bestaetigung_werkzeug");
+    if (typeof werkzeug !== "undefined" && werkzeug in WERKZEUGE) {
+        $bestaetigung_werkzeug
+            .removeClass("bestaetigung_werkzeug")
+            .addClass("werkzeug")
+            .attr("data-werkzeug", werkzeug)
+            .addClass(WERKZEUGE[werkzeug].btn);
+        if ("farbe" in WERKZEUGE[werkzeug])
+            $bestaetigung_werkzeug.removeClass("btn-outline-success").addClass("btn-outline-" + WERKZEUGE[werkzeug].farbe);
+        // $bestaetigung_werkzeug.find(".beschriftung").text(WERKZEUGE[werkzeug].title);
+    }
+    if (typeof data !== "undefined" && isObject(data))
+        $.each(data, function (eigenschaft, wert) {
+            $bestaetigung_werkzeug.attr("data-" + eigenschaft, wert);
         });
-    if (typeof btn_farbe !== "undefined") $btn_bestaetigen.removeClass("btn-outline-success").addClass("btn-outline-" + btn_farbe);
 
     Schnittstelle_Dom$ModalOeffnen($neues_bestaetigung_modal);
 }

@@ -20,31 +20,6 @@ class Termine extends BaseController {
         $this->viewdata['liste']['bevorstehende_termine']['vorschau'] = array( 'start', 'ort' );
         $this->viewdata['liste']['bevorstehende_termine']['verknuepfungen'] = 'termine_rueckmeldungen';
 
-        if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
-
-            $this->viewdata['liste']['termine_aufgaben_zuordnen'] = VIEWDATA['aufgaben'];
-            // unset($this->viewdata['liste']['termine_aufgaben_zuordnen']['filtern']);
-            $this->viewdata['liste']['termine_aufgaben_zuordnen']['verknuepfungen'] = 'aufgaben_zuordnungen_termine';
-            $this->viewdata['liste']['termine_aufgaben_zuordnen']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
-            $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeugkasten'][] = 'aufgabe_erstellen';
-
-            $this->viewdata['werkzeugkasten'][] = 'termine_aufgaben_zuordnen';
-
-        }
-
-        if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
-
-            $this->viewdata['liste']['setliste_verwalten'] = VIEWDATA['notenbank'];
-            // unset($this->viewdata['liste']['setliste_verwalten']['filtern']);
-            $this->viewdata['liste']['setliste_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['notenbank']['bootstrap'].'"></i> '.VIEWDATA['notenbank']['beschriftung'];
-            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = 'notenbank_setliste';
-            $this->viewdata['liste']['setliste_verwalten']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
-            $this->viewdata['liste']['setliste_verwalten']['werkzeugkasten'][] = 'titel_erstellen';
-
-            $this->viewdata['werkzeugkasten'][] = 'setliste_verwalten';
-
-        }
-
         if( auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = VIEWDATA['mitglieder'];
