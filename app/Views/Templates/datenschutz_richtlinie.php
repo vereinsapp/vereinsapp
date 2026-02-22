@@ -1,4 +1,4 @@
-<div class="modal fade" id="datenschutz_richtlinie_anzeigen" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+<div class="fade blanko invisible" data-blanko="modal" id="datenschutz_richtlinie_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-body">
@@ -38,7 +38,7 @@
                 Bitte nimm zur Kenntnis, dass unsere Website möglicherweise nicht richtig funktioniert, wenn alle Cookies deaktiviert sind. Wenn du die Cookies in deinem Browser löschst, werden diese neu platziert, wenn du unsere Website erneut besuchst.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-success col-12" id="datenschutz_richtlinie_akzeptieren"><span class="beschriftung">Datenschutz-Richtlinie akzeptieren</span></button>
+                <button type="button" class="btn btn_datenschutz_richtlinie_akzeptieren btn-outline-success col-12"><span class="beschriftung">Datenschutz-Richtlinie akzeptieren</span></button>
             </div>
         </div>
     </div>

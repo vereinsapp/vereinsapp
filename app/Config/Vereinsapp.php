@@ -102,6 +102,7 @@ class Vereinsapp extends BaseConfig
         'gruppieren_manip' => array( 'btn' => 'btn_gruppieren_manip', 'gruppieren_localstorage' => TRUE, 'symbol' => 'gruppieren', ),
         'bemerkung_aendern' => array( 'btn' => 'btn_element_bemerkung_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'bemerkung', ),
         'localstorage_leeren' => array( 'btn' => 'btn_localstorage_leeren', 'symbol' => 'loeschen', 'title' => 'Localstorage leeren', 'farbe' => 'danger', ),
+        'datenschutz_richtlinie_akzeptieren' => array( 'btn' => 'btn_datenschutz_richtlinie_akzeptieren', 'symbol' => 'pos_zuordnung', 'title' => 'Datenschutz-Richtlinie akzeptieren', ),
 
         'mitglied_erstellen' => array( 'btn' => 'btn_mitglied_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'erstellen', 'title' => 'Mitglied erstellen' ),
         'mitglied_aendern' => array( 'btn' => 'btn_mitglied_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Mitglied ändern', ),

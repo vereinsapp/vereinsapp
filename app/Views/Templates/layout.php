@@ -36,12 +36,17 @@
     </div>
 
     <div id="modals">
-<?= view( 'Templates/modal', array( 'modal_id' => 'bestaetigung_modal', 'modal' => view( 'Templates/bestaetigung' ) ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'bestaetigung_modal', 'modal' =>
+    view( 'Templates/bestaetigung' ) ) ); ?>
 <?= view( 'Templates/modal', array( 'modal_id' => 'bemerkung_aendern_modal', 'modal_title' => 'Bemerkung ändern', 'modal' =>
     view( 'Templates/Liste/formular', array( 'formular' => view( 'Templates/Liste/bemerkung_formular' ) ) ) ) ); ?>
-<?= view( 'Templates/modal', array( 'modal_id' => 'filtern_manip_modal', 'modal' => view( 'Templates/Liste/filtern' ) ) ); ?>
-<?= view( 'Templates/modal', array( 'modal_id' => 'sortieren_manip_modal', 'modal' => view( 'Templates/Liste/sortieren' ) ) ); ?>
-<?= view( 'Templates/modal', array( 'modal_id' => 'gruppieren_manip_modal', 'modal' => view( 'Templates/Liste/gruppieren' ) ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'filtern_manip_modal', 'modal' =>
+    view( 'Templates/Liste/filtern' ) ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'sortieren_manip_modal', 'modal' =>
+    view( 'Templates/Liste/sortieren' ) ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'gruppieren_manip_modal', 'modal' =>
+    view( 'Templates/Liste/gruppieren' ) ) ); ?>
+<?= view( 'Templates/datenschutz_richtlinie' ); ?>
 <?php if( auth()->loggedIn() && auth()->user()->requiresPasswordReset() ) echo
     view( 'Templates/modal', array( 'modal_id' => 'passwort_festlegen', 'autoload' => TRUE, 'modal_title' => 'Neues Passwort festlegen', 'modal' =>
     view( 'Templates/Liste/formular', array( 'data' => array( 'liste' => 'mitglieder', 'mitglied_id' => ICH_ID, 'werkzeug' => 'passwort_festlegen', ), 'formular' => view( 'Mitglieder/mitglied_passwort_festlegen_formular' ) ) ) ) ); ?>

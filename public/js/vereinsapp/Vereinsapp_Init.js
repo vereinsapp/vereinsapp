@@ -38,16 +38,6 @@ $(document).ready(function () {
     $(".formular[data-liste]").each(function () {
         Liste_Element$FormularInitialisieren($(this));
     });
-
-    // DATENACHUTZ-RICHTLINIE AKZEPTIEREN
-    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined) === "undefined")
-        Schnittstelle_AjaxInDieSchlange("status/ajax_datenschutz_richtlinie", new Object(), new Object(), function (AJAX) {
-            Schnittstelle_Dom$ModalOeffnen(AJAX.antwort.html);
-            $(document).on("click", "#datenschutz_richtlinie_akzeptieren", function () {
-                Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DATETIME.now().toISO());
-                Schnittstelle_Dom$ModalSchliessen($("#datenschutz_richtlinie_anzeigen"));
-            });
-        });
 });
 
 /* TODO
@@ -78,7 +68,6 @@ verzeichnis überarbeiten
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen (ausschließlich spezielle Zusatzsymbole wie beispiele Termin-Kategorie als hex-Symbole)
 Neue bootstrap icons Version einführen (unlock2 statt lock)
 Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details)
-localstorage_reset_string und datenschutz_richtlinie_string entfernen (hinzugefügt im Juni 2025?)
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
 kacheln-View ergänzen (analog zu liste-View)
 Aufgaben detaillieren
@@ -88,7 +77,6 @@ Bugfix meine_daten_aendern schreibt Mitglied ändern ins Formular-Werkzeug
 .btn_ ersetzen durch .werkzeug[data-werkzeug=""]
 FORMULARE OHNE MODAL (DIREKT IM DOM) INITIALISIEREN verschieben nach Schnittstelle_DomInit?
 title großteils entfernen weil der über das Werkzeug gegeben ist?
-datenschutzrichtlinie immer in layout laden (kein ajax)
 
 ERLEDIGT
 

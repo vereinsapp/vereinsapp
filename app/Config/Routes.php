@@ -121,7 +121,6 @@ $routes->group('notenbank', static function ($routes) {
 
 $routes->group('status', static function ($routes) {
     $routes->get('wartungsarbeiten', 'Status::wartungsarbeiten');
-    $routes->post('ajax_datenschutz_richtlinie', 'Status::ajax_datenschutz_richtlinie');
 });
 
 service('auth')->routes($routes);

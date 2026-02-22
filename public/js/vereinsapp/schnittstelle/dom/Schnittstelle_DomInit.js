@@ -65,6 +65,14 @@ function Schnittstelle_DomInit() {
         Schnittstelle_JetztAktualisieren($(this));
     });
 
+    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined) === "undefined")
+        Schnittstelle_Dom$ModalOeffnen(Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, "datenschutz_richtlinie_modal"));
+
+    $(document).on("click", ".btn_datenschutz_richtlinie_akzeptieren", function () {
+        Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DATETIME.now().toISO());
+        Schnittstelle_Dom$ModalSchliessen($(this).closest(".modal"));
+    });
+
     // WERKZEUGKASTEN (OFFCANVAS) ÖFFNEN
     $(document).on("show.bs.offcanvas", "#werkzeugkasten", function (event) {
         const $werkzeuge = $(this).find(".werkzeug");
