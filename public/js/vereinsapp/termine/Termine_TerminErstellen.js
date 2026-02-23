@@ -2,16 +2,18 @@
  * @param {boolean} formular_oeffnen
  * @param {Object} dom
  * @param {Object} data
- * @param {string} title
+ * @param {string} modal_title
  * @param {number} termin_id
  */
 
-function Termine_TerminErstellen(formular_oeffnen, dom, data, title, termin_id) {
+function Termine_TerminErstellen(formular_oeffnen, dom, data, modal_title, termin_id) {
     if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "termin_basiseigenschaften");
+        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "termin_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");
         $neues_formular.attr("data-werkzeug", "termin_erstellen").attr("data-liste", "termine").attr("data-termin_id", termin_id);
+        if ("$ausloesend" in dom && dom.$ausloesend.exists() && dom.$ausloesend.attr("data-werkzeug") in WERKZEUGE)
+            $neues_formular.attr("data-werkzeug", dom.$ausloesend.attr("data-werkzeug"));
         Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;

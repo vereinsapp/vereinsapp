@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
     <div class="container-fluid">
         <div class="navbar-brand">
-            <a href="<?= site_url(); ?>"><img class="title" src="<?= base_url( VEREINSAPP_LOGO ); ?>" style="width:30px;" /></a>
+            <a href="<?= site_url(); ?>"><img class="navbar-logo" src="<?= base_url( VEREINSAPP_LOGO ); ?>" /></a>
         </div>
         <div>
             <i class="bi-<?php if( array_key_exists( AKTIVER_CONTROLLER, CONTROLLERS ) AND array_key_exists( 'symbol', CONTROLLERS[ AKTIVER_CONTROLLER ] ) ) echo CONTROLLERS[ AKTIVER_CONTROLLER ]['symbol']; ?> me-1"></i>

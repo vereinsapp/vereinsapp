@@ -31,6 +31,11 @@ function Schnittstelle_DomInit() {
         })
         .remove();
 
+    // JETZT AKTUALISIEREN
+    $(".jetzt").each(function () {
+        Schnittstelle_Dom$JetztAktualisieren($(this));
+    });
+
     // DATENSCHUTZ-RICHTLINIE AKZEPTIEREN
     $(document).on("click", ".btn_datenschutz_richtlinie_akzeptieren", function () {
         Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DATETIME.now().toISO());

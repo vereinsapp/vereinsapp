@@ -11,7 +11,7 @@ WERKZEUGE.gruppieren_manip.aktualisieren_aktion = function ($gruppieren_manip) {
     const gruppieren_manip = LISTEN[liste].instanz[instanz].gruppieren;
 
     $gruppieren_manip
-        .attr("data-title", LISTEN[liste].beschriftung + " " + WERKZEUGE.gruppieren_manip.symbol)
+        .attr("data-modal_title", LISTEN[liste].beschriftung + " " + WERKZEUGE.gruppieren_manip.symbol)
         .attr("data-gruppieren_basis", JsonStringifiedZurueck(gruppieren_basis, undefined))
         .val(JsonStringifiedZurueck(gruppieren_manip, undefined));
 

@@ -9,13 +9,10 @@
                 if( array_key_exists( 'formular_oeffnen', WERKZEUGE[ $werkzeug ] ) AND WERKZEUGE[ $werkzeug ]['formular_oeffnen'] ) echo ' formular_oeffnen';
                 if( array_key_exists( 'bestaetigung_einfordern', WERKZEUGE[ $werkzeug ] ) AND WERKZEUGE[ $werkzeug ]['bestaetigung_einfordern'] ) echo ' bestaetigung_einfordern';
                 if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo ' text-'.WERKZEUGE[ $werkzeug ]['farbe']; else echo ' text-primary';
-                ?>" data-werkzeug="<?= $werkzeug; ?>" <?php
-                if( array_key_exists( 'title', WERKZEUGE[ $werkzeug ] ) ) { ?> data-title="<?= WERKZEUGE[ $werkzeug ]['title']; ?>"<?php }
+                ?>" data-werkzeug="<?= $werkzeug; ?>" data-modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" <?php
                 if( array_key_exists( 'weiterleiten', WERKZEUGE[ $werkzeug ] ) ) { ?> data-weiterleiten="<?= WERKZEUGE[ $werkzeug ]['weiterleiten']; ?>"<?php }
                     ?> role="button">
-                    <span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?>"></i><?php
-                    if( array_key_exists( 'title', WERKZEUGE[ $werkzeug ] ) ) echo ' '.WERKZEUGE[ $werkzeug ]['title'];
-                    ?></span>
+                    <span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?>"> </i><?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?></span>
                 </li>
             <?php } ?></ul>
         </div>

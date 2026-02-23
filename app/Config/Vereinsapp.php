@@ -55,7 +55,7 @@ class Vereinsapp extends BaseConfig
     /**
      * Das Logo der Vereinsapp 
      */
-    public $vereinsapp_logo = 'images/title.png';
+    public $vereinsapp_logo = 'images/logo.png';
 
     /**
      * --------------------------------------------------------------------------
@@ -96,60 +96,59 @@ class Vereinsapp extends BaseConfig
      * --------------------------------------------------------------------------
      */
     public $werkzeuge = array(
-        // Pflicht: btn, symbol / Optional: filtern_localstorage, sortieren_localstorage, gruppieren_localstorage, formular_oeffnen, bestaetigung_einfordern, title, farbe, weiterleiten
-        'filtern_manip' => array( 'btn' => 'btn_filtern_manip', 'filtern_localstorage' => TRUE, 'symbol' => 'filtern', ),
-        'sortieren_manip' => array( 'btn' => 'btn_sortieren_manip', 'sortieren_localstorage' => TRUE, 'symbol' => 'sortieren', ),
-        'gruppieren_manip' => array( 'btn' => 'btn_gruppieren_manip', 'gruppieren_localstorage' => TRUE, 'symbol' => 'gruppieren', ),
-        'bemerkung_aendern' => array( 'btn' => 'btn_element_bemerkung_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'bemerkung', ),
-        'localstorage_leeren' => array( 'btn' => 'btn_localstorage_leeren', 'symbol' => 'loeschen', 'title' => 'Localstorage leeren', 'farbe' => 'danger', ),
-        'datenschutz_richtlinie_akzeptieren' => array( 'btn' => 'btn_datenschutz_richtlinie_akzeptieren', 'symbol' => 'pos_zuordnung', 'title' => 'Datenschutz-Richtlinie akzeptieren', ),
+        // Pflicht: btn, symbol, beschriftung / Optional: filtern_localstorage, sortieren_localstorage, gruppieren_localstorage, formular_oeffnen, bestaetigung_einfordern, farbe, weiterleiten
+        'filtern_manip' => array( 'btn' => 'btn_filtern_manip', 'symbol' => 'filtern', 'beschriftung' => 'Filtern', 'filtern_localstorage' => TRUE, ),
+        'sortieren_manip' => array( 'btn' => 'btn_sortieren_manip', 'symbol' => 'sortieren', 'beschriftung' => 'Sortieren', 'sortieren_localstorage' => TRUE, ),
+        'gruppieren_manip' => array( 'btn' => 'btn_gruppieren_manip', 'symbol' => 'gruppieren', 'beschriftung' => 'Gruppieren', 'gruppieren_localstorage' => TRUE, ),
+        'bemerkung_aendern' => array( 'btn' => 'btn_element_bemerkung_aendern', 'symbol' => 'bemerkung', 'beschriftung' => 'Bemerkung ändern', 'formular_oeffnen' => TRUE, ),
+        'localstorage_leeren' => array( 'btn' => 'btn_localstorage_leeren', 'symbol' => 'loeschen', 'beschriftung' => 'Localstorage leeren', 'farbe' => 'danger', ),
+        'datenschutz_richtlinie_akzeptieren' => array( 'btn' => 'btn_datenschutz_richtlinie_akzeptieren', 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Datenschutz-Richtlinie akzeptieren', ),
 
-        'mitglied_erstellen' => array( 'btn' => 'btn_mitglied_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'erstellen', 'title' => 'Mitglied erstellen' ),
-        'mitglied_aendern' => array( 'btn' => 'btn_mitglied_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Mitglied ändern', ),
-        'mitglied_duplizieren' => array( 'btn' => 'btn_mitglied_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'duplizieren', 'title' => 'Mitglied duplizieren', ),
-        'mitglied_loeschen' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Mitglied löschen', 'farbe' => 'danger', ),
-        'mitglied_loeschen_weiterleiten' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Mitglied löschen', 'farbe' => 'danger', 'weiterleiten' => 'mitglieder', ),
-        'rechte_vergeben' => array( 'btn' => 'btn_rechte_vergeben', 'symbol' => 'rechte_vergeben', 'title' => 'Rechte vergeben', ),
-        'vergebenes_recht_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'pos_zuordnung', 'title' => 'Recht vergeben', ),
-        'einmal_link_anzeigen' => array( 'btn' => 'btn_mitglied_einmal_link_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'einmal_link_anzeigen', 'title' => 'Einmal-Link anzeigen', ),
-        'einmal_link_email' => array( 'btn' => 'btn_mitglied_einmal_link_erstellen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'einmal_link_email', 'title' => 'Einmal-Link per Email verschicken', ),
-        'passwort_aendern' => array( 'btn' => 'btn_mitglied_passwort_aendern', 'symbol' => 'passwort_aendern', 'title' => 'Mein Passwort ändern', ),
-        'passwort_festlegen' => array( 'btn' => 'btn_mitglied_passwort_festlegen', 'symbol' => 'passwort_aendern', 'title' => 'Neues Passwort festlegen', ),
-        'meine_daten_aendern' => array( 'btn' => 'btn_mitglied_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Meine Daten ändern', ),
+        'mitglied_erstellen' => array( 'btn' => 'btn_mitglied_erstellen', 'symbol' => 'erstellen', 'beschriftung' => 'Mitglied erstellen', 'formular_oeffnen' => TRUE ),
+        'mitglied_aendern' => array( 'btn' => 'btn_mitglied_aendern', 'symbol' => 'aendern', 'beschriftung' => 'Mitglied ändern', 'formular_oeffnen' => TRUE, ),
+        'mitglied_duplizieren' => array( 'btn' => 'btn_mitglied_erstellen', 'symbol' => 'duplizieren', 'beschriftung' => 'Mitglied duplizieren', 'formular_oeffnen' => TRUE, ),
+        'mitglied_loeschen' => array( 'btn' => 'btn_element_loeschen', 'symbol' => 'loeschen', 'beschriftung' => 'Mitglied löschen', 'bestaetigung_einfordern' => TRUE, 'farbe' => 'danger', ),
+        'mitglied_loeschen_weiterleiten' => array( 'btn' => 'btn_element_loeschen', 'symbol' => 'loeschen', 'beschriftung' => 'Mitglied löschen', 'bestaetigung_einfordern' => TRUE, 'farbe' => 'danger', 'weiterleiten' => 'mitglieder', ),
+        'rechte_vergeben' => array( 'btn' => 'btn_rechte_vergeben', 'symbol' => 'rechte_vergeben', 'beschriftung' => 'Rechte vergeben', ),
+        'vergebenes_recht_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Recht vergeben', ),
+        'einmal_link_anzeigen' => array( 'btn' => 'btn_mitglied_einmal_link_erstellen', 'symbol' => 'einmal_link_anzeigen', 'beschriftung' => 'Einmal-Link anzeigen', 'formular_oeffnen' => TRUE, ),
+        'einmal_link_email' => array( 'btn' => 'btn_mitglied_einmal_link_erstellen', 'symbol' => 'einmal_link_email', 'beschriftung' => 'Einmal-Link per Email verschicken', 'bestaetigung_einfordern' => TRUE, ),
+        'passwort_aendern' => array( 'btn' => 'btn_mitglied_passwort_aendern', 'symbol' => 'passwort_aendern', 'beschriftung' => 'Mein Passwort ändern', ),
+        'passwort_festlegen' => array( 'btn' => 'btn_mitglied_passwort_festlegen', 'symbol' => 'passwort_aendern', 'beschriftung' => 'Neues Passwort festlegen', ),
+        'meine_daten_aendern' => array( 'btn' => 'btn_mitglied_aendern', 'symbol' => 'aendern', 'beschriftung' => 'Meine Daten ändern', 'formular_oeffnen' => TRUE, ),
 
-        'aufgabe_erstellen' => array( 'btn' => 'btn_aufgabe_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'erstellen', 'title' => 'Aufgabe erstellen', ),
-        'aufgabe_aendern' => array( 'btn' => 'btn_aufgabe_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Aufgabe ändern', ),
-        'aufgabe_duplizieren' => array( 'btn' => 'btn_aufgabe_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'duplizieren', 'title' => 'Aufgabe duplizieren', ),
-        'aufgabe_loeschen' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Aufgabe löschen', 'farbe' => 'danger', ),
-        'termine_aufgaben_zuordnen' => array( 'btn' => 'btn_termine_aufgaben_zuordnen', 'symbol' => 'aufgaben', 'title' => 'Aufgaben zuordnen', ),
-        'aufgaben_zuordnung_termine_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'pos_zuordnung', 'title' => 'Zuordnung machen', ),
-        'aufgaben_rueckmeldung_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'angenommen_rueckmeldung', 'title' => 'Rückmeldung machen', ),
+        'aufgabe_erstellen' => array( 'btn' => 'btn_aufgabe_erstellen', 'symbol' => 'erstellen', 'beschriftung' => 'Aufgabe erstellen', 'formular_oeffnen' => TRUE, ),
+        'aufgabe_aendern' => array( 'btn' => 'btn_aufgabe_aendern', 'symbol' => 'aendern', 'beschriftung' => 'Aufgabe ändern', 'formular_oeffnen' => TRUE, ),
+        'aufgabe_duplizieren' => array( 'btn' => 'btn_aufgabe_erstellen', 'symbol' => 'duplizieren', 'beschriftung' => 'Aufgabe duplizieren', 'formular_oeffnen' => TRUE, ),
+        'aufgabe_loeschen' => array( 'btn' => 'btn_element_loeschen', 'symbol' => 'loeschen', 'beschriftung' => 'Aufgabe löschen', 'bestaetigung_einfordern' => TRUE, 'farbe' => 'danger', ),
+        'termine_aufgaben_zuordnen' => array( 'btn' => 'btn_termine_aufgaben_zuordnen', 'symbol' => 'aufgaben', 'beschriftung' => 'Aufgaben zuordnen', ),
+        'aufgaben_zuordnung_termine_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Zuordnung machen', ),
+        'aufgaben_rueckmeldung_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'angenommen_rueckmeldung', 'beschriftung' => 'Rückmeldung machen', ),
 
-        'termin_erstellen' => array( 'btn' => 'btn_termin_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'erstellen', 'title' => 'Termin erstellen', ),
-        'termin_aendern' => array( 'btn' => 'btn_termin_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Termin ändern', ),
-        'termin_duplizieren' => array( 'btn' => 'btn_termin_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'duplizieren', 'title' => 'Termin duplizieren', ),
-        'termin_loeschen' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Termin löschen', 'farbe' => 'danger', ),
-        'termin_loeschen_weiterleiten' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Termin löschen', 'farbe' => 'danger', 'weiterleiten' => 'termine', ),
-        'termine_rueckmeldungen_verwalten' => array( 'btn' => 'btn_termine_rueckmeldungen_verwalten', 'symbol' => 'pos_rueckmeldung', 'title' => 'Termin-Rückmeldungen verwalten', ),
-        'termine_rueckmeldung_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'angenommen_rueckmeldung', 'title' => 'Rückmeldung machen', ),
-        'termine_anwesenheiten_dokumentieren' => array( 'btn' => 'btn_termine_anwesenheiten_dokumentieren', 'symbol' => 'pos_zuordnung', 'title' => 'Termin-Anwesenheiten dokumentieren', ),
-        'termine_anwesenheit_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'pos_zuordnung', 'title' => 'Termin-Anwesenheit dokumentieren', ),
+        'termin_erstellen' => array( 'btn' => 'btn_termin_erstellen', 'symbol' => 'erstellen', 'beschriftung' => 'Termin erstellen', 'formular_oeffnen' => TRUE, ),
+        'termin_aendern' => array( 'btn' => 'btn_termin_aendern', 'symbol' => 'aendern', 'beschriftung' => 'Termin ändern', 'formular_oeffnen' => TRUE, ),
+        'termin_duplizieren' => array( 'btn' => 'btn_termin_erstellen', 'symbol' => 'duplizieren', 'beschriftung' => 'Termin duplizieren', 'formular_oeffnen' => TRUE, ),
+        'termin_loeschen' => array( 'btn' => 'btn_element_loeschen', 'symbol' => 'loeschen', 'beschriftung' => 'Termin löschen', 'bestaetigung_einfordern' => TRUE, 'farbe' => 'danger', ),
+        'termin_loeschen_weiterleiten' => array( 'btn' => 'btn_element_loeschen', 'symbol' => 'loeschen', 'beschriftung' => 'Termin löschen', 'bestaetigung_einfordern' => TRUE, 'farbe' => 'danger', 'weiterleiten' => 'termine', ),
+        'termine_rueckmeldungen_verwalten' => array( 'btn' => 'btn_termine_rueckmeldungen_verwalten', 'symbol' => 'pos_rueckmeldung', 'beschriftung' => 'Termin-Rückmeldungen verwalten', ),
+        'termine_rueckmeldung_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'angenommen_rueckmeldung', 'beschriftung' => 'Rückmeldung machen', ),
+        'termine_anwesenheiten_dokumentieren' => array( 'btn' => 'btn_termine_anwesenheiten_dokumentieren', 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Termin-Anwesenheiten dokumentieren', ),
+        'termine_anwesenheit_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Termin-Anwesenheit dokumentieren', ),
 
-        'strafe_erstellen' => array( 'btn' => 'btn_strafe_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'erstellen', 'title' => 'Strafe erstellen', ),
-        'strafe_aendern' => array( 'btn' => 'btn_strafe_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Strafe ändern', ),
-        'strafe_duplizieren' => array( 'btn' => 'btn_strafe_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'duplizieren', 'title' => 'Strafe duplizieren', ),
-        'strafe_loeschen' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Strafe löschen', 'farbe' => 'danger', ),
-        'strafen_zuweisen' => array( 'btn' => 'btn_strafen_zuweisen', 'symbol' => 'strafen_zuweisen', 'title' => 'Strafe einem Mitglied zuweisen', ),
-        'strafkatalog_zugewiesene_strafe_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'strafen_zuweisen', 'title' => 'Strafe einem Mitglied zuweisen', ),
+        'strafe_erstellen' => array( 'btn' => 'btn_strafe_erstellen', 'symbol' => 'erstellen', 'beschriftung' => 'Strafe erstellen', 'formular_oeffnen' => TRUE, ),
+        'strafe_aendern' => array( 'btn' => 'btn_strafe_aendern', 'symbol' => 'aendern', 'beschriftung' => 'Strafe ändern', 'formular_oeffnen' => TRUE, ),
+        'strafe_duplizieren' => array( 'btn' => 'btn_strafe_erstellen', 'symbol' => 'duplizieren', 'beschriftung' => 'Strafe duplizieren', 'formular_oeffnen' => TRUE, ),
+        'strafe_loeschen' => array( 'btn' => 'btn_element_loeschen', 'symbol' => 'loeschen', 'beschriftung' => 'Strafe löschen', 'bestaetigung_einfordern' => TRUE, 'farbe' => 'danger', ),
+        'strafen_zuweisen' => array( 'btn' => 'btn_strafen_zuweisen', 'symbol' => 'strafen_zuweisen', 'beschriftung' => 'Strafe einem Mitglied zuweisen', ),
+        'strafkatalog_zugewiesene_strafe_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'strafen_zuweisen', 'beschriftung' => 'Strafe einem Mitglied zuweisen', ),
 
-        'titel_erstellen' => array( 'btn' => 'btn_titel_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'erstellen', 'title' => 'Titel erstellen', ),
-        'titel_aendern' => array( 'btn' => 'btn_titel_aendern', 'formular_oeffnen' => TRUE, 'symbol' => 'aendern', 'title' => 'Titel ändern', ),
-        'titel_duplizieren' => array( 'btn' => 'btn_titel_erstellen', 'formular_oeffnen' => TRUE, 'symbol' => 'duplizieren', 'title' => 'Titel duplizieren', ),
-        'titel_loeschen' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Titel löschen', 'farbe' => 'danger', ),
-        'titel_loeschen_weiterleiten' => array( 'btn' => 'btn_element_loeschen', 'bestaetigung_einfordern' => TRUE, 'symbol' => 'loeschen', 'title' => 'Titel löschen', 'farbe' => 'danger', 'weiterleiten' => 'notenbank', ),
-        'setliste_verwalten' => array( 'btn' => 'btn_setliste_verwalten', 'symbol' => 'setliste', 'title' => 'Setliste verwalten', ),
-        'notenbank_setlisteneintrag_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'pos_zuordnung', 'title' => 'Titel hinzufügen', ),
-
+        'titel_erstellen' => array( 'btn' => 'btn_titel_erstellen', 'symbol' => 'erstellen', 'beschriftung' => 'Titel erstellen', 'formular_oeffnen' => TRUE, ),
+        'titel_aendern' => array( 'btn' => 'btn_titel_aendern', 'symbol' => 'aendern', 'beschriftung' => 'Titel ändern', 'formular_oeffnen' => TRUE, ),
+        'titel_duplizieren' => array( 'btn' => 'btn_titel_erstellen', 'symbol' => 'duplizieren', 'beschriftung' => 'Titel duplizieren', 'formular_oeffnen' => TRUE, ),
+        'titel_loeschen' => array( 'btn' => 'btn_element_loeschen', 'symbol' => 'loeschen', 'beschriftung' => 'Titel löschen', 'bestaetigung_einfordern' => TRUE, 'farbe' => 'danger', ),
+        'titel_loeschen_weiterleiten' => array( 'btn' => 'btn_element_loeschen', 'symbol' => 'loeschen', 'beschriftung' => 'Titel löschen', 'bestaetigung_einfordern' => TRUE, 'farbe' => 'danger', 'weiterleiten' => 'notenbank', ),
+        'setliste_verwalten' => array( 'btn' => 'btn_setliste_verwalten', 'symbol' => 'setliste', 'beschriftung' => 'Setliste verwalten', ),
+        'notenbank_setlisteneintrag_erstellen' => array( 'btn' => 'btn_verknuepfung_erstellen', 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Titel hinzufügen', ),
     );
 
     /**
@@ -271,7 +270,7 @@ class Vereinsapp extends BaseConfig
             // 'group-flush' => TRUE,
             // 'sortable' => TRUE,
             // 'link' => array( 'liste' => 'mitglieder', 'eigenschaften' => array( 'id', ), ),
-            // 'title' => 'Titel für bspw. ein Modal',
+            // 'modal_title' => 'Titel für ein Modal',
             'beschriftung' => '<span class="eigenschaft" data-eigenschaft="vorname"></span> <span class="eigenschaft" data-eigenschaft="nachname"></span>',
             // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion' ),
             // 'verknuepfungen' => 'termine_rueckmeldungen',

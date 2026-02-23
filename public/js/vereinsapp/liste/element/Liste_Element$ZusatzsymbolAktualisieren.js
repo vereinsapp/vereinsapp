@@ -53,7 +53,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                         LISTEN[liste].element +
                         '_id="' +
                         element_id +
-                        '" data-title="{' +
+                        '" data-modal_title="{' +
                         liste +
                         '} ändern" role="button"></i>',
                     {
@@ -77,7 +77,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                         LISTEN[liste].element +
                         '_id="' +
                         element_id +
-                        '" data-title="{' +
+                        '" data-modal_title="{' +
                         liste +
                         '} duplizieren" role="button"></i>',
                     {
@@ -99,7 +99,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                         LISTEN[liste].element +
                         '_id="' +
                         element_id +
-                        '" data-title="{' +
+                        '" data-modal_title="{' +
                         liste +
                         '} löschen" role="button"></i>',
                     {

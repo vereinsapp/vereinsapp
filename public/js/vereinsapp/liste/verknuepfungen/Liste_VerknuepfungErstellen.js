@@ -2,17 +2,17 @@
  * @param {boolean} bestaetigung_einfordern
  * @param {Object} dom
  * @param {Object} data
- * @param {string} title
+ * @param {string} modal_title
  * @param {string} verknuepfungen
  */
 
-function Liste_VerknuepfungErstellen(bestaetigung_einfordern, dom, data, title, verknuepfungen) {
+function Liste_VerknuepfungErstellen(bestaetigung_einfordern, dom, data, modal_title, verknuepfungen) {
     data.verknuepfungen = verknuepfungen;
 
     if (bestaetigung_einfordern)
         Schnittstelle_DomBestaetigungEinfordern(
             Liste_ElementTextMitBeschriftungErsetztZurueck("Willst du wirklich {mitglieder} die Strafe {strafkatalog} zuweisen?", data),
-            title,
+            modal_title,
             LISTEN[verknuepfungen].element + "_erstellen",
             data,
         );

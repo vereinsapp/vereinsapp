@@ -26,12 +26,8 @@ WERKZEUGE.filtern_manip.aktualisieren_aktion = function ($filtern_manip) {
     );
     const filtern_manip = LISTEN[liste].instanz[instanz].filtern;
 
-    let title;
-    if ("title" in WERKZEUGE.filtern_manip) title = WERKZEUGE.filtern_manip.title;
-    else title = LISTEN[liste].beschriftung + " " + WERKZEUGE.filtern_manip.symbol;
-
     $filtern_manip
-        .attr("data-title", title)
+        .attr("data-modal_title", LISTEN[liste].beschriftung + " " + WERKZEUGE.filtern_manip.symbol)
         .attr("data-filtern_basis", JsonStringifiedZurueck(filtern_basis, new Object()))
         .val(JsonStringifiedZurueck(filtern_manip, new Object()));
 

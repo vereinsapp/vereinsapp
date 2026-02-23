@@ -86,7 +86,7 @@ function Liste_Init() {
                 [LISTEN[liste].element + "_id"]: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id")),
                 weiterleiten: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-weiterleiten")),
             },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title")),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title")),
             liste,
         );
     });

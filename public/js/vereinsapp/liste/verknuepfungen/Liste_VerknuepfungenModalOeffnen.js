@@ -1,16 +1,16 @@
 /**
  * @param {number} modal_id
  * @param {string} instanz
- * @param {string} title
+ * @param {string} modal_title
  * @param {Object} verknuepfte_element_id
  * @param {string} verknuepfungen
  */
 
-function Liste_VerknuepfungenModalOeffnen(modal_id, instanz, title, verknuepfte_element_id, verknuepfungen) {
-    const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, modal_id);
+function Liste_VerknuepfungenModalOeffnen(modal_id, instanz, modal_title, verknuepfte_element_id, verknuepfungen) {
+    const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, modal_id);
     const liste = Schnittstelle_VariableWertBereinigtZurueck($neues_modal.find("#" + instanz + ".liste[data-liste]").attr("data-liste"), undefined);
 
-    LISTEN[liste].instanz[instanz].$blanko_element.attr("data-title", title);
+    LISTEN[liste].instanz[instanz].$blanko_element.attr("data-modal_title", modal_title);
 
     const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
     $.each(verknuepfte_listen, function (position, verknuepfte_liste) {

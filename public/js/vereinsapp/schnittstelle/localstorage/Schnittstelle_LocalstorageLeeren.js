@@ -1,13 +1,12 @@
 /**
  * @param {boolean} bestaetigung_einfordern
  * @param {Object} dom
- * @param {string} title
- * @param {number} termin_id
+ * @param {string} modal_title
  */
 
-function Schnittstelle_LocalstorageLeeren(bestaetigung_einfordern, dom, title) {
+function Schnittstelle_LocalstorageLeeren(bestaetigung_einfordern, dom, modal_title) {
     if (bestaetigung_einfordern)
-        Schnittstelle_DomBestaetigungEinfordern("Willst du wirklich deinen LocalStorage leeren?", title, "localstorage_leeren", undefined);
+        Schnittstelle_DomBestaetigungEinfordern("Willst du wirklich deinen LocalStorage leeren?", modal_title, "localstorage_leeren", undefined);
     else {
         const datenschutz_richtlinie = Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined);
 

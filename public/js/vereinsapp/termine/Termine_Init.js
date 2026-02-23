@@ -141,7 +141,7 @@ function Termine_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
         );
     });
@@ -152,7 +152,7 @@ function Termine_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
         );
     });
@@ -162,7 +162,7 @@ function Termine_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "termine_rueckmeldungen_verwalten_modal",
             "termine_rueckmeldungen_verwalten",
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             {
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
                 termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
@@ -181,7 +181,7 @@ function Termine_Init() {
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
                 status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-status"), undefined),
             },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             "termine_rueckmeldungen",
         );
     });
@@ -191,7 +191,7 @@ function Termine_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "termine_anwesenheiten_dokumentieren_modal",
             "termine_anwesenheiten_dokumentieren",
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             {
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
                 termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
@@ -210,7 +210,7 @@ function Termine_Init() {
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
                 status: Number($(this).is(":checked")),
             },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             "termine_anwesenheiten",
         );
     });

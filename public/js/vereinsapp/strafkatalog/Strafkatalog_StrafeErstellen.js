@@ -1,9 +1,11 @@
-function Strafkatalog_StrafeErstellen(formular_oeffnen, dom, data, title, strafe_id) {
+function Strafkatalog_StrafeErstellen(formular_oeffnen, dom, data, modal_title, strafe_id) {
     if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "strafe_basiseigenschaften");
+        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "strafe_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");
         $neues_formular.attr("data-werkzeug", "strafe_erstellen").attr("data-liste", "strafkatalog").attr("data-strafe_id", strafe_id);
+        if ("$ausloesend" in dom && dom.$ausloesend.exists() && dom.$ausloesend.attr("data-werkzeug") in WERKZEUGE)
+            $neues_formular.attr("data-werkzeug", dom.$ausloesend.attr("data-werkzeug"));
         Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;

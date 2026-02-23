@@ -6,8 +6,7 @@ foreach( $liste['werkzeugkasten'] as $werkzeug) { ?><button type="button" class=
     if( array_key_exists( 'formular_oeffnen', WERKZEUGE[ $werkzeug ] ) AND WERKZEUGE[ $werkzeug ]['formular_oeffnen'] ) echo ' formular_oeffnen';
     if( array_key_exists( 'bestaetigung_einfordern', WERKZEUGE[ $werkzeug ] ) AND WERKZEUGE[ $werkzeug ]['bestaetigung_einfordern'] ) echo ' bestaetigung_einfordern';
     if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo ' text-'.WERKZEUGE[ $werkzeug ]['farbe']; else echo ' text-primary';
-    ?>" data-werkzeug="<?= $werkzeug; ?>" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['instanz']; ?>"<?php
-    if( array_key_exists( 'title', WERKZEUGE[ $werkzeug ] ) ) { ?> data-title="<?= WERKZEUGE[ $werkzeug ]['title']; ?>"<?php }
+    ?>" data-werkzeug="<?= $werkzeug; ?>" data-modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['instanz']; ?>"<?php
     if( array_key_exists( 'weiterleiten', WERKZEUGE[ $werkzeug ] ) ) { ?> data-weiterleiten="<?= WERKZEUGE[ $werkzeug ]['weiterleiten']; ?>"<?php }
     ?>><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?>"></i></span></button><?php }
 ?></div><?php } ?>
@@ -36,7 +35,7 @@ if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-e
     if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'element_auswahl' AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['bestaetigung_einfordern'] === TRUE ) echo ' bestaetigung_einfordern';
     ?> blanko invisible" data-blanko="element"<?php
     if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
-    if( array_key_exists( 'title', $liste ) ) { ?> data-title="<?= $liste['title'] ?>"<?php }
+    if( array_key_exists( 'modal_title', $liste ) ) { ?> data-modal_title="<?= $liste['modal_title'] ?>"<?php }
     if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'element_auswahl' ) { ?> data-verknuepfungen="<?= $liste['verknuepfungen'] ?>"<?php }
     ?>>
 

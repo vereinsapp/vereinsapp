@@ -1,5 +1,5 @@
-function Schnittstelle_DomBestaetigungEinfordern(nachricht, title, werkzeug, data) {
-    const $neues_bestaetigung_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "bestaetigung_modal");
+function Schnittstelle_DomBestaetigungEinfordern(nachricht, modal_title, werkzeug, data) {
+    const $neues_bestaetigung_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "bestaetigung_modal");
     const $bestaetigung = $neues_bestaetigung_modal.find(".bestaetigung");
 
     $bestaetigung.find(".bestaetigung_nachricht").text(nachricht);
@@ -13,7 +13,7 @@ function Schnittstelle_DomBestaetigungEinfordern(nachricht, title, werkzeug, dat
             .addClass(WERKZEUGE[werkzeug].btn);
         if ("farbe" in WERKZEUGE[werkzeug])
             $bestaetigung_werkzeug.removeClass("btn-outline-success").addClass("btn-outline-" + WERKZEUGE[werkzeug].farbe);
-        // $bestaetigung_werkzeug.find(".beschriftung").text(WERKZEUGE[werkzeug].title);
+        // $bestaetigung_werkzeug.find(".beschriftung").text(WERKZEUGE[werkzeug].beschriftung);
     }
     if (typeof data !== "undefined" && isObject(data))
         $.each(data, function (eigenschaft, wert) {

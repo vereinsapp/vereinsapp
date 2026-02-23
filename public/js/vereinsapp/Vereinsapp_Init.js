@@ -3,10 +3,14 @@ const BLANKOS = new Object();
 
 $(document).ready(function () {
     Schnittstelle_AjaxInit(); // leere Funktion
-    Schnittstelle_LocalstorageInit(); // initilisiert events und führt LOCALSTORAGE LEEREN ERZWINGEN aus
+    Schnittstelle_LocalstorageInit(); // initilisiert events
     Liste_Init(); // initilisiert events, fügt instanz zu LISTEN[liste] und initialisiert instanz zu LISTEN[liste].instanz, zLISTEN[auswertungen].instanz und zLISTEN[verzeichnis].instanz
-    Schnittstelle_DomInit(); // initilisiert events und stellt blankos bereit
-    Schnittstelle_LogInDieKonsole(LISTEN.notenbank.instanz);
+    Schnittstelle_DomInit(); // initilisiert events, stellt blankos bereit und aktualisiert $jetzt
+
+    // LOCALSTORAGE LEEREN ERZWINGEN
+    const localstorage_reset_string = Schnittstelle_LocalstorageRausZurueck("localstorage_reset", undefined);
+    if (typeof localstorage_reset_string === "undefined" || localstorage_reset_string < DATETIME.fromISO(FORCE_LOCALSTORAGE_RESET_ZEITPUNKT))
+        Schnittstelle_LocalstorageLeeren(false, new Object());
 
     if (ICH_ID !== null) {
         $.each(LISTEN, function (liste) {
@@ -28,11 +32,6 @@ $(document).ready(function () {
         Schnittstelle_EventSqlUpdLocalstorage();
         setInterval(Schnittstelle_EventSqlUpdLocalstorage, AJAX_ZYKLUSZEIT * 1000);
     }
-
-    // JETZT AKTUALISIEREN
-    $(".jetzt").each(function () {
-        Schnittstelle_Dom$JetztAktualisieren($(this));
-    });
 
     // DATENSCHUTZ-RICHTLINIE OEFFNEN
     if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined) === "undefined")
@@ -83,9 +82,7 @@ kacheln-View ergänzen (analog zu liste-View)
 Aufgaben detaillieren
 data-Prefix loswerden
 Schnittstelle_VariableWertFormatiertZurueck verschieben nach Liste (auch umbenennen)
-Bugfix meine_daten_aendern schreibt Mitglied ändern ins Formular-Werkzeug
 .btn_ ersetzen durch .werkzeug[data-werkzeug=""]
-title großteils entfernen weil der über das Werkzeug gegeben ist?
 
 ERLEDIGT
 

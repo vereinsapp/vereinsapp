@@ -82,7 +82,7 @@ function Notenbank_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),
         );
     });
@@ -93,7 +93,7 @@ function Notenbank_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),
         );
     });
@@ -103,7 +103,7 @@ function Notenbank_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "setliste_verwalten_modal",
             "setliste_verwalten",
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             {
                 titel_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),
                 termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
@@ -122,7 +122,7 @@ function Notenbank_Init() {
                 termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
                 status: 1,
             },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             "notenbank_setliste",
         );
     });

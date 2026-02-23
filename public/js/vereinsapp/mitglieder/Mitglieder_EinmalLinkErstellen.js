@@ -1,4 +1,4 @@
-function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einfordern, dom, data, title, mitglied_id) {
+function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einfordern, dom, data, modal_title, mitglied_id) {
     if (typeof mitglied_id !== "undefined") mitglied_id = Number(mitglied_id);
 
     if (bestaetigung_einfordern)
@@ -7,12 +7,12 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
                 "Willst du wirklich für {mitglieder} einen neuen Einmal-Link erstellen und per Email verschicken?",
                 { mitglied_id: mitglied_id },
             ),
-            title,
+            modal_title,
             "einmal_link_email",
             { liste: "mitglieder", mitglied_id: mitglied_id, email: true },
         );
     else if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(title, "mitglieder_einmal_link_anzeigen");
+        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "mitglieder_einmal_link_anzeigen");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         $neues_modal
             .find(".beschriftung_mitglied_einmal_link_anzeigen")

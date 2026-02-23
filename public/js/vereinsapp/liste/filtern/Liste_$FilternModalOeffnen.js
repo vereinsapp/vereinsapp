@@ -6,7 +6,7 @@ function Liste_$FilternModalOeffnen($filtern_manip) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-liste"), undefined);
 
     const $neues_filtern_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-title"), undefined),
+        Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-modal_title"), undefined),
         "filtern_manip_modal",
     );
 

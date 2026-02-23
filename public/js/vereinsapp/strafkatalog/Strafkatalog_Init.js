@@ -41,7 +41,7 @@ function Strafkatalog_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-strafe_id"), undefined),
         );
     });
@@ -52,7 +52,7 @@ function Strafkatalog_Init() {
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-strafe_id"), undefined),
         );
     });
@@ -62,7 +62,7 @@ function Strafkatalog_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "strafen_zuweisen_modal",
             "strafen_zuweisen",
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             {
                 strafe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-strafe_id"), undefined),
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
@@ -81,7 +81,7 @@ function Strafkatalog_Init() {
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
                 status: 1,
             },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             "strafkatalog_zugewiesene_strafen",
         );
     });

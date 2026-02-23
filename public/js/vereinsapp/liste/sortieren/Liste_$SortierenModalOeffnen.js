@@ -6,7 +6,7 @@ function Liste_$SortierenModalOeffnen($sortieren_manip) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($sortieren_manip.attr("data-liste"), undefined);
 
     const $neues_sortieren_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($sortieren_manip.attr("data-title"), undefined),
+        Schnittstelle_VariableWertBereinigtZurueck($sortieren_manip.attr("data-modal_title"), undefined),
         "sortieren_manip_modal",
     );
 

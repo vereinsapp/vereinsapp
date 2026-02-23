@@ -6,7 +6,7 @@ function Liste_$GruppierenModalOeffnen($gruppieren_manip) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_manip.attr("data-liste"), undefined);
 
     const $neues_gruppieren_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($gruppieren_manip.attr("data-title"), undefined),
+        Schnittstelle_VariableWertBereinigtZurueck($gruppieren_manip.attr("data-modal_title"), undefined),
         "gruppieren_manip_modal",
     );
 

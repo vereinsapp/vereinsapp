@@ -11,7 +11,7 @@ WERKZEUGE.sortieren_manip.aktualisieren_aktion = function ($sortieren_manip) {
     const sortieren_manip = LISTEN[liste].instanz[instanz].sortieren;
 
     $sortieren_manip
-        .attr("data-title", LISTEN[liste].beschriftung + " " + WERKZEUGE.sortieren_manip.symbol)
+        .attr("data-modal_title", LISTEN[liste].beschriftung + " " + WERKZEUGE.sortieren_manip.symbol)
         .attr("data-sortieren_basis", JsonStringifiedZurueck(sortieren_basis, undefined))
         .val(JsonStringifiedZurueck(sortieren_manip, undefined));
 

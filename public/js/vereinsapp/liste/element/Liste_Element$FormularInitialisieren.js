@@ -53,7 +53,7 @@ function Liste_Element$FormularInitialisieren($formular) {
         $formular_werkzeug.removeClass("formular_werkzeug").addClass("werkzeug").attr("data-werkzeug", werkzeug).addClass(WERKZEUGE[werkzeug].btn);
         if ("farbe" in WERKZEUGE[werkzeug])
             $formular_werkzeug.removeClass("btn-outline-success").addClass("btn-outline-" + WERKZEUGE[werkzeug].farbe);
-        $formular_werkzeug.find(".beschriftung").text(WERKZEUGE[werkzeug].title);
+        $formular_werkzeug.find(".beschriftung").text(WERKZEUGE[werkzeug].beschriftung);
     }
     $formular_werkzeug.attr("data-liste", liste).attr("data-" + LISTEN[liste].element + "_id", element_id);
 }

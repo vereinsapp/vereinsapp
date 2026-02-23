@@ -2,11 +2,11 @@
  * @param {boolean} bestaetigung_einfordern
  * @param {Object} dom
  * @param {Object} data
- * @param {string} title
+ * @param {string} modal_title
  * @param {string} liste
  */
 
-function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, liste) {
+function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, modal_title, liste) {
     data.liste = liste;
 
     if (bestaetigung_einfordern)
@@ -14,7 +14,7 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, title, liste)
             Liste_ElementTextMitBeschriftungErsetztZurueck("Willst du wirklich {" + liste + "} löschen?", {
                 [LISTEN[liste].element + "_id"]: data[LISTEN[liste].element + "_id"],
             }),
-            title,
+            modal_title,
             LISTEN[liste].element + "_loeschen",
             data,
         );
