@@ -2,18 +2,13 @@ const DATETIME = luxon.DateTime;
 const BLANKOS = new Object();
 
 $(document).ready(function () {
-    Schnittstelle_AjaxInit(); // initialisiert auch AJAXSCHLANGE und CSRF
-    Schnittstelle_LocalstorageInit(); // initialisiert auch LOCALSTORAGE LEEREN ERZWINGEN
-    Liste_Init();
-    Schnittstelle_DomInit(); // initialisiert auch STATUS_SPINNER_CLASS, STATUS_SPINNER_HTML, TOASTS und MODALS
+    Schnittstelle_AjaxInit(); // leere Funktion
+    Schnittstelle_LocalstorageInit(); // initilisiert events und führt LOCALSTORAGE LEEREN ERZWINGEN aus
+    Liste_Init(); // initilisiert events, fügt instanz zu LISTEN[liste] und initialisiert instanz zu LISTEN[liste].instanz, zLISTEN[auswertungen].instanz und zLISTEN[verzeichnis].instanz
+    Schnittstelle_DomInit(); // initilisiert events und stellt blankos bereit
+    Schnittstelle_LogInDieKonsole(LISTEN.notenbank.instanz);
 
     if (ICH_ID !== null) {
-        Mitglieder_Init();
-        Aufgaben_Init();
-        Termine_Init();
-        Strafkatalog_Init();
-        Notenbank_Init();
-
         $.each(LISTEN, function (liste) {
             Schnittstelle_EventLocalstorageUpdVariable(liste);
         });
@@ -34,8 +29,23 @@ $(document).ready(function () {
         setInterval(Schnittstelle_EventSqlUpdLocalstorage, AJAX_ZYKLUSZEIT * 1000);
     }
 
-    // FORMULARE OHNE MODAL (DIREKT IM DOM) INITIALISIEREN, BSPW. MIT WERTEN BEFÜLLEN
-    $(".formular[data-liste]").each(function () {
+    // JETZT AKTUALISIEREN
+    $(".jetzt").each(function () {
+        Schnittstelle_Dom$JetztAktualisieren($(this));
+    });
+
+    // DATENSCHUTZ-RICHTLINIE OEFFNEN
+    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined) === "undefined")
+        Schnittstelle_Dom$ModalOeffnen(Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, "datenschutz_richtlinie_modal"));
+
+    // AUTOLOAD-MODALS OEFFNEN
+    $.each(AUTOLOAD_MODALS, function (position, modal_id) {
+        Schnittstelle_Dom$ModalOeffnen(Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, modal_id));
+        // Liste_Element$FormularInitialisieren($modal.find(".formular"));
+    });
+
+    // FORMULARE INITIALISIEREN
+    $(".formular").each(function () {
         Liste_Element$FormularInitialisieren($(this));
     });
 });
@@ -75,7 +85,6 @@ data-Prefix loswerden
 Schnittstelle_VariableWertFormatiertZurueck verschieben nach Liste (auch umbenennen)
 Bugfix meine_daten_aendern schreibt Mitglied ändern ins Formular-Werkzeug
 .btn_ ersetzen durch .werkzeug[data-werkzeug=""]
-FORMULARE OHNE MODAL (DIREKT IM DOM) INITIALISIEREN verschieben nach Schnittstelle_DomInit?
 title großteils entfernen weil der über das Werkzeug gegeben ist?
 
 ERLEDIGT

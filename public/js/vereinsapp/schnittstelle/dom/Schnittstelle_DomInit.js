@@ -2,6 +2,8 @@ const STATUS_SPINNER_CLASS = "spinner-border";
 const STATUS_SPINNER_HTML =
     '<span class="' + STATUS_SPINNER_CLASS + ' spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></span>';
 
+const TOASTS = new Object(); // enthält später lediglich $blanko_toast
+const MODALS = new Object();
 const AUTOLOAD_MODALS = new Array();
 
 BLANKOS.modal = new Object();
@@ -17,10 +19,8 @@ BLANKOS.toast.bereitstellen_aktion = function ($blanko) {
     if (!("$blanko_toast" in TOASTS)) TOASTS.$blanko_toast = $blanko;
 };
 
-const TOASTS = new Object(); // enthält lediglich $blanko_toast
-const MODALS = new Object();
-
 function Schnittstelle_DomInit() {
+    // BLANKOS BEREITSTELLEN
     $(".blanko")
         .each(function () {
             const $blanko = $(this);
@@ -31,13 +31,13 @@ function Schnittstelle_DomInit() {
         })
         .remove();
 
-    $.each(AUTOLOAD_MODALS, function () {
-        const $modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, this);
-        Schnittstelle_Dom$ModalOeffnen($modal);
-        const $formular = $modal.find(".formular");
-        if ($formular.exists()) Liste_Element$FormularInitialisieren($formular);
+    // DATENSCHUTZ-RICHTLINIE AKZEPTIEREN
+    $(document).on("click", ".btn_datenschutz_richtlinie_akzeptieren", function () {
+        Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DATETIME.now().toISO());
+        Schnittstelle_Dom$ModalSchliessen($(this).closest(".modal"));
     });
 
+    // AJAX
     $(document).ajaxStart(function () {
         $("#status").html(STATUS_SPINNER_HTML);
     });
@@ -57,20 +57,9 @@ function Schnittstelle_DomInit() {
         $("#status").addClass("text-danger");
     });
 
+    // SEITE VERLASSEN
     $(window).on("beforeunload", function () {
         $("#status").html(STATUS_SPINNER_HTML);
-    });
-
-    $(".jetzt").each(function () {
-        Schnittstelle_JetztAktualisieren($(this));
-    });
-
-    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined) === "undefined")
-        Schnittstelle_Dom$ModalOeffnen(Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, "datenschutz_richtlinie_modal"));
-
-    $(document).on("click", ".btn_datenschutz_richtlinie_akzeptieren", function () {
-        Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DATETIME.now().toISO());
-        Schnittstelle_Dom$ModalSchliessen($(this).closest(".modal"));
     });
 
     // WERKZEUGKASTEN (OFFCANVAS) ÖFFNEN
@@ -88,6 +77,7 @@ function Schnittstelle_DomInit() {
         } else $werkzeuge.removeAttr("data-liste");
     });
 
+    // MODAL SCHLIESSEN
     $(document).on("hidden.bs.modal", ".modal", function () {
         const $modal = $(this);
         const $umgebung = $modal.parent();
@@ -101,28 +91,12 @@ function Schnittstelle_DomInit() {
         }
     });
 
+    // TOAST SCHLIESSEN
     $(document).on("hidden.bs.toast", ".toast", function () {
         $(this).remove();
     });
 
-    // PASSWORT ANZEIGEN
-    $(document).on("click", ".btn_passwort_anzeigen", function (event) {
-        const $btn_passwort_anzeigen = $(this);
-        event.preventDefault();
-        const feld = $btn_passwort_anzeigen.closest(".input-group").find("input.form-control");
-
-        if (feld.attr("type") == "text") {
-            feld.attr("type", "password");
-            $btn_passwort_anzeigen.find("i").removeClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
-            $btn_passwort_anzeigen.find("i").addClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
-        } else if (feld.attr("type") == "password") {
-            feld.attr("type", "text");
-            $btn_passwort_anzeigen.find("i").removeClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
-            $btn_passwort_anzeigen.find("i").addClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
-        }
-    });
-
-    // INHALT KOPIEREN
+    // INHALT KOPIEREN (CLIPBOARD)
     const CLIPBOARD = new ClipboardJS(".btn_inhalt_kopieren");
 
     CLIPBOARD.on("success", function (event) {
@@ -139,15 +113,6 @@ function Schnittstelle_DomInit() {
     });
 
     // COLLAPSE ÖFFNEN
-    $(document).on("show.bs.collapse", ".collapse.auswertung_collapse, .collapse.verzeichnis_collapse", function (event) {
-        const $collapse = $(this);
-
-        if ($collapse.is(event.target)) {
-            $('.toggle_symbol[data-bs-target="#' + $collapse.attr("id") + '"]').each(function () {
-                Schnittstelle_ToggleSymbol($(this));
-            });
-        }
-    });
     $(document).on("show.bs.collapse", ".collapse.tab_collapse", function (event) {
         const $collapse = $(this);
 
@@ -172,36 +137,42 @@ function Schnittstelle_DomInit() {
         }
     });
 
+    $(document).on("show.bs.collapse", ".collapse.auswertung_collapse, .collapse.verzeichnis_collapse", function (event) {
+        const $collapse = $(this);
+
+        if ($collapse.is(event.target)) {
+            $('.toggle_symbol[data-bs-target="#' + $collapse.attr("id") + '"]').each(function () {
+                toggle_symbol($(this));
+            });
+        }
+    });
+
     // COLLAPSE SCHLIESSEN
     $(document).on("hide.bs.collapse", ".collapse.auswertung_collapse, .collapse.verzeichnis_collapse", function (event) {
         const $collapse = $(this);
 
         if ($collapse.is(event.target)) {
             $('.toggle_symbol[data-bs-target="#' + $collapse.attr("id") + '"]').each(function () {
-                Schnittstelle_ToggleSymbol($(this));
+                toggle_symbol($(this));
             });
         }
     });
-}
 
-function Schnittstelle_JetztAktualisieren($jetzt) {
-    $jetzt.text(DATETIME.now().toFormat("dd.MM.yyyy HH:mm:ss"));
-}
+    function toggle_symbol($symbol) {
+        const toggle_symbol_neu = $symbol.attr("data-toggle_symbol");
 
-function Schnittstelle_ToggleSymbol($symbol) {
-    const toggle_symbol_neu = $symbol.attr("data-toggle_symbol");
+        let toggle_symbol_alt = undefined;
+        $.each($symbol.attr("class").split(/\s+/), function (position, klasse) {
+            if (klasse.slice(0, 3) == "bi-") {
+                toggle_symbol_alt = klasse.slice(3, klasse.length);
+                return false;
+            }
+        });
 
-    let toggle_symbol_alt = undefined;
-    $.each($symbol.attr("class").split(/\s+/), function (position, klasse) {
-        if (klasse.slice(0, 3) == "bi-") {
-            toggle_symbol_alt = klasse.slice(3, klasse.length);
-            return false;
-        }
-    });
-
-    if (typeof toggle_symbol_alt !== "undefined" && typeof toggle_symbol_neu !== "undefined")
-        $symbol
-            .removeClass("bi-" + toggle_symbol_alt)
-            .addClass("bi-" + toggle_symbol_neu)
-            .attr("data-toggle_symbol", toggle_symbol_alt);
+        if (typeof toggle_symbol_alt !== "undefined" && typeof toggle_symbol_neu !== "undefined")
+            $symbol
+                .removeClass("bi-" + toggle_symbol_alt)
+                .addClass("bi-" + toggle_symbol_neu)
+                .attr("data-toggle_symbol", toggle_symbol_alt);
+    }
 }

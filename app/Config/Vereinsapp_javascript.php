@@ -114,6 +114,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageRein.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageRausZurueck.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageLoeschen.js?v='.VERSION,
+        'js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageLeeren.js?v='.VERSION,
 
         'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableRein.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableRausZurueck.js?v='.VERSION,
@@ -132,6 +133,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$Quelle$ZielVerknuepfen.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$Quelle$ZielEntknuepfen.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$ZielZu$QuelleZurueck.js?v='.VERSION,
+        'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$JetztAktualisieren.js?v='.VERSION,
         
         'js/vereinsapp/schnittstelle/event/Schnittstelle_EventSqlUpdLocalstorage.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/event/Schnittstelle_EventLocalstorageUpdVariable.js?v='.VERSION,

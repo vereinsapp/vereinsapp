@@ -27,8 +27,11 @@ WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
 function Liste_Init() {
     $.each(LISTEN, function (liste) {
         LISTEN[liste].instanz = new Object();
+
         $('.liste[data-liste="' + liste + '"]').each(function () {
-            LISTEN[liste].instanz[Schnittstelle_VariableWertBereinigtZurueck($(this).attr("id"), undefined)] = {
+            const instanz = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("id"), undefined);
+
+            LISTEN[liste].instanz[instanz] = {
                 filtern: new Object(),
                 sortieren: undefined,
                 gruppieren: undefined,
@@ -36,22 +39,29 @@ function Liste_Init() {
         });
     });
 
-    Liste_AuswertungenInit();
+    Liste_AuswertungenInit(); // initialisiert instanz zu LISTEN[auswertungen].instanz und LISTEN[liste].instanz
+    Liste_VerzeichnisInit(); // initialisiert instanz zu LISTEN[verzeichnis].instanz
 
-    Liste_VerzeichnisInit();
+    Liste_FilternInit(); // initilisiert events
+    Liste_SortierenInit(); // initilisiert events
+    Liste_GruppierenInit(); // initilisiert events
 
-    Liste_FilternInit();
+    if (ICH_ID !== null) {
+        Mitglieder_Init(); // initilisiert events
+        Aufgaben_Init(); // initilisiert events
+        Termine_Init(); // initilisiert events
+        Strafkatalog_Init(); // initilisiert events
+        Notenbank_Init(); // initilisiert events
+    }
 
-    Liste_SortierenInit();
-
-    Liste_GruppierenInit();
-
+    // EINGABE AENDERN (AKTUELL NUR FUR TERMINE.KATEGORIE)
     $(document).on("change", ".eingabe", function () {
         if (
-            "change_aktion" in EIGENSCHAFTEN[$(this).parents("[data-liste]").first().attr("data-liste")][$(this).attr("data-eingabe")] &&
-            typeof EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].change_aktion === "function"
+            "eingabe_aendern_aktion" in EIGENSCHAFTEN[$(this).parents("[data-liste]").first().attr("data-liste")][$(this).attr("data-eingabe")] &&
+            typeof EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].eingabe_aendern_aktion ===
+                "function"
         )
-            EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].change_aktion($(this)); // Aktuell nur für termine.kategorie
+            EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].eingabe_aendern_aktion($(this));
     });
 
     // BEMERKUNG AENDERN
@@ -90,5 +100,22 @@ function Liste_Init() {
         stop: function (event, ui) {
             ui.item.removeClass("border-top border-primary shadow");
         },
+    });
+
+    // PASSWORT ANZEIGEN (WIRD HIER INITIALISIERT, DAMIT ES AUCH IM AUSGELOGGTEN ZUSTAND VERFÜGBAR IST)
+    $(document).on("click", ".btn_passwort_anzeigen", function (event) {
+        const $btn_passwort_anzeigen = $(this);
+        event.preventDefault();
+        const feld = $btn_passwort_anzeigen.closest(".input-group").find("input.form-control");
+
+        if (feld.attr("type") == "text") {
+            feld.attr("type", "password");
+            $btn_passwort_anzeigen.find("i").removeClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
+            $btn_passwort_anzeigen.find("i").addClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
+        } else if (feld.attr("type") == "password") {
+            feld.attr("type", "text");
+            $btn_passwort_anzeigen.find("i").removeClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
+            $btn_passwort_anzeigen.find("i").addClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
+        }
     });
 }

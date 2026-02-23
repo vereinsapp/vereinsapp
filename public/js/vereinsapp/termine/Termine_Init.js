@@ -66,7 +66,7 @@ LISTEN.termine_anwesenheiten.element_zuordnen_aktion = function (anwesenheit) {
     }
 };
 
-EIGENSCHAFTEN.termine.kategorie.change_aktion = function ($kategorie) {
+EIGENSCHAFTEN.termine.kategorie.eingabe_aendern_aktion = function ($kategorie) {
     const $filtern_mitglieder = $kategorie.closest(".formular").find('.eingabe[data-eingabe="filtern_mitglieder"]');
     if ($kategorie.val() in TERMINE_KATEGORIE_FILTERN_MITGLIEDER) {
         const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()], new Object());
