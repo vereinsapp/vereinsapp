@@ -1,4 +1,4 @@
-<li class="blanko invisible" data-blanko="auswertung" style="list-style: none;">
+<li class="blanko invisible" data-blanko="auswertung" data-auswertungen="termine_rueckmeldungen" data-instanz="<?= $auswertung['instanz']; ?>" data-liste="<?= $auswertungen['liste']; ?>" style="list-style: none;">
     <div class="row g-0"<?php if( array_key_exists( 'collapse', $auswertung ) AND $auswertung['collapse'] ) { ?> data-bs-toggle="collapse" role="button"<?php } ?>>
         <div class="ergebnis_anzahl col-1 h5 float-start text-start text-<?= VERKNUEPFUNGEN['termine_rueckmeldungen']['status_erlaubt'][1]['farbe']; ?>" data-status=1></div>
         <div class="col-10 text-center">
@@ -14,13 +14,13 @@
     </div>
     <?php if( array_key_exists( 'collapse', $auswertung ) AND $auswertung['collapse'] ) { ?><div class="row g-0 collapse auswertung_collapse">
         <ul id="<?= $auswertung['instanz']; ?>_ergebnis_1" class="ergebnis liste col-6 text-center text-<?= VERKNUEPFUNGEN['termine_rueckmeldungen']['status_erlaubt'][1]['farbe']; ?>" data-liste="termine_rueckmeldungen" style="list-style-type: none;" data-status=1>
-            <li class="blanko invisible" data-blanko="element"><span class="eigenschaft" data-eigenschaft="termin_start"></span> <span class="eigenschaft" data-eigenschaft="termin_titel"></span><span class="zusatzsymbol ms-2" data-zusatzsymbol="bemerkung"></span></li>
+            <li class="blanko invisible" data-blanko="element" data-liste="termine_rueckmeldungen" data-instanz="<?= $auswertung['instanz']; ?>_ergebnis_1"><span class="eigenschaft" data-eigenschaft="termin_start"></span> <span class="eigenschaft" data-eigenschaft="termin_titel"></span><span class="zusatzsymbol ms-2" data-zusatzsymbol="bemerkung"></span></li>
         </ul>
         <ul id="<?= $auswertung['instanz']; ?>_ergebnis_2" class="ergebnis liste col-6 text-center text-<?= VERKNUEPFUNGEN['termine_rueckmeldungen']['status_erlaubt'][2]['farbe']; ?>" data-liste="termine_rueckmeldungen" style="list-style-type: none;" data-status=2>
-            <li class="blanko invisible" data-blanko="element"><span class="eigenschaft" data-eigenschaft="termin_start"></span> <span class="eigenschaft" data-eigenschaft="termin_titel"></span><span class="zusatzsymbol ms-2" data-zusatzsymbol="bemerkung"></span></li>
+            <li class="blanko invisible" data-blanko="element" data-liste="termine_rueckmeldungen" data-instanz="<?= $auswertung['instanz']; ?>_ergebnis_2"><span class="eigenschaft" data-eigenschaft="termin_start"></span> <span class="eigenschaft" data-eigenschaft="termin_titel"></span><span class="zusatzsymbol ms-2" data-zusatzsymbol="bemerkung"></span></li>
         </ul>
         <div id="<?= $auswertung['instanz']; ?>_ergebnis_0" class="ergebnis liste col-12 text-center text-<?= VERKNUEPFUNGEN['termine_rueckmeldungen']['status_erlaubt'][0]['farbe']; ?> small" data-liste="termine" data-status=0>
-            <span class="me-1 blanko invisible" data-blanko="element"><span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span><?= VERKNUEPFUNGEN['termine_rueckmeldungen']['status_erlaubt'][0]['aktiv']; ?></span>
+            <span class="me-1 blanko invisible" data-blanko="element" data-liste="termine" data-instanz="<?= $auswertung['instanz']; ?>_ergebnis_0"><span class="eigenschaft" data-eigenschaft="start"></span> <span class="eigenschaft" data-eigenschaft="titel"></span><?= VERKNUEPFUNGEN['termine_rueckmeldungen']['status_erlaubt'][0]['aktiv']; ?></span>
         </div>
     </div><?php } ?>
 </li>

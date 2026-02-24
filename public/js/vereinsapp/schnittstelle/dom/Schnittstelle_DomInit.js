@@ -1,23 +1,14 @@
-const STATUS_SPINNER_CLASS = "spinner-border";
-const STATUS_SPINNER_HTML =
-    '<span class="' + STATUS_SPINNER_CLASS + ' spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></span>';
+/**
+ */
 
+const BLANKOS = new Object();
 const TOASTS = new Object(); // enthält später lediglich $blanko_toast
 const MODALS = new Object();
 const AUTOLOAD_MODALS = new Array();
 
-BLANKOS.modal = new Object();
-BLANKOS.modal.bereitstellen_aktion = function ($blanko) {
-    const modal_id = $blanko.attr("id");
-    if (!(modal_id in MODALS)) {
-        MODALS[modal_id] = $blanko;
-        if (MODALS[modal_id].hasClass("autoload")) AUTOLOAD_MODALS.push(modal_id);
-    }
-};
-BLANKOS.toast = new Object();
-BLANKOS.toast.bereitstellen_aktion = function ($blanko) {
-    if (!("$blanko_toast" in TOASTS)) TOASTS.$blanko_toast = $blanko;
-};
+const STATUS_SPINNER_CLASS = "spinner-border";
+const STATUS_SPINNER_HTML =
+    '<span class="' + STATUS_SPINNER_CLASS + ' spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></span>';
 
 function Schnittstelle_DomInit() {
     // BLANKOS BEREITSTELLEN
@@ -27,14 +18,38 @@ function Schnittstelle_DomInit() {
             const blanko = $(this).attr("data-blanko");
             $blanko.removeAttr("data-blanko").addClass(blanko);
 
-            if (typeof BLANKOS[blanko].bereitstellen_aktion === "function") BLANKOS[blanko].bereitstellen_aktion($blanko);
+            if (!(blanko in BLANKOS)) BLANKOS[blanko] = new Array();
+            BLANKOS[blanko].push($blanko);
         })
         .remove();
+
+    // TOAST-BLANKO IN TOASTS BEREITSTELLEN
+    $.each(BLANKOS.toast, function (position, $blanko) {
+        TOASTS.$blanko_toast = $blanko;
+    });
+
+    // MODAL-BLANKOS IN MODALS BEREITSTELLEN
+    $.each(BLANKOS.modal, function (position, $blanko) {
+        const modal_id = $blanko.attr("id");
+
+        if (!(modal_id in MODALS)) MODALS[modal_id] = $blanko;
+        if (!(modal_id in AUTOLOAD_MODALS) && $blanko.hasClass("autoload")) AUTOLOAD_MODALS.push(modal_id);
+    });
+
+    // AUTOLOAD-MODALS OEFFNEN
+    $.each(AUTOLOAD_MODALS, function (position, modal_id) {
+        Schnittstelle_Dom$ModalOeffnen(Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, modal_id));
+        // Liste_Element$FormularInitialisieren($modal.find(".formular")); wird nach Schnittstelle_DomInit() aufgerufen in Liste_Init()
+    });
 
     // JETZT AKTUALISIEREN
     $(".jetzt").each(function () {
         Schnittstelle_Dom$JetztAktualisieren($(this));
     });
+
+    // DATENSCHUTZ-RICHTLINIE OEFFNEN
+    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined) === "undefined")
+        Schnittstelle_Dom$ModalOeffnen(Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, "datenschutz_richtlinie_modal"));
 
     // DATENSCHUTZ-RICHTLINIE AKZEPTIEREN
     $(document).on("click", ".btn_datenschutz_richtlinie_akzeptieren", function () {

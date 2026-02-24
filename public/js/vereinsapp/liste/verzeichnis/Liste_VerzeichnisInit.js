@@ -1,35 +1,35 @@
 /**
  */
 
-BLANKOS.unterverzeichnis = new Object();
-BLANKOS.unterverzeichnis.bereitstellen_aktion = function ($blanko) {
-    const $verzeichnis = $blanko.closest(".verzeichnis[id][data-liste]");
-    const instanz = $verzeichnis.attr("id");
-    const liste = $verzeichnis.attr("data-liste");
-    if (liste in LISTEN && instanz in LISTEN[liste].instanz && !("$blanko_unterverzeichnis" in LISTEN[liste].instanz[instanz]))
-        LISTEN[liste].instanz[instanz].$blanko_unterverzeichnis = $blanko;
-};
-
-BLANKOS.datei = new Object();
-BLANKOS.datei.bereitstellen_aktion = function ($blanko) {
-    const $verzeichnis = $blanko.closest(".verzeichnis[id][data-liste]");
-    const instanz = $verzeichnis.attr("id");
-    const liste = $verzeichnis.attr("data-liste");
-    if (liste in LISTEN && instanz in LISTEN[liste].instanz && !("$blanko_datei" in LISTEN[liste].instanz[instanz]))
-        LISTEN[liste].instanz[instanz].$blanko_datei = $blanko;
-};
-
 function Liste_VerzeichnisInit() {
-    $.each(LISTEN, function (verzeichnis) {
-        $('.verzeichnis[data-liste="' + verzeichnis + '"]').each(function () {
-            const instanz = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("id"), undefined);
+    // INSTANZEN IN LISTEN BEREITSTELLEN
+    $.each(BLANKOS.unterverzeichnis, function (position, $blanko) {
+        const verzeichnis = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-liste"), undefined);
+        const instanz = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-instanz"), undefined);
+        $blanko.removeAttr("data-liste").removeAttr("data-instanz");
 
-            if (!(instanz in LISTEN[verzeichnis].instanz))
-                LISTEN[verzeichnis].instanz[instanz] = {
-                    filtern: new Object(),
-                    sortieren: undefined,
-                    gruppieren: undefined,
-                };
-        });
+        if (!("instanz" in LISTEN[verzeichnis])) LISTEN[verzeichnis].instanz = new Object();
+        if (!(instanz in LISTEN[verzeichnis].instanz))
+            LISTEN[verzeichnis].instanz[instanz] = {
+                filtern: new Object(),
+                sortieren: undefined,
+                gruppieren: undefined,
+            };
+        LISTEN[verzeichnis].instanz[instanz].$blanko_unterverzeichnis = $blanko;
+    });
+
+    $.each(BLANKOS.datei, function (position, $blanko) {
+        const verzeichnis = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-liste"), undefined);
+        const instanz = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-instanz"), undefined);
+        $blanko.removeAttr("data-liste").removeAttr("data-instanz");
+
+        if (!("instanz" in LISTEN[verzeichnis])) LISTEN[verzeichnis].instanz = new Object();
+        if (!(instanz in LISTEN[verzeichnis].instanz))
+            LISTEN[verzeichnis].instanz[instanz] = {
+                filtern: new Object(),
+                sortieren: undefined,
+                gruppieren: undefined,
+            };
+        LISTEN[verzeichnis].instanz[instanz].$blanko_datei = $blanko;
     });
 }

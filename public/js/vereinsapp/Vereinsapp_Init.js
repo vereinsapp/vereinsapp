@@ -1,52 +1,10 @@
 const DATETIME = luxon.DateTime;
-const BLANKOS = new Object();
 
 $(document).ready(function () {
-    Schnittstelle_AjaxInit(); // leere Funktion
-    Schnittstelle_LocalstorageInit(); // initilisiert events
-    Liste_Init(); // initilisiert events, fügt instanz zu LISTEN[liste] und initialisiert instanz zu LISTEN[liste].instanz, zLISTEN[auswertungen].instanz und zLISTEN[verzeichnis].instanz
-    Schnittstelle_DomInit(); // initilisiert events, stellt blankos bereit und aktualisiert $jetzt
-
-    // LOCALSTORAGE LEEREN ERZWINGEN
-    const localstorage_reset_string = Schnittstelle_LocalstorageRausZurueck("localstorage_reset", undefined);
-    if (typeof localstorage_reset_string === "undefined" || localstorage_reset_string < DATETIME.fromISO(FORCE_LOCALSTORAGE_RESET_ZEITPUNKT))
-        Schnittstelle_LocalstorageLeeren(false, new Object());
-
-    if (ICH_ID !== null) {
-        $.each(LISTEN, function (liste) {
-            Schnittstelle_EventLocalstorageUpdVariable(liste);
-        });
-
-        $.each(LISTEN, function (liste) {
-            Schnittstelle_VariableElementZuordnen(liste);
-        });
-
-        $.each(LISTEN, function (liste) {
-            Schnittstelle_VariableElementErgaenzen(liste);
-        });
-
-        $.each(LISTEN, function (liste) {
-            Schnittstelle_EventVariableUpdDom(liste);
-        });
-
-        Schnittstelle_EventSqlUpdLocalstorage();
-        setInterval(Schnittstelle_EventSqlUpdLocalstorage, AJAX_ZYKLUSZEIT * 1000);
-    }
-
-    // DATENSCHUTZ-RICHTLINIE OEFFNEN
-    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined) === "undefined")
-        Schnittstelle_Dom$ModalOeffnen(Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, "datenschutz_richtlinie_modal"));
-
-    // AUTOLOAD-MODALS OEFFNEN
-    $.each(AUTOLOAD_MODALS, function (position, modal_id) {
-        Schnittstelle_Dom$ModalOeffnen(Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, modal_id));
-        // Liste_Element$FormularInitialisieren($modal.find(".formular"));
-    });
-
-    // FORMULARE INITIALISIEREN
-    $(".formular").each(function () {
-        Liste_Element$FormularInitialisieren($(this));
-    });
+    Schnittstelle_AjaxInit();
+    Schnittstelle_LocalstorageInit();
+    Schnittstelle_DomInit();
+    Liste_Init();
 });
 
 /* TODO
@@ -77,6 +35,7 @@ verzeichnis überarbeiten
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen (ausschließlich spezielle Zusatzsymbole wie beispiele Termin-Kategorie als hex-Symbole)
 Neue bootstrap icons Version einführen (unlock2 statt lock)
 Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details)
+event einführen, dass Liste_Element ausgeführt wird, wenn ein modal geöffnet wurde (mittels Schnittstelle_Dom$ModalOeffnen)
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
 kacheln-View ergänzen (analog zu liste-View)
 Aufgaben detaillieren

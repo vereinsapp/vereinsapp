@@ -1,34 +1,29 @@
 /**
  */
 
-BLANKOS.auswertung = new Object();
-BLANKOS.auswertung.bereitstellen_aktion = function ($blanko) {
-    const $auswertungen = $blanko.closest(".auswertungen[id][data-auswertungen]");
-    const instanz = $auswertungen.attr("id");
-    const auswertungen = $auswertungen.attr("data-auswertungen");
-    if (auswertungen in LISTEN && instanz in LISTEN[auswertungen].instanz && !("$blanko_auswertung" in LISTEN[auswertungen].instanz[instanz]))
-        LISTEN[auswertungen].instanz[instanz].$blanko_auswertung = $blanko;
-};
-
 function Liste_AuswertungenInit() {
-    $.each(LISTEN, function (auswertungen) {
-        $('.auswertungen[data-auswertungen="' + auswertungen + '"]').each(function () {
-            const instanz = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("id"), undefined);
+    // INSTANZEN IN LISTEN BEREITSTELLEN
+    $.each(BLANKOS.auswertung, function (position, $blanko) {
+        const auswertungen = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-auswertungen"), undefined);
+        const instanz = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-instanz"), undefined);
+        const liste = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-liste"), undefined);
+        $blanko.removeAttr("data-auswertungen").removeAttr("data-instanz").removeAttr("data-liste");
 
-            if (!(instanz in LISTEN[auswertungen].instanz))
-                LISTEN[auswertungen].instanz[instanz] = {
-                    filtern: new Object(),
-                    sortieren: undefined,
-                    gruppieren: undefined,
-                };
+        if (!("instanz" in LISTEN[auswertungen])) LISTEN[auswertungen].instanz = new Object();
+        if (!(instanz in LISTEN[auswertungen].instanz))
+            LISTEN[auswertungen].instanz[instanz] = {
+                filtern: new Object(),
+                sortieren: undefined,
+                gruppieren: undefined,
+            };
+        LISTEN[auswertungen].instanz[instanz].$blanko_auswertung = $blanko;
 
-            const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"), undefined);
-            if (!(instanz in LISTEN[liste].instanz))
-                LISTEN[liste].instanz[instanz] = {
-                    filtern: new Object(),
-                    sortieren: undefined,
-                    gruppieren: undefined,
-                };
-        });
+        if (!("instanz" in LISTEN[liste])) LISTEN[liste].instanz = new Object();
+        if (!(instanz in LISTEN[liste].instanz))
+            LISTEN[liste].instanz[instanz] = {
+                filtern: new Object(),
+                sortieren: undefined,
+                gruppieren: undefined,
+            };
     });
 }

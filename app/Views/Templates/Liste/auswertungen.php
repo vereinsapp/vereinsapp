@@ -13,9 +13,8 @@ foreach( $auswertungen['werkzeugkasten'] as $werkzeug) { ?><button type="button"
 
 <ul id="<?= $auswertungen['instanz']; ?>" class="auswertungen text-center<?php
 if( array_key_exists( 'sortable', $auswertungen ) AND $auswertungen['sortable'] ) echo ' sortable';
-?> p-0 mb-1" data-auswertungen="<?= $auswertungen['auswertungen']; ?>"<?php
+?> p-0 mb-1" data-auswertungen="<?= $auswertungen['auswertungen']; ?>" data-liste="<?= $auswertungen['liste']; ?>"<?php
 if( array_key_exists( 'gruppieren', $auswertungen ) ) { ?> data-gruppieren='<?= $auswertungen['gruppieren']; ?>'<?php }
-if( array_key_exists( 'liste', $auswertungen ) ) { ?> data-liste='<?= $auswertungen['liste']; ?>'<?php }
 if( array_key_exists( 'filtern', $auswertungen ) ) { ?> data-filtern='<?= json_encode( $auswertungen['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $liste_ ]['element'].'_id', $auswertungen ) ) { ?> data-<?= LISTEN[ $liste_ ]['element']; ?>_id="<?= $auswertungen[ LISTEN[ $liste_ ]['element'].'_id' ]; ?>"<?php }
 ?>>

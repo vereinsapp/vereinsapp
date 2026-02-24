@@ -21,8 +21,7 @@ foreach( $liste['werkzeugkasten'] as $werkzeug) { ?><button type="button" class=
 <ul id="<?= $liste['instanz']; ?>" class="liste list-group<?php
 if( array_key_exists( 'group-flush', $liste ) AND $liste['group-flush'] ) echo ' list-group-flush';
 if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sortable';
-?> mb-1"<?php
-if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
+?> mb-1" data-liste="<?= $liste['liste']; ?>"<?php
 if( array_key_exists( 'filtern', $liste ) ) { ?> data-filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'sortieren', $liste ) ) { ?> data-sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $liste_ ]['element'].'_id', $liste ) ) { ?> data-<?= LISTEN[ $liste_ ]['element']; ?>_id="<?= $liste[ LISTEN[ $liste_ ]['element'].'_id' ]; ?>"<?php }
@@ -33,8 +32,7 @@ if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-e
     <li class="text-body list-group-item<?php
     if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'element_auswahl' ) echo ' btn_verknuepfung_erstellen';
     if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'element_auswahl' AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['bestaetigung_einfordern'] === TRUE ) echo ' bestaetigung_einfordern';
-    ?> blanko invisible" data-blanko="element"<?php
-    if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php }
+    ?> blanko invisible" data-blanko="element" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['instanz']; ?>"<?php
     if( array_key_exists( 'modal_title', $liste ) ) { ?> data-modal_title="<?= $liste['modal_title'] ?>"<?php }
     if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'element_auswahl' ) { ?> data-verknuepfungen="<?= $liste['verknuepfungen'] ?>"<?php }
     ?>>

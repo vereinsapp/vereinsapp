@@ -2,20 +2,6 @@
  */
 
 const FILTERN = new Object();
-FILTERN.$blanko_filtern_eigenschaft = new Object();
-FILTERN.$blanko_filtern_wert = new Object();
-
-BLANKOS.filtern_eigenschaft = new Object();
-BLANKOS.filtern_eigenschaft.bereitstellen_aktion = function ($blanko) {
-    const typ = $blanko.attr("data-typ");
-    $blanko.removeAttr("data-typ");
-    if ("$blanko_filtern_eigenschaft" in FILTERN && !(typ in FILTERN.$blanko_filtern_eigenschaft)) FILTERN.$blanko_filtern_eigenschaft[typ] = $blanko;
-};
-
-BLANKOS.filtern_wert = new Object();
-BLANKOS.filtern_wert.bereitstellen_aktion = function ($blanko) {
-    if (!("$filtern_wert" in FILTERN)) FILTERN.$blanko_filtern_wert = $blanko;
-};
 
 WERKZEUGE.filtern_manip.aktualisieren_aktion = function ($filtern_manip) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-liste"), undefined);
@@ -40,6 +26,20 @@ WERKZEUGE.filtern_manip.aktualisieren_aktion = function ($filtern_manip) {
 };
 
 function Liste_FilternInit() {
+    // FILTERN-WERT IN FILTERN BEREITSTELLEN
+    $.each(BLANKOS.filtern_wert, function (position, $blanko) {
+        FILTERN.$blanko_filtern_wert = $blanko;
+    });
+
+    // FILTERN-EIGENSCHAFT IN FILTERN BEREITSTELLEN
+    $.each(BLANKOS.filtern_eigenschaft, function (position, $blanko) {
+        const typ = $blanko.attr("data-typ");
+        $blanko.removeAttr("data-typ");
+
+        if (!("$blanko_filtern_eigenschaft" in FILTERN)) FILTERN.$blanko_filtern_eigenschaft = new Object();
+        FILTERN.$blanko_filtern_eigenschaft[typ] = $blanko;
+    });
+
     // FILTERN IM LOCALSTORAGE SPEICHERN
     $(document).on("change", ".filtern_localstorage", function () {
         Liste_$FilternLocalStorageSpeichern($(this));

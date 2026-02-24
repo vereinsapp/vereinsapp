@@ -1,15 +1,6 @@
 /**
  */
 
-BLANKOS.element = new Object();
-BLANKOS.element.bereitstellen_aktion = function ($blanko) {
-    const $liste = $blanko.closest(".liste[id][data-liste]");
-    const instanz = $liste.attr("id");
-    const liste = $liste.attr("data-liste");
-    if (liste in LISTEN && instanz in LISTEN[liste].instanz && !("$blanko_element" in LISTEN[liste].instanz[instanz]))
-        LISTEN[liste].instanz[instanz].$blanko_element = $blanko;
-};
-
 WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
     if (
         $(
@@ -25,34 +16,62 @@ WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
 };
 
 function Liste_Init() {
-    $.each(LISTEN, function (liste) {
-        LISTEN[liste].instanz = new Object();
+    // INSTANZEN IN LISTEN BEREITSTELLEN
+    $.each(BLANKOS.element, function (position, $blanko) {
+        const liste = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-liste"), undefined);
+        const instanz = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-instanz"), undefined);
+        $blanko.removeAttr("data-liste").removeAttr("data-instanz");
 
-        $('.liste[data-liste="' + liste + '"]').each(function () {
-            const instanz = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("id"), undefined);
-
+        if (!("instanz" in LISTEN[liste])) LISTEN[liste].instanz = new Object();
+        if (!(instanz in LISTEN[liste].instanz))
             LISTEN[liste].instanz[instanz] = {
                 filtern: new Object(),
                 sortieren: undefined,
                 gruppieren: undefined,
             };
-        });
+        LISTEN[liste].instanz[instanz].$blanko_element = $blanko;
     });
 
-    Liste_AuswertungenInit(); // initialisiert instanz zu LISTEN[auswertungen].instanz und LISTEN[liste].instanz
-    Liste_VerzeichnisInit(); // initialisiert instanz zu LISTEN[verzeichnis].instanz
+    Liste_AuswertungenInit();
+    Liste_VerzeichnisInit();
 
-    Liste_FilternInit(); // initilisiert events
-    Liste_SortierenInit(); // initilisiert events
-    Liste_GruppierenInit(); // initilisiert events
+    Liste_FilternInit();
+    Liste_SortierenInit();
+    Liste_GruppierenInit();
 
     if (ICH_ID !== null) {
-        Mitglieder_Init(); // initilisiert events
-        Aufgaben_Init(); // initilisiert events
-        Termine_Init(); // initilisiert events
-        Strafkatalog_Init(); // initilisiert events
-        Notenbank_Init(); // initilisiert events
+        Mitglieder_Init();
+        Aufgaben_Init();
+        Termine_Init();
+        Strafkatalog_Init();
+        Notenbank_Init();
     }
+
+    if (ICH_ID !== null) {
+        $.each(LISTEN, function (liste) {
+            Schnittstelle_EventLocalstorageUpdVariable(liste);
+        });
+
+        $.each(LISTEN, function (liste) {
+            Schnittstelle_VariableElementZuordnen(liste);
+        });
+
+        $.each(LISTEN, function (liste) {
+            Schnittstelle_VariableElementErgaenzen(liste);
+        });
+
+        $.each(LISTEN, function (liste) {
+            Schnittstelle_EventVariableUpdDom(liste);
+        });
+
+        Schnittstelle_EventSqlUpdLocalstorage();
+        setInterval(Schnittstelle_EventSqlUpdLocalstorage, AJAX_ZYKLUSZEIT * 1000);
+    }
+
+    // FORMULARE INITIALISIEREN
+    $(".formular[data-liste]").each(function () {
+        Liste_Element$FormularInitialisieren($(this));
+    });
 
     // EINGABE AENDERN (AKTUELL NUR FUR TERMINE.KATEGORIE)
     $(document).on("change", ".eingabe", function () {
