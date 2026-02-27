@@ -11,6 +11,8 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
     $zusatzsymbol.find('[data-bs-toggle="popover"]').popover("hide");
     $zusatzsymbol.empty();
 
+    let farbe;
+
     switch (zusatzsymbol) {
         // Zusatzsymbol für Geburtstag
         case "geburtstag":
@@ -41,11 +43,16 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
 
         // Zusatzsymbol für Ändern-Werkzeug
         case "aendern":
+            if ("farbe" in WERKZEUGE[LISTEN[liste].element + "_aendern"]) farbe = WERKZEUGE[LISTEN[liste].element + "_aendern"].farbe;
+            else farbe = "primary";
+
             $zusatzsymbol.html(
                 Liste_ElementTextMitBeschriftungErsetztZurueck(
                     '<i class="bi bi-' +
                         SYMBOLE[WERKZEUGE[LISTEN[liste].element + "_aendern"].symbol]["bootstrap"] +
-                        ' text-primary formular_oeffnen werkzeug" data-werkzeug="' +
+                        " text-" +
+                        farbe +
+                        ' formular_oeffnen werkzeug" data-werkzeug="' +
                         LISTEN[liste].element +
                         '_aendern" data-liste="' +
                         liste +
@@ -65,11 +72,16 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
 
         // Zusatzsymbol für Duplizieren-Werkzeug
         case "duplizieren":
+            if ("farbe" in WERKZEUGE[LISTEN[liste].element + "_duplizieren"]) farbe = WERKZEUGE[LISTEN[liste].element + "_duplizieren"].farbe;
+            else farbe = "primary";
+
             $zusatzsymbol.html(
                 Liste_ElementTextMitBeschriftungErsetztZurueck(
                     '<i class="bi bi-' +
                         SYMBOLE[WERKZEUGE[LISTEN[liste].element + "_duplizieren"].symbol]["bootstrap"] +
-                        ' text-primary formular_oeffnen werkzeug" data-werkzeug="' +
+                        " text-" +
+                        farbe +
+                        ' formular_oeffnen werkzeug" data-werkzeug="' +
                         LISTEN[liste].element +
                         '_duplizieren" data-liste="' +
                         liste +
@@ -89,11 +101,16 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
 
         // Zusatzsymbol für Löschen-Werkzeug
         case "loeschen":
+            if ("farbe" in WERKZEUGE.element_loeschen) farbe = WERKZEUGE.element_loeschen.farbe;
+            else farbe = "primary";
+
             $zusatzsymbol.html(
                 Liste_ElementTextMitBeschriftungErsetztZurueck(
                     '<i class="bi bi-' +
-                        SYMBOLE.loeschen.bootstrap +
-                        ' text-danger bestaetigung_einfordern werkzeug" data-werkzeug="element_loeschen" data-liste="' +
+                        SYMBOLE[WERKZEUGE.element_loeschen.symbol]["bootstrap"] +
+                        " text-" +
+                        farbe +
+                        ' bestaetigung_einfordern werkzeug" data-werkzeug="element_loeschen" data-liste="' +
                         liste +
                         '" data-' +
                         LISTEN[liste].element +

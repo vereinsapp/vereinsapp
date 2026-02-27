@@ -107,7 +107,7 @@ class Vereinsapp extends BaseConfig
         'gruppieren_eigenschaft_zuruecksetzen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Eigenschaft zurücksetzen', 'farbe' => 'danger', ),
         'bemerkung_aendern' => array( 'symbol' => 'bemerkung', 'beschriftung' => 'Bemerkung ändern', 'formular_oeffnen' => TRUE, ),
         'localstorage_leeren' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Localstorage leeren', 'farbe' => 'danger', ),
-        'datenschutz_richtlinie_akzeptieren' => array( 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Datenschutz-Richtlinie akzeptieren', ),
+        'datenschutz_richtlinie_akzeptieren' => array( 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Datenschutz-Richtlinie akzeptieren', 'farbe' => 'success', ),
         'inhalt_kopieren' => array( 'symbol' => 'inhalt_kopieren', 'beschriftung' => 'Inhalt kopieren', ),
         'element_loeschen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Element löschen', 'bestaetigung_einfordern' => TRUE, 'farbe' => 'danger', ),
         'element_loeschen_weiterleiten' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Element löschen', 'bestaetigung_einfordern' => TRUE, 'farbe' => 'danger', 'weiterleiten' => 'mitglieder', ),

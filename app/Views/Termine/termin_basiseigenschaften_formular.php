@@ -45,7 +45,9 @@
 </div>
 
 <div class="d-grid mb-2">
-    <button type="button" class="btn btn-outline-primary eingabe werkzeug" data-werkzeug="filtern_manip" data-eingabe="filtern_mitglieder" data-liste="mitglieder" data-modal_title="<?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>">
+    <button type="button" class="btn btn-outline-<?php
+        if( array_key_exists('farbe', WERKZEUGE['filtern_manip']) ) echo WERKZEUGE['filtern_manip']['farbe']; else echo "primary";
+        ?> eingabe werkzeug" data-werkzeug="filtern_manip" data-eingabe="filtern_mitglieder" data-liste="mitglieder" data-modal_title="<?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>">
         <span class="beschriftung"><i class="bi bi-<?= SYMBOLE['filtern_mitglieder']['bootstrap']; ?>"></i> <?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?></span>
     </button>
 </div>

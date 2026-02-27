@@ -50,7 +50,6 @@ filtern_localstorage, sortieren_localstorage, gruppieren_localstorage loswerden 
 Schnittstelle_Dom$Quelle$ZielVerknuepfen so umbauen, dass mehrere Elemente das gleiche Ziel haben können
 d-grid durch w-100 ersetzen?
 $VerknuepfungenAuswahlmoeglichkeiten umbennen in Verknuepfungen
-farbe durchgängig von WERKZEUGE beziehen (um im Zweifelsfall primary wählen)
 
 ERLEDIGT
 

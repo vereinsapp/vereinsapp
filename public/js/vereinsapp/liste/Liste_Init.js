@@ -2,6 +2,12 @@
  */
 
 WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
+    const werkzeug = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-werkzeug"), undefined);
+
+    let farbe;
+    if ("farbe" in WERKZEUGE[werkzeug]) farbe = WERKZEUGE[werkzeug].farbe;
+    else farbe = "primary";
+
     if (
         $(
             "#" +
@@ -11,8 +17,8 @@ WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
                 "]",
         ).children().length === 0
     )
-        $werkzeug.removeClass("text-primary").addClass("text-success");
-    else $werkzeug.addClass("text-primary").removeClass("text-success");
+        $werkzeug.removeClass("text-" + farbe).addClass("text-success");
+    else $werkzeug.addClass("text-" + farbe).removeClass("text-success");
 };
 
 WERKZEUGE.element_loeschen.aktualisieren_aktion = function ($werkzeug) {
