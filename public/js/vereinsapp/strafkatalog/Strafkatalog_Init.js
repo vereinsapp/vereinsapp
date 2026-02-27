@@ -36,7 +36,7 @@ WERKZEUGE.strafe_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIE
 
 function Strafkatalog_Init() {
     // STRAFE ERSTELLEN / DUPLIZIEREN
-    $(document).on("click", ".btn_strafe_erstellen", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="strafe_erstellen"], .werkzeug[data-werkzeug="strafe_duplizieren"]', function () {
         Strafkatalog_StrafeErstellen(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
@@ -47,7 +47,7 @@ function Strafkatalog_Init() {
     });
 
     // STRAFE ÄNDERN
-    $(document).on("click", ".btn_strafe_aendern", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="strafe_aendern"]', function () {
         Strafkatalog_StrafeAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
@@ -58,7 +58,7 @@ function Strafkatalog_Init() {
     });
 
     // STRAFEN ZUWEISEN (MODAL) ÖFFNEN
-    $(document).on("click", ".btn_strafen_zuweisen", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="strafen_zuweisen"]', function () {
         Liste_VerknuepfungenModalOeffnen(
             "strafen_zuweisen_modal",
             "strafen_zuweisen",
@@ -72,7 +72,7 @@ function Strafkatalog_Init() {
     });
 
     // ZUGEWIESENE STRAFE ERSTELLEN
-    $(document).on("click", '.btn_verknuepfung_erstellen[data-verknuepfungen="strafkatalog_zugewiesene_strafen"]', function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="strafkatalog_zugewiesene_strafe_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigung_einfordern"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal") },

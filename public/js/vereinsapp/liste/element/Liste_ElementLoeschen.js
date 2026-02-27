@@ -15,7 +15,7 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, modal_title, 
                 [LISTEN[liste].element + "_id"]: data[LISTEN[liste].element + "_id"],
             }),
             modal_title,
-            LISTEN[liste].element + "_loeschen",
+            "element_loeschen",
             data,
         );
     else {

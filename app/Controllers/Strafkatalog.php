@@ -26,7 +26,7 @@ class Strafkatalog extends BaseController {
             $this->viewdata['werkzeugkasten'][] = 'strafen_zuweisen';
             $this->viewdata['werkzeugkasten'][] = 'strafe_aendern';
             $this->viewdata['werkzeugkasten'][] = 'strafe_duplizieren';
-            $this->viewdata['werkzeugkasten'][] = 'strafe_loeschen';
+            $this->viewdata['werkzeugkasten'][] = 'element_loeschen';
 
         }
 

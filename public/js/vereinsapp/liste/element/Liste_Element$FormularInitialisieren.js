@@ -50,7 +50,7 @@ function Liste_Element$FormularInitialisieren($formular) {
 
     const $formular_werkzeug = $formular.find(".formular_werkzeug");
     if (typeof werkzeug !== "undefined" && werkzeug in WERKZEUGE) {
-        $formular_werkzeug.removeClass("formular_werkzeug").addClass("werkzeug").attr("data-werkzeug", werkzeug).addClass(WERKZEUGE[werkzeug].btn);
+        $formular_werkzeug.removeClass("formular_werkzeug").addClass("werkzeug").attr("data-werkzeug", werkzeug);
         if ("farbe" in WERKZEUGE[werkzeug])
             $formular_werkzeug.removeClass("btn-outline-success").addClass("btn-outline-" + WERKZEUGE[werkzeug].farbe);
         $formular_werkzeug.find(".beschriftung").text(WERKZEUGE[werkzeug].beschriftung);

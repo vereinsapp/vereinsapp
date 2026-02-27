@@ -96,7 +96,7 @@ WERKZEUGE.termine_aufgaben_zuordnen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_A
 
 function Aufgaben_Init() {
     // AUFGABE ERSTELLEN / DUPLIZIEREN
-    $(document).on("click", ".btn_aufgabe_erstellen", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="aufgabe_erstellen"], .werkzeug[data-werkzeug="aufgabe_duplizieren"]', function () {
         Aufgaben_AufgabeErstellen(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
@@ -107,7 +107,7 @@ function Aufgaben_Init() {
     });
 
     // AUFGABE ÄNDERN
-    $(document).on("click", ".btn_aufgabe_aendern", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="aufgabe_aendern"]', function () {
         Aufgaben_AufgabeAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
@@ -118,7 +118,7 @@ function Aufgaben_Init() {
     });
 
     // RUECKMELDUNGEN VERWALTEN (MODAL) ÖFFNEN
-    $(document).on("click", ".btn_aufgaben_rueckmeldungen_verwalten", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="aufgaben_rueckmeldungen_verwalten"]', function () {
         Liste_VerknuepfungenModalOeffnen(
             "aufgaben_rueckmeldungen_verwalten_modal",
             "aufgaben_rueckmeldungen_verwalten",
@@ -132,7 +132,7 @@ function Aufgaben_Init() {
     });
 
     // RÜCKMELDUNG ERSTELLEN
-    $(document).on("click", '.btn_verknuepfung_erstellen[data-verknuepfungen="aufgaben_rueckmeldungen"]', function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="aufgaben_rueckmeldung_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigung_einfordern"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal") },
@@ -147,7 +147,7 @@ function Aufgaben_Init() {
     });
 
     // TERMINE AUFGABEN ZUORDNEN (MODAL) ÖFFNEN
-    $(document).on("click", ".btn_termine_aufgaben_zuordnen", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="termine_aufgaben_zuordnen"]', function () {
         Liste_VerknuepfungenModalOeffnen(
             "termine_aufgaben_zuordnen_modal",
             "termine_aufgaben_zuordnen",

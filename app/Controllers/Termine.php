@@ -57,7 +57,7 @@ class Termine extends BaseController {
 
             $this->viewdata['werkzeugkasten'][] = 'termin_aendern';
             $this->viewdata['werkzeugkasten'][] = 'termin_duplizieren';
-            $this->viewdata['werkzeugkasten'][] = 'termin_loeschen';
+            $this->viewdata['werkzeugkasten'][] = 'element_loeschen';
 
         }
 
@@ -172,7 +172,7 @@ class Termine extends BaseController {
 
             $this->viewdata['werkzeugkasten'][] = 'termin_aendern';
             $this->viewdata['werkzeugkasten'][] = 'termin_duplizieren';
-            $this->viewdata['werkzeugkasten'][] = 'termin_loeschen_weiterleiten';
+            $this->viewdata['werkzeugkasten'][] = 'element_loeschen_weiterleiten';
 
         }
 

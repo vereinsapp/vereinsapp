@@ -74,7 +74,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['werkzeugkasten'][] = 'einmal_link_email';
             $this->viewdata['werkzeugkasten'][] = 'mitglied_aendern';
             $this->viewdata['werkzeugkasten'][] = 'mitglied_duplizieren';
-            $this->viewdata['werkzeugkasten'][] = 'mitglied_loeschen';
+            $this->viewdata['werkzeugkasten'][] = 'element_loeschen';
 
         }
 
@@ -160,7 +160,7 @@ class Mitglieder extends BaseController {
             $this->viewdata['werkzeugkasten'][] = 'einmal_link_email';
             $this->viewdata['werkzeugkasten'][] = 'mitglied_aendern';
             $this->viewdata['werkzeugkasten'][] = 'mitglied_duplizieren';
-            $this->viewdata['werkzeugkasten'][] = 'mitglied_loeschen_weiterleiten';
+            $this->viewdata['werkzeugkasten'][] = 'element_loeschen_weiterleiten';
 
         } elseif( $mitglied_id == ICH_ID ) $this->viewdata['werkzeugkasten'][] = 'meine_daten_aendern';
 

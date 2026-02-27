@@ -19,7 +19,7 @@
     view( 'Templates/modal', array( 'modal_id' => 'mitglied_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'formular' => view( 'Mitglieder/mitglied_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'modal_id' => 'mitglieder_einmal_link_anzeigen', 'modal' =>
+    view( 'Templates/modal', array( 'modal_id' => 'mitglied_einmal_link_anzeigen_modal', 'modal' =>
     view( 'Mitglieder/mitglied_einmal_link_anzeigen' ) ) ); ?>
 <?php if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'rechte_vergeben_modal', 'modal' =>

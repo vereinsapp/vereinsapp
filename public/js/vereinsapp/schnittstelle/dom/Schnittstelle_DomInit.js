@@ -52,7 +52,7 @@ function Schnittstelle_DomInit() {
         Schnittstelle_Dom$ModalOeffnen(Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, "datenschutz_richtlinie_modal"));
 
     // DATENSCHUTZ-RICHTLINIE AKZEPTIEREN
-    $(document).on("click", ".btn_datenschutz_richtlinie_akzeptieren", function () {
+    $(document).on("click", "[data-werkzeug='datenschutz_richtlinie_akzeptieren']", function () {
         Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DATETIME.now().toISO());
         Schnittstelle_Dom$ModalSchliessen($(this).closest(".modal"));
     });
@@ -94,6 +94,10 @@ function Schnittstelle_DomInit() {
             const element_id = $werkzeugkasten_handle.attr("data-" + LISTEN[liste].element + "_id");
             if (typeof element_id !== "undefined") $werkzeuge.attr("data-" + LISTEN[liste].element + "_id", element_id);
             else $werkzeuge.removeAttr("data-" + LISTEN[liste].element + "_id");
+
+            $werkzeuge.each(function () {
+                Liste_Liste$WerkzeugAktualisieren($(this), undefined);
+            });
         } else $werkzeuge.removeAttr("data-liste");
     });
 
@@ -117,7 +121,7 @@ function Schnittstelle_DomInit() {
     });
 
     // INHALT KOPIEREN (CLIPBOARD)
-    const CLIPBOARD = new ClipboardJS(".btn_inhalt_kopieren");
+    const CLIPBOARD = new ClipboardJS('.werkzeug[data-werkzeug="inhalt_kopieren"]');
 
     CLIPBOARD.on("success", function (event) {
         Schnittstelle_DomToastFeuern("Kopieren in die Zwischenablage war erfolgreich.");

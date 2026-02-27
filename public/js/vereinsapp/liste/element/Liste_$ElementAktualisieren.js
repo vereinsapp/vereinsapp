@@ -33,7 +33,7 @@ function Liste_$ElementAktualisieren($element) {
     });
 
     // ACTION UND ROLE DEFINIEREN
-    if ($element.find("a.stretched-link").exists() || $element.is("[class*=btn_]") || $element.find("[class*=chk_]").exists()) {
+    if ($element.find("a.stretched-link").exists() || $element.hasClass("werkzeug") || $element.find("[class*=chk_]").exists()) {
         $element.addClass("list-group-item-action").attr("role", "button");
         $element.find("label").attr("role", "button");
     } else {

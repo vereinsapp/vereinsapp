@@ -1,3 +1,3 @@
-<div class="d-grid"><button type="button" class="btn btn_localstorage_leeren bestaetigung_einfordern btn-outline-danger" data-modal_title="<?= WERKZEUGE['localstorage_leeren']['beschriftung']; ?>">
+<div class="d-grid"><button type="button" class="btn btn-outline-danger bestaetigung_einfordern werkzeug" data-werkzeug="localstorage_leeren" data-modal_title="<?= WERKZEUGE['localstorage_leeren']['beschriftung']; ?>">
     <span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['localstorage_leeren']['symbol'] ]['bootstrap']; ?>"></i> <?= WERKZEUGE['localstorage_leeren']['beschriftung']; ?></span>
 </button></div>

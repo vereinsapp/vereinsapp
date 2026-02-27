@@ -3,5 +3,5 @@
         <select class="form-select gruppieren_wert"></select>
         <label><span class="beschriftung">Gruppieren nach</span></label>
     </div>
-    <button type="button" class="btn btn_gruppieren_eigenschaft_zuruecksetzen btn-outline-danger"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['loeschen']['bootstrap']; ?>"></i></span></button>
+    <button type="button" class="btn btn-outline-danger werkzeug" data-werkzeug="gruppieren_eigenschaft_zuruecksetzen"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['gruppieren_eigenschaft_zuruecksetzen']['symbol'] ]['bootstrap']; ?>"></i></span></button>
 </div>

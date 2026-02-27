@@ -46,7 +46,7 @@ function Liste_FilternInit() {
     });
 
     // FILTERN MODAL ÖFFNEN
-    $(document).on("click", ".btn_filtern_manip", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="filtern_manip"]', function () {
         Liste_$FilternModalOeffnen($(this));
     });
 
@@ -61,7 +61,7 @@ function Liste_FilternInit() {
     });
 
     // FILTERN WERT ZWISCHEN INKLUSIV UND EXKLUSIV VERSCHIEBEN
-    $(document).on("click", ".btn_filtern_wert_inklusiv_exklusiv", function () {
+    $(document).on("click", ".werkzeug[data-werkzeug=filtern_wert_inklusiv_exklusiv]", function () {
         Liste_$FilternEigenschaftWertInExklusivAendern(
             $(this).closest(".filtern_eigenschaft"),
             Schnittstelle_VariableWertBereinigtZurueck($(this).closest(".filtern_wert").attr("data-wert"), undefined),
@@ -69,7 +69,7 @@ function Liste_FilternInit() {
     });
 
     // FILTERN WERT LOESCHEN
-    $(document).on("click", ".btn_filtern_wert_loeschen", function () {
+    $(document).on("click", ".werkzeug[data-werkzeug=filtern_wert_loeschen]", function () {
         Liste_$FilternEigenschaftWertLoeschen(
             $(this).closest(".filtern_eigenschaft"),
             Schnittstelle_VariableWertBereinigtZurueck($(this).closest(".filtern_wert").attr("data-wert"), undefined),
@@ -77,7 +77,7 @@ function Liste_FilternInit() {
     });
 
     // FILTERN EIGENSCHAFT ZURÜCKSETZEN
-    $(document).on("click", ".btn_filtern_eigenschaft_zuruecksetzen", function () {
+    $(document).on("click", ".werkzeug[data-werkzeug=filtern_eigenschaft_zuruecksetzen]", function () {
         Liste_$FilternEigenschaftZuruecksetzen($(this).closest(".filtern_eigenschaft"));
     });
 }

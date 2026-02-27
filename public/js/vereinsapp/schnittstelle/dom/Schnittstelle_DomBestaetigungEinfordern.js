@@ -6,11 +6,7 @@ function Schnittstelle_DomBestaetigungEinfordern(nachricht, modal_title, werkzeu
 
     const $bestaetigung_werkzeug = $bestaetigung.find(".bestaetigung_werkzeug");
     if (typeof werkzeug !== "undefined" && werkzeug in WERKZEUGE) {
-        $bestaetigung_werkzeug
-            .removeClass("bestaetigung_werkzeug")
-            .addClass("werkzeug")
-            .attr("data-werkzeug", werkzeug)
-            .addClass(WERKZEUGE[werkzeug].btn);
+        $bestaetigung_werkzeug.removeClass("bestaetigung_werkzeug").addClass("werkzeug").attr("data-werkzeug", werkzeug);
         if ("farbe" in WERKZEUGE[werkzeug])
             $bestaetigung_werkzeug.removeClass("btn-outline-success").addClass("btn-outline-" + WERKZEUGE[werkzeug].farbe);
         // $bestaetigung_werkzeug.find(".beschriftung").text(WERKZEUGE[werkzeug].beschriftung);

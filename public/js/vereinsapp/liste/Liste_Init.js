@@ -15,6 +15,16 @@ WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
     else $werkzeug.addClass("text-primary").removeClass("text-success");
 };
 
+WERKZEUGE.element_loeschen.aktualisieren_aktion = function ($werkzeug) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined);
+    const werkzeug = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-werkzeug"), undefined);
+
+    $werkzeug.attr("data-modal_title", LISTEN[liste].element_beschriftung + " löschen");
+    $werkzeug
+        .find(".beschriftung")
+        .html('<i class="bi bi-' + SYMBOLE[WERKZEUGE[werkzeug].symbol]["bootstrap"] + '"></i> ' + LISTEN[liste].element_beschriftung + " löschen");
+};
+
 function Liste_Init() {
     // INSTANZEN IN LISTEN BEREITSTELLEN
     $.each(BLANKOS.element, function (position, $blanko) {
@@ -84,7 +94,7 @@ function Liste_Init() {
     });
 
     // BEMERKUNG AENDERN
-    $(document).on("click", ".btn_element_bemerkung_aendern", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="bemerkung_aendern"]', function () {
         const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"));
         Liste_ElementBemerkungAendern(
             $(this).hasClass("formular_oeffnen"),
@@ -96,7 +106,7 @@ function Liste_Init() {
     });
 
     // ELEMENT LÖSCHEN
-    $(document).on("click", ".btn_element_loeschen", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="element_loeschen"]', function () {
         const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"));
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigung_einfordern"),
@@ -122,19 +132,19 @@ function Liste_Init() {
     });
 
     // PASSWORT ANZEIGEN (WIRD HIER INITIALISIERT, DAMIT ES AUCH IM AUSGELOGGTEN ZUSTAND VERFÜGBAR IST)
-    $(document).on("click", ".btn_passwort_anzeigen", function (event) {
-        const $btn_passwort_anzeigen = $(this);
+    $(document).on("click", '.werkzeug[data-werkzeug="passwort_anzeigen"]', function (event) {
+        const $werkzeug = $(this);
         event.preventDefault();
-        const feld = $btn_passwort_anzeigen.closest(".input-group").find("input.form-control");
+        const $eingabe = $werkzeug.closest(".input-group").find("input.form-control"); // .eingabe funktioniert nicht wegen login-View
 
-        if (feld.attr("type") == "text") {
-            feld.attr("type", "password");
-            $btn_passwort_anzeigen.find("i").removeClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
-            $btn_passwort_anzeigen.find("i").addClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
-        } else if (feld.attr("type") == "password") {
-            feld.attr("type", "text");
-            $btn_passwort_anzeigen.find("i").removeClass("bi-" + SYMBOLE["unsichtbar"]["bootstrap"]);
-            $btn_passwort_anzeigen.find("i").addClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
+        if ($eingabe.attr("type") == "text") {
+            $eingabe.attr("type", "password");
+            $werkzeug.find("i").removeClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
+            $werkzeug.find("i").addClass("bi-" + SYMBOLE[WERKZEUGE["passwort_anzeigen"]["symbol"]]["bootstrap"]);
+        } else if ($eingabe.attr("type") == "password") {
+            $eingabe.attr("type", "text");
+            $werkzeug.find("i").removeClass("bi-" + SYMBOLE[WERKZEUGE["passwort_anzeigen"]["symbol"]]["bootstrap"]);
+            $werkzeug.find("i").addClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
         }
     });
 }

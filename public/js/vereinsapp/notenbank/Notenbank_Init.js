@@ -77,7 +77,7 @@ WERKZEUGE.setliste_verwalten.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALIS
 
 function Notenbank_Init() {
     // TITEL ERSTELLEN / DUPLIZIEREN
-    $(document).on("click", ".btn_titel_erstellen", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="titel_erstellen"], .werkzeug[data-werkzeug="titel_duplizieren"]', function () {
         Notenbank_TitelErstellen(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
@@ -88,7 +88,7 @@ function Notenbank_Init() {
     });
 
     // TITEL ÄNDERN
-    $(document).on("click", ".btn_titel_aendern", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="titel_aendern"]', function () {
         Notenbank_TitelAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
@@ -99,7 +99,7 @@ function Notenbank_Init() {
     });
 
     // SETLISTE VERWALTEN (MODAL) ÖFFNEN
-    $(document).on("click", ".btn_setliste_verwalten", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="setliste_verwalten"]', function () {
         Liste_VerknuepfungenModalOeffnen(
             "setliste_verwalten_modal",
             "setliste_verwalten",
@@ -113,7 +113,7 @@ function Notenbank_Init() {
     });
 
     // SETLISTE VERWALTEN
-    $(document).on("click", '.btn_verknuepfung_erstellen[data-verknuepfungen="notenbank_setliste"]', function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="notenbank_setlisteneintrag_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigung_einfordern"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal") },

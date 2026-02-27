@@ -33,7 +33,7 @@ function Liste_SortierenInit() {
     });
 
     // SORTIEREN MODAL ÖFFNEN
-    $(document).on("click", ".btn_sortieren_manip", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="sortieren_manip"]', function () {
         Liste_$SortierenModalOeffnen($(this));
     });
 
@@ -43,7 +43,7 @@ function Liste_SortierenInit() {
     });
 
     // SORTIEREN EIGENSCHAFT ZURÜCKSETZEN
-    $(document).on("click", ".btn_sortieren_eigenschaft_zuruecksetzen", function () {
+    $(document).on("click", ".werkzeug[data-werkzeug=sortieren_eigenschaft_zuruecksetzen]", function () {
         Liste_$SortierenEigenschaftZuruecksetzen($(this).closest(".sortieren_eigenschaft"));
     });
 }

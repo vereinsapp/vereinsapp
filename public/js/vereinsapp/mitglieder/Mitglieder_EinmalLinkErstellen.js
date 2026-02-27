@@ -12,17 +12,17 @@ function Mitglieder_EinmalLinkErstellen(formular_oeffnen, bestaetigung_einforder
             { liste: "mitglieder", mitglied_id: mitglied_id, email: true },
         );
     else if (formular_oeffnen) {
-        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "mitglieder_einmal_link_anzeigen");
+        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "mitglied_einmal_link_anzeigen_modal");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         $neues_modal
-            .find(".beschriftung_mitglied_einmal_link_anzeigen")
+            .find(".mitglied_einmal_link_anzeigen_beschriftung")
             .text(
                 Liste_ElementTextMitBeschriftungErsetztZurueck(
                     "Willst du wirklich für {mitglieder} einen neuen Einmal-Link erstellen und anzeigen?",
                     { mitglied_id: mitglied_id },
                 ),
             );
-        $neues_modal.find(".btn_mitglied_einmal_link_erstellen").attr("data-mitglied_id", mitglied_id);
+        $neues_modal.find('.werkzeug[data-werkzeug="einmal_link_anzeigen"]').attr("data-mitglied_id", mitglied_id);
     } else {
         const ajax_dom = dom;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());

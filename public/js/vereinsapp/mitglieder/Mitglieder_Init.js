@@ -67,7 +67,7 @@ WERKZEUGE.mitglied_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALIS
 
 function Mitglieder_Init() {
     // MITGLIED ERSTELLEN / DUPLIZIEREN
-    $(document).on("click", ".btn_mitglied_erstellen", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="mitglied_erstellen"], .werkzeug[data-werkzeug="mitglied_duplizieren"]', function () {
         Mitglieder_MitgliedErstellen(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
@@ -78,7 +78,7 @@ function Mitglieder_Init() {
     });
 
     // MITGLIED ÄNDERN
-    $(document).on("click", ".btn_mitglied_aendern", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="mitglied_aendern"], .werkzeug[data-werkzeug="meine_daten_aendern"]', function () {
         Mitglieder_MitgliedAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
@@ -89,7 +89,7 @@ function Mitglieder_Init() {
     });
 
     // PASSWORT ÄNDERN
-    $(document).on("click", ".btn_mitglied_passwort_aendern", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="passwort_aendern"]', function () {
         Mitglieder_PasswortAendern(
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
@@ -98,7 +98,7 @@ function Mitglieder_Init() {
     });
 
     // PASSWORT FESTLEGEN
-    $(document).on("click", ".btn_mitglied_passwort_festlegen", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="passwort_festlegen"]', function () {
         Mitglieder_PasswortFestlegen(
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
@@ -107,7 +107,7 @@ function Mitglieder_Init() {
     });
 
     // RECHTE VERGEBEN (MODAL) ÖFFNEN
-    $(document).on("click", ".btn_rechte_vergeben", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="rechte_vergeben"]', function () {
         Liste_VerknuepfungenModalOeffnen(
             "rechte_vergeben_modal",
             "rechte_vergeben",
@@ -136,7 +136,7 @@ function Mitglieder_Init() {
     });
 
     // EINMAL-LINK ERSTELLEN
-    $(document).on("click", ".btn_mitglied_einmal_link_erstellen", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="einmal_link_anzeigen"], .werkzeug[data-werkzeug="einmal_link_email"]', function () {
         Mitglieder_EinmalLinkErstellen(
             $(this).hasClass("formular_oeffnen"),
             $(this).hasClass("bestaetigung_einfordern"),

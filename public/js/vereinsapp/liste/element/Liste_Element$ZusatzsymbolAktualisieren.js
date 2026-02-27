@@ -44,10 +44,10 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             $zusatzsymbol.html(
                 Liste_ElementTextMitBeschriftungErsetztZurueck(
                     '<i class="bi bi-' +
-                        SYMBOLE.aendern.bootstrap +
-                        " btn_" +
+                        SYMBOLE[WERKZEUGE[LISTEN[liste].element + "_aendern"].symbol]["bootstrap"] +
+                        ' text-primary formular_oeffnen werkzeug" data-werkzeug="' +
                         LISTEN[liste].element +
-                        '_aendern formular_oeffnen text-primary" data-liste="' +
+                        '_aendern" data-liste="' +
                         liste +
                         '" data-' +
                         LISTEN[liste].element +
@@ -68,10 +68,10 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             $zusatzsymbol.html(
                 Liste_ElementTextMitBeschriftungErsetztZurueck(
                     '<i class="bi bi-' +
-                        SYMBOLE.duplizieren.bootstrap +
-                        " btn_" +
+                        SYMBOLE[WERKZEUGE[LISTEN[liste].element + "_duplizieren"].symbol]["bootstrap"] +
+                        ' text-primary formular_oeffnen werkzeug" data-werkzeug="' +
                         LISTEN[liste].element +
-                        '_duplizieren formular_oeffnen text-primary" data-liste="' +
+                        '_duplizieren" data-liste="' +
                         liste +
                         '" data-' +
                         LISTEN[liste].element +
@@ -93,7 +93,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                 Liste_ElementTextMitBeschriftungErsetztZurueck(
                     '<i class="bi bi-' +
                         SYMBOLE.loeschen.bootstrap +
-                        ' btn_element_loeschen bestaetigung_einfordern text-danger" data-liste="' +
+                        ' text-danger bestaetigung_einfordern werkzeug" data-werkzeug="element_loeschen" data-liste="' +
                         liste +
                         '" data-' +
                         LISTEN[liste].element +

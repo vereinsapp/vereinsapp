@@ -18,6 +18,6 @@ function Schnittstelle_LocalstorageLeeren(bestaetigung_einfordern, dom, modal_ti
 
         if ("$modal" in dom && dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(dom.$modal);
 
-        Schnittstelle_LogInDieKonsole("LocalStorage wurde erfolgreich geleert.");
+        Schnittstelle_LogInDieKonsole("Schnittstelle_LocalstorageLeeren: LocalStorage wurde erfolgreich geleert.");
     }
 }

@@ -16,7 +16,7 @@ foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $li
                     if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?> role="button"<?php } ?>>
                     <span class="zusatzsymbol" data-zusatzsymbol="datei"></span> <span class="beschriftung"></span><span class="audio"></span>
 <?php if( array_key_exists( 'link', $verzeichnis ) AND $verzeichnis['link'] ) { ?>
-                    <a class="btn_verzeichnis_oeffnen stretched-link" target="_blank"></a>
+                    <a class="stretched-link" target="_blank"></a>
 <?php } ?>
 <?php if( array_key_exists( 'vorschau', $verzeichnis ) ) { ?>
                     <div class="vorschau text-truncate text-secondary small"><?php foreach( $verzeichnis['vorschau'] as $position => $vorschau ) {

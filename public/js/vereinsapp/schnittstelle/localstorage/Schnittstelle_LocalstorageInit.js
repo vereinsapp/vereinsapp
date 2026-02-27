@@ -5,7 +5,7 @@ function Schnittstelle_LocalstorageInit() {
         Schnittstelle_LocalstorageLeeren(false, new Object());
 
     // LOCALSTORAGE LEEREN
-    $(document).on("click", ".btn_localstorage_leeren", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="localstorage_leeren"]', function () {
         Schnittstelle_LocalstorageLeeren(
             $(this).hasClass("bestaetigung_einfordern"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal") },

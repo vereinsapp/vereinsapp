@@ -34,7 +34,7 @@ function Liste_GruppierenInit() {
     });
 
     // GRUPPIEREN MODAL ÖFFNEN
-    $(document).on("click", ".btn_gruppieren_manip", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="gruppieren_manip"]', function () {
         Liste_$GruppierenModalOeffnen($(this));
     });
 
@@ -44,7 +44,7 @@ function Liste_GruppierenInit() {
     });
 
     // GRUPPIEREN EIGENSCHAFT ZURÜCKSETZEN
-    $(document).on("click", ".btn_gruppieren_eigenschaft_zuruecksetzen", function () {
+    $(document).on("click", ".werkzeug[data-werkzeug=gruppieren_eigenschaft_zuruecksetzen]", function () {
         Liste_$GruppierenEigenschaftZuruecksetzen($(this).closest(".gruppieren_eigenschaft"));
     });
 }

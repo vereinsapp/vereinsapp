@@ -28,7 +28,7 @@ class Notenbank extends BaseController {
 
             $this->viewdata['werkzeugkasten'][] = 'titel_aendern';
             $this->viewdata['werkzeugkasten'][] = 'titel_duplizieren';
-            $this->viewdata['werkzeugkasten'][] = 'titel_loeschen';
+            $this->viewdata['werkzeugkasten'][] = 'element_loeschen';
 
         }
 
@@ -54,7 +54,7 @@ class Notenbank extends BaseController {
 
             $this->viewdata['werkzeugkasten'][] = 'titel_aendern';
             $this->viewdata['werkzeugkasten'][] = 'titel_duplizieren';
-            $this->viewdata['werkzeugkasten'][] = 'titel_loeschen_weiterleiten';
+            $this->viewdata['werkzeugkasten'][] = 'element_loeschen_weiterleiten';
 
         }
 

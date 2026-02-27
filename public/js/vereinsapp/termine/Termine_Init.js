@@ -136,7 +136,7 @@ WERKZEUGE.termin_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIE
 
 function Termine_Init() {
     // TERMIN ERSTELLEN / DUPLIZIEREN
-    $(document).on("click", ".btn_termin_erstellen", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="termin_erstellen"], .werkzeug[data-werkzeug="termin_duplizieren"]', function () {
         Termine_TerminErstellen(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
@@ -147,7 +147,7 @@ function Termine_Init() {
     });
 
     // TERMIN ÄNDERN
-    $(document).on("click", ".btn_termin_aendern", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="termin_aendern"]', function () {
         Termine_TerminAendern(
             $(this).hasClass("formular_oeffnen"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
@@ -158,7 +158,7 @@ function Termine_Init() {
     });
 
     // RÜCKMELDUNGEN VERWALTEN (MODAL) ÖFFNEN
-    $(document).on("click", ".btn_termine_rueckmeldungen_verwalten", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="termine_rueckmeldungen_verwalten"]', function () {
         Liste_VerknuepfungenModalOeffnen(
             "termine_rueckmeldungen_verwalten_modal",
             "termine_rueckmeldungen_verwalten",
@@ -172,7 +172,7 @@ function Termine_Init() {
     });
 
     // RÜCKMELDUNG ERSTELLEN
-    $(document).on("click", '.btn_verknuepfung_erstellen[data-verknuepfungen="termine_rueckmeldungen"]', function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="termine_rueckmeldung_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigung_einfordern"),
             { $ausloesend: $(this), $modal: $(this).closest(".modal") },
@@ -187,7 +187,7 @@ function Termine_Init() {
     });
 
     // ANWESENHEITEN DOKUMENTIEREN (MODAL) ÖFFNEN
-    $(document).on("click", ".btn_termine_anwesenheiten_dokumentieren", function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="termine_anwesenheiten_dokumentieren"]', function () {
         Liste_VerknuepfungenModalOeffnen(
             "termine_anwesenheiten_dokumentieren_modal",
             "termine_anwesenheiten_dokumentieren",

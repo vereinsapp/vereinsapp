@@ -45,7 +45,7 @@
 </div>
 
 <div class="d-grid mb-2">
-    <button type="button" class="btn btn_filtern_manip btn-outline-primary eingabe" data-eingabe="filtern_mitglieder" data-liste="mitglieder" data-modal_title="<?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>">
+    <button type="button" class="btn btn-outline-primary eingabe werkzeug" data-werkzeug="filtern_manip" data-eingabe="filtern_mitglieder" data-liste="mitglieder" data-modal_title="<?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>">
         <span class="beschriftung"><i class="bi bi-<?= SYMBOLE['filtern_mitglieder']['bootstrap']; ?>"></i> <?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?></span>
     </button>
 </div>

@@ -1,11 +1,19 @@
+/**
+ * @param {boolean} formular_oeffnen
+ * @param {Object} dom
+ * @param {Object} data
+ * @param {string} modal_title
+ * @param {number} titel_id
+ */
+
 function Notenbank_TitelErstellen(formular_oeffnen, dom, data, modal_title, titel_id) {
     if (formular_oeffnen) {
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "titel_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");
-        $neues_formular.attr("data-werkzeug", "titel_erstellen").attr("data-liste", "notenbank").attr("data-titel_id", titel_id);
-        if ("$ausloesend" in dom && dom.$ausloesend.exists() && dom.$ausloesend.attr("data-werkzeug") in WERKZEUGE)
-            $neues_formular.attr("data-werkzeug", dom.$ausloesend.attr("data-werkzeug"));
+        $neues_formular.attr("data-liste", "notenbank");
+        if (typeof titel_id !== "undefined") $neues_formular.attr("data-werkzeug", "titel_duplizieren").attr("data-titel_id", titel_id);
+        else $neues_formular.attr("data-werkzeug", "titel_erstellen");
         Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;
