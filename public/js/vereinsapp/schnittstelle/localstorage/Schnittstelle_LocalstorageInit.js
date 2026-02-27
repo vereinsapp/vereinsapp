@@ -8,7 +8,7 @@ function Schnittstelle_LocalstorageInit() {
     $(document).on("click", '.werkzeug[data-werkzeug="localstorage_leeren"]', function () {
         Schnittstelle_LocalstorageLeeren(
             $(this).hasClass("bestaetigung_einfordern"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
         );
     });

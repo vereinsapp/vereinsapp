@@ -15,11 +15,11 @@ function Liste_ElementBemerkungAendern(formular_oeffnen, dom, data, element_id, 
             .attr("data-liste", liste)
             .attr("data-werkzeug", "bemerkung_aendern")
             .attr("data-" + LISTEN[liste].element + "_id", element_id);
-        Schnittstelle_Dom$Quelle$ZielVerknuepfen($neues_formular.find(".formular_werkzeug"), dom.$ausloesend.closest(".element"));
+        Schnittstelle_Dom$Quelle$ZielVerknuepfen($neues_formular.find(".formular_werkzeug"), dom.$werkzeug.closest(".element"));
         Liste_Element$FormularInitialisieren($neues_modal.find(".formular"));
     } else {
-        dom.$element = Schnittstelle_Dom$ZielZu$QuelleZurueck(dom.$ausloesend);
-        Schnittstelle_Dom$Quelle$ZielEntknuepfen(dom.$ausloesend, dom.$element);
+        dom.$element = Schnittstelle_Dom$ZielZu$QuelleZurueck(dom.$werkzeug);
+        Schnittstelle_Dom$Quelle$ZielEntknuepfen(dom.$werkzeug, dom.$element);
         const ajax_dom = dom;
 
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste, null);

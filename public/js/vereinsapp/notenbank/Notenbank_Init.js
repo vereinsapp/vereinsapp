@@ -80,7 +80,7 @@ function Notenbank_Init() {
     $(document).on("click", '.werkzeug[data-werkzeug="titel_erstellen"], .werkzeug[data-werkzeug="titel_duplizieren"]', function () {
         Notenbank_TitelErstellen(
             $(this).hasClass("formular_oeffnen"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),
@@ -91,7 +91,7 @@ function Notenbank_Init() {
     $(document).on("click", '.werkzeug[data-werkzeug="titel_aendern"]', function () {
         Notenbank_TitelAendern(
             $(this).hasClass("formular_oeffnen"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),
@@ -116,7 +116,7 @@ function Notenbank_Init() {
     $(document).on("click", '.werkzeug[data-werkzeug="notenbank_setlisteneintrag_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigung_einfordern"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
                 titel_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),
                 termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
@@ -129,7 +129,7 @@ function Notenbank_Init() {
 
     $('.sortable[data-liste="notenbank_setliste"]').on("sortupdate update", function (event, ui) {
         Liste_VerknuepfungStatusAendern(
-            { $ausloesend: ui.item },
+            { $werkzeug: ui.item },
             ui.item.index() + 1,
             ui.item.attr("data-notenbank_setlisteneintrag_id"),
             "notenbank_setliste",

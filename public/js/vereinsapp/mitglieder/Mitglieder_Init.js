@@ -70,7 +70,7 @@ function Mitglieder_Init() {
     $(document).on("click", '.werkzeug[data-werkzeug="mitglied_erstellen"], .werkzeug[data-werkzeug="mitglied_duplizieren"]', function () {
         Mitglieder_MitgliedErstellen(
             $(this).hasClass("formular_oeffnen"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
@@ -81,7 +81,7 @@ function Mitglieder_Init() {
     $(document).on("click", '.werkzeug[data-werkzeug="mitglied_aendern"], .werkzeug[data-werkzeug="meine_daten_aendern"]', function () {
         Mitglieder_MitgliedAendern(
             $(this).hasClass("formular_oeffnen"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
@@ -91,7 +91,7 @@ function Mitglieder_Init() {
     // PASSWORT ÄNDERN
     $(document).on("click", '.werkzeug[data-werkzeug="passwort_aendern"]', function () {
         Mitglieder_PasswortAendern(
-            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
         );
@@ -100,7 +100,7 @@ function Mitglieder_Init() {
     // PASSWORT FESTLEGEN
     $(document).on("click", '.werkzeug[data-werkzeug="passwort_festlegen"]', function () {
         Mitglieder_PasswortFestlegen(
-            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
         );
@@ -124,7 +124,7 @@ function Mitglieder_Init() {
     $(document).on("change", '.chk_verknuepfung_erstellen[data-verknuepfungen="vergebene_rechte"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigung_einfordern"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
                 verfuegbares_recht_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-verfuegbares_recht_id"), undefined),
                 mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
@@ -140,10 +140,7 @@ function Mitglieder_Init() {
         Mitglieder_EinmalLinkErstellen(
             $(this).hasClass("formular_oeffnen"),
             $(this).hasClass("bestaetigung_einfordern"),
-            {
-                $ausloesend: $(this),
-                $modal: $(this).closest(".modal"),
-            },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             { email: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-email"), undefined) },
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),

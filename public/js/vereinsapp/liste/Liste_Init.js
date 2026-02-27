@@ -98,7 +98,7 @@ function Liste_Init() {
         const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"));
         Liste_ElementBemerkungAendern(
             $(this).hasClass("formular_oeffnen"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id")),
             liste,
@@ -110,7 +110,7 @@ function Liste_Init() {
         const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"));
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigung_einfordern"),
-            { $ausloesend: $(this), $modal: $(this).closest(".modal") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
                 [LISTEN[liste].element + "_id"]: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id")),
                 weiterleiten: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-weiterleiten")),

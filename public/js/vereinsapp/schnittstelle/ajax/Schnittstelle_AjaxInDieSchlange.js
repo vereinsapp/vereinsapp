@@ -1,17 +1,17 @@
 function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_aktion, rein_validation_neg_aktion) {
     const neue_ajax_id = AJAXSCHLANGE.length;
 
-    if ("$ausloesend" in dom && dom.$ausloesend.exists()) {
-        dom.$ausloesend.find("." + STATUS_SPINNER_CLASS).remove();
-        dom.$ausloesend.find(".beschriftung").addClass("invisible");
-        dom.$ausloesend.find(".beschriftung").after(STATUS_SPINNER_HTML);
+    if ("$werkzeug" in dom && dom.$werkzeug.exists()) {
+        dom.$werkzeug.find("." + STATUS_SPINNER_CLASS).remove();
+        dom.$werkzeug.find(".beschriftung").addClass("invisible");
+        dom.$werkzeug.find(".beschriftung").after(STATUS_SPINNER_HTML);
 
-        const $label = dom.$ausloesend.closest(".verknuepfungen_auswahlmoeglichkeiten").siblings("label");
+        const $label = dom.$werkzeug.closest(".verknuepfungen_auswahlmoeglichkeiten").siblings("label");
         $label.find("." + STATUS_SPINNER_CLASS).remove();
         $label.find(".beschriftung").addClass("invisible");
         $label.find(".beschriftung").after(STATUS_SPINNER_HTML);
 
-        dom.$ausloesend.prop("disabled", true);
+        dom.$werkzeug.prop("disabled", true);
     }
 
     data.ajax_id = neue_ajax_id;
@@ -44,13 +44,13 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
 
                 if ("info" in AJAX.antwort) Schnittstelle_LogInDieKonsole("INFO", JsonStringifiedZurueck(AJAX.antwort.info, undefined));
 
-                if ("dom" in AJAX && "$ausloesend" in AJAX.dom && AJAX.dom.$ausloesend.exists()) {
-                    AJAX.dom.$ausloesend.prop("disabled", false);
+                if ("dom" in AJAX && "$werkzeug" in AJAX.dom && AJAX.dom.$werkzeug.exists()) {
+                    AJAX.dom.$werkzeug.prop("disabled", false);
 
-                    AJAX.dom.$ausloesend.find("." + STATUS_SPINNER_CLASS).remove();
-                    AJAX.dom.$ausloesend.find(".beschriftung").removeClass("invisible");
+                    AJAX.dom.$werkzeug.find("." + STATUS_SPINNER_CLASS).remove();
+                    AJAX.dom.$werkzeug.find(".beschriftung").removeClass("invisible");
 
-                    const $label = AJAX.dom.$ausloesend.closest(".verknuepfungen_auswahlmoeglichkeiten").siblings("label");
+                    const $label = AJAX.dom.$werkzeug.closest(".verknuepfungen_auswahlmoeglichkeiten").siblings("label");
                     $label.find("." + STATUS_SPINNER_CLASS).remove();
                     $label.find(".beschriftung").removeClass("invisible");
                 }
