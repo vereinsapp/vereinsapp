@@ -1,12 +1,12 @@
 /**
- * @param {JQuery} $filtern_manip
+ * @param {JQuery} $werkzeug
  */
 
-function Liste_$FilternModalOeffnen($filtern_manip) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-liste"), undefined);
+function Liste_$FilternModalOeffnen($werkzeug) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined);
 
     const $neues_filtern_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-modal_title"), undefined),
+        Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-modal_title"), undefined),
         "filtern_manip_modal",
     );
 
@@ -62,8 +62,8 @@ function Liste_$FilternModalOeffnen($filtern_manip) {
             );
     });
 
-    // Verknüpfung von $filtern_vorgegeben und $filtern_eigenschaft mit $filtern_manip
-    Schnittstelle_Dom$Quelle$ZielVerknuepfen($neues_filtern_modal.find(".filtern_vorgegeben, .filtern_eigenschaft"), $filtern_manip);
+    // Verknüpfung von $filtern_vorgegeben und $filtern_eigenschaft mit $werkzeug
+    Schnittstelle_Dom$Quelle$ZielVerknuepfen($neues_filtern_modal.find(".filtern_vorgegeben, .filtern_eigenschaft"), $werkzeug);
 
     $.each($filtern_eigenschaften.find(".filtern_eigenschaft"), function () {
         const $filtern_eigenschaft = $(this);

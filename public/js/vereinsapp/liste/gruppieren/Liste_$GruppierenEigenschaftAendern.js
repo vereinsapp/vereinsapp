@@ -8,7 +8,7 @@ function Liste_$GruppierenEigenschaftAendern($gruppieren_eigenschaft) {
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in GRUPPIERBARE_EIGENSCHAFTEN && GRUPPIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
-            const $gruppieren_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($gruppieren_eigenschaft);
+            const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($gruppieren_eigenschaft);
 
             // Definition von gruppieren_manip
             // entfällt, weil gruppieren_manip komplett überschrieben wird
@@ -17,7 +17,7 @@ function Liste_$GruppierenEigenschaftAendern($gruppieren_eigenschaft) {
             const gruppieren_manip = eigenschaft;
 
             // Überschreiben des bisherigen gruppieren_manip mit geändertem gruppieren_manip
-            $gruppieren_manip.val(JsonStringifiedZurueck(gruppieren_manip, undefined)).trigger("change");
+            $werkzeug.val(JsonStringifiedZurueck(gruppieren_manip, undefined)).trigger("change");
 
             // Aktualisieren der $gruppieren_eigenschaft
             // entfällt, weil Modal direkt geschlossen wird

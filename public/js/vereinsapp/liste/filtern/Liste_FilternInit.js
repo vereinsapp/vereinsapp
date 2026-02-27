@@ -3,24 +3,24 @@
 
 const FILTERN = new Object();
 
-WERKZEUGE.filtern_manip.aktualisieren_aktion = function ($filtern_manip) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-liste"), undefined);
-    const instanz = Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-instanz"), undefined);
+WERKZEUGE.filtern_manip.aktualisieren_aktion = function ($werkzeug) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined);
+    const instanz = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-instanz"), undefined);
     const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck(
         $("#" + instanz + "[data-liste=" + liste + "]").attr("data-filtern"),
         new Object(),
     );
     const filtern_manip = LISTEN[liste].instanz[instanz].filtern;
 
-    $filtern_manip
+    $werkzeug
         .attr("data-modal_title", LISTEN[liste].beschriftung + " " + WERKZEUGE.filtern_manip.symbol)
         .attr("data-filtern_basis", JsonStringifiedZurueck(filtern_basis, new Object()))
         .val(JsonStringifiedZurueck(filtern_manip, new Object()));
 
     // ROTER PUNKT AKTUALISIEREN
-    $filtern_manip.removeClass("position-relative").find("span.position-absolute").remove();
+    $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
     if (Object.keys(filtern_manip).length > 0)
-        $filtern_manip
+        $werkzeug
             .addClass("position-relative")
             .append('<span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-danger border border-danger rounded-circle">');
 };
@@ -41,7 +41,7 @@ function Liste_FilternInit() {
     });
 
     // FILTERN IM LOCALSTORAGE SPEICHERN
-    $(document).on("change", ".filtern_localstorage", function () {
+    $(document).on("change", '.werkzeug[data-werkzeug="filtern_manip"][data-liste][data-instanz]', function () {
         Liste_$FilternLocalStorageSpeichern($(this));
     });
 

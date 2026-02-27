@@ -4,12 +4,12 @@
 
 function Liste_$SortierenEigenschaftAktualisieren($sortieren_eigenschaft) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($sortieren_eigenschaft.attr("data-liste"), undefined);
-    const $sortieren_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($sortieren_eigenschaft);
+    const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($sortieren_eigenschaft);
 
     // Definition von sortieren_eigenschaft
     const sortieren_manipuliert = Liste_SortierenManipuliertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($sortieren_manip.attr("data-sortieren_basis"), undefined),
-        Schnittstelle_VariableWertBereinigtZurueck($sortieren_manip.val(), undefined),
+        Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-sortieren_basis"), undefined),
+        Schnittstelle_VariableWertBereinigtZurueck($werkzeug.val(), undefined),
         liste,
     );
     const sortieren_eigenschaft = { eigenschaft: undefined, richtung: undefined };

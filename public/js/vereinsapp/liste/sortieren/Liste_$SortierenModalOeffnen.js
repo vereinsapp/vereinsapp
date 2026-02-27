@@ -1,12 +1,12 @@
 /**
- * @param {JQuery} $sortieren_manip
+ * @param {JQuery} $werkzeug
  */
 
-function Liste_$SortierenModalOeffnen($sortieren_manip) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($sortieren_manip.attr("data-liste"), undefined);
+function Liste_$SortierenModalOeffnen($werkzeug) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined);
 
     const $neues_sortieren_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($sortieren_manip.attr("data-modal_title"), undefined),
+        Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-modal_title"), undefined),
         "sortieren_manip_modal",
     );
 
@@ -29,8 +29,8 @@ function Liste_$SortierenModalOeffnen($sortieren_manip) {
             );
     });
 
-    // Verknüpfung von $sortieren_vorgegeben und $sortieren_eigenschaft mit $sortieren_manip
-    Schnittstelle_Dom$Quelle$ZielVerknuepfen($neues_sortieren_modal.find(".sortieren_vorgegeben, .sortieren_eigenschaft"), $sortieren_manip);
+    // Verknüpfung von $sortieren_vorgegeben und $sortieren_eigenschaft mit $werkzeug
+    Schnittstelle_Dom$Quelle$ZielVerknuepfen($neues_sortieren_modal.find(".sortieren_vorgegeben, .sortieren_eigenschaft"), $werkzeug);
 
     // Aktualisieren der $sortieren_eigenschaft
     Liste_$SortierenEigenschaftAktualisieren($sortieren_eigenschaft);

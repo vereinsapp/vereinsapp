@@ -1,13 +1,13 @@
 /**
- * @param {JQuery} $filtern_localstorage
+ * @param {JQuery} $werkzeug
  */
 
-function Liste_$FilternLocalStorageSpeichern($filtern_localstorage) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_localstorage.attr("data-liste"), undefined);
-    const instanz = Schnittstelle_VariableWertBereinigtZurueck($filtern_localstorage.attr("data-instanz"), undefined);
+function Liste_$FilternLocalStorageSpeichern($werkzeug) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined);
+    const instanz = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-instanz"), undefined);
 
     // Definition von filtern_manip
-    const filtern_manip = Schnittstelle_VariableWertBereinigtZurueck($filtern_localstorage.val(), new Object());
+    const filtern_manip = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.val(), new Object());
 
     // Befüllung von filtern
     LISTEN[liste].instanz[instanz].filtern = new Object();

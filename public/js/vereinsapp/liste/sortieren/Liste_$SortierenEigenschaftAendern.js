@@ -8,7 +8,7 @@ function Liste_$SortierenEigenschaftAendern($sortieren_eigenschaft) {
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in SORTIERBARE_EIGENSCHAFTEN && SORTIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
-            const $sortieren_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($sortieren_eigenschaft);
+            const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($sortieren_eigenschaft);
 
             // Definition von sortieren_manip
             // entfällt, weil sortieren_manip komplett überschrieben wird
@@ -20,7 +20,7 @@ function Liste_$SortierenEigenschaftAendern($sortieren_eigenschaft) {
             };
 
             // Überschreiben des bisherigen sortieren_manip mit geändertem sortieren_manip
-            $sortieren_manip.val(JsonStringifiedZurueck(sortieren_manip, undefined)).trigger("change");
+            $werkzeug.val(JsonStringifiedZurueck(sortieren_manip, undefined)).trigger("change");
 
             // Aktualisieren der $sortieren_eigenschaft
             // entfällt, weil Modal direkt geschlossen wird

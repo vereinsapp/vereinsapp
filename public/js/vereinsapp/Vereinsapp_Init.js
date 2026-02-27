@@ -46,7 +46,7 @@ Schnittstelle_VariableWertFormatiertZurueck verschieben nach Liste (auch umbenen
 Variante von Liste_ElementTextMitBeschriftungErsetztZurueck einführen mit dem man {liste_beschriftung} und {element_beschriftung} ersetzen kann (bspw. für WERKZEUGE.element_loeschen.aktualisieren_aktion)
 element_zuordnen_aktion vereinheitlichen und zentralisieren
 formular_oeffnen und bestaetigung_einfordern loswerden
-filtern_localstorage, sortieren_localstorage, gruppieren_localstorage loswerden und stattdessen instanz verwenden?
+weiterleiten loswerden mittels .hasClass("element_loeschen_weiterleiten")?
 
 ERLEDIGT
 

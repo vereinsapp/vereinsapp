@@ -9,10 +9,10 @@ function Liste_$FilternEigenschaftWertLoeschen($filtern_eigenschaft, filtern_wer
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
-            const $filtern_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_eigenschaft);
+            const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_eigenschaft);
 
             // Definition von filtern_manip
-            const filtern_manip = Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.val(), new Object());
+            const filtern_manip = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.val(), new Object());
             if (!(eigenschaft in filtern_manip)) filtern_manip[eigenschaft] = new Object();
 
             // Ändern von filtern_manip
@@ -45,7 +45,7 @@ function Liste_$FilternEigenschaftWertLoeschen($filtern_eigenschaft, filtern_wer
                         if (filtern_eigenschaft[filtern_klasse_alt].length === 0) delete filtern_eigenschaft[filtern_klasse_alt];
                     } else {
                         // filtern_wert_position oder filtern_klasse_alt ist nicht definiert, d.h. eigenschaft existiert noch nicht in filtern_manip
-                        const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck($filtern_manip.attr("data-filtern_basis"), new Object());
+                        const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-filtern_basis"), new Object());
                         $.each(["inklusiv", "exklusiv"], function (position, filtern_klasse) {
                             if (filtern_klasse in filtern_basis[eigenschaft] && filtern_basis[eigenschaft][filtern_klasse].includes(filtern_wert)) {
                                 filtern_wert_position = filtern_basis[eigenschaft][filtern_klasse].indexOf(filtern_wert);
@@ -65,7 +65,7 @@ function Liste_$FilternEigenschaftWertLoeschen($filtern_eigenschaft, filtern_wer
             }
 
             // Überschreiben des bisherigen filtern_manip mit geändertem filtern_manip
-            $filtern_manip.val(JsonStringifiedZurueck(filtern_manip, new Object())).trigger("change");
+            $werkzeug.val(JsonStringifiedZurueck(filtern_manip, new Object())).trigger("change");
 
             // Aktualisieren der $filtern_eigenschaft
             Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft);

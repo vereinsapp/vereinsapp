@@ -1,35 +1,35 @@
 /**
  */
 
-WERKZEUGE.gruppieren_manip.aktualisieren_aktion = function ($gruppieren_manip) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_manip.attr("data-liste"), undefined);
-    const instanz = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_manip.attr("data-instanz"), undefined);
+WERKZEUGE.gruppieren_manip.aktualisieren_aktion = function ($werkzeug) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined);
+    const instanz = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-instanz"), undefined);
     const gruppieren_basis = Schnittstelle_VariableWertBereinigtZurueck(
         $("#" + instanz + "[data-liste=" + liste + "]").attr("data-gruppieren"),
         undefined,
     );
     const gruppieren_manip = LISTEN[liste].instanz[instanz].gruppieren;
 
-    $gruppieren_manip
+    $werkzeug
         .attr("data-modal_title", LISTEN[liste].beschriftung + " " + WERKZEUGE.gruppieren_manip.symbol)
         .attr("data-gruppieren_basis", JsonStringifiedZurueck(gruppieren_basis, undefined))
         .val(JsonStringifiedZurueck(gruppieren_manip, undefined));
 
     if ($("#" + instanz + "[data-liste=" + liste + "]").children().length <= 1)
-        $gruppieren_manip.addClass("invisible"); // nicht 0, weil zusammenfassung noch mit dabei ist
-    else $gruppieren_manip.removeClass("invisible");
+        $werkzeug.addClass("invisible"); // nicht 0, weil zusammenfassung noch mit dabei ist
+    else $werkzeug.removeClass("invisible");
 
     // ROTER PUNKT AKTUALISIEREN
-    $gruppieren_manip.removeClass("position-relative").find("span.position-absolute").remove();
+    $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
     if (typeof gruppieren_manip !== "undefined" && gruppieren_manip.length > 0)
-        $gruppieren_manip
+        $werkzeug
             .addClass("position-relative")
             .append('<span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-danger border border-danger rounded-circle">');
 };
 
 function Liste_GruppierenInit() {
     // GRUPPIEREN IM LOCALSTORAGE SPEICHERN
-    $(document).on("change", ".gruppieren_localstorage", function () {
+    $(document).on("change", '.werkzeug[data-werkzeug="gruppieren_manip"][data-liste][data-instanz]', function () {
         Liste_$GruppierenLocalStorageSpeichern($(this));
     });
 

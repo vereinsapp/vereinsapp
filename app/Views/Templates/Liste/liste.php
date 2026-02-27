@@ -1,8 +1,5 @@
 <?php if( array_key_exists( 'werkzeugkasten', $liste ) ) { ?><div class="text-end"><?php
 foreach( $liste['werkzeugkasten'] as $werkzeug) { ?><button type="button" class="btn<?php
-    if( array_key_exists( 'filtern_localstorage', WERKZEUGE[ $werkzeug ] ) AND WERKZEUGE[ $werkzeug ]['filtern_localstorage'] ) echo ' filtern_localstorage';
-    if( array_key_exists( 'sortieren_localstorage', WERKZEUGE[ $werkzeug ] ) AND WERKZEUGE[ $werkzeug ]['sortieren_localstorage'] ) echo ' sortieren_localstorage';
-    if( array_key_exists( 'gruppieren_localstorage', WERKZEUGE[ $werkzeug ] ) AND WERKZEUGE[ $werkzeug ]['gruppieren_localstorage'] ) echo ' gruppieren_localstorage';
     if( array_key_exists( 'formular_oeffnen', WERKZEUGE[ $werkzeug ] ) AND WERKZEUGE[ $werkzeug ]['formular_oeffnen'] ) echo ' formular_oeffnen';
     if( array_key_exists( 'bestaetigung_einfordern', WERKZEUGE[ $werkzeug ] ) AND WERKZEUGE[ $werkzeug ]['bestaetigung_einfordern'] ) echo ' bestaetigung_einfordern';
     if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo ' text-'.WERKZEUGE[ $werkzeug ]['farbe']; else echo ' text-primary';

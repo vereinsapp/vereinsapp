@@ -1,12 +1,12 @@
 /**
- * @param {JQuery} $gruppieren_manip
+ * @param {JQuery} $werkzeug
  */
 
-function Liste_$GruppierenModalOeffnen($gruppieren_manip) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_manip.attr("data-liste"), undefined);
+function Liste_$GruppierenModalOeffnen($werkzeug) {
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined);
 
     const $neues_gruppieren_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($gruppieren_manip.attr("data-modal_title"), undefined),
+        Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-modal_title"), undefined),
         "gruppieren_manip_modal",
     );
 
@@ -29,8 +29,8 @@ function Liste_$GruppierenModalOeffnen($gruppieren_manip) {
             );
     });
 
-    // Verknüpfung von $gruppieren_vorgegeben und $gruppieren_eigenschaft mit $gruppieren_manip
-    Schnittstelle_Dom$Quelle$ZielVerknuepfen($neues_gruppieren_modal.find(".gruppieren_vorgegeben, .gruppieren_eigenschaft"), $gruppieren_manip);
+    // Verknüpfung von $gruppieren_vorgegeben und $gruppieren_eigenschaft mit $werkzeug
+    Schnittstelle_Dom$Quelle$ZielVerknuepfen($neues_gruppieren_modal.find(".gruppieren_vorgegeben, .gruppieren_eigenschaft"), $werkzeug);
 
     // Aktualisieren der $gruppieren_eigenschaft
     Liste_$GruppierenEigenschaftAktualisieren($gruppieren_eigenschaft);

@@ -7,7 +7,7 @@ function Liste_$FilternVorgegebenAuswaehlen($filtern_vorgegeben, filtern_vorgege
     const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_vorgegeben.attr("data-liste"), undefined);
 
     if (liste in FILTERN_VORGEGEBEN && filtern_vorgegeben_id in FILTERN_VORGEGEBEN[liste]) {
-        const $filtern_manip = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_vorgegeben);
+        const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_vorgegeben);
 
         // Definition von filtern_manip
         // entfällt, weil filtern_manip komplett überschrieben wird
@@ -32,7 +32,7 @@ function Liste_$FilternVorgegebenAuswaehlen($filtern_vorgegeben, filtern_vorgege
         });
 
         // Überschreiben des bisherigen filtern_manip mit neuem filtern_manip
-        $filtern_manip.val(JsonStringifiedZurueck(filtern_manip, new Object())).trigger("change");
+        $werkzeug.val(JsonStringifiedZurueck(filtern_manip, new Object())).trigger("change");
 
         // Aktualisieren der $filtern_eigenschaft entfällt, weil Modal direkt geschlossen wird
         Schnittstelle_Dom$ModalSchliessen($filtern_vorgegeben.closest(".modal"));

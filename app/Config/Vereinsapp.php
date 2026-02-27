@@ -96,14 +96,14 @@ class Vereinsapp extends BaseConfig
      * --------------------------------------------------------------------------
      */
     public $werkzeuge = array(
-        // Pflicht: symbol, beschriftung / Optional: filtern_localstorage, sortieren_localstorage, gruppieren_localstorage, formular_oeffnen, bestaetigung_einfordern, farbe, weiterleiten
-        'filtern_manip' => array( 'symbol' => 'filtern', 'beschriftung' => 'Filtern', 'filtern_localstorage' => TRUE, ),
+        // Pflicht: symbol, beschriftung / Optional: formular_oeffnen, bestaetigung_einfordern, farbe, weiterleiten
+        'filtern_manip' => array( 'symbol' => 'filtern', 'beschriftung' => 'Filtern', ),
         'filtern_wert_inklusiv_exklusiv' => array( 'symbol' => 'inklusiv_exklusiv', 'beschriftung' => 'Wert inklusiv/exklusiv', ),
         'filtern_wert_loeschen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Wert löschen', 'farbe' => 'danger', ),
         'filtern_eigenschaft_zuruecksetzen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Eigenschaft zurücksetzen', 'farbe' => 'danger', ),
-        'sortieren_manip' => array( 'symbol' => 'sortieren', 'beschriftung' => 'Sortieren', 'sortieren_localstorage' => TRUE, ),
+        'sortieren_manip' => array( 'symbol' => 'sortieren', 'beschriftung' => 'Sortieren', ),
         'sortieren_eigenschaft_zuruecksetzen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Eigenschaft zurücksetzen', 'farbe' => 'danger', ),
-        'gruppieren_manip' => array( 'symbol' => 'gruppieren', 'beschriftung' => 'Gruppieren', 'gruppieren_localstorage' => TRUE, ),
+        'gruppieren_manip' => array( 'symbol' => 'gruppieren', 'beschriftung' => 'Gruppieren', ),
         'gruppieren_eigenschaft_zuruecksetzen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Eigenschaft zurücksetzen', 'farbe' => 'danger', ),
         'bemerkung_aendern' => array( 'symbol' => 'bemerkung', 'beschriftung' => 'Bemerkung ändern', 'formular_oeffnen' => TRUE, ),
         'localstorage_leeren' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Localstorage leeren', 'farbe' => 'danger', ),
