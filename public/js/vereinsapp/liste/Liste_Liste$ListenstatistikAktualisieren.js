@@ -12,7 +12,7 @@ function Liste_Liste$ListenstatistikAktualisieren($listenstatistik, $liste) {
             break;
         case "angewaehlt":
             /* funktioniert aktuell nicht, weil Liste_$ListeAktualisieren inkl. Liste_Liste$ListenstatistikAktualisieren aufgerufen wird,
-             * bevor Liste_$ElementAktualisieren inkl. Liste_$VerknuepfungenAuswahlmoeglichkeitenAktualisieren aufgerufen wird
+             * bevor Liste_$ElementAktualisieren inkl. Liste_$VerknuepfungenAktualisieren aufgerufen wird
              */
             $listenstatistik.text($liste.find(".chk_verknuepfung_erstellen:checked").length);
             break;

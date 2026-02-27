@@ -6,7 +6,7 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
         dom.$werkzeug.find(".beschriftung").addClass("invisible");
         dom.$werkzeug.find(".beschriftung").after(STATUS_SPINNER_HTML);
 
-        const $label = dom.$werkzeug.closest(".verknuepfungen_auswahlmoeglichkeiten").siblings("label");
+        const $label = dom.$werkzeug.closest(".verknuepfungen").siblings("label");
         $label.find("." + STATUS_SPINNER_CLASS).remove();
         $label.find(".beschriftung").addClass("invisible");
         $label.find(".beschriftung").after(STATUS_SPINNER_HTML);
@@ -50,7 +50,7 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
                     AJAX.dom.$werkzeug.find("." + STATUS_SPINNER_CLASS).remove();
                     AJAX.dom.$werkzeug.find(".beschriftung").removeClass("invisible");
 
-                    const $label = AJAX.dom.$werkzeug.closest(".verknuepfungen_auswahlmoeglichkeiten").siblings("label");
+                    const $label = AJAX.dom.$werkzeug.closest(".verknuepfungen").siblings("label");
                     $label.find("." + STATUS_SPINNER_CLASS).remove();
                     $label.find(".beschriftung").removeClass("invisible");
                 }

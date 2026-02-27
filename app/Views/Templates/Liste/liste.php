@@ -13,7 +13,7 @@ foreach( $liste['werkzeugkasten'] as $werkzeug) { ?><button type="button" class=
 
 <?php if( array_key_exists( 'listenstatistik', $liste ) ) { ?><div class="text-end text-secondary small"><span class="listenstatistik"<?php
     if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['instanz']; ?>" data-listenstatistik="anzahl"></span> Element(e)<?php
-    /* funktioniert aktuell nicht, weil Liste_$ListeAktualisieren inkl. Liste_Liste$ListenstatistikAktualisieren aufgerufen wird, bevor Liste_$ElementAktualisieren inkl. Liste_$VerknuepfungenAuswahlmoeglichkeitenAktualisieren aufgerufen wird */
+    /* funktioniert aktuell nicht, weil Liste_$ListeAktualisieren inkl. Liste_Liste$ListenstatistikAktualisieren aufgerufen wird, bevor Liste_$ElementAktualisieren inkl. Liste_$VerknuepfungenAktualisieren aufgerufen wird */
     /* if( array_key_exists( 'verknuepfungen', $liste ) AND $liste['verknuepfungen']['typ'] === 'janein_auswahl' ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i><span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['instanz']; ?>" data-listenstatistik="angewaehlt"></span> Element(e) angewählt<?php } */
     if( array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i>Summe: <span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> data-liste="<?= $liste['liste']; ?>"<?php } ?> data-instanz="<?= $liste['instanz']; ?>" data-listenstatistik="summe" data-eigenschaft="<?= $liste['listenstatistik']['summe']; ?>"></span><?php }
 ?></div><?php } ?>

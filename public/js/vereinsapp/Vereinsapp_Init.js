@@ -49,7 +49,7 @@ formular_oeffnen und bestaetigung_einfordern loswerden
 filtern_localstorage, sortieren_localstorage, gruppieren_localstorage loswerden und stattdessen instanz verwenden?
 Schnittstelle_Dom$Quelle$ZielVerknuepfen so umbauen, dass mehrere Elemente das gleiche Ziel haben können
 d-grid durch w-100 ersetzen?
-$VerknuepfungenAuswahlmoeglichkeiten umbennen in Verknuepfungen
+Umgang mit chk_verknuepfung_erstellen finden
 
 ERLEDIGT
 
