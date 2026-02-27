@@ -201,7 +201,7 @@ function Termine_Init() {
     });
 
     // ANWESENHEIT ÄNDERN
-    $(document).on("change", '.chk_verknuepfung_erstellen[data-verknuepfungen="termine_anwesenheiten"]', function () {
+    $(document).on("change", '.werkzeug[data-werkzeug="termine_anwesenheit_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigung_einfordern"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },

@@ -6,17 +6,16 @@
 function Schnittstelle_Dom$Quelle$ZielVerknuepfen($quelle, $ziel) {
     if (typeof $quelle !== "undefined" && $quelle.exists()) {
         if (typeof $ziel !== "undefined" && $ziel.exists()) {
-            let ziel_id = zufaelligeZeichenketteZurueck(8);
-            while ($("#" + ziel_id).exists()) ziel_id = zufaelligeZeichenketteZurueck(8);
-
-            if ($ziel.attr("id") !== undefined && $ziel.attr("id") !== "")
+            let ziel_id;
+            if ($ziel.attr("id") !== undefined && $ziel.attr("id") !== "") {
+                ziel_id = $ziel.attr("id");
                 Schnittstelle_LogInDieKonsole(
-                    "Schnittstelle_Dom$Quelle$ZielVerknuepfen: Ziel hat bereits die ID #" +
-                        $ziel.attr("id") +
-                        " und wird mit #" +
-                        ziel_id +
-                        " überschrieben!",
+                    "Schnittstelle_Dom$Quelle$ZielVerknuepfen: Ziel hat bereits die ID #" + $ziel.attr("id") + ", die nun weiterverwendet wird.",
                 );
+            } else {
+                ziel_id = zufaelligeZeichenketteZurueck(8);
+                while ($("#" + ziel_id).exists()) ziel_id = zufaelligeZeichenketteZurueck(8);
+            }
 
             $ziel.attr("id", ziel_id);
             $quelle.attr("data-ziel_id", ziel_id);

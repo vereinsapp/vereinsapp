@@ -161,7 +161,7 @@ function Aufgaben_Init() {
     });
 
     // TERMINE AUFGABEN ZUORDNEN
-    $(document).on("change", '.chk_verknuepfung_erstellen[data-verknuepfungen="aufgaben_zuordnungen_termine"]', function () {
+    $(document).on("change", '.werkzeug[data-werkzeug="aufgaben_zuordnung_termine_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigung_einfordern"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },

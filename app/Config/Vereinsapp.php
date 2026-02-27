@@ -127,9 +127,9 @@ class Vereinsapp extends BaseConfig
         'aufgabe_erstellen' => array( 'symbol' => 'erstellen', 'beschriftung' => 'Aufgabe erstellen', 'formular_oeffnen' => TRUE, ),
         'aufgabe_aendern' => array( 'symbol' => 'aendern', 'beschriftung' => 'Aufgabe ändern', 'formular_oeffnen' => TRUE, ),
         'aufgabe_duplizieren' => array( 'symbol' => 'duplizieren', 'beschriftung' => 'Aufgabe duplizieren', 'formular_oeffnen' => TRUE, ),
-        'aufgaben_rueckmeldungen_verwalten' => array( 'symbol' => 'pos_rueckmeldung', 'beschriftung' => 'Aufgabe-Rückmeldungen verwalten', ),
         'termine_aufgaben_zuordnen' => array( 'symbol' => 'aufgaben', 'beschriftung' => 'Aufgaben zuordnen', ),
         'aufgaben_zuordnung_termine_erstellen' => array( 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Zuordnung machen', ),
+        'aufgaben_rueckmeldungen_verwalten' => array( 'symbol' => 'pos_rueckmeldung', 'beschriftung' => 'Aufgabe-Rückmeldungen verwalten', ),
         'aufgaben_rueckmeldung_erstellen' => array( 'symbol' => 'angenommen_rueckmeldung', 'beschriftung' => 'Rückmeldung machen', ),
 
         'termin_erstellen' => array( 'symbol' => 'erstellen', 'beschriftung' => 'Termin erstellen', 'formular_oeffnen' => TRUE, ),

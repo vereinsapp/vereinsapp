@@ -32,15 +32,6 @@ function Liste_$ElementAktualisieren($element) {
             });
     });
 
-    // ACTION UND ROLE DEFINIEREN
-    if ($element.find("a.stretched-link").exists() || $element.hasClass("werkzeug") || $element.find("[class*=chk_]").exists()) {
-        $element.addClass("list-group-item-action").attr("role", "button");
-        $element.find("label").attr("role", "button");
-    } else {
-        $element.removeClass("list-group-item-action").removeAttr("role");
-        $element.find("label").removeAttr("role", "button");
-    }
-
     // WERKZEUGKASTEN AKTUALISIEREN
     $element
         .find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]')
@@ -71,4 +62,13 @@ function Liste_$ElementAktualisieren($element) {
     $element.find(".element_navigation").each(function () {
         Liste_Element$NavigationAktualisieren($(this), $element);
     });
+
+    // ACTION UND ROLE DEFINIEREN
+    if ($element.find("a.stretched-link").exists() || $element.hasClass("werkzeug") || $element.find("label[for]").exists()) {
+        $element.addClass("list-group-item-action").attr("role", "button");
+        $element.find("label").attr("role", "button");
+    } else {
+        $element.removeClass("list-group-item-action").removeAttr("role");
+        $element.find("label").removeAttr("role", "button");
+    }
 }

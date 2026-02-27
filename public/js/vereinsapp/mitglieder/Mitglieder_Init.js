@@ -121,7 +121,7 @@ function Mitglieder_Init() {
     });
 
     // RECHTE VERGEBEN
-    $(document).on("change", '.chk_verknuepfung_erstellen[data-verknuepfungen="vergebene_rechte"]', function () {
+    $(document).on("change", '.werkzeug[data-werkzeug="vergebenes_recht_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigung_einfordern"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },

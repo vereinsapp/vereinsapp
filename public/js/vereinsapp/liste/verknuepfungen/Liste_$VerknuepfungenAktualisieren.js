@@ -70,41 +70,53 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
         const $zugehoeriges_label = $verknuepfungen.siblings("label");
         $zugehoeriges_label.addClass("form-check-label").attr("for", zufaelligeZeichenketteZurueck(8));
 
-        $verknuepfungen.find(".chk_verknuepfung_erstellen").each(function () {
-            const $chk_verknuepfung_erstellen = $(this);
-
-            $chk_verknuepfung_erstellen
-                .attr("data-" + LISTEN[verknuepfte_listen[0]].element + "_id", verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"])
-                .attr("data-" + LISTEN[verknuepfte_listen[1]].element + "_id", verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"])
-                .attr("data-verknuepfungen", verknuepfungen);
-
-            $chk_verknuepfung_erstellen.prop("checked", verknuepfung_status > 0).attr("id", $zugehoeriges_label.attr("for"));
-        });
-
+        // Zugehöriges Werkzeug bearbeiten
         $verknuepfungen.find('.werkzeug[data-werkzeug="' + LISTEN[verknuepfungen].element + '_erstellen"]').each(function () {
             const $werkzeug = $(this);
-            const status = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-status"), undefined);
-
-            $werkzeug
-                .attr("data-" + LISTEN[verknuepfte_listen[0]].element + "_id", verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"])
-                .attr("data-" + LISTEN[verknuepfte_listen[1]].element + "_id", verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"])
-                .attr("data-verknuepfungen", verknuepfungen);
-
-            if (status === verknuepfung_status) {
+            if (VERKNUEPFUNGEN[verknuepfungen].typ === "janein_auswahl") {
                 $werkzeug
-                    .removeClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
-                    .addClass("btn-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
-                    .prop("disabled", true);
-                $werkzeug.find(".beschriftung").html(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].passiv);
-            } else {
+                    .attr(
+                        "data-" + LISTEN[verknuepfte_listen[0]].element + "_id",
+                        verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"],
+                    )
+                    .attr(
+                        "data-" + LISTEN[verknuepfte_listen[1]].element + "_id",
+                        verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"],
+                    )
+                    .attr("data-verknuepfungen", verknuepfungen);
+
+                $werkzeug.prop("checked", verknuepfung_status > 0).attr("id", $zugehoeriges_label.attr("for"));
+            } else if (VERKNUEPFUNGEN[verknuepfungen].typ === "status_auswahl") {
+                const status = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-status"), undefined);
+
                 $werkzeug
-                    .addClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
-                    .removeClass("btn-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
-                    .prop("disabled", false);
-                $werkzeug.find(".beschriftung").html(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].aktiv);
+                    .attr(
+                        "data-" + LISTEN[verknuepfte_listen[0]].element + "_id",
+                        verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"],
+                    )
+                    .attr(
+                        "data-" + LISTEN[verknuepfte_listen[1]].element + "_id",
+                        verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"],
+                    )
+                    .attr("data-verknuepfungen", verknuepfungen);
+
+                if (status === verknuepfung_status) {
+                    $werkzeug
+                        .removeClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
+                        .addClass("btn-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
+                        .prop("disabled", true);
+                    $werkzeug.find(".beschriftung").html(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].passiv);
+                } else {
+                    $werkzeug
+                        .addClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
+                        .removeClass("btn-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
+                        .prop("disabled", false);
+                    $werkzeug.find(".beschriftung").html(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].aktiv);
+                }
             }
         });
 
+        // Zugehöriges Bemerkung-ändern-Werkzeug bearbeiten
         $verknuepfungen.find('.werkzeug[data-werkzeug="bemerkung_aendern"]').each(function () {
             const $werkzeug = $(this);
 
@@ -157,7 +169,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
                     )))
         ) {
         } else {
-            $verknuepfungen.find(".werkzeug, .chk_verknuepfung_erstellen").prop("disabled", true);
+            $verknuepfungen.find(".werkzeug").prop("disabled", true);
         }
     } else {
         /* Verknüpfung ist für das Element nicht möglich */

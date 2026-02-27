@@ -14,7 +14,7 @@ function Liste_Liste$ListenstatistikAktualisieren($listenstatistik, $liste) {
             /* funktioniert aktuell nicht, weil Liste_$ListeAktualisieren inkl. Liste_Liste$ListenstatistikAktualisieren aufgerufen wird,
              * bevor Liste_$ElementAktualisieren inkl. Liste_$VerknuepfungenAktualisieren aufgerufen wird
              */
-            $listenstatistik.text($liste.find(".chk_verknuepfung_erstellen:checked").length);
+            $listenstatistik.text($liste.find(".form-check-input.werkzeug:checked").length);
             break;
         case "summe":
             const eigenschaft = $listenstatistik.attr("data-eigenschaft");
