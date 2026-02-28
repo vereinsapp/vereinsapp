@@ -52,7 +52,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                         SYMBOLE[WERKZEUGE[LISTEN[liste].element + "_aendern"].symbol]["bootstrap"] +
                         " text-" +
                         farbe +
-                        ' formular_oeffnen werkzeug" data-werkzeug="' +
+                        ' werkzeug" data-werkzeug="' +
                         LISTEN[liste].element +
                         '_aendern" data-liste="' +
                         liste +
@@ -81,7 +81,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                         SYMBOLE[WERKZEUGE[LISTEN[liste].element + "_duplizieren"].symbol]["bootstrap"] +
                         " text-" +
                         farbe +
-                        ' formular_oeffnen werkzeug" data-werkzeug="' +
+                        ' werkzeug" data-werkzeug="' +
                         LISTEN[liste].element +
                         '_duplizieren" data-liste="' +
                         liste +
@@ -110,7 +110,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                         SYMBOLE[WERKZEUGE.element_loeschen.symbol]["bootstrap"] +
                         " text-" +
                         farbe +
-                        ' bestaetigung_einfordern werkzeug" data-werkzeug="element_loeschen" data-liste="' +
+                        ' werkzeug" data-werkzeug="element_loeschen" data-liste="' +
                         liste +
                         '" data-' +
                         LISTEN[liste].element +

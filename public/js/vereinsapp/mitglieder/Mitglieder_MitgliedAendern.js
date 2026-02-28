@@ -1,13 +1,13 @@
 /**
- * @param {boolean} formular_oeffnen
+ * @param {boolean} data_vollstaendig
  * @param {Object} dom
  * @param {Object} data
  * @param {string} modal_title
  * @param {number} mitglied_id
  */
 
-function Mitglieder_MitgliedAendern(formular_oeffnen, dom, data, modal_title, mitglied_id) {
-    if (formular_oeffnen) {
+function Mitglieder_MitgliedAendern(data_vollstaendig, dom, data, modal_title, mitglied_id) {
+    if (!data_vollstaendig) {
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "mitglied_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");

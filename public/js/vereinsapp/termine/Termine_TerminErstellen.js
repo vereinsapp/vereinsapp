@@ -1,13 +1,13 @@
 /**
- * @param {boolean} formular_oeffnen
+ * @param {boolean} data_vollstaendig
  * @param {Object} dom
  * @param {Object} data
  * @param {string} modal_title
  * @param {number} termin_id
  */
 
-function Termine_TerminErstellen(formular_oeffnen, dom, data, modal_title, termin_id) {
-    if (formular_oeffnen) {
+function Termine_TerminErstellen(data_vollstaendig, dom, data, modal_title, termin_id) {
+    if (!data_vollstaendig) {
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "termin_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");

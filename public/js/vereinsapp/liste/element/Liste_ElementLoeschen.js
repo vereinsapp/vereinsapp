@@ -1,24 +1,28 @@
 /**
- * @param {boolean} bestaetigung_einfordern
+ * @param {boolean} bestaetigt
  * @param {Object} dom
  * @param {Object} data
  * @param {string} modal_title
  * @param {string} liste
  */
 
-function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, modal_title, liste) {
+function Liste_ElementLoeschen(bestaetigt, dom, data, modal_title, liste) {
     data.liste = liste;
 
-    if (bestaetigung_einfordern)
+    if (!bestaetigt) {
+        let werkzeug;
+        if ("weiterleiten" in data && data.weiterleiten) werkzeug = "element_loeschen_weiterleiten";
+        else werkzeug = "element_loeschen";
+
         Schnittstelle_DomBestaetigungEinfordern(
             Liste_ElementTextMitBeschriftungErsetztZurueck("Willst du wirklich {" + liste + "} löschen?", {
                 [LISTEN[liste].element + "_id"]: data[LISTEN[liste].element + "_id"],
             }),
             modal_title,
-            "element_loeschen",
+            werkzeug,
             data,
         );
-    else {
+    } else {
         const ajax_dom = dom;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
 
@@ -44,7 +48,7 @@ function Liste_ElementLoeschen(bestaetigung_einfordern, dom, data, modal_title, 
                     });
 
                 const weiterleiten = AJAX.data.weiterleiten;
-                if (typeof weiterleiten !== "undefined") $(location).attr("href", SITE_URL + weiterleiten);
+                if (typeof weiterleiten !== "undefined" && weiterleiten) $(location).attr("href", SITE_URL + AKTIVER_CONTROLLER);
                 else {
                     Schnittstelle_EventVariableUpdLocalstorage(liste);
                     Schnittstelle_EventLocalstorageUpdVariable(liste);

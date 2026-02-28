@@ -1,11 +1,9 @@
 <?php if( array_key_exists( 'werkzeugkasten', $auswertungen ) ) { ?><div class="text-end"><?php
-foreach( $auswertungen['werkzeugkasten'] as $werkzeug) { ?><button type="button" class="btn<?php
-    if( array_key_exists( 'formular_oeffnen', WERKZEUGE[ $werkzeug ] ) AND WERKZEUGE[ $werkzeug ]['formular_oeffnen'] ) echo ' formular_oeffnen';
-    if( array_key_exists( 'bestaetigung_einfordern', WERKZEUGE[ $werkzeug ] ) AND WERKZEUGE[ $werkzeug ]['bestaetigung_einfordern'] ) echo ' bestaetigung_einfordern';
-    if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo ' text-'.WERKZEUGE[ $werkzeug ]['farbe']; else echo ' text-primary';
-    ?> werkzeug" data-werkzeug="<?= $werkzeug; ?>" data-modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" data-liste="<?= $auswertungen['liste']; ?>" data-instanz="<?= $auswertungen['instanz']; ?>"<?php
-    if( array_key_exists( 'weiterleiten', WERKZEUGE[ $werkzeug ] ) ) { ?> data-weiterleiten="<?= WERKZEUGE[ $werkzeug ]['weiterleiten']; ?>"<?php }
-    ?>><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?>"></i></span></button><?php }
+foreach( $auswertungen['werkzeugkasten'] as $werkzeug) { ?><button type="button" class="btn text-<?php
+    if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo WERKZEUGE[ $werkzeug ]['farbe']; else echo 'primary';
+    ?> werkzeug" data-werkzeug="<?= $werkzeug; ?>" data-modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" data-liste="<?= $auswertungen['liste']; ?>" data-instanz="<?= $auswertungen['instanz']; ?>">
+        <span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?>"></i></span>
+    </button><?php }
 ?></div><?php } ?>
 
 <ul id="<?= $auswertungen['instanz']; ?>" class="auswertungen text-center<?php

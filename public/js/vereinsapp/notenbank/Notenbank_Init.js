@@ -79,7 +79,7 @@ function Notenbank_Init() {
     // TITEL ERSTELLEN / DUPLIZIEREN
     $(document).on("click", '.werkzeug[data-werkzeug="titel_erstellen"], .werkzeug[data-werkzeug="titel_duplizieren"]', function () {
         Notenbank_TitelErstellen(
-            $(this).hasClass("formular_oeffnen"),
+            $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
@@ -90,7 +90,7 @@ function Notenbank_Init() {
     // TITEL ÄNDERN
     $(document).on("click", '.werkzeug[data-werkzeug="titel_aendern"]', function () {
         Notenbank_TitelAendern(
-            $(this).hasClass("formular_oeffnen"),
+            $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
@@ -115,7 +115,7 @@ function Notenbank_Init() {
     // SETLISTE VERWALTEN
     $(document).on("click", '.werkzeug[data-werkzeug="notenbank_setlisteneintrag_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
-            $(this).hasClass("bestaetigung_einfordern"),
+            $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
                 titel_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),

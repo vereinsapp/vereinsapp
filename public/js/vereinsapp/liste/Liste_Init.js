@@ -31,6 +31,8 @@ WERKZEUGE.element_loeschen.aktualisieren_aktion = function ($werkzeug) {
         .html('<i class="bi bi-' + SYMBOLE[WERKZEUGE[werkzeug].symbol]["bootstrap"] + '"></i> ' + LISTEN[liste].element_beschriftung + " löschen");
 };
 
+WERKZEUGE.element_loeschen_weiterleiten.aktualisieren_aktion = WERKZEUGE.element_loeschen.aktualisieren_aktion;
+
 function Liste_Init() {
     // INSTANZEN IN LISTEN BEREITSTELLEN
     $.each(BLANKOS.element, function (position, $blanko) {
@@ -103,7 +105,7 @@ function Liste_Init() {
     $(document).on("click", '.werkzeug[data-werkzeug="bemerkung_aendern"]', function () {
         const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"));
         Liste_ElementBemerkungAendern(
-            $(this).hasClass("formular_oeffnen"),
+            $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id")),
@@ -112,14 +114,14 @@ function Liste_Init() {
     });
 
     // ELEMENT LÖSCHEN
-    $(document).on("click", '.werkzeug[data-werkzeug="element_loeschen"]', function () {
+    $(document).on("click", '.werkzeug[data-werkzeug="element_loeschen"], .werkzeug[data-werkzeug="element_loeschen_weiterleiten"]', function () {
         const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"));
         Liste_ElementLoeschen(
-            $(this).hasClass("bestaetigung_einfordern"),
+            $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
                 [LISTEN[liste].element + "_id"]: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id")),
-                weiterleiten: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-weiterleiten")),
+                weiterleiten: $(this).attr("data-werkzeug") === "element_loeschen_weiterleiten",
             },
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title")),
             liste,

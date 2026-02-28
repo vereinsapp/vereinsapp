@@ -154,7 +154,8 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/mitglieder/Mitglieder_MitgliedAendern.js?v='.VERSION,
         'js/vereinsapp/mitglieder/Mitglieder_PasswortAendern.js?v='.VERSION,
         'js/vereinsapp/mitglieder/Mitglieder_PasswortFestlegen.js?v='.VERSION,
-        'js/vereinsapp/mitglieder/Mitglieder_EinmalLinkErstellen.js?v='.VERSION,
+        'js/vereinsapp/mitglieder/Mitglieder_EinmalLinkAnzeigen.js?v='.VERSION,
+        'js/vereinsapp/mitglieder/Mitglieder_EinmalLinkEmail.js?v='.VERSION,
 
         'js/vereinsapp/aufgaben/Aufgaben_Init.js?v='.VERSION,
         'js/vereinsapp/aufgaben/Aufgaben_AufgabeErstellen.js?v='.VERSION,

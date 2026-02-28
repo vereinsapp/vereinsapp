@@ -138,7 +138,7 @@ function Termine_Init() {
     // TERMIN ERSTELLEN / DUPLIZIEREN
     $(document).on("click", '.werkzeug[data-werkzeug="termin_erstellen"], .werkzeug[data-werkzeug="termin_duplizieren"]', function () {
         Termine_TerminErstellen(
-            $(this).hasClass("formular_oeffnen"),
+            $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
@@ -149,7 +149,7 @@ function Termine_Init() {
     // TERMIN ÄNDERN
     $(document).on("click", '.werkzeug[data-werkzeug="termin_aendern"]', function () {
         Termine_TerminAendern(
-            $(this).hasClass("formular_oeffnen"),
+            $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
@@ -174,7 +174,7 @@ function Termine_Init() {
     // RÜCKMELDUNG ERSTELLEN
     $(document).on("click", '.werkzeug[data-werkzeug="termine_rueckmeldung_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
-            $(this).hasClass("bestaetigung_einfordern"),
+            $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
                 termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
@@ -203,7 +203,7 @@ function Termine_Init() {
     // ANWESENHEIT ÄNDERN
     $(document).on("change", '.werkzeug[data-werkzeug="termine_anwesenheit_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
-            $(this).hasClass("bestaetigung_einfordern"),
+            $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
                 termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),

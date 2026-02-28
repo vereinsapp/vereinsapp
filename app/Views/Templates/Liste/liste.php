@@ -1,11 +1,9 @@
 <?php if( array_key_exists( 'werkzeugkasten', $liste ) ) { ?><div class="text-end"><?php
-foreach( $liste['werkzeugkasten'] as $werkzeug) { ?><button type="button" class="btn<?php
-    if( array_key_exists( 'formular_oeffnen', WERKZEUGE[ $werkzeug ] ) AND WERKZEUGE[ $werkzeug ]['formular_oeffnen'] ) echo ' formular_oeffnen';
-    if( array_key_exists( 'bestaetigung_einfordern', WERKZEUGE[ $werkzeug ] ) AND WERKZEUGE[ $werkzeug ]['bestaetigung_einfordern'] ) echo ' bestaetigung_einfordern';
-    if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo ' text-'.WERKZEUGE[ $werkzeug ]['farbe']; else echo ' text-primary';
-    ?> werkzeug" data-werkzeug="<?= $werkzeug; ?>" data-modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['instanz']; ?>"<?php
-    if( array_key_exists( 'weiterleiten', WERKZEUGE[ $werkzeug ] ) ) { ?> data-weiterleiten="<?= WERKZEUGE[ $werkzeug ]['weiterleiten']; ?>"<?php }
-    ?>><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?>"></i></span></button><?php }
+foreach( $liste['werkzeugkasten'] as $werkzeug) { ?><button type="button" class="btn text-<?php
+    if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo WERKZEUGE[ $werkzeug ]['farbe']; else echo 'primary';
+    ?> werkzeug" data-werkzeug="<?= $werkzeug; ?>" data-modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['instanz']; ?>">
+        <span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?>"></i></span>
+    </button><?php }
 ?></div><?php } ?>
 
 <?php if( array_key_exists( 'listenstatistik', $liste ) ) { ?><div class="text-end text-secondary small"><span class="listenstatistik"<?php
@@ -28,7 +26,6 @@ if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> data-e
 
     <li class="text-body list-group-item<?php
     if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'element_auswahl' ) echo ' werkzeug';
-    if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'element_auswahl' AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['bestaetigung_einfordern'] === TRUE ) echo ' bestaetigung_einfordern';
     ?> blanko invisible" data-blanko="element"<?php
     if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'element_auswahl' ) { ?> data-werkzeug="<?= LISTEN[ $liste['verknuepfungen'] ]['element']?>_erstellen" data-verknuepfungen="<?= $liste['verknuepfungen'] ?>"<?php }
     ?> data-liste="<?= $liste['liste']; ?>" data-instanz="<?= $liste['instanz']; ?>"<?php

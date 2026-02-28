@@ -1,13 +1,13 @@
 /**
- * @param {boolean} formular_oeffnen
+ * @param {boolean} data_vollstaendig
  * @param {Object} dom
  * @param {Object} data
  * @param {number} element_id
  * @param {string} liste
  */
 
-function Liste_ElementBemerkungAendern(formular_oeffnen, dom, data, element_id, liste) {
-    if (formular_oeffnen) {
+function Liste_ElementBemerkungAendern(data_vollstaendig, dom, data, element_id, liste) {
+    if (!data_vollstaendig) {
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, "bemerkung_aendern_modal");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");

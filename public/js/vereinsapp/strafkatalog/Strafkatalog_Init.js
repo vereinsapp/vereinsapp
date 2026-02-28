@@ -38,7 +38,7 @@ function Strafkatalog_Init() {
     // STRAFE ERSTELLEN / DUPLIZIEREN
     $(document).on("click", '.werkzeug[data-werkzeug="strafe_erstellen"], .werkzeug[data-werkzeug="strafe_duplizieren"]', function () {
         Strafkatalog_StrafeErstellen(
-            $(this).hasClass("formular_oeffnen"),
+            $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
@@ -49,7 +49,7 @@ function Strafkatalog_Init() {
     // STRAFE ÄNDERN
     $(document).on("click", '.werkzeug[data-werkzeug="strafe_aendern"]', function () {
         Strafkatalog_StrafeAendern(
-            $(this).hasClass("formular_oeffnen"),
+            $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
@@ -74,7 +74,7 @@ function Strafkatalog_Init() {
     // ZUGEWIESENE STRAFE ERSTELLEN
     $(document).on("click", '.werkzeug[data-werkzeug="strafkatalog_zugewiesene_strafe_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
-            $(this).hasClass("bestaetigung_einfordern"),
+            $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
                 strafe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-strafe_id"), undefined),
