@@ -1,4 +1,4 @@
-<div class="mb-2 mitglied_einmal_link_anzeigen_beschriftung"></div>
+<div class="mb-2 mitglied_einmal_link_anzeigen_nachricht"></div>
 
 <div class="input-group mb-2">
     <div class="form-floating">

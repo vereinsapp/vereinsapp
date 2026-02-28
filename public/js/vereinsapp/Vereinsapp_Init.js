@@ -46,7 +46,6 @@ nachricht in Liste_VerknuepfungErstellen verallgemeinern
 Schnittstelle_VariableWertFormatiertZurueck verschieben nach Liste (auch umbenennen)
 Variante von Liste_ElementTextMitBeschriftungErsetztZurueck einführen mit dem man {liste_beschriftung} und {element_beschriftung} ersetzen kann (bspw. für WERKZEUGE.element_loeschen.aktualisieren_aktion)
 element_zuordnen_aktion vereinheitlichen und zentralisieren
-Von formular in Mitglieder_EinmalLinkAnzeigen wegkommen
 
 ERLEDIGT
 

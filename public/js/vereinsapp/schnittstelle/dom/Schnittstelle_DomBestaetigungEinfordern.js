@@ -4,16 +4,16 @@ function Schnittstelle_DomBestaetigungEinfordern(nachricht, modal_title, werkzeu
 
     $bestaetigung.find(".bestaetigung_nachricht").text(nachricht);
     Schnittstelle_LogInDieKonsole(werkzeug);
-    const $bestaetigung_werkzeug = $bestaetigung.find(".bestaetigung_werkzeug");
+    const $bestaetigt_werkzeug = $bestaetigung.find(".bestaetigt");
     if (typeof werkzeug !== "undefined" && werkzeug in WERKZEUGE) {
-        $bestaetigung_werkzeug.removeClass("bestaetigung_werkzeug").addClass("werkzeug").attr("data-werkzeug", werkzeug);
+        $bestaetigt_werkzeug.addClass("werkzeug").attr("data-werkzeug", werkzeug);
         if ("farbe" in WERKZEUGE[werkzeug])
-            $bestaetigung_werkzeug.removeClass("btn-outline-success").addClass("btn-outline-" + WERKZEUGE[werkzeug].farbe);
-        // $bestaetigung_werkzeug.find(".beschriftung").text(WERKZEUGE[werkzeug].beschriftung);
+            $bestaetigt_werkzeug.removeClass("btn-outline-success").addClass("btn-outline-" + WERKZEUGE[werkzeug].farbe);
+        // $bestaetigt_werkzeug.find(".beschriftung").text(WERKZEUGE[werkzeug].beschriftung);
     }
     if (typeof data !== "undefined" && isObject(data))
         $.each(data, function (eigenschaft, wert) {
-            $bestaetigung_werkzeug.attr("data-" + eigenschaft, wert);
+            $bestaetigt_werkzeug.attr("data-" + eigenschaft, wert);
         });
 
     Schnittstelle_Dom$ModalOeffnen($neues_bestaetigung_modal);

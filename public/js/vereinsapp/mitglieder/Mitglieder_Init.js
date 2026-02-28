@@ -138,7 +138,7 @@ function Mitglieder_Init() {
     // EINMAL-LINK ANZEIGEN
     $(document).on("click", '.werkzeug[data-werkzeug="einmal_link_anzeigen"]', function () {
         Mitglieder_EinmalLinkAnzeigen(
-            $(this).hasClass("data_vollstaendig"),
+            $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),

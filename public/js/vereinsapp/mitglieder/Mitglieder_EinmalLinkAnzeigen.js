@@ -1,23 +1,23 @@
 /**
- * @param {boolean} data_vollstaendig
+ * @param {boolean} bestaetigt
  * @param {Object} dom
  * @param {string} modal_title
  * @param {number} mitglied_id
  */
 
-function Mitglieder_EinmalLinkAnzeigen(data_vollstaendig, dom, modal_title, mitglied_id) {
-    if (!data_vollstaendig) {
+function Mitglieder_EinmalLinkAnzeigen(bestaetigt, dom, modal_title, mitglied_id) {
+    if (!bestaetigt) {
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "mitglied_einmal_link_anzeigen_modal");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         $neues_modal
-            .find(".mitglied_einmal_link_anzeigen_beschriftung")
+            .find(".mitglied_einmal_link_anzeigen_nachricht")
             .text(
                 Liste_ElementTextMitBeschriftungErsetztZurueck(
                     "Willst du wirklich für {mitglieder} einen neuen Einmal-Link erstellen und anzeigen?",
                     { mitglied_id: mitglied_id },
                 ),
             );
-        $neues_modal.find('.werkzeug[data-werkzeug="einmal_link_anzeigen"]').attr("data-mitglied_id", mitglied_id);
+        $neues_modal.find('.werkzeug[data-werkzeug="einmal_link_anzeigen"]').attr("data-mitglied_id", mitglied_id).addClass("bestaetigt");
     } else {
         const ajax_dom = dom;
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(new Object(), new Object());
@@ -36,7 +36,11 @@ function Mitglieder_EinmalLinkAnzeigen(data_vollstaendig, dom, modal_title, mitg
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.find(".einmal_link").exists())
                     AJAX.dom.$modal.find(".einmal_link").val(AJAX.antwort.einmal_link);
-                if ("dom" in AJAX && "$werkzeug" in AJAX.dom && AJAX.dom.$werkzeug.exists()) AJAX.dom.$werkzeug.addClass("invisible");
+                if ("dom" in AJAX && "$werkzeug" in AJAX.dom && AJAX.dom.$werkzeug.exists()) {
+                    AJAX.dom.$werkzeug.addClass("invisible");
+                    if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.find(".einmal_link").closest(".mb-2").exists())
+                        AJAX.dom.$modal.find(".einmal_link").closest(".mb-2").removeClass("mb-2");
+                }
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
