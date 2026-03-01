@@ -37,7 +37,7 @@ function Strafkatalog_StrafeErstellen(data_vollstaendig, dom, data, modal_title,
 
                 Schnittstelle_EventVariableUpdLocalstorage("strafkatalog");
                 Schnittstelle_EventLocalstorageUpdVariable("strafkatalog");
-                // Schnittstelle_VariableElementZuordnen("strafkatalog");
+                Liste_VerknuepfungenZuordnen("strafkatalog");
                 Schnittstelle_VariableElementErgaenzen("strafkatalog");
                 Schnittstelle_EventVariableUpdDom("strafkatalog");
 

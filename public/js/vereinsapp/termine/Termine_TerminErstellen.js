@@ -44,7 +44,7 @@ function Termine_TerminErstellen(data_vollstaendig, dom, data, modal_title, term
 
                 Schnittstelle_EventVariableUpdLocalstorage("termine");
                 Schnittstelle_EventLocalstorageUpdVariable("termine");
-                // Schnittstelle_VariableElementZuordnen("termine");
+                Liste_VerknuepfungenZuordnen("termine");
                 Schnittstelle_VariableElementErgaenzen("termine");
                 Schnittstelle_EventVariableUpdDom("termine");
 

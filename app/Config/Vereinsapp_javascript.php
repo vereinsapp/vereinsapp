@@ -101,6 +101,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungErstellen.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungStatusAendern.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_$VerknuepfungenAktualisieren.js?v='.VERSION,
+        'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungenZuordnen.js?v='.VERSION,
 
         'js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisInit.js?v='.VERSION,
         'js/vereinsapp/liste/verzeichnis/Liste_$VerzeichnisAktualisieren.js?v='.VERSION,
@@ -121,7 +122,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableWertBereinigtZurueck.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableWertFormatiertZurueck.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableLoeschen.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableElementZuordnen.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableElementErgaenzen.js?v='.VERSION,
 
         'js/vereinsapp/schnittstelle/dom/Schnittstelle_DomInit.js?v='.VERSION,

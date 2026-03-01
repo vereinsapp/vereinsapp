@@ -28,7 +28,7 @@ function Mitglieder_EinmalLinkEmail(bestaetigt, dom, modal_title, mitglied_id) {
             function (AJAX) {
                 Schnittstelle_EventVariableUpdLocalstorage("mitglieder");
                 Schnittstelle_EventLocalstorageUpdVariable("mitglieder");
-                // Schnittstelle_VariableElementZuordnen("mitglieder");
+                Liste_VerknuepfungenZuordnen("mitglieder");
                 Schnittstelle_VariableElementErgaenzen("mitglieder");
                 Schnittstelle_EventVariableUpdDom("mitglieder");
 

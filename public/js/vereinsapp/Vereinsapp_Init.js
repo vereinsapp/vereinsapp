@@ -36,6 +36,7 @@ Besseres Symbol für _eigenschaft_zuruecksetzen und _eigenschaft_zuruecksetzen-B
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen (ausschließlich spezielle Zusatzsymbole wie beispiele Termin-Kategorie als hex-Symbole)
 Neue bootstrap icons Version einführen (unlock2 statt lock)
 event einführen, dass Liste_Element$FormularInitialisieren ausgeführt wird, wenn ein modal geöffnet wurde (mittels Schnittstelle_Dom$ModalOeffnen)
+Verinsapp_env aufspalten in mehrere _env
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
 Aufgaben detaillieren
 Zugewiesene Strafen anzeigen
@@ -45,7 +46,6 @@ data-Prefix loswerden
 nachricht in Liste_VerknuepfungErstellen verallgemeinern
 Schnittstelle_VariableWertFormatiertZurueck verschieben nach Liste (auch umbenennen)
 Variante von Liste_ElementTextMitBeschriftungErsetztZurueck einführen mit dem man {liste_beschriftung} und {element_beschriftung} ersetzen kann (bspw. für WERKZEUGE.element_loeschen.aktualisieren_aktion)
-element_zuordnen_aktion vereinheitlichen und zentralisieren
 
 ERLEDIGT
 

@@ -52,7 +52,7 @@ function Mitglieder_MitgliedAendern(data_vollstaendig, dom, data, modal_title, m
 
                 Schnittstelle_EventVariableUpdLocalstorage("mitglieder");
                 Schnittstelle_EventLocalstorageUpdVariable("mitglieder");
-                // Schnittstelle_VariableElementZuordnen("mitglieder");
+                Liste_VerknuepfungenZuordnen("mitglieder");
                 Schnittstelle_VariableElementErgaenzen("mitglieder");
                 Schnittstelle_EventVariableUpdDom("mitglieder");
 

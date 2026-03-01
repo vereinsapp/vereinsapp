@@ -38,8 +38,8 @@ function Strafkatalog_StrafeAendern(data_vollstaendig, dom, data, modal_title, s
 
                 Schnittstelle_EventVariableUpdLocalstorage("strafkatalog");
                 Schnittstelle_EventLocalstorageUpdVariable("strafkatalog");
-                // Schnittstelle_VariableElementZuordnen("strafkatalog");
-                // Schnittstelle_VariableElementErgaenzen("strafkatalog");
+                Liste_VerknuepfungenZuordnen("strafkatalog");
+                Schnittstelle_VariableElementErgaenzen("strafkatalog");
                 Schnittstelle_EventVariableUpdDom("strafkatalog");
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {

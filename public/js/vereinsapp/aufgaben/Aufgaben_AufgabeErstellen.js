@@ -39,7 +39,7 @@ function Aufgaben_AufgabeErstellen(data_vollstaendig, dom, data, modal_title, au
 
                 Schnittstelle_EventVariableUpdLocalstorage("aufgaben");
                 Schnittstelle_EventLocalstorageUpdVariable("aufgaben");
-                // Schnittstelle_VariableElementZuordnen("aufgaben");
+                Liste_VerknuepfungenZuordnen("aufgaben");
                 Schnittstelle_VariableElementErgaenzen("aufgaben");
                 Schnittstelle_EventVariableUpdDom("aufgaben");
 

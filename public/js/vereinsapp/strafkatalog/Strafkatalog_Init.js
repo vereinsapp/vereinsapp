@@ -1,37 +1,3 @@
-LISTEN.strafkatalog_zugewiesene_strafen.element_zuordnen_aktion = function (zugewiesene_strafe) {
-    const zugewiesene_strafe_id = zugewiesene_strafe.id;
-
-    if ("strafkatalog" in LISTEN) {
-        const strafe_id = Schnittstelle_VariableRausZurueck("strafe_id", zugewiesene_strafe_id, "strafkatalog_zugewiesene_strafen", undefined);
-
-        if (typeof strafe_id !== "undefined") {
-            const strafe = LISTEN.strafkatalog.tabelle[strafe_id];
-
-            if (typeof strafe !== "undefined") {
-                if (!("zugeordnete_strafkatalog_zugewiesene_strafe_ids" in strafe))
-                    LISTEN.strafkatalog.tabelle[strafe_id].zugeordnete_strafkatalog_zugewiesene_strafe_ids = [zugewiesene_strafe_id];
-                else if (!strafe.zugeordnete_strafkatalog_zugewiesene_strafe_ids.includes(zugewiesene_strafe_id))
-                    LISTEN.strafkatalog.tabelle[strafe_id].zugeordnete_strafkatalog_zugewiesene_strafe_ids.push(zugewiesene_strafe_id);
-            }
-        }
-    }
-
-    if ("mitglieder" in LISTEN) {
-        const mitglied_id = Schnittstelle_VariableRausZurueck("mitglied_id", zugewiesene_strafe_id, "strafkatalog_zugewiesene_strafen", undefined);
-
-        if (typeof mitglied_id !== "undefined") {
-            const mitglied = LISTEN.mitglieder.tabelle[mitglied_id];
-
-            if (typeof mitglied !== "undefined") {
-                if (!("zugeordnete_strafkatalog_zugewiesene_strafe_ids" in mitglied))
-                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_strafkatalog_zugewiesene_strafe_ids = [zugewiesene_strafe_id];
-                else if (!mitglied.zugeordnete_strafkatalog_zugewiesene_strafe_ids.includes(zugewiesene_strafe_id))
-                    LISTEN.mitglieder.tabelle[mitglied_id].zugeordnete_strafkatalog_zugewiesene_strafe_ids.push(zugewiesene_strafe_id);
-            }
-        }
-    }
-};
-
 WERKZEUGE.strafe_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
 
 function Strafkatalog_Init() {

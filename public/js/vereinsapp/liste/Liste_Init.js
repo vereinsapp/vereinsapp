@@ -71,7 +71,7 @@ function Liste_Init() {
         });
 
         $.each(LISTEN, function (liste) {
-            Schnittstelle_VariableElementZuordnen(liste);
+            Liste_VerknuepfungenZuordnen(liste);
         });
 
         $.each(LISTEN, function (liste) {

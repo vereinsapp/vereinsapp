@@ -38,7 +38,7 @@ function Notenbank_TitelErstellen(data_vollstaendig, dom, data, modal_title, tit
 
                 Schnittstelle_EventVariableUpdLocalstorage("notenbank");
                 Schnittstelle_EventLocalstorageUpdVariable("notenbank");
-                // Schnittstelle_VariableElementZuordnen("notenbank");
+                Liste_VerknuepfungenZuordnen("notenbank");
                 Schnittstelle_VariableElementErgaenzen("notenbank");
                 Schnittstelle_EventVariableUpdDom("notenbank");
 

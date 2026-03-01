@@ -81,7 +81,7 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
 
                 Schnittstelle_EventVariableUpdLocalstorage(verknuepfungen);
                 Schnittstelle_EventLocalstorageUpdVariable(verknuepfungen);
-                Schnittstelle_VariableElementZuordnen(verknuepfungen);
+                Liste_VerknuepfungenZuordnen(verknuepfungen);
                 Schnittstelle_VariableElementErgaenzen(verknuepfungen);
                 Schnittstelle_VariableElementErgaenzen(verknuepfte_listen[0]);
                 Schnittstelle_VariableElementErgaenzen(verknuepfte_listen[1]);

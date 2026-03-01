@@ -36,7 +36,7 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
 
             Schnittstelle_EventVariableUpdLocalstorage(verknuepfungen);
             Schnittstelle_EventLocalstorageUpdVariable(verknuepfungen);
-            Schnittstelle_VariableElementZuordnen(verknuepfungen);
+            Liste_VerknuepfungenZuordnen(verknuepfungen);
             Schnittstelle_VariableElementErgaenzen(verknuepfungen);
             Schnittstelle_EventVariableUpdDom(verknuepfungen);
 
