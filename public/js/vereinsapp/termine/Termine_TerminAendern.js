@@ -52,20 +52,20 @@ function Termine_TerminAendern(data_vollstaendig, dom, data, modal_title, termin
                 Schnittstelle_VariableElementErgaenzen("termine");
                 Schnittstelle_EventVariableUpdDom("termine");
 
-                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
-                    Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                    Schnittstelle_DomToastFeuern(
-                        Liste_ElementTextMitBeschriftungErsetztZurueck("{termine} wurde erfolgreich geändert.", { termin_id: termin_id }),
-                    );
-                }
+                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
+                Schnittstelle_DomToastFeuern(
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_aendern.erfolg, {
+                        element1: { liste: "termine", termin_id: termin_id },
+                    }),
+                );
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
-                else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
+                else if (isObject(AJAX.antwort.validation) && "dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck("{termine} konnte nicht gespeichert werden.", {
-                        termin_id: AJAX.data.termin_id,
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_aendern.fehler, {
+                        element1: { liste: "termine", termin_id: AJAX.data.termin_id },
                     }),
                     "danger",
                 );

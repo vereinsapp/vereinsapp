@@ -43,17 +43,25 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
             if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                 Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck("{" + verknuepfungen + "} wurde erfolgreich erstellt.", {
-                        [LISTEN[verknuepfungen].element + "_id"]: AJAX.data[LISTEN[verknuepfungen].element + "_id"],
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_aendern.erfolg, {
+                        element1: {
+                            liste: verknuepfungen,
+                            [LISTEN[verknuepfungen].element + "_id"]: AJAX.data[LISTEN[verknuepfungen].element + "_id"],
+                        },
                     }),
                 );
             }
         },
         function (AJAX) {
             if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
+            else if (isObject(AJAX.antwort.validation) && "dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
+                Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
             Schnittstelle_DomToastFeuern(
-                Liste_ElementTextMitBeschriftungErsetztZurueck("{" + AJAX.data.verknuepfungen + "} konnte nicht gespeichert werden.", {
-                    [LISTEN[AJAX.data.verknuepfungen].element + "_id"]: AJAX.data[LISTEN[AJAX.data.verknuepfungen].element + "_id"],
+                Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_aendern.fehler, {
+                    element1: {
+                        liste: AJAX.data.verknuepfungen,
+                        [LISTEN[AJAX.data.verknuepfungen].element + "_id"]: AJAX.data[LISTEN[AJAX.data.verknuepfungen].element + "_id"],
+                    },
                 }),
                 "danger",
             );

@@ -47,26 +47,23 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             else farbe = "primary";
 
             $zusatzsymbol.html(
-                Liste_ElementTextMitBeschriftungErsetztZurueck(
-                    '<i class="bi bi-' +
-                        SYMBOLE[WERKZEUGE[LISTEN[liste].element + "_aendern"].symbol]["bootstrap"] +
-                        " text-" +
-                        farbe +
-                        ' werkzeug" data-werkzeug="' +
-                        LISTEN[liste].element +
-                        '_aendern" data-liste="' +
-                        liste +
-                        '" data-' +
-                        LISTEN[liste].element +
-                        '_id="' +
-                        element_id +
-                        '" data-modal_title="{' +
-                        liste +
-                        '} ändern" role="button"></i>',
-                    {
-                        [LISTEN[liste].element + "_id"]: element_id,
-                    },
-                ),
+                '<i class="bi bi-' +
+                    SYMBOLE[WERKZEUGE[LISTEN[liste].element + "_aendern"].symbol]["bootstrap"] +
+                    " text-" +
+                    farbe +
+                    ' werkzeug" data-werkzeug="' +
+                    LISTEN[liste].element +
+                    '_aendern" data-liste="' +
+                    liste +
+                    '" data-' +
+                    LISTEN[liste].element +
+                    '_id="' +
+                    element_id +
+                    '" data-modal_title="' +
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_aendern.modal_title, {
+                        element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
+                    }) +
+                    '" role="button"></i>',
             );
             break;
 
@@ -76,26 +73,23 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             else farbe = "primary";
 
             $zusatzsymbol.html(
-                Liste_ElementTextMitBeschriftungErsetztZurueck(
-                    '<i class="bi bi-' +
-                        SYMBOLE[WERKZEUGE[LISTEN[liste].element + "_duplizieren"].symbol]["bootstrap"] +
-                        " text-" +
-                        farbe +
-                        ' werkzeug" data-werkzeug="' +
-                        LISTEN[liste].element +
-                        '_duplizieren" data-liste="' +
-                        liste +
-                        '" data-' +
-                        LISTEN[liste].element +
-                        '_id="' +
-                        element_id +
-                        '" data-modal_title="{' +
-                        liste +
-                        '} duplizieren" role="button"></i>',
-                    {
-                        [LISTEN[liste].element + "_id"]: element_id,
-                    },
-                ),
+                '<i class="bi bi-' +
+                    SYMBOLE[WERKZEUGE[LISTEN[liste].element + "_duplizieren"].symbol]["bootstrap"] +
+                    " text-" +
+                    farbe +
+                    ' werkzeug" data-werkzeug="' +
+                    LISTEN[liste].element +
+                    '_duplizieren" data-liste="' +
+                    liste +
+                    '" data-' +
+                    LISTEN[liste].element +
+                    '_id="' +
+                    element_id +
+                    '" data-modal_title="' +
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_duplizieren.modal_title, {
+                        element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
+                    }) +
+                    '" role="button"></i>',
             );
             break;
 
@@ -105,24 +99,21 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             else farbe = "primary";
 
             $zusatzsymbol.html(
-                Liste_ElementTextMitBeschriftungErsetztZurueck(
-                    '<i class="bi bi-' +
-                        SYMBOLE[WERKZEUGE.element_loeschen.symbol]["bootstrap"] +
-                        " text-" +
-                        farbe +
-                        ' werkzeug" data-werkzeug="element_loeschen" data-liste="' +
-                        liste +
-                        '" data-' +
-                        LISTEN[liste].element +
-                        '_id="' +
-                        element_id +
-                        '" data-modal_title="{' +
-                        liste +
-                        '} löschen" role="button"></i>',
-                    {
-                        [LISTEN[liste].element + "_id"]: element_id,
-                    },
-                ),
+                '<i class="bi bi-' +
+                    SYMBOLE[WERKZEUGE.element_loeschen.symbol]["bootstrap"] +
+                    " text-" +
+                    farbe +
+                    ' werkzeug" data-werkzeug="element_loeschen" data-liste="' +
+                    liste +
+                    '" data-' +
+                    LISTEN[liste].element +
+                    '_id="' +
+                    element_id +
+                    '" data-modal_title="' +
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_loeschen.modal_title, {
+                        element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
+                    }) +
+                    '" role="button"></i>',
             );
             break;
 

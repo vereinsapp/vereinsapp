@@ -25,7 +25,12 @@ WERKZEUGE.element_loeschen.aktualisieren_aktion = function ($werkzeug) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined);
     const werkzeug = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-werkzeug"), undefined);
 
-    $werkzeug.attr("data-modal_title", LISTEN[liste].element_beschriftung + " löschen");
+    $werkzeug.attr(
+        "data-modal_title",
+        Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_loeschen.modal_title, {
+            element1: { liste: liste },
+        }),
+    );
     $werkzeug
         .find(".beschriftung")
         .html('<i class="bi bi-' + SYMBOLE[WERKZEUGE[werkzeug].symbol]["bootstrap"] + '"></i> ' + LISTEN[liste].element_beschriftung + " löschen");
@@ -118,12 +123,10 @@ function Liste_Init() {
         const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"));
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigt"),
+            $(this).attr("data-werkzeug") === "element_loeschen_weiterleiten",
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
-            {
-                [LISTEN[liste].element + "_id"]: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id")),
-                weiterleiten: $(this).attr("data-werkzeug") === "element_loeschen_weiterleiten",
-            },
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title")),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id")),
             liste,
         );
     });

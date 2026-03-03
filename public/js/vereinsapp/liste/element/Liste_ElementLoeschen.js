@@ -1,30 +1,32 @@
 /**
  * @param {boolean} bestaetigt
+ * @param {boolean} weiterleiten
  * @param {Object} dom
- * @param {Object} data
  * @param {string} modal_title
+ * @param {Number} element_id
  * @param {string} liste
  */
 
-function Liste_ElementLoeschen(bestaetigt, dom, data, modal_title, liste) {
-    data.liste = liste;
-
+function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, element_id, liste) {
     if (!bestaetigt) {
         let werkzeug;
-        if ("weiterleiten" in data && data.weiterleiten) werkzeug = "element_loeschen_weiterleiten";
+        if (typeof weiterleiten !== "undefined" && weiterleiten) werkzeug = "element_loeschen_weiterleiten";
         else werkzeug = "element_loeschen";
 
         Schnittstelle_DomBestaetigungEinfordern(
-            Liste_ElementTextMitBeschriftungErsetztZurueck("Willst du wirklich {" + liste + "} löschen?", {
-                [LISTEN[liste].element + "_id"]: data[LISTEN[liste].element + "_id"],
+            Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_loeschen.bestaetigung, {
+                element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
             }),
             modal_title,
             werkzeug,
-            data,
+            { weiterleiten: weiterleiten, liste: liste, [LISTEN[liste].element + "_id"]: element_id },
         );
     } else {
         const ajax_dom = dom;
-        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(new Object(), new Object());
+        ajax_data.weiterleiten = weiterleiten;
+        ajax_data[LISTEN[liste].element + "_id"] = element_id;
+        ajax_data.liste = liste;
 
         Schnittstelle_AjaxInDieSchlange(
             LISTEN[liste].controller + "/ajax_" + LISTEN[liste].element + "_loeschen",
@@ -33,8 +35,11 @@ function Liste_ElementLoeschen(bestaetigt, dom, data, modal_title, liste) {
             function (AJAX) {
                 const liste = AJAX.data.liste;
                 const element_id = AJAX.data[LISTEN[liste].element + "_id"];
-                const toast_text = Liste_ElementTextMitBeschriftungErsetztZurueck("{" + liste + "} wurde gelöscht.", {
-                    [LISTEN[liste].element + "_id"]: element_id,
+                const toast_text = Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_loeschen.erfolg, {
+                    element1: {
+                        liste: liste,
+                        [LISTEN[liste].element + "_id"]: element_id,
+                    },
                 }); // Toast-Text zwischenspeichern, bevor Element gelöscht wird
 
                 Schnittstelle_VariableLoeschen(element_id, liste);
@@ -47,15 +52,15 @@ function Liste_ElementLoeschen(bestaetigt, dom, data, modal_title, liste) {
                             });
                     });
 
+                Schnittstelle_EventVariableUpdLocalstorage(liste);
+                Schnittstelle_EventLocalstorageUpdVariable(liste);
+                Liste_VerknuepfungenZuordnen(liste);
+                Schnittstelle_VariableElementErgaenzen(liste);
+                Schnittstelle_EventVariableUpdDom(liste);
+
                 const weiterleiten = AJAX.data.weiterleiten;
                 if (typeof weiterleiten !== "undefined" && weiterleiten) $(location).attr("href", SITE_URL + AKTIVER_CONTROLLER);
                 else {
-                    Schnittstelle_EventVariableUpdLocalstorage(liste);
-                    Schnittstelle_EventLocalstorageUpdVariable(liste);
-                    Liste_VerknuepfungenZuordnen(liste);
-                    Schnittstelle_VariableElementErgaenzen(liste);
-                    Schnittstelle_EventVariableUpdDom(liste);
-
                     if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
                     Schnittstelle_DomToastFeuern(toast_text, "danger");
                 }
@@ -63,8 +68,11 @@ function Liste_ElementLoeschen(bestaetigt, dom, data, modal_title, liste) {
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck("{" + AJAX.data.liste + "} konnte nicht gelöscht werden.", {
-                        [LISTEN[AJAX.data.liste].element + "_id"]: AJAX.data[LISTEN[AJAX.data.liste].element + "_id"],
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_loeschen.fehler, {
+                        element1: {
+                            liste: liste,
+                            [LISTEN[liste].element + "_id"]: data[LISTEN[liste].element + "_id"],
+                        },
                     }),
                 );
             },

@@ -43,9 +43,7 @@ Zugewiesene Strafen anzeigen
 Bugfix Klick auf Werkzeug direkt im Element löst Element-Event und Werkzeug-Event aus
 kacheln-View ergänzen (analog zu liste-View)
 data-Prefix loswerden
-nachricht in Liste_VerknuepfungErstellen verallgemeinern
 Schnittstelle_VariableWertFormatiertZurueck verschieben nach Liste (auch umbenennen)
-Variante von Liste_ElementTextMitBeschriftungErsetztZurueck einführen mit dem man {liste_beschriftung} und {element_beschriftung} ersetzen kann (bspw. für WERKZEUGE.element_loeschen.aktualisieren_aktion)
 
 ERLEDIGT
 

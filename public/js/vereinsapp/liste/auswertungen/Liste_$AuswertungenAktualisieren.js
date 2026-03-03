@@ -36,7 +36,7 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
     const gruppieren_werte_sortiert = gruppieren_werte.sort();
 
     // AUSWERTUNG_IDS DEFINIEREN
-    const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
+    const verknuepfte_listen = VERKNUEPFUNGEN[auswertungen].verknuepfte_listen;
     let andere_verknuepfte_liste = liste;
     $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
         if (verknuepfte_liste !== liste) andere_verknuepfte_liste = verknuepfte_liste;

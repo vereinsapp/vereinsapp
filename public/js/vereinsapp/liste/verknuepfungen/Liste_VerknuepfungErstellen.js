@@ -11,7 +11,18 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
 
     if (VERKNUEPFUNGEN[verknuepfungen].bestaetigung_einfordern && !bestaetigt)
         Schnittstelle_DomBestaetigungEinfordern(
-            Liste_ElementTextMitBeschriftungErsetztZurueck("Willst du wirklich {mitglieder} die Strafe {strafkatalog} zuweisen?", data),
+            Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE[LISTEN[verknuepfungen].element + "_erstellen"].bestaetigung, {
+                element1: {
+                    liste: VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[0],
+                    [LISTEN[VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[0]].element + "_id"]:
+                        data[LISTEN[VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[0]].element + "_id"],
+                },
+                element2: {
+                    liste: VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[1],
+                    [LISTEN[VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[1]].element + "_id"]:
+                        data[LISTEN[VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[1]].element + "_id"],
+                },
+            }),
             modal_title,
             LISTEN[verknuepfungen].element + "_erstellen",
             data,
@@ -95,8 +106,11 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck("{" + AJAX.data.verknuepfungen + "} konnte nicht gespeichert werden.", {
-                        [LISTEN[AJAX.data.verknuepfungen].element + "_id"]: AJAX.data[LISTEN[AJAX.data.verknuepfungen].element + "_id"],
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_erstellen.fehler, {
+                        element1: {
+                            liste: AJAX.data.verknuepfungen,
+                            [LISTEN[verknuepfungen].element + "_id"]: AJAX.data[LISTEN[verknuepfungen].element + "_id"],
+                        },
                     }),
                     "danger",
                 );

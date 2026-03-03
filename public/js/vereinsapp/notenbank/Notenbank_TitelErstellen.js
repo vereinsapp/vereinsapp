@@ -44,13 +44,21 @@ function Notenbank_TitelErstellen(data_vollstaendig, dom, data, modal_title, tit
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck("{notenbank} wurde erfolgreich erstellt.", { titel_id: titel_id }),
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_erstellen.erfolg, {
+                        element1: { liste: "notenbank", titel_id: titel_id },
+                    }),
                 );
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
-                else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
+                else if (isObject(AJAX.antwort.validation) && "dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
+                Schnittstelle_DomToastFeuern(
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_erstellen.fehler, {
+                        element1: { liste: "notenbank", titel_id: AJAX.data.titel_id },
+                    }),
+                    "danger",
+                );
             },
         );
     }

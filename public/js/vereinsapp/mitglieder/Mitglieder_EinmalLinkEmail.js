@@ -8,10 +8,9 @@
 function Mitglieder_EinmalLinkEmail(bestaetigt, dom, modal_title, mitglied_id) {
     if (!bestaetigt)
         Schnittstelle_DomBestaetigungEinfordern(
-            Liste_ElementTextMitBeschriftungErsetztZurueck(
-                "Willst du wirklich für {mitglieder} einen neuen Einmal-Link erstellen und per Email verschicken?",
-                { mitglied_id: mitglied_id },
-            ),
+            Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_einmal_link_email.bestaetigung, {
+                element1: { liste: "mitglieder", mitglied_id: mitglied_id },
+            }),
             modal_title,
             "einmal_link_email",
             { mitglied_id: mitglied_id },
@@ -32,20 +31,18 @@ function Mitglieder_EinmalLinkEmail(bestaetigt, dom, modal_title, mitglied_id) {
                 Schnittstelle_VariableElementErgaenzen("mitglieder");
                 Schnittstelle_EventVariableUpdDom("mitglieder");
 
-                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
-                    Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                    Schnittstelle_DomToastFeuern(
-                        Liste_ElementTextMitBeschriftungErsetztZurueck("Einmal-Link für {mitglieder} wurde erfolgreich per Email vergeschickt.", {
-                            mitglied_id: AJAX.data.mitglied_id,
-                        }),
-                    );
-                }
+                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
+                Schnittstelle_DomToastFeuern(
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_einmal_link_email.erfolg, {
+                        element1: { liste: "mitglieder", mitglied_id: AJAX.data.mitglied_id },
+                    }),
+                );
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
                 Schnittstelle_DomToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck("Einmal-Link für {mitglieder} konnte nicht per Email vergeschickt werden.", {
-                        mitglied_id: AJAX.data.mitglied_id,
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_einmal_link_email.fehler, {
+                        element1: { liste: "mitglieder", mitglied_id: AJAX.data.mitglied_id },
                     }),
                     "danger",
                 );

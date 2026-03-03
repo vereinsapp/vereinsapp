@@ -3,7 +3,7 @@ function Schnittstelle_DomBestaetigungEinfordern(nachricht, modal_title, werkzeu
     const $bestaetigung = $neues_bestaetigung_modal.find(".bestaetigung");
 
     $bestaetigung.find(".bestaetigung_nachricht").text(nachricht);
-    Schnittstelle_LogInDieKonsole(werkzeug);
+
     const $bestaetigt_werkzeug = $bestaetigung.find(".bestaetigt");
     if (typeof werkzeug !== "undefined" && werkzeug in WERKZEUGE) {
         $bestaetigt_werkzeug.addClass("werkzeug").attr("data-werkzeug", werkzeug);

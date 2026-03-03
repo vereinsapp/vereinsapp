@@ -98,8 +98,6 @@ define('EVENT_PRIORITY_HIGH', 10);
 | VEREINSAPP Projekt-übergreifende Konstanten
 |--------------------------------------------------------------------------*/
 
-defined('VERSION') OR define( 'VERSION', preg_replace('/\s+/', '', file_get_contents( ROOTPATH.'/README.md', FALSE, NULL, 13 ) ) );
-
 defined('JANEIN') OR define( 'JANEIN', array(
 	0 => array( 'beschriftung' => 'Nein', 'wert' => FALSE ),
 	1 => array( 'beschriftung' => 'Ja', 'wert' => TRUE ),

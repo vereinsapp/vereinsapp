@@ -8,6 +8,7 @@ defined('HEUTE') OR define( 'HEUTE', Time::today( 'Europe/Berlin' )->toDateTimeS
 defined('MORGEN') OR define( 'MORGEN', Time::today( 'Europe/Berlin' )->addDays(1)->toDateTimeString() );
 defined('JAHRESBEGINN') OR define( 'JAHRESBEGINN', Time::today( 'Europe/Berlin' )->setMonth(1)->setDay(1)->setHour(0)->setMinute(0)->setSecond(0)->toDateTimeString() );
 defined('NAECHSTER_JAHRESBEGINN') OR define( 'NAECHSTER_JAHRESBEGINN', Time::today( 'Europe/Berlin' )->addYears(1)->setMonth(1)->setDay(1)->setHour(0)->setMinute(0)->setSecond(0)->toDateTimeString() );
+defined('VERSION') OR define( 'VERSION', preg_replace('/\s+/', '', file_get_contents( ROOTPATH.'/README.md', FALSE, NULL, 13 ) ) );
 
 class Vereinsapp extends BaseConfig
 {
@@ -1268,5 +1269,58 @@ class Vereinsapp extends BaseConfig
      * Winterzeit: +01:00 / Sommerzeit: +02:00
      */
     public $force_localstorage_reset_zeitpunkt = '2025-05-21T16:00:00.000+02:00';
+
+    /**
+     * --------------------------------------------------------------------------
+     * Texte
+     * --------------------------------------------------------------------------
+     *
+     */
+    public $texte = array(
+        'element1_erstellen' => array(
+            'modal_title' => '{element1} erstellen',
+            // 'bestaetigung' => 'Willst du wirklich {element1} erstellen?',
+            'erfolg' => '{element1} wurde erfolgreich erstellt.',
+            'fehler' => '{element1} konnte nicht erstellt werden!'
+        ),
+        'element1_duplizieren' => array(
+            'modal_title' => '{element1} duplizieren',
+            'bestaetigung' => 'Willst du wirklich {element1} duplizieren?',
+            'erfolg' => '{element1} wurde erfolgreich dupliziert.',
+            'fehler' => '{element1} konnte nicht dupliziert werden!'
+        ),
+        'element1_aendern' => array(
+            'modal_title' => '{element1} ändern',
+            'bestaetigung' => 'Willst du wirklich {element1} ändern?',
+            'erfolg' => '{element1} wurde erfolgreich geändert.',
+            'fehler' => '{element1} konnte nicht geändert werden!'
+        ),
+        'element1_loeschen' => array(
+            'modal_title' => '{element1} löschen',
+            'bestaetigung' => 'Willst du wirklich {element1} löschen?',
+            'erfolg' => '{element1} wurde erfolgreich gelöscht.',
+            'fehler' => '{element1} konnte nicht gelöscht werden!',
+        ),
+
+        'element1_einmal_link_anzeigen' => array(
+            'modal_title' => 'Einmal-Link anzeigen',
+            'bestaetigung' => 'Willst du wirklich für {element1} einen neuen Einmal-Link erstellen und anzeigen?',
+            'erfolg' => 'Einmal-Link für {element1} wurde erfolgreich erstellt und angezeigt.',
+            'fehler' => 'Einmal-Link für {element1} konnte nicht erstellt und angezeigt werden!',
+        ),
+        'element1_einmal_link_email' => array(
+            'modal_title' => 'Einmal-Link per Email verschicken',
+            'bestaetigung' => 'Willst du wirklich für {element1} einen neuen Einmal-Link erstellen und per Email verschicken?',
+            'erfolg' => 'Einmal-Link für {element1} wurde erfolgreich erstellt und per Email verschickt.',
+            'fehler' => 'Einmal-Link für {element1} konnte nicht erstellt und per Email verschickt werden!',
+        ),
+
+        'strafkatalog_zugewiesene_strafe_erstellen' => array(
+            'modal_title' => 'Strafe einem Mitglied zuweisen',
+            'bestaetigung' => 'Willst du wirklich {element2} die Strafe {element1} zuweisen?',
+            'erfolg' => '{element2} wurde erfolgreich die Strafe {element1} zugewiesen.',
+            'fehler' => '{element2} konnte nicht die Strafe {element1} zugewiesen werden!',
+        ),
+    );
 
 }
