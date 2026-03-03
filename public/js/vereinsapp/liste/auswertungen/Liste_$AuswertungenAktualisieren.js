@@ -92,7 +92,7 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
                 .attr("data-" + LISTEN[auswertungen].element + "_ids", JsonStringifiedZurueck(auswertung_ids_nach_wert[wert], new Array()))
                 .attr("data-wert", wert)
                 .attr("data-" + LISTEN[liste].element + "_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
-                .attr("data-beschriftung", Schnittstelle_VariableWertFormatiertZurueck(wert, gruppieren, liste));
+                .attr("data-beschriftung", Liste_WertNachEigenschaftFormatiertZurueck(wert, gruppieren, liste));
 
             const $zugehoeriges_collapse = $auswertung.find(".auswertung_collapse");
             $zugehoeriges_collapse.attr("id", zufaelligeZeichenketteZurueck(8));

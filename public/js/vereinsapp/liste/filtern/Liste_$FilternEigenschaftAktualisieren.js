@@ -61,7 +61,7 @@ function Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft) {
                             $neuer_filtern_wert.attr("data-wert", Number(filtern_wert_janein));
                             const $neuer_filtern_wert_beschriftung = $neuer_filtern_wert.find(".filtern_wert_beschriftung").find(".beschriftung");
                             $neuer_filtern_wert_beschriftung.text(
-                                Schnittstelle_VariableWertFormatiertZurueck(JANEIN[Number(filtern_wert_janein)].wert, eigenschaft, liste),
+                                Liste_WertNachEigenschaftFormatiertZurueck(JANEIN[Number(filtern_wert_janein)].wert, eigenschaft, liste),
                             );
                             if (filtern_klasse == "exklusiv") $neuer_filtern_wert_beschriftung.addClass("text-decoration-line-through");
                             else if (filtern_klasse == "inklusiv") $neuer_filtern_wert_beschriftung.removeClass("text-decoration-line-through");
@@ -79,7 +79,7 @@ function Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft) {
                             const $neuer_filtern_wert = FILTERN.$blanko_filtern_wert.clone().removeClass("blanko invisible");
                             $neuer_filtern_wert.attr("data-wert", filtern_wert);
                             const $neuer_filtern_wert_beschriftung = $neuer_filtern_wert.find(".filtern_wert_beschriftung").find(".beschriftung");
-                            $neuer_filtern_wert_beschriftung.text(Schnittstelle_VariableWertFormatiertZurueck(filtern_wert, eigenschaft, liste));
+                            $neuer_filtern_wert_beschriftung.text(Liste_WertNachEigenschaftFormatiertZurueck(filtern_wert, eigenschaft, liste));
                             if (filtern_klasse == "exklusiv") $neuer_filtern_wert_beschriftung.addClass("text-decoration-line-through");
                             else if (filtern_klasse == "inklusiv") $neuer_filtern_wert_beschriftung.removeClass("text-decoration-line-through");
                             $neuer_filtern_wert.appendTo($filtern_werte);

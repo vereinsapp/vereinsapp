@@ -1,4 +1,4 @@
-function Schnittstelle_VariableWertFormatiertZurueck(wert, eigenschaft, liste) {
+function Liste_WertNachEigenschaftFormatiertZurueck(wert, eigenschaft, liste) {
     let wert_formatiert;
 
     if (typeof wert !== "undefined")

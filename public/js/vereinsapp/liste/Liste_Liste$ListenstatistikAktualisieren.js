@@ -23,7 +23,7 @@ function Liste_Liste$ListenstatistikAktualisieren($listenstatistik, $liste) {
                 $liste.children().each(function () {
                     summe += Number(Schnittstelle_VariableRausZurueck(eigenschaft, $(this).attr("data-" + LISTEN[liste].element + "_id"), liste, 0));
                 });
-                $listenstatistik.text(Schnittstelle_VariableWertFormatiertZurueck(summe, eigenschaft, liste));
+                $listenstatistik.text(Liste_WertNachEigenschaftFormatiertZurueck(summe, eigenschaft, liste));
             }
             break;
     }

@@ -12,7 +12,7 @@ function Liste_$ElementAktualisieren($element) {
         const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($eigenschaft.attr("data-eigenschaft"), undefined);
 
         $eigenschaft.html(
-            Schnittstelle_VariableWertFormatiertZurueck(
+            Liste_WertNachEigenschaftFormatiertZurueck(
                 Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, undefined),
                 eigenschaft,
                 liste,

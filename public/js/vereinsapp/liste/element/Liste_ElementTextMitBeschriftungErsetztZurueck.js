@@ -37,7 +37,7 @@ function element_beschriftung_zurueck(element_id, liste) {
             $.each(LISTEN[liste].element_beschriftung_erweitert, function () {
                 if ("prefix" in this) beschriftung += this.prefix;
                 if ("eigenschaft" in this)
-                    beschriftung += Schnittstelle_VariableWertFormatiertZurueck(
+                    beschriftung += Liste_WertNachEigenschaftFormatiertZurueck(
                         Schnittstelle_VariableRausZurueck(this.eigenschaft, element_id, liste, undefined),
                         this.eigenschaft,
                         liste,
