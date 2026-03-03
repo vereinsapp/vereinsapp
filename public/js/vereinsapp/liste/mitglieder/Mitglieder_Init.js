@@ -1,3 +1,38 @@
+LISTEN.mitglieder.element_erstellen_data_vervollstaendigen_aktion = function (data) {
+    data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+
+    if (isLuxonDateTime(data.geburt)) data.geburt = data.geburt.toISO();
+    if (!("bemerkung" in data) || isEmptyString(data.bemerkung)) data.bemerkung = null;
+
+    return data;
+};
+
+LISTEN.mitglieder.element_aendern_data_vervollstaendigen_aktion = function (data, mitglied_id) {
+    if (!("email" in data)) data.email = Schnittstelle_VariableRausZurueck("email", mitglied_id, "mitglieder", undefined);
+    if (!("vorname" in data)) data.vorname = Schnittstelle_VariableRausZurueck("vorname", mitglied_id, "mitglieder", undefined);
+    if (!("nachname" in data)) data.nachname = Schnittstelle_VariableRausZurueck("nachname", mitglied_id, "mitglieder", undefined);
+    if (!("geburt" in data)) data.geburt = Schnittstelle_VariableRausZurueck("geburt", mitglied_id, "mitglieder", undefined);
+    if (!("postleitzahl" in data)) data.postleitzahl = Schnittstelle_VariableRausZurueck("postleitzahl", mitglied_id, "mitglieder", undefined);
+    if (!("wohnort" in data)) data.wohnort = Schnittstelle_VariableRausZurueck("wohnort", mitglied_id, "mitglieder", undefined);
+    if (!("geschlecht" in data)) data.geschlecht = Schnittstelle_VariableRausZurueck("geschlecht", mitglied_id, "mitglieder", undefined);
+    if (!("register" in data)) data.register = Schnittstelle_VariableRausZurueck("register", mitglied_id, "mitglieder", undefined);
+    if (!("auto" in data)) data.auto = Schnittstelle_VariableRausZurueck("auto", mitglied_id, "mitglieder", undefined);
+    if (!("funktion" in data)) data.funktion = Schnittstelle_VariableRausZurueck("funktion", mitglied_id, "mitglieder", undefined);
+    if (!("vorstandschaft_janein" in data))
+        data.vorstandschaft_janein = Schnittstelle_VariableRausZurueck("vorstandschaft_janein", mitglied_id, "mitglieder", undefined);
+    if (!("aktiv_janein" in data))
+        data.aktiv_janein = Number(Schnittstelle_VariableRausZurueck("aktiv_janein", mitglied_id, "mitglieder", undefined));
+    if (!("real_janein" in data)) data.real_janein = Number(Schnittstelle_VariableRausZurueck("real_janein", mitglied_id, "mitglieder", undefined));
+    if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", mitglied_id, "mitglieder", null);
+
+    data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+
+    if (isLuxonDateTime(data.geburt)) data.geburt = data.geburt.toISO();
+    if (isEmptyString(data.bemerkung)) data.bemerkung = null;
+
+    return data;
+};
+
 LISTEN.mitglieder.element_ergaenzen_aktion = function (mitglied) {
     if ("vorstandschaft_janein" in mitglied && mitglied.vorstandschaft_janein == 1) mitglied.vorstandschaft_janein = true;
     else mitglied.vorstandschaft_janein = false;
@@ -34,23 +69,25 @@ WERKZEUGE.mitglied_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALIS
 function Mitglieder_Init() {
     // MITGLIED ERSTELLEN / DUPLIZIEREN
     $(document).on("click", '.werkzeug[werkzeug="mitglied_erstellen"], .werkzeug[werkzeug="mitglied_duplizieren"]', function () {
-        Mitglieder_MitgliedErstellen(
+        Liste_ElementErstellen(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+            "mitglieder",
         );
     });
 
     // MITGLIED ÄNDERN
     $(document).on("click", '.werkzeug[werkzeug="mitglied_aendern"], .werkzeug[werkzeug="meine_daten_aendern"]', function () {
-        Mitglieder_MitgliedAendern(
+        Liste_ElementAendern(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+            "mitglieder",
         );
     });
 

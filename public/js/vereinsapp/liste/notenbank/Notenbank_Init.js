@@ -1,3 +1,27 @@
+LISTEN.notenbank.element_erstellen_data_vervollstaendigen_aktion = function (data) {
+    data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+
+    if (!("komponist" in data) || isEmptyString(data.komponist)) data.komponist = null;
+    if (!("bemerkung" in data) || isEmptyString(data.bemerkung)) data.bemerkung = null;
+
+    return data;
+};
+
+LISTEN.notenbank.element_aendern_data_vervollstaendigen_aktion = function (data, titel_id) {
+    if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", titel_id, "notenbank", undefined);
+    if (!("titel_nr" in data)) data.titel_nr = Schnittstelle_VariableRausZurueck("titel_nr", titel_id, "notenbank", undefined);
+    if (!("kategorie" in data)) data.kategorie = Schnittstelle_VariableRausZurueck("kategorie", titel_id, "notenbank", undefined);
+    if (!("komponist" in data)) data.komponist = Schnittstelle_VariableRausZurueck("komponist", titel_id, "notenbank", null);
+    if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", titel_id, "notenbank", null);
+
+    data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+
+    if (isEmptyString(data.komponist)) data.komponist = null;
+    if (isEmptyString(data.bemerkung)) data.bemerkung = null;
+
+    return data;
+};
+
 LISTEN.notenbank.element_ergaenzen_aktion = function (titel) {
     titel["anzahl_noten"] = 0;
     $.each(NOTENBANK_ERLAUBTE_DATEITYPEN_NOTEN, function (index, typ) {
@@ -44,23 +68,25 @@ WERKZEUGE.setliste_verwalten.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALIS
 function Notenbank_Init() {
     // TITEL ERSTELLEN / DUPLIZIEREN
     $(document).on("click", '.werkzeug[werkzeug="titel_erstellen"], .werkzeug[werkzeug="titel_duplizieren"]', function () {
-        Notenbank_TitelErstellen(
+        Liste_ElementErstellen(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("titel_id"), undefined),
+            "notenbank",
         );
     });
 
     // TITEL ÄNDERN
     $(document).on("click", '.werkzeug[werkzeug="titel_aendern"]', function () {
-        Notenbank_TitelAendern(
+        Liste_ElementAendern(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("titel_id"), undefined),
+            "notenbank",
         );
     });
 

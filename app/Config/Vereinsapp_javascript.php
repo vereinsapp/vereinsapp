@@ -52,6 +52,8 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/Liste_Liste$ListenstatistikAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_WertNachEigenschaftFormatiertZurueck.js?v='.VERSION,
 
+        'js/vereinsapp/liste/element/Liste_ElementErstellen.js?v='.VERSION,
+        'js/vereinsapp/liste/element/Liste_ElementAendern.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementBemerkungAendern.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementLoeschen.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_$ElementAktualisieren.js?v='.VERSION,
@@ -149,28 +151,18 @@ class Vereinsapp_javascript extends BaseConfig
      * wenn der Benutzer eingeloggt ist.
      */
     public $pfad_loggedin = array(
-        'js/vereinsapp/mitglieder/Mitglieder_Init.js?v='.VERSION,
-        'js/vereinsapp/mitglieder/Mitglieder_MitgliedErstellen.js?v='.VERSION,
-        'js/vereinsapp/mitglieder/Mitglieder_MitgliedAendern.js?v='.VERSION,
-        'js/vereinsapp/mitglieder/Mitglieder_PasswortAendern.js?v='.VERSION,
-        'js/vereinsapp/mitglieder/Mitglieder_PasswortFestlegen.js?v='.VERSION,
-        'js/vereinsapp/mitglieder/Mitglieder_EinmalLinkAnzeigen.js?v='.VERSION,
-        'js/vereinsapp/mitglieder/Mitglieder_EinmalLinkEmail.js?v='.VERSION,
+        'js/vereinsapp/liste/mitglieder/Mitglieder_Init.js?v='.VERSION,
+        'js/vereinsapp/liste/mitglieder/Mitglieder_PasswortAendern.js?v='.VERSION,
+        'js/vereinsapp/liste/mitglieder/Mitglieder_PasswortFestlegen.js?v='.VERSION,
+        'js/vereinsapp/liste/mitglieder/Mitglieder_EinmalLinkAnzeigen.js?v='.VERSION,
+        'js/vereinsapp/liste/mitglieder/Mitglieder_EinmalLinkEmail.js?v='.VERSION,
 
-        'js/vereinsapp/aufgaben/Aufgaben_Init.js?v='.VERSION,
-        'js/vereinsapp/aufgaben/Aufgaben_AufgabeErstellen.js?v='.VERSION,
-        'js/vereinsapp/aufgaben/Aufgaben_AufgabeAendern.js?v='.VERSION,
+        'js/vereinsapp/liste/aufgaben/Aufgaben_Init.js?v='.VERSION,
 
-        'js/vereinsapp/termine/Termine_Init.js?v='.VERSION,
-        'js/vereinsapp/termine/Termine_TerminErstellen.js?v='.VERSION,
-        'js/vereinsapp/termine/Termine_TerminAendern.js?v='.VERSION,
+        'js/vereinsapp/liste/termine/Termine_Init.js?v='.VERSION,
 
-        'js/vereinsapp/strafkatalog/Strafkatalog_Init.js?v='.VERSION,
-        'js/vereinsapp/strafkatalog/Strafkatalog_StrafeErstellen.js?v='.VERSION,
-        'js/vereinsapp/strafkatalog/Strafkatalog_StrafeAendern.js?v='.VERSION,
+        'js/vereinsapp/liste/strafkatalog/Strafkatalog_Init.js?v='.VERSION,
 
-        'js/vereinsapp/notenbank/Notenbank_Init.js?v='.VERSION,
-        'js/vereinsapp/notenbank/Notenbank_TitelErstellen.js?v='.VERSION,
-        'js/vereinsapp/notenbank/Notenbank_TitelAendern.js?v='.VERSION,
+        'js/vereinsapp/liste/notenbank/Notenbank_Init.js?v='.VERSION,
     );
 }

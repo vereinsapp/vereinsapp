@@ -1,25 +1,47 @@
+LISTEN.strafkatalog.element_erstellen_data_vervollstaendigen_aktion = function (data) {
+    data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+
+    if (!("bemerkung" in data) || isEmptyString(data.bemerkung)) data.bemerkung = null;
+
+    return data;
+};
+
+LISTEN.strafkatalog.element_aendern_data_vervollstaendigen_aktion = function (data, strafe_id) {
+    if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", strafe_id, "strafkatalog", undefined);
+    if (!("wert" in data)) data.wert = Schnittstelle_VariableRausZurueck("wert", strafe_id, "strafkatalog", undefined);
+    if (!("kategorie" in data)) data.kategorie = Schnittstelle_VariableRausZurueck("kategorie", strafe_id, "strafkatalog", undefined);
+    if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", strafe_id, "strafkatalog", null);
+
+    data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+
+    if (isEmptyString(data.bemerkung)) data.bemerkung = null;
+    return data;
+};
+
 WERKZEUGE.strafe_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
 
 function Strafkatalog_Init() {
     // STRAFE ERSTELLEN / DUPLIZIEREN
     $(document).on("click", '.werkzeug[werkzeug="strafe_erstellen"], .werkzeug[werkzeug="strafe_duplizieren"]', function () {
-        Strafkatalog_StrafeErstellen(
+        Liste_ElementErstellen(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("strafe_id"), undefined),
+            "strafkatalog",
         );
     });
 
     // STRAFE ÄNDERN
     $(document).on("click", '.werkzeug[werkzeug="strafe_aendern"]', function () {
-        Strafkatalog_StrafeAendern(
+        Liste_ElementAendern(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             Schnittstelle_VariableWertBereinigtZurueck($(this).attr("strafe_id"), undefined),
+            "strafkatalog",
         );
     });
 
