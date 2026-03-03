@@ -3,8 +3,8 @@
  */
 
 function Liste_$FilternLocalStorageSpeichern($werkzeug) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined);
-    const instanz = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-instanz"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("liste"), undefined);
+    const instanz = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("instanz"), undefined);
 
     // Definition von filtern_manip
     const filtern_manip = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.val(), new Object());

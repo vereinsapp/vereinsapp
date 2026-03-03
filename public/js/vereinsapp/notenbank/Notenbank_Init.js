@@ -43,61 +43,61 @@ WERKZEUGE.setliste_verwalten.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALIS
 
 function Notenbank_Init() {
     // TITEL ERSTELLEN / DUPLIZIEREN
-    $(document).on("click", '.werkzeug[data-werkzeug="titel_erstellen"], .werkzeug[data-werkzeug="titel_duplizieren"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="titel_erstellen"], .werkzeug[werkzeug="titel_duplizieren"]', function () {
         Notenbank_TitelErstellen(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("titel_id"), undefined),
         );
     });
 
     // TITEL ÄNDERN
-    $(document).on("click", '.werkzeug[data-werkzeug="titel_aendern"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="titel_aendern"]', function () {
         Notenbank_TitelAendern(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("titel_id"), undefined),
         );
     });
 
     // SETLISTE VERWALTEN (MODAL) ÖFFNEN
-    $(document).on("click", '.werkzeug[data-werkzeug="setliste_verwalten"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="setliste_verwalten"]', function () {
         Liste_VerknuepfungenModalOeffnen(
             "setliste_verwalten_modal",
             "setliste_verwalten",
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             {
-                titel_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
+                titel_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("titel_id"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
             },
             "notenbank_setliste",
         );
     });
 
     // SETLISTE VERWALTEN
-    $(document).on("click", '.werkzeug[data-werkzeug="notenbank_setlisteneintrag_erstellen"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="notenbank_setlisteneintrag_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                titel_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-titel_id"), undefined),
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
+                titel_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("titel_id"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
                 status: 1,
             },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             "notenbank_setliste",
         );
     });
 
-    $('.sortable[data-liste="notenbank_setliste"]').on("sortupdate update", function (event, ui) {
+    $('.sortable[liste="notenbank_setliste"]').on("sortupdate update", function (event, ui) {
         Liste_VerknuepfungStatusAendern(
             { $werkzeug: ui.item },
             ui.item.index() + 1,
-            ui.item.attr("data-notenbank_setlisteneintrag_id"),
+            ui.item.attr("notenbank_setlisteneintrag_id"),
             "notenbank_setliste",
         );
     });

@@ -28,81 +28,81 @@ WERKZEUGE.termine_aufgaben_zuordnen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_A
 
 function Aufgaben_Init() {
     // AUFGABE ERSTELLEN / DUPLIZIEREN
-    $(document).on("click", '.werkzeug[data-werkzeug="aufgabe_erstellen"], .werkzeug[data-werkzeug="aufgabe_duplizieren"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="aufgabe_erstellen"], .werkzeug[werkzeug="aufgabe_duplizieren"]', function () {
         Aufgaben_AufgabeErstellen(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
         );
     });
 
     // AUFGABE ÄNDERN
-    $(document).on("click", '.werkzeug[data-werkzeug="aufgabe_aendern"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="aufgabe_aendern"]', function () {
         Aufgaben_AufgabeAendern(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
         );
     });
 
     // RUECKMELDUNGEN VERWALTEN (MODAL) ÖFFNEN
-    $(document).on("click", '.werkzeug[data-werkzeug="aufgaben_rueckmeldungen_verwalten"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="aufgaben_rueckmeldungen_verwalten"]', function () {
         Liste_VerknuepfungenModalOeffnen(
             "aufgaben_rueckmeldungen_verwalten_modal",
             "aufgaben_rueckmeldungen_verwalten",
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             {
-                aufgabe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+                aufgabe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
             },
             "aufgaben_rueckmeldungen",
         );
     });
 
     // RÜCKMELDUNG ERSTELLEN
-    $(document).on("click", '.werkzeug[data-werkzeug="aufgaben_rueckmeldung_erstellen"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="aufgaben_rueckmeldung_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                aufgabe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
-                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-status"), undefined),
+                aufgabe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("status"), undefined),
             },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             "aufgaben_rueckmeldungen",
         );
     });
 
     // TERMINE AUFGABEN ZUORDNEN (MODAL) ÖFFNEN
-    $(document).on("click", '.werkzeug[data-werkzeug="termine_aufgaben_zuordnen"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="termine_aufgaben_zuordnen"]', function () {
         Liste_VerknuepfungenModalOeffnen(
             "termine_aufgaben_zuordnen_modal",
             "termine_aufgaben_zuordnen",
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             {
-                aufgabe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
+                aufgabe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
             },
             "aufgaben_zuordnungen_termine",
         );
     });
 
     // TERMINE AUFGABEN ZUORDNEN
-    $(document).on("change", '.werkzeug[data-werkzeug="aufgaben_zuordnung_termine_erstellen"]', function () {
+    $(document).on("change", '.werkzeug[werkzeug="aufgaben_zuordnung_termine_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                aufgabe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-aufgabe_id"), undefined),
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
+                aufgabe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
                 status: Number($(this).is(":checked")),
             },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             "aufgaben_zuordnungen_termine",
         );
     });

@@ -1,4 +1,4 @@
-<div class="fade blanko invisible" data-blanko="modal" id="datenschutz_richtlinie_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+<div class="fade blanko invisible" blanko="modal" id="datenschutz_richtlinie_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-body">
@@ -40,7 +40,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-<?php
                 if( array_key_exists('farbe', WERKZEUGE['datenschutz_richtlinie_akzeptieren']) ) echo WERKZEUGE['datenschutz_richtlinie_akzeptieren']['farbe']; else echo "primary";
-                ?> w-100 werkzeug" data-werkzeug="datenschutz_richtlinie_akzeptieren"><span class="beschriftung">Datenschutz-Richtlinie akzeptieren</span></button>
+                ?> w-100 werkzeug" werkzeug="datenschutz_richtlinie_akzeptieren"><span class="beschriftung">Datenschutz-Richtlinie akzeptieren</span></button>
             </div>
         </div>
     </div>

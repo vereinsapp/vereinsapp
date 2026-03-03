@@ -11,7 +11,7 @@ function Strafkatalog_StrafeAendern(data_vollstaendig, dom, data, modal_title, s
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "strafe_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");
-        $neues_formular.attr("data-liste", "strafkatalog").attr("data-werkzeug", "strafe_aendern").attr("data-strafe_id", strafe_id);
+        $neues_formular.attr("liste", "strafkatalog").attr("werkzeug", "strafe_aendern").attr("strafe_id", strafe_id);
         Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;

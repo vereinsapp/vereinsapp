@@ -4,7 +4,7 @@
             <ul class="list-group list-group-flush" data-bs-dismiss="offcanvas"><?php foreach( $werkzeugkasten as $werkzeug) { ?>
                 <li class="list-group-item list-group-item-action text-<?php
                 if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo WERKZEUGE[ $werkzeug ]['farbe']; else echo 'primary';
-                ?> werkzeug" data-werkzeug="<?= $werkzeug; ?>" data-modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" role="button">
+                ?> werkzeug" werkzeug="<?= $werkzeug; ?>" modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" role="button">
                     <span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?>"> </i><?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?></span>
                 </li>
             <?php } ?></ul>

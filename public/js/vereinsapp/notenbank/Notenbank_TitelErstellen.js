@@ -11,9 +11,9 @@ function Notenbank_TitelErstellen(data_vollstaendig, dom, data, modal_title, tit
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "titel_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");
-        $neues_formular.attr("data-liste", "notenbank");
-        if (typeof titel_id !== "undefined") $neues_formular.attr("data-werkzeug", "titel_duplizieren").attr("data-titel_id", titel_id);
-        else $neues_formular.attr("data-werkzeug", "titel_erstellen");
+        $neues_formular.attr("liste", "notenbank");
+        if (typeof titel_id !== "undefined") $neues_formular.attr("werkzeug", "titel_duplizieren").attr("titel_id", titel_id);
+        else $neues_formular.attr("werkzeug", "titel_erstellen");
         Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;

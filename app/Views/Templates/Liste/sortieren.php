@@ -9,5 +9,5 @@
     <label class="btn btn-outline-primary btn-lg" for="sortieren_richtung_desc"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE['desc']['bootstrap']; ?>"></i></span></label>
     <button type="button" class="btn btn-outline-<?php
     if( array_key_exists('farbe', WERKZEUGE['sortieren_eigenschaft_zuruecksetzen']) ) echo WERKZEUGE['sortieren_eigenschaft_zuruecksetzen']['farbe']; else echo "primary";
-    ?> werkzeug" data-werkzeug="sortieren_eigenschaft_zuruecksetzen"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['sortieren_eigenschaft_zuruecksetzen']['symbol'] ]['bootstrap']; ?>"></i></span></button>
+    ?> werkzeug" werkzeug="sortieren_eigenschaft_zuruecksetzen"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['sortieren_eigenschaft_zuruecksetzen']['symbol'] ]['bootstrap']; ?>"></i></span></button>
 </div>

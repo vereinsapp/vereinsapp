@@ -11,9 +11,9 @@ function Strafkatalog_StrafeErstellen(data_vollstaendig, dom, data, modal_title,
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "strafe_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");
-        $neues_formular.attr("data-liste", "strafkatalog");
-        if (typeof strafe_id !== "undefined") $neues_formular.attr("data-werkzeug", "strafe_duplizieren").attr("data-strafe_id", strafe_id);
-        else $neues_formular.attr("data-werkzeug", "strafe_erstellen");
+        $neues_formular.attr("liste", "strafkatalog");
+        if (typeof strafe_id !== "undefined") $neues_formular.attr("werkzeug", "strafe_duplizieren").attr("strafe_id", strafe_id);
+        else $neues_formular.attr("werkzeug", "strafe_erstellen");
         Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;

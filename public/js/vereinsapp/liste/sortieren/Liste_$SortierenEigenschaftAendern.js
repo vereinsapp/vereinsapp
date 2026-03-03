@@ -3,7 +3,7 @@
  */
 
 function Liste_$SortierenEigenschaftAendern($sortieren_eigenschaft) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($sortieren_eigenschaft.attr("data-liste"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($sortieren_eigenschaft.attr("liste"), undefined);
     const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($sortieren_eigenschaft.find(".sortieren_wert").val(), undefined);
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {

@@ -2,20 +2,20 @@
 <?= $this->section( 'navbar' ); ?><?= view( 'Templates/navbar_int' ); ?><?= $this->endSection(); ?>
 <?= $this->section( 'containers' ); ?>
 
-<div class="container mb-3 element" data-liste="notenbank" data-titel_id="<?= $titel_id; ?>">
+<div class="container mb-3 element" liste="notenbank" titel_id="<?= $titel_id; ?>">
 <?= view( 'Templates/Liste/element_navigation', array( 'element_navigation' => $element_navigation ) ); ?>
     <div class="text-center">
-        <span class="eigenschaft" data-eigenschaft="titel_nr"></span>
+        <span class="eigenschaft" eigenschaft="titel_nr"></span>
     </div>
     <div class="h5 beschriftung text-center">
-        <span class="eigenschaft" data-eigenschaft="titel"></span>
+        <span class="eigenschaft" eigenschaft="titel"></span>
     </div>
     <div class="row g-0 my-1">
-        <div class="col text-center text-nowrap"><span class="eigenschaft" data-eigenschaft="kategorie"></span></div>
-        <div class="col text-center text-nowrap"><span class="eigenschaft" data-eigenschaft="komponist"></span></div>
+        <div class="col text-center text-nowrap"><span class="eigenschaft" eigenschaft="kategorie"></span></div>
+        <div class="col text-center text-nowrap"><span class="eigenschaft" eigenschaft="komponist"></span></div>
     </div>
     <div class="row g-0 my-1">
-        <div class="col text-center text-nowrap fst-italic"><span class="eigenschaft" data-eigenschaft="bemerkung"></span></div>
+        <div class="col text-center text-nowrap fst-italic"><span class="eigenschaft" eigenschaft="bemerkung"></span></div>
     </div>
 </div>
 

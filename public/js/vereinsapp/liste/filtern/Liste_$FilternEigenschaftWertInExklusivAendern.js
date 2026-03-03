@@ -4,8 +4,8 @@
  */
 
 function Liste_$FilternEigenschaftWertInExklusivAendern($filtern_eigenschaft, filtern_wert) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("data-liste"), undefined);
-    const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("data-eigenschaft"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("liste"), undefined);
+    const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("eigenschaft"), undefined);
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
@@ -45,7 +45,7 @@ function Liste_$FilternEigenschaftWertInExklusivAendern($filtern_eigenschaft, fi
                         if (filtern_eigenschaft[filtern_klasse_alt].length === 0) delete filtern_eigenschaft[filtern_klasse_alt];
                     } else {
                         // filtern_wert_position oder filtern_klasse_alt ist nicht definiert, d.h. eigenschaft existiert noch nicht in filtern_manip
-                        const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-filtern_basis"), new Object());
+                        const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("filtern_basis"), new Object());
                         $.each(["inklusiv", "exklusiv"], function (position, filtern_klasse) {
                             if (filtern_klasse in filtern_basis[eigenschaft] && filtern_basis[eigenschaft][filtern_klasse].includes(filtern_wert)) {
                                 filtern_wert_position = filtern_basis[eigenschaft][filtern_klasse].indexOf(filtern_wert);

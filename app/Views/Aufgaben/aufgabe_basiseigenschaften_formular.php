@@ -1,14 +1,14 @@
 <div class="form-floating mb-2">
-    <input type="text" class="form-control eingabe" data-eingabe="titel" placeholder="<?= EIGENSCHAFTEN['aufgaben']['titel']['beschriftung']; ?>" />
+    <input type="text" class="form-control eingabe" eingabe="titel" placeholder="<?= EIGENSCHAFTEN['aufgaben']['titel']['beschriftung']; ?>" />
     <label><?= EIGENSCHAFTEN['aufgaben']['titel']['beschriftung']; ?></label>
 </div>
 
 <div class="form-floating mb-2">
-    <input type="number" class="form-control eingabe" data-eingabe="max_anzahl_mitglieder" placeholder="<?= EIGENSCHAFTEN['aufgaben']['max_anzahl_mitglieder']['beschriftung']; ?>" />
+    <input type="number" class="form-control eingabe" eingabe="max_anzahl_mitglieder" placeholder="<?= EIGENSCHAFTEN['aufgaben']['max_anzahl_mitglieder']['beschriftung']; ?>" />
     <label><?= EIGENSCHAFTEN['aufgaben']['max_anzahl_mitglieder']['beschriftung']; ?></label>
 </div>
 
 <div class="form-floating mb-2">
-    <input type="text" class="form-control eingabe" data-eingabe="bemerkung" placeholder="<?= EIGENSCHAFTEN['aufgaben']['bemerkung']['beschriftung']; ?>" />
+    <input type="text" class="form-control eingabe" eingabe="bemerkung" placeholder="<?= EIGENSCHAFTEN['aufgaben']['bemerkung']['beschriftung']; ?>" />
     <label><?= EIGENSCHAFTEN['aufgaben']['bemerkung']['beschriftung']; ?></label>
 </div>

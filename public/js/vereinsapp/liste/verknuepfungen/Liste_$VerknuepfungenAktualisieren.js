@@ -6,7 +6,7 @@
 function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
     const $verknuepfung_moeglich = $verknuepfungen.find(".verknuepfung_moeglich");
     const $verknuepfung_nicht_moeglich = $verknuepfungen.find(".verknuepfung_nicht_moeglich");
-    const verknuepfungen = Schnittstelle_VariableWertBereinigtZurueck($verknuepfungen.attr("data-verknuepfungen"), undefined);
+    const verknuepfungen = Schnittstelle_VariableWertBereinigtZurueck($verknuepfungen.attr("verknuepfungen"), undefined);
 
     // VERKNUEPFTE LISTEN DEFINIEREN
     const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
@@ -15,7 +15,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
     const verknuepfte_element_id = new Object();
     $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
         verknuepfte_element_id[LISTEN[verknuepfte_liste].element + "_id"] = Schnittstelle_VariableWertBereinigtZurueck(
-            $element.attr("data-" + LISTEN[verknuepfte_liste].element + "_id"),
+            $element.attr(LISTEN[verknuepfte_liste].element + "_id"),
             undefined,
         );
     });
@@ -71,34 +71,22 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
         $zugehoeriges_label.addClass("form-check-label").attr("for", zufaelligeZeichenketteZurueck(8));
 
         // Zugehöriges Werkzeug bearbeiten
-        $verknuepfungen.find('.werkzeug[data-werkzeug="' + LISTEN[verknuepfungen].element + '_erstellen"]').each(function () {
+        $verknuepfungen.find('.werkzeug[werkzeug="' + LISTEN[verknuepfungen].element + '_erstellen"]').each(function () {
             const $werkzeug = $(this);
             if (VERKNUEPFUNGEN[verknuepfungen].typ === "janein_auswahl") {
                 $werkzeug
-                    .attr(
-                        "data-" + LISTEN[verknuepfte_listen[0]].element + "_id",
-                        verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"],
-                    )
-                    .attr(
-                        "data-" + LISTEN[verknuepfte_listen[1]].element + "_id",
-                        verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"],
-                    )
-                    .attr("data-verknuepfungen", verknuepfungen);
+                    .attr(LISTEN[verknuepfte_listen[0]].element + "_id", verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"])
+                    .attr(LISTEN[verknuepfte_listen[1]].element + "_id", verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"])
+                    .attr("verknuepfungen", verknuepfungen);
 
                 $werkzeug.prop("checked", verknuepfung_status > 0).attr("id", $zugehoeriges_label.attr("for"));
             } else if (VERKNUEPFUNGEN[verknuepfungen].typ === "status_auswahl") {
-                const status = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-status"), undefined);
+                const status = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("status"), undefined);
 
                 $werkzeug
-                    .attr(
-                        "data-" + LISTEN[verknuepfte_listen[0]].element + "_id",
-                        verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"],
-                    )
-                    .attr(
-                        "data-" + LISTEN[verknuepfte_listen[1]].element + "_id",
-                        verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"],
-                    )
-                    .attr("data-verknuepfungen", verknuepfungen);
+                    .attr(LISTEN[verknuepfte_listen[0]].element + "_id", verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"])
+                    .attr(LISTEN[verknuepfte_listen[1]].element + "_id", verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"])
+                    .attr("verknuepfungen", verknuepfungen);
 
                 if (status === verknuepfung_status) {
                     $werkzeug
@@ -117,7 +105,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
         });
 
         // Zugehöriges Bemerkung-ändern-Werkzeug bearbeiten
-        $verknuepfungen.find('.werkzeug[data-werkzeug="bemerkung_aendern"]').each(function () {
+        $verknuepfungen.find('.werkzeug[werkzeug="bemerkung_aendern"]').each(function () {
             const $werkzeug = $(this);
 
             $.each(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt, function (status) {
@@ -134,12 +122,12 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
                     else $werkzeug.addClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[verknuepfung_status].farbe);
                 } else $werkzeug.addClass("btn-outline-primary");
 
-                $werkzeug.removeClass("invisible").attr("data-" + LISTEN[verknuepfungen].element + "_id", verknuepfung_id);
+                $werkzeug.removeClass("invisible").attr(LISTEN[verknuepfungen].element + "_id", verknuepfung_id);
             } else
                 $werkzeug
                     .addClass("btn-outline-primary")
                     .addClass("invisible")
-                    .removeAttr("data-" + LISTEN[verknuepfungen].element + "_id");
+                    .removeAttr(LISTEN[verknuepfungen].element + "_id");
         });
 
         if (

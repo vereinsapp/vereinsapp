@@ -3,12 +3,12 @@
  */
 
 function Liste_$SortierenEigenschaftAktualisieren($sortieren_eigenschaft) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($sortieren_eigenschaft.attr("data-liste"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($sortieren_eigenschaft.attr("liste"), undefined);
     const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($sortieren_eigenschaft);
 
     // Definition von sortieren_eigenschaft
     const sortieren_manipuliert = Liste_SortierenManipuliertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-sortieren_basis"), undefined),
+        Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("sortieren_basis"), undefined),
         Schnittstelle_VariableWertBereinigtZurueck($werkzeug.val(), undefined),
         liste,
     );

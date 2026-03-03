@@ -3,13 +3,13 @@
  */
 
 function Liste_$ElementAktualisieren($element) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-liste"), undefined);
-    const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-" + LISTEN[liste].element + "_id"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("liste"), undefined);
+    const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
 
     // EIGENSCHAFTEN AKTUALISIEREN
     $element.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
-        const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($eigenschaft.attr("data-eigenschaft"), undefined);
+        const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($eigenschaft.attr("eigenschaft"), undefined);
 
         $eigenschaft.html(
             Liste_WertNachEigenschaftFormatiertZurueck(
@@ -20,7 +20,7 @@ function Liste_$ElementAktualisieren($element) {
         );
 
         const eigenschaften_bedingt_formatiert = Schnittstelle_VariableWertBereinigtZurueck(
-            $element.attr("data-eigenschaften_bedingt_formatiert"),
+            $element.attr("eigenschaften_bedingt_formatiert"),
             new Object(),
         );
         if (isObject(eigenschaften_bedingt_formatiert) && eigenschaft in eigenschaften_bedingt_formatiert)
@@ -35,8 +35,8 @@ function Liste_$ElementAktualisieren($element) {
     // WERKZEUGKASTEN AKTUALISIEREN
     $element
         .find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]')
-        .attr("data-liste", liste)
-        .attr("data-" + LISTEN[liste].element + "_id", element_id);
+        .attr("liste", liste)
+        .attr(LISTEN[liste].element + "_id", element_id);
 
     // verknuepfungen AKTUALISIEREN
     $element.find(".verknuepfungen").each(function () {

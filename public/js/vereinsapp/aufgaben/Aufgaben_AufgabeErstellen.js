@@ -11,9 +11,9 @@ function Aufgaben_AufgabeErstellen(data_vollstaendig, dom, data, modal_title, au
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "aufgabe_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");
-        $neues_formular.attr("data-liste", "aufgaben");
-        if (typeof aufgabe_id !== "undefined") $neues_formular.attr("data-werkzeug", "aufgabe_duplizieren").attr("data-aufgabe_id", aufgabe_id);
-        else $neues_formular.attr("data-werkzeug", "aufgabe_erstellen");
+        $neues_formular.attr("liste", "aufgaben");
+        if (typeof aufgabe_id !== "undefined") $neues_formular.attr("werkzeug", "aufgabe_duplizieren").attr("aufgabe_id", aufgabe_id);
+        else $neues_formular.attr("werkzeug", "aufgabe_erstellen");
         Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;

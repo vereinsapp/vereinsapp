@@ -3,8 +3,8 @@
  */
 
 function Liste_$SortierenLocalStorageSpeichern($sortieren_localstorage) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($sortieren_localstorage.attr("data-liste"), undefined);
-    const instanz = Schnittstelle_VariableWertBereinigtZurueck($sortieren_localstorage.attr("data-instanz"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($sortieren_localstorage.attr("liste"), undefined);
+    const instanz = Schnittstelle_VariableWertBereinigtZurueck($sortieren_localstorage.attr("instanz"), undefined);
 
     // Definition von sortieren_manip
     const sortieren_manip = { eigenschaft: undefined, richtung: undefined };

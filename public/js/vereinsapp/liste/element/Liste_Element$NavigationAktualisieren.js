@@ -4,13 +4,13 @@
  */
 
 function Liste_Element$NavigationAktualisieren($element_navigation, $element) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-liste"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("liste"), undefined);
     const $vorheriges_element = $element_navigation.find(".vorheriges_element");
     const $naechstes_element = $element_navigation.find(".naechstes_element");
-    const instanz = $element_navigation.attr("data-instanz");
+    const instanz = $element_navigation.attr("instanz");
 
     // TABELLE FILTERN
-    const filtern_data = Schnittstelle_VariableWertBereinigtZurueck($element_navigation.attr("data-filtern"), new Object());
+    const filtern_data = Schnittstelle_VariableWertBereinigtZurueck($element_navigation.attr("filtern"), new Object());
     const filtern_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_filtern", new Object()); // Problem: LISTEN[liste].instanz[instanz].filtern existiert nicht, weil keine .liste mit dieser instanz existiert
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
         LISTEN[liste].tabelle,
@@ -19,7 +19,7 @@ function Liste_Element$NavigationAktualisieren($element_navigation, $element) {
     );
 
     // TABELLE SORTIEREN
-    const sortieren_data = Schnittstelle_VariableWertBereinigtZurueck($element_navigation.attr("data-sortieren"), undefined);
+    const sortieren_data = Schnittstelle_VariableWertBereinigtZurueck($element_navigation.attr("sortieren"), undefined);
     const sortieren_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren", undefined); // Problem: LISTEN[liste].instanz[instanz].sortieren existiert nicht, weil keine .liste mit dieser instanz existiert
     const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(
         tabelle_gefiltert,
@@ -29,7 +29,7 @@ function Liste_Element$NavigationAktualisieren($element_navigation, $element) {
     let vorherige_element_id = undefined;
     let naechste_element_id = undefined;
     $.each(tabelle_gefiltert_sortiert, function (position, element) {
-        if (element.id === Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-" + LISTEN[liste].element + "_id"), undefined)) {
+        if (element.id === Schnittstelle_VariableWertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined)) {
             if (position > 0) vorherige_element_id = tabelle_gefiltert_sortiert[position - 1].id;
             if (position < tabelle_gefiltert_sortiert.length - 1) naechste_element_id = tabelle_gefiltert_sortiert[position + 1].id;
         }

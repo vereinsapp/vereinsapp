@@ -4,17 +4,14 @@
 const FILTERN = new Object();
 
 WERKZEUGE.filtern_manip.aktualisieren_aktion = function ($werkzeug) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined);
-    const instanz = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-instanz"), undefined);
-    const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck(
-        $("#" + instanz + "[data-liste=" + liste + "]").attr("data-filtern"),
-        new Object(),
-    );
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("liste"), undefined);
+    const instanz = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("instanz"), undefined);
+    const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + "[liste=" + liste + "]").attr("filtern"), new Object());
     const filtern_manip = LISTEN[liste].instanz[instanz].filtern;
 
     $werkzeug
-        .attr("data-modal_title", LISTEN[liste].beschriftung + " " + WERKZEUGE.filtern_manip.symbol)
-        .attr("data-filtern_basis", JsonStringifiedZurueck(filtern_basis, new Object()))
+        .attr("modal_title", LISTEN[liste].beschriftung + " " + WERKZEUGE.filtern_manip.symbol)
+        .attr("filtern_basis", JsonStringifiedZurueck(filtern_basis, new Object()))
         .val(JsonStringifiedZurueck(filtern_manip, new Object()));
 
     // ROTER PUNKT AKTUALISIEREN
@@ -33,20 +30,20 @@ function Liste_FilternInit() {
 
     // FILTERN-EIGENSCHAFT IN FILTERN BEREITSTELLEN
     $.each(BLANKOS.filtern_eigenschaft, function (position, $blanko) {
-        const typ = $blanko.attr("data-typ");
-        $blanko.removeAttr("data-typ");
+        const typ = $blanko.attr("typ");
+        $blanko.removeAttr("typ");
 
         if (!("$blanko_filtern_eigenschaft" in FILTERN)) FILTERN.$blanko_filtern_eigenschaft = new Object();
         FILTERN.$blanko_filtern_eigenschaft[typ] = $blanko;
     });
 
     // FILTERN IM LOCALSTORAGE SPEICHERN
-    $(document).on("change", '.werkzeug[data-werkzeug="filtern_manip"][data-liste][data-instanz]', function () {
+    $(document).on("change", '.werkzeug[werkzeug="filtern_manip"][liste][instanz]', function () {
         Liste_$FilternLocalStorageSpeichern($(this));
     });
 
     // FILTERN MODAL ÖFFNEN
-    $(document).on("click", '.werkzeug[data-werkzeug="filtern_manip"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="filtern_manip"]', function () {
         Liste_$FilternModalOeffnen($(this));
     });
 
@@ -61,23 +58,23 @@ function Liste_FilternInit() {
     });
 
     // FILTERN WERT ZWISCHEN INKLUSIV UND EXKLUSIV VERSCHIEBEN
-    $(document).on("click", ".werkzeug[data-werkzeug=filtern_wert_inklusiv_exklusiv]", function () {
+    $(document).on("click", ".werkzeug[werkzeug=filtern_wert_inklusiv_exklusiv]", function () {
         Liste_$FilternEigenschaftWertInExklusivAendern(
             $(this).closest(".filtern_eigenschaft"),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).closest(".filtern_wert").attr("data-wert"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).closest(".filtern_wert").attr("wert"), undefined),
         );
     });
 
     // FILTERN WERT LOESCHEN
-    $(document).on("click", ".werkzeug[data-werkzeug=filtern_wert_loeschen]", function () {
+    $(document).on("click", ".werkzeug[werkzeug=filtern_wert_loeschen]", function () {
         Liste_$FilternEigenschaftWertLoeschen(
             $(this).closest(".filtern_eigenschaft"),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).closest(".filtern_wert").attr("data-wert"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).closest(".filtern_wert").attr("wert"), undefined),
         );
     });
 
     // FILTERN EIGENSCHAFT ZURÜCKSETZEN
-    $(document).on("click", ".werkzeug[data-werkzeug=filtern_eigenschaft_zuruecksetzen]", function () {
+    $(document).on("click", ".werkzeug[werkzeug=filtern_eigenschaft_zuruecksetzen]", function () {
         Liste_$FilternEigenschaftZuruecksetzen($(this).closest(".filtern_eigenschaft"));
     });
 }

@@ -3,10 +3,10 @@
  */
 
 function Liste_$VerzeichnisAktualisieren($verzeichnis) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-liste"), undefined);
-    const verzeichnis_instanz = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-instanz"), $verzeichnis.attr("id"));
-    const element_id = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-" + LISTEN[liste].element + "_id"), undefined);
-    const basis = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-basis"), new Array());
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("liste"), undefined);
+    const verzeichnis_instanz = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("instanz"), $verzeichnis.attr("id"));
+    const element_id = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr(LISTEN[liste].element + "_id"), undefined);
+    const basis = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("basis"), new Array());
 
     if (basis.length > 0)
         $verzeichnis
@@ -24,20 +24,20 @@ function Liste_$VerzeichnisAktualisieren($verzeichnis) {
     // UNTERVERZEICHNISSE IM DOM LÖSCHEN
     $verzeichnis.children(".unterverzeichnis").each(function () {
         const $unterverzeichnis = $(this);
-        const unterverzeichnis = $unterverzeichnis.attr("data-unterverzeichnis");
+        const unterverzeichnis = $unterverzeichnis.attr("unterverzeichnis");
         if (!unterverzeichnisse_gefiltert_sortiert.includes(unterverzeichnis)) $unterverzeichnis.remove();
     });
 
     // DATEIEN IM DOM LÖSCHEN
     $verzeichnis.children(".datei").each(function () {
         const $datei = $(this);
-        const datei = $datei.attr("data-datei");
+        const datei = $datei.attr("datei");
         if (!dateien_gefiltert_sortiert.includes(datei)) $datei.remove();
     });
 
     // UNTERVERZEICHNISSE IM DOM ERGÄNZEN
     $.each(unterverzeichnisse_gefiltert_sortiert, function (position, unterverzeichnis) {
-        const $unterverzeichnis = $verzeichnis.children(".unterverzeichnis[data-unterverzeichnis='" + unterverzeichnis + "']");
+        const $unterverzeichnis = $verzeichnis.children(".unterverzeichnis[unterverzeichnis='" + unterverzeichnis + "']");
 
         // Unterverzeichnis wird nur hinzugefügt, falls es noch nicht existiert
         if (!$unterverzeichnis.exists()) {
@@ -46,7 +46,7 @@ function Liste_$VerzeichnisAktualisieren($verzeichnis) {
                 .clone()
                 .removeClass("blanko invisible");
 
-            $neues_unterverzeichnis.attr("data-unterverzeichnis", unterverzeichnis);
+            $neues_unterverzeichnis.attr("unterverzeichnis", unterverzeichnis);
 
             const $zugehoeriges_collapse = $neues_unterverzeichnis.find(".collapse").first();
             $zugehoeriges_collapse.attr("id", zufaelligeZeichenketteZurueck(8));
@@ -60,70 +60,70 @@ function Liste_$VerzeichnisAktualisieren($verzeichnis) {
             neue_basis.push(unterverzeichnis);
             $neues_unterverzeichnis
                 .find(".verzeichnis")
-                .attr("data-liste", liste)
-                .attr("data-instanz", verzeichnis_instanz)
-                .attr("data-" + LISTEN[liste].element + "_id", element_id)
-                .attr("data-basis", JsonStringifiedZurueck(neue_basis, new Array()));
+                .attr("liste", liste)
+                .attr("instanz", verzeichnis_instanz)
+                .attr(LISTEN[liste].element + "_id", element_id)
+                .attr("basis", JsonStringifiedZurueck(neue_basis, new Array()));
 
             // Unterverzeichnis wird hinzugefügt (je nachdem, wo es im Verzeichnis positioniert ist)
             if (position === 0) $neues_unterverzeichnis.appendTo($verzeichnis);
             else
                 $neues_unterverzeichnis.insertAfter(
-                    $verzeichnis.children('.unterverzeichnis[data-unterverzeichnis="' + unterverzeichnisse_gefiltert_sortiert[position - 1] + '"]'),
+                    $verzeichnis.children('.unterverzeichnis[unterverzeichnis="' + unterverzeichnisse_gefiltert_sortiert[position - 1] + '"]'),
                 );
         }
     });
 
     // DATEIEN IM DOM ERGÄNZEN
     $.each(dateien_gefiltert_sortiert, function (position, datei) {
-        const $datei = $verzeichnis.children('.datei[data-datei="' + datei + '"]');
+        const $datei = $verzeichnis.children('.datei[datei="' + datei + '"]');
 
         // Datei wird nur hinzugefügt, falls sie noch nicht existiert
         if (!$datei.exists()) {
             // Blanko-Datei wird geklont
             const $neue_datei = LISTEN[liste].instanz[verzeichnis_instanz].$blanko_datei.clone().removeClass("blanko invisible");
 
-            $neue_datei.attr("data-liste", liste).attr("data-datei", datei);
+            $neue_datei.attr("liste", liste).attr("datei", datei);
 
             // Datei wird hinzugefügt (je nachdem, wo sie im Verzeichnis positioniert ist)
             if (position === 0) {
                 if (unterverzeichnisse_gefiltert_sortiert.length > 0)
                     $neue_datei.insertAfter(
                         $verzeichnis.children(
-                            '.unterverzeichnis[data-unterverzeichnis="' +
+                            '.unterverzeichnis[unterverzeichnis="' +
                                 unterverzeichnisse_gefiltert_sortiert[unterverzeichnisse_gefiltert_sortiert.length - 1] +
                                 '"]',
                         ),
                     );
                 else $neue_datei.appendTo($verzeichnis);
-            } else $neue_datei.insertAfter($verzeichnis.children('.datei[data-datei="' + dateien_gefiltert_sortiert[position - 1] + '"]'));
+            } else $neue_datei.insertAfter($verzeichnis.children('.datei[datei="' + dateien_gefiltert_sortiert[position - 1] + '"]'));
         }
     });
 
     // UNTERVERZEICHNISSE IM DOM SORTIEREN
     $.each(unterverzeichnisse_gefiltert_sortiert, function (position, unterverzeichnis) {
-        const $unterverzeichnis = $verzeichnis.children(".unterverzeichnis[data-unterverzeichnis='" + unterverzeichnis + "']");
+        const $unterverzeichnis = $verzeichnis.children(".unterverzeichnis[unterverzeichnis='" + unterverzeichnis + "']");
         if (position === 0) $unterverzeichnis.appendTo($verzeichnis);
         else
             $unterverzeichnis.insertAfter(
-                $verzeichnis.children('.unterverzeichnis[data-unterverzeichnis="' + unterverzeichnisse_gefiltert_sortiert[position - 1] + '"]'),
+                $verzeichnis.children('.unterverzeichnis[unterverzeichnis="' + unterverzeichnisse_gefiltert_sortiert[position - 1] + '"]'),
             );
     });
 
     // DATEIEN IM DOM SORTIEREN
     $.each(dateien_gefiltert_sortiert, function (position, datei) {
-        const $datei = $verzeichnis.children('.datei[data-datei="' + datei + '"]');
+        const $datei = $verzeichnis.children('.datei[datei="' + datei + '"]');
         if (position === 0) {
             if (unterverzeichnisse_gefiltert_sortiert.length > 0)
                 $datei.insertAfter(
                     $verzeichnis.children(
-                        '.unterverzeichnis[data-unterverzeichnis="' +
+                        '.unterverzeichnis[unterverzeichnis="' +
                             unterverzeichnisse_gefiltert_sortiert[unterverzeichnisse_gefiltert_sortiert.length - 1] +
                             '"]',
                     ),
                 );
             else $datei.appendTo($verzeichnis);
-        } else $datei.insertAfter($verzeichnis.children('.datei[data-datei="' + dateien_gefiltert_sortiert[position - 1] + '"]'));
+        } else $datei.insertAfter($verzeichnis.children('.datei[datei="' + dateien_gefiltert_sortiert[position - 1] + '"]'));
     });
 
     // UNTERVERZEICHNISSE AKTUALISIEREN
@@ -132,17 +132,17 @@ function Liste_$VerzeichnisAktualisieren($verzeichnis) {
     });
 
     // ÜBERSCHRIFT AKTUALISIEREN
-    $('.ueberschrift[data-instanz="' + verzeichnis_instanz + '"]').each(function () {
+    $('.ueberschrift[instanz="' + verzeichnis_instanz + '"]').each(function () {
         Liste_Liste$UeberschriftAktualisieren($(this), $verzeichnis);
     });
 
     // WERKZEUG AKTUALISIEREN
-    $('.werkzeug[data-instanz="' + verzeichnis_instanz + '"]').each(function () {
+    $('.werkzeug[instanz="' + verzeichnis_instanz + '"]').each(function () {
         Liste_Liste$WerkzeugAktualisieren($(this), $verzeichnis);
     });
 
     // LISTENSTATISTIK AKTUALISIEREN
-    $('.listenstatistik[data-instanz="' + verzeichnis_instanz + '"]').each(function () {
+    $('.listenstatistik[instanz="' + verzeichnis_instanz + '"]').each(function () {
         Liste_Liste$ListenstatistikAktualisieren($(this), $verzeichnis);
     });
 }

@@ -6,7 +6,7 @@
 function Liste_Element$FormularValidationAktualisieren($formular, validation) {
     $formular.find(".eingabe").each(function () {
         const $eingabe = $(this);
-        const eingabe = $eingabe.attr("data-eingabe");
+        const eingabe = $eingabe.attr("eingabe");
 
         $eingabe.parent().find(".valid-tooltip").remove();
         $eingabe.parent().find(".invalid-tooltip").remove();

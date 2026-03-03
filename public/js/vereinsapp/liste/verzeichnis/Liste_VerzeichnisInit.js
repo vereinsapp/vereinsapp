@@ -4,9 +4,9 @@
 function Liste_VerzeichnisInit() {
     // INSTANZEN IN LISTEN BEREITSTELLEN
     $.each(BLANKOS.unterverzeichnis, function (position, $blanko) {
-        const verzeichnis = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-liste"), undefined);
-        const instanz = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-instanz"), undefined);
-        $blanko.removeAttr("data-liste").removeAttr("data-instanz");
+        const verzeichnis = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("liste"), undefined);
+        const instanz = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("instanz"), undefined);
+        $blanko.removeAttr("liste").removeAttr("instanz");
 
         if (!("instanz" in LISTEN[verzeichnis])) LISTEN[verzeichnis].instanz = new Object();
         if (!(instanz in LISTEN[verzeichnis].instanz))
@@ -19,9 +19,9 @@ function Liste_VerzeichnisInit() {
     });
 
     $.each(BLANKOS.datei, function (position, $blanko) {
-        const verzeichnis = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-liste"), undefined);
-        const instanz = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-instanz"), undefined);
-        $blanko.removeAttr("data-liste").removeAttr("data-instanz");
+        const verzeichnis = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("liste"), undefined);
+        const instanz = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("instanz"), undefined);
+        $blanko.removeAttr("liste").removeAttr("instanz");
 
         if (!("instanz" in LISTEN[verzeichnis])) LISTEN[verzeichnis].instanz = new Object();
         if (!(instanz in LISTEN[verzeichnis].instanz))

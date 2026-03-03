@@ -3,8 +3,8 @@
  */
 
 function Liste_$FilternEigenschaftZuruecksetzen($filtern_eigenschaft) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("data-liste"), undefined);
-    const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("data-eigenschaft"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("liste"), undefined);
+    const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("eigenschaft"), undefined);
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {

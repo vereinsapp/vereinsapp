@@ -12,9 +12,9 @@ function Liste_ElementBemerkungAendern(data_vollstaendig, dom, data, element_id,
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");
         $neues_formular
-            .attr("data-liste", liste)
-            .attr("data-werkzeug", "bemerkung_aendern")
-            .attr("data-" + LISTEN[liste].element + "_id", element_id);
+            .attr("liste", liste)
+            .attr("werkzeug", "bemerkung_aendern")
+            .attr(LISTEN[liste].element + "_id", element_id);
         Schnittstelle_Dom$Quelle$ZielVerknuepfen($neues_formular.find(".data_vollstaendig"), dom.$werkzeug.closest(".element"));
         Liste_Element$FormularInitialisieren($neues_modal.find(".formular"));
     } else {
@@ -44,7 +44,7 @@ function Liste_ElementBemerkungAendern(data_vollstaendig, dom, data, element_id,
                 Schnittstelle_VariableElementErgaenzen(liste);
                 Schnittstelle_EventVariableUpdDom(liste);
 
-                if ("dom" in AJAX && "$element" in AJAX.dom && AJAX.dom.$element.exists() && liste !== AJAX.dom.$element.attr("data-liste"))
+                if ("dom" in AJAX && "$element" in AJAX.dom && AJAX.dom.$element.exists() && liste !== AJAX.dom.$element.attr("liste"))
                     Liste_$ElementAktualisieren(AJAX.dom.$element);
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {

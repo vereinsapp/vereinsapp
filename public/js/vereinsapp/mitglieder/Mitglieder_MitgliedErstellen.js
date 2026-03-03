@@ -11,9 +11,9 @@ function Mitglieder_MitgliedErstellen(data_vollstaendig, dom, data, modal_title,
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "mitglied_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");
-        $neues_formular.attr("data-liste", "mitglieder");
-        if (typeof mitglied_id !== "undefined") $neues_formular.attr("data-werkzeug", "mitglied_duplizieren").attr("data-mitglied_id", mitglied_id);
-        else $neues_formular.attr("data-werkzeug", "mitglied_erstellen");
+        $neues_formular.attr("liste", "mitglieder");
+        if (typeof mitglied_id !== "undefined") $neues_formular.attr("werkzeug", "mitglied_duplizieren").attr("mitglied_id", mitglied_id);
+        else $neues_formular.attr("werkzeug", "mitglied_erstellen");
         Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;

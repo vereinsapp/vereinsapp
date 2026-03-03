@@ -1,4 +1,4 @@
-<div class="<?php if( isset( $autoload ) AND $autoload ) echo 'autoload'; ?> fade blanko invisible" data-blanko="modal" id="<?= $modal_id ?>" tabindex="-1">
+<div class="<?php if( isset( $autoload ) AND $autoload ) echo 'autoload'; ?> fade blanko invisible" blanko="modal" id="<?= $modal_id ?>" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">

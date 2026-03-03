@@ -3,10 +3,10 @@
  */
 
 function Liste_$GruppierenModalOeffnen($werkzeug) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("liste"), undefined);
 
     const $neues_gruppieren_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-modal_title"), undefined),
+        Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("modal_title"), undefined),
         "gruppieren_manip_modal",
     );
 
@@ -17,7 +17,7 @@ function Liste_$GruppierenModalOeffnen($werkzeug) {
 
     // Initialiserung von $gruppieren_eigenschaft
     const $gruppieren_eigenschaft = $neues_gruppieren_modal.find(".gruppieren_eigenschaft");
-    $gruppieren_eigenschaft.attr("data-liste", liste);
+    $gruppieren_eigenschaft.attr("liste", liste);
     const $gruppieren_wert = $neues_gruppieren_modal.find(".gruppieren_wert");
     $gruppieren_wert.empty();
     $.each(GRUPPIERBARE_EIGENSCHAFTEN[liste], function (position, eigenschaft) {

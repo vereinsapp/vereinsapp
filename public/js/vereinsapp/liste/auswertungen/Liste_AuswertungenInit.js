@@ -4,10 +4,10 @@
 function Liste_AuswertungenInit() {
     // INSTANZEN IN LISTEN BEREITSTELLEN
     $.each(BLANKOS.auswertung, function (position, $blanko) {
-        const auswertungen = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-auswertungen"), undefined);
-        const instanz = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-instanz"), undefined);
-        const liste = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-liste"), undefined);
-        $blanko.removeAttr("data-auswertungen").removeAttr("data-instanz").removeAttr("data-liste");
+        const auswertungen = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("auswertungen"), undefined);
+        const instanz = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("instanz"), undefined);
+        const liste = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("liste"), undefined);
+        $blanko.removeAttr("auswertungen").removeAttr("instanz").removeAttr("liste");
 
         if (!("instanz" in LISTEN[auswertungen])) LISTEN[auswertungen].instanz = new Object();
         if (!(instanz in LISTEN[auswertungen].instanz))

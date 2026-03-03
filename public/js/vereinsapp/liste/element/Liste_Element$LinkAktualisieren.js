@@ -4,9 +4,9 @@
  */
 
 function Liste_Element$LinkAktualisieren($link, $element) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-liste"), undefined);
-    const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-" + LISTEN[liste].element + "_id"), undefined);
-    const link_data = Schnittstelle_VariableWertBereinigtZurueck($link.attr("data-link"), new Object());
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("liste"), undefined);
+    const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
+    const link_data = Schnittstelle_VariableWertBereinigtZurueck($link.attr("link"), new Object());
 
     let href = SITE_URL;
     if ("liste" in link_data) href += LISTEN[link_data.liste].controller;

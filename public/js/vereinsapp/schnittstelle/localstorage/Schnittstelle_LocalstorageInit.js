@@ -5,11 +5,11 @@ function Schnittstelle_LocalstorageInit() {
         Schnittstelle_LocalstorageLeeren(true, new Object());
 
     // LOCALSTORAGE LEEREN
-    $(document).on("click", '.werkzeug[data-werkzeug="localstorage_leeren"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="localstorage_leeren"]', function () {
         Schnittstelle_LocalstorageLeeren(
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
         );
     });
 }

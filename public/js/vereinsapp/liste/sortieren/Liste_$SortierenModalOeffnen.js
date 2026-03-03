@@ -3,10 +3,10 @@
  */
 
 function Liste_$SortierenModalOeffnen($werkzeug) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("liste"), undefined);
 
     const $neues_sortieren_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-modal_title"), undefined),
+        Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("modal_title"), undefined),
         "sortieren_manip_modal",
     );
 
@@ -17,7 +17,7 @@ function Liste_$SortierenModalOeffnen($werkzeug) {
 
     // Initialiserung von $sortieren_eigenschaft
     const $sortieren_eigenschaft = $neues_sortieren_modal.find(".sortieren_eigenschaft");
-    $sortieren_eigenschaft.attr("data-liste", liste);
+    $sortieren_eigenschaft.attr("liste", liste);
     const $sortieren_wert = $neues_sortieren_modal.find(".sortieren_wert");
     $sortieren_wert.empty();
     $.each(SORTIERBARE_EIGENSCHAFTEN[liste], function (position, eigenschaft) {

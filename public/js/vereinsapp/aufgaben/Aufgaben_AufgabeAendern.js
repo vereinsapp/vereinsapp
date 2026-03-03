@@ -11,7 +11,7 @@ function Aufgaben_AufgabeAendern(data_vollstaendig, dom, data, modal_title, aufg
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "aufgabe_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");
-        $neues_formular.attr("data-liste", "aufgaben").attr("data-werkzeug", "aufgabe_aendern").attr("data-aufgabe_id", aufgabe_id);
+        $neues_formular.attr("liste", "aufgaben").attr("werkzeug", "aufgabe_aendern").attr("aufgabe_id", aufgabe_id);
         Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;

@@ -1,5 +1,5 @@
 EIGENSCHAFTEN.termine.kategorie.eingabe_aendern_aktion = function ($kategorie) {
-    const $filtern_mitglieder = $kategorie.closest(".formular").find('.eingabe[data-eingabe="filtern_mitglieder"]');
+    const $filtern_mitglieder = $kategorie.closest(".formular").find('.eingabe[eingabe="filtern_mitglieder"]');
     if ($kategorie.val() in TERMINE_KATEGORIE_FILTERN_MITGLIEDER) {
         const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()], new Object());
         const filtern_manip = new Object();
@@ -9,9 +9,9 @@ EIGENSCHAFTEN.termine.kategorie.eingabe_aendern_aktion = function ($kategorie) {
         });
 
         $filtern_mitglieder
-            .attr("data-filtern_basis", JsonStringifiedZurueck(filtern_basis, new Object()))
+            .attr("filtern_basis", JsonStringifiedZurueck(filtern_basis, new Object()))
             .val(JsonStringifiedZurueck(filtern_manip, new Object()));
-    } else $filtern_mitglieder.removeAttr("data-filtern_basis").val("");
+    } else $filtern_mitglieder.removeAttr("filtern_basis").val("");
 };
 
 LISTEN.termine.element_ergaenzen_aktion = function (termin) {
@@ -68,81 +68,81 @@ WERKZEUGE.termin_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIE
 
 function Termine_Init() {
     // TERMIN ERSTELLEN / DUPLIZIEREN
-    $(document).on("click", '.werkzeug[data-werkzeug="termin_erstellen"], .werkzeug[data-werkzeug="termin_duplizieren"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="termin_erstellen"], .werkzeug[werkzeug="termin_duplizieren"]', function () {
         Termine_TerminErstellen(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
         );
     });
 
     // TERMIN ÄNDERN
-    $(document).on("click", '.werkzeug[data-werkzeug="termin_aendern"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="termin_aendern"]', function () {
         Termine_TerminAendern(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
         );
     });
 
     // RÜCKMELDUNGEN VERWALTEN (MODAL) ÖFFNEN
-    $(document).on("click", '.werkzeug[data-werkzeug="termine_rueckmeldungen_verwalten"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="termine_rueckmeldungen_verwalten"]', function () {
         Liste_VerknuepfungenModalOeffnen(
             "termine_rueckmeldungen_verwalten_modal",
             "termine_rueckmeldungen_verwalten",
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             {
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
             },
             "termine_rueckmeldungen",
         );
     });
 
     // RÜCKMELDUNG ERSTELLEN
-    $(document).on("click", '.werkzeug[data-werkzeug="termine_rueckmeldung_erstellen"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="termine_rueckmeldung_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
-                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-status"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("status"), undefined),
             },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             "termine_rueckmeldungen",
         );
     });
 
     // ANWESENHEITEN DOKUMENTIEREN (MODAL) ÖFFNEN
-    $(document).on("click", '.werkzeug[data-werkzeug="termine_anwesenheiten_dokumentieren"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="termine_anwesenheiten_dokumentieren"]', function () {
         Liste_VerknuepfungenModalOeffnen(
             "termine_anwesenheiten_dokumentieren_modal",
             "termine_anwesenheiten_dokumentieren",
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             {
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
             },
             "termine_anwesenheiten",
         );
     });
 
     // ANWESENHEIT ÄNDERN
-    $(document).on("change", '.werkzeug[data-werkzeug="termine_anwesenheit_erstellen"]', function () {
+    $(document).on("change", '.werkzeug[werkzeug="termine_anwesenheit_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-termin_id"), undefined),
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
                 status: Number($(this).is(":checked")),
             },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             "termine_anwesenheiten",
         );
     });

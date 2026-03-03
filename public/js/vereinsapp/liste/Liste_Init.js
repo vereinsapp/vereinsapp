@@ -2,7 +2,7 @@
  */
 
 WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
-    const werkzeug = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-werkzeug"), undefined);
+    const werkzeug = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("werkzeug"), undefined);
 
     let farbe;
     if ("farbe" in WERKZEUGE[werkzeug]) farbe = WERKZEUGE[werkzeug].farbe;
@@ -11,9 +11,9 @@ WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
     if (
         $(
             "#" +
-                Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-instanz"), undefined) +
-                "[data-liste=" +
-                Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined) +
+                Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("instanz"), undefined) +
+                "[liste=" +
+                Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("liste"), undefined) +
                 "]",
         ).children().length === 0
     )
@@ -22,11 +22,11 @@ WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
 };
 
 WERKZEUGE.element_loeschen.aktualisieren_aktion = function ($werkzeug) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined);
-    const werkzeug = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-werkzeug"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("liste"), undefined);
+    const werkzeug = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("werkzeug"), undefined);
 
     $werkzeug.attr(
-        "data-modal_title",
+        "modal_title",
         Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_loeschen.modal_title, {
             element1: { liste: liste },
         }),
@@ -41,9 +41,9 @@ WERKZEUGE.element_loeschen_weiterleiten.aktualisieren_aktion = WERKZEUGE.element
 function Liste_Init() {
     // INSTANZEN IN LISTEN BEREITSTELLEN
     $.each(BLANKOS.element, function (position, $blanko) {
-        const liste = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-liste"), undefined);
-        const instanz = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("data-instanz"), undefined);
-        $blanko.removeAttr("data-liste").removeAttr("data-instanz");
+        const liste = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("liste"), undefined);
+        const instanz = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("instanz"), undefined);
+        $blanko.removeAttr("liste").removeAttr("instanz");
 
         if (!("instanz" in LISTEN[liste])) LISTEN[liste].instanz = new Object();
         if (!(instanz in LISTEN[liste].instanz))
@@ -92,41 +92,40 @@ function Liste_Init() {
     }
 
     // FORMULARE INITIALISIEREN
-    $(".formular[data-liste]").each(function () {
+    $(".formular[liste]").each(function () {
         Liste_Element$FormularInitialisieren($(this));
     });
 
     // EINGABE AENDERN (AKTUELL NUR FUR TERMINE.KATEGORIE)
     $(document).on("change", ".eingabe", function () {
         if (
-            "eingabe_aendern_aktion" in EIGENSCHAFTEN[$(this).parents("[data-liste]").first().attr("data-liste")][$(this).attr("data-eingabe")] &&
-            typeof EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].eingabe_aendern_aktion ===
-                "function"
+            "eingabe_aendern_aktion" in EIGENSCHAFTEN[$(this).parents("[liste]").first().attr("liste")][$(this).attr("eingabe")] &&
+            typeof EIGENSCHAFTEN[$(this).closest("[liste]").attr("liste")][$(this).attr("eingabe")].eingabe_aendern_aktion === "function"
         )
-            EIGENSCHAFTEN[$(this).closest("[data-liste]").attr("data-liste")][$(this).attr("data-eingabe")].eingabe_aendern_aktion($(this));
+            EIGENSCHAFTEN[$(this).closest("[liste]").attr("liste")][$(this).attr("eingabe")].eingabe_aendern_aktion($(this));
     });
 
     // BEMERKUNG AENDERN
-    $(document).on("click", '.werkzeug[data-werkzeug="bemerkung_aendern"]', function () {
-        const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"));
+    $(document).on("click", '.werkzeug[werkzeug="bemerkung_aendern"]', function () {
+        const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("liste"));
         Liste_ElementBemerkungAendern(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id")),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr(LISTEN[liste].element + "_id")),
             liste,
         );
     });
 
     // ELEMENT LÖSCHEN
-    $(document).on("click", '.werkzeug[data-werkzeug="element_loeschen"], .werkzeug[data-werkzeug="element_loeschen_weiterleiten"]', function () {
-        const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-liste"));
+    $(document).on("click", '.werkzeug[werkzeug="element_loeschen"], .werkzeug[werkzeug="element_loeschen_weiterleiten"]', function () {
+        const liste = Schnittstelle_VariableWertBereinigtZurueck($(this).attr("liste"));
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigt"),
-            $(this).attr("data-werkzeug") === "element_loeschen_weiterleiten",
+            $(this).attr("werkzeug") === "element_loeschen_weiterleiten",
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-" + LISTEN[liste].element + "_id")),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title")),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr(LISTEN[liste].element + "_id")),
             liste,
         );
     });
@@ -143,7 +142,7 @@ function Liste_Init() {
     });
 
     // PASSWORT ANZEIGEN (WIRD HIER INITIALISIERT, DAMIT ES AUCH IM AUSGELOGGTEN ZUSTAND VERFÜGBAR IST)
-    $(document).on("click", '.werkzeug[data-werkzeug="passwort_anzeigen"]', function (event) {
+    $(document).on("click", '.werkzeug[werkzeug="passwort_anzeigen"]', function (event) {
         const $werkzeug = $(this);
         event.preventDefault();
         const $eingabe = $werkzeug.closest(".input-group").find("input.form-control"); // .eingabe funktioniert nicht wegen login-View

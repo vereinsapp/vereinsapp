@@ -11,7 +11,7 @@ function Mitglieder_MitgliedAendern(data_vollstaendig, dom, data, modal_title, m
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "mitglied_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");
-        $neues_formular.attr("data-liste", "mitglieder").attr("data-werkzeug", "mitglied_aendern").attr("data-mitglied_id", mitglied_id);
+        $neues_formular.attr("liste", "mitglieder").attr("werkzeug", "mitglied_aendern").attr("mitglied_id", mitglied_id);
         Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;

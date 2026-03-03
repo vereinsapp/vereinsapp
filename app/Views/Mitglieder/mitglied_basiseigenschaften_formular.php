@@ -1,20 +1,20 @@
 <div class="form-floating mb-2">
-    <input type="text" class="form-control eingabe" data-eingabe="vorname" placeholder="<?= EIGENSCHAFTEN['mitglieder']['vorname']['beschriftung']; ?>" />
+    <input type="text" class="form-control eingabe" eingabe="vorname" placeholder="<?= EIGENSCHAFTEN['mitglieder']['vorname']['beschriftung']; ?>" />
     <label><?= EIGENSCHAFTEN['mitglieder']['vorname']['beschriftung']; ?></label>
 </div>
 
 <div class="form-floating mb-2">
-    <input type="text" class="form-control eingabe" data-eingabe="nachname" placeholder="<?= EIGENSCHAFTEN['mitglieder']['nachname']['beschriftung']; ?>" />
+    <input type="text" class="form-control eingabe" eingabe="nachname" placeholder="<?= EIGENSCHAFTEN['mitglieder']['nachname']['beschriftung']; ?>" />
     <label><?= EIGENSCHAFTEN['mitglieder']['nachname']['beschriftung']; ?></label>
 </div>
 
 <div class="row g-2">
     <div class="col form-floating mb-2">
-        <input type="date" class="form-control eingabe" data-eingabe="geburt" />
+        <input type="date" class="form-control eingabe" eingabe="geburt" />
         <label><?= EIGENSCHAFTEN['mitglieder']['geburt']['beschriftung']; ?></label>
     </div>
     <div class="col form-floating mb-2">
-        <select class="form-select eingabe" data-eingabe="geschlecht">
+        <select class="form-select eingabe" eingabe="geschlecht">
         <?php foreach ( VORGEGEBENE_WERTE['mitglieder']['geschlecht'] as $geschlecht => $eigenschaften ): ?>
             <option value="<?= $geschlecht; ?>"><?= $eigenschaften['beschriftung']; ?></option>
         <?php endforeach; ?>
@@ -24,23 +24,23 @@
 </div>
 
 <div class="form-floating mb-2">
-    <input type="email" class="form-control eingabe" data-eingabe="email" placeholder="<?= EIGENSCHAFTEN['mitglieder']['email']['beschriftung']; ?>" />
+    <input type="email" class="form-control eingabe" eingabe="email" placeholder="<?= EIGENSCHAFTEN['mitglieder']['email']['beschriftung']; ?>" />
     <label><?= EIGENSCHAFTEN['mitglieder']['email']['beschriftung']; ?></label>
 </div>
 
 <div class="row g-2">
     <div class="col-4 form-floating mb-2">
-        <input type="number" class="form-control eingabe" data-eingabe="postleitzahl" placeholder="<?= EIGENSCHAFTEN['mitglieder']['postleitzahl']['beschriftung']; ?>" min="10000" max="99999" />
+        <input type="number" class="form-control eingabe" eingabe="postleitzahl" placeholder="<?= EIGENSCHAFTEN['mitglieder']['postleitzahl']['beschriftung']; ?>" min="10000" max="99999" />
         <label><?= EIGENSCHAFTEN['mitglieder']['postleitzahl']['beschriftung']; ?></label>
     </div>
     <div class="col-8 form-floating mb-2">
-        <input type="text" class="form-control eingabe" data-eingabe="wohnort" placeholder="<?= EIGENSCHAFTEN['mitglieder']['wohnort']['beschriftung']; ?>" />
+        <input type="text" class="form-control eingabe" eingabe="wohnort" placeholder="<?= EIGENSCHAFTEN['mitglieder']['wohnort']['beschriftung']; ?>" />
         <label><?= EIGENSCHAFTEN['mitglieder']['wohnort']['beschriftung']; ?></label>
     </div>
 </div>
 
 <?php if( array_key_exists( 'register', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="form-floating mb-2">
-    <select class="form-select eingabe" data-eingabe="register">
+    <select class="form-select eingabe" eingabe="register">
     <?php foreach ( VORGEGEBENE_WERTE['mitglieder']['register'] as $register => $eigenschaften ): ?>
         <option value="<?= $register; ?>"><?= $eigenschaften['beschriftung']; ?></option>
     <?php endforeach; ?>
@@ -49,7 +49,7 @@
 </div><?php } ?>
 
 <?php if( array_key_exists( 'auto', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="form-floating mb-2">
-    <select class="form-select eingabe" data-eingabe="auto">
+    <select class="form-select eingabe" eingabe="auto">
     <?php foreach ( VORGEGEBENE_WERTE['mitglieder']['auto'] as $auto => $eigenschaften ): ?>
         <option value="<?= $auto; ?>"><?= $eigenschaften['beschriftung']; ?></option>
     <?php endforeach; ?>
@@ -58,7 +58,7 @@
 </div><?php } ?>
 
 <?php if( array_key_exists( 'funktion', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="form-floating mb-2">
-    <select class="form-select eingabe" data-eingabe="funktion">
+    <select class="form-select eingabe" eingabe="funktion">
     <?php foreach ( VORGEGEBENE_WERTE['mitglieder']['funktion'] as $funktion => $eigenschaften ): ?>
         <option value="<?= $funktion; ?>"><?= $eigenschaften['beschriftung']; ?></option>
     <?php endforeach; ?>
@@ -68,7 +68,7 @@
 
 <?php if( array_key_exists( 'vorstandschaft_janein', EIGENSCHAFTEN['mitglieder'] ) AND array_key_exists( 'aktiv_janein', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="row g-2"><?php } ?>
     <?php if( array_key_exists( 'vorstandschaft_janein', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="col form-floating mb-2">
-        <select class="form-select eingabe" data-eingabe="vorstandschaft_janein">
+        <select class="form-select eingabe" eingabe="vorstandschaft_janein">
         <?php foreach ( JANEIN as $janein => $eigenschaften ): ?>
             <option value="<?= $janein; ?>"><?= $eigenschaften['beschriftung']; ?></option>
         <?php endforeach; ?>
@@ -76,7 +76,7 @@
         <label><?= EIGENSCHAFTEN['mitglieder']['vorstandschaft_janein']['beschriftung']; ?></label>
     </div><?php } ?>
     <?php if( array_key_exists( 'aktiv_janein', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="col form-floating mb-2">
-        <select class="form-select eingabe" data-eingabe="aktiv_janein">
+        <select class="form-select eingabe" eingabe="aktiv_janein">
         <?php foreach ( JANEIN as $janein => $eigenschaften ): ?>
             <option value="<?= $janein; ?>"><?= $eigenschaften['beschriftung']; ?></option>
         <?php endforeach; ?>
@@ -86,14 +86,14 @@
 <?php if( array_key_exists( 'vorstandschaft_janein', EIGENSCHAFTEN['mitglieder'] ) AND array_key_exists( 'aktiv_janein', EIGENSCHAFTEN['mitglieder'] ) ) { ?></div><?php } ?>
 
 <div class="form-floating mb-2">
-    <input type="text" class="form-control eingabe" data-eingabe="bemerkung" placeholder="<?= EIGENSCHAFTEN['mitglieder']['bemerkung']['beschriftung']; ?>" />
+    <input type="text" class="form-control eingabe" eingabe="bemerkung" placeholder="<?= EIGENSCHAFTEN['mitglieder']['bemerkung']['beschriftung']; ?>" />
     <label><?= EIGENSCHAFTEN['mitglieder']['bemerkung']['beschriftung']; ?></label>
 </div>
 
 <?php if( array_key_exists( 'real_janein', EIGENSCHAFTEN['mitglieder'] ) ) { ?><div class="row g-2">
     <div class="col"></div>
     <div class="col form-floating mb-2">
-        <select class="form-select eingabe" data-eingabe="real_janein">
+        <select class="form-select eingabe" eingabe="real_janein">
         <?php foreach ( JANEIN as $janein => $eigenschaften ): ?>
             <option value="<?= $janein; ?>"><?= $eigenschaften['beschriftung']; ?></option>
         <?php endforeach; ?>

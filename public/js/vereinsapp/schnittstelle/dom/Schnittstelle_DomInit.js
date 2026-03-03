@@ -15,8 +15,8 @@ function Schnittstelle_DomInit() {
     $(".blanko")
         .each(function () {
             const $blanko = $(this);
-            const blanko = $(this).attr("data-blanko");
-            $blanko.removeAttr("data-blanko").addClass(blanko);
+            const blanko = $(this).attr("blanko");
+            $blanko.removeAttr("blanko").addClass(blanko);
 
             if (!(blanko in BLANKOS)) BLANKOS[blanko] = new Array();
             BLANKOS[blanko].push($blanko);
@@ -52,7 +52,7 @@ function Schnittstelle_DomInit() {
         Schnittstelle_Dom$ModalOeffnen(Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, "datenschutz_richtlinie_modal"));
 
     // DATENSCHUTZ-RICHTLINIE AKZEPTIEREN
-    $(document).on("click", "[data-werkzeug='datenschutz_richtlinie_akzeptieren']", function () {
+    $(document).on("click", "[werkzeug='datenschutz_richtlinie_akzeptieren']", function () {
         Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DATETIME.now().toISO());
         Schnittstelle_Dom$ModalSchliessen($(this).closest(".modal"));
     });
@@ -87,18 +87,18 @@ function Schnittstelle_DomInit() {
         const $werkzeuge = $(this).find(".werkzeug");
         const $werkzeugkasten_handle = $(event.relatedTarget);
 
-        const liste = $werkzeugkasten_handle.attr("data-liste");
+        const liste = $werkzeugkasten_handle.attr("liste");
         if (typeof liste !== "undefined") {
-            $werkzeuge.attr("data-liste", liste);
+            $werkzeuge.attr("liste", liste);
 
-            const element_id = $werkzeugkasten_handle.attr("data-" + LISTEN[liste].element + "_id");
-            if (typeof element_id !== "undefined") $werkzeuge.attr("data-" + LISTEN[liste].element + "_id", element_id);
-            else $werkzeuge.removeAttr("data-" + LISTEN[liste].element + "_id");
+            const element_id = $werkzeugkasten_handle.attr(LISTEN[liste].element + "_id");
+            if (typeof element_id !== "undefined") $werkzeuge.attr(LISTEN[liste].element + "_id", element_id);
+            else $werkzeuge.removeAttr(LISTEN[liste].element + "_id");
 
             $werkzeuge.each(function () {
                 Liste_Liste$WerkzeugAktualisieren($(this), undefined);
             });
-        } else $werkzeuge.removeAttr("data-liste");
+        } else $werkzeuge.removeAttr("liste");
     });
 
     // MODAL SCHLIESSEN
@@ -121,7 +121,7 @@ function Schnittstelle_DomInit() {
     });
 
     // INHALT KOPIEREN (CLIPBOARD)
-    const CLIPBOARD = new ClipboardJS('.werkzeug[data-werkzeug="inhalt_kopieren"]');
+    const CLIPBOARD = new ClipboardJS('.werkzeug[werkzeug="inhalt_kopieren"]');
 
     CLIPBOARD.on("success", function (event) {
         Schnittstelle_DomToastFeuern("Kopieren in die Zwischenablage war erfolgreich.");
@@ -183,7 +183,7 @@ function Schnittstelle_DomInit() {
     });
 
     function toggle_symbol($symbol) {
-        const toggle_symbol_neu = $symbol.attr("data-toggle_symbol");
+        const toggle_symbol_neu = $symbol.attr("toggle_symbol");
 
         let toggle_symbol_alt = undefined;
         $.each($symbol.attr("class").split(/\s+/), function (position, klasse) {
@@ -197,6 +197,6 @@ function Schnittstelle_DomInit() {
             $symbol
                 .removeClass("bi-" + toggle_symbol_alt)
                 .addClass("bi-" + toggle_symbol_neu)
-                .attr("data-toggle_symbol", toggle_symbol_alt);
+                .attr("toggle_symbol", toggle_symbol_alt);
     }
 }

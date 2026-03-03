@@ -33,91 +33,91 @@ WERKZEUGE.mitglied_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALIS
 
 function Mitglieder_Init() {
     // MITGLIED ERSTELLEN / DUPLIZIEREN
-    $(document).on("click", '.werkzeug[data-werkzeug="mitglied_erstellen"], .werkzeug[data-werkzeug="mitglied_duplizieren"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="mitglied_erstellen"], .werkzeug[werkzeug="mitglied_duplizieren"]', function () {
         Mitglieder_MitgliedErstellen(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
         );
     });
 
     // MITGLIED ÄNDERN
-    $(document).on("click", '.werkzeug[data-werkzeug="mitglied_aendern"], .werkzeug[data-werkzeug="meine_daten_aendern"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="mitglied_aendern"], .werkzeug[werkzeug="meine_daten_aendern"]', function () {
         Mitglieder_MitgliedAendern(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
         );
     });
 
     // PASSWORT ÄNDERN
-    $(document).on("click", '.werkzeug[data-werkzeug="passwort_aendern"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="passwort_aendern"]', function () {
         Mitglieder_PasswortAendern(
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
         );
     });
 
     // PASSWORT FESTLEGEN
-    $(document).on("click", '.werkzeug[data-werkzeug="passwort_festlegen"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="passwort_festlegen"]', function () {
         Mitglieder_PasswortFestlegen(
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
         );
     });
 
     // RECHTE VERGEBEN (MODAL) ÖFFNEN
-    $(document).on("click", '.werkzeug[data-werkzeug="rechte_vergeben"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="rechte_vergeben"]', function () {
         Liste_VerknuepfungenModalOeffnen(
             "rechte_vergeben_modal",
             "rechte_vergeben",
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             {
-                verfuegbares_recht_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-verfuegbares_recht_id"), undefined),
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+                verfuegbares_recht_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("verfuegbares_recht_id"), undefined),
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
             },
             "vergebene_rechte",
         );
     });
 
     // RECHTE VERGEBEN
-    $(document).on("change", '.werkzeug[data-werkzeug="vergebenes_recht_erstellen"]', function () {
+    $(document).on("change", '.werkzeug[werkzeug="vergebenes_recht_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                verfuegbares_recht_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-verfuegbares_recht_id"), undefined),
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+                verfuegbares_recht_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("verfuegbares_recht_id"), undefined),
+                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
                 status: Number($(this).is(":checked")),
             },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
             "vergebene_rechte",
         );
     });
 
     // EINMAL-LINK ANZEIGEN
-    $(document).on("click", '.werkzeug[data-werkzeug="einmal_link_anzeigen"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="einmal_link_anzeigen"]', function () {
         Mitglieder_EinmalLinkAnzeigen(
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
         );
     });
 
     // EINMAL-LINK EMAIL
-    $(document).on("click", '.werkzeug[data-werkzeug="einmal_link_email"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="einmal_link_email"]', function () {
         Mitglieder_EinmalLinkEmail(
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("data-mitglied_id"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
         );
     });
 }

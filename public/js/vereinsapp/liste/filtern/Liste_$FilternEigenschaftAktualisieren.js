@@ -3,15 +3,15 @@
  */
 
 function Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("data-liste"), undefined);
-    const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("data-eigenschaft"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("liste"), undefined);
+    const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("eigenschaft"), undefined);
     const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_eigenschaft);
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
             // Definition von filtern_eigenschaft
             const filtern_manipuliert = Liste_FilternManipuliertZurueck(
-                Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-filtern_basis"), new Object()),
+                Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("filtern_basis"), new Object()),
                 Schnittstelle_VariableWertBereinigtZurueck($werkzeug.val(), new Object()),
                 liste,
             );
@@ -58,7 +58,7 @@ function Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft) {
                     $.each(Object.keys(filtern_eigenschaft), function (position, filtern_klasse) {
                         $.each(filtern_eigenschaft[filtern_klasse], function (position, filtern_wert_janein) {
                             const $neuer_filtern_wert = FILTERN.$blanko_filtern_wert.clone().removeClass("blanko invisible");
-                            $neuer_filtern_wert.attr("data-wert", Number(filtern_wert_janein));
+                            $neuer_filtern_wert.attr("wert", Number(filtern_wert_janein));
                             const $neuer_filtern_wert_beschriftung = $neuer_filtern_wert.find(".filtern_wert_beschriftung").find(".beschriftung");
                             $neuer_filtern_wert_beschriftung.text(
                                 Liste_WertNachEigenschaftFormatiertZurueck(JANEIN[Number(filtern_wert_janein)].wert, eigenschaft, liste),
@@ -77,7 +77,7 @@ function Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft) {
                     $.each(Object.keys(filtern_eigenschaft), function (position, filtern_klasse) {
                         $.each(filtern_eigenschaft[filtern_klasse], function (position, filtern_wert) {
                             const $neuer_filtern_wert = FILTERN.$blanko_filtern_wert.clone().removeClass("blanko invisible");
-                            $neuer_filtern_wert.attr("data-wert", filtern_wert);
+                            $neuer_filtern_wert.attr("wert", filtern_wert);
                             const $neuer_filtern_wert_beschriftung = $neuer_filtern_wert.find(".filtern_wert_beschriftung").find(".beschriftung");
                             $neuer_filtern_wert_beschriftung.text(Liste_WertNachEigenschaftFormatiertZurueck(filtern_wert, eigenschaft, liste));
                             if (filtern_klasse == "exklusiv") $neuer_filtern_wert_beschriftung.addClass("text-decoration-line-through");

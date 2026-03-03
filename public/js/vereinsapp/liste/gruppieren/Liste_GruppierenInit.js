@@ -2,20 +2,17 @@
  */
 
 WERKZEUGE.gruppieren_manip.aktualisieren_aktion = function ($werkzeug) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-liste"), undefined);
-    const instanz = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("data-instanz"), undefined);
-    const gruppieren_basis = Schnittstelle_VariableWertBereinigtZurueck(
-        $("#" + instanz + "[data-liste=" + liste + "]").attr("data-gruppieren"),
-        undefined,
-    );
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("liste"), undefined);
+    const instanz = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("instanz"), undefined);
+    const gruppieren_basis = Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + "[liste=" + liste + "]").attr("gruppieren"), undefined);
     const gruppieren_manip = LISTEN[liste].instanz[instanz].gruppieren;
 
     $werkzeug
-        .attr("data-modal_title", LISTEN[liste].beschriftung + " " + WERKZEUGE.gruppieren_manip.symbol)
-        .attr("data-gruppieren_basis", JsonStringifiedZurueck(gruppieren_basis, undefined))
+        .attr("modal_title", LISTEN[liste].beschriftung + " " + WERKZEUGE.gruppieren_manip.symbol)
+        .attr("gruppieren_basis", JsonStringifiedZurueck(gruppieren_basis, undefined))
         .val(JsonStringifiedZurueck(gruppieren_manip, undefined));
 
-    if ($("#" + instanz + "[data-liste=" + liste + "]").children().length <= 1)
+    if ($("#" + instanz + "[liste=" + liste + "]").children().length <= 1)
         $werkzeug.addClass("invisible"); // nicht 0, weil zusammenfassung noch mit dabei ist
     else $werkzeug.removeClass("invisible");
 
@@ -29,12 +26,12 @@ WERKZEUGE.gruppieren_manip.aktualisieren_aktion = function ($werkzeug) {
 
 function Liste_GruppierenInit() {
     // GRUPPIEREN IM LOCALSTORAGE SPEICHERN
-    $(document).on("change", '.werkzeug[data-werkzeug="gruppieren_manip"][data-liste][data-instanz]', function () {
+    $(document).on("change", '.werkzeug[werkzeug="gruppieren_manip"][liste][instanz]', function () {
         Liste_$GruppierenLocalStorageSpeichern($(this));
     });
 
     // GRUPPIEREN MODAL ÖFFNEN
-    $(document).on("click", '.werkzeug[data-werkzeug="gruppieren_manip"]', function () {
+    $(document).on("click", '.werkzeug[werkzeug="gruppieren_manip"]', function () {
         Liste_$GruppierenModalOeffnen($(this));
     });
 
@@ -44,7 +41,7 @@ function Liste_GruppierenInit() {
     });
 
     // GRUPPIEREN EIGENSCHAFT ZURÜCKSETZEN
-    $(document).on("click", ".werkzeug[data-werkzeug=gruppieren_eigenschaft_zuruecksetzen]", function () {
+    $(document).on("click", ".werkzeug[werkzeug=gruppieren_eigenschaft_zuruecksetzen]", function () {
         Liste_$GruppierenEigenschaftZuruecksetzen($(this).closest(".gruppieren_eigenschaft"));
     });
 }

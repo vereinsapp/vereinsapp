@@ -7,9 +7,9 @@
     </div>
     <span class="input-group-text text-<?php
     if( array_key_exists('farbe', WERKZEUGE['inhalt_kopieren']) ) echo WERKZEUGE['inhalt_kopieren']['farbe']; else echo "primary";
-    ?> werkzeug" data-werkzeug="inhalt_kopieren" data-clipboard-target=".einmal_link" role="button"><i class="bi bi-<?= SYMBOLE['duplizieren']['bootstrap']; ?>"></i></span>
+    ?> werkzeug" werkzeug="inhalt_kopieren" data-clipboard-target=".einmal_link" role="button"><i class="bi bi-<?= SYMBOLE['duplizieren']['bootstrap']; ?>"></i></span>
 </div>
 
 <div class="d-grid"><button type="button" class="btn btn-outline-<?php
 if( array_key_exists('farbe', WERKZEUGE['einmal_link_anzeigen']) ) echo WERKZEUGE['einmal_link_anzeigen']['farbe']; else echo "success";
-?> werkzeug" data-werkzeug="einmal_link_anzeigen"><span class="beschriftung">Ja, ich will!</span></button></div>
+?> werkzeug" werkzeug="einmal_link_anzeigen"><span class="beschriftung">Ja, ich will!</span></button></div>

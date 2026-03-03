@@ -12,7 +12,7 @@
 </div>
 
 <div class="container mb-3">
-    <div class="ueberschrift text-secondary text-center invisible mb-1" data-liste="verfuegbare_rechte" data-instanz="rechte_vergeben"><hr>Meine Rechte</div>
+    <div class="ueberschrift text-secondary text-center invisible mb-1" liste="verfuegbare_rechte" instanz="rechte_vergeben"><hr>Meine Rechte</div>
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'] ) ); ?>
 </div>
 

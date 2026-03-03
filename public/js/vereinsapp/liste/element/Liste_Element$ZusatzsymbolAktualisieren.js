@@ -4,9 +4,9 @@
  */
 
 function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-liste"), undefined);
-    const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-" + LISTEN[liste].element + "_id"), undefined);
-    const zusatzsymbol = Schnittstelle_VariableWertBereinigtZurueck($zusatzsymbol.attr("data-zusatzsymbol"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("liste"), undefined);
+    const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
+    const zusatzsymbol = Schnittstelle_VariableWertBereinigtZurueck($zusatzsymbol.attr("zusatzsymbol"), undefined);
 
     $zusatzsymbol.find('[data-bs-toggle="popover"]').popover("hide");
     $zusatzsymbol.empty();
@@ -35,7 +35,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
 
         // Zusatzsymbol für Datei
         case "datei":
-            const datei = Schnittstelle_VariableWertBereinigtZurueck($element.attr("data-datei"), undefined);
+            const datei = Schnittstelle_VariableWertBereinigtZurueck($element.attr("datei"), undefined);
             const punkt = datei.lastIndexOf(".");
             const typ = datei.slice(punkt + 1);
             $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE[typ]["bootstrap"] + ' text-primary"></i>');
@@ -51,15 +51,15 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                     SYMBOLE[WERKZEUGE[LISTEN[liste].element + "_aendern"].symbol]["bootstrap"] +
                     " text-" +
                     farbe +
-                    ' werkzeug" data-werkzeug="' +
+                    ' werkzeug" werkzeug="' +
                     LISTEN[liste].element +
-                    '_aendern" data-liste="' +
+                    '_aendern" liste="' +
                     liste +
-                    '" data-' +
+                    '" ' +
                     LISTEN[liste].element +
                     '_id="' +
                     element_id +
-                    '" data-modal_title="' +
+                    '" modal_title="' +
                     Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_aendern.modal_title, {
                         element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
                     }) +
@@ -77,15 +77,15 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                     SYMBOLE[WERKZEUGE[LISTEN[liste].element + "_duplizieren"].symbol]["bootstrap"] +
                     " text-" +
                     farbe +
-                    ' werkzeug" data-werkzeug="' +
+                    ' werkzeug" werkzeug="' +
                     LISTEN[liste].element +
-                    '_duplizieren" data-liste="' +
+                    '_duplizieren" liste="' +
                     liste +
-                    '" data-' +
+                    '" ' +
                     LISTEN[liste].element +
                     '_id="' +
                     element_id +
-                    '" data-modal_title="' +
+                    '" modal_title="' +
                     Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_duplizieren.modal_title, {
                         element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
                     }) +
@@ -103,13 +103,13 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                     SYMBOLE[WERKZEUGE.element_loeschen.symbol]["bootstrap"] +
                     " text-" +
                     farbe +
-                    ' werkzeug" data-werkzeug="element_loeschen" data-liste="' +
+                    ' werkzeug" werkzeug="element_loeschen" liste="' +
                     liste +
-                    '" data-' +
+                    '" ' +
                     LISTEN[liste].element +
                     '_id="' +
                     element_id +
-                    '" data-modal_title="' +
+                    '" modal_title="' +
                     Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_loeschen.modal_title, {
                         element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
                     }) +
@@ -147,7 +147,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             const verknuepfte_element_ids = new Object();
             $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
                 const verknuepfte_element_id = Schnittstelle_VariableWertBereinigtZurueck(
-                    $element.attr("data-" + LISTEN[verknuepfte_liste].element + "_id"),
+                    $element.attr(LISTEN[verknuepfte_liste].element + "_id"),
                     undefined,
                 );
                 if (typeof verknuepfte_element_id !== "undefined")

@@ -11,7 +11,7 @@ function Termine_TerminAendern(data_vollstaendig, dom, data, modal_title, termin
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "termin_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");
-        $neues_formular.attr("data-liste", "termine").attr("data-werkzeug", "termin_aendern").attr("data-termin_id", termin_id);
+        $neues_formular.attr("liste", "termine").attr("werkzeug", "termin_aendern").attr("termin_id", termin_id);
         Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;

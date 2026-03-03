@@ -3,13 +3,13 @@
  */
 
 function Liste_Element$FormularInitialisieren($formular) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-liste"), undefined);
-    const element_id = Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-" + LISTEN[liste].element + "_id"), undefined);
-    const werkzeug = Schnittstelle_VariableWertBereinigtZurueck($formular.attr("data-werkzeug"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($formular.attr("liste"), undefined);
+    const element_id = Schnittstelle_VariableWertBereinigtZurueck($formular.attr(LISTEN[liste].element + "_id"), undefined);
+    const werkzeug = Schnittstelle_VariableWertBereinigtZurueck($formular.attr("werkzeug"), undefined);
 
     $formular.find(".eingabe").each(function () {
         const $eingabe = $(this);
-        const eingabe = $eingabe.attr("data-eingabe");
+        const eingabe = $eingabe.attr("eingabe");
 
         let wert = Schnittstelle_VariableRausZurueck(eingabe, element_id, liste, undefined);
         // Wenn aber nichts definiert ist, dann nimm den Standard-Wert (je nach Typ)
@@ -50,10 +50,10 @@ function Liste_Element$FormularInitialisieren($formular) {
 
     const $data_vollstaendig_werkzeug = $formular.find(".data_vollstaendig");
     if (typeof werkzeug !== "undefined" && werkzeug in WERKZEUGE) {
-        $data_vollstaendig_werkzeug.addClass("werkzeug").attr("data-werkzeug", werkzeug);
+        $data_vollstaendig_werkzeug.addClass("werkzeug").attr("werkzeug", werkzeug);
         if ("farbe" in WERKZEUGE[werkzeug])
             $data_vollstaendig_werkzeug.removeClass("btn-outline-success").addClass("btn-outline-" + WERKZEUGE[werkzeug].farbe);
         $data_vollstaendig_werkzeug.find(".beschriftung").text(WERKZEUGE[werkzeug].beschriftung);
     }
-    $data_vollstaendig_werkzeug.attr("data-liste", liste).attr("data-" + LISTEN[liste].element + "_id", element_id);
+    $data_vollstaendig_werkzeug.attr("liste", liste).attr(LISTEN[liste].element + "_id", element_id);
 }

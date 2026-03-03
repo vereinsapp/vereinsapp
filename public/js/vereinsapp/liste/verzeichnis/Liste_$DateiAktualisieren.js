@@ -3,8 +3,8 @@
  */
 
 function Liste_$DateiAktualisieren($datei) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($datei.attr("data-liste"), undefined);
-    const datei = $datei.attr("data-datei");
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($datei.attr("liste"), undefined);
+    const datei = $datei.attr("datei");
     const $verzeichnis = $datei.closest(".verzeichnis");
 
     // const punkt = datei.lastIndexOf(".");
@@ -17,11 +17,11 @@ function Liste_$DateiAktualisieren($datei) {
         "/" +
         Schnittstelle_VariableRausZurueck(
             "verzeichnis_basis",
-            Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-" + LISTEN[liste].element + "_id"), undefined),
+            Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr(LISTEN[liste].element + "_id"), undefined),
             liste,
             "",
         );
-    $.each(Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("data-basis"), new Array()), function (position, unterverzeichnis) {
+    $.each(Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("basis"), new Array()), function (position, unterverzeichnis) {
         link += unterverzeichnis;
     });
     link += datei;
@@ -30,7 +30,7 @@ function Liste_$DateiAktualisieren($datei) {
     $datei.find(".beschriftung").text(datei);
 
     // WERKZEUGKASTEN AKTUALISIEREN
-    // $datei.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("data-datei", datei);
+    // $datei.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("datei", datei);
 
     // LINK AKTUALISIEREN
     $datei.find("a.stretched-link").attr("href", link);

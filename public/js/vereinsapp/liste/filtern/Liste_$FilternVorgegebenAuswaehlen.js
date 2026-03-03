@@ -4,7 +4,7 @@
  */
 
 function Liste_$FilternVorgegebenAuswaehlen($filtern_vorgegeben, filtern_vorgegeben_id) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_vorgegeben.attr("data-liste"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_vorgegeben.attr("liste"), undefined);
 
     if (liste in FILTERN_VORGEGEBEN && filtern_vorgegeben_id in FILTERN_VORGEGEBEN[liste]) {
         const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_vorgegeben);

@@ -42,7 +42,6 @@ Aufgaben detaillieren
 Zugewiesene Strafen anzeigen
 Bugfix Klick auf Werkzeug direkt im Element löst Element-Event und Werkzeug-Event aus
 kacheln-View ergänzen (analog zu liste-View, Werkzeugkasten loswerden, Zusatzsymbole vs. Werkzeuge)
-data-Prefix loswerden
 
 ERLEDIGT
 

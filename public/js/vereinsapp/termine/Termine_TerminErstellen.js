@@ -11,9 +11,9 @@ function Termine_TerminErstellen(data_vollstaendig, dom, data, modal_title, term
         const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, "termin_basiseigenschaften");
         Schnittstelle_Dom$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");
-        $neues_formular.attr("data-liste", "termine");
-        if (typeof termin_id !== "undefined") $neues_formular.attr("data-werkzeug", "termin_duplizieren").attr("data-termin_id", termin_id);
-        else $neues_formular.attr("data-werkzeug", "termin_erstellen");
+        $neues_formular.attr("liste", "termine");
+        if (typeof termin_id !== "undefined") $neues_formular.attr("werkzeug", "termin_duplizieren").attr("termin_id", termin_id);
+        else $neues_formular.attr("werkzeug", "termin_erstellen");
         Liste_Element$FormularInitialisieren($neues_formular);
     } else {
         const ajax_dom = dom;

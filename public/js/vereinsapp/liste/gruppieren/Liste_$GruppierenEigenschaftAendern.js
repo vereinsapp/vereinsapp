@@ -3,7 +3,7 @@
  */
 
 function Liste_$GruppierenEigenschaftAendern($gruppieren_eigenschaft) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_eigenschaft.attr("data-liste"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_eigenschaft.attr("liste"), undefined);
     const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_eigenschaft.find(".gruppieren_wert").val(), undefined);
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {

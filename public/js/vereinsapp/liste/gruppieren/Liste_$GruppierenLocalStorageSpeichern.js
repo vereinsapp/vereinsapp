@@ -3,8 +3,8 @@
  */
 
 function Liste_$GruppierenLocalStorageSpeichern($gruppieren_localstorage) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_localstorage.attr("data-liste"), undefined);
-    const instanz = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_localstorage.attr("data-instanz"), undefined);
+    const liste = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_localstorage.attr("liste"), undefined);
+    const instanz = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_localstorage.attr("instanz"), undefined);
 
     // Definition von gruppieren_manip
     const gruppieren_manip = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_localstorage.val(), undefined);
