@@ -72,7 +72,7 @@ function Liste_Init() {
 
     if (ICH_ID !== null) {
         $.each(LISTEN, function (liste) {
-            Schnittstelle_EventLocalstorageUpdVariable(liste);
+            Liste_EventLocalstorageUpdVariable(liste);
         });
 
         $.each(LISTEN, function (liste) {
@@ -84,11 +84,11 @@ function Liste_Init() {
         });
 
         $.each(LISTEN, function (liste) {
-            Schnittstelle_EventVariableUpdDom(liste);
+            Liste_EventVariableUpdDom(liste);
         });
 
-        Schnittstelle_EventSqlUpdLocalstorage();
-        setInterval(Schnittstelle_EventSqlUpdLocalstorage, AJAX_ZYKLUSZEIT * 1000);
+        Liste_EventSqlUpdLocalstorage();
+        setInterval(Liste_EventSqlUpdLocalstorage, AJAX_ZYKLUSZEIT * 1000);
     }
 
     // FORMULARE INITIALISIEREN

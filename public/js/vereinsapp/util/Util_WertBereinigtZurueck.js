@@ -19,8 +19,8 @@ function Util_WertBereinigtZurueck(wert, wert_undefined) {
     } else if (isArray(wert)) {
         const array = wert;
         wert_bereinigt = new Array();
-        $.each(array, function (index, element) {
-            wert_bereinigt[index] = Util_WertBereinigtZurueck(element, undefined);
+        $.each(array, function (index, wert) {
+            wert_bereinigt[index] = Util_WertBereinigtZurueck(wert, undefined);
         });
     } else wert_bereinigt = wert;
 

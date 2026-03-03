@@ -38,11 +38,11 @@ function Liste_ElementBemerkungAendern(data_vollstaendig, dom, data, element_id,
 
                 Liste_VariableRein(AJAX.data.bemerkung, "bemerkung", element_id, liste);
 
-                Schnittstelle_EventVariableUpdLocalstorage(liste);
-                Schnittstelle_EventLocalstorageUpdVariable(liste);
+                Liste_EventVariableUpdLocalstorage(liste);
+                Liste_EventLocalstorageUpdVariable(liste);
                 Liste_VerknuepfungenZuordnen(liste);
                 Liste_ElementErgaenzen(liste);
-                Schnittstelle_EventVariableUpdDom(liste);
+                Liste_EventVariableUpdDom(liste);
 
                 if ("dom" in AJAX && "$element" in AJAX.dom && AJAX.dom.$element.exists() && liste !== AJAX.dom.$element.attr("liste"))
                     Liste_$ElementAktualisieren(AJAX.dom.$element);

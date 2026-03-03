@@ -44,8 +44,14 @@ function Dom_Init() {
 
     // JETZT AKTUALISIEREN
     $(".jetzt").each(function () {
-        Dom_$JetztAktualisieren($(this));
+        $(this).text(DATETIME.now().toFormat("dd.MM.yyyy HH:mm:ss"));
     });
+
+    setInterval(function () {
+        $(".jetzt").each(function () {
+            $(this).text(DATETIME.now().toFormat("dd.MM.yyyy HH:mm:ss"));
+        });
+    }, 1000);
 
     // DATENSCHUTZ-RICHTLINIE OEFFNEN
     if (typeof Localstorage_RausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined) === "undefined")

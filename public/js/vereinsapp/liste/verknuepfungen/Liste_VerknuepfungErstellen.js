@@ -90,15 +90,15 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                             });
                     });
 
-                Schnittstelle_EventVariableUpdLocalstorage(verknuepfungen);
-                Schnittstelle_EventLocalstorageUpdVariable(verknuepfungen);
+                Liste_EventVariableUpdLocalstorage(verknuepfungen);
+                Liste_EventLocalstorageUpdVariable(verknuepfungen);
                 Liste_VerknuepfungenZuordnen(verknuepfungen);
                 Liste_ElementErgaenzen(verknuepfungen);
                 Liste_ElementErgaenzen(verknuepfte_listen[0]);
                 Liste_ElementErgaenzen(verknuepfte_listen[1]);
-                Schnittstelle_EventVariableUpdDom(verknuepfungen);
-                Schnittstelle_EventVariableUpdDom(verknuepfte_listen[0]);
-                Schnittstelle_EventVariableUpdDom(verknuepfte_listen[1]);
+                Liste_EventVariableUpdDom(verknuepfungen);
+                Liste_EventVariableUpdDom(verknuepfte_listen[0]);
+                Liste_EventVariableUpdDom(verknuepfte_listen[1]);
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists() && AJAX.dom.$modal.find(".bestaetigung").exists())
                     Dom_$ModalSchliessen(AJAX.dom.$modal);

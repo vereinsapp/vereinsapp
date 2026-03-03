@@ -2,7 +2,7 @@
  * @param {string} liste
  */
 
-function Schnittstelle_EventVariableUpdDom(liste) {
+function Liste_EventVariableUpdDom(liste) {
     if (liste in LISTEN) {
         // LISTE AKTUALISIEREN
         $('.liste[liste="' + liste + '"]').each(function () {
@@ -38,8 +38,4 @@ function Schnittstelle_EventVariableUpdDom(liste) {
             Liste_$DateiAktualisieren($(this));
         });
     }
-
-    $(".jetzt").each(function () {
-        Dom_$JetztAktualisieren($(this));
-    });
 }

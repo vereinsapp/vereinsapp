@@ -69,13 +69,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/dom/Dom_$Quelle$ZielVerknuepfen.js?v='.VERSION,
         'js/vereinsapp/dom/Dom_$Quelle$ZielEntknuepfen.js?v='.VERSION,
         'js/vereinsapp/dom/Dom_$ZielZu$QuelleZurueck.js?v='.VERSION,
-        'js/vereinsapp/dom/Dom_$JetztAktualisieren.js?v='.VERSION,
         
-        'js/vereinsapp/schnittstelle/event/Schnittstelle_EventSqlUpdLocalstorage.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/event/Schnittstelle_EventLocalstorageUpdVariable.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/event/Schnittstelle_EventVariableUpdLocalstorage.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/event/Schnittstelle_EventVariableUpdDom.js?v='.VERSION,
-
         'js/vereinsapp/liste/Liste_Init.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_$ListeAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_Liste$UeberschriftAktualisieren.js?v='.VERSION,
@@ -97,6 +91,11 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/element/Liste_Element$FormularWerteNachEigenschaftZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$FormularValidationAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementTextMitBeschriftungErsetztZurueck.js?v='.VERSION,
+
+        'js/vereinsapp/liste/event/Liste_EventSqlUpdLocalstorage.js?v='.VERSION,
+        'js/vereinsapp/liste/event/Liste_EventLocalstorageUpdVariable.js?v='.VERSION,
+        'js/vereinsapp/liste/event/Liste_EventVariableUpdLocalstorage.js?v='.VERSION,
+        'js/vereinsapp/liste/event/Liste_EventVariableUpdDom.js?v='.VERSION,
 
         'js/vereinsapp/liste/variable/Liste_VariableRein.js?v='.VERSION,
         'js/vereinsapp/liste/variable/Liste_VariableRausZurueck.js?v='.VERSION,

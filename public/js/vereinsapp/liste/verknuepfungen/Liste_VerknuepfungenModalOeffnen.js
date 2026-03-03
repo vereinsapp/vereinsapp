@@ -20,5 +20,5 @@ function Liste_VerknuepfungenModalOeffnen(modal_id, instanz, modal_title, verknu
     });
 
     Dom_$ModalOeffnen($neues_modal);
-    Schnittstelle_EventVariableUpdDom(liste);
+    Liste_EventVariableUpdDom(liste);
 }

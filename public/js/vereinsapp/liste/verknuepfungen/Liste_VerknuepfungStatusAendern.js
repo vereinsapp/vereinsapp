@@ -34,11 +34,11 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
                         });
                 });
 
-            Schnittstelle_EventVariableUpdLocalstorage(verknuepfungen);
-            Schnittstelle_EventLocalstorageUpdVariable(verknuepfungen);
+            Liste_EventVariableUpdLocalstorage(verknuepfungen);
+            Liste_EventLocalstorageUpdVariable(verknuepfungen);
             Liste_VerknuepfungenZuordnen(verknuepfungen);
             Liste_ElementErgaenzen(verknuepfungen);
-            Schnittstelle_EventVariableUpdDom(verknuepfungen);
+            Liste_EventVariableUpdDom(verknuepfungen);
 
             if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                 Dom_$ModalSchliessen(AJAX.dom.$modal);

@@ -42,11 +42,11 @@ function Liste_ElementErstellen(data_vollstaendig, dom, data, modal_title, eleme
                     Liste_VariableRein(wert, eigenschaft, element_id, liste);
                 });
 
-                Schnittstelle_EventVariableUpdLocalstorage(liste);
-                Schnittstelle_EventLocalstorageUpdVariable(liste);
+                Liste_EventVariableUpdLocalstorage(liste);
+                Liste_EventLocalstorageUpdVariable(liste);
                 Liste_VerknuepfungenZuordnen(liste);
                 Liste_ElementErgaenzen(liste);
-                Schnittstelle_EventVariableUpdDom(liste);
+                Liste_EventVariableUpdDom(liste);
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Dom_$ModalSchliessen(AJAX.dom.$modal);
                 Dom_ToastFeuern(

@@ -1,4 +1,7 @@
-function Schnittstelle_EventSqlUpdLocalstorage() {
+/**
+ */
+
+function Liste_EventSqlUpdLocalstorage() {
     Ajax_InDieSchlange(
         "einstellungen/ajax_tabellen",
         new Object(),
@@ -11,7 +14,7 @@ function Schnittstelle_EventSqlUpdLocalstorage() {
                 });
 
             $.each(LISTEN, function (liste) {
-                Schnittstelle_EventLocalstorageUpdVariable(liste);
+                Liste_EventLocalstorageUpdVariable(liste);
             });
 
             $.each(LISTEN, function (liste) {
@@ -23,7 +26,7 @@ function Schnittstelle_EventSqlUpdLocalstorage() {
             });
 
             $.each(LISTEN, function (liste) {
-                Schnittstelle_EventVariableUpdDom(liste);
+                Liste_EventVariableUpdDom(liste);
             });
         },
         function (AJAX) {

@@ -1,4 +1,8 @@
-function Schnittstelle_EventVariableUpdLocalstorage(liste) {
+/**
+ * @param {string} liste
+ */
+
+function Liste_EventVariableUpdLocalstorage(liste) {
     // tabelle_LocalStorage wird aus der Variable geholt
     const tabelle_LocalStorage = new Array();
     $.each(LISTEN[liste].tabelle, function () {

@@ -1,4 +1,8 @@
-function Schnittstelle_EventLocalstorageUpdVariable(liste) {
+/**
+ * @param {string} liste
+ */
+
+function Liste_EventLocalstorageUpdVariable(liste) {
     LISTEN[liste].tabelle = new Array();
     $.each(Localstorage_RausZurueck(liste + "_tabelle", new Array()), function (position, element) {
         LISTEN[liste].tabelle[element.id] = element;
