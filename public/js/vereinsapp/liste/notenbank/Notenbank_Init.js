@@ -1,5 +1,5 @@
 LISTEN.notenbank.element_erstellen_data_vervollstaendigen_aktion = function (data) {
-    data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+    data = Liste_WertBereinigtZurueck(data, new Object());
 
     if (!("komponist" in data) || isEmptyString(data.komponist)) data.komponist = null;
     if (!("bemerkung" in data) || isEmptyString(data.bemerkung)) data.bemerkung = null;
@@ -8,13 +8,13 @@ LISTEN.notenbank.element_erstellen_data_vervollstaendigen_aktion = function (dat
 };
 
 LISTEN.notenbank.element_aendern_data_vervollstaendigen_aktion = function (data, titel_id) {
-    if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", titel_id, "notenbank", undefined);
-    if (!("titel_nr" in data)) data.titel_nr = Schnittstelle_VariableRausZurueck("titel_nr", titel_id, "notenbank", undefined);
-    if (!("kategorie" in data)) data.kategorie = Schnittstelle_VariableRausZurueck("kategorie", titel_id, "notenbank", undefined);
-    if (!("komponist" in data)) data.komponist = Schnittstelle_VariableRausZurueck("komponist", titel_id, "notenbank", null);
-    if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", titel_id, "notenbank", null);
+    if (!("titel" in data)) data.titel = Liste_VariableRausZurueck("titel", titel_id, "notenbank", undefined);
+    if (!("titel_nr" in data)) data.titel_nr = Liste_VariableRausZurueck("titel_nr", titel_id, "notenbank", undefined);
+    if (!("kategorie" in data)) data.kategorie = Liste_VariableRausZurueck("kategorie", titel_id, "notenbank", undefined);
+    if (!("komponist" in data)) data.komponist = Liste_VariableRausZurueck("komponist", titel_id, "notenbank", null);
+    if (!("bemerkung" in data)) data.bemerkung = Liste_VariableRausZurueck("bemerkung", titel_id, "notenbank", null);
 
-    data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+    data = Liste_WertBereinigtZurueck(data, new Object());
 
     if (isEmptyString(data.komponist)) data.komponist = null;
     if (isEmptyString(data.bemerkung)) data.bemerkung = null;
@@ -38,28 +38,28 @@ LISTEN.notenbank.element_ergaenzen_aktion = function (titel) {
 
 LISTEN.notenbank_setliste.element_ergaenzen_aktion = function (setlisteneintrag) {
     if ("titel_id" in setlisteneintrag)
-        setlisteneintrag.titel_titel = Schnittstelle_VariableRausZurueck("titel", setlisteneintrag.titel_id, "notenbank", undefined);
+        setlisteneintrag.titel_titel = Liste_VariableRausZurueck("titel", setlisteneintrag.titel_id, "notenbank", undefined);
     if ("titel_id" in setlisteneintrag)
-        setlisteneintrag.titel_titel_nr = Schnittstelle_VariableRausZurueck("titel_nr", setlisteneintrag.titel_id, "notenbank", undefined);
+        setlisteneintrag.titel_titel_nr = Liste_VariableRausZurueck("titel_nr", setlisteneintrag.titel_id, "notenbank", undefined);
     if ("titel_id" in setlisteneintrag)
-        setlisteneintrag.titel_kategorie = Schnittstelle_VariableRausZurueck("kategorie", setlisteneintrag.titel_id, "notenbank", undefined);
+        setlisteneintrag.titel_kategorie = Liste_VariableRausZurueck("kategorie", setlisteneintrag.titel_id, "notenbank", undefined);
     if ("titel_id" in setlisteneintrag)
-        setlisteneintrag.titel_komponist = Schnittstelle_VariableRausZurueck("komponist", setlisteneintrag.titel_id, "notenbank", undefined);
+        setlisteneintrag.titel_komponist = Liste_VariableRausZurueck("komponist", setlisteneintrag.titel_id, "notenbank", undefined);
     if ("titel_id" in setlisteneintrag)
-        setlisteneintrag.titel_anzahl_noten = Schnittstelle_VariableRausZurueck("anzahl_noten", setlisteneintrag.titel_id, "notenbank", undefined);
+        setlisteneintrag.titel_anzahl_noten = Liste_VariableRausZurueck("anzahl_noten", setlisteneintrag.titel_id, "notenbank", undefined);
     if ("titel_id" in setlisteneintrag)
-        setlisteneintrag.titel_anzahl_audio = Schnittstelle_VariableRausZurueck("anzahl_audio", setlisteneintrag.titel_id, "notenbank", undefined);
+        setlisteneintrag.titel_anzahl_audio = Liste_VariableRausZurueck("anzahl_audio", setlisteneintrag.titel_id, "notenbank", undefined);
     if ("titel_id" in setlisteneintrag)
-        setlisteneintrag.titel_anzahl_verzeichnis = Schnittstelle_VariableRausZurueck(
+        setlisteneintrag.titel_anzahl_verzeichnis = Liste_VariableRausZurueck(
             "anzahl_verzeichnis",
             setlisteneintrag.titel_id,
             "notenbank",
             undefined,
         );
     if ("termin_id" in setlisteneintrag)
-        setlisteneintrag.termin_start = Schnittstelle_VariableRausZurueck("start", setlisteneintrag.termin_id, "termine", undefined);
+        setlisteneintrag.termin_start = Liste_VariableRausZurueck("start", setlisteneintrag.termin_id, "termine", undefined);
     if ("termin_id" in setlisteneintrag)
-        setlisteneintrag.termin_titel = Schnittstelle_VariableRausZurueck("titel", setlisteneintrag.termin_id, "termine", undefined);
+        setlisteneintrag.termin_titel = Liste_VariableRausZurueck("titel", setlisteneintrag.termin_id, "termine", undefined);
 };
 
 WERKZEUGE.titel_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
@@ -72,8 +72,8 @@ function Notenbank_Init() {
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("titel_id"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("titel_id"), undefined),
             "notenbank",
         );
     });
@@ -84,8 +84,8 @@ function Notenbank_Init() {
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("titel_id"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("titel_id"), undefined),
             "notenbank",
         );
     });
@@ -95,10 +95,10 @@ function Notenbank_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "setliste_verwalten_modal",
             "setliste_verwalten",
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             {
-                titel_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("titel_id"), undefined),
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
+                titel_id: Liste_WertBereinigtZurueck($(this).attr("titel_id"), undefined),
+                termin_id: Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
             },
             "notenbank_setliste",
         );
@@ -110,11 +110,11 @@ function Notenbank_Init() {
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                titel_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("titel_id"), undefined),
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
+                titel_id: Liste_WertBereinigtZurueck($(this).attr("titel_id"), undefined),
+                termin_id: Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
                 status: 1,
             },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             "notenbank_setliste",
         );
     });

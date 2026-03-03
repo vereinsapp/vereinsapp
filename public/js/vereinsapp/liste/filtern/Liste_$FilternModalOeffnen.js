@@ -3,10 +3,10 @@
  */
 
 function Liste_$FilternModalOeffnen($werkzeug) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("liste"), undefined);
+    const liste = Liste_WertBereinigtZurueck($werkzeug.attr("liste"), undefined);
 
     const $neues_filtern_modal = Dom_$NeuesModalInitialisiertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("modal_title"), undefined),
+        Liste_WertBereinigtZurueck($werkzeug.attr("modal_title"), undefined),
         "filtern_manip_modal",
     );
 

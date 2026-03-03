@@ -22,8 +22,8 @@ function Liste_ElementBemerkungAendern(data_vollstaendig, dom, data, element_id,
         Dom_$Quelle$ZielEntknuepfen(dom.$werkzeug, dom.$element);
         const ajax_dom = dom;
 
-        if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste, null);
-        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+        if (!("bemerkung" in data)) data.bemerkung = Liste_VariableRausZurueck("bemerkung", element_id, liste, null);
+        const ajax_data = Liste_WertBereinigtZurueck(data, new Object());
         ajax_data[LISTEN[liste].element + "_id"] = element_id;
         ajax_data.liste = liste;
         if (isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
@@ -36,12 +36,12 @@ function Liste_ElementBemerkungAendern(data_vollstaendig, dom, data, element_id,
                 const liste = AJAX.data.liste;
                 const element_id = AJAX.data[LISTEN[liste].element + "_id"];
 
-                Schnittstelle_VariableRein(AJAX.data.bemerkung, "bemerkung", element_id, liste);
+                Liste_VariableRein(AJAX.data.bemerkung, "bemerkung", element_id, liste);
 
                 Schnittstelle_EventVariableUpdLocalstorage(liste);
                 Schnittstelle_EventLocalstorageUpdVariable(liste);
                 Liste_VerknuepfungenZuordnen(liste);
-                Schnittstelle_VariableElementErgaenzen(liste);
+                Liste_ElementErgaenzen(liste);
                 Schnittstelle_EventVariableUpdDom(liste);
 
                 if ("dom" in AJAX && "$element" in AJAX.dom && AJAX.dom.$element.exists() && liste !== AJAX.dom.$element.attr("liste"))

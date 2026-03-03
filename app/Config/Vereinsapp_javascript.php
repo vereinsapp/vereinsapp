@@ -51,11 +51,13 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/Liste_Liste$WerkzeugAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_Liste$ListenstatistikAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_WertNachEigenschaftFormatiertZurueck.js?v='.VERSION,
+        'js/vereinsapp/liste/Liste_WertBereinigtZurueck.js?v='.VERSION,
 
         'js/vereinsapp/liste/element/Liste_ElementErstellen.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementAendern.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementBemerkungAendern.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementLoeschen.js?v='.VERSION,
+        'js/vereinsapp/liste/element/Liste_ElementErgaenzen.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_$ElementAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$LinkAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$ZusatzsymbolAktualisieren.js?v='.VERSION,
@@ -65,6 +67,10 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/element/Liste_Element$FormularWerteNachEigenschaftZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$FormularValidationAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementTextMitBeschriftungErsetztZurueck.js?v='.VERSION,
+
+        'js/vereinsapp/liste/variable/Liste_VariableRein.js?v='.VERSION,
+        'js/vereinsapp/liste/variable/Liste_VariableRausZurueck.js?v='.VERSION,
+        'js/vereinsapp/liste/variable/Liste_VariableLoeschen.js?v='.VERSION,
 
         'js/vereinsapp/liste/filtern/Liste_FilternInit.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_$FilternModalOeffnen.js?v='.VERSION,
@@ -119,12 +125,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/localstorage/Localstorage_RausZurueck.js?v='.VERSION,
         'js/vereinsapp/localstorage/Localstorage_Loeschen.js?v='.VERSION,
         'js/vereinsapp/localstorage/Localstorage_Leeren.js?v='.VERSION,
-
-        'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableRein.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableRausZurueck.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableWertBereinigtZurueck.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableLoeschen.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableElementErgaenzen.js?v='.VERSION,
 
         'js/vereinsapp/dom/Dom_Init.js?v='.VERSION,
         'js/vereinsapp/dom/Dom_ToastFeuern.js?v='.VERSION,

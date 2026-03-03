@@ -3,10 +3,10 @@
  */
 
 function Liste_$VerzeichnisAktualisieren($verzeichnis) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("liste"), undefined);
-    const verzeichnis_instanz = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("instanz"), $verzeichnis.attr("id"));
-    const element_id = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr(LISTEN[liste].element + "_id"), undefined);
-    const basis = Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("basis"), new Array());
+    const liste = Liste_WertBereinigtZurueck($verzeichnis.attr("liste"), undefined);
+    const verzeichnis_instanz = Liste_WertBereinigtZurueck($verzeichnis.attr("instanz"), $verzeichnis.attr("id"));
+    const element_id = Liste_WertBereinigtZurueck($verzeichnis.attr(LISTEN[liste].element + "_id"), undefined);
+    const basis = Liste_WertBereinigtZurueck($verzeichnis.attr("basis"), new Array());
 
     if (basis.length > 0)
         $verzeichnis
@@ -14,7 +14,7 @@ function Liste_$VerzeichnisAktualisieren($verzeichnis) {
             .find(".beschriftung")
             .text(basis[basis.length - 1]);
 
-    let inhalt = Schnittstelle_VariableRausZurueck("verzeichnis", element_id, liste, new Object());
+    let inhalt = Liste_VariableRausZurueck("verzeichnis", element_id, liste, new Object());
     $.each(basis, function (position, unterverzeichnis) {
         inhalt = inhalt.unterverzeichnisse[unterverzeichnis];
     });

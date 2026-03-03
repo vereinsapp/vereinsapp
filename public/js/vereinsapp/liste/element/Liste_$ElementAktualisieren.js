@@ -3,26 +3,19 @@
  */
 
 function Liste_$ElementAktualisieren($element) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("liste"), undefined);
-    const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
+    const liste = Liste_WertBereinigtZurueck($element.attr("liste"), undefined);
+    const element_id = Liste_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
 
     // EIGENSCHAFTEN AKTUALISIEREN
     $element.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
-        const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($eigenschaft.attr("eigenschaft"), undefined);
+        const eigenschaft = Liste_WertBereinigtZurueck($eigenschaft.attr("eigenschaft"), undefined);
 
         $eigenschaft.html(
-            Liste_WertNachEigenschaftFormatiertZurueck(
-                Schnittstelle_VariableRausZurueck(eigenschaft, element_id, liste, undefined),
-                eigenschaft,
-                liste,
-            ),
+            Liste_WertNachEigenschaftFormatiertZurueck(Liste_VariableRausZurueck(eigenschaft, element_id, liste, undefined), eigenschaft, liste),
         );
 
-        const eigenschaften_bedingt_formatiert = Schnittstelle_VariableWertBereinigtZurueck(
-            $element.attr("eigenschaften_bedingt_formatiert"),
-            new Object(),
-        );
+        const eigenschaften_bedingt_formatiert = Liste_WertBereinigtZurueck($element.attr("eigenschaften_bedingt_formatiert"), new Object());
         if (isObject(eigenschaften_bedingt_formatiert) && eigenschaft in eigenschaften_bedingt_formatiert)
             $.each(eigenschaften_bedingt_formatiert[eigenschaft], function (klasse, filtern) {
                 const tabelle = new Array();

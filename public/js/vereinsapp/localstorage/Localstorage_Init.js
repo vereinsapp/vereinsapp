@@ -9,7 +9,7 @@ function Localstorage_Init() {
         Localstorage_Leeren(
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
         );
     });
 }

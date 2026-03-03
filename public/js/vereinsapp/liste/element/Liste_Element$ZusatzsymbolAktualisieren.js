@@ -4,9 +4,9 @@
  */
 
 function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($element.attr("liste"), undefined);
-    const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
-    const zusatzsymbol = Schnittstelle_VariableWertBereinigtZurueck($zusatzsymbol.attr("zusatzsymbol"), undefined);
+    const liste = Liste_WertBereinigtZurueck($element.attr("liste"), undefined);
+    const element_id = Liste_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
+    const zusatzsymbol = Liste_WertBereinigtZurueck($zusatzsymbol.attr("zusatzsymbol"), undefined);
 
     $zusatzsymbol.find('[data-bs-toggle="popover"]').popover("hide");
     $zusatzsymbol.empty();
@@ -16,14 +16,14 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
     switch (zusatzsymbol) {
         // Zusatzsymbol für Geburtstag
         case "geburtstag":
-            const geburtstag = Schnittstelle_VariableRausZurueck("geburtstag", element_id, liste, undefined);
+            const geburtstag = Liste_VariableRausZurueck("geburtstag", element_id, liste, undefined);
             if (typeof geburtstag !== "undefined" && geburtstag <= DATETIME.now() && DATETIME.now() <= geburtstag.plus({ days: 1 }))
                 $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["geburtstag"]["bootstrap"] + ' text-primary"></i>');
             break;
 
         // Zusatzsymbol für Kategorie
         case "kategorie":
-            const kategorie = Schnittstelle_VariableRausZurueck("kategorie", element_id, liste, undefined);
+            const kategorie = Liste_VariableRausZurueck("kategorie", element_id, liste, undefined);
             if (
                 liste in VORGEGEBENE_WERTE &&
                 "kategorie" in VORGEGEBENE_WERTE[liste] &&
@@ -35,7 +35,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
 
         // Zusatzsymbol für Datei
         case "datei":
-            const datei = Schnittstelle_VariableWertBereinigtZurueck($element.attr("datei"), undefined);
+            const datei = Liste_WertBereinigtZurueck($element.attr("datei"), undefined);
             const punkt = datei.lastIndexOf(".");
             const typ = datei.slice(punkt + 1);
             $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE[typ]["bootstrap"] + ' text-primary"></i>');
@@ -119,7 +119,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
 
         // Zusatzsymbol für Bemerkung bei Rückmeldung
         case "bemerkung":
-            const bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste, null);
+            const bemerkung = Liste_VariableRausZurueck("bemerkung", element_id, liste, null);
             if (bemerkung !== null)
                 $zusatzsymbol
                     .removeClass("invisible")
@@ -146,10 +146,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
             const verknuepfte_element_ids = new Object();
             $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
-                const verknuepfte_element_id = Schnittstelle_VariableWertBereinigtZurueck(
-                    $element.attr(LISTEN[verknuepfte_liste].element + "_id"),
-                    undefined,
-                );
+                const verknuepfte_element_id = Liste_WertBereinigtZurueck($element.attr(LISTEN[verknuepfte_liste].element + "_id"), undefined);
                 if (typeof verknuepfte_element_id !== "undefined")
                     verknuepfte_element_ids[LISTEN[verknuepfte_liste].element + "_id"] = verknuepfte_element_id;
             });
@@ -157,7 +154,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
 
             let verknuepfung_id = undefined;
             $.each(
-                Schnittstelle_VariableRausZurueck(
+                Liste_VariableRausZurueck(
                     "zugeordnete_" + LISTEN[verknuepfungen].element + "_ids",
                     verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
                     verknuepfte_listen[0],
@@ -165,7 +162,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                 ),
                 function (position, zugeordnete_verknuepfung_id) {
                     if (
-                        Schnittstelle_VariableRausZurueck(
+                        Liste_VariableRausZurueck(
                             LISTEN[verknuepfte_listen[1]].element + "_id",
                             zugeordnete_verknuepfung_id,
                             verknuepfungen,
@@ -176,7 +173,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                 },
             );
 
-            let verknuepfung_status = Schnittstelle_VariableRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
+            let verknuepfung_status = Liste_VariableRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
             if (verknuepfung_status > 0 && !(verknuepfung_status in VERKNUEPFUNGEN[verknuepfungen].status_erlaubt)) verknuepfung_status = 1;
 
             if (typeof verknuepfung_status !== "undefined")

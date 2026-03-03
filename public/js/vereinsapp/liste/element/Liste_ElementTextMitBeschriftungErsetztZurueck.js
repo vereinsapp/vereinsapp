@@ -38,7 +38,7 @@ function element_beschriftung_zurueck(element_id, liste) {
                 if ("prefix" in this) beschriftung += this.prefix;
                 if ("eigenschaft" in this)
                     beschriftung += Liste_WertNachEigenschaftFormatiertZurueck(
-                        Schnittstelle_VariableRausZurueck(this.eigenschaft, element_id, liste, undefined),
+                        Liste_VariableRausZurueck(this.eigenschaft, element_id, liste, undefined),
                         this.eigenschaft,
                         liste,
                     );

@@ -1,5 +1,5 @@
 LISTEN.strafkatalog.element_erstellen_data_vervollstaendigen_aktion = function (data) {
-    data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+    data = Liste_WertBereinigtZurueck(data, new Object());
 
     if (!("bemerkung" in data) || isEmptyString(data.bemerkung)) data.bemerkung = null;
 
@@ -7,12 +7,12 @@ LISTEN.strafkatalog.element_erstellen_data_vervollstaendigen_aktion = function (
 };
 
 LISTEN.strafkatalog.element_aendern_data_vervollstaendigen_aktion = function (data, strafe_id) {
-    if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", strafe_id, "strafkatalog", undefined);
-    if (!("wert" in data)) data.wert = Schnittstelle_VariableRausZurueck("wert", strafe_id, "strafkatalog", undefined);
-    if (!("kategorie" in data)) data.kategorie = Schnittstelle_VariableRausZurueck("kategorie", strafe_id, "strafkatalog", undefined);
-    if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", strafe_id, "strafkatalog", null);
+    if (!("titel" in data)) data.titel = Liste_VariableRausZurueck("titel", strafe_id, "strafkatalog", undefined);
+    if (!("wert" in data)) data.wert = Liste_VariableRausZurueck("wert", strafe_id, "strafkatalog", undefined);
+    if (!("kategorie" in data)) data.kategorie = Liste_VariableRausZurueck("kategorie", strafe_id, "strafkatalog", undefined);
+    if (!("bemerkung" in data)) data.bemerkung = Liste_VariableRausZurueck("bemerkung", strafe_id, "strafkatalog", null);
 
-    data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+    data = Liste_WertBereinigtZurueck(data, new Object());
 
     if (isEmptyString(data.bemerkung)) data.bemerkung = null;
     return data;
@@ -27,8 +27,8 @@ function Strafkatalog_Init() {
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("strafe_id"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("strafe_id"), undefined),
             "strafkatalog",
         );
     });
@@ -39,8 +39,8 @@ function Strafkatalog_Init() {
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("strafe_id"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("strafe_id"), undefined),
             "strafkatalog",
         );
     });
@@ -50,10 +50,10 @@ function Strafkatalog_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "strafen_zuweisen_modal",
             "strafen_zuweisen",
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             {
-                strafe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("strafe_id"), undefined),
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                strafe_id: Liste_WertBereinigtZurueck($(this).attr("strafe_id"), undefined),
+                mitglied_id: Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
             },
             "strafkatalog_zugewiesene_strafen",
         );
@@ -65,11 +65,11 @@ function Strafkatalog_Init() {
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                strafe_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("strafe_id"), undefined),
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                strafe_id: Liste_WertBereinigtZurueck($(this).attr("strafe_id"), undefined),
+                mitglied_id: Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
                 status: 1,
             },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             "strafkatalog_zugewiesene_strafen",
         );
     });

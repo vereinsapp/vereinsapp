@@ -3,32 +3,28 @@
  */
 
 function Liste_$AuswertungAktualisieren($auswertung) {
-    const auswertungen = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("auswertungen"), undefined);
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("liste"), undefined);
+    const auswertungen = Liste_WertBereinigtZurueck($auswertung.attr("auswertungen"), undefined);
+    const liste = Liste_WertBereinigtZurueck($auswertung.attr("liste"), undefined);
 
     // ERGEBNIS NACH STATUS ERMITTELN
     const ergebnis_nach_status = new Array();
     $.each(Object.keys(VERKNUEPFUNGEN[auswertungen].status_erlaubt), function (position, status) {
         ergebnis_nach_status[status] = new Array();
     });
-    ergebnis_nach_status[0] = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr(LISTEN[liste].element + "_ids"), new Array());
+    ergebnis_nach_status[0] = Liste_WertBereinigtZurueck($auswertung.attr(LISTEN[liste].element + "_ids"), new Array());
     const ergebnis_referenz_anzahl = ergebnis_nach_status[0].length;
 
-    $.each(
-        Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr(LISTEN[auswertungen].element + "_ids"), new Array()),
-        function (position, auswertung_id) {
-            ergebnis_nach_status[Schnittstelle_VariableRausZurueck("status", auswertung_id, auswertungen, undefined)].push(auswertung_id);
-            ergebnis_nach_status[0] = ergebnis_nach_status[0].filter(
-                (element_id) =>
-                    element_id != Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined),
-            );
-        },
-    );
+    $.each(Liste_WertBereinigtZurueck($auswertung.attr(LISTEN[auswertungen].element + "_ids"), new Array()), function (position, auswertung_id) {
+        ergebnis_nach_status[Liste_VariableRausZurueck("status", auswertung_id, auswertungen, undefined)].push(auswertung_id);
+        ergebnis_nach_status[0] = ergebnis_nach_status[0].filter(
+            (element_id) => element_id != Liste_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined),
+        );
+    });
 
     // ERGEBNIS_ANZAHL AKTUALISIEREN
     $auswertung.find(".ergebnis_anzahl").each(function () {
         const $ergebnis_anzahl = $(this);
-        const status = Schnittstelle_VariableWertBereinigtZurueck($ergebnis_anzahl.attr("status"), undefined);
+        const status = Liste_WertBereinigtZurueck($ergebnis_anzahl.attr("status"), undefined);
 
         const ergebnis_anzahl = ergebnis_nach_status[status].length;
 
@@ -42,17 +38,14 @@ function Liste_$AuswertungAktualisieren($auswertung) {
         const $ergebnis = $(this);
 
         const filtern = { id: { inklusiv: new Array() } };
-        $.each(
-            ergebnis_nach_status[Schnittstelle_VariableWertBereinigtZurueck($ergebnis.attr("status"), undefined)],
-            function (position, auswertung_id) {
-                filtern.id.inklusiv.push(auswertung_id);
-            },
-        );
+        $.each(ergebnis_nach_status[Liste_WertBereinigtZurueck($ergebnis.attr("status"), undefined)], function (position, auswertung_id) {
+            filtern.id.inklusiv.push(auswertung_id);
+        });
         $ergebnis.attr("filtern", JsonStringifiedZurueck(filtern, new Object()));
     });
 
     // BESCHRIFTUNG AKTUALISIEREN
-    const beschriftung = Schnittstelle_VariableWertBereinigtZurueck($auswertung.attr("beschriftung"), undefined);
+    const beschriftung = Liste_WertBereinigtZurueck($auswertung.attr("beschriftung"), undefined);
     if (typeof beschriftung !== "undefined") $auswertung.find(".beschriftung").text(beschriftung);
 
     // BEINHALTETE LISTE AKTUALISIEREN

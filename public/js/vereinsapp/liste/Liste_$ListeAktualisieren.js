@@ -3,11 +3,11 @@
  */
 
 function Liste_$ListeAktualisieren($liste) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("liste"), undefined);
-    const instanz = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("id"), undefined);
+    const liste = Liste_WertBereinigtZurueck($liste.attr("liste"), undefined);
+    const instanz = Liste_WertBereinigtZurueck($liste.attr("id"), undefined);
 
     // TABELLE FILTERN
-    const filtern_data = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("filtern"), new Object());
+    const filtern_data = Liste_WertBereinigtZurueck($liste.attr("filtern"), new Object());
     const filtern_LocalStorage = LISTEN[liste].instanz[instanz].filtern;
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
         LISTEN[liste].tabelle,
@@ -16,7 +16,7 @@ function Liste_$ListeAktualisieren($liste) {
     );
 
     // TABELLE SORTIEREN
-    const sortieren_data = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("sortieren"), undefined);
+    const sortieren_data = Liste_WertBereinigtZurueck($liste.attr("sortieren"), undefined);
     const sortieren_LocalStorage = LISTEN[liste].instanz[instanz].sortieren;
     const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(
         tabelle_gefiltert,
@@ -26,7 +26,7 @@ function Liste_$ListeAktualisieren($liste) {
     // ELEMENTE IM DOM LÖSCHEN
     $liste.find(".element").each(function () {
         const $element = $(this);
-        const element_id = Schnittstelle_VariableWertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
+        const element_id = Liste_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
         const element = LISTEN[liste].tabelle[element_id];
         if (!tabelle_gefiltert_sortiert.includes(element)) $element.remove();
     });
@@ -44,11 +44,11 @@ function Liste_$ListeAktualisieren($liste) {
             .attr("eigenschaften_bedingt_formatiert", $liste.attr("eigenschaften_bedingt_formatiert"));
 
         $.each(Object.keys(LISTEN), function (position, liste) {
-            const verknuepfte_element_id = Schnittstelle_VariableWertBereinigtZurueck($liste.attr(LISTEN[liste].element + "_id"), undefined);
+            const verknuepfte_element_id = Liste_WertBereinigtZurueck($liste.attr(LISTEN[liste].element + "_id"), undefined);
             if (typeof verknuepfte_element_id !== "undefined") $element.attr(LISTEN[liste].element + "_id", verknuepfte_element_id);
         });
 
-        if (Schnittstelle_VariableWertBereinigtZurueck($liste.attr("disabled_ids"), new Array()).includes(element_id)) $element.addClass("disabled");
+        if (Liste_WertBereinigtZurueck($liste.attr("disabled_ids"), new Array()).includes(element_id)) $element.addClass("disabled");
         else $element.removeClass("disabled");
 
         if (position === 0) $element.appendTo($liste);

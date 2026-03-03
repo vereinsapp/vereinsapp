@@ -1,7 +1,7 @@
 EIGENSCHAFTEN.termine.kategorie.eingabe_aendern_aktion = function ($kategorie) {
     const $filtern_mitglieder = $kategorie.closest(".formular").find('.eingabe[eingabe="filtern_mitglieder"]');
     if ($kategorie.val() in TERMINE_KATEGORIE_FILTERN_MITGLIEDER) {
-        const filtern_basis = Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()], new Object());
+        const filtern_basis = Liste_WertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()], new Object());
         const filtern_manip = new Object();
         $.each(Object.keys(filtern_basis), function (position, eigenschaft) {
             if ("termine" in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN.termine.includes(eigenschaft))
@@ -18,7 +18,7 @@ LISTEN.termine.element_erstellen_data_vervollstaendigen_aktion = function (data)
     if (typeof data.filtern_mitglieder === "undefined" || ("filtern_mitglieder" in data && isEmptyString(data.filtern_mitglieder)))
         data.filtern_mitglieder = new Object();
 
-    data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+    data = Liste_WertBereinigtZurueck(data, new Object());
 
     if (isLuxonDateTime(data.start)) data.start = data.start.toISO();
     if (isLuxonDateTime(data.ende)) data.ende = data.ende.toISO();
@@ -30,18 +30,17 @@ LISTEN.termine.element_erstellen_data_vervollstaendigen_aktion = function (data)
 };
 
 LISTEN.termine.element_aendern_data_vervollstaendigen_aktion = function (data, termin_id) {
-    if (!("titel" in data)) data.titel = Schnittstelle_VariableRausZurueck("titel", termin_id, "termine", undefined);
-    if (!("start" in data)) data.start = Schnittstelle_VariableRausZurueck("start", termin_id, "termine", undefined);
-    if (!("ende" in data)) data.ende = Schnittstelle_VariableRausZurueck("ende", termin_id, "termine", undefined);
-    if (!("ort" in data)) data.ort = Schnittstelle_VariableRausZurueck("ort", termin_id, "termine", undefined);
-    if (!("kategorie" in data)) data.kategorie = Schnittstelle_VariableRausZurueck("kategorie", termin_id, "termine", undefined);
-    if (!("filtern_mitglieder" in data))
-        data.filtern_mitglieder = Schnittstelle_VariableRausZurueck("filtern_mitglieder", termin_id, "termine", undefined);
+    if (!("titel" in data)) data.titel = Liste_VariableRausZurueck("titel", termin_id, "termine", undefined);
+    if (!("start" in data)) data.start = Liste_VariableRausZurueck("start", termin_id, "termine", undefined);
+    if (!("ende" in data)) data.ende = Liste_VariableRausZurueck("ende", termin_id, "termine", undefined);
+    if (!("ort" in data)) data.ort = Liste_VariableRausZurueck("ort", termin_id, "termine", undefined);
+    if (!("kategorie" in data)) data.kategorie = Liste_VariableRausZurueck("kategorie", termin_id, "termine", undefined);
+    if (!("filtern_mitglieder" in data)) data.filtern_mitglieder = Liste_VariableRausZurueck("filtern_mitglieder", termin_id, "termine", undefined);
     if (!("oeffentlich_janein" in data))
-        data.oeffentlich_janein = Number(Schnittstelle_VariableRausZurueck("oeffentlich_janein", termin_id, "termine", undefined));
-    if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", termin_id, "termine", null);
+        data.oeffentlich_janein = Number(Liste_VariableRausZurueck("oeffentlich_janein", termin_id, "termine", undefined));
+    if (!("bemerkung" in data)) data.bemerkung = Liste_VariableRausZurueck("bemerkung", termin_id, "termine", null);
 
-    data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+    data = Liste_WertBereinigtZurueck(data, new Object());
 
     if (isLuxonDateTime(data.start)) data.start = data.start.toISO();
     if (isLuxonDateTime(data.ende)) data.ende = data.ende.toISO();
@@ -58,7 +57,7 @@ LISTEN.termine.element_ergaenzen_aktion = function (termin) {
         Liste_TabelleGefiltertZurueck(
             LISTEN.mitglieder.tabelle,
             Liste_FilternManipuliertZurueck(
-                Schnittstelle_VariableWertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin.kategorie], new Object()),
+                Liste_WertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin.kategorie], new Object()),
                 termin.filtern_mitglieder,
                 "mitglieder",
             ),
@@ -73,7 +72,7 @@ LISTEN.termine.element_ergaenzen_aktion = function (termin) {
     termin.ich_rueckgemeldet_janein = false;
     if ("zugeordnete_termine_rueckmeldung_ids" in termin)
         $.each(termin.zugeordnete_termine_rueckmeldung_ids, function (position, rueckmeldung_id) {
-            if (Schnittstelle_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == ICH_ID) {
+            if (Liste_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == ICH_ID) {
                 termin.ich_rueckgemeldet_janein = true;
                 return false;
             }
@@ -81,25 +80,21 @@ LISTEN.termine.element_ergaenzen_aktion = function (termin) {
 };
 
 LISTEN.termine_rueckmeldungen.element_ergaenzen_aktion = function (rueckmeldung) {
-    if ("termin_id" in rueckmeldung)
-        rueckmeldung.termin_start = Schnittstelle_VariableRausZurueck("start", rueckmeldung.termin_id, "termine", undefined);
-    if ("termin_id" in rueckmeldung)
-        rueckmeldung.termin_titel = Schnittstelle_VariableRausZurueck("titel", rueckmeldung.termin_id, "termine", undefined);
+    if ("termin_id" in rueckmeldung) rueckmeldung.termin_start = Liste_VariableRausZurueck("start", rueckmeldung.termin_id, "termine", undefined);
+    if ("termin_id" in rueckmeldung) rueckmeldung.termin_titel = Liste_VariableRausZurueck("titel", rueckmeldung.termin_id, "termine", undefined);
     if ("mitglied_id" in rueckmeldung)
-        rueckmeldung.mitglied_vorname = Schnittstelle_VariableRausZurueck("vorname", rueckmeldung.mitglied_id, "mitglieder", undefined);
+        rueckmeldung.mitglied_vorname = Liste_VariableRausZurueck("vorname", rueckmeldung.mitglied_id, "mitglieder", undefined);
     if ("mitglied_id" in rueckmeldung)
-        rueckmeldung.mitglied_nachname = Schnittstelle_VariableRausZurueck("nachname", rueckmeldung.mitglied_id, "mitglieder", undefined);
+        rueckmeldung.mitglied_nachname = Liste_VariableRausZurueck("nachname", rueckmeldung.mitglied_id, "mitglieder", undefined);
 };
 
 LISTEN.termine_anwesenheiten.element_ergaenzen_aktion = function (anwesenheit) {
-    if ("termin_id" in anwesenheit)
-        anwesenheit.termin_start = Schnittstelle_VariableRausZurueck("start", anwesenheit.termin_id, "termine", undefined);
-    if ("termin_id" in anwesenheit)
-        anwesenheit.termin_titel = Schnittstelle_VariableRausZurueck("titel", anwesenheit.termin_id, "termine", undefined);
+    if ("termin_id" in anwesenheit) anwesenheit.termin_start = Liste_VariableRausZurueck("start", anwesenheit.termin_id, "termine", undefined);
+    if ("termin_id" in anwesenheit) anwesenheit.termin_titel = Liste_VariableRausZurueck("titel", anwesenheit.termin_id, "termine", undefined);
     if ("mitglied_id" in anwesenheit)
-        anwesenheit.mitglied_vorname = Schnittstelle_VariableRausZurueck("vorname", anwesenheit.mitglied_id, "mitglieder", undefined);
+        anwesenheit.mitglied_vorname = Liste_VariableRausZurueck("vorname", anwesenheit.mitglied_id, "mitglieder", undefined);
     if ("mitglied_id" in anwesenheit)
-        anwesenheit.mitglied_nachname = Schnittstelle_VariableRausZurueck("nachname", anwesenheit.mitglied_id, "mitglieder", undefined);
+        anwesenheit.mitglied_nachname = Liste_VariableRausZurueck("nachname", anwesenheit.mitglied_id, "mitglieder", undefined);
 };
 
 WERKZEUGE.termin_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
@@ -111,8 +106,8 @@ function Termine_Init() {
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
             "termine",
         );
     });
@@ -123,8 +118,8 @@ function Termine_Init() {
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
             "termine",
         );
     });
@@ -134,10 +129,10 @@ function Termine_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "termine_rueckmeldungen_verwalten_modal",
             "termine_rueckmeldungen_verwalten",
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             {
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
+                mitglied_id: Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                termin_id: Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
             },
             "termine_rueckmeldungen",
         );
@@ -149,11 +144,11 @@ function Termine_Init() {
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
-                status: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("status"), undefined),
+                termin_id: Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
+                mitglied_id: Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                status: Liste_WertBereinigtZurueck($(this).attr("status"), undefined),
             },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             "termine_rueckmeldungen",
         );
     });
@@ -163,10 +158,10 @@ function Termine_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "termine_anwesenheiten_dokumentieren_modal",
             "termine_anwesenheiten_dokumentieren",
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             {
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
+                mitglied_id: Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                termin_id: Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
             },
             "termine_anwesenheiten",
         );
@@ -178,11 +173,11 @@ function Termine_Init() {
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                termin_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("termin_id"), undefined),
-                mitglied_id: Schnittstelle_VariableWertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                termin_id: Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
+                mitglied_id: Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
                 status: Number($(this).is(":checked")),
             },
-            Schnittstelle_VariableWertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             "termine_anwesenheiten",
         );
     });

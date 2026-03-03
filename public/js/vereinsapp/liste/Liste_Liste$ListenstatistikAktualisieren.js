@@ -4,7 +4,7 @@
  */
 
 function Liste_Liste$ListenstatistikAktualisieren($listenstatistik, $liste) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($liste.attr("liste"), undefined);
+    const liste = Liste_WertBereinigtZurueck($liste.attr("liste"), undefined);
 
     switch ($listenstatistik.attr("listenstatistik")) {
         case "anzahl":
@@ -21,7 +21,7 @@ function Liste_Liste$ListenstatistikAktualisieren($listenstatistik, $liste) {
             if (typeof eigenschaft !== "undefined" && EIGENSCHAFTEN[liste][eigenschaft].typ == "zahl") {
                 let summe = 0;
                 $liste.children().each(function () {
-                    summe += Number(Schnittstelle_VariableRausZurueck(eigenschaft, $(this).attr(LISTEN[liste].element + "_id"), liste, 0));
+                    summe += Number(Liste_VariableRausZurueck(eigenschaft, $(this).attr(LISTEN[liste].element + "_id"), liste, 0));
                 });
                 $listenstatistik.text(Liste_WertNachEigenschaftFormatiertZurueck(summe, eigenschaft, liste));
             }

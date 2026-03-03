@@ -37,15 +37,15 @@ function Liste_ElementErstellen(data_vollstaendig, dom, data, modal_title, eleme
                 const element_id = AJAX.data[LISTEN[liste].element + "_id"];
                 delete AJAX.data[LISTEN[liste].element + "_id"];
 
-                Schnittstelle_VariableRein(element_id, "id", element_id, liste);
+                Liste_VariableRein(element_id, "id", element_id, liste);
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    Schnittstelle_VariableRein(wert, eigenschaft, element_id, liste);
+                    Liste_VariableRein(wert, eigenschaft, element_id, liste);
                 });
 
                 Schnittstelle_EventVariableUpdLocalstorage(liste);
                 Schnittstelle_EventLocalstorageUpdVariable(liste);
                 Liste_VerknuepfungenZuordnen(liste);
-                Schnittstelle_VariableElementErgaenzen(liste);
+                Liste_ElementErgaenzen(liste);
                 Schnittstelle_EventVariableUpdDom(liste);
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Dom_$ModalSchliessen(AJAX.dom.$modal);

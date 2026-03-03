@@ -6,7 +6,7 @@ function Liste_VerknuepfungenZuordnen(verknuepfungen) {
             const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
             $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
                 if (verknuepfte_liste in LISTEN) {
-                    const verknuepfte_element_id = Schnittstelle_VariableRausZurueck(
+                    const verknuepfte_element_id = Liste_VariableRausZurueck(
                         LISTEN[verknuepfte_liste].element + "_id",
                         verknuepfung_id,
                         verknuepfungen,

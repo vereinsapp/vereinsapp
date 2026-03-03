@@ -3,13 +3,13 @@
  */
 
 function Liste_$GruppierenEigenschaftAktualisieren($gruppieren_eigenschaft) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_eigenschaft.attr("liste"), undefined);
+    const liste = Liste_WertBereinigtZurueck($gruppieren_eigenschaft.attr("liste"), undefined);
     const $werkzeug = Dom_$ZielZu$QuelleZurueck($gruppieren_eigenschaft);
 
     // Definition von gruppieren_eigenschaft
     const gruppieren_eigenschaft = Liste_GruppierenManipuliertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("gruppieren_basis"), undefined),
-        Schnittstelle_VariableWertBereinigtZurueck($werkzeug.val(), undefined),
+        Liste_WertBereinigtZurueck($werkzeug.attr("gruppieren_basis"), undefined),
+        Liste_WertBereinigtZurueck($werkzeug.val(), undefined),
         liste,
     );
     const eigenschaft = gruppieren_eigenschaft;

@@ -29,7 +29,7 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
         );
     else {
         const ajax_dom = dom;
-        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
+        const ajax_data = Liste_WertBereinigtZurueck(data, new Object());
         if (!("bemerkung" in ajax_data) || isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
         Ajax_InDieSchlange(
@@ -49,7 +49,7 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                 // bereits vorhandene identische Verknüpfungen werden gelöscht
                 if (VERKNUEPFUNGEN[verknuepfungen].nur_eins_erlaubt_janein)
                     $.each(
-                        Schnittstelle_VariableRausZurueck(
+                        Liste_VariableRausZurueck(
                             "zugeordnete_" + LISTEN[verknuepfungen].element + "_ids",
                             verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
                             verknuepfte_listen[0],
@@ -57,14 +57,14 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                         ),
                         function (position, zugeordnete_verknuepfung_id) {
                             if (
-                                Schnittstelle_VariableRausZurueck(
+                                Liste_VariableRausZurueck(
                                     LISTEN[verknuepfte_listen[1]].element + "_id",
                                     zugeordnete_verknuepfung_id,
                                     verknuepfungen,
                                     undefined,
                                 ) === verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"]
                             )
-                                Schnittstelle_VariableLoeschen(zugeordnete_verknuepfung_id, verknuepfungen);
+                                Liste_VariableLoeschen(zugeordnete_verknuepfung_id, verknuepfungen);
                         },
                     );
 
@@ -76,9 +76,9 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                     const verknuepfung_id = AJAX.data[LISTEN[verknuepfungen].element + "_id"];
                     delete AJAX.data[LISTEN[verknuepfungen].element + "_id"];
 
-                    Schnittstelle_VariableRein(verknuepfung_id, "id", verknuepfung_id, verknuepfungen);
+                    Liste_VariableRein(verknuepfung_id, "id", verknuepfung_id, verknuepfungen);
                     $.each(AJAX.data, function (eigenschaft, wert) {
-                        Schnittstelle_VariableRein(wert, eigenschaft, verknuepfung_id, verknuepfungen);
+                        Liste_VariableRein(wert, eigenschaft, verknuepfung_id, verknuepfungen);
                     });
                 }
 
@@ -86,16 +86,16 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                     $.each(AJAX.antwort.dbdata, function (position, element) {
                         if ("id" in element)
                             $.each(element, function (eigenschaft, wert) {
-                                Schnittstelle_VariableRein(wert, eigenschaft, Number(element.id), verknuepfungen);
+                                Liste_VariableRein(wert, eigenschaft, Number(element.id), verknuepfungen);
                             });
                     });
 
                 Schnittstelle_EventVariableUpdLocalstorage(verknuepfungen);
                 Schnittstelle_EventLocalstorageUpdVariable(verknuepfungen);
                 Liste_VerknuepfungenZuordnen(verknuepfungen);
-                Schnittstelle_VariableElementErgaenzen(verknuepfungen);
-                Schnittstelle_VariableElementErgaenzen(verknuepfte_listen[0]);
-                Schnittstelle_VariableElementErgaenzen(verknuepfte_listen[1]);
+                Liste_ElementErgaenzen(verknuepfungen);
+                Liste_ElementErgaenzen(verknuepfte_listen[0]);
+                Liste_ElementErgaenzen(verknuepfte_listen[1]);
                 Schnittstelle_EventVariableUpdDom(verknuepfungen);
                 Schnittstelle_EventVariableUpdDom(verknuepfte_listen[0]);
                 Schnittstelle_EventVariableUpdDom(verknuepfte_listen[1]);

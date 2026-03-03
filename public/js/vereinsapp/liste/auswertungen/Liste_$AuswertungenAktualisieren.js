@@ -3,17 +3,17 @@
  */
 
 function Liste_$AuswertungenAktualisieren($auswertungen) {
-    const auswertungen = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("auswertungen"), undefined);
-    const auswertungen_instanz = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("id"), undefined);
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("liste"), undefined);
+    const auswertungen = Liste_WertBereinigtZurueck($auswertungen.attr("auswertungen"), undefined);
+    const auswertungen_instanz = Liste_WertBereinigtZurueck($auswertungen.attr("id"), undefined);
+    const liste = Liste_WertBereinigtZurueck($auswertungen.attr("liste"), undefined);
 
     // GRUPPIEREN DEFINIEREN
-    const gruppieren_data = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("gruppieren"), undefined);
+    const gruppieren_data = Liste_WertBereinigtZurueck($auswertungen.attr("gruppieren"), undefined);
     const gruppieren_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].gruppieren;
     const gruppieren = Liste_GruppierenManipuliertZurueck(gruppieren_data, gruppieren_LocalStorage, liste);
 
     // TABELLE FILTERN
-    const filtern_data = Schnittstelle_VariableWertBereinigtZurueck($auswertungen.attr("filtern"), new Object());
+    const filtern_data = Liste_WertBereinigtZurueck($auswertungen.attr("filtern"), new Object());
     const filtern_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].filtern;
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
         LISTEN[liste].tabelle,
@@ -44,23 +44,20 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
             /* nächster Schleifendurchlauf */
         }
     });
-    const andere_verknuepfte_element_id = Schnittstelle_VariableWertBereinigtZurueck(
-        $auswertungen.attr(LISTEN[andere_verknuepfte_liste].element + "_id"),
-        undefined,
-    );
+    const andere_verknuepfte_element_id = Liste_WertBereinigtZurueck($auswertungen.attr(LISTEN[andere_verknuepfte_liste].element + "_id"), undefined);
 
     const auswertung_ids = new Array();
     const auswertung_ids_nach_wert = new Object();
     $.each(
-        Schnittstelle_VariableRausZurueck(
+        Liste_VariableRausZurueck(
             "zugeordnete_" + LISTEN[auswertungen].element + "_ids",
             andere_verknuepfte_element_id,
             andere_verknuepfte_liste,
             new Array(),
         ),
         function (position, auswertung_id) {
-            const element_id = Schnittstelle_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined);
-            const wert = Schnittstelle_VariableRausZurueck(gruppieren, element_id, liste, undefined);
+            const element_id = Liste_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined);
+            const wert = Liste_VariableRausZurueck(gruppieren, element_id, liste, undefined);
             if (element_ids.includes(element_id)) {
                 if (!auswertung_ids.includes(auswertung_id)) auswertung_ids.push(auswertung_id);
                 if (!(wert in auswertung_ids_nach_wert)) auswertung_ids_nach_wert[wert] = [auswertung_id];

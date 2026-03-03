@@ -3,10 +3,10 @@
  */
 
 function Liste_$GruppierenModalOeffnen($werkzeug) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("liste"), undefined);
+    const liste = Liste_WertBereinigtZurueck($werkzeug.attr("liste"), undefined);
 
     const $neues_gruppieren_modal = Dom_$NeuesModalInitialisiertZurueck(
-        Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("modal_title"), undefined),
+        Liste_WertBereinigtZurueck($werkzeug.attr("modal_title"), undefined),
         "gruppieren_manip_modal",
     );
 

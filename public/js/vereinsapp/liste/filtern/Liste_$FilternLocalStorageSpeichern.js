@@ -3,11 +3,11 @@
  */
 
 function Liste_$FilternLocalStorageSpeichern($werkzeug) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("liste"), undefined);
-    const instanz = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("instanz"), undefined);
+    const liste = Liste_WertBereinigtZurueck($werkzeug.attr("liste"), undefined);
+    const instanz = Liste_WertBereinigtZurueck($werkzeug.attr("instanz"), undefined);
 
     // Definition von filtern_manip
-    const filtern_manip = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.val(), new Object());
+    const filtern_manip = Liste_WertBereinigtZurueck($werkzeug.val(), new Object());
 
     // Befüllung von filtern
     LISTEN[liste].instanz[instanz].filtern = new Object();
@@ -26,6 +26,6 @@ function Liste_$FilternLocalStorageSpeichern($werkzeug) {
     Schnittstelle_EventVariableUpdLocalstorage(liste);
     Schnittstelle_EventLocalstorageUpdVariable(liste);
     Liste_VerknuepfungenZuordnen(liste);
-    Schnittstelle_VariableElementErgaenzen(liste);
+    Liste_ElementErgaenzen(liste);
     Schnittstelle_EventVariableUpdDom(liste);
 }

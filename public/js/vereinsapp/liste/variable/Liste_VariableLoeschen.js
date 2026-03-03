@@ -3,7 +3,7 @@
  * @param {string} liste
  */
 
-function Schnittstelle_VariableLoeschen(element_id, liste) {
+function Liste_VariableLoeschen(element_id, liste) {
     // Eigentliches Element löschen
     LISTEN[liste].tabelle[element_id] = undefined;
 
@@ -15,7 +15,7 @@ function Schnittstelle_VariableLoeschen(element_id, liste) {
                 if ("id" in element_mit_zuordnungen) {
                     const neue_zugeordnete_element_ids = new Array();
                     $.each(
-                        Schnittstelle_VariableRausZurueck(
+                        Liste_VariableRausZurueck(
                             "zugeordnete_" + LISTEN[liste].element + "_ids",
                             element_mit_zuordnungen.id,
                             liste_mit_zuordnungen,
@@ -25,7 +25,7 @@ function Schnittstelle_VariableLoeschen(element_id, liste) {
                             if (zugeordnete_element_id !== element_id) neue_zugeordnete_element_ids.push(zugeordnete_element_id);
                         },
                     );
-                    Schnittstelle_VariableRein(
+                    Liste_VariableRein(
                         neue_zugeordnete_element_ids,
                         "zugeordnete_" + LISTEN[liste].element + "_ids",
                         element_mit_zuordnungen.id,

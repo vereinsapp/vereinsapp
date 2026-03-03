@@ -3,11 +3,11 @@
  */
 
 function Liste_$GruppierenLocalStorageSpeichern($gruppieren_localstorage) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_localstorage.attr("liste"), undefined);
-    const instanz = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_localstorage.attr("instanz"), undefined);
+    const liste = Liste_WertBereinigtZurueck($gruppieren_localstorage.attr("liste"), undefined);
+    const instanz = Liste_WertBereinigtZurueck($gruppieren_localstorage.attr("instanz"), undefined);
 
     // Definition von gruppieren_manip
-    const gruppieren_manip = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_localstorage.val(), undefined);
+    const gruppieren_manip = Liste_WertBereinigtZurueck($gruppieren_localstorage.val(), undefined);
 
     // Befüllung von gruppieren
     LISTEN[liste].instanz[instanz].gruppieren = undefined;
@@ -33,6 +33,6 @@ function Liste_$GruppierenLocalStorageSpeichern($gruppieren_localstorage) {
     Schnittstelle_EventVariableUpdLocalstorage(liste);
     Schnittstelle_EventLocalstorageUpdVariable(liste);
     Liste_VerknuepfungenZuordnen(liste);
-    Schnittstelle_VariableElementErgaenzen(liste);
+    Liste_ElementErgaenzen(liste);
     Schnittstelle_EventVariableUpdDom(liste);
 }

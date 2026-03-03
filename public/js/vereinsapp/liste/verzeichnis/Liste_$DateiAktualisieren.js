@@ -3,7 +3,7 @@
  */
 
 function Liste_$DateiAktualisieren($datei) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($datei.attr("liste"), undefined);
+    const liste = Liste_WertBereinigtZurueck($datei.attr("liste"), undefined);
     const datei = $datei.attr("datei");
     const $verzeichnis = $datei.closest(".verzeichnis");
 
@@ -15,13 +15,13 @@ function Liste_$DateiAktualisieren($datei) {
         "storage/" +
         liste +
         "/" +
-        Schnittstelle_VariableRausZurueck(
+        Liste_VariableRausZurueck(
             "verzeichnis_basis",
-            Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr(LISTEN[liste].element + "_id"), undefined),
+            Liste_WertBereinigtZurueck($verzeichnis.attr(LISTEN[liste].element + "_id"), undefined),
             liste,
             "",
         );
-    $.each(Schnittstelle_VariableWertBereinigtZurueck($verzeichnis.attr("basis"), new Array()), function (position, unterverzeichnis) {
+    $.each(Liste_WertBereinigtZurueck($verzeichnis.attr("basis"), new Array()), function (position, unterverzeichnis) {
         link += unterverzeichnis;
     });
     link += datei;

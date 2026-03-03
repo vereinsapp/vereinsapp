@@ -23,21 +23,21 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
             delete AJAX.data[LISTEN[verknuepfungen].element + "_id"];
 
             $.each(AJAX.data, function (eigenschaft, wert) {
-                Schnittstelle_VariableRein(wert, eigenschaft, verknuepfung_id, verknuepfungen);
+                Liste_VariableRein(wert, eigenschaft, verknuepfung_id, verknuepfungen);
             });
 
             if ("dbdata" in AJAX.antwort && isArray(AJAX.antwort.dbdata))
                 $.each(AJAX.antwort.dbdata, function (position, element) {
                     if ("id" in element)
                         $.each(element, function (eigenschaft, wert) {
-                            Schnittstelle_VariableRein(wert, eigenschaft, Number(element.id), verknuepfungen);
+                            Liste_VariableRein(wert, eigenschaft, Number(element.id), verknuepfungen);
                         });
                 });
 
             Schnittstelle_EventVariableUpdLocalstorage(verknuepfungen);
             Schnittstelle_EventLocalstorageUpdVariable(verknuepfungen);
             Liste_VerknuepfungenZuordnen(verknuepfungen);
-            Schnittstelle_VariableElementErgaenzen(verknuepfungen);
+            Liste_ElementErgaenzen(verknuepfungen);
             Schnittstelle_EventVariableUpdDom(verknuepfungen);
 
             if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {

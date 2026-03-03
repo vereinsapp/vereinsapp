@@ -23,7 +23,7 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
         );
     } else {
         const ajax_dom = dom;
-        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(new Object(), new Object());
+        const ajax_data = Liste_WertBereinigtZurueck(new Object(), new Object());
         ajax_data.weiterleiten = weiterleiten;
         ajax_data[LISTEN[liste].element + "_id"] = element_id;
         ajax_data.liste = liste;
@@ -42,20 +42,20 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
                     },
                 }); // Toast-Text zwischenspeichern, bevor Element gelöscht wird
 
-                Schnittstelle_VariableLoeschen(element_id, liste);
+                Liste_VariableLoeschen(element_id, liste);
 
                 if ("dbdata" in AJAX.antwort && isArray(AJAX.antwort.dbdata))
                     $.each(AJAX.antwort.dbdata, function (position, element) {
                         if ("id" in element)
                             $.each(element, function (eigenschaft, wert) {
-                                Schnittstelle_VariableRein(wert, eigenschaft, Number(element.id), liste);
+                                Liste_VariableRein(wert, eigenschaft, Number(element.id), liste);
                             });
                     });
 
                 Schnittstelle_EventVariableUpdLocalstorage(liste);
                 Schnittstelle_EventLocalstorageUpdVariable(liste);
                 Liste_VerknuepfungenZuordnen(liste);
-                Schnittstelle_VariableElementErgaenzen(liste);
+                Liste_ElementErgaenzen(liste);
                 Schnittstelle_EventVariableUpdDom(liste);
 
                 const weiterleiten = AJAX.data.weiterleiten;

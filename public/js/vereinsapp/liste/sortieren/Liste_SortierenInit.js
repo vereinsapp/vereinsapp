@@ -2,9 +2,9 @@
  */
 
 WERKZEUGE.sortieren_manip.aktualisieren_aktion = function ($werkzeug) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("liste"), undefined);
-    const instanz = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("instanz"), undefined);
-    const sortieren_basis = Schnittstelle_VariableWertBereinigtZurueck($("#" + instanz + "[liste=" + liste + "]").attr("sortieren"), undefined);
+    const liste = Liste_WertBereinigtZurueck($werkzeug.attr("liste"), undefined);
+    const instanz = Liste_WertBereinigtZurueck($werkzeug.attr("instanz"), undefined);
+    const sortieren_basis = Liste_WertBereinigtZurueck($("#" + instanz + "[liste=" + liste + "]").attr("sortieren"), undefined);
     const sortieren_manip = LISTEN[liste].instanz[instanz].sortieren;
 
     $werkzeug

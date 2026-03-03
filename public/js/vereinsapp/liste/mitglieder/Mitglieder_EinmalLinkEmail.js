@@ -17,7 +17,7 @@ function Mitglieder_EinmalLinkEmail(bestaetigt, dom, modal_title, mitglied_id) {
         );
     else {
         const ajax_dom = dom;
-        const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(new Object(), new Object());
+        const ajax_data = Liste_WertBereinigtZurueck(new Object(), new Object());
         ajax_data.mitglied_id = mitglied_id;
 
         Ajax_InDieSchlange(
@@ -28,7 +28,7 @@ function Mitglieder_EinmalLinkEmail(bestaetigt, dom, modal_title, mitglied_id) {
                 Schnittstelle_EventVariableUpdLocalstorage("mitglieder");
                 Schnittstelle_EventLocalstorageUpdVariable("mitglieder");
                 Liste_VerknuepfungenZuordnen("mitglieder");
-                Schnittstelle_VariableElementErgaenzen("mitglieder");
+                Liste_ElementErgaenzen("mitglieder");
                 Schnittstelle_EventVariableUpdDom("mitglieder");
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Dom_$ModalSchliessen(AJAX.dom.$modal);

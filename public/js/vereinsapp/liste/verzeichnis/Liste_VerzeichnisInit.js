@@ -4,8 +4,8 @@
 function Liste_VerzeichnisInit() {
     // INSTANZEN IN LISTEN BEREITSTELLEN
     $.each(BLANKOS.unterverzeichnis, function (position, $blanko) {
-        const verzeichnis = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("liste"), undefined);
-        const instanz = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("instanz"), undefined);
+        const verzeichnis = Liste_WertBereinigtZurueck($blanko.attr("liste"), undefined);
+        const instanz = Liste_WertBereinigtZurueck($blanko.attr("instanz"), undefined);
         $blanko.removeAttr("liste").removeAttr("instanz");
 
         if (!("instanz" in LISTEN[verzeichnis])) LISTEN[verzeichnis].instanz = new Object();
@@ -19,8 +19,8 @@ function Liste_VerzeichnisInit() {
     });
 
     $.each(BLANKOS.datei, function (position, $blanko) {
-        const verzeichnis = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("liste"), undefined);
-        const instanz = Schnittstelle_VariableWertBereinigtZurueck($blanko.attr("instanz"), undefined);
+        const verzeichnis = Liste_WertBereinigtZurueck($blanko.attr("liste"), undefined);
+        const instanz = Liste_WertBereinigtZurueck($blanko.attr("instanz"), undefined);
         $blanko.removeAttr("liste").removeAttr("instanz");
 
         if (!("instanz" in LISTEN[verzeichnis])) LISTEN[verzeichnis].instanz = new Object();

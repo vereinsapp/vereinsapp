@@ -1,4 +1,4 @@
-function Schnittstelle_VariableElementErgaenzen(liste) {
+function Liste_ElementErgaenzen(liste) {
     if (typeof LISTEN[liste].element_ergaenzen_aktion === "function")
         $.each(LISTEN[liste].tabelle, function () {
             const element = this;

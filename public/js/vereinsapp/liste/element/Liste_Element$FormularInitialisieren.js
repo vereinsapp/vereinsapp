@@ -3,15 +3,15 @@
  */
 
 function Liste_Element$FormularInitialisieren($formular) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($formular.attr("liste"), undefined);
-    const element_id = Schnittstelle_VariableWertBereinigtZurueck($formular.attr(LISTEN[liste].element + "_id"), undefined);
-    const werkzeug = Schnittstelle_VariableWertBereinigtZurueck($formular.attr("werkzeug"), undefined);
+    const liste = Liste_WertBereinigtZurueck($formular.attr("liste"), undefined);
+    const element_id = Liste_WertBereinigtZurueck($formular.attr(LISTEN[liste].element + "_id"), undefined);
+    const werkzeug = Liste_WertBereinigtZurueck($formular.attr("werkzeug"), undefined);
 
     $formular.find(".eingabe").each(function () {
         const $eingabe = $(this);
         const eingabe = $eingabe.attr("eingabe");
 
-        let wert = Schnittstelle_VariableRausZurueck(eingabe, element_id, liste, undefined);
+        let wert = Liste_VariableRausZurueck(eingabe, element_id, liste, undefined);
         // Wenn aber nichts definiert ist, dann nimm den Standard-Wert (je nach Typ)
         if (typeof wert === "undefined") {
             if ($eingabe.prop("tagName") == "SELECT") wert = $eingabe.find("option:first").val();

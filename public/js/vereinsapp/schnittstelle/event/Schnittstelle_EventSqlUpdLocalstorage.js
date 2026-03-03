@@ -19,7 +19,7 @@ function Schnittstelle_EventSqlUpdLocalstorage() {
             });
 
             $.each(LISTEN, function (liste) {
-                Schnittstelle_VariableElementErgaenzen(liste);
+                Liste_ElementErgaenzen(liste);
             });
 
             $.each(LISTEN, function (liste) {

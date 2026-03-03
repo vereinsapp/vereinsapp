@@ -3,8 +3,8 @@
  */
 
 function Liste_$SortierenEigenschaftAendern($sortieren_eigenschaft) {
-    const liste = Schnittstelle_VariableWertBereinigtZurueck($sortieren_eigenschaft.attr("liste"), undefined);
-    const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($sortieren_eigenschaft.find(".sortieren_wert").val(), undefined);
+    const liste = Liste_WertBereinigtZurueck($sortieren_eigenschaft.attr("liste"), undefined);
+    const eigenschaft = Liste_WertBereinigtZurueck($sortieren_eigenschaft.find(".sortieren_wert").val(), undefined);
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in SORTIERBARE_EIGENSCHAFTEN && SORTIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
@@ -16,7 +16,7 @@ function Liste_$SortierenEigenschaftAendern($sortieren_eigenschaft) {
             // Ändern von sortieren_manip
             const sortieren_manip = {
                 eigenschaft: eigenschaft,
-                richtung: Schnittstelle_VariableWertBereinigtZurueck($sortieren_eigenschaft.find(".sortieren_richtung:checked").val(), undefined),
+                richtung: Liste_WertBereinigtZurueck($sortieren_eigenschaft.find(".sortieren_richtung:checked").val(), undefined),
             };
 
             // Überschreiben des bisherigen sortieren_manip mit geändertem sortieren_manip
