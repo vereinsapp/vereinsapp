@@ -8,18 +8,18 @@
 
 function Liste_ElementBemerkungAendern(data_vollstaendig, dom, data, element_id, liste) {
     if (!data_vollstaendig) {
-        const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, "bemerkung_aendern_modal");
-        Schnittstelle_Dom$ModalOeffnen($neues_modal);
+        const $neues_modal = Dom_$NeuesModalInitialisiertZurueck(undefined, "bemerkung_aendern_modal");
+        Dom_$ModalOeffnen($neues_modal);
         const $neues_formular = $neues_modal.find(".formular");
         $neues_formular
             .attr("liste", liste)
             .attr("werkzeug", "bemerkung_aendern")
             .attr(LISTEN[liste].element + "_id", element_id);
-        Schnittstelle_Dom$Quelle$ZielVerknuepfen($neues_formular.find(".data_vollstaendig"), dom.$werkzeug.closest(".element"));
+        Dom_$Quelle$ZielVerknuepfen($neues_formular.find(".data_vollstaendig"), dom.$werkzeug.closest(".element"));
         Liste_Element$FormularInitialisieren($neues_modal.find(".formular"));
     } else {
-        dom.$element = Schnittstelle_Dom$ZielZu$QuelleZurueck(dom.$werkzeug);
-        Schnittstelle_Dom$Quelle$ZielEntknuepfen(dom.$werkzeug, dom.$element);
+        dom.$element = Dom_$ZielZu$QuelleZurueck(dom.$werkzeug);
+        Dom_$Quelle$ZielEntknuepfen(dom.$werkzeug, dom.$element);
         const ajax_dom = dom;
 
         if (!("bemerkung" in data)) data.bemerkung = Schnittstelle_VariableRausZurueck("bemerkung", element_id, liste, null);
@@ -28,7 +28,7 @@ function Liste_ElementBemerkungAendern(data_vollstaendig, dom, data, element_id,
         ajax_data.liste = liste;
         if (isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
-        Schnittstelle_AjaxInDieSchlange(
+        Ajax_InDieSchlange(
             LISTEN[liste].controller + "/ajax_" + LISTEN[liste].element + "_bemerkung_aendern",
             ajax_data,
             ajax_dom,
@@ -48,15 +48,15 @@ function Liste_ElementBemerkungAendern(data_vollstaendig, dom, data, element_id,
                     Liste_$ElementAktualisieren(AJAX.dom.$element);
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
-                    Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                    Schnittstelle_DomToastFeuern("Bemerkung wurde erfolgreich geändert.");
+                    Dom_$ModalSchliessen(AJAX.dom.$modal);
+                    Dom_ToastFeuern("Bemerkung wurde erfolgreich geändert.");
                 }
             },
             function (AJAX) {
-                if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
+                if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-                Schnittstelle_DomToastFeuern("Bemerkung konnte nicht geändert werden.", "danger");
+                Dom_ToastFeuern("Bemerkung konnte nicht geändert werden.", "danger");
             },
         );
     }

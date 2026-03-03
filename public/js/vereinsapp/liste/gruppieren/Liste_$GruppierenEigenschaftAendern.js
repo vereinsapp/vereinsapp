@@ -8,7 +8,7 @@ function Liste_$GruppierenEigenschaftAendern($gruppieren_eigenschaft) {
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in GRUPPIERBARE_EIGENSCHAFTEN && GRUPPIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
-            const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($gruppieren_eigenschaft);
+            const $werkzeug = Dom_$ZielZu$QuelleZurueck($gruppieren_eigenschaft);
 
             // Definition von gruppieren_manip
             // entfällt, weil gruppieren_manip komplett überschrieben wird
@@ -21,13 +21,10 @@ function Liste_$GruppierenEigenschaftAendern($gruppieren_eigenschaft) {
 
             // Aktualisieren der $gruppieren_eigenschaft
             // entfällt, weil Modal direkt geschlossen wird
-            Schnittstelle_Dom$ModalSchliessen($gruppieren_eigenschaft.closest(".modal"));
+            Dom_$ModalSchliessen($gruppieren_eigenschaft.closest(".modal"));
         } else
-            Schnittstelle_LogInDieKonsole(
+            Log_InDieKonsole(
                 "Liste_$GruppierenEigenschaftAendern: Eigenschaft " + eigenschaft + " existiert nicht in GRUPPIERBARE_EIGENSCHAFTEN." + liste + "!",
             );
-    } else
-        Schnittstelle_LogInDieKonsole(
-            "Liste_$GruppierenEigenschaftAendern: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
-        );
+    } else Log_InDieKonsole("Liste_$GruppierenEigenschaftAendern: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!");
 }

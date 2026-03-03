@@ -13,7 +13,7 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
         if (typeof weiterleiten !== "undefined" && weiterleiten) werkzeug = "element_loeschen_weiterleiten";
         else werkzeug = "element_loeschen";
 
-        Schnittstelle_DomBestaetigungEinfordern(
+        Dom_BestaetigungEinfordern(
             Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_loeschen.bestaetigung, {
                 element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
             }),
@@ -28,7 +28,7 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
         ajax_data[LISTEN[liste].element + "_id"] = element_id;
         ajax_data.liste = liste;
 
-        Schnittstelle_AjaxInDieSchlange(
+        Ajax_InDieSchlange(
             LISTEN[liste].controller + "/ajax_" + LISTEN[liste].element + "_loeschen",
             ajax_data,
             ajax_dom,
@@ -61,13 +61,13 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
                 const weiterleiten = AJAX.data.weiterleiten;
                 if (typeof weiterleiten !== "undefined" && weiterleiten) $(location).attr("href", SITE_URL + AKTIVER_CONTROLLER);
                 else {
-                    if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                    Schnittstelle_DomToastFeuern(toast_text, "danger");
+                    if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Dom_$ModalSchliessen(AJAX.dom.$modal);
+                    Dom_ToastFeuern(toast_text, "danger");
                 }
             },
             function (AJAX) {
-                if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
-                Schnittstelle_DomToastFeuern(
+                if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");
+                Dom_ToastFeuern(
                     Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_loeschen.fehler, {
                         element1: {
                             liste: liste,

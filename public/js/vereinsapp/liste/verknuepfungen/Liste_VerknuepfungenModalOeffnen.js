@@ -7,7 +7,7 @@
  */
 
 function Liste_VerknuepfungenModalOeffnen(modal_id, instanz, modal_title, verknuepfte_element_id, verknuepfungen) {
-    const $neues_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(modal_title, modal_id);
+    const $neues_modal = Dom_$NeuesModalInitialisiertZurueck(modal_title, modal_id);
     const liste = Schnittstelle_VariableWertBereinigtZurueck($neues_modal.find("#" + instanz + ".liste[liste]").attr("liste"), undefined);
 
     LISTEN[liste].instanz[instanz].$blanko_element.attr("modal_title", modal_title);
@@ -19,6 +19,6 @@ function Liste_VerknuepfungenModalOeffnen(modal_id, instanz, modal_title, verknu
             LISTEN[liste].instanz[instanz].$blanko_element.attr(LISTEN[verknuepfte_liste].element + "_id", element_id);
     });
 
-    Schnittstelle_Dom$ModalOeffnen($neues_modal);
+    Dom_$ModalOeffnen($neues_modal);
     Schnittstelle_EventVariableUpdDom(liste);
 }

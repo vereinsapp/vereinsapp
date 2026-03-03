@@ -16,13 +16,11 @@ function Liste_$FilternLocalStorageSpeichern($werkzeug) {
             if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
                 LISTEN[liste].instanz[instanz].filtern[eigenschaft] = filtern_manip[eigenschaft];
             } else
-                Schnittstelle_LogInDieKonsole(
+                Log_InDieKonsole(
                     "Liste_$FilternLocalStorageSpeichern: Eigenschaft " + eigenschaft + " existiert nicht in FILTERBARE_EIGENSCHAFTEN." + liste + "!",
                 );
         } else
-            Schnittstelle_LogInDieKonsole(
-                "Liste_$FilternLocalStorageSpeichern: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
-            );
+            Log_InDieKonsole("Liste_$FilternLocalStorageSpeichern: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!");
     });
 
     Schnittstelle_EventVariableUpdLocalstorage(liste);

@@ -10,7 +10,7 @@ const STATUS_SPINNER_CLASS = "spinner-border";
 const STATUS_SPINNER_HTML =
     '<span class="' + STATUS_SPINNER_CLASS + ' spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></span>';
 
-function Schnittstelle_DomInit() {
+function Dom_Init() {
     // BLANKOS BEREITSTELLEN
     $(".blanko")
         .each(function () {
@@ -38,23 +38,23 @@ function Schnittstelle_DomInit() {
 
     // AUTOLOAD-MODALS OEFFNEN
     $.each(AUTOLOAD_MODALS, function (position, modal_id) {
-        Schnittstelle_Dom$ModalOeffnen(Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, modal_id));
-        // Liste_Element$FormularInitialisieren($modal.find(".formular")); wird nach Schnittstelle_DomInit() aufgerufen in Liste_Init()
+        Dom_$ModalOeffnen(Dom_$NeuesModalInitialisiertZurueck(undefined, modal_id));
+        // Liste_Element$FormularInitialisieren($modal.find(".formular")); wird nach Dom_Init() aufgerufen in Liste_Init()
     });
 
     // JETZT AKTUALISIEREN
     $(".jetzt").each(function () {
-        Schnittstelle_Dom$JetztAktualisieren($(this));
+        Dom_$JetztAktualisieren($(this));
     });
 
     // DATENSCHUTZ-RICHTLINIE OEFFNEN
-    if (typeof Schnittstelle_LocalstorageRausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined) === "undefined")
-        Schnittstelle_Dom$ModalOeffnen(Schnittstelle_Dom$NeuesModalInitialisiertZurueck(undefined, "datenschutz_richtlinie_modal"));
+    if (typeof Localstorage_RausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined) === "undefined")
+        Dom_$ModalOeffnen(Dom_$NeuesModalInitialisiertZurueck(undefined, "datenschutz_richtlinie_modal"));
 
     // DATENSCHUTZ-RICHTLINIE AKZEPTIEREN
     $(document).on("click", "[werkzeug='datenschutz_richtlinie_akzeptieren']", function () {
-        Schnittstelle_LocalstorageRein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DATETIME.now().toISO());
-        Schnittstelle_Dom$ModalSchliessen($(this).closest(".modal"));
+        Localstorage_Rein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DATETIME.now().toISO());
+        Dom_$ModalSchliessen($(this).closest(".modal"));
     });
 
     // AJAX
@@ -111,7 +111,7 @@ function Schnittstelle_DomInit() {
 
         if (!$umgebung.find(".modal.show").exists() && $letztes_wartendes_modal.exists()) {
             $letztes_wartendes_modal.removeClass("warten");
-            Schnittstelle_Dom$ModalOeffnen($letztes_wartendes_modal);
+            Dom_$ModalOeffnen($letztes_wartendes_modal);
         }
     });
 
@@ -124,11 +124,11 @@ function Schnittstelle_DomInit() {
     const CLIPBOARD = new ClipboardJS('.werkzeug[werkzeug="inhalt_kopieren"]');
 
     CLIPBOARD.on("success", function (event) {
-        Schnittstelle_DomToastFeuern("Kopieren in die Zwischenablage war erfolgreich.");
+        Dom_ToastFeuern("Kopieren in die Zwischenablage war erfolgreich.");
     });
 
     CLIPBOARD.on("error", function (event) {
-        Schnittstelle_DomToastFeuern("Kopieren in die Zwischenablage ist fehlgeschlagen.", "danger");
+        Dom_ToastFeuern("Kopieren in die Zwischenablage ist fehlgeschlagen.", "danger");
     });
 
     // VALIDATION-TOOLTIPS ENTFERNEN

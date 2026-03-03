@@ -3,7 +3,7 @@
  */
 
 function Liste_$GruppierenEigenschaftZuruecksetzen($gruppieren_eigenschaft) {
-    const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($gruppieren_eigenschaft);
+    const $werkzeug = Dom_$ZielZu$QuelleZurueck($gruppieren_eigenschaft);
 
     // Definition von gruppieren_manip
     // entfällt, weil gruppieren_manip komplett überschrieben wird
@@ -16,5 +16,5 @@ function Liste_$GruppierenEigenschaftZuruecksetzen($gruppieren_eigenschaft) {
 
     // Aktualisieren der $gruppieren_eigenschaft
     // entfällt, weil Modal direkt geschlossen wird
-    Schnittstelle_Dom$ModalSchliessen($gruppieren_eigenschaft.closest(".modal"));
+    Dom_$ModalSchliessen($gruppieren_eigenschaft.closest(".modal"));
 }

@@ -11,7 +11,7 @@ function Liste_Element$NavigationAktualisieren($element_navigation, $element) {
 
     // TABELLE FILTERN
     const filtern_data = Schnittstelle_VariableWertBereinigtZurueck($element_navigation.attr("filtern"), new Object());
-    const filtern_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_filtern", new Object()); // Problem: LISTEN[liste].instanz[instanz].filtern existiert nicht, weil keine .liste mit dieser instanz existiert
+    const filtern_LocalStorage = Localstorage_RausZurueck(liste + "_" + instanz + "_filtern", new Object()); // Problem: LISTEN[liste].instanz[instanz].filtern existiert nicht, weil keine .liste mit dieser instanz existiert
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
         LISTEN[liste].tabelle,
         Liste_FilternManipuliertZurueck(filtern_data, filtern_LocalStorage, liste),
@@ -20,7 +20,7 @@ function Liste_Element$NavigationAktualisieren($element_navigation, $element) {
 
     // TABELLE SORTIEREN
     const sortieren_data = Schnittstelle_VariableWertBereinigtZurueck($element_navigation.attr("sortieren"), undefined);
-    const sortieren_LocalStorage = Schnittstelle_LocalstorageRausZurueck(liste + "_" + instanz + "_sortieren", undefined); // Problem: LISTEN[liste].instanz[instanz].sortieren existiert nicht, weil keine .liste mit dieser instanz existiert
+    const sortieren_LocalStorage = Localstorage_RausZurueck(liste + "_" + instanz + "_sortieren", undefined); // Problem: LISTEN[liste].instanz[instanz].sortieren existiert nicht, weil keine .liste mit dieser instanz existiert
     const tabelle_gefiltert_sortiert = Liste_ArraySortiertZurueck(
         tabelle_gefiltert,
         Liste_SortierenManipuliertZurueck(sortieren_data, sortieren_LocalStorage, liste),

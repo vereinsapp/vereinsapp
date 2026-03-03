@@ -25,13 +25,10 @@ function Liste_$SortierenLocalStorageSpeichern($sortieren_localstorage) {
         if (liste in SORTIERBARE_EIGENSCHAFTEN && SORTIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
             LISTEN[liste].instanz[instanz].sortieren = sortieren_manip;
         } else
-            Schnittstelle_LogInDieKonsole(
+            Log_InDieKonsole(
                 "Liste_$SortierenLocalStorageSpeichern: Eigenschaft " + eigenschaft + " existiert nicht in SORTIERBARE_EIGENSCHAFTEN." + liste + "!",
             );
-    } else
-        Schnittstelle_LogInDieKonsole(
-            "Liste_$SortierenLocalStorageSpeichern: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
-        );
+    } else Log_InDieKonsole("Liste_$SortierenLocalStorageSpeichern: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!");
 
     Schnittstelle_EventVariableUpdLocalstorage(liste);
     Schnittstelle_EventLocalstorageUpdVariable(liste);

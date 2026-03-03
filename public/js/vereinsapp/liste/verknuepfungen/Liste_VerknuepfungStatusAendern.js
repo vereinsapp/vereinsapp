@@ -12,7 +12,7 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
     ajax_data[LISTEN[verknuepfungen].element + "_id"] = verknuepfung_id;
     ajax_data.status = status;
 
-    Schnittstelle_AjaxInDieSchlange(
+    Ajax_InDieSchlange(
         LISTEN[verknuepfungen].controller + "/ajax_" + LISTEN[verknuepfungen].element + "_status_aendern",
         ajax_data,
         ajax_dom,
@@ -41,8 +41,8 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
             Schnittstelle_EventVariableUpdDom(verknuepfungen);
 
             if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
-                Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                Schnittstelle_DomToastFeuern(
+                Dom_$ModalSchliessen(AJAX.dom.$modal);
+                Dom_ToastFeuern(
                     Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_aendern.erfolg, {
                         element1: {
                             liste: verknuepfungen,
@@ -53,10 +53,10 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
             }
         },
         function (AJAX) {
-            if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
+            if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");
             else if (isObject(AJAX.antwort.validation) && "dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                 Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-            Schnittstelle_DomToastFeuern(
+            Dom_ToastFeuern(
                 Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_aendern.fehler, {
                     element1: {
                         liste: AJAX.data.verknuepfungen,

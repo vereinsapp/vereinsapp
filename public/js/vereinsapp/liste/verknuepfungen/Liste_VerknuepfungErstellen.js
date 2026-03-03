@@ -10,7 +10,7 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
     data.verknuepfungen = verknuepfungen;
 
     if (VERKNUEPFUNGEN[verknuepfungen].bestaetigung_einfordern && !bestaetigt)
-        Schnittstelle_DomBestaetigungEinfordern(
+        Dom_BestaetigungEinfordern(
             Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE[LISTEN[verknuepfungen].element + "_erstellen"].bestaetigung, {
                 element1: {
                     liste: VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[0],
@@ -32,7 +32,7 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
         if (!("bemerkung" in ajax_data) || isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
-        Schnittstelle_AjaxInDieSchlange(
+        Ajax_InDieSchlange(
             LISTEN[verknuepfungen].controller + "/ajax_" + LISTEN[verknuepfungen].element + "_speichern",
             ajax_data,
             ajax_dom,
@@ -101,11 +101,11 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                 Schnittstelle_EventVariableUpdDom(verknuepfte_listen[1]);
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists() && AJAX.dom.$modal.find(".bestaetigung").exists())
-                    Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
+                    Dom_$ModalSchliessen(AJAX.dom.$modal);
             },
             function (AJAX) {
-                if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
-                Schnittstelle_DomToastFeuern(
+                if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");
+                Dom_ToastFeuern(
                     Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_erstellen.fehler, {
                         element1: {
                             liste: AJAX.data.verknuepfungen,

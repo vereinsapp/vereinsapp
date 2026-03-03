@@ -8,7 +8,7 @@ function Liste_$SortierenEigenschaftAendern($sortieren_eigenschaft) {
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in SORTIERBARE_EIGENSCHAFTEN && SORTIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
-            const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($sortieren_eigenschaft);
+            const $werkzeug = Dom_$ZielZu$QuelleZurueck($sortieren_eigenschaft);
 
             // Definition von sortieren_manip
             // entfällt, weil sortieren_manip komplett überschrieben wird
@@ -24,13 +24,10 @@ function Liste_$SortierenEigenschaftAendern($sortieren_eigenschaft) {
 
             // Aktualisieren der $sortieren_eigenschaft
             // entfällt, weil Modal direkt geschlossen wird
-            Schnittstelle_Dom$ModalSchliessen($sortieren_eigenschaft.closest(".modal"));
+            Dom_$ModalSchliessen($sortieren_eigenschaft.closest(".modal"));
         } else
-            Schnittstelle_LogInDieKonsole(
+            Log_InDieKonsole(
                 "Liste_$SortierenEigenschaftAendern: Eigenschaft " + eigenschaft + " existiert nicht in SORTIERBARE_EIGENSCHAFTEN." + liste + "!",
             );
-    } else
-        Schnittstelle_LogInDieKonsole(
-            "Liste_$SortierenEigenschaftAendern: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
-        );
+    } else Log_InDieKonsole("Liste_$SortierenEigenschaftAendern: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!");
 }

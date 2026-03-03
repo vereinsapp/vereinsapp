@@ -5,12 +5,12 @@
 function Liste_$FilternModalOeffnen($werkzeug) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("liste"), undefined);
 
-    const $neues_filtern_modal = Schnittstelle_Dom$NeuesModalInitialisiertZurueck(
+    const $neues_filtern_modal = Dom_$NeuesModalInitialisiertZurueck(
         Schnittstelle_VariableWertBereinigtZurueck($werkzeug.attr("modal_title"), undefined),
         "filtern_manip_modal",
     );
 
-    Schnittstelle_Dom$ModalOeffnen($neues_filtern_modal);
+    Dom_$ModalOeffnen($neues_filtern_modal);
 
     // Initialiserung von $filtern_vorgegeben
     const $filtern_vorgegeben = $neues_filtern_modal.find(".filtern_vorgegeben");
@@ -56,14 +56,11 @@ function Liste_$FilternModalOeffnen($werkzeug) {
             }
 
             $neue_filtern_eigenschaft.appendTo($filtern_eigenschaften);
-        } else
-            Schnittstelle_LogInDieKonsole(
-                "Liste_$FilternModalOeffnen: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
-            );
+        } else Log_InDieKonsole("Liste_$FilternModalOeffnen: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!");
     });
 
     // Verknüpfung von $filtern_vorgegeben und $filtern_eigenschaft mit $werkzeug
-    Schnittstelle_Dom$Quelle$ZielVerknuepfen($neues_filtern_modal.find(".filtern_vorgegeben, .filtern_eigenschaft"), $werkzeug);
+    Dom_$Quelle$ZielVerknuepfen($neues_filtern_modal.find(".filtern_vorgegeben, .filtern_eigenschaft"), $werkzeug);
 
     $.each($filtern_eigenschaften.find(".filtern_eigenschaft"), function () {
         const $filtern_eigenschaft = $(this);

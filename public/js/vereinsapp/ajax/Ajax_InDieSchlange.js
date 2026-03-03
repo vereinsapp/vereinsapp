@@ -1,4 +1,4 @@
-function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_aktion, rein_validation_neg_aktion) {
+function Ajax_InDieSchlange(url, data, dom, rein_validation_pos_aktion, rein_validation_neg_aktion) {
     const neue_ajax_id = AJAXSCHLANGE.length;
 
     if ("$werkzeug" in dom && dom.$werkzeug.exists()) {
@@ -42,7 +42,7 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
                 $('input[name="' + CSRF_NAME + '"]').val(CSRF[CSRF_NAME]);
                 delete AJAX.antwort[CSRF_NAME];
 
-                if ("info" in AJAX.antwort) Schnittstelle_LogInDieKonsole("INFO", JsonStringifiedZurueck(AJAX.antwort.info, undefined));
+                if ("info" in AJAX.antwort) Log_InDieKonsole("INFO", JsonStringifiedZurueck(AJAX.antwort.info, undefined));
 
                 if ("dom" in AJAX && "$werkzeug" in AJAX.dom && AJAX.dom.$werkzeug.exists()) {
                     AJAX.dom.$werkzeug.prop("disabled", false);
@@ -57,7 +57,7 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
 
                 // WENN DIE VALIDATION FEHLSCHLÄGT
                 if ("validation" in AJAX.antwort) {
-                    Schnittstelle_LogInDieKonsole("VALIDATION", JsonStringifiedZurueck(AJAX.antwort.validation, undefined));
+                    Log_InDieKonsole("VALIDATION", JsonStringifiedZurueck(AJAX.antwort.validation, undefined));
                     if (typeof AJAX.rein_validation_neg_aktion === "function") AJAX.rein_validation_neg_aktion(AJAX);
                 }
 
@@ -68,7 +68,7 @@ function Schnittstelle_AjaxInDieSchlange(url, data, dom, rein_validation_pos_akt
             }
         },
         error: function (xhr) {
-            Schnittstelle_LogInDieKonsole("FEHLER", xhr.status, xhr.statusText, xhr);
+            Log_InDieKonsole("FEHLER", xhr.status, xhr.statusText, xhr);
         },
         complete: function () {},
     });

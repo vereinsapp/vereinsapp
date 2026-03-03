@@ -7,7 +7,7 @@ function Liste_$FilternVorgegebenAuswaehlen($filtern_vorgegeben, filtern_vorgege
     const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_vorgegeben.attr("liste"), undefined);
 
     if (liste in FILTERN_VORGEGEBEN && filtern_vorgegeben_id in FILTERN_VORGEGEBEN[liste]) {
-        const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_vorgegeben);
+        const $werkzeug = Dom_$ZielZu$QuelleZurueck($filtern_vorgegeben);
 
         // Definition von filtern_manip
         // entfällt, weil filtern_manip komplett überschrieben wird
@@ -18,7 +18,7 @@ function Liste_$FilternVorgegebenAuswaehlen($filtern_vorgegeben, filtern_vorgege
                 if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft))
                     filtern_manip[eigenschaft] = filtern_vorgegeben[eigenschaft];
                 else
-                    Schnittstelle_LogInDieKonsole(
+                    Log_InDieKonsole(
                         "Liste_$FilternVorgegebenAuswaehlen: Eigenschaft " +
                             eigenschaft +
                             " existiert nicht in FILTERBARE_EIGENSCHAFTEN." +
@@ -26,7 +26,7 @@ function Liste_$FilternVorgegebenAuswaehlen($filtern_vorgegeben, filtern_vorgege
                             "!",
                     );
             } else
-                Schnittstelle_LogInDieKonsole(
+                Log_InDieKonsole(
                     "Liste_$FilternVorgegebenAuswaehlen: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
                 );
         });
@@ -35,9 +35,9 @@ function Liste_$FilternVorgegebenAuswaehlen($filtern_vorgegeben, filtern_vorgege
         $werkzeug.val(JsonStringifiedZurueck(filtern_manip, new Object())).trigger("change");
 
         // Aktualisieren der $filtern_eigenschaft entfällt, weil Modal direkt geschlossen wird
-        Schnittstelle_Dom$ModalSchliessen($filtern_vorgegeben.closest(".modal"));
+        Dom_$ModalSchliessen($filtern_vorgegeben.closest(".modal"));
     } else
-        Schnittstelle_LogInDieKonsole(
+        Log_InDieKonsole(
             "Liste_$FilternVorgegebenAuswaehlen: Vorgegebener Filter " +
                 filtern_vorgegeben_id +
                 " existiert nicht in FILTERN_VORGEGEBEN." +

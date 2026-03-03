@@ -11,7 +11,7 @@ function Liste_GruppierenManipuliertZurueck(gruppieren_basis, gruppieren_manip, 
             if (liste in GRUPPIERBARE_EIGENSCHAFTEN && GRUPPIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
                 return gruppieren_manip;
             } else
-                Schnittstelle_LogInDieKonsole(
+                Log_InDieKonsole(
                     "Liste_GruppierenManipuliertZurueck: manip-Eigenschaft " +
                         eigenschaft +
                         " existiert nicht in GRUPPIERBARE_EIGENSCHAFTEN." +
@@ -19,7 +19,7 @@ function Liste_GruppierenManipuliertZurueck(gruppieren_basis, gruppieren_manip, 
                         "!",
                 );
         } else
-            Schnittstelle_LogInDieKonsole(
+            Log_InDieKonsole(
                 "Liste_GruppierenManipuliertZurueck: manip-Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
             );
     }
@@ -30,7 +30,7 @@ function Liste_GruppierenManipuliertZurueck(gruppieren_basis, gruppieren_manip, 
             if (liste in GRUPPIERBARE_EIGENSCHAFTEN && GRUPPIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
                 return gruppieren_basis;
             } else
-                Schnittstelle_LogInDieKonsole(
+                Log_InDieKonsole(
                     "Liste_GruppierenManipuliertZurueck: basis-Eigenschaft " +
                         eigenschaft +
                         " existiert nicht in GRUPPIERBARE_EIGENSCHAFTEN." +
@@ -38,7 +38,7 @@ function Liste_GruppierenManipuliertZurueck(gruppieren_basis, gruppieren_manip, 
                         "!",
                 );
         } else
-            Schnittstelle_LogInDieKonsole(
+            Log_InDieKonsole(
                 "Liste_GruppierenManipuliertZurueck: basis-Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
             );
     }

@@ -5,16 +5,16 @@ function Mitglieder_PasswortFestlegen(dom, data, mitglied_id) {
     const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(data, new Object());
     ajax_data.mitglied_id = mitglied_id;
 
-    Schnittstelle_AjaxInDieSchlange(
+    Ajax_InDieSchlange(
         "mitglieder/ajax_mitglied_passwort_festlegen",
         ajax_data,
         ajax_dom,
         function (AJAX) {
-            if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-            Schnittstelle_DomToastFeuern("Du hast erfolgreich ein neues Passwort festgelegt.");
+            if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Dom_$ModalSchliessen(AJAX.dom.$modal);
+            Dom_ToastFeuern("Du hast erfolgreich ein neues Passwort festgelegt.");
         },
         function (AJAX) {
-            if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
+            if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");
             else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                 Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
         },

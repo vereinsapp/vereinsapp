@@ -111,14 +111,14 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/verzeichnis/Liste_$DateiAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisAnzahlZurueck.js?v='.VERSION,
 
-        'js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxInit.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/ajax/Schnittstelle_AjaxInDieSchlange.js?v='.VERSION,
+        'js/vereinsapp/ajax/Ajax_Init.js?v='.VERSION,
+        'js/vereinsapp/ajax/Ajax_InDieSchlange.js?v='.VERSION,
 
-        'js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageInit.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageRein.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageRausZurueck.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageLoeschen.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/localstorage/Schnittstelle_LocalstorageLeeren.js?v='.VERSION,
+        'js/vereinsapp/localstorage/Localstorage_Init.js?v='.VERSION,
+        'js/vereinsapp/localstorage/Localstorage_Rein.js?v='.VERSION,
+        'js/vereinsapp/localstorage/Localstorage_RausZurueck.js?v='.VERSION,
+        'js/vereinsapp/localstorage/Localstorage_Loeschen.js?v='.VERSION,
+        'js/vereinsapp/localstorage/Localstorage_Leeren.js?v='.VERSION,
 
         'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableRein.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableRausZurueck.js?v='.VERSION,
@@ -126,23 +126,23 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableLoeschen.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/variable/Schnittstelle_VariableElementErgaenzen.js?v='.VERSION,
 
-        'js/vereinsapp/schnittstelle/dom/Schnittstelle_DomInit.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/dom/Schnittstelle_DomToastFeuern.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$ModalOeffnen.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$NeuesModalInitialisiertZurueck.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$ModalSchliessen.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/dom/Schnittstelle_DomBestaetigungEinfordern.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$Quelle$ZielVerknuepfen.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$Quelle$ZielEntknuepfen.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$ZielZu$QuelleZurueck.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/dom/Schnittstelle_Dom$JetztAktualisieren.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_Init.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_ToastFeuern.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$ModalOeffnen.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$NeuesModalInitialisiertZurueck.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$ModalSchliessen.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_BestaetigungEinfordern.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$Quelle$ZielVerknuepfen.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$Quelle$ZielEntknuepfen.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$ZielZu$QuelleZurueck.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$JetztAktualisieren.js?v='.VERSION,
         
         'js/vereinsapp/schnittstelle/event/Schnittstelle_EventSqlUpdLocalstorage.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/event/Schnittstelle_EventLocalstorageUpdVariable.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/event/Schnittstelle_EventVariableUpdLocalstorage.js?v='.VERSION,
         'js/vereinsapp/schnittstelle/event/Schnittstelle_EventVariableUpdDom.js?v='.VERSION,
         
-        'js/vereinsapp/schnittstelle/log/Schnittstelle_LogInDieKonsole.js?v='.VERSION,
+        'js/vereinsapp/log/Log_InDieKonsole.js?v='.VERSION,
 
     );
 

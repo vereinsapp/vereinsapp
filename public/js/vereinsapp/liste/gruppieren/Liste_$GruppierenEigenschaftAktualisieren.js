@@ -4,7 +4,7 @@
 
 function Liste_$GruppierenEigenschaftAktualisieren($gruppieren_eigenschaft) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($gruppieren_eigenschaft.attr("liste"), undefined);
-    const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($gruppieren_eigenschaft);
+    const $werkzeug = Dom_$ZielZu$QuelleZurueck($gruppieren_eigenschaft);
 
     // Definition von gruppieren_eigenschaft
     const gruppieren_eigenschaft = Liste_GruppierenManipuliertZurueck(
@@ -19,7 +19,7 @@ function Liste_$GruppierenEigenschaftAktualisieren($gruppieren_eigenschaft) {
             // Aktualisieren der $gruppieren_eigenschaft
             $gruppieren_eigenschaft.find(".gruppieren_wert").val(eigenschaft);
         } else
-            Schnittstelle_LogInDieKonsole(
+            Log_InDieKonsole(
                 "Liste_$GruppierenEigenschaftAktualisieren: Eigenschaft " +
                     eigenschaft +
                     " existiert nicht in SORTIERBARE_EIGENSCHAFTEN." +
@@ -27,7 +27,7 @@ function Liste_$GruppierenEigenschaftAktualisieren($gruppieren_eigenschaft) {
                     "!",
             );
     } else
-        Schnittstelle_LogInDieKonsole(
+        Log_InDieKonsole(
             "Liste_$GruppierenEigenschaftAktualisieren: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
         );
 }

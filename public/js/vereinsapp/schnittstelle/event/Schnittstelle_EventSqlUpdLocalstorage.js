@@ -1,5 +1,5 @@
 function Schnittstelle_EventSqlUpdLocalstorage() {
-    Schnittstelle_AjaxInDieSchlange(
+    Ajax_InDieSchlange(
         "einstellungen/ajax_tabellen",
         new Object(),
         new Object(),
@@ -7,7 +7,7 @@ function Schnittstelle_EventSqlUpdLocalstorage() {
             // rein_validation_pos_aktion:
             if (isObject(AJAX) && "antwort" in AJAX && isObject(AJAX.antwort) && "tabellen" in AJAX.antwort && isObject(AJAX.antwort.tabellen))
                 $.each(AJAX.antwort.tabellen, function (liste, tabelle) {
-                    Schnittstelle_LocalstorageRein(liste + "_tabelle", tabelle);
+                    Localstorage_Rein(liste + "_tabelle", tabelle);
                 });
 
             $.each(LISTEN, function (liste) {

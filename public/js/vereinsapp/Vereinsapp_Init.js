@@ -1,9 +1,9 @@
 const DATETIME = luxon.DateTime;
 
 $(document).ready(function () {
-    Schnittstelle_AjaxInit();
-    Schnittstelle_LocalstorageInit();
-    Schnittstelle_DomInit();
+    Ajax_Init();
+    Localstorage_Init();
+    Dom_Init();
     Liste_Init();
 });
 
@@ -35,7 +35,7 @@ Besseres Symbol für _eigenschaft_zuruecksetzen und _eigenschaft_zuruecksetzen-B
 .werkzeug in .formular mit ENTER betätigbar machen
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen (ausschließlich spezielle Zusatzsymbole wie beispiele Termin-Kategorie als hex-Symbole)
 Neue bootstrap icons Version einführen (unlock2 statt lock)
-event einführen, dass Liste_Element$FormularInitialisieren ausgeführt wird, wenn ein modal geöffnet wurde (mittels Schnittstelle_Dom$ModalOeffnen)
+event einführen, dass Liste_Element$FormularInitialisieren ausgeführt wird, wenn ein modal geöffnet wurde (mittels Dom_$ModalOeffnen)
 Verinsapp_env aufspalten in mehrere _env
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
 Aufgaben detaillieren

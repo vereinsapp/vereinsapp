@@ -24,7 +24,7 @@ function Liste_ElementTextMitBeschriftungErsetztZurueck(text, data) {
                 } else return "Element" || match;
             } else return match;
         } catch (error) {
-            Schnittstelle_LogInDieKonsole("Liste_ElementTextMitBeschriftungErsetztZurueck: Fehler beim Ersetzen von " + match);
+            Log_InDieKonsole("Liste_ElementTextMitBeschriftungErsetztZurueck: Fehler beim Ersetzen von " + match);
             return match; // Original bei Exception beibehalten
         }
     });

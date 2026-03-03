@@ -4,7 +4,7 @@
 
 function Liste_$SortierenEigenschaftAktualisieren($sortieren_eigenschaft) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($sortieren_eigenschaft.attr("liste"), undefined);
-    const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($sortieren_eigenschaft);
+    const $werkzeug = Dom_$ZielZu$QuelleZurueck($sortieren_eigenschaft);
 
     // Definition von sortieren_eigenschaft
     const sortieren_manipuliert = Liste_SortierenManipuliertZurueck(
@@ -25,7 +25,7 @@ function Liste_$SortierenEigenschaftAktualisieren($sortieren_eigenschaft) {
             $sortieren_eigenschaft.find(".sortieren_richtung").prop("checked", false);
             $sortieren_eigenschaft.find('.sortieren_richtung[value="' + sortieren_eigenschaft.richtung + '"]').prop("checked", true);
         } else
-            Schnittstelle_LogInDieKonsole(
+            Log_InDieKonsole(
                 "Liste_$SortierenEigenschaftAktualisieren: Eigenschaft " +
                     eigenschaft +
                     " existiert nicht in SORTIERBARE_EIGENSCHAFTEN." +
@@ -33,7 +33,5 @@ function Liste_$SortierenEigenschaftAktualisieren($sortieren_eigenschaft) {
                     "!",
             );
     } else
-        Schnittstelle_LogInDieKonsole(
-            "Liste_$SortierenEigenschaftAktualisieren: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
-        );
+        Log_InDieKonsole("Liste_$SortierenEigenschaftAktualisieren: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!");
 }

@@ -5,7 +5,7 @@
 function Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft) {
     const liste = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("liste"), undefined);
     const eigenschaft = Schnittstelle_VariableWertBereinigtZurueck($filtern_eigenschaft.attr("eigenschaft"), undefined);
-    const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_eigenschaft);
+    const $werkzeug = Dom_$ZielZu$QuelleZurueck($filtern_eigenschaft);
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
@@ -94,11 +94,9 @@ function Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft) {
                     break;
             }
         } else
-            Schnittstelle_LogInDieKonsole(
+            Log_InDieKonsole(
                 "Liste_$FilternEigenschaftAktualisieren: Eigenschaft " + eigenschaft + " existiert nicht in FILTERBARE_EIGENSCHAFTEN." + liste + "!",
             );
     } else
-        Schnittstelle_LogInDieKonsole(
-            "Liste_$FilternEigenschaftAktualisieren: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
-        );
+        Log_InDieKonsole("Liste_$FilternEigenschaftAktualisieren: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!");
 }

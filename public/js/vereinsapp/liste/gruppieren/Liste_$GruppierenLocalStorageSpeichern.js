@@ -17,7 +17,7 @@ function Liste_$GruppierenLocalStorageSpeichern($gruppieren_localstorage) {
             if (liste in SORTIERBARE_EIGENSCHAFTEN && SORTIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
                 LISTEN[liste].instanz[instanz].gruppieren = gruppieren_manip;
             } else
-                Schnittstelle_LogInDieKonsole(
+                Log_InDieKonsole(
                     "Liste_$GruppierenLocalStorageSpeichern: Eigenschaft " +
                         eigenschaft +
                         " existiert nicht in SORTIERBARE_EIGENSCHAFTEN." +
@@ -25,7 +25,7 @@ function Liste_$GruppierenLocalStorageSpeichern($gruppieren_localstorage) {
                         "!",
                 );
         } else
-            Schnittstelle_LogInDieKonsole(
+            Log_InDieKonsole(
                 "Liste_$GruppierenLocalStorageSpeichern: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
             );
     }

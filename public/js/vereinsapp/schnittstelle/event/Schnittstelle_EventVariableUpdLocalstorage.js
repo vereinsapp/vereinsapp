@@ -7,20 +7,20 @@ function Schnittstelle_EventVariableUpdLocalstorage(liste) {
     });
 
     // tabelle_LocalStorage wird im LocalStorage gespeichert
-    Schnittstelle_LocalstorageRein(liste + "_tabelle", tabelle_LocalStorage);
+    Localstorage_Rein(liste + "_tabelle", tabelle_LocalStorage);
 
     $.each(LISTEN[liste].instanz, function (instanz) {
         // filtern wird im LocalStorage gespeichert
         if (Object.keys(LISTEN[liste].instanz[instanz].filtern).length > 0)
-            Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_filtern", LISTEN[liste].instanz[instanz].filtern);
-        else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_filtern");
+            Localstorage_Rein(liste + "_" + instanz + "_filtern", LISTEN[liste].instanz[instanz].filtern);
+        else Localstorage_Loeschen(liste + "_" + instanz + "_filtern");
         // sortieren wird im LocalStorage gespeichert
         if (typeof LISTEN[liste].instanz[instanz].sortieren !== "undefined")
-            Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_sortieren", LISTEN[liste].instanz[instanz].sortieren);
-        else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_sortieren");
+            Localstorage_Rein(liste + "_" + instanz + "_sortieren", LISTEN[liste].instanz[instanz].sortieren);
+        else Localstorage_Loeschen(liste + "_" + instanz + "_sortieren");
         // gruppieren wird im LocalStorage gespeichert
         if (typeof LISTEN[liste].instanz[instanz].gruppieren !== "undefined")
-            Schnittstelle_LocalstorageRein(liste + "_" + instanz + "_gruppieren", LISTEN[liste].instanz[instanz].gruppieren);
-        else Schnittstelle_LocalstorageLoeschen(liste + "_" + instanz + "_gruppieren");
+            Localstorage_Rein(liste + "_" + instanz + "_gruppieren", LISTEN[liste].instanz[instanz].gruppieren);
+        else Localstorage_Loeschen(liste + "_" + instanz + "_gruppieren");
     });
 }

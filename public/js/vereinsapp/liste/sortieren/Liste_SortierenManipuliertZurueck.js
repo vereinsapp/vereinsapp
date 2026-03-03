@@ -11,7 +11,7 @@ function Liste_SortierenManipuliertZurueck(sortieren_basis, sortieren_manip, lis
             if (liste in SORTIERBARE_EIGENSCHAFTEN && SORTIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
                 return sortieren_manip;
             } else
-                Schnittstelle_LogInDieKonsole(
+                Log_InDieKonsole(
                     "Liste_SortierenManipuliertZurueck: manip-Eigenschaft " +
                         eigenschaft +
                         " existiert nicht in SORTIERBARE_EIGENSCHAFTEN." +
@@ -19,7 +19,7 @@ function Liste_SortierenManipuliertZurueck(sortieren_basis, sortieren_manip, lis
                         "!",
                 );
         } else
-            Schnittstelle_LogInDieKonsole(
+            Log_InDieKonsole(
                 "Liste_SortierenManipuliertZurueck: manip-Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
             );
     }
@@ -30,7 +30,7 @@ function Liste_SortierenManipuliertZurueck(sortieren_basis, sortieren_manip, lis
             if (liste in SORTIERBARE_EIGENSCHAFTEN && SORTIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
                 return sortieren_basis;
             } else
-                Schnittstelle_LogInDieKonsole(
+                Log_InDieKonsole(
                     "Liste_SortierenManipuliertZurueck: basis-Eigenschaft " +
                         eigenschaft +
                         " existiert nicht in SORTIERBARE_EIGENSCHAFTEN." +
@@ -38,7 +38,7 @@ function Liste_SortierenManipuliertZurueck(sortieren_basis, sortieren_manip, lis
                         "!",
                 );
         } else
-            Schnittstelle_LogInDieKonsole(
+            Log_InDieKonsole(
                 "Liste_SortierenManipuliertZurueck: basis-Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
             );
     }

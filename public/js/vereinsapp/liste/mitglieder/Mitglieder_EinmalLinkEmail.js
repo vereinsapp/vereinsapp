@@ -7,7 +7,7 @@
 
 function Mitglieder_EinmalLinkEmail(bestaetigt, dom, modal_title, mitglied_id) {
     if (!bestaetigt)
-        Schnittstelle_DomBestaetigungEinfordern(
+        Dom_BestaetigungEinfordern(
             Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_einmal_link_email.bestaetigung, {
                 element1: { liste: "mitglieder", mitglied_id: mitglied_id },
             }),
@@ -20,7 +20,7 @@ function Mitglieder_EinmalLinkEmail(bestaetigt, dom, modal_title, mitglied_id) {
         const ajax_data = Schnittstelle_VariableWertBereinigtZurueck(new Object(), new Object());
         ajax_data.mitglied_id = mitglied_id;
 
-        Schnittstelle_AjaxInDieSchlange(
+        Ajax_InDieSchlange(
             "mitglieder/ajax_mitglied_einmal_link_erstellen",
             ajax_data,
             ajax_dom,
@@ -31,16 +31,16 @@ function Mitglieder_EinmalLinkEmail(bestaetigt, dom, modal_title, mitglied_id) {
                 Schnittstelle_VariableElementErgaenzen("mitglieder");
                 Schnittstelle_EventVariableUpdDom("mitglieder");
 
-                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Schnittstelle_Dom$ModalSchliessen(AJAX.dom.$modal);
-                Schnittstelle_DomToastFeuern(
+                if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Dom_$ModalSchliessen(AJAX.dom.$modal);
+                Dom_ToastFeuern(
                     Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_einmal_link_email.erfolg, {
                         element1: { liste: "mitglieder", mitglied_id: AJAX.data.mitglied_id },
                     }),
                 );
             },
             function (AJAX) {
-                if (isString(AJAX.antwort.validation)) Schnittstelle_DomToastFeuern(AJAX.antwort.validation, "danger");
-                Schnittstelle_DomToastFeuern(
+                if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");
+                Dom_ToastFeuern(
                     Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_einmal_link_email.fehler, {
                         element1: { liste: "mitglieder", mitglied_id: AJAX.data.mitglied_id },
                     }),

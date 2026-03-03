@@ -8,7 +8,7 @@ function Liste_$FilternEigenschaftAendern($filtern_eigenschaft) {
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
-            const $werkzeug = Schnittstelle_Dom$ZielZu$QuelleZurueck($filtern_eigenschaft);
+            const $werkzeug = Dom_$ZielZu$QuelleZurueck($filtern_eigenschaft);
 
             // Definition von filtern_manip
             const filtern_manip = Schnittstelle_VariableWertBereinigtZurueck($werkzeug.val(), new Object());
@@ -71,11 +71,8 @@ function Liste_$FilternEigenschaftAendern($filtern_eigenschaft) {
             // Aktualisieren der $filtern_eigenschaft
             Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft);
         } else
-            Schnittstelle_LogInDieKonsole(
+            Log_InDieKonsole(
                 "Liste_$FilternEigenschaftAendern: Eigenschaft " + eigenschaft + " existiert nicht in FILTERBARE_EIGENSCHAFTEN." + liste + "!",
             );
-    } else
-        Schnittstelle_LogInDieKonsole(
-            "Liste_$FilternEigenschaftAendern: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!",
-        );
+    } else Log_InDieKonsole("Liste_$FilternEigenschaftAendern: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!");
 }

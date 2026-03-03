@@ -40,6 +40,6 @@ function Schnittstelle_EventVariableUpdDom(liste) {
     }
 
     $(".jetzt").each(function () {
-        Schnittstelle_Dom$JetztAktualisieren($(this));
+        Dom_$JetztAktualisieren($(this));
     });
 }
