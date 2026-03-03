@@ -23,7 +23,7 @@ function Liste_ElementBemerkungAendern(data_vollstaendig, dom, data, element_id,
         const ajax_dom = dom;
 
         if (!("bemerkung" in data)) data.bemerkung = Liste_VariableRausZurueck("bemerkung", element_id, liste, null);
-        const ajax_data = Liste_WertBereinigtZurueck(data, new Object());
+        const ajax_data = Util_WertBereinigtZurueck(data, new Object());
         ajax_data[LISTEN[liste].element + "_id"] = element_id;
         ajax_data.liste = liste;
         if (isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;

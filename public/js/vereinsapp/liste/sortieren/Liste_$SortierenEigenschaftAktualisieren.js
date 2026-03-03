@@ -3,13 +3,13 @@
  */
 
 function Liste_$SortierenEigenschaftAktualisieren($sortieren_eigenschaft) {
-    const liste = Liste_WertBereinigtZurueck($sortieren_eigenschaft.attr("liste"), undefined);
+    const liste = Util_WertBereinigtZurueck($sortieren_eigenschaft.attr("liste"), undefined);
     const $werkzeug = Dom_$ZielZu$QuelleZurueck($sortieren_eigenschaft);
 
     // Definition von sortieren_eigenschaft
     const sortieren_manipuliert = Liste_SortierenManipuliertZurueck(
-        Liste_WertBereinigtZurueck($werkzeug.attr("sortieren_basis"), undefined),
-        Liste_WertBereinigtZurueck($werkzeug.val(), undefined),
+        Util_WertBereinigtZurueck($werkzeug.attr("sortieren_basis"), undefined),
+        Util_WertBereinigtZurueck($werkzeug.val(), undefined),
         liste,
     );
     const sortieren_eigenschaft = { eigenschaft: undefined, richtung: undefined };

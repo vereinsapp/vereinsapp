@@ -2,7 +2,7 @@ function Mitglieder_PasswortAendern(dom, data, mitglied_id) {
     if (typeof mitglied_id !== "undefined") mitglied_id = Number(mitglied_id);
 
     const ajax_dom = dom;
-    const ajax_data = Liste_WertBereinigtZurueck(data, new Object());
+    const ajax_data = Util_WertBereinigtZurueck(data, new Object());
     ajax_data.mitglied_id = mitglied_id;
 
     Ajax_InDieSchlange(

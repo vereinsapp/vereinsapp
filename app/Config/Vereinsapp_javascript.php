@@ -45,13 +45,43 @@ class Vereinsapp_javascript extends BaseConfig
 
         'js/vereinsapp/Vereinsapp_Init.js?v='.VERSION,
 
+        'js/vereinsapp/util/Util_Init.js?v='.VERSION,
+        'js/vereinsapp/util/Util_WertBereinigtZurueck.js?v='.VERSION,
+        
+        'js/vereinsapp/ajax/Ajax_Init.js?v='.VERSION,
+        'js/vereinsapp/ajax/Ajax_InDieSchlange.js?v='.VERSION,
+
+        'js/vereinsapp/localstorage/Localstorage_Init.js?v='.VERSION,
+        'js/vereinsapp/localstorage/Localstorage_Rein.js?v='.VERSION,
+        'js/vereinsapp/localstorage/Localstorage_RausZurueck.js?v='.VERSION,
+        'js/vereinsapp/localstorage/Localstorage_Loeschen.js?v='.VERSION,
+        'js/vereinsapp/localstorage/Localstorage_Leeren.js?v='.VERSION,
+
+        'js/vereinsapp/log/Log_Init.js?v='.VERSION,
+        'js/vereinsapp/log/Log_InDieKonsole.js?v='.VERSION,
+
+        'js/vereinsapp/dom/Dom_Init.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_ToastFeuern.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$ModalOeffnen.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$NeuesModalInitialisiertZurueck.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$ModalSchliessen.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_BestaetigungEinfordern.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$Quelle$ZielVerknuepfen.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$Quelle$ZielEntknuepfen.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$ZielZu$QuelleZurueck.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$JetztAktualisieren.js?v='.VERSION,
+        
+        'js/vereinsapp/schnittstelle/event/Schnittstelle_EventSqlUpdLocalstorage.js?v='.VERSION,
+        'js/vereinsapp/schnittstelle/event/Schnittstelle_EventLocalstorageUpdVariable.js?v='.VERSION,
+        'js/vereinsapp/schnittstelle/event/Schnittstelle_EventVariableUpdLocalstorage.js?v='.VERSION,
+        'js/vereinsapp/schnittstelle/event/Schnittstelle_EventVariableUpdDom.js?v='.VERSION,
+
         'js/vereinsapp/liste/Liste_Init.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_$ListeAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_Liste$UeberschriftAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_Liste$WerkzeugAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_Liste$ListenstatistikAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_WertNachEigenschaftFormatiertZurueck.js?v='.VERSION,
-        'js/vereinsapp/liste/Liste_WertBereinigtZurueck.js?v='.VERSION,
 
         'js/vereinsapp/liste/element/Liste_ElementErstellen.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementAendern.js?v='.VERSION,
@@ -116,33 +146,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/verzeichnis/Liste_$VerzeichnisAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/verzeichnis/Liste_$DateiAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisAnzahlZurueck.js?v='.VERSION,
-
-        'js/vereinsapp/ajax/Ajax_Init.js?v='.VERSION,
-        'js/vereinsapp/ajax/Ajax_InDieSchlange.js?v='.VERSION,
-
-        'js/vereinsapp/localstorage/Localstorage_Init.js?v='.VERSION,
-        'js/vereinsapp/localstorage/Localstorage_Rein.js?v='.VERSION,
-        'js/vereinsapp/localstorage/Localstorage_RausZurueck.js?v='.VERSION,
-        'js/vereinsapp/localstorage/Localstorage_Loeschen.js?v='.VERSION,
-        'js/vereinsapp/localstorage/Localstorage_Leeren.js?v='.VERSION,
-
-        'js/vereinsapp/dom/Dom_Init.js?v='.VERSION,
-        'js/vereinsapp/dom/Dom_ToastFeuern.js?v='.VERSION,
-        'js/vereinsapp/dom/Dom_$ModalOeffnen.js?v='.VERSION,
-        'js/vereinsapp/dom/Dom_$NeuesModalInitialisiertZurueck.js?v='.VERSION,
-        'js/vereinsapp/dom/Dom_$ModalSchliessen.js?v='.VERSION,
-        'js/vereinsapp/dom/Dom_BestaetigungEinfordern.js?v='.VERSION,
-        'js/vereinsapp/dom/Dom_$Quelle$ZielVerknuepfen.js?v='.VERSION,
-        'js/vereinsapp/dom/Dom_$Quelle$ZielEntknuepfen.js?v='.VERSION,
-        'js/vereinsapp/dom/Dom_$ZielZu$QuelleZurueck.js?v='.VERSION,
-        'js/vereinsapp/dom/Dom_$JetztAktualisieren.js?v='.VERSION,
-        
-        'js/vereinsapp/schnittstelle/event/Schnittstelle_EventSqlUpdLocalstorage.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/event/Schnittstelle_EventLocalstorageUpdVariable.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/event/Schnittstelle_EventVariableUpdLocalstorage.js?v='.VERSION,
-        'js/vereinsapp/schnittstelle/event/Schnittstelle_EventVariableUpdDom.js?v='.VERSION,
-        
-        'js/vereinsapp/log/Log_InDieKonsole.js?v='.VERSION,
 
     );
 

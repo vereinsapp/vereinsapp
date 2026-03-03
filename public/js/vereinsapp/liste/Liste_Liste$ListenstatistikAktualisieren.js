@@ -4,7 +4,7 @@
  */
 
 function Liste_Liste$ListenstatistikAktualisieren($listenstatistik, $liste) {
-    const liste = Liste_WertBereinigtZurueck($liste.attr("liste"), undefined);
+    const liste = Util_WertBereinigtZurueck($liste.attr("liste"), undefined);
 
     switch ($listenstatistik.attr("listenstatistik")) {
         case "anzahl":

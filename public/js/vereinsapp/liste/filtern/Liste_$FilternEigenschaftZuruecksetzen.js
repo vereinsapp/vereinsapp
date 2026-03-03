@@ -3,15 +3,15 @@
  */
 
 function Liste_$FilternEigenschaftZuruecksetzen($filtern_eigenschaft) {
-    const liste = Liste_WertBereinigtZurueck($filtern_eigenschaft.attr("liste"), undefined);
-    const eigenschaft = Liste_WertBereinigtZurueck($filtern_eigenschaft.attr("eigenschaft"), undefined);
+    const liste = Util_WertBereinigtZurueck($filtern_eigenschaft.attr("liste"), undefined);
+    const eigenschaft = Util_WertBereinigtZurueck($filtern_eigenschaft.attr("eigenschaft"), undefined);
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
             const $werkzeug = Dom_$ZielZu$QuelleZurueck($filtern_eigenschaft);
 
             // Definition von filtern_manip
-            const filtern_manip = Liste_WertBereinigtZurueck($werkzeug.val(), new Object());
+            const filtern_manip = Util_WertBereinigtZurueck($werkzeug.val(), new Object());
             if (!(eigenschaft in filtern_manip)) filtern_manip[eigenschaft] = new Object();
 
             // Ändern von filtern_manip

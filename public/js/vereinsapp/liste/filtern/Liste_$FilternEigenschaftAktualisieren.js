@@ -3,16 +3,16 @@
  */
 
 function Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft) {
-    const liste = Liste_WertBereinigtZurueck($filtern_eigenschaft.attr("liste"), undefined);
-    const eigenschaft = Liste_WertBereinigtZurueck($filtern_eigenschaft.attr("eigenschaft"), undefined);
+    const liste = Util_WertBereinigtZurueck($filtern_eigenschaft.attr("liste"), undefined);
+    const eigenschaft = Util_WertBereinigtZurueck($filtern_eigenschaft.attr("eigenschaft"), undefined);
     const $werkzeug = Dom_$ZielZu$QuelleZurueck($filtern_eigenschaft);
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
             // Definition von filtern_eigenschaft
             const filtern_manipuliert = Liste_FilternManipuliertZurueck(
-                Liste_WertBereinigtZurueck($werkzeug.attr("filtern_basis"), new Object()),
-                Liste_WertBereinigtZurueck($werkzeug.val(), new Object()),
+                Util_WertBereinigtZurueck($werkzeug.attr("filtern_basis"), new Object()),
+                Util_WertBereinigtZurueck($werkzeug.val(), new Object()),
                 liste,
             );
             if (!(eigenschaft in filtern_manipuliert)) filtern_manipuliert[eigenschaft] = new Object();

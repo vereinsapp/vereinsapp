@@ -4,9 +4,9 @@
  */
 
 function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
-    const liste = Liste_WertBereinigtZurueck($element.attr("liste"), undefined);
-    const element_id = Liste_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
-    const zusatzsymbol = Liste_WertBereinigtZurueck($zusatzsymbol.attr("zusatzsymbol"), undefined);
+    const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
+    const element_id = Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
+    const zusatzsymbol = Util_WertBereinigtZurueck($zusatzsymbol.attr("zusatzsymbol"), undefined);
 
     $zusatzsymbol.find('[data-bs-toggle="popover"]').popover("hide");
     $zusatzsymbol.empty();
@@ -35,7 +35,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
 
         // Zusatzsymbol für Datei
         case "datei":
-            const datei = Liste_WertBereinigtZurueck($element.attr("datei"), undefined);
+            const datei = Util_WertBereinigtZurueck($element.attr("datei"), undefined);
             const punkt = datei.lastIndexOf(".");
             const typ = datei.slice(punkt + 1);
             $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE[typ]["bootstrap"] + ' text-primary"></i>');
@@ -146,7 +146,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
             const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
             const verknuepfte_element_ids = new Object();
             $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
-                const verknuepfte_element_id = Liste_WertBereinigtZurueck($element.attr(LISTEN[verknuepfte_liste].element + "_id"), undefined);
+                const verknuepfte_element_id = Util_WertBereinigtZurueck($element.attr(LISTEN[verknuepfte_liste].element + "_id"), undefined);
                 if (typeof verknuepfte_element_id !== "undefined")
                     verknuepfte_element_ids[LISTEN[verknuepfte_liste].element + "_id"] = verknuepfte_element_id;
             });

@@ -3,9 +3,9 @@
  */
 
 function Liste_Element$FormularInitialisieren($formular) {
-    const liste = Liste_WertBereinigtZurueck($formular.attr("liste"), undefined);
-    const element_id = Liste_WertBereinigtZurueck($formular.attr(LISTEN[liste].element + "_id"), undefined);
-    const werkzeug = Liste_WertBereinigtZurueck($formular.attr("werkzeug"), undefined);
+    const liste = Util_WertBereinigtZurueck($formular.attr("liste"), undefined);
+    const element_id = Util_WertBereinigtZurueck($formular.attr(LISTEN[liste].element + "_id"), undefined);
+    const werkzeug = Util_WertBereinigtZurueck($formular.attr("werkzeug"), undefined);
 
     $formular.find(".eingabe").each(function () {
         const $eingabe = $(this);

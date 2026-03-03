@@ -3,17 +3,17 @@
  */
 
 function Liste_$AuswertungenAktualisieren($auswertungen) {
-    const auswertungen = Liste_WertBereinigtZurueck($auswertungen.attr("auswertungen"), undefined);
-    const auswertungen_instanz = Liste_WertBereinigtZurueck($auswertungen.attr("id"), undefined);
-    const liste = Liste_WertBereinigtZurueck($auswertungen.attr("liste"), undefined);
+    const auswertungen = Util_WertBereinigtZurueck($auswertungen.attr("auswertungen"), undefined);
+    const auswertungen_instanz = Util_WertBereinigtZurueck($auswertungen.attr("id"), undefined);
+    const liste = Util_WertBereinigtZurueck($auswertungen.attr("liste"), undefined);
 
     // GRUPPIEREN DEFINIEREN
-    const gruppieren_data = Liste_WertBereinigtZurueck($auswertungen.attr("gruppieren"), undefined);
+    const gruppieren_data = Util_WertBereinigtZurueck($auswertungen.attr("gruppieren"), undefined);
     const gruppieren_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].gruppieren;
     const gruppieren = Liste_GruppierenManipuliertZurueck(gruppieren_data, gruppieren_LocalStorage, liste);
 
     // TABELLE FILTERN
-    const filtern_data = Liste_WertBereinigtZurueck($auswertungen.attr("filtern"), new Object());
+    const filtern_data = Util_WertBereinigtZurueck($auswertungen.attr("filtern"), new Object());
     const filtern_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].filtern;
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
         LISTEN[liste].tabelle,
@@ -44,7 +44,7 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
             /* nächster Schleifendurchlauf */
         }
     });
-    const andere_verknuepfte_element_id = Liste_WertBereinigtZurueck($auswertungen.attr(LISTEN[andere_verknuepfte_liste].element + "_id"), undefined);
+    const andere_verknuepfte_element_id = Util_WertBereinigtZurueck($auswertungen.attr(LISTEN[andere_verknuepfte_liste].element + "_id"), undefined);
 
     const auswertung_ids = new Array();
     const auswertung_ids_nach_wert = new Object();

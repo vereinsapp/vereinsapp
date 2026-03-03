@@ -3,8 +3,8 @@
  */
 
 function Liste_$GruppierenEigenschaftAendern($gruppieren_eigenschaft) {
-    const liste = Liste_WertBereinigtZurueck($gruppieren_eigenschaft.attr("liste"), undefined);
-    const eigenschaft = Liste_WertBereinigtZurueck($gruppieren_eigenschaft.find(".gruppieren_wert").val(), undefined);
+    const liste = Util_WertBereinigtZurueck($gruppieren_eigenschaft.attr("liste"), undefined);
+    const eigenschaft = Util_WertBereinigtZurueck($gruppieren_eigenschaft.find(".gruppieren_wert").val(), undefined);
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
         if (liste in GRUPPIERBARE_EIGENSCHAFTEN && GRUPPIERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {

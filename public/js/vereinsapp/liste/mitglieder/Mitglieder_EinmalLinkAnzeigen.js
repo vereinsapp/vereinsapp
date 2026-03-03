@@ -17,7 +17,7 @@ function Mitglieder_EinmalLinkAnzeigen(bestaetigt, dom, modal_title, mitglied_id
         $neues_modal.find('.werkzeug[werkzeug="einmal_link_anzeigen"]').attr("mitglied_id", mitglied_id).addClass("bestaetigt");
     } else {
         const ajax_dom = dom;
-        const ajax_data = Liste_WertBereinigtZurueck(new Object(), new Object());
+        const ajax_data = Util_WertBereinigtZurueck(new Object(), new Object());
         ajax_data.mitglied_id = mitglied_id;
 
         Ajax_InDieSchlange(

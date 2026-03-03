@@ -8,7 +8,7 @@
 
 function Liste_VerknuepfungenModalOeffnen(modal_id, instanz, modal_title, verknuepfte_element_id, verknuepfungen) {
     const $neues_modal = Dom_$NeuesModalInitialisiertZurueck(modal_title, modal_id);
-    const liste = Liste_WertBereinigtZurueck($neues_modal.find("#" + instanz + ".liste[liste]").attr("liste"), undefined);
+    const liste = Util_WertBereinigtZurueck($neues_modal.find("#" + instanz + ".liste[liste]").attr("liste"), undefined);
 
     LISTEN[liste].instanz[instanz].$blanko_element.attr("modal_title", modal_title);
 

@@ -2,9 +2,9 @@
  */
 
 WERKZEUGE.gruppieren_manip.aktualisieren_aktion = function ($werkzeug) {
-    const liste = Liste_WertBereinigtZurueck($werkzeug.attr("liste"), undefined);
-    const instanz = Liste_WertBereinigtZurueck($werkzeug.attr("instanz"), undefined);
-    const gruppieren_basis = Liste_WertBereinigtZurueck($("#" + instanz + "[liste=" + liste + "]").attr("gruppieren"), undefined);
+    const liste = Util_WertBereinigtZurueck($werkzeug.attr("liste"), undefined);
+    const instanz = Util_WertBereinigtZurueck($werkzeug.attr("instanz"), undefined);
+    const gruppieren_basis = Util_WertBereinigtZurueck($("#" + instanz + "[liste=" + liste + "]").attr("gruppieren"), undefined);
     const gruppieren_manip = LISTEN[liste].instanz[instanz].gruppieren;
 
     $werkzeug

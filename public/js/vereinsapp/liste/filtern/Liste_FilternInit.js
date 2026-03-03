@@ -4,9 +4,9 @@
 const FILTERN = new Object();
 
 WERKZEUGE.filtern_manip.aktualisieren_aktion = function ($werkzeug) {
-    const liste = Liste_WertBereinigtZurueck($werkzeug.attr("liste"), undefined);
-    const instanz = Liste_WertBereinigtZurueck($werkzeug.attr("instanz"), undefined);
-    const filtern_basis = Liste_WertBereinigtZurueck($("#" + instanz + "[liste=" + liste + "]").attr("filtern"), new Object());
+    const liste = Util_WertBereinigtZurueck($werkzeug.attr("liste"), undefined);
+    const instanz = Util_WertBereinigtZurueck($werkzeug.attr("instanz"), undefined);
+    const filtern_basis = Util_WertBereinigtZurueck($("#" + instanz + "[liste=" + liste + "]").attr("filtern"), new Object());
     const filtern_manip = LISTEN[liste].instanz[instanz].filtern;
 
     $werkzeug
@@ -49,7 +49,7 @@ function Liste_FilternInit() {
 
     // VORGEGEBENE FILTER AUSWÄHLEN
     $(document).on("change", ".filtern_vorgegeben", function (e) {
-        Liste_$FilternVorgegebenAuswaehlen($(this), Liste_WertBereinigtZurueck($(e.target).val(), undefined));
+        Liste_$FilternVorgegebenAuswaehlen($(this), Util_WertBereinigtZurueck($(e.target).val(), undefined));
     });
 
     // FILTERN ÄNDERN
@@ -61,7 +61,7 @@ function Liste_FilternInit() {
     $(document).on("click", ".werkzeug[werkzeug=filtern_wert_inklusiv_exklusiv]", function () {
         Liste_$FilternEigenschaftWertInExklusivAendern(
             $(this).closest(".filtern_eigenschaft"),
-            Liste_WertBereinigtZurueck($(this).closest(".filtern_wert").attr("wert"), undefined),
+            Util_WertBereinigtZurueck($(this).closest(".filtern_wert").attr("wert"), undefined),
         );
     });
 
@@ -69,7 +69,7 @@ function Liste_FilternInit() {
     $(document).on("click", ".werkzeug[werkzeug=filtern_wert_loeschen]", function () {
         Liste_$FilternEigenschaftWertLoeschen(
             $(this).closest(".filtern_eigenschaft"),
-            Liste_WertBereinigtZurueck($(this).closest(".filtern_wert").attr("wert"), undefined),
+            Util_WertBereinigtZurueck($(this).closest(".filtern_wert").attr("wert"), undefined),
         );
     });
 

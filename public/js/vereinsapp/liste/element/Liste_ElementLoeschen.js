@@ -23,7 +23,7 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
         );
     } else {
         const ajax_dom = dom;
-        const ajax_data = Liste_WertBereinigtZurueck(new Object(), new Object());
+        const ajax_data = Util_WertBereinigtZurueck(new Object(), new Object());
         ajax_data.weiterleiten = weiterleiten;
         ajax_data[LISTEN[liste].element + "_id"] = element_id;
         ajax_data.liste = liste;

@@ -3,11 +3,11 @@
  */
 
 function Liste_$FilternLocalStorageSpeichern($werkzeug) {
-    const liste = Liste_WertBereinigtZurueck($werkzeug.attr("liste"), undefined);
-    const instanz = Liste_WertBereinigtZurueck($werkzeug.attr("instanz"), undefined);
+    const liste = Util_WertBereinigtZurueck($werkzeug.attr("liste"), undefined);
+    const instanz = Util_WertBereinigtZurueck($werkzeug.attr("instanz"), undefined);
 
     // Definition von filtern_manip
-    const filtern_manip = Liste_WertBereinigtZurueck($werkzeug.val(), new Object());
+    const filtern_manip = Util_WertBereinigtZurueck($werkzeug.val(), new Object());
 
     // Befüllung von filtern
     LISTEN[liste].instanz[instanz].filtern = new Object();

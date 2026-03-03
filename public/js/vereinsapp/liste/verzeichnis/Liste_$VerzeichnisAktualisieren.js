@@ -3,10 +3,10 @@
  */
 
 function Liste_$VerzeichnisAktualisieren($verzeichnis) {
-    const liste = Liste_WertBereinigtZurueck($verzeichnis.attr("liste"), undefined);
-    const verzeichnis_instanz = Liste_WertBereinigtZurueck($verzeichnis.attr("instanz"), $verzeichnis.attr("id"));
-    const element_id = Liste_WertBereinigtZurueck($verzeichnis.attr(LISTEN[liste].element + "_id"), undefined);
-    const basis = Liste_WertBereinigtZurueck($verzeichnis.attr("basis"), new Array());
+    const liste = Util_WertBereinigtZurueck($verzeichnis.attr("liste"), undefined);
+    const verzeichnis_instanz = Util_WertBereinigtZurueck($verzeichnis.attr("instanz"), $verzeichnis.attr("id"));
+    const element_id = Util_WertBereinigtZurueck($verzeichnis.attr(LISTEN[liste].element + "_id"), undefined);
+    const basis = Util_WertBereinigtZurueck($verzeichnis.attr("basis"), new Array());
 
     if (basis.length > 0)
         $verzeichnis

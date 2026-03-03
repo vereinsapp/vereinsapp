@@ -1,5 +1,5 @@
 LISTEN.aufgaben.element_erstellen_data_vervollstaendigen_aktion = function (data) {
-    data = Liste_WertBereinigtZurueck(data, new Object());
+    data = Util_WertBereinigtZurueck(data, new Object());
 
     if (!("max_anzahl_mitglieder" in data) || isEmptyString(data.max_anzahl_mitglieder)) data.max_anzahl_mitglieder = null;
     if (!("bemerkung" in data) || isEmptyString(data.bemerkung)) data.bemerkung = null;
@@ -13,7 +13,7 @@ LISTEN.aufgaben.element_aendern_data_vervollstaendigen_aktion = function (data, 
         data.max_anzahl_mitglieder = Liste_VariableRausZurueck("max_anzahl_mitglieder", aufgabe_id, "aufgaben", null);
     if (!("bemerkung" in data)) data.bemerkung = Liste_VariableRausZurueck("bemerkung", aufgabe_id, "aufgaben", null);
 
-    data = Liste_WertBereinigtZurueck(data, new Object());
+    data = Util_WertBereinigtZurueck(data, new Object());
 
     if (isEmptyString(data.max_anzahl_mitglieder)) data.max_anzahl_mitglieder = null;
     if (isEmptyString(data.bemerkung)) data.bemerkung = null;
@@ -49,8 +49,8 @@ function Aufgaben_Init() {
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Liste_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
             "aufgaben",
         );
     });
@@ -61,8 +61,8 @@ function Aufgaben_Init() {
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Liste_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
             "aufgaben",
         );
     });
@@ -72,10 +72,10 @@ function Aufgaben_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "aufgaben_rueckmeldungen_verwalten_modal",
             "aufgaben_rueckmeldungen_verwalten",
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             {
-                aufgabe_id: Liste_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
-                mitglied_id: Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                aufgabe_id: Util_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
+                mitglied_id: Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
             },
             "aufgaben_rueckmeldungen",
         );
@@ -87,11 +87,11 @@ function Aufgaben_Init() {
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                aufgabe_id: Liste_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
-                mitglied_id: Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
-                status: Liste_WertBereinigtZurueck($(this).attr("status"), undefined),
+                aufgabe_id: Util_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
+                mitglied_id: Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                status: Util_WertBereinigtZurueck($(this).attr("status"), undefined),
             },
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             "aufgaben_rueckmeldungen",
         );
     });
@@ -101,10 +101,10 @@ function Aufgaben_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "termine_aufgaben_zuordnen_modal",
             "termine_aufgaben_zuordnen",
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             {
-                aufgabe_id: Liste_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
-                termin_id: Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
+                aufgabe_id: Util_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
+                termin_id: Util_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
             },
             "aufgaben_zuordnungen_termine",
         );
@@ -116,11 +116,11 @@ function Aufgaben_Init() {
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                aufgabe_id: Liste_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
-                termin_id: Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
+                aufgabe_id: Util_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
+                termin_id: Util_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
                 status: Number($(this).is(":checked")),
             },
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             "aufgaben_zuordnungen_termine",
         );
     });

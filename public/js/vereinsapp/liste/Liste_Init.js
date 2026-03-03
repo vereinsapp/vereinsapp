@@ -2,7 +2,7 @@
  */
 
 WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
-    const werkzeug = Liste_WertBereinigtZurueck($werkzeug.attr("werkzeug"), undefined);
+    const werkzeug = Util_WertBereinigtZurueck($werkzeug.attr("werkzeug"), undefined);
 
     let farbe;
     if ("farbe" in WERKZEUGE[werkzeug]) farbe = WERKZEUGE[werkzeug].farbe;
@@ -11,9 +11,9 @@ WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
     if (
         $(
             "#" +
-                Liste_WertBereinigtZurueck($werkzeug.attr("instanz"), undefined) +
+                Util_WertBereinigtZurueck($werkzeug.attr("instanz"), undefined) +
                 "[liste=" +
-                Liste_WertBereinigtZurueck($werkzeug.attr("liste"), undefined) +
+                Util_WertBereinigtZurueck($werkzeug.attr("liste"), undefined) +
                 "]",
         ).children().length === 0
     )
@@ -22,8 +22,8 @@ WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
 };
 
 WERKZEUGE.element_loeschen.aktualisieren_aktion = function ($werkzeug) {
-    const liste = Liste_WertBereinigtZurueck($werkzeug.attr("liste"), undefined);
-    const werkzeug = Liste_WertBereinigtZurueck($werkzeug.attr("werkzeug"), undefined);
+    const liste = Util_WertBereinigtZurueck($werkzeug.attr("liste"), undefined);
+    const werkzeug = Util_WertBereinigtZurueck($werkzeug.attr("werkzeug"), undefined);
 
     $werkzeug.attr(
         "modal_title",
@@ -41,8 +41,8 @@ WERKZEUGE.element_loeschen_weiterleiten.aktualisieren_aktion = WERKZEUGE.element
 function Liste_Init() {
     // INSTANZEN IN LISTEN BEREITSTELLEN
     $.each(BLANKOS.element, function (position, $blanko) {
-        const liste = Liste_WertBereinigtZurueck($blanko.attr("liste"), undefined);
-        const instanz = Liste_WertBereinigtZurueck($blanko.attr("instanz"), undefined);
+        const liste = Util_WertBereinigtZurueck($blanko.attr("liste"), undefined);
+        const instanz = Util_WertBereinigtZurueck($blanko.attr("instanz"), undefined);
         $blanko.removeAttr("liste").removeAttr("instanz");
 
         if (!("instanz" in LISTEN[liste])) LISTEN[liste].instanz = new Object();
@@ -107,25 +107,25 @@ function Liste_Init() {
 
     // BEMERKUNG AENDERN
     $(document).on("click", '.werkzeug[werkzeug="bemerkung_aendern"]', function () {
-        const liste = Liste_WertBereinigtZurueck($(this).attr("liste"));
+        const liste = Util_WertBereinigtZurueck($(this).attr("liste"));
         Liste_ElementBemerkungAendern(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Liste_WertBereinigtZurueck($(this).attr(LISTEN[liste].element + "_id")),
+            Util_WertBereinigtZurueck($(this).attr(LISTEN[liste].element + "_id")),
             liste,
         );
     });
 
     // ELEMENT LÖSCHEN
     $(document).on("click", '.werkzeug[werkzeug="element_loeschen"], .werkzeug[werkzeug="element_loeschen_weiterleiten"]', function () {
-        const liste = Liste_WertBereinigtZurueck($(this).attr("liste"));
+        const liste = Util_WertBereinigtZurueck($(this).attr("liste"));
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigt"),
             $(this).attr("werkzeug") === "element_loeschen_weiterleiten",
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
-            Liste_WertBereinigtZurueck($(this).attr("modal_title")),
-            Liste_WertBereinigtZurueck($(this).attr(LISTEN[liste].element + "_id")),
+            Util_WertBereinigtZurueck($(this).attr("modal_title")),
+            Util_WertBereinigtZurueck($(this).attr(LISTEN[liste].element + "_id")),
             liste,
         );
     });

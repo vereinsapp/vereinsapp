@@ -6,7 +6,7 @@
 function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
     const $verknuepfung_moeglich = $verknuepfungen.find(".verknuepfung_moeglich");
     const $verknuepfung_nicht_moeglich = $verknuepfungen.find(".verknuepfung_nicht_moeglich");
-    const verknuepfungen = Liste_WertBereinigtZurueck($verknuepfungen.attr("verknuepfungen"), undefined);
+    const verknuepfungen = Util_WertBereinigtZurueck($verknuepfungen.attr("verknuepfungen"), undefined);
 
     // VERKNUEPFTE LISTEN DEFINIEREN
     const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
@@ -14,7 +14,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
     // VERKNUEPFTE ELEMENT_ID DEFINIEREN
     const verknuepfte_element_id = new Object();
     $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
-        verknuepfte_element_id[LISTEN[verknuepfte_liste].element + "_id"] = Liste_WertBereinigtZurueck(
+        verknuepfte_element_id[LISTEN[verknuepfte_liste].element + "_id"] = Util_WertBereinigtZurueck(
             $element.attr(LISTEN[verknuepfte_liste].element + "_id"),
             undefined,
         );
@@ -81,7 +81,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
 
                 $werkzeug.prop("checked", verknuepfung_status > 0).attr("id", $zugehoeriges_label.attr("for"));
             } else if (VERKNUEPFUNGEN[verknuepfungen].typ === "status_auswahl") {
-                const status = Liste_WertBereinigtZurueck($werkzeug.attr("status"), undefined);
+                const status = Util_WertBereinigtZurueck($werkzeug.attr("status"), undefined);
 
                 $werkzeug
                     .attr(LISTEN[verknuepfte_listen[0]].element + "_id", verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"])

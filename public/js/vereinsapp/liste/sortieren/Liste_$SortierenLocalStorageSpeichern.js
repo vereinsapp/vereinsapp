@@ -3,13 +3,13 @@
  */
 
 function Liste_$SortierenLocalStorageSpeichern($sortieren_localstorage) {
-    const liste = Liste_WertBereinigtZurueck($sortieren_localstorage.attr("liste"), undefined);
-    const instanz = Liste_WertBereinigtZurueck($sortieren_localstorage.attr("instanz"), undefined);
+    const liste = Util_WertBereinigtZurueck($sortieren_localstorage.attr("liste"), undefined);
+    const instanz = Util_WertBereinigtZurueck($sortieren_localstorage.attr("instanz"), undefined);
 
     // Definition von sortieren_manip
     const sortieren_manip = { eigenschaft: undefined, richtung: undefined };
     $.each(
-        Liste_WertBereinigtZurueck($sortieren_localstorage.val(), {
+        Util_WertBereinigtZurueck($sortieren_localstorage.val(), {
             eigenschaft: undefined,
             richtung: undefined,
         }),

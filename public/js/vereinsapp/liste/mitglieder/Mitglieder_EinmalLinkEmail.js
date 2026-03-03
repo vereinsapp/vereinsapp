@@ -17,7 +17,7 @@ function Mitglieder_EinmalLinkEmail(bestaetigt, dom, modal_title, mitglied_id) {
         );
     else {
         const ajax_dom = dom;
-        const ajax_data = Liste_WertBereinigtZurueck(new Object(), new Object());
+        const ajax_data = Util_WertBereinigtZurueck(new Object(), new Object());
         ajax_data.mitglied_id = mitglied_id;
 
         Ajax_InDieSchlange(

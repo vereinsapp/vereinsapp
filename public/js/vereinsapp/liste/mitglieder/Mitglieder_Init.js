@@ -1,5 +1,5 @@
 LISTEN.mitglieder.element_erstellen_data_vervollstaendigen_aktion = function (data) {
-    data = Liste_WertBereinigtZurueck(data, new Object());
+    data = Util_WertBereinigtZurueck(data, new Object());
 
     if (isLuxonDateTime(data.geburt)) data.geburt = data.geburt.toISO();
     if (!("bemerkung" in data) || isEmptyString(data.bemerkung)) data.bemerkung = null;
@@ -24,7 +24,7 @@ LISTEN.mitglieder.element_aendern_data_vervollstaendigen_aktion = function (data
     if (!("real_janein" in data)) data.real_janein = Number(Liste_VariableRausZurueck("real_janein", mitglied_id, "mitglieder", undefined));
     if (!("bemerkung" in data)) data.bemerkung = Liste_VariableRausZurueck("bemerkung", mitglied_id, "mitglieder", null);
 
-    data = Liste_WertBereinigtZurueck(data, new Object());
+    data = Util_WertBereinigtZurueck(data, new Object());
 
     if (isLuxonDateTime(data.geburt)) data.geburt = data.geburt.toISO();
     if (isEmptyString(data.bemerkung)) data.bemerkung = null;
@@ -72,8 +72,8 @@ function Mitglieder_Init() {
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
             "mitglieder",
         );
     });
@@ -84,8 +84,8 @@ function Mitglieder_Init() {
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
             "mitglieder",
         );
     });
@@ -95,7 +95,7 @@ function Mitglieder_Init() {
         Mitglieder_PasswortAendern(
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
         );
     });
 
@@ -104,7 +104,7 @@ function Mitglieder_Init() {
         Mitglieder_PasswortFestlegen(
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
         );
     });
 
@@ -113,10 +113,10 @@ function Mitglieder_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "rechte_vergeben_modal",
             "rechte_vergeben",
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             {
-                verfuegbares_recht_id: Liste_WertBereinigtZurueck($(this).attr("verfuegbares_recht_id"), undefined),
-                mitglied_id: Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                verfuegbares_recht_id: Util_WertBereinigtZurueck($(this).attr("verfuegbares_recht_id"), undefined),
+                mitglied_id: Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
             },
             "vergebene_rechte",
         );
@@ -128,11 +128,11 @@ function Mitglieder_Init() {
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                verfuegbares_recht_id: Liste_WertBereinigtZurueck($(this).attr("verfuegbares_recht_id"), undefined),
-                mitglied_id: Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                verfuegbares_recht_id: Util_WertBereinigtZurueck($(this).attr("verfuegbares_recht_id"), undefined),
+                mitglied_id: Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
                 status: Number($(this).is(":checked")),
             },
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             "vergebene_rechte",
         );
     });
@@ -142,8 +142,8 @@ function Mitglieder_Init() {
         Mitglieder_EinmalLinkAnzeigen(
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
         );
     });
 
@@ -152,8 +152,8 @@ function Mitglieder_Init() {
         Mitglieder_EinmalLinkEmail(
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
         );
     });
 }

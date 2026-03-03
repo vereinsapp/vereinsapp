@@ -1,4 +1,4 @@
-function Liste_WertBereinigtZurueck(wert, wert_undefined) {
+function Util_WertBereinigtZurueck(wert, wert_undefined) {
     let wert_bereinigt;
 
     if (typeof wert === "undefined") wert_bereinigt = wert_undefined;
@@ -6,7 +6,7 @@ function Liste_WertBereinigtZurueck(wert, wert_undefined) {
     else if (isString(wert)) {
         if (DATETIME.fromSQL(wert).isValid) wert_bereinigt = DATETIME.fromSQL(wert);
         else if (DATETIME.fromISO(wert).isValid) wert_bereinigt = DATETIME.fromISO(wert);
-        else if (isJson(wert)) wert_bereinigt = Liste_WertBereinigtZurueck(JSON.parse(wert), undefined);
+        else if (isJson(wert)) wert_bereinigt = Util_WertBereinigtZurueck(JSON.parse(wert), undefined);
         else if (isJquery(wert)) wert_bereinigt = wert;
         else wert_bereinigt = wert;
     } else if (isLuxonDateTime(wert)) wert_bereinigt = wert;
@@ -14,13 +14,13 @@ function Liste_WertBereinigtZurueck(wert, wert_undefined) {
         const objekt = wert;
         wert_bereinigt = new Object();
         $.each(objekt, function (eigenschaft, wert) {
-            wert_bereinigt[eigenschaft] = Liste_WertBereinigtZurueck(wert, undefined);
+            wert_bereinigt[eigenschaft] = Util_WertBereinigtZurueck(wert, undefined);
         });
     } else if (isArray(wert)) {
         const array = wert;
         wert_bereinigt = new Array();
         $.each(array, function (index, element) {
-            wert_bereinigt[index] = Liste_WertBereinigtZurueck(element, undefined);
+            wert_bereinigt[index] = Util_WertBereinigtZurueck(element, undefined);
         });
     } else wert_bereinigt = wert;
 

@@ -29,7 +29,7 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
         );
     else {
         const ajax_dom = dom;
-        const ajax_data = Liste_WertBereinigtZurueck(data, new Object());
+        const ajax_data = Util_WertBereinigtZurueck(data, new Object());
         if (!("bemerkung" in ajax_data) || isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
         Ajax_InDieSchlange(

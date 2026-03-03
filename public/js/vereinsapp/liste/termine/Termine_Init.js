@@ -1,7 +1,7 @@
 EIGENSCHAFTEN.termine.kategorie.eingabe_aendern_aktion = function ($kategorie) {
     const $filtern_mitglieder = $kategorie.closest(".formular").find('.eingabe[eingabe="filtern_mitglieder"]');
     if ($kategorie.val() in TERMINE_KATEGORIE_FILTERN_MITGLIEDER) {
-        const filtern_basis = Liste_WertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()], new Object());
+        const filtern_basis = Util_WertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[$kategorie.val()], new Object());
         const filtern_manip = new Object();
         $.each(Object.keys(filtern_basis), function (position, eigenschaft) {
             if ("termine" in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN.termine.includes(eigenschaft))
@@ -18,7 +18,7 @@ LISTEN.termine.element_erstellen_data_vervollstaendigen_aktion = function (data)
     if (typeof data.filtern_mitglieder === "undefined" || ("filtern_mitglieder" in data && isEmptyString(data.filtern_mitglieder)))
         data.filtern_mitglieder = new Object();
 
-    data = Liste_WertBereinigtZurueck(data, new Object());
+    data = Util_WertBereinigtZurueck(data, new Object());
 
     if (isLuxonDateTime(data.start)) data.start = data.start.toISO();
     if (isLuxonDateTime(data.ende)) data.ende = data.ende.toISO();
@@ -40,7 +40,7 @@ LISTEN.termine.element_aendern_data_vervollstaendigen_aktion = function (data, t
         data.oeffentlich_janein = Number(Liste_VariableRausZurueck("oeffentlich_janein", termin_id, "termine", undefined));
     if (!("bemerkung" in data)) data.bemerkung = Liste_VariableRausZurueck("bemerkung", termin_id, "termine", null);
 
-    data = Liste_WertBereinigtZurueck(data, new Object());
+    data = Util_WertBereinigtZurueck(data, new Object());
 
     if (isLuxonDateTime(data.start)) data.start = data.start.toISO();
     if (isLuxonDateTime(data.ende)) data.ende = data.ende.toISO();
@@ -57,7 +57,7 @@ LISTEN.termine.element_ergaenzen_aktion = function (termin) {
         Liste_TabelleGefiltertZurueck(
             LISTEN.mitglieder.tabelle,
             Liste_FilternManipuliertZurueck(
-                Liste_WertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin.kategorie], new Object()),
+                Util_WertBereinigtZurueck(TERMINE_KATEGORIE_FILTERN_MITGLIEDER[termin.kategorie], new Object()),
                 termin.filtern_mitglieder,
                 "mitglieder",
             ),
@@ -106,8 +106,8 @@ function Termine_Init() {
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
             "termine",
         );
     });
@@ -118,8 +118,8 @@ function Termine_Init() {
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
             "termine",
         );
     });
@@ -129,10 +129,10 @@ function Termine_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "termine_rueckmeldungen_verwalten_modal",
             "termine_rueckmeldungen_verwalten",
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             {
-                mitglied_id: Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
-                termin_id: Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
+                mitglied_id: Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                termin_id: Util_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
             },
             "termine_rueckmeldungen",
         );
@@ -144,11 +144,11 @@ function Termine_Init() {
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                termin_id: Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
-                mitglied_id: Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
-                status: Liste_WertBereinigtZurueck($(this).attr("status"), undefined),
+                termin_id: Util_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
+                mitglied_id: Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                status: Util_WertBereinigtZurueck($(this).attr("status"), undefined),
             },
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             "termine_rueckmeldungen",
         );
     });
@@ -158,10 +158,10 @@ function Termine_Init() {
         Liste_VerknuepfungenModalOeffnen(
             "termine_anwesenheiten_dokumentieren_modal",
             "termine_anwesenheiten_dokumentieren",
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             {
-                mitglied_id: Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
-                termin_id: Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
+                mitglied_id: Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                termin_id: Util_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
             },
             "termine_anwesenheiten",
         );
@@ -173,11 +173,11 @@ function Termine_Init() {
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                termin_id: Liste_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
-                mitglied_id: Liste_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                termin_id: Util_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
+                mitglied_id: Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
                 status: Number($(this).is(":checked")),
             },
-            Liste_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             "termine_anwesenheiten",
         );
     });

@@ -3,7 +3,7 @@
  */
 
 function Liste_$DateiAktualisieren($datei) {
-    const liste = Liste_WertBereinigtZurueck($datei.attr("liste"), undefined);
+    const liste = Util_WertBereinigtZurueck($datei.attr("liste"), undefined);
     const datei = $datei.attr("datei");
     const $verzeichnis = $datei.closest(".verzeichnis");
 
@@ -17,11 +17,11 @@ function Liste_$DateiAktualisieren($datei) {
         "/" +
         Liste_VariableRausZurueck(
             "verzeichnis_basis",
-            Liste_WertBereinigtZurueck($verzeichnis.attr(LISTEN[liste].element + "_id"), undefined),
+            Util_WertBereinigtZurueck($verzeichnis.attr(LISTEN[liste].element + "_id"), undefined),
             liste,
             "",
         );
-    $.each(Liste_WertBereinigtZurueck($verzeichnis.attr("basis"), new Array()), function (position, unterverzeichnis) {
+    $.each(Util_WertBereinigtZurueck($verzeichnis.attr("basis"), new Array()), function (position, unterverzeichnis) {
         link += unterverzeichnis;
     });
     link += datei;

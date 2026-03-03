@@ -1,9 +1,11 @@
-const DATETIME = luxon.DateTime;
-
 $(document).ready(function () {
+    Util_Init();
+
     Ajax_Init();
     Localstorage_Init();
+    Log_Init();
     Dom_Init();
+
     Liste_Init();
 });
 
