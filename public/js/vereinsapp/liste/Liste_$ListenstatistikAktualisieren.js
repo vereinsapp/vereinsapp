@@ -3,7 +3,7 @@
  * @param {JQuery} $liste
  */
 
-function Liste_Liste$ListenstatistikAktualisieren($listenstatistik, $liste) {
+function Liste_$ListenstatistikAktualisieren($listenstatistik, $liste) {
     const liste = Util_WertBereinigtZurueck($liste.attr("liste"), undefined);
 
     switch ($listenstatistik.attr("listenstatistik")) {
@@ -11,7 +11,7 @@ function Liste_Liste$ListenstatistikAktualisieren($listenstatistik, $liste) {
             $listenstatistik.text($liste.children().length);
             break;
         case "angewaehlt":
-            /* funktioniert aktuell nicht, weil Liste_$ListeAktualisieren inkl. Liste_Liste$ListenstatistikAktualisieren aufgerufen wird,
+            /* funktioniert aktuell nicht, weil Liste_$ListeAktualisieren inkl. Liste_$ListenstatistikAktualisieren aufgerufen wird,
              * bevor Liste_$ElementAktualisieren inkl. Liste_$VerknuepfungenAktualisieren aufgerufen wird
              */
             $listenstatistik.text($liste.find(".form-check-input.werkzeug:checked").length);

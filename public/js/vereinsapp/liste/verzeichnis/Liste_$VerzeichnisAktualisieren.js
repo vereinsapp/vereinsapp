@@ -133,16 +133,16 @@ function Liste_$VerzeichnisAktualisieren($verzeichnis) {
 
     // ÜBERSCHRIFT AKTUALISIEREN
     $('.ueberschrift[instanz="' + verzeichnis_instanz + '"]').each(function () {
-        Liste_Liste$UeberschriftAktualisieren($(this), $verzeichnis);
+        Liste_$UeberschriftAktualisieren($(this), $verzeichnis);
     });
 
     // WERKZEUG AKTUALISIEREN
     $('.werkzeug[instanz="' + verzeichnis_instanz + '"]').each(function () {
-        Liste_Liste$WerkzeugAktualisieren($(this), $verzeichnis);
+        Liste_$WerkzeugAktualisieren($(this), $verzeichnis);
     });
 
     // LISTENSTATISTIK AKTUALISIEREN
     $('.listenstatistik[instanz="' + verzeichnis_instanz + '"]').each(function () {
-        Liste_Liste$ListenstatistikAktualisieren($(this), $verzeichnis);
+        Liste_$ListenstatistikAktualisieren($(this), $verzeichnis);
     });
 }

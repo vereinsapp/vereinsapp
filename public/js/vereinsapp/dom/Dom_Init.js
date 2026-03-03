@@ -102,7 +102,7 @@ function Dom_Init() {
             else $werkzeuge.removeAttr(LISTEN[liste].element + "_id");
 
             $werkzeuge.each(function () {
-                Liste_Liste$WerkzeugAktualisieren($(this), undefined);
+                Liste_$WerkzeugAktualisieren($(this), undefined);
             });
         } else $werkzeuge.removeAttr("liste");
     });

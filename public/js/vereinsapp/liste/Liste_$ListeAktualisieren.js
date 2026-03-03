@@ -57,16 +57,16 @@ function Liste_$ListeAktualisieren($liste) {
 
     // ÜBERSCHRIFT AKTUALISIEREN
     $('.ueberschrift[instanz="' + instanz + '"]').each(function () {
-        Liste_Liste$UeberschriftAktualisieren($(this), $liste);
+        Liste_$UeberschriftAktualisieren($(this), $liste);
     });
 
     // WERKZEUG AKTUALISIEREN
     $('.werkzeug[instanz="' + instanz + '"]').each(function () {
-        Liste_Liste$WerkzeugAktualisieren($(this), $liste);
+        Liste_$WerkzeugAktualisieren($(this), $liste);
     });
 
     // LISTENSTATISTIK AKTUALISIEREN
     $('.listenstatistik[instanz="' + instanz + '"]').each(function () {
-        Liste_Liste$ListenstatistikAktualisieren($(this), $liste);
+        Liste_$ListenstatistikAktualisieren($(this), $liste);
     });
 }
