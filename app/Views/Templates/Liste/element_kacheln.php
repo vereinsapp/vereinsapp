@@ -9,7 +9,7 @@
         <div class="card-body p-2">
             <h5 class="card-title text-truncate text-nowrap">
                 <span class="beschriftung"><?= $liste['beschriftung']; ?></span>
-                <?php if( array_key_exists( 'zusatzsymbol', $liste ) AND is_array( $liste['zusatzsymbol'] ) AND count( $liste['zusatzsymbol'] ) > 0 ) foreach( $liste['zusatzsymbol'] as $zusatzsymbol ) { ?><span class="zusatzsymbol float-end flex-shrink-0 stretched-link-unwirksam" zusatzsymbol="<?= $zusatzsymbol ?>"></span><?php } ?>
+                <?php if( array_key_exists( 'zusatzsymbol', $liste ) AND is_array( $liste['zusatzsymbol'] ) AND count( $liste['zusatzsymbol'] ) > 0 ) foreach( $liste['zusatzsymbol'] as $zusatzsymbol ) { ?><span class="zusatzsymbol float-end stretched-link-unwirksam" zusatzsymbol="<?= $zusatzsymbol ?>"></span><?php } ?>
                 <?php if( array_key_exists( 'link', $liste ) AND is_array( $liste['link'] ) ) { ?><a class="stretched-link" link='<?= json_encode( $liste['link'], JSON_UNESCAPED_UNICODE ); ?>'></a><?php } ?>
             </h5>
             <?php if( array_key_exists( 'vorschau', $liste ) ) { ?><div class="card-text mt-1 vorschau text-truncate text-secondary"><?php

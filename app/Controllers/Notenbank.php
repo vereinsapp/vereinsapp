@@ -15,13 +15,7 @@ class Notenbank extends BaseController {
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
-            $this->viewdata['liste']['setliste_verwalten'] = VIEWDATA['termine'];
-            unset($this->viewdata['liste']['setliste_verwalten']['filtern']['ich_eingeladen_janein']);
-            $this->viewdata['liste']['setliste_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.VIEWDATA['termine']['beschriftung'];
-            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = 'notenbank_setliste';
-
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge_liste'][] = 'titel_erstellen';
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge_element'][] = 'setliste_verwalten';
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge_element'][] = 'titel_aendern';
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge_element'][] = 'titel_duplizieren';
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge_element'][] = 'element_loeschen';

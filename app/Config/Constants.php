@@ -158,6 +158,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
 
     'rechte_vergeben' => array( 'bootstrap' => 'lock' ),
     'strafen_zuweisen' => array ( 'bootstrap' => 'journal-plus' ),
+    'anwesenheiten_dokumentieren' => array( 'bootstrap' => 'person-check' ),
     'statistiken' => array( 'bootstrap' => 'graph-up-arrow' ),
     'filtern_mitglieder' => array( 'bootstrap' => 'person-gear' ),
     'einmal_link_anzeigen' => array( 'bootstrap' => 'link' ),

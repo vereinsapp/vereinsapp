@@ -6,7 +6,7 @@
     </button><?php }
 ?></div><?php } ?>
 
-<ul id="<?= $auswertungen['instanz']; ?>" class="auswertungen text-center<?php
+<div id="<?= $auswertungen['instanz']; ?>" class="auswertungen text-center<?php
 if( array_key_exists( 'sortable', $auswertungen ) AND $auswertungen['sortable'] ) echo ' sortable';
 ?> p-0 mb-0" auswertungen="<?= $auswertungen['auswertungen']; ?>" liste="<?= $auswertungen['liste']; ?>"<?php
 if( array_key_exists( 'gruppieren', $auswertungen ) ) { ?> gruppieren='<?= $auswertungen['gruppieren']; ?>'<?php }
@@ -16,4 +16,4 @@ foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $li
 
 <?= view( $view, array( 'auswertung' => array( 'instanz' => $auswertungen['instanz'], 'collapse' => $auswertungen['collapse'], 'progress' => $auswertungen['progress'], ) ) ); ?>
 
-</ul>
+</div>

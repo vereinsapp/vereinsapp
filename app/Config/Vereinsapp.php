@@ -138,7 +138,7 @@ class Vereinsapp extends BaseConfig
         'termin_duplizieren' => array( 'symbol' => 'duplizieren', 'beschriftung' => 'Termin duplizieren', ),
         'termine_rueckmeldungen_verwalten' => array( 'symbol' => 'pos_rueckmeldung', 'beschriftung' => 'Termin-Rückmeldungen verwalten', ),
         'termine_rueckmeldung_erstellen' => array( 'symbol' => 'angenommen_rueckmeldung', 'beschriftung' => 'Rückmeldung machen', ),
-        'termine_anwesenheiten_dokumentieren' => array( 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Termin-Anwesenheiten dokumentieren', ),
+        'termine_anwesenheiten_dokumentieren' => array( 'symbol' => 'anwesenheiten_dokumentieren', 'beschriftung' => 'Termin-Anwesenheiten dokumentieren', ),
         'termine_anwesenheit_erstellen' => array( 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Termin-Anwesenheit dokumentieren', ),
 
         'strafe_erstellen' => array( 'symbol' => 'erstellen', 'beschriftung' => 'Strafe erstellen', ),

@@ -44,22 +44,18 @@ Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Sta
 Werkzeug zum Unterdrücken der Werkzeuge? Inkl. Speichern im LocalStorage?
 Aufgaben detaillieren
 Zugewiesene Strafen anzeigen
-Bugfix Klick auf Werkzeug direkt im Element löst Element-Event und Werkzeug-Event aus
-LISTEN[liste].beschriftung umbenennen in LISTEN[liste].liste_beschriftung und mit beschriftung in VIEWDATA verheiraten
+LISTEN[liste].beschriftung umbenennen in LISTEN[liste].liste_beschriftung und mit beschriftung in VIEWDATA und beschriftung im Details-View verheiraten
 modal_title generieren analog zu element_loeschen / Liste_ElementLoeschen
-sortable als Werkzeug einführen?
-Werkzeuge für erstellen, duplizieren und aendern auch vereinheitlichen (analaog zu element_loeschen)?
-setliste_verwalten in Notenbank nicht ermöglichen
-Anderes Symbol für termine_anwesenheiten_dokumentieren
 VIEWDATA in LISTEN integrieren
-Mit Github Copilot Agent die Anordnung in einstellungen optimieren
-Leere Listen komplett ausblenden (UeberschriftAktualisieren auch überprüfen)
+Mit Github Copilot Agent die Anordnung in Details optimieren
 Werkzeug für Rückmeldungen und Anwesenheiten auch in Auswertung einführen + WerkzeugAktualisieren vereinheitlichen mit Übernahme jeglicher [element]_id-Atribute
-werkzeuge_element, werkzeuge_liste und werkzeuge_auswertungen vereinheitlichen
-Bugfix Bemerkung ändern
-Bugfix Auswertungen-Details anzeigen
+    Werkzeuge für erstellen, duplizieren und aendern auch vereinheitlichen (analaog zu element_loeschen)?
+    sortable als Werkzeug einführen?
+    werkzeuge_element, werkzeuge_liste und werkzeuge_auswertungen vereinheitlichen
+    Bugfix Klick auf Werkzeug direkt im Element löst Element-Event und Werkzeug-Event aus
+    Bugfix bemerkung_aendern bekommt liste-Attribut überschrieben
 liste als card + list-group-flush darstellen, ggf. mit Überschrift im card-header
-ul und li ändern in div im auswertungen-View
+    Leere Listen komplett ausblenden (UeberschriftAktualisieren auch überprüfen)
 
 ERLEDIGT
 

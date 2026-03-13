@@ -18,17 +18,15 @@
         <div class="card-body p-2">
             <h5 class="card-title text-center text-truncate text-nowrap">
                 <span class="beschriftung"><span class="eigenschaft" eigenschaft="titel"></span></span>
+                <span class="zusatzsymbol float-end" zusatzsymbol="kategorie"></span>
             </h5>
             <div class="card-text row row-cols-3 g-0">
-                <div class="col-5 text-center">
+                <div class="col-6 text-center">
                     <div><i class="bi bi-<?= SYMBOLE["zeitraum"]["bootstrap"]; ?>"></i></div>
                     <div><span class="eigenschaft" eigenschaft="start"></span></div>
                     <?php if( array_key_exists( 'ende', EIGENSCHAFTEN['termine'] ) ) { ?><div class="text-secondary small">bis <span class="eigenschaft" eigenschaft="ende"></span></div><?php } ?>
                 </div>
-                <div class="col-2 text-center">
-                    <span class="zusatzsymbol" zusatzsymbol="kategorie"></span>
-                </div>
-                <div class="col-5 text-center">
+                <div class="col-6 text-center">
                     <div><i class="bi bi-<?= SYMBOLE["ort"]["bootstrap"]; ?>"></i></div>
                     <div><span class="eigenschaft" eigenschaft="ort"></span></div>
                 </div>
@@ -44,20 +42,20 @@
         <div class="card-header">
             <div class="nav nav-tabs card-header-tabs">
                 <div class="nav-item text-center w-50" data-bs-toggle="collapse" data-bs-target="#rueckmeldungen_container" role="button">
-                    <span class="nav-link active">Termin-Rückmeldungen</span>
+                    <span class="nav-link active">Rückmeldungen</span>
                 </div>
                 <div class="nav-item collapsed text-center w-50" data-bs-toggle="collapse" data-bs-target="#anwesenheiten_container" role="button">
-                    <span class="nav-link">Termin-Anwesenheiten</span>
+                    <span class="nav-link">Anwesenheiten</span>
                 </div>
             </div>
         </div>
         <div class="card-body">
             <div class="rueckmeldungen_anwesenheiten_parent">
                 <div id="rueckmeldungen_container" class="collapse tab_collapse no-transition show" data-bs-parent=".rueckmeldungen_anwesenheiten_parent">
-            <?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['rueckmeldungen_termin'], 'view' => 'Mitglieder/auswertung_rueckmeldungen' ) ); ?>
+            <?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['rueckmeldungen_termin'], 'view' => 'Termine/auswertung_rueckmeldungen' ) ); ?>
                 </div>
                 <div id="anwesenheiten_container" class="collapse tab_collapse no-transition" data-bs-parent=".rueckmeldungen_anwesenheiten_parent">
-            <?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['anwesenheiten_termin'], 'view' => 'Mitglieder/auswertung_anwesenheiten' ) ); ?>
+            <?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['anwesenheiten_termin'], 'view' => 'Termine/auswertung_anwesenheiten' ) ); ?>
                 </div>
             </div>
         </div>

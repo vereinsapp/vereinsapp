@@ -12,10 +12,6 @@
     view( 'Templates/Liste/element_kacheln', array( 'liste' => $liste['aktuelles_verzeichnis'] ) ) ) ); ?>
 
 <?php if( auth()->user()->can( 'notenbank.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'modal_id' => 'setliste_verwalten_modal', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['setliste_verwalten'], 'typ' => 'liste', 'element' =>
-    view( 'Templates/Liste/element_liste', array( 'liste' => $liste['setliste_verwalten'] ) ) ) ) ) ); ?>
-<?php if( auth()->user()->can( 'notenbank.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'titel_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'formular' => view( 'Notenbank/titel_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?= $this->endSection() ?>
