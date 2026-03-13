@@ -107,11 +107,11 @@ class Vereinsapp extends BaseConfig
         'gruppieren_manip' => array( 'symbol' => 'gruppieren', 'beschriftung' => 'Gruppieren', ),
         'gruppieren_eigenschaft_zuruecksetzen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Eigenschaft zurücksetzen', 'farbe' => 'danger', ),
         'bemerkung_aendern' => array( 'symbol' => 'bemerkung', 'beschriftung' => 'Bemerkung ändern', ),
-        'localstorage_leeren' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Localstorage leeren', 'farbe' => 'danger', ),
+        'localstorage_leeren' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Gerätespeicher leeren', 'farbe' => 'danger', ),
         'datenschutz_richtlinie_akzeptieren' => array( 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Datenschutz-Richtlinie akzeptieren', 'farbe' => 'success', ),
         'inhalt_kopieren' => array( 'symbol' => 'inhalt_kopieren', 'beschriftung' => 'Inhalt kopieren', ),
-        'element_loeschen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Element löschen', 'farbe' => 'danger', ),
-        'element_loeschen_weiterleiten' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Element löschen', 'farbe' => 'danger', ),
+        'element_loeschen' => array( 'symbol' => 'loeschen', 'beschriftung' => '{element1} löschen', 'farbe' => 'danger', ),
+        'element_loeschen_weiterleiten' => array( 'symbol' => 'loeschen', 'beschriftung' => '{element1} löschen', 'farbe' => 'danger', ),
 
         'mitglied_erstellen' => array( 'symbol' => 'erstellen', 'beschriftung' => 'Mitglied erstellen' ),
         'mitglied_aendern' => array( 'symbol' => 'aendern', 'beschriftung' => 'Mitglied ändern', ),
@@ -270,7 +270,6 @@ class Vereinsapp extends BaseConfig
             'liste' => 'mitglieder',
             'filtern' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ) ),
             'sortieren' => array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
-            // 'group-flush' => TRUE,
             // 'sortable' => TRUE,
             // 'link' => array( 'liste' => 'mitglieder', 'eigenschaften' => array( 'id', ), ),
             // 'modal_title' => 'Titel für ein Modal',
@@ -280,9 +279,9 @@ class Vereinsapp extends BaseConfig
             'zusatzsymbol' => array('geburtstag'),
             // '[element]_id' => 42,
             // 'disabled_ids' => array(),
-            // 'eigenschaften_bedingt_formatiert' => array( 'wert' => array( 'text-danger' => array( 'wert' => array( 'ende' =>  0, ), ), ), ),
-            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array(),
+            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
+            'werkzeuge_element' => array(),
+            'listenstatistik' => array( 'anzahl' => array() ),
         ),
 
         'verfuegbare_rechte' => array(
@@ -290,16 +289,18 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array(),
             'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
-            'werkzeugkasten' => array(),
-            // 'listenstatistik' => array(),
+            'werkzeuge_liste' => array(),
+            'werkzeuge_element' => array(),
+            'listenstatistik' => array(),
         ),
 
         'vergebene_rechte' => array(
             'liste' => 'vergebene_rechte',
             'filtern' => array(),
             'sortieren' => array(),
-            'werkzeugkasten' => array(),
-            // 'listenstatistik' => array(),
+            'werkzeuge_liste' => array(),
+            'werkzeuge_element' => array(),
+            'listenstatistik' => array(),
         ),
 
         'aufgaben' => array(
@@ -307,24 +308,27 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
-            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array(),
+            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
+            'werkzeuge_element' => array(),
+            'listenstatistik' => array( 'anzahl' => array() ),
         ),
 
         'aufgaben_rueckmeldungen' => array(
             'liste' => 'aufgaben_rueckmeldungen',
             'filtern' => array(),
             'sortieren' => array(),
-            'werkzeugkasten' => array(),
-            // 'listenstatistik' => array(),
+            'werkzeuge_liste' => array(),
+            'werkzeuge_element' => array(),
+            'listenstatistik' => array(),
         ),
 
         'aufgaben_zuordnungen_termine' => array(
             'liste' => 'aufgaben_zuordnungen_termine',
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'aufgabe_titel', 'richtung' => SORT_ASC, ),
-            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array(),
+            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
+            'werkzeuge_element' => array(),
+            'listenstatistik' => array( 'anzahl' => array() ),
         ),
 
         'termine' => array(
@@ -333,24 +337,27 @@ class Vereinsapp extends BaseConfig
             'sortieren' => array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
             'zusatzsymbol' => array('kategorie'),
-            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array(),
+            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
+            'werkzeuge_element' => array(),
+            'listenstatistik' => array( 'anzahl' => array() ),
         ),
 
         'termine_rueckmeldungen' => array(
             'liste' => 'termine_rueckmeldungen',
             'filtern' => array(),
             'sortieren' => array(),
-            'werkzeugkasten' => array(),
-            // 'listenstatistik' => array(),
+            'werkzeuge_liste' => array(),
+            'werkzeuge_element' => array(),
+            'listenstatistik' => array(),
         ),
 
         'termine_anwesenheiten' => array(
             'liste' => 'termine_anwesenheiten',
             'filtern' => array(),
             'sortieren' => array(),
-            'werkzeugkasten' => array(),
-            // 'listenstatistik' => array(),
+            'werkzeuge_liste' => array(),
+            'werkzeuge_element' => array(),
+            'listenstatistik' => array(),
         ),
 
         'strafkatalog' => array(
@@ -358,16 +365,18 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
-            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array(),
+            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
+            'werkzeuge_element' => array(),
+            'listenstatistik' => array( 'anzahl' => array() ),
         ),
 
         'strafkatalog_zugewiesene_strafen' => array(
             'liste' => 'strafkatalog_zugewiesene_strafen',
             'filtern' => array(),
             'sortieren' => array(),
-            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array(),
+            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
+            'werkzeuge_element' => array(),
+            'listenstatistik' => array( 'anzahl' => array(), 'summe' => array( 'eigenschaft' => 'strafe_wert' ) ),
         ),
 
         'notenbank' => array(
@@ -375,16 +384,18 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
             'beschriftung' => '<span class="eigenschaft" eigenschaft="titel_nr"></span> <span class="eigenschaft" eigenschaft="titel"></span>',
-            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array(),
+            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
+            'werkzeuge_element' => array(),
+            'listenstatistik' => array( 'anzahl' => array() ),
         ),
 
         'notenbank_setliste' => array(
             'liste' => 'notenbank_setliste',
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'status', 'richtung' => SORT_ASC, ),
-            'werkzeugkasten' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array(),
+            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
+            'werkzeuge_element' => array(),
+            'listenstatistik' => array( 'anzahl' => array() ),
         ),
 
     );

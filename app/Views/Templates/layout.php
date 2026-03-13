@@ -22,16 +22,15 @@
   </head>
 
   <body>
-    <?= $this->renderSection('navbar') ?>
+<?= $this->renderSection('navbar') ?>
 
-    <?= $this->renderSection('containers') ?>
+    <div class="container d-flex flex-column align-items-center gap-3">
+<?= $this->renderSection('cards') ?>
 
-<?php if( isset( $werkzeugkasten ) ) echo view( 'Templates/werkzeugkasten' ); ?>
+        <div class="text-secondary text-center small mt-5"><div><?= VEREINSAPP_NAME ?> <?= VERSION; ?></div><div class="jetzt"></div></div>
+    </div>
 
-    <div class="text-secondary mt-5 small text-center"><?= VEREINSAPP_NAME ?> <?= VERSION; ?></div>
-    <div class="text-secondary small text-center jetzt"></div>
-
-    <div id="toasts" class="toast-container position-fixed end-0 pe-3">
+    <div id="toasts" class="container toast-container position-fixed end-0 pe-3">
 <?= view( 'Templates/toast' ); ?>
     </div>
 

@@ -21,23 +21,6 @@ WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
     else $werkzeug.addClass("text-" + farbe).removeClass("text-success");
 };
 
-WERKZEUGE.element_loeschen.aktualisieren_aktion = function ($werkzeug) {
-    const liste = Util_WertBereinigtZurueck($werkzeug.attr("liste"), undefined);
-    const werkzeug = Util_WertBereinigtZurueck($werkzeug.attr("werkzeug"), undefined);
-
-    $werkzeug.attr(
-        "modal_title",
-        Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_loeschen.modal_title, {
-            element1: { liste: liste },
-        }),
-    );
-    $werkzeug
-        .find(".beschriftung")
-        .html('<i class="bi bi-' + SYMBOLE[WERKZEUGE[werkzeug].symbol]["bootstrap"] + '"></i> ' + LISTEN[liste].element_beschriftung + " löschen");
-};
-
-WERKZEUGE.element_loeschen_weiterleiten.aktualisieren_aktion = WERKZEUGE.element_loeschen.aktualisieren_aktion;
-
 function Liste_Init() {
     // INSTANZEN IN LISTEN BEREITSTELLEN
     $.each(BLANKOS.element, function (position, $blanko) {

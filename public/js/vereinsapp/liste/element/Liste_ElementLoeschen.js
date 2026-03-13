@@ -17,7 +17,9 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
             Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_loeschen.bestaetigung, {
                 element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
             }),
-            modal_title,
+            Liste_ElementTextMitBeschriftungErsetztZurueck(modal_title, {
+                element1: { liste: liste },
+            }),
             werkzeug,
             { weiterleiten: weiterleiten, liste: liste, [LISTEN[liste].element + "_id"]: element_id },
         );

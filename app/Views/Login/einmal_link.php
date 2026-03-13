@@ -1,8 +1,8 @@
-<?= $this->extend('Templates/layout') ?>
-<?= $this->section('containers') ?>
+<?= $this->extend( 'Templates/layout' ) ?>
+<?= $this->section( 'cards' ) ?>
 
-<div class="container" style="max-width: 36rem;"><div class="card">
-<div class="h5 card-header text-center text-secondary">Einmal-Link</div>
+<div class="card" style="max-width: 36rem;">
+  <div class="h5 card-header text-center text-secondary">Einmal-Link</div>
   <div class="card-body">
 
   <?php if (session('error') !== null) : ?>
@@ -36,6 +36,6 @@
     <div class="d-grid"><a class="btn btn-outline-primary btn-sm" href="<?= url_to('login') ?>">Zurück zum Login</a></div>
 
   </div>
-</div></div>
+</div>
 
 <?= $this->endSection() ?>

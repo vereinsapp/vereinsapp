@@ -29,9 +29,6 @@ function Liste_$DateiAktualisieren($datei) {
     // EIGENSCHAFTEN AKTUALISIEREN
     $datei.find(".beschriftung").text(datei);
 
-    // WERKZEUGKASTEN AKTUALISIEREN
-    // $datei.find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]').attr("datei", datei);
-
     // LINK AKTUALISIEREN
     $datei.find("a.stretched-link").attr("href", link);
 

@@ -6,9 +6,6 @@ body {
     width: 30px;
 }
 
-.h5 {
-    margin-bottom: 0px;
-}
 .stretched-link-unwirksam {
     z-index: 2;
     position: relative;
@@ -48,4 +45,9 @@ body {
     -ms-transition: height 0.001s;
     -o-transition: height 0.001s;
     transition: height 0.001s;
+}
+
+/* Hover-Effekt für Kacheln (Cards) */
+.element-action:hover {
+    background-color: #f8f9fa;
 }

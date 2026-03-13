@@ -14,26 +14,16 @@ function Liste_$ElementAktualisieren($element) {
         $eigenschaft.html(
             Liste_WertNachEigenschaftFormatiertZurueck(Liste_VariableRausZurueck(eigenschaft, element_id, liste, undefined), eigenschaft, liste),
         );
-
-        const eigenschaften_bedingt_formatiert = Util_WertBereinigtZurueck($element.attr("eigenschaften_bedingt_formatiert"), new Object());
-        if (isObject(eigenschaften_bedingt_formatiert) && eigenschaft in eigenschaften_bedingt_formatiert)
-            $.each(eigenschaften_bedingt_formatiert[eigenschaft], function (klasse, filtern) {
-                const tabelle = new Array();
-                tabelle[element_id] = LISTEN[liste].tabelle[element_id];
-                if (Liste_TabelleGefiltertZurueck(tabelle, filtern, liste).length > 0) $eigenschaft.addClass(klasse);
-                else $eigenschaft.removeClass(klasse);
-            });
     });
 
-    // WERKZEUGKASTEN AKTUALISIEREN
-    $element
-        .find('[data-bs-toggle="offcanvas"][data-bs-target="#werkzeugkasten"]')
-        .attr("liste", liste)
-        .attr(LISTEN[liste].element + "_id", element_id);
-
-    // verknuepfungen AKTUALISIEREN
+    // VERKNUEPFUNGEN AKTUALISIEREN
     $element.find(".verknuepfungen").each(function () {
         Liste_$VerknuepfungenAktualisieren($(this), $element);
+    });
+
+    // WERKZEUG AKTUALISIEREN
+    $element.find(".werkzeug").each(function () {
+        Liste_Element$WerkzeugAktualisieren($(this), $element);
     });
 
     // LINK AKTUALISIEREN
@@ -52,16 +42,28 @@ function Liste_$ElementAktualisieren($element) {
     });
 
     // NAVIGATION AKTUALISIEREN
-    $element.find(".element_navigation").each(function () {
+    $('.element_navigation[liste="' + liste + '"][' + LISTEN[liste].element + '_id="' + element_id + '"]').each(function () {
         Liste_Element$NavigationAktualisieren($(this), $element);
     });
 
     // ACTION UND ROLE DEFINIEREN
     if ($element.find("a.stretched-link").exists() || $element.hasClass("werkzeug") || $element.find("label[for]").exists()) {
-        $element.addClass("list-group-item-action").attr("role", "button");
+        if ($element.hasClass("list-group-item")) {
+            $element.attr("role", "button").addClass("list-group-item-action").removeClass("element-action");
+            $element.find(".card").removeAttr("role").removeClass("element-action");
+        }
+        if ($element.find(".card").exists()) {
+            $element.removeAttr("role").removeClass("list-group-item-action").removeClass("element-action");
+            $element.find(".card").attr("role", "button").addClass("element-action");
+        } else {
+            $element.attr("role", "button").removeClass("list-group-item-action").addClass("element-action");
+            $element.find(".card").removeAttr("role").removeClass("element-action");
+        }
+
         $element.find("label").attr("role", "button");
     } else {
-        $element.removeClass("list-group-item-action").removeAttr("role");
+        $element.removeClass("list-group-item-action").removeClass("element-action").removeAttr("role");
+        $element.find(".card").removeAttr("role").removeClass("element-action");
         $element.find("label").removeAttr("role", "button");
     }
 }

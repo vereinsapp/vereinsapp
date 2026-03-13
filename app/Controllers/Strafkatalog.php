@@ -10,23 +10,20 @@ class Strafkatalog extends BaseController {
     public function strafkatalog() {
 
         $this->viewdata['liste']['aktueller_strafkatalog'] = VIEWDATA['strafkatalog'];
-        $this->viewdata['liste']['aktueller_strafkatalog']['group-flush'] = TRUE;
         $this->viewdata['liste']['aktueller_strafkatalog']['vorschau'] = array( 'wert', 'kategorie' );
 
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
-
-            $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten_handle'] = TRUE;
-            $this->viewdata['liste']['aktueller_strafkatalog']['werkzeugkasten'][] = 'strafe_erstellen';
 
             $this->viewdata['liste']['strafen_zuweisen'] = VIEWDATA['mitglieder'];
             unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
             $this->viewdata['liste']['strafen_zuweisen']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglieder']['bootstrap'].'"></i> '.VIEWDATA['mitglieder']['beschriftung'];
             $this->viewdata['liste']['strafen_zuweisen']['verknuepfungen'] = 'strafkatalog_zugewiesene_strafen';
 
-            $this->viewdata['werkzeugkasten'][] = 'strafen_zuweisen';
-            $this->viewdata['werkzeugkasten'][] = 'strafe_aendern';
-            $this->viewdata['werkzeugkasten'][] = 'strafe_duplizieren';
-            $this->viewdata['werkzeugkasten'][] = 'element_loeschen';
+            $this->viewdata['liste']['aktueller_strafkatalog']['werkzeuge_liste'][] = 'strafe_erstellen';
+            $this->viewdata['liste']['aktueller_strafkatalog']['werkzeuge_element'][] = 'strafen_zuweisen';
+            $this->viewdata['liste']['aktueller_strafkatalog']['werkzeuge_element'][] = 'strafe_aendern';
+            $this->viewdata['liste']['aktueller_strafkatalog']['werkzeuge_element'][] = 'strafe_duplizieren';
+            $this->viewdata['liste']['aktueller_strafkatalog']['werkzeuge_element'][] = 'element_loeschen';
 
         }
 

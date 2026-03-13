@@ -88,25 +88,6 @@ function Dom_Init() {
         $("#status").html(STATUS_SPINNER_HTML);
     });
 
-    // WERKZEUGKASTEN (OFFCANVAS) ÖFFNEN
-    $(document).on("show.bs.offcanvas", "#werkzeugkasten", function (event) {
-        const $werkzeuge = $(this).find(".werkzeug");
-        const $werkzeugkasten_handle = $(event.relatedTarget);
-
-        const liste = $werkzeugkasten_handle.attr("liste");
-        if (typeof liste !== "undefined") {
-            $werkzeuge.attr("liste", liste);
-
-            const element_id = $werkzeugkasten_handle.attr(LISTEN[liste].element + "_id");
-            if (typeof element_id !== "undefined") $werkzeuge.attr(LISTEN[liste].element + "_id", element_id);
-            else $werkzeuge.removeAttr(LISTEN[liste].element + "_id");
-
-            $werkzeuge.each(function () {
-                Liste_$WerkzeugAktualisieren($(this), undefined);
-            });
-        } else $werkzeuge.removeAttr("liste");
-    });
-
     // MODAL SCHLIESSEN
     $(document).on("hidden.bs.modal", ".modal", function () {
         const $modal = $(this);

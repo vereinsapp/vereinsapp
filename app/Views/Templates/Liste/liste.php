@@ -1,67 +1,30 @@
-<?php if( array_key_exists( 'werkzeugkasten', $liste ) ) { ?><div class="text-end"><?php
-foreach( $liste['werkzeugkasten'] as $werkzeug) { ?><button type="button" class="btn text-<?php
+<?php if( array_key_exists( 'werkzeuge_liste', $liste ) AND is_array( $liste['werkzeuge_liste'] ) AND count( $liste['werkzeuge_liste'] ) > 0 ) {
+?><div class="text-end w-100"><?php foreach( $liste['werkzeuge_liste'] as $werkzeug) { ?><button type="button" class="btn text-<?php
     if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo WERKZEUGE[ $werkzeug ]['farbe']; else echo 'primary';
-    ?> werkzeug" werkzeug="<?= $werkzeug; ?>" modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>">
+    ?> werkzeug" werkzeug="<?= $werkzeug; ?>" modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" instanz="<?= $liste['instanz']; ?>">
         <span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?>"></i></span>
     </button><?php }
 ?></div><?php } ?>
 
-<?php if( array_key_exists( 'listenstatistik', $liste ) ) { ?><div class="text-end text-secondary small"><span class="listenstatistik"<?php
-    if( array_key_exists( 'liste', $liste ) ) { ?> liste="<?= $liste['liste']; ?>"<?php } ?> instanz="<?= $liste['instanz']; ?>" listenstatistik="anzahl"></span> Element(e)<?php
-    /* funktioniert aktuell nicht, weil Liste_$ListeAktualisieren inkl. Liste_$ListenstatistikAktualisieren aufgerufen wird, bevor Liste_$ElementAktualisieren inkl. Liste_$VerknuepfungenAktualisieren aufgerufen wird */
-    /* if( array_key_exists( 'verknuepfungen', $liste ) AND $liste['verknuepfungen']['typ'] === 'janein_auswahl' ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i><span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> liste="<?= $liste['liste']; ?>"<?php } ?> instanz="<?= $liste['instanz']; ?>" listenstatistik="angewaehlt"></span> Element(e) angewählt<?php } */
-    if( array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i>Summe: <span class="listenstatistik"<?php if( array_key_exists( 'liste', $liste ) ) { ?> liste="<?= $liste['liste']; ?>"<?php } ?> instanz="<?= $liste['instanz']; ?>" listenstatistik="summe" eigenschaft="<?= $liste['listenstatistik']['summe']; ?>"></span><?php }
+<?php if( array_key_exists( 'listenstatistik', $liste ) AND is_array( $liste['listenstatistik'] ) AND count( $liste['listenstatistik'] ) > 0 ) {
+?><div class="text-end text-secondary small w-100"><?php
+    if( array_key_exists( 'anzahl', $liste['listenstatistik'] ) ) { ?><span class="listenstatistik" instanz="<?= $liste['instanz']; ?>" listenstatistik="anzahl"></span> Element(e)<?php }
+    if( array_key_exists( 'anzahl', $liste['listenstatistik'] ) AND array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i><?php }
+    if( array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?>Summe: <span class="listenstatistik" instanz="<?= $liste['instanz']; ?>" listenstatistik="summe" eigenschaft="<?= $liste['listenstatistik']['summe']; ?>"></span><?php }
 ?></div><?php } ?>
 
-<ul id="<?= $liste['instanz']; ?>" class="liste list-group<?php
-if( array_key_exists( 'group-flush', $liste ) AND $liste['group-flush'] ) echo ' list-group-flush';
+<div id="<?= $liste['instanz']; ?>" class="liste<?php
+if( isset( $typ ) AND $typ === 'liste' ) echo ' list-group list-group-flush';
+else if( isset( $typ ) AND $typ === 'kacheln' ) echo ' row row-cols-1 row-cols-lg-2 row-cols-xxl-3 gy-3 gx-0 gx-lg-3 w-100';
 if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sortable';
-?> mb-1" liste="<?= $liste['liste']; ?>"<?php
+?>" liste="<?= $liste['liste']; ?>"<?php
 if( array_key_exists( 'filtern', $liste ) ) { ?> filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'sortieren', $liste ) ) { ?> sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $liste_ ]['element'].'_id', $liste ) ) { ?> <?= LISTEN[ $liste_ ]['element']; ?>_id="<?= $liste[ LISTEN[ $liste_ ]['element'].'_id' ]; ?>"<?php }
 if( array_key_exists( 'disabled_ids', $liste ) ) { ?> disabled_ids='<?= json_encode( $liste['disabled_ids'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
-if( array_key_exists( 'eigenschaften_bedingt_formatiert', $liste ) ) { ?> eigenschaften_bedingt_formatiert='<?= json_encode( $liste['eigenschaften_bedingt_formatiert'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 ?>>
 
-    <li class="text-body list-group-item<?php
-    if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'element_auswahl' ) echo ' werkzeug';
-    ?> blanko invisible" blanko="element"<?php
-    if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'element_auswahl' ) { ?> werkzeug="<?= LISTEN[ $liste['verknuepfungen'] ]['element']?>_erstellen" verknuepfungen="<?= $liste['verknuepfungen'] ?>"<?php }
-    ?> liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>"<?php
-    if( array_key_exists( 'modal_title', $liste ) ) { ?> modal_title="<?= $liste['modal_title'] ?>"<?php }
-    ?>>
+<?= $element ?>
 
-        <div class="text-truncate d-flex flex-nowrap <?php
-        if( array_key_exists( 'group-flush', $liste ) AND $liste['group-flush'] ) echo ' h5';
-        ?>">
-<?php if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'janein_auswahl' ) echo view( 'Templates/Liste/verknuepfungen_janein_auswahl', array( 'verknuepfungen' => $liste['verknuepfungen'], ) ); ?>
-            <label class="flex-grow-1">
-                <span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste ) ) { ?><?= $liste['beschriftung']; ?><?php } ?></span>
-            </label>
-            <span class="zusatzsymbol float-end flex-shrink-0 ms-2 stretched-link-unwirksam" zusatzsymbol="bemerkung"></span>
-<?php if( array_key_exists( 'zusatzsymbol', $liste ) AND is_array( $liste['zusatzsymbol'] ) ) foreach( $liste['zusatzsymbol'] as $zusatzsymbol ) { ?>
-            <span class="zusatzsymbol float-end flex-shrink-0 ms-2 stretched-link-unwirksam" zusatzsymbol="<?= $zusatzsymbol ?>"></span>
-<?php } 
-      if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) { ?>
-            <i class="bi bi-<?= SYMBOLE['sortable']['bootstrap']; ?> text-primary float-end flex-shrink-0 ms-2 stretched-link-unwirksam sortable_handle" role="button"></i>
-<?php }
-      if( array_key_exists( 'werkzeugkasten_handle', $liste ) AND $liste['werkzeugkasten_handle'] ) { ?>
-            <i class="bi bi-<?= SYMBOLE['werkzeuge']['bootstrap']; ?> text-primary float-end flex-shrink-0 ms-2 stretched-link-unwirksam" data-bs-toggle="offcanvas" data-bs-target="#werkzeugkasten" role="button"></i>
-<?php }
-      if( array_key_exists( 'link', $liste ) AND is_array( $liste['link'] ) ) { ?>
-            <a class="stretched-link" link='<?= json_encode( $liste['link'], JSON_UNESCAPED_UNICODE ); ?>'></a>
-<?php } ?>
-        </div>
-<?php if( array_key_exists( 'vorschau', $liste ) ) { ?>
-        <div class="vorschau text-truncate text-secondary mb-1<?php if( !array_key_exists( 'group-flush', $liste ) OR !$liste['group-flush'] ) echo ' small'; ?>"><?php
-            foreach( $liste['vorschau'] as $vorschau ) { ?><span class="eigenschaft" eigenschaft="<?= $vorschau ?>"></span><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap']; ?> spacer"></i><?php }
-        ?></div>
-<?php } ?>
-
-<?php if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'status_auswahl' ) echo view( 'Templates/Liste/verknuepfungen_status_auswahl', array( 'verknuepfungen' => $liste['verknuepfungen'], ) ); ?>
-
-    </li>
-
-</ul>
+</div>
 

@@ -1,4 +1,4 @@
-<div class="formular"<?php if( isset($data) AND is_array($data) ) foreach( $data as $eigenschaft => $wert) { ?> <?= $eigenschaft ?>="<?= $wert ?>"<?php }?>>
+<div class="formular"<?php if( isset( $data ) AND is_array( $data ) AND count( $data ) > 0 ) foreach( $data as $eigenschaft => $wert) { ?> <?= $eigenschaft ?>="<?= $wert ?>"<?php }?>>
 
 <?= $formular ?>
 

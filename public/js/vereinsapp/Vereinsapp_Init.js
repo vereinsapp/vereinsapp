@@ -26,6 +26,7 @@ Hartes Löschen von Mitgliedern wieder zurücknehmen (is_unique vglb. mit Titel)
 Wartungsarbeiten per Filter handlen
 Ausloggen, bevor Einmal-Link benutzt wird
 Select JANEIN als check umbauen
+Sass mixin für Integration der bootstrap-Farben in eigene Klassen?
 _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt
 weiches Löschen für abhängige Tabellen einführen
 Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details)
@@ -40,11 +41,25 @@ Neue bootstrap icons Version einführen (unlock2 statt lock)
 event einführen, dass Liste_Element$FormularInitialisieren ausgeführt wird, wenn ein modal geöffnet wurde (mittels Dom_$ModalOeffnen)
 Verinsapp_env aufspalten in mehrere _env
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
+Werkzeug zum Unterdrücken der Werkzeuge? Inkl. Speichern im LocalStorage?
 Aufgaben detaillieren
 Zugewiesene Strafen anzeigen
 Bugfix Klick auf Werkzeug direkt im Element löst Element-Event und Werkzeug-Event aus
-kacheln-View ergänzen (analog zu liste-View, Werkzeugkasten loswerden, Zusatzsymbole vs. Werkzeuge)
-LISTEN[liste].beschriftung umbenennen in LISTEN[liste].liste_beschriftung
+LISTEN[liste].beschriftung umbenennen in LISTEN[liste].liste_beschriftung und mit beschriftung in VIEWDATA verheiraten
+modal_title generieren analog zu element_loeschen / Liste_ElementLoeschen
+sortable als Werkzeug einführen?
+Werkzeuge für erstellen, duplizieren und aendern auch vereinheitlichen (analaog zu element_loeschen)?
+setliste_verwalten in Notenbank nicht ermöglichen
+Anderes Symbol für termine_anwesenheiten_dokumentieren
+VIEWDATA in LISTEN integrieren
+Mit Github Copilot Agent die Anordnung in einstellungen optimieren
+Leere Listen komplett ausblenden (UeberschriftAktualisieren auch überprüfen)
+Werkzeug für Rückmeldungen und Anwesenheiten auch in Auswertung einführen + WerkzeugAktualisieren vereinheitlichen mit Übernahme jeglicher [element]_id-Atribute
+werkzeuge_element, werkzeuge_liste und werkzeuge_auswertungen vereinheitlichen
+Bugfix Bemerkung ändern
+Bugfix Auswertungen-Details anzeigen
+liste als card + list-group-flush darstellen, ggf. mit Überschrift im card-header
+ul und li ändern in div im auswertungen-View
 
 ERLEDIGT
 

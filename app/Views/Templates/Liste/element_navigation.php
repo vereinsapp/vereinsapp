@@ -1,4 +1,6 @@
-<div class="row row-cols-3 g-1 element_navigation" instanz="<?= $element_navigation['instanz']; ?>"<?php
+<div class="row row-cols-3 g-1 element_navigation" liste="<?= $element_navigation['liste']; ?>"<?php
+foreach( LISTEN as $liste => $eigenschaften ) if( array_key_exists( LISTEN[ $liste ]['element'].'_id', $element_navigation ) ) { ?> <?= LISTEN[ $liste ]['element']; ?>_id="<?= $element_navigation[ LISTEN[ $liste ]['element'].'_id' ]; ?>"<?php }
+?> instanz="<?= $element_navigation['instanz']; ?>"<?php
 if( array_key_exists( 'filtern', $element_navigation ) ) { ?> filtern='<?= json_encode( $element_navigation['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 if( array_key_exists( 'sortieren', $element_navigation ) ) { ?> sortieren='<?= json_encode( $element_navigation['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 ?>>

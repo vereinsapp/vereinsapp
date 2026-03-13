@@ -4,10 +4,11 @@
  */
 
 function Liste_Element$NavigationAktualisieren($element_navigation, $element) {
-    const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
+    const liste = Util_WertBereinigtZurueck($element_navigation.attr("liste"), undefined);
+    const element_id = Util_WertBereinigtZurueck($element_navigation.attr(LISTEN[liste].element + "_id"), undefined);
+    const instanz = Util_WertBereinigtZurueck($element_navigation.attr("instanz"), undefined);
     const $vorheriges_element = $element_navigation.find(".vorheriges_element");
     const $naechstes_element = $element_navigation.find(".naechstes_element");
-    const instanz = $element_navigation.attr("instanz");
 
     // TABELLE FILTERN
     const filtern_data = Util_WertBereinigtZurueck($element_navigation.attr("filtern"), new Object());
@@ -29,7 +30,7 @@ function Liste_Element$NavigationAktualisieren($element_navigation, $element) {
     let vorherige_element_id = undefined;
     let naechste_element_id = undefined;
     $.each(tabelle_gefiltert_sortiert, function (position, element) {
-        if (element.id === Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined)) {
+        if (element.id === element_id) {
             if (position > 0) vorherige_element_id = tabelle_gefiltert_sortiert[position - 1].id;
             if (position < tabelle_gefiltert_sortiert.length - 1) naechste_element_id = tabelle_gefiltert_sortiert[position + 1].id;
         }

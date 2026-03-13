@@ -10,7 +10,6 @@ class Notenbank extends BaseController {
     public function notenbank() {
 
         $this->viewdata['liste']['aktuelles_verzeichnis'] = VIEWDATA['notenbank'];
-        $this->viewdata['liste']['aktuelles_verzeichnis']['group-flush'] = TRUE;
         $this->viewdata['liste']['aktuelles_verzeichnis']['link'] = array( 'liste' => 'notenbank', 'eigenschaften' => array( 'id', ), );
         $this->viewdata['liste']['aktuelles_verzeichnis']['vorschau'] = array( 'kategorie', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis' );
 
@@ -21,14 +20,11 @@ class Notenbank extends BaseController {
             $this->viewdata['liste']['setliste_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.VIEWDATA['termine']['beschriftung'];
             $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = 'notenbank_setliste';
 
-            $this->viewdata['werkzeugkasten'][] = 'setliste_verwalten';
-
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten_handle'] = TRUE;
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeugkasten'][] = 'titel_erstellen';
-
-            $this->viewdata['werkzeugkasten'][] = 'titel_aendern';
-            $this->viewdata['werkzeugkasten'][] = 'titel_duplizieren';
-            $this->viewdata['werkzeugkasten'][] = 'element_loeschen';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge_liste'][] = 'titel_erstellen';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge_element'][] = 'setliste_verwalten';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge_element'][] = 'titel_aendern';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge_element'][] = 'titel_duplizieren';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge_element'][] = 'element_loeschen';
 
         }
 
@@ -45,20 +41,15 @@ class Notenbank extends BaseController {
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
-            $this->viewdata['liste']['setliste_verwalten'] = VIEWDATA['termine'];
-            unset($this->viewdata['liste']['setliste_verwalten']['filtern']['ich_eingeladen_janein']);
-            $this->viewdata['liste']['setliste_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.VIEWDATA['termine']['beschriftung'];
-            $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = 'notenbank_setliste';
-
-            $this->viewdata['werkzeugkasten'][] = 'setliste_verwalten';
-
-            $this->viewdata['werkzeugkasten'][] = 'titel_aendern';
-            $this->viewdata['werkzeugkasten'][] = 'titel_duplizieren';
-            $this->viewdata['werkzeugkasten'][] = 'element_loeschen_weiterleiten';
+            $this->viewdata['werkzeuge_element'][] = 'titel_aendern';
+            $this->viewdata['werkzeuge_element'][] = 'titel_duplizieren';
+            $this->viewdata['werkzeuge_element'][] = 'element_loeschen_weiterleiten';
 
         }
 
         $this->viewdata['element_navigation'] = array(
+            'liste' => 'notenbank',
+            'titel_id' => $titel_id,
             'instanz' => 'aktuelles_verzeichnis',
             'filtern' => VIEWDATA['notenbank']['filtern'],
             'sortieren' => VIEWDATA['notenbank']['sortieren'],

@@ -38,10 +38,7 @@ function Liste_$ListeAktualisieren($liste) {
         let $element = $liste.find(".element[" + LISTEN[liste].element + '_id="' + element_id + '"]');
         if (!$element.exists()) $element = LISTEN[liste].instanz[instanz].$blanko_element.clone().removeClass("blanko invisible");
 
-        $element
-            .attr("liste", liste)
-            .attr(LISTEN[liste].element + "_id", element_id)
-            .attr("eigenschaften_bedingt_formatiert", $liste.attr("eigenschaften_bedingt_formatiert"));
+        $element.attr("liste", liste).attr(LISTEN[liste].element + "_id", element_id);
 
         $.each(Object.keys(LISTEN), function (position, liste) {
             const verknuepfte_element_id = Util_WertBereinigtZurueck($liste.attr(LISTEN[liste].element + "_id"), undefined);
