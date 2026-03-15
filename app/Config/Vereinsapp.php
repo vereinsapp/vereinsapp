@@ -282,6 +282,7 @@ class Vereinsapp extends BaseConfig
             'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
             'werkzeuge_element' => array(),
             'listenstatistik' => array( 'anzahl' => array() ),
+            // 'ueberschrift' => 'Alle Mitglider',
         ),
 
         'verfuegbare_rechte' => array(

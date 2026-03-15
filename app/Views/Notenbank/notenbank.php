@@ -8,8 +8,7 @@
 </a></div>
 <?php } ?>
 
-<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['aktuelles_verzeichnis'], 'typ' => 'kacheln', 'element' =>
-    view( 'Templates/Liste/element_kacheln', array( 'liste' => $liste['aktuelles_verzeichnis'] ) ) ) ); ?>
+<?= view( 'Templates/Liste/kacheln', array( 'liste' => $liste['aktuelles_verzeichnis'], ) ); ?>
 
 <?php if( auth()->user()->can( 'notenbank.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'titel_basiseigenschaften', 'modal' =>

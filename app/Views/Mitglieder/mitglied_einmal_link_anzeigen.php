@@ -5,9 +5,9 @@
         <input type="text" class="form-control einmal_link" readonly />
         <label>Einmal-Link</label>
     </div>
-    <span class="input-group-text text-<?php
+    <div class="input-group-text text-<?php
     if( array_key_exists('farbe', WERKZEUGE['inhalt_kopieren']) ) echo WERKZEUGE['inhalt_kopieren']['farbe']; else echo "primary";
-    ?> werkzeug" werkzeug="inhalt_kopieren" data-clipboard-target=".einmal_link" role="button"><i class="bi bi-<?= SYMBOLE['duplizieren']['bootstrap']; ?>"></i></span>
+    ?> werkzeug" werkzeug="inhalt_kopieren" data-clipboard-target=".einmal_link" role="button"><i class="bi bi-<?= SYMBOLE['duplizieren']['bootstrap']; ?>"></i></div>
 </div>
 
 <div class="d-grid"><button type="button" class="btn btn-outline-<?php

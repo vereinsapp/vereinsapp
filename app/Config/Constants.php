@@ -135,7 +135,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'status' => array( 'bootstrap' => 'circle-fill' ),
     'logout' => array( 'bootstrap' => 'door-open' ),
 
-    'werkzeuge' => array( 'bootstrap' => 'tools' ),
+    // 'werkzeuge' => array( 'bootstrap' => 'tools' ),
     'erstellen' => array( 'bootstrap' => 'plus-lg' ),
     'aendern' => array( 'bootstrap' => 'pencil' ),
     'duplizieren' => array( 'bootstrap' => 'files' ),

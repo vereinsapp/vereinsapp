@@ -9,10 +9,10 @@
 <div class="row row-cols-1 row-cols-lg-2 gy-3 gx-0 gx-lg-3 w-100">
 
     <div class="col"><div class="card element" liste="notenbank" titel_id="<?= $titel_id; ?>">
-        <?php if( isset( $werkzeuge_element ) AND is_array( $werkzeuge_element ) AND count( $werkzeuge_element ) > 0 ) { ?><div class="card-header text-end p-0"><?php
-        foreach( $werkzeuge_element as $werkzeug) { ?><button type="button" class="btn text-<?php
-            if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo WERKZEUGE[ $werkzeug ]['farbe']; else echo 'primary';
-            ?> stretched-link-unwirksam werkzeug" werkzeug="<?= $werkzeug; ?>" modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?>"></i></span></button><?php
+        <?php if( isset( $werkzeuge_element ) AND is_array( $werkzeuge_element ) AND count( $werkzeuge_element ) > 0 ) { ?><div class="card-header"><?php
+            foreach( array_reverse( $werkzeuge_element ) as $werkzeug) { ?><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?> text-<?php
+                if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo WERKZEUGE[ $werkzeug ]['farbe']; else echo 'primary';
+                ?> stretched-link-unwirksam float-end ms-3 werkzeug" werkzeug="<?= $werkzeug; ?>" modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" role="button"></i><?php
             } ?></div><?php
         } ?>
         <div class="card-body p-2">

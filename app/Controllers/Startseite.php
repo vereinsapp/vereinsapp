@@ -17,6 +17,7 @@ class Startseite extends BaseController {
         $this->viewdata['liste']['anstehende_geburtstage']['vorschau'] = array( 'geburtstag', 'alter_geburtstag' );
         $this->viewdata['liste']['anstehende_geburtstage']['werkzeuge_liste'] = array();
         $this->viewdata['liste']['anstehende_geburtstage']['listenstatistik'] = array();
+        $this->viewdata['liste']['anstehende_geburtstage']['ueberschrift'] = 'Geburtstage in den nächsten 14 Tagen';
 
         if( array_key_exists( LISTEN['termine']['controller'], CONTROLLERS ) ) {
             $this->viewdata['liste']['bevorstehende_termine_startseite'] = VIEWDATA['termine'];
@@ -29,6 +30,7 @@ class Startseite extends BaseController {
             $this->viewdata['liste']['bevorstehende_termine_startseite']['vorschau'] = array( 'start', 'ort' );
             $this->viewdata['liste']['bevorstehende_termine_startseite']['werkzeuge_liste'] = array();
             $this->viewdata['liste']['bevorstehende_termine_startseite']['listenstatistik'] = array();
+            $this->viewdata['liste']['bevorstehende_termine_startseite']['ueberschrift'] = 'Termine in den nächsten 14 Tagen';
         }
 
         if( array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) {
@@ -42,6 +44,7 @@ class Startseite extends BaseController {
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['verknuepfungen'] = 'termine_rueckmeldungen';
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['werkzeuge_liste'] = array();
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['listenstatistik'] = array();
+            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['ueberschrift'] = 'Termine ohne Rückmeldung';
         }
 
         $this->viewdata_bereinigen(); echo view( 'Startseite/startseite', $this->viewdata );

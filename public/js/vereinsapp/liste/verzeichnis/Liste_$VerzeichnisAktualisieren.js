@@ -131,11 +131,6 @@ function Liste_$VerzeichnisAktualisieren($verzeichnis) {
         Liste_$VerzeichnisAktualisieren($(this).find(".verzeichnis").first());
     });
 
-    // ÜBERSCHRIFT AKTUALISIEREN
-    $('.ueberschrift[instanz="' + verzeichnis_instanz + '"]').each(function () {
-        Liste_$UeberschriftAktualisieren($(this), $verzeichnis);
-    });
-
     // WERKZEUG AKTUALISIEREN
     $('.werkzeug[instanz="' + verzeichnis_instanz + '"]').each(function () {
         Liste_$WerkzeugAktualisieren($(this), $verzeichnis);

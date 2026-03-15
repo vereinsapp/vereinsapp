@@ -8,20 +8,23 @@ function Liste_$ListenstatistikAktualisieren($listenstatistik, $liste) {
 
     switch ($listenstatistik.attr("listenstatistik")) {
         case "anzahl":
-            $listenstatistik.text($liste.children().length);
+            $listenstatistik.text($liste.find(".elemente").find(".element").length);
             break;
         case "summe":
             const eigenschaft = Util_WertBereinigtZurueck($listenstatistik.attr("eigenschaft"), undefined);
             if (typeof eigenschaft !== "undefined" && EIGENSCHAFTEN[liste][eigenschaft].typ == "zahl") {
                 let summe = 0;
-                $liste.children().each(function () {
-                    summe += Liste_VariableRausZurueck(
-                        eigenschaft,
-                        Util_WertBereinigtZurueck($(this).attr(LISTEN[liste].element + "_id"), undefined),
-                        liste,
-                        0,
-                    );
-                });
+                $liste
+                    .find(".elemente")
+                    .find(".element")
+                    .each(function () {
+                        summe += Liste_VariableRausZurueck(
+                            eigenschaft,
+                            Util_WertBereinigtZurueck($(this).attr(LISTEN[liste].element + "_id"), undefined),
+                            liste,
+                            0,
+                        );
+                    });
                 $listenstatistik.text(Liste_WertNachEigenschaftFormatiertZurueck(summe, eigenschaft, liste));
             }
             break;

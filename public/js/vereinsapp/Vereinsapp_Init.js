@@ -47,15 +47,16 @@ Zugewiesene Strafen anzeigen
 LISTEN[liste].beschriftung umbenennen in LISTEN[liste].liste_beschriftung und mit beschriftung in VIEWDATA und beschriftung im Details-View verheiraten
 modal_title generieren analog zu element_loeschen / Liste_ElementLoeschen
 VIEWDATA in LISTEN integrieren
+Mit Github Copilot flex-nowrap, flex-grow, text-truncate und text-nowrap diskutieren
 Mit Github Copilot Agent die Anordnung in Details optimieren
+Spinner als blanko
 Werkzeug für Rückmeldungen und Anwesenheiten auch in Auswertung einführen + WerkzeugAktualisieren vereinheitlichen mit Übernahme jeglicher [element]_id-Atribute
+    Werkzeuge als blanko und dann dynamisch anzeigen
     Werkzeuge für erstellen, duplizieren und aendern auch vereinheitlichen (analaog zu element_loeschen)?
     sortable als Werkzeug einführen?
-    werkzeuge_element, werkzeuge_liste und werkzeuge_auswertungen vereinheitlichen
+    werkzeuge_element, werkzeuge_liste und werkzeuge_auswertungen vereinheitlichen (in [element]_details-View ein $element einführen, analog zu $liste?)
     Bugfix Klick auf Werkzeug direkt im Element löst Element-Event und Werkzeug-Event aus
     Bugfix bemerkung_aendern bekommt liste-Attribut überschrieben
-liste als card + list-group-flush darstellen, ggf. mit Überschrift im card-header
-    Leere Listen komplett ausblenden (UeberschriftAktualisieren auch überprüfen)
 
 ERLEDIGT
 

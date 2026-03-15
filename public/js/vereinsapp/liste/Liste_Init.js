@@ -15,7 +15,9 @@ WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
                 "[liste=" +
                 Util_WertBereinigtZurueck($werkzeug.attr("liste"), undefined) +
                 "]",
-        ).children().length === 0
+        )
+            .find(".elemente")
+            .find(".element").length === 0
     )
         $werkzeug.removeClass("text-" + farbe).addClass("text-success");
     else $werkzeug.addClass("text-" + farbe).removeClass("text-success");

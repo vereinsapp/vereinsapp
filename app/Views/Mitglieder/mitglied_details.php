@@ -9,10 +9,10 @@
 <div class="row row-cols-1 row-cols-lg-2 gy-3 gx-0 gx-lg-3 w-100">
 
     <div class="col"><div class="card element" liste="mitglieder" mitglied_id="<?= $mitglied_id; ?>">
-        <?php if( isset( $werkzeuge_element ) AND is_array( $werkzeuge_element ) AND count( $werkzeuge_element ) > 0 ) { ?><div class="card-header text-end p-0"><?php
-        foreach( $werkzeuge_element as $werkzeug) { ?><button type="button" class="btn text-<?php
-            if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo WERKZEUGE[ $werkzeug ]['farbe']; else echo 'primary';
-            ?> stretched-link-unwirksam werkzeug" werkzeug="<?= $werkzeug; ?>" modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?>"></i></span></button><?php
+        <?php if( isset( $werkzeuge_element ) AND is_array( $werkzeuge_element ) AND count( $werkzeuge_element ) > 0 ) { ?><div class="card-header"><?php
+            foreach( array_reverse( $werkzeuge_element ) as $werkzeug) { ?><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?> text-<?php
+                if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo WERKZEUGE[ $werkzeug ]['farbe']; else echo 'primary';
+                ?> stretched-link-unwirksam float-end ms-3 werkzeug" werkzeug="<?= $werkzeug; ?>" modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" role="button"></i><?php
             } ?></div><?php
         } ?>
         <div class="card-body p-2">
@@ -68,16 +68,13 @@
 
 <?php if( auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'termine_rueckmeldungen_verwalten_modal', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_rueckmeldungen_verwalten'], 'typ' => 'liste', 'element' =>
-    view( 'Templates/Liste/element_liste', array( 'liste' => $liste['termine_rueckmeldungen_verwalten'] ) ) ) ) ) ); ?>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'], ) ) ) ); ?>
 <?php if( auth()->user()->can( 'termine.anwesenheiten' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'termine_anwesenheiten_dokumentieren_modal', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_anwesenheiten_dokumentieren'], 'typ' => 'liste', 'element' =>
-    view( 'Templates/Liste/element_liste', array( 'liste' => $liste['termine_anwesenheiten_dokumentieren'] ) ) ) ) ) ); ?>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_anwesenheiten_dokumentieren'], ) ) ) ); ?>
 <?php if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'strafen_zuweisen_modal', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['strafen_zuweisen'], 'typ' => 'liste', 'element' =>
-    view( 'Templates/Liste/element_liste', array( 'liste' => $liste['strafen_zuweisen'] ) ) ) ) ) ); ?>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['strafen_zuweisen'], ) ) ) ); ?>
 <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) OR (int)$mitglied_id === (int)ICH_ID ) echo
     view( 'Templates/modal', array( 'modal_id' => 'mitglied_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'formular' => view( 'Mitglieder/mitglied_basiseigenschaften_formular' ) ) ) ) ); ?>
@@ -86,6 +83,5 @@
     view( 'Mitglieder/mitglied_einmal_link_anzeigen' ) ) ); ?>
 <?php if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'rechte_vergeben_modal', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'], 'typ' => 'liste', 'element' =>
-    view( 'Templates/Liste/element_liste', array( 'liste' => $liste['rechte_vergeben'] ) ) ) ) ) ); ?>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'], ) ) ) ); ?>
 <?= $this->endSection() ?>

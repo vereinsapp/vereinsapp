@@ -6,6 +6,7 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
     const auswertungen = Util_WertBereinigtZurueck($auswertungen.attr("auswertungen"), undefined);
     const auswertungen_instanz = Util_WertBereinigtZurueck($auswertungen.attr("id"), undefined);
     const liste = Util_WertBereinigtZurueck($auswertungen.attr("liste"), undefined);
+    const $auswertungen_auswertungen = $auswertungen.find(".elemente");
 
     // GRUPPIEREN DEFINIEREN
     const gruppieren_data = Util_WertBereinigtZurueck($auswertungen.attr("gruppieren"), undefined);
@@ -69,7 +70,7 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
     );
 
     // AUSWERTUNGEN IM DOM LÖSCHEN
-    $auswertungen.find(".auswertung").each(function () {
+    $auswertungen_auswertungen.find(".auswertung").each(function () {
         const $auswertung = $(this);
         const wert = $auswertung.attr("wert");
         if (!gruppieren_werte_sortiert.includes(wert)) $auswertung.remove();
@@ -78,7 +79,7 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
     // AUSWERTUNGEN IM DOM ERGÄNZEN
     gruppieren_werte_sortiert.push(null); // für die Zusammenfassung
     $.each(gruppieren_werte_sortiert, function (position, wert) {
-        let $auswertung = $auswertungen.find('.auswertung[wert="' + wert + '"]');
+        let $auswertung = $auswertungen_auswertungen.find('.auswertung[wert="' + wert + '"]');
         if (!$auswertung.exists())
             $auswertung = LISTEN[auswertungen].instanz[auswertungen_instanz].$blanko_auswertung.clone().removeClass("blanko invisible");
 
@@ -108,22 +109,17 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
             $auswertung.find(".auswertung_collapse").remove();
         }
 
-        if (position === 0) $auswertung.appendTo($auswertungen);
-        else $auswertung.insertAfter($auswertungen.find('.auswertung[wert="' + gruppieren_werte_sortiert[position - 1] + '"]'));
-    });
-
-    // ÜBERSCHRIFT AKTUALISIEREN
-    $('.ueberschrift[instanz="' + auswertungen_instanz + '"]').each(function () {
-        Liste_$UeberschriftAktualisieren($(this), $auswertungen);
+        if (position === 0) $auswertung.appendTo($auswertungen_auswertungen);
+        else $auswertung.insertAfter($auswertungen_auswertungen.find('.auswertung[wert="' + gruppieren_werte_sortiert[position - 1] + '"]'));
     });
 
     // WERKZEUG AKTUALISIEREN
-    $('.werkzeug[instanz="' + auswertungen_instanz + '"]').each(function () {
+    $auswertungen.find(".werkzeug").each(function () {
         Liste_$WerkzeugAktualisieren($(this), $auswertungen);
     });
 
     // LISTENSTATISTIK AKTUALISIEREN
-    $('.listenstatistik[instanz="' + auswertungen_instanz + '"]').each(function () {
+    $auswertungen.find(".listenstatistik").each(function () {
         Liste_$ListenstatistikAktualisieren($(this), $auswertungen);
     });
 }

@@ -9,10 +9,10 @@
 <div class="row row-cols-1 row-cols-lg-2 gy-3 gx-0 gx-lg-3 w-100">
 
     <div class="col"><div class="card element" liste="termine" termin_id="<?= $termin_id; ?>" mitglied_id="<?= ICH_ID; ?>">
-        <?php if( isset( $werkzeuge_element ) AND is_array( $werkzeuge_element ) AND count( $werkzeuge_element ) > 0 ) { ?><div class="card-header text-end p-0"><?php
-        foreach( $werkzeuge_element as $werkzeug) { ?><button type="button" class="btn text-<?php
-            if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo WERKZEUGE[ $werkzeug ]['farbe']; else echo 'primary';
-            ?> stretched-link-unwirksam werkzeug" werkzeug="<?= $werkzeug; ?>" modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?>"></i></span></button><?php
+        <?php if( isset( $werkzeuge_element ) AND is_array( $werkzeuge_element ) AND count( $werkzeuge_element ) > 0 ) { ?><div class="card-header"><?php
+            foreach( array_reverse( $werkzeuge_element ) as $werkzeug) { ?><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?> text-<?php
+                if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo WERKZEUGE[ $werkzeug ]['farbe']; else echo 'primary';
+                ?> stretched-link-unwirksam float-end ms-3 werkzeug" werkzeug="<?= $werkzeug; ?>" modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" role="button"></i><?php
             } ?></div><?php
         } ?>
         <div class="card-body p-2">
@@ -61,42 +61,32 @@
         </div>
     </div></div>
 
-    <?php if( array_key_exists( LISTEN['notenbank']['controller'], CONTROLLERS ) ) { ?><div class="col"><div class="card">
-        <div class="card-header text-secondary text-center">Setliste</div>
-<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['zugeordnete_setliste'], 'typ' => 'liste', 'element' =>
-    view( 'Templates/Liste/element_liste', array( 'liste' => $liste['zugeordnete_setliste'] ) ) ) ); ?>
-    </div></div><?php } ?>
+<?php if( array_key_exists( LISTEN['notenbank']['controller'], CONTROLLERS ) ) echo
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['zugeordnete_setliste'] ) ); ?>
 
-    <?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) { ?><div class="col"><div class="card">
-        <div class="card-header text-secondary text-center">Aufgaben</div>
-<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['zugeordnete_aufgaben'], 'typ' => 'liste', 'element' =>
-    view( 'Templates/Liste/element_liste', array( 'liste' => $liste['zugeordnete_aufgaben'] ) ) ) ); ?>
-    </div></div><?php } ?>
+<?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) echo
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['zugeordnete_aufgaben'] ) ); ?>
 
 </div>
 
 <?php if( auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'termine_aufgaben_zuordnen_modal', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_aufgaben_zuordnen'], 'typ' => 'liste', 'element' =>
-    view( 'Templates/Liste/element_liste', array( 'liste' => $liste['termine_aufgaben_zuordnen'] ) ) ) ) ) ); ?>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_aufgaben_zuordnen'], ) ) ) ); ?>
 <?php if( auth()->user()->can( 'aufgaben.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'aufgabe_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'formular' => view( 'Aufgaben/aufgabe_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?php if( auth()->user()->can( 'notenbank.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'setliste_verwalten_modal', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['setliste_verwalten'], 'typ' => 'liste', 'element' =>
-    view( 'Templates/Liste/element_liste', array( 'liste' => $liste['setliste_verwalten'] ) ) ) ) ) ); ?>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['setliste_verwalten'], ) ) ) ); ?>
 <?php if( auth()->user()->can( 'notenbank.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'titel_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'formular' => view( 'Notenbank/titel_basiseigenschaften_formular' ) ) ) ) ); ?>
 <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'termine_rueckmeldungen_verwalten_modal', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_rueckmeldungen_verwalten'], 'typ' => 'liste', 'element' =>
-    view( 'Templates/Liste/element_liste', array( 'liste' => $liste['termine_rueckmeldungen_verwalten'] ) ) ) ) ) ); ?>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_rueckmeldungen_verwalten'], ) ) ) ); ?>
 <?php if( auth()->user()->can( 'termine.anwesenheiten' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'termine_anwesenheiten_dokumentieren_modal', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_anwesenheiten_dokumentieren'], 'typ' => 'liste', 'element' =>
-    view( 'Templates/Liste/element_liste', array( 'liste' => $liste['termine_anwesenheiten_dokumentieren'] ) ) ) ) ) ); ?>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_anwesenheiten_dokumentieren'], ) ) ) ); ?>
 <?php if( auth()->user()->can( 'termine.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'termin_basiseigenschaften', 'modal' =>
     view( 'Templates/Liste/formular', array( 'formular' => view( 'Termine/termin_basiseigenschaften_formular' ) ) ) ) ); ?>

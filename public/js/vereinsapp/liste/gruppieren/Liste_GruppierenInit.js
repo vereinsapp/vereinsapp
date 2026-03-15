@@ -12,7 +12,11 @@ WERKZEUGE.gruppieren_manip.aktualisieren_aktion = function ($werkzeug) {
         .attr("gruppieren_basis", JsonStringifiedZurueck(gruppieren_basis, undefined))
         .val(JsonStringifiedZurueck(gruppieren_manip, undefined));
 
-    if ($("#" + instanz + "[liste=" + liste + "]").children().length <= 1)
+    if (
+        $("#" + instanz + "[liste=" + liste + "]")
+            .find(".elemente")
+            .find(".element").length <= 1
+    )
         $werkzeug.addClass("invisible"); // nicht 0, weil zusammenfassung noch mit dabei ist
     else $werkzeug.removeClass("invisible");
 
@@ -21,7 +25,7 @@ WERKZEUGE.gruppieren_manip.aktualisieren_aktion = function ($werkzeug) {
     if (typeof gruppieren_manip !== "undefined" && gruppieren_manip.length > 0)
         $werkzeug
             .addClass("position-relative")
-            .append('<span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-danger border border-danger rounded-circle">');
+            .append('<span class="position-absolute bottom-0 end-1 translate-middle p-1 bg-danger border border-danger rounded-circle">');
 };
 
 function Liste_GruppierenInit() {

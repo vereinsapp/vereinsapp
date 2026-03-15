@@ -12,7 +12,12 @@ WERKZEUGE.sortieren_manip.aktualisieren_aktion = function ($werkzeug) {
         .attr("sortieren_basis", JsonStringifiedZurueck(sortieren_basis, undefined))
         .val(JsonStringifiedZurueck(sortieren_manip, undefined));
 
-    if ($("#" + instanz + "[liste=" + liste + "]").children().length === 0) $werkzeug.addClass("invisible");
+    if (
+        $("#" + instanz + "[liste=" + liste + "]")
+            .find(".elemente")
+            .find(".element").length === 0
+    )
+        $werkzeug.addClass("invisible");
     else $werkzeug.removeClass("invisible");
 
     // ROTER PUNKT AKTUALISIEREN
@@ -20,7 +25,7 @@ WERKZEUGE.sortieren_manip.aktualisieren_aktion = function ($werkzeug) {
     if (isObject(sortieren_manip) && Object.keys(sortieren_manip).length > 0)
         $werkzeug
             .addClass("position-relative")
-            .append('<span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-danger border border-danger rounded-circle">');
+            .append('<span class="position-absolute bottom-0 end-1 translate-middle p-1 bg-danger border border-danger rounded-circle">');
 };
 
 function Liste_SortierenInit() {

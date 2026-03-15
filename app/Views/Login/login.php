@@ -32,12 +32,12 @@
         </div>
         <div class="input-group mb-2">
             <div class="form-floating">
-            <input type="password" class="form-control" name="password" inputmode="text" autocomplete="current-password" required placeholder="Passwort" />
-            <label for="passwort">Passwort</label>
+                <input type="password" class="form-control" name="password" inputmode="text" autocomplete="current-password" required placeholder="Passwort" />
+                <label for="passwort">Passwort</label>
             </div>
-            <span class="input-group-text text-<?php
+            <div class="input-group-text text-<?php
             if( array_key_exists('farbe', WERKZEUGE['passwort_anzeigen']) ) echo WERKZEUGE['passwort_anzeigen']['farbe']; else echo "primary";
-            ?> werkzeug" werkzeug="passwort_anzeigen" role="button"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['passwort_anzeigen']['symbol'] ]['bootstrap']; ?>"></i></span>
+            ?> werkzeug" werkzeug="passwort_anzeigen" role="button"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['passwort_anzeigen']['symbol'] ]['bootstrap']; ?>"></i></div>
         </div>
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" value="angemeldet_bleiben" name="remember" id="angemeldet_bleiben" <?php //if (old('remember')): ?> checked<?php //endif ?> role="switch" />

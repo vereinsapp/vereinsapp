@@ -15,11 +15,7 @@
         </div>
     </div></div>
 
-    <div class="col"><div class="card">
-        <div class="card-header ueberschrift text-secondary text-center invisible" instanz="rechte_vergeben">Meine Rechte</div>
-<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'], 'typ' => 'liste', 'element' =>
-    view( 'Templates/Liste/element_liste', array( 'liste' => $liste['rechte_vergeben'] ) ) ) ); ?>
-    </div></div>
+<?= view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'] ) ); ?>
 
     <div class="col"><div class="card">
         <div class="card-header text-secondary text-center">Mein Passwort</div>
