@@ -6,7 +6,8 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
     const auswertungen = Util_WertBereinigtZurueck($auswertungen.attr("auswertungen"), undefined);
     const auswertungen_instanz = Util_WertBereinigtZurueck($auswertungen.attr("id"), undefined);
     const liste = Util_WertBereinigtZurueck($auswertungen.attr("liste"), undefined);
-    const $auswertungen_auswertungen = $auswertungen.find(".elemente");
+    const $meta = $auswertungen.find(".meta").first();
+    const $auswertungen_auswertungen = $auswertungen.find(".auswertungen");
 
     // GRUPPIEREN DEFINIEREN
     const gruppieren_data = Util_WertBereinigtZurueck($auswertungen.attr("gruppieren"), undefined);
@@ -113,10 +114,17 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
         else $auswertung.insertAfter($auswertungen_auswertungen.find('.auswertung[wert="' + gruppieren_werte_sortiert[position - 1] + '"]'));
     });
 
-    // WERKZEUG AKTUALISIEREN
-    $auswertungen.find(".werkzeug").each(function () {
-        Liste_$WerkzeugAktualisieren($(this), $auswertungen);
+    // WERKZEUGE EINFÜGEN
+    Dom_$WerkzeugIn$UmgebungEinfuegen(Util_WertBereinigtZurueck($auswertungen.attr("werkzeuge"), new Array()), $meta, {
+        liste: liste,
+        instanz: auswertungen_instanz,
     });
+
+    if (isEmptyString($meta.text()) && $meta.find(".werkzeug").length === 0) $meta.addClass("invisible");
+    else $meta.removeClass("invisible");
+
+    if ($auswertungen_auswertungen.find(".auswertung").length <= 1 && $meta.find(".werkzeug").length === 0) $auswertungen.addClass("invisible");
+    else $auswertungen.removeClass("invisible");
 
     // LISTENSTATISTIK AKTUALISIEREN
     $auswertungen.find(".listenstatistik").each(function () {

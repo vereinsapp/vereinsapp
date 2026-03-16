@@ -1,24 +1,20 @@
-<div id="<?= $liste['instanz']; ?>" class="col liste<?php
+<div id="<?= $liste['instanz']; ?>" class="liste col<?php
     if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sortable';
     ?>" liste="<?= $liste['liste']; ?>"<?php
-    if( array_key_exists( 'filtern', $liste ) ) { ?> filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
-    if( array_key_exists( 'sortieren', $liste ) ) { ?> sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
+    if( array_key_exists( 'filtern', $liste ) AND is_array( $liste['filtern'] ) AND count( $liste['filtern'] ) > 0 ) { ?> filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
+    if( array_key_exists( 'sortieren', $liste ) AND is_array( $liste['sortieren'] ) AND count( $liste['sortieren'] ) > 0 ) { ?> sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $liste_ ]['element'].'_id', $liste ) ) { ?> <?= LISTEN[ $liste_ ]['element']; ?>_id="<?= $liste[ LISTEN[ $liste_ ]['element'].'_id' ]; ?>"<?php }
-    if( array_key_exists( 'disabled_ids', $liste ) ) { ?> disabled_ids='<?= json_encode( $liste['disabled_ids'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
+    if( array_key_exists( 'disabled_ids', $liste ) AND is_array( $liste['disabled_ids'] ) AND count( $liste['disabled_ids'] ) > 0 ) { ?> disabled_ids='<?= json_encode( $liste['disabled_ids'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
+    if( array_key_exists( 'werkzeuge_liste', $liste ) AND is_array( $liste['werkzeuge_liste'] ) AND count( $liste['werkzeuge_liste'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['werkzeuge_liste'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
     ?>><div class="card">
-    <?php if( array_key_exists( 'ueberschrift', $liste ) OR ( array_key_exists( 'werkzeuge_liste', $liste ) AND is_array( $liste['werkzeuge_liste'] ) AND count( $liste['werkzeuge_liste'] ) > 0 ) ) { ?><div class="card-header meta text-center"><?php
-        if( array_key_exists( 'ueberschrift', $liste ) ) { ?><span class="text-secondary"><?= $liste['ueberschrift']; ?></span><?php }
-        if( array_key_exists( 'werkzeuge_liste', $liste ) AND is_array( $liste['werkzeuge_liste'] ) AND count( $liste['werkzeuge_liste'] ) > 0 )
-            foreach( array_reverse( $liste['werkzeuge_liste'] ) as $werkzeug) { ?><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?> text-<?php
-                if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo WERKZEUGE[ $werkzeug ]['farbe']; else echo 'primary';
-                ?> float-end ms-3 werkzeug" werkzeug="<?= $werkzeug; ?>" modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" instanz="<?= $liste['instanz']; ?>" role="button"></i><?php
-            }
-    ?></div><?php } ?>
+    <div class="meta card-header text-center text-secondary"><?php
+        if( array_key_exists( 'ueberschrift', $liste ) ) echo $liste['ueberschrift']; 
+    ?></div>
     <div class="elemente list-group list-group-flush">
 
         <div class="list-group-item<?php
         if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'element_auswahl' ) echo ' werkzeug';
-        ?> text-body blanko invisible" blanko="element" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>"<?php
+        ?> blanko invisible" blanko="element" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>"<?php
         if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'element_auswahl' ) { ?> werkzeug="<?= LISTEN[ $liste['verknuepfungen'] ]['element']?>_erstellen" verknuepfungen="<?= $liste['verknuepfungen'] ?>"<?php }
         if( array_key_exists( 'modal_title', $liste ) ) { ?> modal_title="<?= $liste['modal_title'] ?>"<?php }
         ?>>

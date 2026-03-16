@@ -30,6 +30,8 @@
         <div class="text-secondary text-center small mt-5"><div><?= VEREINSAPP_NAME ?> <?= VERSION; ?></div><div class="jetzt"></div></div>
     </div>
 
+<?= view( 'Templates/werkzeug' ); ?>
+
     <div id="toasts" class="container toast-container position-fixed end-0 pe-3">
 <?= view( 'Templates/toast' ); ?>
     </div>

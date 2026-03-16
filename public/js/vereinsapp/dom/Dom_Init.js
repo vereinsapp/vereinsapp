@@ -23,6 +23,11 @@ function Dom_Init() {
         })
         .remove();
 
+    // WERKZEUG-BLANKO IN WERKZEUGE BEREITSTELLEN
+    $.each(BLANKOS.werkzeug, function (position, $blanko) {
+        WERKZEUGE.$blanko_werkzeug = $blanko;
+    });
+
     // TOAST-BLANKO IN TOASTS BEREITSTELLEN
     $.each(BLANKOS.toast, function (position, $blanko) {
         TOASTS.$blanko_toast = $blanko;

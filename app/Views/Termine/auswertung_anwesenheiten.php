@@ -13,10 +13,10 @@
     </div>
     <?php if( array_key_exists( 'collapse', $auswertung ) AND $auswertung['collapse'] ) { ?><div class="row g-0 collapse auswertung_collapse">
         <div id="<?= $auswertung['instanz']; ?>_ergebnis_1" class="ergebnis liste col-6 text-center text-<?= VERKNUEPFUNGEN['termine_anwesenheiten']['status_erlaubt'][1]['farbe']; ?>" liste="termine_anwesenheiten" status=1>
-            <div class="blanko invisible" blanko="element" liste="termine_anwesenheiten" instanz="<?= $auswertung['instanz']; ?>_ergebnis_1"><span class="eigenschaft" eigenschaft="mitglied_vorname"></span> <span class="eigenschaft" eigenschaft="mitglied_nachname"></span><span class="zusatzsymbol ms-2" zusatzsymbol="bemerkung"></span></div>
+            <div class="meta"></div><div class="elemente"><div class="blanko invisible" blanko="element" liste="termine_anwesenheiten" instanz="<?= $auswertung['instanz']; ?>_ergebnis_1"><span class="eigenschaft" eigenschaft="mitglied_vorname"></span> <span class="eigenschaft" eigenschaft="mitglied_nachname"></span><span class="zusatzsymbol ms-2" zusatzsymbol="bemerkung"></span></div></div>
         </div>
         <div id="<?= $auswertung['instanz']; ?>_ergebnis_0" class="ergebnis liste col-6 text-center text-<?= VERKNUEPFUNGEN['termine_anwesenheiten']['status_erlaubt'][0]['farbe']; ?>" liste="mitglieder" status=0>
-            <div class="blanko invisible" blanko="element" liste="mitglieder" instanz="<?= $auswertung['instanz']; ?>_ergebnis_0"><span class="eigenschaft" eigenschaft="vorname"></span> <span class="eigenschaft" eigenschaft="nachname"></span></div>
+            <div class="meta"></div><div class="elemente"><div class="blanko invisible" blanko="element" liste="mitglieder" instanz="<?= $auswertung['instanz']; ?>_ergebnis_0"><span class="eigenschaft" eigenschaft="vorname"></span> <span class="eigenschaft" eigenschaft="nachname"></span></div></div>
         </div>
     </div><?php } ?>
 </div>

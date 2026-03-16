@@ -14,8 +14,8 @@ WERKZEUGE.sortieren_manip.aktualisieren_aktion = function ($werkzeug) {
 
     if (
         $("#" + instanz + "[liste=" + liste + "]")
-            .find(".elemente")
-            .find(".element").length === 0
+            .find(".elemente, .auswertungen")
+            .find(".element, .auswertung").length === 0
     )
         $werkzeug.addClass("invisible");
     else $werkzeug.removeClass("invisible");

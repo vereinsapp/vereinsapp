@@ -14,8 +14,8 @@ WERKZEUGE.gruppieren_manip.aktualisieren_aktion = function ($werkzeug) {
 
     if (
         $("#" + instanz + "[liste=" + liste + "]")
-            .find(".elemente")
-            .find(".element").length <= 1
+            .find(".elemente, .auswertungen")
+            .find(".element, .auswertung").length <= 1
     )
         $werkzeug.addClass("invisible"); // nicht 0, weil zusammenfassung noch mit dabei ist
     else $werkzeug.removeClass("invisible");

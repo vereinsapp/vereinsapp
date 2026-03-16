@@ -16,14 +16,15 @@ function Liste_$ElementAktualisieren($element) {
         );
     });
 
+    // WERKZEUGE EINFÜGEN
+    Dom_$WerkzeugIn$UmgebungEinfuegen(Util_WertBereinigtZurueck($element.attr("werkzeuge"), new Array()), $element.find(".meta").first(), {
+        liste: liste,
+        [LISTEN[liste].element + "_id"]: element_id,
+    });
+
     // VERKNUEPFUNGEN AKTUALISIEREN
     $element.find(".verknuepfungen").each(function () {
         Liste_$VerknuepfungenAktualisieren($(this), $element);
-    });
-
-    // WERKZEUG AKTUALISIEREN
-    $element.find(".werkzeug").each(function () {
-        Liste_Element$WerkzeugAktualisieren($(this), $element);
     });
 
     // LINK AKTUALISIEREN

@@ -1,0 +1,1 @@
+<i class="bi stretched-link-unwirksam float-end ms-3 blanko invisible" blanko="werkzeug" role="button"></i>

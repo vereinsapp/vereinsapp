@@ -8,6 +8,8 @@ WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
     if ("farbe" in WERKZEUGE[werkzeug]) farbe = WERKZEUGE[werkzeug].farbe;
     else farbe = "primary";
 
+    // GRÜNER PUNKT AKTUALISIEREN
+    $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
     if (
         $(
             "#" +
@@ -19,8 +21,9 @@ WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
             .find(".elemente")
             .find(".element").length === 0
     )
-        $werkzeug.removeClass("text-" + farbe).addClass("text-success");
-    else $werkzeug.addClass("text-" + farbe).removeClass("text-success");
+        $werkzeug
+            .addClass("position-relative")
+            .append('<span class="position-absolute bottom-0 end-1 translate-middle p-1 bg-success border border-success rounded-circle">');
 };
 
 function Liste_Init() {
