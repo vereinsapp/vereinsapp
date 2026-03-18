@@ -36,6 +36,15 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.VIEWDATA['termine']['element']['beschriftung'];
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['verknuepfungen'] = 'termine_rueckmeldungen';
 
+            if( auth()->user()->can( 'termine.verwaltung' ) ) {
+
+                $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['werkzeuge'][] = 'element_erstellen';
+                $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['werkzeuge'][] = 'element_aendern';
+                $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['werkzeuge'][] = 'element_duplizieren';
+                $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['werkzeuge'][] = 'element_loeschen';
+
+            }
+
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'termine_rueckmeldungen_verwalten';
 
         }
@@ -48,6 +57,15 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen'] = 'termine_anwesenheiten';
 
+            if( auth()->user()->can( 'termine.verwaltung' ) ) {
+
+                $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeuge'][] = 'element_erstellen';
+                $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['werkzeuge'][] = 'element_aendern';
+                $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['werkzeuge'][] = 'element_duplizieren';
+                $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['werkzeuge'][] = 'element_loeschen';
+
+            }
+
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'termine_anwesenheiten_dokumentieren';
 
         }
@@ -56,8 +74,11 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['liste']['strafen_zuweisen'] = VIEWDATA['strafkatalog'];
             unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
+            $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'element_erstellen';
             $this->viewdata['liste']['strafen_zuweisen']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['strafkatalog']['bootstrap'].'"></i> '.VIEWDATA['strafkatalog']['element']['beschriftung'];
-            $this->viewdata['liste']['strafen_zuweisen']['element']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
+            $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_aendern';
+            $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_duplizieren';
+            $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_loeschen';
             $this->viewdata['liste']['strafen_zuweisen']['element']['verknuepfungen'] = 'strafkatalog_zugewiesene_strafen';
 
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'strafen_zuweisen';
@@ -125,6 +146,15 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine']['bootstrap'].'"></i> '.VIEWDATA['termine']['element']['beschriftung'];
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['verknuepfungen'] = 'termine_rueckmeldungen';
 
+            if( auth()->user()->can( 'termine.verwaltung' ) ) {
+
+                $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['werkzeuge'][] = 'element_erstellen';
+                $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['werkzeuge'][] = 'element_aendern';
+                $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['werkzeuge'][] = 'element_duplizieren';
+                $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['werkzeuge'][] = 'element_loeschen';
+
+            }
+
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'termine_rueckmeldungen_verwalten';
 
         }
@@ -137,6 +167,15 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen'] = 'termine_anwesenheiten';
 
+            if( auth()->user()->can( 'termine.verwaltung' ) ) {
+
+                $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeuge'][] = 'element_erstellen';
+                $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['werkzeuge'][] = 'element_aendern';
+                $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['werkzeuge'][] = 'element_duplizieren';
+                $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['werkzeuge'][] = 'element_loeschen';
+
+            }
+
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'termine_anwesenheiten_dokumentieren';
 
         }
@@ -145,8 +184,11 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['liste']['strafen_zuweisen'] = VIEWDATA['strafkatalog'];
             unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
+            $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'element_erstellen';
             $this->viewdata['liste']['strafen_zuweisen']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['strafkatalog']['bootstrap'].'"></i> '.VIEWDATA['strafkatalog']['element']['beschriftung'];
-            $this->viewdata['liste']['strafen_zuweisen']['element']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
+            $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_aendern';
+            $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_duplizieren';
+            $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_loeschen';
             $this->viewdata['liste']['strafen_zuweisen']['element']['verknuepfungen'] = 'strafkatalog_zugewiesene_strafen';
 
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'strafen_zuweisen';

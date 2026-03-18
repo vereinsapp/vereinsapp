@@ -1,6 +1,4 @@
-<div id="<?= $liste['instanz']; ?>" class="liste w-100<?php
-    if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sortable';
-    ?>" liste="<?= $liste['liste']; ?>"<?php
+<div id="<?= $liste['instanz']; ?>" class="liste w-100" liste="<?= $liste['liste']; ?>"<?php
     if( array_key_exists( 'filtern', $liste ) AND is_array( $liste['filtern'] ) AND count( $liste['filtern'] ) > 0 ) { ?> filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     if( array_key_exists( 'sortieren', $liste ) AND is_array( $liste['sortieren'] ) AND count( $liste['sortieren'] ) > 0 ) { ?> sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $liste_ ]['element'].'_id', $liste ) ) { ?> <?= LISTEN[ $liste_ ]['element']; ?>_id="<?= $liste[ LISTEN[ $liste_ ]['element'].'_id' ]; ?>"<?php }

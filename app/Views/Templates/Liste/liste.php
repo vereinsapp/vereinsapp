@@ -1,6 +1,4 @@
-<div id="<?= $liste['instanz']; ?>" class="liste col<?php
-    if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sortable';
-    ?>" liste="<?= $liste['liste']; ?>"<?php
+<div id="<?= $liste['instanz']; ?>" class="liste col" liste="<?= $liste['liste']; ?>"<?php
     if( array_key_exists( 'filtern', $liste ) AND is_array( $liste['filtern'] ) AND count( $liste['filtern'] ) > 0 ) { ?> filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     if( array_key_exists( 'sortieren', $liste ) AND is_array( $liste['sortieren'] ) AND count( $liste['sortieren'] ) > 0 ) { ?> sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $liste_ ]['element'].'_id', $liste ) ) { ?> <?= LISTEN[ $liste_ ]['element']; ?>_id="<?= $liste[ LISTEN[ $liste_ ]['element'].'_id' ]; ?>"<?php }
@@ -10,16 +8,19 @@
     <div class="meta card-header text-center text-secondary"><?php
         if( array_key_exists( 'ueberschrift', $liste ) ) echo $liste['ueberschrift']; 
     ?></div>
-    <div class="elemente list-group list-group-flush">
+    <div class="elemente list-group list-group-flush<?php
+    if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sortable';
+    ?>" liste="<?= $liste['liste']; ?>">
 
         <div class="list-group-item<?php
         if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'element_auswahl' ) echo ' werkzeug';
         ?> blanko invisible" blanko="element" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>"<?php
         if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'element_auswahl' ) { ?> werkzeug="<?= LISTEN[ $liste['element']['verknuepfungen'] ]['element']?>_erstellen" verknuepfungen="<?= $liste['element']['verknuepfungen'] ?>"<?php }
         if( array_key_exists( 'modal_title', $liste['element'] ) ) { ?> modal_title="<?= $liste['element']['modal_title'] ?>"<?php }
+        if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND count( $liste['element']['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['element']['werkzeuge'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
         ?>>
 
-            <div class="text-truncate d-flex flex-nowrap align-items-center">
+            <div class="meta text-truncate d-flex flex-nowrap align-items-center">
 
 <?php if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'janein_auswahl' ) echo view( 'Templates/Liste/verknuepfungen_janein_auswahl', array( 'verknuepfungen' => $liste['element']['verknuepfungen'], ) ); ?>
 
