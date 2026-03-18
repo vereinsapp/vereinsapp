@@ -6,7 +6,9 @@ function Liste_$FilternModalOeffnen($werkzeug) {
     const liste = Util_WertBereinigtZurueck($werkzeug.attr("liste"), undefined);
 
     const $neues_filtern_modal = Dom_$NeuesModalInitialisiertZurueck(
-        Util_WertBereinigtZurueck($werkzeug.attr("modal_title"), undefined),
+        Liste_ElementTextMitBeschriftungErsetztZurueck(Util_WertBereinigtZurueck($werkzeug.attr("modal_title"), undefined), {
+            liste1: liste,
+        }),
         "filtern_manip_modal",
     );
 

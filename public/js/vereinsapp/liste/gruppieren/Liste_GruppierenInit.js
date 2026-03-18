@@ -7,10 +7,7 @@ WERKZEUGE.gruppieren_manip.aktualisieren_aktion = function ($werkzeug) {
     const gruppieren_basis = Util_WertBereinigtZurueck($("#" + instanz + "[liste=" + liste + "]").attr("gruppieren"), undefined);
     const gruppieren_manip = LISTEN[liste].instanz[instanz].gruppieren;
 
-    $werkzeug
-        .attr("modal_title", LISTEN[liste].beschriftung + " " + WERKZEUGE.gruppieren_manip.symbol)
-        .attr("gruppieren_basis", JsonStringifiedZurueck(gruppieren_basis, undefined))
-        .val(JsonStringifiedZurueck(gruppieren_manip, undefined));
+    $werkzeug.attr("gruppieren_basis", JsonStringifiedZurueck(gruppieren_basis, undefined)).val(JsonStringifiedZurueck(gruppieren_manip, undefined));
 
     if (
         $("#" + instanz + "[liste=" + liste + "]")

@@ -98,13 +98,13 @@ class Vereinsapp extends BaseConfig
      */
     public $werkzeuge = array(
         // Pflicht: symbol, beschriftung / Optional: farbe
-        'filtern_manip' => array( 'symbol' => 'filtern', 'beschriftung' => 'Filtern', ),
+        'filtern_manip' => array( 'symbol' => 'filtern', 'beschriftung' => '{liste1} filtern', ),
         'filtern_wert_inklusiv_exklusiv' => array( 'symbol' => 'inklusiv_exklusiv', 'beschriftung' => 'Wert inklusiv/exklusiv', ),
         'filtern_wert_loeschen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Wert löschen', 'farbe' => 'danger', ),
         'filtern_eigenschaft_zuruecksetzen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Eigenschaft zurücksetzen', 'farbe' => 'danger', ),
-        'sortieren_manip' => array( 'symbol' => 'sortieren', 'beschriftung' => 'Sortieren', ),
+        'sortieren_manip' => array( 'symbol' => 'sortieren', 'beschriftung' => '{liste1} sortieren', ),
         'sortieren_eigenschaft_zuruecksetzen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Eigenschaft zurücksetzen', 'farbe' => 'danger', ),
-        'gruppieren_manip' => array( 'symbol' => 'gruppieren', 'beschriftung' => 'Gruppieren', ),
+        'gruppieren_manip' => array( 'symbol' => 'gruppieren', 'beschriftung' => '{liste1} gruppieren', ),
         'gruppieren_eigenschaft_zuruecksetzen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Eigenschaft zurücksetzen', 'farbe' => 'danger', ),
         'bemerkung_aendern' => array( 'symbol' => 'bemerkung', 'beschriftung' => 'Bemerkung ändern', ),
         'localstorage_leeren' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Gerätespeicher leeren', 'farbe' => 'danger', ),

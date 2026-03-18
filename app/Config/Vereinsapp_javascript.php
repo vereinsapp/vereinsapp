@@ -74,7 +74,6 @@ class Vereinsapp_javascript extends BaseConfig
         
         'js/vereinsapp/liste/Liste_Init.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_$ListeAktualisieren.js?v='.VERSION,
-        'js/vereinsapp/liste/Liste_$WerkzeugAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_$ListenstatistikAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_WertNachEigenschaftFormatiertZurueck.js?v='.VERSION,
 
@@ -84,7 +83,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/element/Liste_ElementLoeschen.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementErgaenzen.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_$ElementAktualisieren.js?v='.VERSION,
-        'js/vereinsapp/liste/element/Liste_Element$WerkzeugAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$LinkAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$ZusatzsymbolAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$VorschauAktualisieren.js?v='.VERSION,

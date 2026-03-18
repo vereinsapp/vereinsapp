@@ -130,14 +130,4 @@ function Liste_$VerzeichnisAktualisieren($verzeichnis) {
     $verzeichnis.children(".unterverzeichnis").each(function () {
         Liste_$VerzeichnisAktualisieren($(this).find(".verzeichnis").first());
     });
-
-    // WERKZEUG AKTUALISIEREN
-    $('.werkzeug[instanz="' + verzeichnis_instanz + '"]').each(function () {
-        Liste_$WerkzeugAktualisieren($(this), $verzeichnis);
-    });
-
-    // LISTENSTATISTIK AKTUALISIEREN
-    $('.listenstatistik[instanz="' + verzeichnis_instanz + '"]').each(function () {
-        Liste_$ListenstatistikAktualisieren($(this), $verzeichnis);
-    });
 }

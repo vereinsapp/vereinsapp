@@ -7,10 +7,7 @@ WERKZEUGE.sortieren_manip.aktualisieren_aktion = function ($werkzeug) {
     const sortieren_basis = Util_WertBereinigtZurueck($("#" + instanz + "[liste=" + liste + "]").attr("sortieren"), undefined);
     const sortieren_manip = LISTEN[liste].instanz[instanz].sortieren;
 
-    $werkzeug
-        .attr("modal_title", LISTEN[liste].beschriftung + " " + WERKZEUGE.sortieren_manip.symbol)
-        .attr("sortieren_basis", JsonStringifiedZurueck(sortieren_basis, undefined))
-        .val(JsonStringifiedZurueck(sortieren_manip, undefined));
+    $werkzeug.attr("sortieren_basis", JsonStringifiedZurueck(sortieren_basis, undefined)).val(JsonStringifiedZurueck(sortieren_manip, undefined));
 
     if (
         $("#" + instanz + "[liste=" + liste + "]")

@@ -9,10 +9,7 @@ WERKZEUGE.filtern_manip.aktualisieren_aktion = function ($werkzeug) {
     const filtern_basis = Util_WertBereinigtZurueck($("#" + instanz + "[liste=" + liste + "]").attr("filtern"), new Object());
     const filtern_manip = LISTEN[liste].instanz[instanz].filtern;
 
-    $werkzeug
-        .attr("modal_title", LISTEN[liste].beschriftung + " " + WERKZEUGE.filtern_manip.symbol)
-        .attr("filtern_basis", JsonStringifiedZurueck(filtern_basis, new Object()))
-        .val(JsonStringifiedZurueck(filtern_manip, new Object()));
+    $werkzeug.attr("filtern_basis", JsonStringifiedZurueck(filtern_basis, new Object())).val(JsonStringifiedZurueck(filtern_manip, new Object()));
 
     // ROTER PUNKT AKTUALISIEREN
     $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
