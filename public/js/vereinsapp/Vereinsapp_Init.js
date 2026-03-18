@@ -53,10 +53,12 @@ Wie weiter mit Liste_$ListenstatistikAktualisieren?
 Spinner als blanko
 Neues-Prefix loswerden (damit im Verzeichnis die Units zueinander sortiert werden)
 Werkzeug für Rückmeldungen und Anwesenheiten auch in Auswertung einführen + WerkzeugAktualisieren vereinheitlichen mit Übernahme jeglicher [element]_id-Atribute
-    Werkzeuge für erstellen, duplizieren und aendern auch vereinheitlichen (analaog zu element_loeschen)?
-    sortable als Werkzeug einführen?
+    Braucht es .attr("modal_title", LISTEN[liste].beschriftung + " " + WERKZEUGE.[x]_manip.symbol) in WERKZEUGE.[x]_manip.aktualisieren_aktion oder lässt sich das in Vereinsapp-Config lösen?
+    Werkzeug als Zusatzsymbol entfernen, bspw. in Liste_Element$ZusatzsymbolAktualisieren (stattdessen meta im element in liste einführen, analog zu meta im element in kacheln)
     Bugfix Klick auf Werkzeug direkt im Element löst Element-Event und Werkzeug-Event aus
+    sortable als Werkzeug einführen?
     Bugfix bemerkung_aendern bekommt liste-Attribut überschrieben
+    texte mit werkzeuge verheiraten
 
 ERLEDIGT
 

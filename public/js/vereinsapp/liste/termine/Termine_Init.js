@@ -97,33 +97,7 @@ LISTEN.termine_anwesenheiten.element_ergaenzen_aktion = function (anwesenheit) {
         anwesenheit.mitglied_nachname = Liste_VariableRausZurueck("nachname", anwesenheit.mitglied_id, "mitglieder", undefined);
 };
 
-WERKZEUGE.termin_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
-
 function Termine_Init() {
-    // TERMIN ERSTELLEN / DUPLIZIEREN
-    $(document).on("click", '.werkzeug[werkzeug="termin_erstellen"], .werkzeug[werkzeug="termin_duplizieren"]', function () {
-        Liste_ElementErstellen(
-            $(this).hasClass("data_vollstaendig"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Util_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
-            "termine",
-        );
-    });
-
-    // TERMIN ÄNDERN
-    $(document).on("click", '.werkzeug[werkzeug="termin_aendern"]', function () {
-        Liste_ElementAendern(
-            $(this).hasClass("data_vollstaendig"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Util_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
-            "termine",
-        );
-    });
-
     // RÜCKMELDUNGEN VERWALTEN (MODAL) ÖFFNEN
     $(document).on("click", '.werkzeug[werkzeug="termine_rueckmeldungen_verwalten"]', function () {
         Liste_VerknuepfungenModalOeffnen(

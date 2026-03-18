@@ -66,11 +66,11 @@ class Mitglieder extends BaseController {
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
-            $this->viewdata['liste']['alle_mitglieder']['werkzeuge'][] = 'mitglied_erstellen';
+            $this->viewdata['liste']['alle_mitglieder']['werkzeuge'][] = 'element_erstellen';
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'einmal_link_anzeigen';
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'einmal_link_email';
-            $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'mitglied_aendern';
-            $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'mitglied_duplizieren';
+            $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'element_aendern';
+            $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'element_duplizieren';
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'element_loeschen';
 
         }
@@ -157,8 +157,8 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'einmal_link_anzeigen';
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'einmal_link_email';
-            $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'mitglied_aendern';
-            $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'mitglied_duplizieren';
+            $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'element_aendern';
+            $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'element_duplizieren';
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'element_loeschen_weiterleiten';
 
         } elseif( $mitglied_id == ICH_ID ) $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'meine_daten_aendern';

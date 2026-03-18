@@ -62,34 +62,9 @@ LISTEN.notenbank_setliste.element_ergaenzen_aktion = function (setlisteneintrag)
         setlisteneintrag.termin_titel = Liste_VariableRausZurueck("titel", setlisteneintrag.termin_id, "termine", undefined);
 };
 
-WERKZEUGE.titel_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
-WERKZEUGE.setliste_verwalten.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
+WERKZEUGE.setliste_verwalten.aktualisieren_aktion = WERKZEUGE.element_erstellen.aktualisieren_aktion;
 
 function Notenbank_Init() {
-    // TITEL ERSTELLEN / DUPLIZIEREN
-    $(document).on("click", '.werkzeug[werkzeug="titel_erstellen"], .werkzeug[werkzeug="titel_duplizieren"]', function () {
-        Liste_ElementErstellen(
-            $(this).hasClass("data_vollstaendig"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Util_WertBereinigtZurueck($(this).attr("titel_id"), undefined),
-            "notenbank",
-        );
-    });
-
-    // TITEL ÄNDERN
-    $(document).on("click", '.werkzeug[werkzeug="titel_aendern"]', function () {
-        Liste_ElementAendern(
-            $(this).hasClass("data_vollstaendig"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Util_WertBereinigtZurueck($(this).attr("titel_id"), undefined),
-            "notenbank",
-        );
-    });
-
     // SETLISTE VERWALTEN (MODAL) ÖFFNEN
     $(document).on("click", '.werkzeug[werkzeug="setliste_verwalten"]', function () {
         Liste_VerknuepfungenModalOeffnen(

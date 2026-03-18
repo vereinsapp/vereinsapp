@@ -18,33 +18,7 @@ LISTEN.strafkatalog.element_aendern_data_vervollstaendigen_aktion = function (da
     return data;
 };
 
-WERKZEUGE.strafe_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
-
 function Strafkatalog_Init() {
-    // STRAFE ERSTELLEN / DUPLIZIEREN
-    $(document).on("click", '.werkzeug[werkzeug="strafe_erstellen"], .werkzeug[werkzeug="strafe_duplizieren"]', function () {
-        Liste_ElementErstellen(
-            $(this).hasClass("data_vollstaendig"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Util_WertBereinigtZurueck($(this).attr("strafe_id"), undefined),
-            "strafkatalog",
-        );
-    });
-
-    // STRAFE ÄNDERN
-    $(document).on("click", '.werkzeug[werkzeug="strafe_aendern"]', function () {
-        Liste_ElementAendern(
-            $(this).hasClass("data_vollstaendig"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Util_WertBereinigtZurueck($(this).attr("strafe_id"), undefined),
-            "strafkatalog",
-        );
-    });
-
     // STRAFEN ZUWEISEN (MODAL) ÖFFNEN
     $(document).on("click", '.werkzeug[werkzeug="strafen_zuweisen"]', function () {
         Liste_VerknuepfungenModalOeffnen(

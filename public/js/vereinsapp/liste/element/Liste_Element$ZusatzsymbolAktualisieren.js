@@ -43,17 +43,15 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
 
         // Zusatzsymbol für Ändern-Werkzeug
         case "aendern":
-            if ("farbe" in WERKZEUGE[LISTEN[liste].element + "_aendern"]) farbe = WERKZEUGE[LISTEN[liste].element + "_aendern"].farbe;
+            if ("farbe" in WERKZEUGE.element_aendern) farbe = WERKZEUGE.element_aendern.farbe;
             else farbe = "primary";
 
             $zusatzsymbol.html(
                 '<i class="bi bi-' +
-                    SYMBOLE[WERKZEUGE[LISTEN[liste].element + "_aendern"].symbol]["bootstrap"] +
+                    SYMBOLE[WERKZEUGE.element_aendern.symbol]["bootstrap"] +
                     " text-" +
                     farbe +
-                    ' werkzeug" werkzeug="' +
-                    LISTEN[liste].element +
-                    '_aendern" liste="' +
+                    ' werkzeug" werkzeug="element_aendern" liste="' +
                     liste +
                     '" ' +
                     LISTEN[liste].element +
@@ -61,7 +59,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                     element_id +
                     '" modal_title="' +
                     Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_aendern.modal_title, {
-                        element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
+                        element1: { liste: liste },
                     }) +
                     '" role="button"></i>',
             );
@@ -69,17 +67,15 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
 
         // Zusatzsymbol für Duplizieren-Werkzeug
         case "duplizieren":
-            if ("farbe" in WERKZEUGE[LISTEN[liste].element + "_duplizieren"]) farbe = WERKZEUGE[LISTEN[liste].element + "_duplizieren"].farbe;
+            if ("farbe" in WERKZEUGE.element_duplizieren) farbe = WERKZEUGE.element_duplizieren.farbe;
             else farbe = "primary";
 
             $zusatzsymbol.html(
                 '<i class="bi bi-' +
-                    SYMBOLE[WERKZEUGE[LISTEN[liste].element + "_duplizieren"].symbol]["bootstrap"] +
+                    SYMBOLE[WERKZEUGE.element_duplizieren.symbol]["bootstrap"] +
                     " text-" +
                     farbe +
-                    ' werkzeug" werkzeug="' +
-                    LISTEN[liste].element +
-                    '_duplizieren" liste="' +
+                    ' werkzeug" werkzeug="element_duplizieren" liste="' +
                     liste +
                     '" ' +
                     LISTEN[liste].element +
@@ -87,7 +83,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                     element_id +
                     '" modal_title="' +
                     Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_duplizieren.modal_title, {
-                        element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
+                        element1: { liste: liste },
                     }) +
                     '" role="button"></i>',
             );
@@ -111,7 +107,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                     element_id +
                     '" modal_title="' +
                     Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_loeschen.modal_title, {
-                        element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
+                        element1: { liste: liste },
                     }) +
                     '" role="button"></i>',
             );

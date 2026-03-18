@@ -9,13 +9,18 @@
 
 function Liste_ElementAendern(data_vollstaendig, dom, data, modal_title, element_id, liste) {
     if (!data_vollstaendig) {
-        const $neues_modal = Dom_$NeuesModalInitialisiertZurueck(modal_title, LISTEN[liste].element + "_basiseigenschaften");
+        const $neues_modal = Dom_$NeuesModalInitialisiertZurueck(
+            Liste_ElementTextMitBeschriftungErsetztZurueck(modal_title, {
+                element1: { liste: liste },
+            }),
+            LISTEN[liste].element + "_basiseigenschaften",
+        );
         Dom_$ModalOeffnen($neues_modal);
 
         const $neues_formular = $neues_modal.find(".formular");
         $neues_formular
             .attr("liste", liste)
-            .attr("werkzeug", LISTEN[liste].element + "_aendern")
+            .attr("werkzeug", "element_aendern")
             .attr(LISTEN[liste].element + "_id", element_id);
         Liste_Element$FormularInitialisieren($neues_formular);
     } else {

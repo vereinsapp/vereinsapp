@@ -15,9 +15,9 @@ class Notenbank extends BaseController {
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge'][] = 'titel_erstellen';
-            $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'titel_aendern';
-            $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'titel_duplizieren';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge'][] = 'element_erstellen';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_aendern';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_duplizieren';
             $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_loeschen';
 
         }
@@ -37,8 +37,8 @@ class Notenbank extends BaseController {
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
-            $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'titel_aendern';
-            $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'titel_duplizieren';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_aendern';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_duplizieren';
             $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_loeschen_weiterleiten';
 
         }

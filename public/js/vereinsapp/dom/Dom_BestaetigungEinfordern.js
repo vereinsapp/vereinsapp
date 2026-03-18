@@ -9,7 +9,11 @@ function Dom_BestaetigungEinfordern(nachricht, modal_title, werkzeug, data) {
         $bestaetigt_werkzeug.addClass("werkzeug").attr("werkzeug", werkzeug);
         if ("farbe" in WERKZEUGE[werkzeug])
             $bestaetigt_werkzeug.removeClass("btn-outline-success").addClass("btn-outline-" + WERKZEUGE[werkzeug].farbe);
-        // $bestaetigt_werkzeug.find(".beschriftung").text(WERKZEUGE[werkzeug].beschriftung);
+        // $bestaetigt_werkzeug.find(".beschriftung").text(
+        //     Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE[werkzeug].beschriftung, {
+        //         element1: { liste: liste },
+        //     }),
+        // );
     }
     if (typeof data !== "undefined" && isObject(data))
         $.each(data, function (eigenschaft, wert) {

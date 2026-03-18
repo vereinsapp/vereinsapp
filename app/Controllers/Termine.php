@@ -51,9 +51,9 @@ class Termine extends BaseController {
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
 
-            $this->viewdata['liste']['bevorstehende_termine']['werkzeuge'][] = 'termin_erstellen';
-            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'termin_aendern';
-            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'termin_duplizieren';
+            $this->viewdata['liste']['bevorstehende_termine']['werkzeuge'][] = 'element_erstellen';
+            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'element_aendern';
+            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'element_duplizieren';
             $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'element_loeschen';
 
         }
@@ -105,7 +105,7 @@ class Termine extends BaseController {
                 $this->viewdata['liste']['termine_aufgaben_zuordnen'] = VIEWDATA['aufgaben'];
                 // unset($this->viewdata['liste']['termine_aufgaben_zuordnen']['filtern']);
                 $this->viewdata['liste']['termine_aufgaben_zuordnen']['termin_id'] = $termin_id;
-                $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeuge'][] = 'aufgabe_erstellen';
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeuge'][] = 'element_erstellen';
                 $this->viewdata['liste']['termine_aufgaben_zuordnen']['element']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
                 $this->viewdata['liste']['termine_aufgaben_zuordnen']['element']['verknuepfungen'] = 'aufgaben_zuordnungen_termine';
 
@@ -130,7 +130,7 @@ class Termine extends BaseController {
                 $this->viewdata['liste']['setliste_verwalten'] = VIEWDATA['notenbank'];
                 // unset($this->viewdata['liste']['setliste_verwalten']['filtern']);
                 $this->viewdata['liste']['setliste_verwalten']['termin_id'] = $termin_id;
-                $this->viewdata['liste']['setliste_verwalten']['werkzeuge'][] = 'titel_erstellen';
+                $this->viewdata['liste']['setliste_verwalten']['werkzeuge'][] = 'element_erstellen';
                 $this->viewdata['liste']['setliste_verwalten']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['notenbank']['bootstrap'].'"></i> '.VIEWDATA['notenbank']['element']['beschriftung'];
                 $this->viewdata['liste']['setliste_verwalten']['element']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
                 $this->viewdata['liste']['setliste_verwalten']['element']['verknuepfungen'] = 'notenbank_setliste';
@@ -171,8 +171,8 @@ class Termine extends BaseController {
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
 
-            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'termin_aendern';
-            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'termin_duplizieren';
+            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'element_aendern';
+            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'element_duplizieren';
             $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'element_loeschen_weiterleiten';
 
         }

@@ -1,13 +1,7 @@
 /**
  */
 
-WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION = function ($werkzeug) {
-    const werkzeug = Util_WertBereinigtZurueck($werkzeug.attr("werkzeug"), undefined);
-
-    let farbe;
-    if ("farbe" in WERKZEUGE[werkzeug]) farbe = WERKZEUGE[werkzeug].farbe;
-    else farbe = "primary";
-
+WERKZEUGE.element_erstellen.aktualisieren_aktion = function ($werkzeug) {
     // GRÜNER PUNKT AKTUALISIEREN
     $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
     if (
@@ -93,6 +87,32 @@ function Liste_Init() {
             EIGENSCHAFTEN[$(this).closest("[liste]").attr("liste")][$(this).attr("eingabe")].eingabe_aendern_aktion($(this));
     });
 
+    // ELEMENT ERSTELLEN / DUPLIZIEREN
+    $(document).on("click", '.werkzeug[werkzeug="element_erstellen"], .werkzeug[werkzeug="element_duplizieren"]', function () {
+        const liste = Util_WertBereinigtZurueck($(this).attr("liste"));
+        Liste_ElementErstellen(
+            $(this).hasClass("data_vollstaendig"),
+            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr(LISTEN[liste].element + "_id"), undefined),
+            liste,
+        );
+    });
+
+    // ELEMENT / MEINE DATEN ÄNDERN
+    $(document).on("click", '.werkzeug[werkzeug="element_aendern"], .werkzeug[werkzeug="meine_daten_aendern"]', function () {
+        const liste = Util_WertBereinigtZurueck($(this).attr("liste"));
+        Liste_ElementAendern(
+            $(this).hasClass("data_vollstaendig"),
+            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
+            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr(LISTEN[liste].element + "_id"), undefined),
+            liste,
+        );
+    });
+
     // BEMERKUNG AENDERN
     $(document).on("click", '.werkzeug[werkzeug="bemerkung_aendern"]', function () {
         const liste = Util_WertBereinigtZurueck($(this).attr("liste"));
@@ -112,8 +132,8 @@ function Liste_Init() {
             $(this).hasClass("bestaetigt"),
             $(this).attr("werkzeug") === "element_loeschen_weiterleiten",
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
-            Util_WertBereinigtZurueck($(this).attr("modal_title")),
-            Util_WertBereinigtZurueck($(this).attr(LISTEN[liste].element + "_id")),
+            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
+            Util_WertBereinigtZurueck($(this).attr(LISTEN[liste].element + "_id"), undefined),
             liste,
         );
     });

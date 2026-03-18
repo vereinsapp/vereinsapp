@@ -63,33 +63,7 @@ LISTEN.vergebene_rechte.element_ergaenzen_aktion = function (vergebenes_recht) {
         vergebenes_recht.mitglied_nachname = Liste_VariableRausZurueck("nachname", vergebenes_recht.mitglied_id, "mitglieder", undefined);
 };
 
-WERKZEUGE.mitglied_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
-
 function Mitglieder_Init() {
-    // MITGLIED ERSTELLEN / DUPLIZIEREN
-    $(document).on("click", '.werkzeug[werkzeug="mitglied_erstellen"], .werkzeug[werkzeug="mitglied_duplizieren"]', function () {
-        Liste_ElementErstellen(
-            $(this).hasClass("data_vollstaendig"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
-            "mitglieder",
-        );
-    });
-
-    // MITGLIED ÄNDERN
-    $(document).on("click", '.werkzeug[werkzeug="mitglied_aendern"], .werkzeug[werkzeug="meine_daten_aendern"]', function () {
-        Liste_ElementAendern(
-            $(this).hasClass("data_vollstaendig"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
-            "mitglieder",
-        );
-    });
-
     // PASSWORT ÄNDERN
     $(document).on("click", '.werkzeug[werkzeug="passwort_aendern"]', function () {
         Mitglieder_PasswortAendern(

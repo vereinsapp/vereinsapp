@@ -39,34 +39,9 @@ LISTEN.aufgaben_zuordnungen_termine.element_ergaenzen_aktion = function (zuordnu
     if ("termin_id" in zuordnung) zuordnung.termin_kategorie = Liste_VariableRausZurueck("kategorie", zuordnung.termin_id, "termine", undefined);
 };
 
-WERKZEUGE.aufgabe_erstellen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
-WERKZEUGE.termine_aufgaben_zuordnen.aktualisieren_aktion = WERKZEUGE_ERSTELLEN_AKTUALISIEREN_AKTION;
+WERKZEUGE.termine_aufgaben_zuordnen.aktualisieren_aktion = WERKZEUGE.element_erstellen.aktualisieren_aktion;
 
 function Aufgaben_Init() {
-    // AUFGABE ERSTELLEN / DUPLIZIEREN
-    $(document).on("click", '.werkzeug[werkzeug="aufgabe_erstellen"], .werkzeug[werkzeug="aufgabe_duplizieren"]', function () {
-        Liste_ElementErstellen(
-            $(this).hasClass("data_vollstaendig"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Util_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
-            "aufgaben",
-        );
-    });
-
-    // AUFGABE ÄNDERN
-    $(document).on("click", '.werkzeug[werkzeug="aufgabe_aendern"]', function () {
-        Liste_ElementAendern(
-            $(this).hasClass("data_vollstaendig"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
-            Util_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
-            "aufgaben",
-        );
-    });
-
     // RUECKMELDUNGEN VERWALTEN (MODAL) ÖFFNEN
     $(document).on("click", '.werkzeug[werkzeug="aufgaben_rueckmeldungen_verwalten"]', function () {
         Liste_VerknuepfungenModalOeffnen(

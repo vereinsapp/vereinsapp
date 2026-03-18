@@ -40,7 +40,9 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-<?php
                 if( array_key_exists('farbe', WERKZEUGE['datenschutz_richtlinie_akzeptieren']) ) echo WERKZEUGE['datenschutz_richtlinie_akzeptieren']['farbe']; else echo "primary";
-                ?> w-100 werkzeug" werkzeug="datenschutz_richtlinie_akzeptieren"><span class="beschriftung">Datenschutz-Richtlinie akzeptieren</span></button>
+                ?> w-100 werkzeug" werkzeug="datenschutz_richtlinie_akzeptieren">
+                    <span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['datenschutz_richtlinie_akzeptieren']['symbol'] ]['bootstrap']; ?>"></i> <?= WERKZEUGE['datenschutz_richtlinie_akzeptieren']['beschriftung']; ?></span>
+                </button>
             </div>
         </div>
     </div>
