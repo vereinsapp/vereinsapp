@@ -57,9 +57,11 @@ function Liste_$ListeAktualisieren($liste) {
         instanz: instanz,
     });
 
+    // META EIN-/AUSBLENDEN
     if (isEmptyString($meta.text()) && $meta.find(".werkzeug").length === 0) $meta.addClass("invisible");
     else $meta.removeClass("invisible");
 
+    // LISTE EIN-/AUSBLENDEN
     if ($elemente.find(".element").length === 0 && $meta.find(".werkzeug").length === 0) $liste.addClass("invisible");
     else $liste.removeClass("invisible");
 

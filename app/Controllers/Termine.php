@@ -15,18 +15,18 @@ class Termine extends BaseController {
 
         $this->viewdata['liste']['bevorstehende_termine'] = VIEWDATA['termine'];
         $this->viewdata['liste']['bevorstehende_termine']['mitglied_id'] = ICH_ID;
-        $this->viewdata['liste']['bevorstehende_termine']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
-        $this->viewdata['liste']['bevorstehende_termine']['vorschau'] = array( 'start', 'ort' );
-        $this->viewdata['liste']['bevorstehende_termine']['verknuepfungen'] = 'termine_rueckmeldungen';
+        $this->viewdata['liste']['bevorstehende_termine']['element']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
+        $this->viewdata['liste']['bevorstehende_termine']['element']['vorschau'] = array( 'start', 'ort' );
+        $this->viewdata['liste']['bevorstehende_termine']['element']['verknuepfungen'] = 'termine_rueckmeldungen';
 
         // if( auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
         //     $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = VIEWDATA['mitglieder'];
         //     unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']);
-        //     $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.VIEWDATA['mitglieder']['beschriftung'];
-        //     $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = 'termine_rueckmeldungen';
+        //     $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.VIEWDATA['mitglieder']['element']['beschriftung'];
+        //     $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['verknuepfungen'] = 'termine_rueckmeldungen';
 
-        //     $this->viewdata['liste']['bevorstehende_termine']['werkzeuge_element'][] = 'termine_rueckmeldungen_verwalten';
+        //     $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'termine_rueckmeldungen_verwalten';
 
         // }
 
@@ -34,27 +34,27 @@ class Termine extends BaseController {
 
         //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = VIEWDATA['mitglieder'];
         //     unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
-        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = 'termine_anwesenheiten';
-        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
+        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
+        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen'] = 'termine_anwesenheiten';
 
-        //     $this->viewdata['liste']['bevorstehende_termine']['werkzeuge_element'][] = 'termine_anwesenheiten_dokumentieren';
+        //     $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'termine_anwesenheiten_dokumentieren';
 
         // } else {
 
         //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = VIEWDATA['mitglieder'];
         //     unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
-        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_anwesenheiten' );
-        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.VIEWDATA['mitglieder']['beschriftung'];
-        //     $this->viewdata['liste']['bevorstehende_termine']['werkzeuge_element'][] = 'termine_anwesenheiten_dokumentieren';
+        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.VIEWDATA['mitglieder']['element']['beschriftung'];
+        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['zusatzsymbol'] = array( 'termine_anwesenheiten' );
+        //     $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'termine_anwesenheiten_dokumentieren';
 
         // }
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
 
-            $this->viewdata['liste']['bevorstehende_termine']['werkzeuge_liste'][] = 'termin_erstellen';
-            $this->viewdata['liste']['bevorstehende_termine']['werkzeuge_element'][] = 'termin_aendern';
-            $this->viewdata['liste']['bevorstehende_termine']['werkzeuge_element'][] = 'termin_duplizieren';
-            $this->viewdata['liste']['bevorstehende_termine']['werkzeuge_element'][] = 'element_loeschen';
+            $this->viewdata['liste']['bevorstehende_termine']['werkzeuge'][] = 'termin_erstellen';
+            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'termin_aendern';
+            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'termin_duplizieren';
+            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'element_loeschen';
 
         }
 
@@ -65,7 +65,9 @@ class Termine extends BaseController {
     public function termin( $termin_id ) { $termin_id = (int)$termin_id;
         if( empty( model(Termin_Model::class)->find( $termin_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 
-        $this->viewdata['termin_id'] = $termin_id;
+        $this->viewdata['liste']['bevorstehende_termine'] = VIEWDATA['termine'];
+        $this->viewdata['liste']['bevorstehende_termine']['termin_id'] = $termin_id;
+        $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'] = array();
 
         $this->viewdata['auswertungen']['rueckmeldungen_termin'] = array(
             'auswertungen' => 'termine_rueckmeldungen',
@@ -75,7 +77,7 @@ class Termine extends BaseController {
             'termin_id' => $termin_id,
             'collapse' => TRUE,
             'progress' => TRUE,
-            'werkzeuge_auswertungen' => array( 'gruppieren_manip', 'filtern_manip', ),
+            'werkzeuge' => array( 'gruppieren_manip', 'filtern_manip', ),
         );
 
         $this->viewdata['auswertungen']['anwesenheiten_termin'] = array(
@@ -86,26 +88,26 @@ class Termine extends BaseController {
             'termin_id' => $termin_id,
             'collapse' => TRUE,
             'progress' => TRUE,
-            'werkzeuge_auswertungen' => array( 'gruppieren_manip', 'filtern_manip', ),
+            'werkzeuge' => array( 'gruppieren_manip', 'filtern_manip', ),
         );
 
         if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
 
             $this->viewdata['liste']['zugeordnete_aufgaben'] = VIEWDATA['aufgaben_zuordnungen_termine'];
             $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( 'termin_id' => array( 'inklusiv' => array( $termin_id ), ), );
-            $this->viewdata['liste']['zugeordnete_aufgaben']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> <span class="eigenschaft" eigenschaft="aufgabe_titel"></span>';
             $this->viewdata['liste']['zugeordnete_aufgaben']['ueberschrift'] = 'Aufgaben';
+            $this->viewdata['liste']['zugeordnete_aufgaben']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['aufgaben']['bootstrap'].'"></i> <span class="eigenschaft" eigenschaft="aufgabe_titel"></span>';
 
             if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
-                $this->viewdata['liste']['zugeordnete_aufgaben']['werkzeuge_liste'][] = 'termine_aufgaben_zuordnen';
+                $this->viewdata['liste']['zugeordnete_aufgaben']['werkzeuge'][] = 'termine_aufgaben_zuordnen';
 
                 $this->viewdata['liste']['termine_aufgaben_zuordnen'] = VIEWDATA['aufgaben'];
                 // unset($this->viewdata['liste']['termine_aufgaben_zuordnen']['filtern']);
                 $this->viewdata['liste']['termine_aufgaben_zuordnen']['termin_id'] = $termin_id;
-                $this->viewdata['liste']['termine_aufgaben_zuordnen']['verknuepfungen'] = 'aufgaben_zuordnungen_termine';
-                $this->viewdata['liste']['termine_aufgaben_zuordnen']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
-                $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeuge_liste'][] = 'aufgabe_erstellen';
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeuge'][] = 'aufgabe_erstellen';
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['element']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['element']['verknuepfungen'] = 'aufgaben_zuordnungen_termine';
 
             }
 
@@ -115,23 +117,23 @@ class Termine extends BaseController {
 
             $this->viewdata['liste']['zugeordnete_setliste'] = VIEWDATA['notenbank_setliste'];
             $this->viewdata['liste']['zugeordnete_setliste']['filtern'] = array( 'termin_id' => array( 'inklusiv' => array( $termin_id ), ), );
-            $this->viewdata['liste']['zugeordnete_setliste']['beschriftung'] = '<span class="eigenschaft text-secondary small" eigenschaft="status"></span> <i class="bi bi-'.SYMBOLE['notenbank']['bootstrap'].'"></i> <span class="eigenschaft" eigenschaft="titel_titel_nr"></span> <span class="eigenschaft" eigenschaft="titel_titel"></span>';
-            $this->viewdata['liste']['zugeordnete_setliste']['zusatzsymbol'] = array( 'loeschen' );
-            $this->viewdata['liste']['zugeordnete_setliste']['link'] = array( 'liste' => 'notenbank', 'eigenschaften' => array( 'titel_id', ), );
             $this->viewdata['liste']['zugeordnete_setliste']['ueberschrift'] = 'Setliste';
+            $this->viewdata['liste']['zugeordnete_setliste']['element']['beschriftung'] = '<span class="eigenschaft text-secondary small" eigenschaft="status"></span> <i class="bi bi-'.SYMBOLE['notenbank']['bootstrap'].'"></i> <span class="eigenschaft" eigenschaft="titel_titel_nr"></span> <span class="eigenschaft" eigenschaft="titel_titel"></span>';
+            $this->viewdata['liste']['zugeordnete_setliste']['element']['zusatzsymbol'] = array( 'loeschen' );
+            $this->viewdata['liste']['zugeordnete_setliste']['element']['link'] = array( 'liste' => 'notenbank', 'eigenschaften' => array( 'titel_id', ), );
 
             if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
                 $this->viewdata['liste']['zugeordnete_setliste']['sortable'] = TRUE;
-                $this->viewdata['liste']['zugeordnete_setliste']['werkzeuge_liste'][] = 'setliste_verwalten';
+                $this->viewdata['liste']['zugeordnete_setliste']['werkzeuge'][] = 'setliste_verwalten';
 
                 $this->viewdata['liste']['setliste_verwalten'] = VIEWDATA['notenbank'];
                 // unset($this->viewdata['liste']['setliste_verwalten']['filtern']);
                 $this->viewdata['liste']['setliste_verwalten']['termin_id'] = $termin_id;
-                $this->viewdata['liste']['setliste_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['notenbank']['bootstrap'].'"></i> '.VIEWDATA['notenbank']['beschriftung'];
-                $this->viewdata['liste']['setliste_verwalten']['verknuepfungen'] = 'notenbank_setliste';
-                $this->viewdata['liste']['setliste_verwalten']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
-                $this->viewdata['liste']['setliste_verwalten']['werkzeuge_liste'][] = 'titel_erstellen';
+                $this->viewdata['liste']['setliste_verwalten']['werkzeuge'][] = 'titel_erstellen';
+                $this->viewdata['liste']['setliste_verwalten']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['notenbank']['bootstrap'].'"></i> '.VIEWDATA['notenbank']['element']['beschriftung'];
+                $this->viewdata['liste']['setliste_verwalten']['element']['zusatzsymbol'] = array( 'loeschen', 'duplizieren', 'aendern', );
+                $this->viewdata['liste']['setliste_verwalten']['element']['verknuepfungen'] = 'notenbank_setliste';
 
             }
 
@@ -141,10 +143,10 @@ class Termine extends BaseController {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = VIEWDATA['mitglieder'];
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.VIEWDATA['mitglieder']['beschriftung'];
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['verknuepfungen'] = 'termine_rueckmeldungen';
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.VIEWDATA['mitglieder']['element']['beschriftung'];
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['verknuepfungen'] = 'termine_rueckmeldungen';
 
-            $this->viewdata['werkzeuge_element'][] = 'termine_rueckmeldungen_verwalten';
+            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'termine_rueckmeldungen_verwalten';
 
         }
 
@@ -152,36 +154,28 @@ class Termine extends BaseController {
 
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = VIEWDATA['mitglieder'];
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['verknuepfungen'] = 'termine_anwesenheiten';
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen'] = 'termine_anwesenheiten';
 
-            $this->viewdata['werkzeuge_element'][] = 'termine_anwesenheiten_dokumentieren';
+            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'termine_anwesenheiten_dokumentieren';
 
         // } else {
 
         //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = VIEWDATA['mitglieder'];
         //     unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
-        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['zusatzsymbol'] = array( 'termine_anwesenheiten' );
-        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.VIEWDATA['mitglieder']['beschriftung'];
-        //     $this->viewdata['werkzeuge_element'][] = 'termine_anwesenheiten_dokumentieren';
+        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['zusatzsymbol'] = array( 'termine_anwesenheiten' );
+        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied']['bootstrap'].'"></i> '.VIEWDATA['mitglieder']['element']['beschriftung'];
+        //     $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'termine_anwesenheiten_dokumentieren';
 
         }
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
 
-            $this->viewdata['werkzeuge_element'][] = 'termin_aendern';
-            $this->viewdata['werkzeuge_element'][] = 'termin_duplizieren';
-            $this->viewdata['werkzeuge_element'][] = 'element_loeschen_weiterleiten';
+            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'termin_aendern';
+            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'termin_duplizieren';
+            $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'element_loeschen_weiterleiten';
 
         }
-
-        $this->viewdata['element_navigation'] = array(
-            'liste' => 'termine',
-            'termin_id' => $termin_id,
-            'instanz' => 'bevorstehende_termine',
-            'filtern' => VIEWDATA['termine']['filtern'],
-            'sortieren' => VIEWDATA['termine']['sortieren'],
-        );
 
         $this->viewdata_bereinigen(); echo view( 'Termine/termin_details', $this->viewdata );
     }

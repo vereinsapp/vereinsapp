@@ -1,8 +1,8 @@
-<div class="row row-cols-3 g-1 element_navigation" liste="<?= $element_navigation['liste']; ?>"<?php
-foreach( LISTEN as $liste => $eigenschaften ) if( array_key_exists( LISTEN[ $liste ]['element'].'_id', $element_navigation ) ) { ?> <?= LISTEN[ $liste ]['element']; ?>_id="<?= $element_navigation[ LISTEN[ $liste ]['element'].'_id' ]; ?>"<?php }
-?> instanz="<?= $element_navigation['instanz']; ?>"<?php
-if( array_key_exists( 'filtern', $element_navigation ) ) { ?> filtern='<?= json_encode( $element_navigation['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
-if( array_key_exists( 'sortieren', $element_navigation ) ) { ?> sortieren='<?= json_encode( $element_navigation['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
+<div class="row row-cols-3 g-1 element_navigation" liste="<?= $liste['liste']; ?>"<?php
+foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $liste_ ]['element'].'_id', $liste ) ) { ?> <?= LISTEN[ $liste_ ]['element']; ?>_id="<?= $liste[ LISTEN[ $liste_ ]['element'].'_id' ]; ?>"<?php }
+?> instanz="<?= $liste['instanz']; ?>"<?php
+if( array_key_exists( 'filtern', $liste ) ) { ?> filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
+if( array_key_exists( 'sortieren', $liste ) ) { ?> sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
 ?>>
     <div class="col-2 d-grid float-start"><a class="btn btn-sm text-primary vorheriges_element"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE["pfeil_links"]["bootstrap"]; ?>"></i></span></a></div>
     <div class="col-8 d-grid "><a class="btn zurueck_zur_uebersicht btn-sm text-primary" href="<?= site_url( AKTIVER_CONTROLLER ); ?>"><span class="beschriftung">Zurück zur Übersicht</span></a></div>

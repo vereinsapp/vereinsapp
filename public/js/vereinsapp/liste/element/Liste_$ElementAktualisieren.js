@@ -5,6 +5,7 @@
 function Liste_$ElementAktualisieren($element) {
     const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
     const element_id = Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
+    const $meta = $element.find(".meta").first();
 
     // EIGENSCHAFTEN AKTUALISIEREN
     $element.find(".eigenschaft").each(function () {
@@ -67,4 +68,8 @@ function Liste_$ElementAktualisieren($element) {
         $element.find(".card").removeAttr("role").removeClass("element-action");
         $element.find("label").removeAttr("role", "button");
     }
+
+    // META EIN-/AUSBLENDEN
+    if (isEmptyString($meta.text()) && $meta.find(".werkzeug").length === 0) $meta.addClass("invisible");
+    else $meta.removeClass("invisible");
 }

@@ -3,18 +3,15 @@
 <?= $this->section( 'cards' ); ?>
 
 <div class="w-100">
-<?= view( 'Templates/Liste/element_navigation', array( 'element_navigation' => $element_navigation ) ); ?>
+<?= view( 'Templates/Liste/element_navigation', array( 'liste' => $liste['bevorstehende_termine'] ) ); ?>
 </div>
 
 <div class="row row-cols-1 row-cols-lg-2 gy-3 gx-0 gx-lg-3 w-100">
 
-    <div class="col"><div class="card element" liste="termine" termin_id="<?= $termin_id; ?>" mitglied_id="<?= ICH_ID; ?>">
-        <?php if( isset( $werkzeuge_element ) AND is_array( $werkzeuge_element ) AND count( $werkzeuge_element ) > 0 ) { ?><div class="card-header"><?php
-            foreach( array_reverse( $werkzeuge_element ) as $werkzeug) { ?><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?> text-<?php
-                if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo WERKZEUGE[ $werkzeug ]['farbe']; else echo 'primary';
-                ?> stretched-link-unwirksam float-end ms-3 werkzeug" werkzeug="<?= $werkzeug; ?>" modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" role="button"></i><?php
-            } ?></div><?php
-        } ?>
+    <div class="col"><div class="card element" liste="termine" termin_id="<?= $liste['bevorstehende_termine']['termin_id']; ?>" mitglied_id="<?= ICH_ID; ?>"<?php
+        if( array_key_exists( 'werkzeuge', $liste['bevorstehende_termine']['element'] ) AND is_array( $liste['bevorstehende_termine']['element']['werkzeuge'] ) AND count( $liste['bevorstehende_termine']['element']['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['bevorstehende_termine']['element']['werkzeuge'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
+    ?>>
+        <div class="meta card-header"></div>
         <div class="card-body p-2">
             <h5 class="card-title text-center text-truncate text-nowrap">
                 <span class="beschriftung"><span class="eigenschaft" eigenschaft="titel"></span></span>

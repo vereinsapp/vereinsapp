@@ -24,10 +24,10 @@ class Einstellungen extends BaseController {
 
         if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {
 
-            $this->viewdata['liste']['rechte_vergeben']['verknuepfungen'] = 'vergebene_rechte';
             $this->viewdata['liste']['rechte_vergeben']['disabled_ids'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
+            $this->viewdata['liste']['rechte_vergeben']['element']['verknuepfungen'] = 'vergebene_rechte';
 
-        } else $this->viewdata['liste']['rechte_vergeben']['zusatzsymbol'] = array( 'vergebene_rechte' ); // eigentlich braucht es hier noch ein Symbol vor der Beschriftung
+        } else $this->viewdata['liste']['rechte_vergeben']['element']['zusatzsymbol'] = array( 'vergebene_rechte' ); // eigentlich braucht es hier noch ein Symbol vor der Beschriftung
 
         $this->viewdata_bereinigen(); echo view( 'Einstellungen/einstellungen', $this->viewdata );
     }

@@ -5,7 +5,7 @@
     if( array_key_exists( 'sortieren', $liste ) AND is_array( $liste['sortieren'] ) AND count( $liste['sortieren'] ) > 0 ) { ?> sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $liste_ ]['element'].'_id', $liste ) ) { ?> <?= LISTEN[ $liste_ ]['element']; ?>_id="<?= $liste[ LISTEN[ $liste_ ]['element'].'_id' ]; ?>"<?php }
     if( array_key_exists( 'disabled_ids', $liste ) AND is_array( $liste['disabled_ids'] ) AND count( $liste['disabled_ids'] ) > 0 ) { ?> disabled_ids='<?= json_encode( $liste['disabled_ids'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
-    if( array_key_exists( 'werkzeuge_liste', $liste ) AND is_array( $liste['werkzeuge_liste'] ) AND count( $liste['werkzeuge_liste'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['werkzeuge_liste'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
+    if( array_key_exists( 'werkzeuge', $liste ) AND is_array( $liste['werkzeuge'] ) AND count( $liste['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['werkzeuge'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
     ?>>
     <div class="meta w-100 text-end text-secondary"><?php
         if( array_key_exists( 'listenstatistik', $liste ) AND is_array( $liste['listenstatistik'] ) AND count( $liste['listenstatistik'] ) > 0 ) { ?><?php
@@ -17,21 +17,21 @@
     <div class="elemente row row-cols-1 row-cols-lg-2 row-cols-xxl-3 gy-3 gx-0 gx-lg-3 w-100">
 
         <div class="col blanko invisible" blanko="element" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>"<?php
-        if( array_key_exists( 'werkzeuge_element', $liste ) AND is_array( $liste['werkzeuge_element'] ) AND count( $liste['werkzeuge_element'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['werkzeuge_element'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
+        if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND count( $liste['element']['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['element']['werkzeuge'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
         ?>>
             <div class="card">
                 <div class="meta card-header text-center"></div>
                 <div class="card-body p-2">
                     <h5 class="card-title text-truncate text-nowrap">
-                        <span class="beschriftung"><?= $liste['beschriftung']; ?></span>
-                        <?php if( array_key_exists( 'zusatzsymbol', $liste ) AND is_array( $liste['zusatzsymbol'] ) AND count( $liste['zusatzsymbol'] ) > 0 ) foreach( $liste['zusatzsymbol'] as $zusatzsymbol ) { ?><span class="zusatzsymbol float-end stretched-link-unwirksam" zusatzsymbol="<?= $zusatzsymbol ?>"></span><?php } ?>
-                        <?php if( array_key_exists( 'link', $liste ) AND is_array( $liste['link'] ) ) { ?><a class="stretched-link" link='<?= json_encode( $liste['link'], JSON_UNESCAPED_UNICODE ); ?>'></a><?php } ?>
+                        <span class="beschriftung"><?= $liste['element']['beschriftung']; ?></span>
+                        <?php if( array_key_exists( 'zusatzsymbol', $liste['element'] ) AND is_array( $liste['element']['zusatzsymbol'] ) AND count( $liste['element']['zusatzsymbol'] ) > 0 ) foreach( $liste['element']['zusatzsymbol'] as $zusatzsymbol ) { ?><span class="zusatzsymbol float-end stretched-link-unwirksam" zusatzsymbol="<?= $zusatzsymbol ?>"></span><?php } ?>
+                        <?php if( array_key_exists( 'link', $liste['element'] ) AND is_array( $liste['element']['link'] ) ) { ?><a class="stretched-link" link='<?= json_encode( $liste['element']['link'], JSON_UNESCAPED_UNICODE ); ?>'></a><?php } ?>
                     </h5>
-                    <?php if( array_key_exists( 'vorschau', $liste ) ) { ?><div class="card-text mt-1 vorschau text-truncate text-secondary"><?php
-                        foreach( $liste['vorschau'] as $vorschau ) { ?><span class="eigenschaft" eigenschaft="<?= $vorschau ?>"></span><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap']; ?> spacer"></i><?php }
+                    <?php if( array_key_exists( 'vorschau', $liste['element'] ) AND is_array( $liste['element']['vorschau'] ) AND count( $liste['element']['vorschau'] ) > 0 ) { ?><div class="card-text mt-1 vorschau text-truncate text-secondary"><?php
+                        foreach( $liste['element']['vorschau'] as $vorschau ) { ?><span class="eigenschaft" eigenschaft="<?= $vorschau ?>"></span><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap']; ?> spacer"></i><?php }
                     ?></div><?php } ?>
-                    <?php if( array_key_exists( 'verknuepfungen', $liste ) AND VERKNUEPFUNGEN[ $liste['verknuepfungen'] ]['typ'] === 'status_auswahl' ) { ?><div class="card-text mt-1">
-                        <?= view( 'Templates/Liste/verknuepfungen_status_auswahl', array( 'verknuepfungen' => $liste['verknuepfungen'], ) ); ?>
+                    <?php if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'status_auswahl' ) { ?><div class="card-text mt-1">
+                        <?= view( 'Templates/Liste/verknuepfungen_status_auswahl', array( 'verknuepfungen' => $liste['element']['verknuepfungen'], ) ); ?>
                     </div><?php }?>
                 </div>
             </div>

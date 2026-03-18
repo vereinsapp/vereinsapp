@@ -3,18 +3,15 @@
 <?= $this->section( 'cards' ); ?>
 
 <div class="w-100">
-<?= view( 'Templates/Liste/element_navigation', array( 'element_navigation' => $element_navigation ) ); ?>
+<?= view( 'Templates/Liste/element_navigation', array( 'liste' => $liste['alle_mitglieder'] ) ); ?>
 </div>
 
 <div class="row row-cols-1 row-cols-lg-2 gy-3 gx-0 gx-lg-3 w-100">
 
-    <div class="col"><div class="card element" liste="mitglieder" mitglied_id="<?= $mitglied_id; ?>">
-        <?php if( isset( $werkzeuge_element ) AND is_array( $werkzeuge_element ) AND count( $werkzeuge_element ) > 0 ) { ?><div class="card-header"><?php
-            foreach( array_reverse( $werkzeuge_element ) as $werkzeug) { ?><i class="bi bi-<?= SYMBOLE[ WERKZEUGE[ $werkzeug ]['symbol'] ]['bootstrap']; ?> text-<?php
-                if( array_key_exists( 'farbe', WERKZEUGE[ $werkzeug ] ) ) echo WERKZEUGE[ $werkzeug ]['farbe']; else echo 'primary';
-                ?> stretched-link-unwirksam float-end ms-3 werkzeug" werkzeug="<?= $werkzeug; ?>" modal_title="<?= WERKZEUGE[ $werkzeug ]['beschriftung']; ?>" role="button"></i><?php
-            } ?></div><?php
-        } ?>
+    <div class="col"><div class="card element" liste="mitglieder" mitglied_id="<?= $liste['alle_mitglieder']['mitglied_id']; ?>"<?php
+        if( array_key_exists( 'werkzeuge', $liste['alle_mitglieder']['element'] ) AND is_array( $liste['alle_mitglieder']['element']['werkzeuge'] ) AND count( $liste['alle_mitglieder']['element']['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['alle_mitglieder']['element']['werkzeuge'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
+    ?>>
+        <div class="meta card-header"></div>
         <div class="card-body p-2">
             <h5 class="card-title text-center text-truncate text-nowrap">
                 <span class="beschriftung"><span class="eigenschaft" eigenschaft="vorname"></span> <span class="eigenschaft" eigenschaft="nachname"></span></span>
@@ -68,7 +65,7 @@
 
 <?php if( auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'termine_rueckmeldungen_verwalten_modal', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'], ) ) ) ); ?>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_rueckmeldungen_verwalten'], ) ) ) ); ?>
 <?php if( auth()->user()->can( 'termine.anwesenheiten' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'termine_anwesenheiten_dokumentieren_modal', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_anwesenheiten_dokumentieren'], ) ) ) ); ?>

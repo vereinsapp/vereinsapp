@@ -10,15 +10,15 @@ class Notenbank extends BaseController {
     public function notenbank() {
 
         $this->viewdata['liste']['aktuelles_verzeichnis'] = VIEWDATA['notenbank'];
-        $this->viewdata['liste']['aktuelles_verzeichnis']['link'] = array( 'liste' => 'notenbank', 'eigenschaften' => array( 'id', ), );
-        $this->viewdata['liste']['aktuelles_verzeichnis']['vorschau'] = array( 'kategorie', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis' );
+        $this->viewdata['liste']['aktuelles_verzeichnis']['element']['link'] = array( 'liste' => 'notenbank', 'eigenschaften' => array( 'id', ), );
+        $this->viewdata['liste']['aktuelles_verzeichnis']['element']['vorschau'] = array( 'kategorie', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis' );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge_liste'][] = 'titel_erstellen';
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge_element'][] = 'titel_aendern';
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge_element'][] = 'titel_duplizieren';
-            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge_element'][] = 'element_loeschen';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge'][] = 'titel_erstellen';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'titel_aendern';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'titel_duplizieren';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_loeschen';
 
         }
 
@@ -29,25 +29,19 @@ class Notenbank extends BaseController {
     public function titel( $titel_id ) { $titel_id = (int)$titel_id;
         if( empty( model(Titel_Model::class)->find( $titel_id ) ) ) throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 
-        $this->viewdata['titel_id'] = $titel_id;
+        $this->viewdata['liste']['aktuelles_verzeichnis'] = VIEWDATA['notenbank'];
+        $this->viewdata['liste']['aktuelles_verzeichnis']['titel_id'] = $titel_id;
+        $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'] = array();
 
         $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array( 'liste' => 'notenbank', 'link' => TRUE, 'titel_id' => $titel_id, );
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
-            $this->viewdata['werkzeuge_element'][] = 'titel_aendern';
-            $this->viewdata['werkzeuge_element'][] = 'titel_duplizieren';
-            $this->viewdata['werkzeuge_element'][] = 'element_loeschen_weiterleiten';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'titel_aendern';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'titel_duplizieren';
+            $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_loeschen_weiterleiten';
 
         }
-
-        $this->viewdata['element_navigation'] = array(
-            'liste' => 'notenbank',
-            'titel_id' => $titel_id,
-            'instanz' => 'aktuelles_verzeichnis',
-            'filtern' => VIEWDATA['notenbank']['filtern'],
-            'sortieren' => VIEWDATA['notenbank']['sortieren'],
-        );
 
         $this->viewdata_bereinigen(); echo view( 'Notenbank/titel_details', $this->viewdata );
     }

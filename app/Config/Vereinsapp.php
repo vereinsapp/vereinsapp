@@ -254,7 +254,7 @@ class Vereinsapp extends BaseConfig
             ),
         ),
         'notenbank_setliste' => array(
-            'beschriftung' => 'Setlisteneintrag',
+            'beschriftung' => 'Setliste',
             'controller' => 'notenbank',
             'element' => 'notenbank_setlisteneintrag',
             'element_beschriftung' => 'Setlisteneintrag',
@@ -271,132 +271,158 @@ class Vereinsapp extends BaseConfig
             'filtern' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ) ),
             'sortieren' => array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
             // 'sortable' => TRUE,
-            // 'link' => array( 'liste' => 'mitglieder', 'eigenschaften' => array( 'id', ), ),
-            // 'modal_title' => 'Titel für ein Modal',
-            'beschriftung' => '<span class="eigenschaft" eigenschaft="vorname"></span> <span class="eigenschaft" eigenschaft="nachname"></span>',
-            // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion' ),
-            // 'verknuepfungen' => 'termine_rueckmeldungen',
-            'zusatzsymbol' => array('geburtstag'),
             // '[element]_id' => 42,
             // 'disabled_ids' => array(),
-            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
-            'werkzeuge_element' => array(),
+            'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array( 'anzahl' => array() ),
             // 'ueberschrift' => 'Alle Mitglider',
+            'element' => array(
+                'werkzeuge' => array(),
+                // 'modal_title' => 'Titel für ein Modal',
+                'beschriftung' => '<span class="eigenschaft" eigenschaft="vorname"></span> <span class="eigenschaft" eigenschaft="nachname"></span>',
+                'zusatzsymbol' => array('geburtstag'),
+                // 'link' => array( 'liste' => 'mitglieder', 'eigenschaften' => array( 'id', ), ),
+                // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion' ),
+                // 'verknuepfungen' => 'termine_rueckmeldungen',
+            ),
         ),
 
         'verfuegbare_rechte' => array(
             'liste' => 'verfuegbare_rechte',
             'filtern' => array(),
             'sortieren' => array(),
-            'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
-            'werkzeuge_liste' => array(),
-            'werkzeuge_element' => array(),
+            'werkzeuge' => array(),
             'listenstatistik' => array(),
+            'element' => array(
+                'werkzeuge' => array(),
+                'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
+            ),
         ),
 
         'vergebene_rechte' => array(
             'liste' => 'vergebene_rechte',
             'filtern' => array(),
             'sortieren' => array(),
-            'werkzeuge_liste' => array(),
-            'werkzeuge_element' => array(),
+            'werkzeuge' => array(),
             'listenstatistik' => array(),
+            'element' => array(
+                'werkzeuge' => array(),
+            ),
         ),
 
         'aufgaben' => array(
             'liste' => 'aufgaben',
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-            'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
-            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
-            'werkzeuge_element' => array(),
+            'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array( 'anzahl' => array() ),
+            'element' => array(
+                'werkzeuge' => array(),
+                'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
+            ),
         ),
 
         'aufgaben_rueckmeldungen' => array(
             'liste' => 'aufgaben_rueckmeldungen',
             'filtern' => array(),
             'sortieren' => array(),
-            'werkzeuge_liste' => array(),
-            'werkzeuge_element' => array(),
+            'werkzeuge' => array(),
             'listenstatistik' => array(),
+            'element' => array(
+                'werkzeuge' => array(),
+            ),
         ),
 
         'aufgaben_zuordnungen_termine' => array(
             'liste' => 'aufgaben_zuordnungen_termine',
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'aufgabe_titel', 'richtung' => SORT_ASC, ),
-            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
-            'werkzeuge_element' => array(),
+            'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array( 'anzahl' => array() ),
+            'element' => array(
+                'werkzeuge' => array(),
+            ),
         ),
 
         'termine' => array(
             'liste' => 'termine',
             'filtern' => array( 'start' => array( 'start' => HEUTE ), 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ) ), ),
             'sortieren' => array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
-            'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
-            'zusatzsymbol' => array('kategorie'),
-            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
-            'werkzeuge_element' => array(),
+            'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array( 'anzahl' => array() ),
+            'element' => array(
+                'werkzeuge' => array(),
+                'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
+                'zusatzsymbol' => array('kategorie'),
+            ),
         ),
 
         'termine_rueckmeldungen' => array(
             'liste' => 'termine_rueckmeldungen',
             'filtern' => array(),
             'sortieren' => array(),
-            'werkzeuge_liste' => array(),
-            'werkzeuge_element' => array(),
+            'werkzeuge' => array(),
             'listenstatistik' => array(),
+            'element' => array(
+                'werkzeuge' => array(),
+            ),
         ),
 
         'termine_anwesenheiten' => array(
             'liste' => 'termine_anwesenheiten',
             'filtern' => array(),
             'sortieren' => array(),
-            'werkzeuge_liste' => array(),
-            'werkzeuge_element' => array(),
+            'werkzeuge' => array(),
             'listenstatistik' => array(),
+            'element' => array(
+                'werkzeuge' => array(),
+            ),
         ),
 
         'strafkatalog' => array(
             'liste' => 'strafkatalog',
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
-            'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
-            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
-            'werkzeuge_element' => array(),
+            'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array( 'anzahl' => array() ),
+            'element' => array(
+                'werkzeuge' => array(),
+                'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
+            ),
         ),
 
         'strafkatalog_zugewiesene_strafen' => array(
             'liste' => 'strafkatalog_zugewiesene_strafen',
             'filtern' => array(),
             'sortieren' => array(),
-            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
-            'werkzeuge_element' => array(),
+            'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array( 'anzahl' => array(), 'summe' => array( 'eigenschaft' => 'strafe_wert' ) ),
+            'element' => array(
+                'werkzeuge' => array(),
+            ),
         ),
 
         'notenbank' => array(
             'liste' => 'notenbank',
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
-            'beschriftung' => '<span class="eigenschaft" eigenschaft="titel_nr"></span> <span class="eigenschaft" eigenschaft="titel"></span>',
-            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
-            'werkzeuge_element' => array(),
+            'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array( 'anzahl' => array() ),
+            'element' => array(
+                'werkzeuge' => array(),
+                'beschriftung' => '<span class="eigenschaft" eigenschaft="titel_nr"></span> <span class="eigenschaft" eigenschaft="titel"></span>',
+            ),
         ),
 
         'notenbank_setliste' => array(
             'liste' => 'notenbank_setliste',
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'status', 'richtung' => SORT_ASC, ),
-            'werkzeuge_liste' => array( 'sortieren_manip', 'filtern_manip', ),
-            'werkzeuge_element' => array(),
+            'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array( 'anzahl' => array() ),
+            'element' => array(
+                'werkzeuge' => array(),
+            ),
         ),
 
     );
