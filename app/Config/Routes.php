@@ -100,6 +100,8 @@ $routes->group('strafkatalog', static function ($routes) {
 
 $routes->group('notenbank', static function ($routes) {
     $routes->get('',                                        'Notenbank::notenbank');
+    $routes->get('notensuche',                              'Notenbank::notensuche');
+
     $routes->get('notenbank',                               'Notenbank::notenbank');
     $routes->get('(:num)',                                  'Notenbank::details/$1');
     $routes->get('details/(:num)',                          'Notenbank::details/$1');

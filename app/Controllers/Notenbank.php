@@ -7,6 +7,13 @@ use App\Models\Notenbank\Titel_Model;
 
 class Notenbank extends BaseController {
 
+    public function notensuche() {
+
+        $this->viewdata['schluessel'] = 'Platz zum austoben';
+
+        echo view( 'Notenbank/notensuche', $this->viewdata );
+    }
+
     public function notenbank() {
 
         $this->viewdata['liste']['aktuelles_verzeichnis'] = HAUPTINSTANZEN['notenbank'];
