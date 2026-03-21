@@ -5,30 +5,31 @@
     if( array_key_exists( 'disabled_ids', $liste ) AND is_array( $liste['disabled_ids'] ) AND count( $liste['disabled_ids'] ) > 0 ) { ?> disabled_ids='<?= json_encode( $liste['disabled_ids'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     if( array_key_exists( 'werkzeuge', $liste ) AND is_array( $liste['werkzeuge'] ) AND count( $liste['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['werkzeuge'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
     ?>><div class="card">
-    <div class="meta card-header text-center text-secondary"><?php
+    <div class="meta card-header text-center text-secondary invisible"><?php
         if( array_key_exists( 'ueberschrift', $liste ) ) echo $liste['ueberschrift']; 
     ?></div>
     <div class="elemente list-group list-group-flush<?php
     if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sortable';
     ?>" liste="<?= $liste['liste']; ?>">
 
-        <div class="list-group-item<?php
-        if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'element_auswahl' ) echo ' werkzeug';
-        ?> blanko invisible" blanko="element" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>"<?php
-        if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'element_auswahl' ) { ?> werkzeug="<?= LISTEN[ $liste['element']['verknuepfungen'] ]['element']?>_erstellen" verknuepfungen="<?= $liste['element']['verknuepfungen'] ?>"<?php }
+        <div class="list-group-item blanko invisible" blanko="element" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>"<?php
         if( array_key_exists( 'modal_title', $liste['element'] ) ) { ?> modal_title="<?= $liste['element']['modal_title'] ?>"<?php }
         if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND count( $liste['element']['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['element']['werkzeuge'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
         ?>>
 
-            <div class="meta text-truncate d-flex flex-nowrap align-items-center">
+            <div class="text-truncate d-flex flex-nowrap align-items-center">
 
 <?php if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'janein_auswahl' ) echo view( 'Templates/Liste/verknuepfungen_janein_auswahl', array( 'verknuepfungen' => $liste['element']['verknuepfungen'], ) ); ?>
 
-                <label class="flex-grow-1"><span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste['element'] ) ) { ?><?= $liste['element']['beschriftung']; ?><?php } ?></span></label>
+                <label class="flex-grow-1<?php
+                if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'element_auswahl' ) echo ' werkzeug';
+                ?>"<?php
+                if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'element_auswahl' ) { ?> werkzeug="<?= LISTEN[ $liste['element']['verknuepfungen'] ]['element']?>_erstellen" verknuepfungen="<?= $liste['element']['verknuepfungen'] ?>"<?php }
+                ?>><span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste['element'] ) ) { ?><?= $liste['element']['beschriftung']; ?><?php } ?></span></label>
                 <?php if( array_key_exists( 'zusatzsymbol', $liste['element'] ) AND is_array( $liste['element']['zusatzsymbol'] ) AND count( $liste['element']['zusatzsymbol'] ) > 0 ) foreach( $liste['element']['zusatzsymbol'] as $zusatzsymbol ) { ?><span class="zusatzsymbol float-end ms-2 stretched-link-unwirksam" zusatzsymbol="<?= $zusatzsymbol ?>"></span><?php }
                     if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) { ?><i class="bi bi-<?= SYMBOLE['sortable']['bootstrap']; ?> sortable_handle text-primary float-end ms-2 stretched-link-unwirksam " role="button"></i><?php }
                     if( array_key_exists( 'link', $liste['element'] ) AND is_array( $liste['element']['link'] ) ) { ?><a class="stretched-link" link='<?= json_encode( $liste['element']['link'], JSON_UNESCAPED_UNICODE ); ?>'></a><?php } ?>
-
+                <div class="meta invisible"></div>
             </div>
 
             <?php if( array_key_exists( 'vorschau', $liste['element'] ) ) { ?><div class="vorschau text-truncate text-secondary small"><?php

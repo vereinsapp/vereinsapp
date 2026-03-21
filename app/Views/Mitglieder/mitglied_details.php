@@ -11,7 +11,7 @@
     <div class="col"><div class="card element" liste="mitglieder" mitglied_id="<?= $liste['alle_mitglieder']['mitglied_id']; ?>"<?php
         if( array_key_exists( 'werkzeuge', $liste['alle_mitglieder']['element'] ) AND is_array( $liste['alle_mitglieder']['element']['werkzeuge'] ) AND count( $liste['alle_mitglieder']['element']['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['alle_mitglieder']['element']['werkzeuge'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
     ?>>
-        <div class="meta card-header"></div>
+        <div class="meta card-header invisible"></div>
         <div class="card-body p-2">
             <h5 class="card-title text-center text-truncate text-nowrap">
                 <span class="beschriftung"><span class="eigenschaft" eigenschaft="vorname"></span> <span class="eigenschaft" eigenschaft="nachname"></span></span>

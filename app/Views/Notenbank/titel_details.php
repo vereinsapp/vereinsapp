@@ -11,7 +11,7 @@
     <div class="col"><div class="card element" liste="notenbank" titel_id="<?= $liste['aktuelles_verzeichnis']['titel_id']; ?>"<?php
         if( array_key_exists( 'werkzeuge', $liste['aktuelles_verzeichnis']['element'] ) AND is_array( $liste['aktuelles_verzeichnis']['element']['werkzeuge'] ) AND count( $liste['aktuelles_verzeichnis']['element']['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['aktuelles_verzeichnis']['element']['werkzeuge'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
     ?>>
-        <div class="meta card-header"></div>
+        <div class="meta card-header invisible"></div>
         <div class="card-body p-2">
             <h5 class="card-title text-center text-truncate text-nowrap">
                 <span class="beschriftung"><span class="eigenschaft" eigenschaft="titel_nr"></span> <span class="eigenschaft" eigenschaft="titel"></span></span>

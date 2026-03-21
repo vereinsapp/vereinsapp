@@ -49,7 +49,7 @@ function Liste_$ElementAktualisieren($element) {
     });
 
     // ACTION UND ROLE DEFINIEREN
-    if ($element.find("a.stretched-link").exists() || $element.hasClass("werkzeug") || $element.find("label[for]").exists()) {
+    if ($element.find("a.stretched-link").exists() || $element.find("label.werkzeug").exists() || $element.find("label[for]").exists()) {
         if ($element.hasClass("list-group-item")) {
             $element.attr("role", "button").addClass("list-group-item-action").removeClass("element-action");
             $element.find(".card").removeAttr("role").removeClass("element-action");

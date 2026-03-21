@@ -11,7 +11,7 @@
     <div class="col"><div class="card element" liste="termine" termin_id="<?= $liste['bevorstehende_termine']['termin_id']; ?>" mitglied_id="<?= ICH_ID; ?>"<?php
         if( array_key_exists( 'werkzeuge', $liste['bevorstehende_termine']['element'] ) AND is_array( $liste['bevorstehende_termine']['element']['werkzeuge'] ) AND count( $liste['bevorstehende_termine']['element']['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['bevorstehende_termine']['element']['werkzeuge'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
     ?>>
-        <div class="meta card-header"></div>
+        <div class="meta card-header invisible"></div>
         <div class="card-body p-2">
             <h5 class="card-title text-center text-truncate text-nowrap">
                 <span class="beschriftung"><span class="eigenschaft" eigenschaft="titel"></span></span>

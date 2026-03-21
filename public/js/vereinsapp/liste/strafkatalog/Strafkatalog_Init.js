@@ -39,8 +39,8 @@ function Strafkatalog_Init() {
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal") },
             {
-                strafe_id: Util_WertBereinigtZurueck($(this).attr("strafe_id"), undefined),
-                mitglied_id: Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
+                strafe_id: Util_WertBereinigtZurueck($(this).closest(".element").attr("strafe_id"), undefined),
+                mitglied_id: Util_WertBereinigtZurueck($(this).closest(".element").attr("mitglied_id"), undefined),
                 status: 1,
             },
             Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),

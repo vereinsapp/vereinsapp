@@ -30,10 +30,7 @@ Sass mixin für Integration der bootstrap-Farben in eigene Klassen?
 _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt
 weiches Löschen für abhängige Tabellen einführen
 Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details)
-verzeichnis überarbeiten
-    Verzeichnis filtern und sortieren
-    Meta-Infos für Unterverzeichnisse und Dateien anzeigen
-    Funktion zur Erstellung eines Verzeichnisses, inkl. Kopieren von index.html aus dem übergeordneten Verzeichnis
+Mit Github Copilot Datei-Upload implementieren
 Besseres Symbol für _eigenschaft_zuruecksetzen und _eigenschaft_zuruecksetzen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
 .werkzeug in .formular mit ENTER betätigbar machen
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen (ausschließlich spezielle Zusatzsymbole wie beispiele Termin-Kategorie als hex-Symbole)
@@ -53,9 +50,6 @@ auswertung-Views vereinheitlichen?
 Spinner als blanko
 Neues-Prefix loswerden (damit im Verzeichnis die Units zueinander sortiert werden)
 Werkzeug für Rückmeldungen und Anwesenheiten auch in Auswertung einführen + WerkzeugAktualisieren vereinheitlichen mit Übernahme jeglicher [element]_id-Atribute
-    Bugfix janein_auswahl wird nicht angezeigt
-    Bugfix Klick auf Werkzeug direkt im Element löst Element-Event und Werkzeug-Event aus
-    Bugfix bemerkung_aendern bekommt liste-Attribut überschrieben
     sortable als Werkzeug einführen?
     texte mit werkzeuge verheiraten?
 

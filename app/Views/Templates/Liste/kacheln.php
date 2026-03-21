@@ -5,7 +5,7 @@
     if( array_key_exists( 'disabled_ids', $liste ) AND is_array( $liste['disabled_ids'] ) AND count( $liste['disabled_ids'] ) > 0 ) { ?> disabled_ids='<?= json_encode( $liste['disabled_ids'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     if( array_key_exists( 'werkzeuge', $liste ) AND is_array( $liste['werkzeuge'] ) AND count( $liste['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['werkzeuge'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
     ?>>
-    <div class="meta w-100 text-end text-secondary"><?php
+    <div class="meta w-100 text-end text-secondary invisible"><?php
         if( array_key_exists( 'listenstatistik', $liste ) AND is_array( $liste['listenstatistik'] ) AND count( $liste['listenstatistik'] ) > 0 ) { ?><?php
             if( array_key_exists( 'anzahl', $liste['listenstatistik'] ) ) { ?><span class="listenstatistik" listenstatistik="anzahl"></span> Element(e)<?php }
             if( array_key_exists( 'anzahl', $liste['listenstatistik'] ) AND array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i><?php }
@@ -18,7 +18,7 @@
         if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND count( $liste['element']['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['element']['werkzeuge'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
         ?>>
             <div class="card">
-                <div class="meta card-header text-center"></div>
+                <div class="meta card-header text-center invisible"></div>
                 <div class="card-body p-2">
                     <h5 class="card-title text-truncate text-nowrap">
                         <span class="beschriftung"><?= $liste['element']['beschriftung']; ?></span>
