@@ -9,7 +9,7 @@
         if( array_key_exists( 'ueberschrift', $liste ) ) echo $liste['ueberschrift']; 
     ?></div>
     <div class="elemente list-group list-group-flush<?php
-    if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) echo ' sortable';
+        if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND in_array( 'sortable', $liste['element']['werkzeuge'] ) ) echo ' sortable';
     ?>" liste="<?= $liste['liste']; ?>">
 
         <div class="list-group-item blanko invisible" blanko="element" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>"<?php
@@ -27,7 +27,6 @@
                 if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'element_auswahl' ) { ?> werkzeug="<?= LISTEN[ $liste['element']['verknuepfungen'] ]['element']?>_erstellen" verknuepfungen="<?= $liste['element']['verknuepfungen'] ?>"<?php }
                 ?>><span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste['element'] ) ) { ?><?= $liste['element']['beschriftung']; ?><?php } ?></span></label>
                 <?php if( array_key_exists( 'zusatzsymbol', $liste['element'] ) AND is_array( $liste['element']['zusatzsymbol'] ) AND count( $liste['element']['zusatzsymbol'] ) > 0 ) foreach( $liste['element']['zusatzsymbol'] as $zusatzsymbol ) { ?><span class="zusatzsymbol float-end ms-2 stretched-link-unwirksam" zusatzsymbol="<?= $zusatzsymbol ?>"></span><?php }
-                    if( array_key_exists( 'sortable', $liste ) AND $liste['sortable'] ) { ?><i class="bi bi-<?= SYMBOLE['sortable']['bootstrap']; ?> sortable_handle text-primary float-end ms-2 stretched-link-unwirksam " role="button"></i><?php }
                     if( array_key_exists( 'link', $liste['element'] ) AND is_array( $liste['element']['link'] ) ) { ?><a class="stretched-link" link='<?= json_encode( $liste['element']['link'], JSON_UNESCAPED_UNICODE ); ?>'></a><?php } ?>
                 <div class="meta invisible"></div>
             </div>

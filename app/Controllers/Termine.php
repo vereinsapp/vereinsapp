@@ -96,8 +96,8 @@ class Termine extends BaseController {
 
             if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
-                $this->viewdata['liste']['zugeordnete_setliste']['sortable'] = TRUE;
                 $this->viewdata['liste']['zugeordnete_setliste']['werkzeuge'][] = 'setliste_verwalten';
+                $this->viewdata['liste']['zugeordnete_setliste']['element']['werkzeuge'][] = 'sortable';
 
                 $this->viewdata['liste']['setliste_verwalten'] = VIEWDATA['notenbank'];
                 // unset($this->viewdata['liste']['setliste_verwalten']['filtern']);

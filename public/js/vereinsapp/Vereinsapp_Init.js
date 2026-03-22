@@ -47,11 +47,9 @@ Mit Github Copilot flex-nowrap, flex-grow, text-truncate und text-nowrap diskuti
 Mit Github Copilot Agent die Anordnung in Details optimieren
 Wie weiter mit Liste_$ListenstatistikAktualisieren?
 auswertung-Views vereinheitlichen?
-Spinner als blanko
 Neues-Prefix loswerden (damit im Verzeichnis die Units zueinander sortiert werden)
-Werkzeug für Rückmeldungen und Anwesenheiten auch in Auswertung einführen + WerkzeugAktualisieren vereinheitlichen mit Übernahme jeglicher [element]_id-Atribute
-    sortable als Werkzeug einführen?
-    texte mit werkzeuge verheiraten?
+zusatzsymbol und Spinneran werkzeug angleichen (blanko, liste, js-Funktion, etc.)
+texte mit werkzeuge verheiraten
 
 ERLEDIGT
 

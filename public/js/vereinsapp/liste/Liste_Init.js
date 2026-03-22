@@ -140,7 +140,7 @@ function Liste_Init() {
 
     // SORTABLE
     $(".sortable").sortable({
-        handle: ".sortable_handle",
+        handle: '.werkzeug[werkzeug="sortable"]',
         start: function (event, ui) {
             ui.item.addClass("border-top border-primary shadow");
         },
