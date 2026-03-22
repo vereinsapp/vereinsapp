@@ -9,20 +9,19 @@
 
 function Liste_ElementErstellen(data_vollstaendig, dom, data, modal_title, element_id, liste) {
     if (!data_vollstaendig) {
-        const $neues_modal = Dom_$NeuesModalInitialisiertZurueck(
+        const $modal = Dom_$ModalInitialisiertZurueck(
             Liste_ElementTextMitBeschriftungErsetztZurueck(modal_title, {
                 element1: { liste: liste },
             }),
             LISTEN[liste].element + "_basiseigenschaften",
         );
-        Dom_$ModalOeffnen($neues_modal);
+        Dom_$ModalOeffnen($modal);
 
-        const $neues_formular = $neues_modal.find(".formular");
-        $neues_formular.attr("liste", liste);
-        if (typeof element_id !== "undefined")
-            $neues_formular.attr("werkzeug", "element_duplizieren").attr(LISTEN[liste].element + "_id", element_id);
-        else $neues_formular.attr("werkzeug", "element_erstellen");
-        Liste_Element$FormularInitialisieren($neues_formular);
+        const $formular = $modal.find(".formular");
+        $formular.attr("liste", liste);
+        if (typeof element_id !== "undefined") $formular.attr("werkzeug", "element_duplizieren").attr(LISTEN[liste].element + "_id", element_id);
+        else $formular.attr("werkzeug", "element_erstellen");
+        Liste_Element$FormularInitialisieren($formular);
     } else {
         const ajax_dom = dom;
 

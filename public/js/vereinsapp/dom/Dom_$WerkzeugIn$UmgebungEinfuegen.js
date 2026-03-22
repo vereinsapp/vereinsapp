@@ -9,7 +9,7 @@ function Dom_$WerkzeugIn$UmgebungEinfuegen(werkzeuge, $umgebung, data) {
     // Werkzeuge in Umgebung einfügen
     $.each(werkzeuge, function (position, werkzeug) {
         let $werkzeug = $umgebung.find('.werkzeug[werkzeug="' + werkzeug + '"]');
-        if (!$werkzeug.exists()) $werkzeug = Dom_$NeuesWerkzeugInitialisiertZurueck(werkzeug, data);
+        if (!$werkzeug.exists()) $werkzeug = Dom_$WerkzeugInitialisiertZurueck(werkzeug, data);
 
         if (position === 0) $werkzeug.appendTo($umgebung);
         else $werkzeug.insertAfter($umgebung.find('.werkzeug[werkzeug="' + werkzeuge[position - 1] + '"]'));

@@ -1,6 +1,4 @@
 function Ajax_InDieSchlange(url, data, dom, rein_validation_pos_aktion, rein_validation_neg_aktion) {
-    const neue_ajax_id = AJAXSCHLANGE.length;
-
     if ("$werkzeug" in dom && dom.$werkzeug.exists()) {
         dom.$werkzeug.find("." + STATUS_SPINNER_CLASS).remove();
         dom.$werkzeug.find(".beschriftung").addClass("invisible");
@@ -14,9 +12,9 @@ function Ajax_InDieSchlange(url, data, dom, rein_validation_pos_aktion, rein_val
         dom.$werkzeug.prop("disabled", true);
     }
 
-    data.ajax_id = neue_ajax_id;
+    data.ajax_id = AJAXSCHLANGE.length;
 
-    AJAXSCHLANGE[neue_ajax_id] = {
+    AJAXSCHLANGE[data.ajax_id] = {
         data: data,
         dom: dom,
         rein_validation_pos_aktion: rein_validation_pos_aktion,

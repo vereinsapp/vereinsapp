@@ -1,15 +1,15 @@
 function Dom_ToastFeuern(nachricht, farbe = "success") {
     const $toasts = $("#toasts");
 
-    const $neuer_toast = TOASTS.$blanko_toast.clone().removeClass("blanko invisible");
-    $neuer_toast.addClass("border-" + farbe);
-    $neuer_toast
+    const $toast = TOASTS.$blanko_toast.clone().removeClass("blanko invisible");
+    $toast.addClass("border-" + farbe);
+    $toast
         .find(".toast-body")
         .addClass("text-" + farbe)
         .text(nachricht);
 
-    $neuer_toast.appendTo($toasts);
+    $toast.appendTo($toasts);
 
-    const neuer_toast = bootstrap.Toast.getOrCreateInstance($neuer_toast);
-    neuer_toast.show();
+    const toast = bootstrap.Toast.getOrCreateInstance($toast);
+    toast.show();
 }

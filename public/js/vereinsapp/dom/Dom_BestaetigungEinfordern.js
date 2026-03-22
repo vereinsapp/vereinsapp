@@ -1,6 +1,6 @@
 function Dom_BestaetigungEinfordern(nachricht, modal_title, werkzeug, data) {
-    const $neues_bestaetigung_modal = Dom_$NeuesModalInitialisiertZurueck(modal_title, "bestaetigung_modal");
-    const $bestaetigung = $neues_bestaetigung_modal.find(".bestaetigung");
+    const $modal = Dom_$ModalInitialisiertZurueck(modal_title, "bestaetigung_modal");
+    const $bestaetigung = $modal.find(".bestaetigung");
 
     $bestaetigung.find(".bestaetigung_nachricht").text(nachricht);
 
@@ -20,5 +20,5 @@ function Dom_BestaetigungEinfordern(nachricht, modal_title, werkzeug, data) {
             $bestaetigt_werkzeug.attr(eigenschaft, wert);
         });
 
-    Dom_$ModalOeffnen($neues_bestaetigung_modal);
+    Dom_$ModalOeffnen($modal);
 }

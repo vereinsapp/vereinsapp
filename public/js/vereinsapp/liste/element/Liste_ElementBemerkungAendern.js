@@ -8,15 +8,15 @@
 
 function Liste_ElementBemerkungAendern(data_vollstaendig, dom, data, element_id, liste) {
     if (!data_vollstaendig) {
-        const $neues_modal = Dom_$NeuesModalInitialisiertZurueck(undefined, "bemerkung_aendern_modal");
-        Dom_$ModalOeffnen($neues_modal);
-        const $neues_formular = $neues_modal.find(".formular");
-        $neues_formular
+        const $modal = Dom_$ModalInitialisiertZurueck(undefined, "bemerkung_aendern_modal");
+        Dom_$ModalOeffnen($modal);
+        const $formular = $modal.find(".formular");
+        $formular
             .attr("liste", liste)
             .attr("werkzeug", "bemerkung_aendern")
             .attr(LISTEN[liste].element + "_id", element_id);
-        Dom_$Quelle$ZielVerknuepfen($neues_formular.find(".data_vollstaendig"), dom.$werkzeug.closest(".element"));
-        Liste_Element$FormularInitialisieren($neues_modal.find(".formular"));
+        Dom_$Quelle$ZielVerknuepfen($formular.find(".data_vollstaendig"), dom.$werkzeug.closest(".element"));
+        Liste_Element$FormularInitialisieren($modal.find(".formular"));
     } else {
         dom.$element = Dom_$ZielZu$QuelleZurueck(dom.$werkzeug);
         Dom_$Quelle$ZielEntknuepfen(dom.$werkzeug, dom.$element);

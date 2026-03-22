@@ -43,7 +43,7 @@ function Dom_Init() {
 
     // AUTOLOAD-MODALS OEFFNEN
     $.each(AUTOLOAD_MODALS, function (position, modal_id) {
-        Dom_$ModalOeffnen(Dom_$NeuesModalInitialisiertZurueck(undefined, modal_id));
+        Dom_$ModalOeffnen(Dom_$ModalInitialisiertZurueck(undefined, modal_id));
         // Liste_Element$FormularInitialisieren($modal.find(".formular")); wird nach Dom_Init() aufgerufen in Liste_Init()
     });
 
@@ -60,7 +60,7 @@ function Dom_Init() {
 
     // DATENSCHUTZ-RICHTLINIE OEFFNEN
     if (typeof Localstorage_RausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined) === "undefined")
-        Dom_$ModalOeffnen(Dom_$NeuesModalInitialisiertZurueck(undefined, "datenschutz_richtlinie_modal"));
+        Dom_$ModalOeffnen(Dom_$ModalInitialisiertZurueck(undefined, "datenschutz_richtlinie_modal"));
 
     // DATENSCHUTZ-RICHTLINIE AKZEPTIEREN
     $(document).on("click", "[werkzeug='datenschutz_richtlinie_akzeptieren']", function () {

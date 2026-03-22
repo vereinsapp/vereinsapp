@@ -7,14 +7,14 @@
 
 function Mitglieder_EinmalLinkAnzeigen(bestaetigt, dom, modal_title, mitglied_id) {
     if (!bestaetigt) {
-        const $neues_modal = Dom_$NeuesModalInitialisiertZurueck(modal_title, "mitglied_einmal_link_anzeigen_modal");
-        Dom_$ModalOeffnen($neues_modal);
-        $neues_modal.find(".mitglied_einmal_link_anzeigen_nachricht").text(
+        const $modal = Dom_$ModalInitialisiertZurueck(modal_title, "mitglied_einmal_link_anzeigen_modal");
+        Dom_$ModalOeffnen($modal);
+        $modal.find(".mitglied_einmal_link_anzeigen_nachricht").text(
             Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_einmal_link_anzeigen.bestaetigung, {
                 element1: { liste: "mitglieder", mitglied_id: mitglied_id },
             }),
         );
-        $neues_modal.find('.werkzeug[werkzeug="einmal_link_anzeigen"]').attr("mitglied_id", mitglied_id).addClass("bestaetigt");
+        $modal.find('.werkzeug[werkzeug="einmal_link_anzeigen"]').attr("mitglied_id", mitglied_id).addClass("bestaetigt");
     } else {
         const ajax_dom = dom;
         const ajax_data = Util_WertBereinigtZurueck(new Object(), new Object());
