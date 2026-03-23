@@ -1,0 +1,1 @@
+<span class="position-absolute bottom-0 end-1 translate-middle p-1 border rounded-circle blanko invisible" blanko="hinweispunkt"></span>

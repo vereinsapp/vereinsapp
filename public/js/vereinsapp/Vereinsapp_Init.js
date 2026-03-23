@@ -48,7 +48,7 @@ Mit Github Copilot Agent die Anordnung in Details optimieren
 Wie weiter mit Liste_$ListenstatistikAktualisieren?
 verzeichnis radikal ausmisten
 auswertung-Views vereinheitlichen?
-zusatzsymbol, roter/grüner punkt und spinner an werkzeug angleichen (blanko, liste, js-Funktion, etc.)
+zusatzsymbol und spinner an werkzeug angleichen (blanko, liste, js-Funktion, etc.)
 
 ERLEDIGT
 

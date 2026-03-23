@@ -17,12 +17,10 @@ WERKZEUGE.sortieren_manip.aktualisieren_aktion = function ($werkzeug) {
         $werkzeug.addClass("invisible");
     else $werkzeug.removeClass("invisible");
 
-    // ROTER PUNKT AKTUALISIEREN
-    $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
+    // ROTER HINWEISPUNKT AKTUALISIEREN
+    $werkzeug.removeClass("position-relative").find(".hinweispunkt").remove();
     if (isObject(sortieren_manip) && Object.keys(sortieren_manip).length > 0)
-        $werkzeug
-            .addClass("position-relative")
-            .append('<span class="position-absolute bottom-0 end-1 translate-middle p-1 bg-danger border border-danger rounded-circle">');
+        $werkzeug.addClass("position-relative").append(Dom_$HinweispunktInitialisiertZurueck("danger"));
 };
 
 function Liste_SortierenInit() {

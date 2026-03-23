@@ -17,12 +17,9 @@ WERKZEUGE.gruppieren_manip.aktualisieren_aktion = function ($werkzeug) {
         $werkzeug.addClass("invisible"); // nicht 0, weil zusammenfassung noch mit dabei ist
     else $werkzeug.removeClass("invisible");
 
-    // ROTER PUNKT AKTUALISIEREN
-    $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
-    if (typeof gruppieren_manip !== "undefined" && gruppieren_manip.length > 0)
-        $werkzeug
-            .addClass("position-relative")
-            .append('<span class="position-absolute bottom-0 end-1 translate-middle p-1 bg-danger border border-danger rounded-circle">');
+    // ROTER HINWEISPUNKT AKTUALISIEREN
+    $werkzeug.removeClass("position-relative").find(".hinweispunkt").remove();
+    if (typeof gruppieren_manip !== "undefined") $werkzeug.addClass("position-relative").append(Dom_$HinweispunktInitialisiertZurueck("danger"));
 };
 
 function Liste_GruppierenInit() {

@@ -2,6 +2,7 @@
  */
 
 const BLANKOS = new Object();
+const HINWEISPUNKTE = new Object(); // enthält später lediglich $blanko_hinweispunkt
 const TOASTS = new Object(); // enthält später lediglich $blanko_toast
 const MODALS = new Object();
 const AUTOLOAD_MODALS = new Array();
@@ -26,6 +27,11 @@ function Dom_Init() {
     // WERKZEUG-BLANKO IN WERKZEUGE BEREITSTELLEN
     $.each(BLANKOS.werkzeug, function (position, $blanko) {
         WERKZEUGE.$blanko_werkzeug = $blanko;
+    });
+
+    // HINWEISPUNKT-BLANKO IN HINWEISPUNKTE BEREITSTELLEN
+    $.each(BLANKOS.hinweispunkt, function (position, $blanko) {
+        HINWEISPUNKTE.$blanko_hinweispunkt = $blanko;
     });
 
     // TOAST-BLANKO IN TOASTS BEREITSTELLEN
@@ -63,7 +69,7 @@ function Dom_Init() {
         Dom_$ModalOeffnen(Dom_$ModalInitialisiertZurueck(undefined, "datenschutz_richtlinie_modal"));
 
     // DATENSCHUTZ-RICHTLINIE AKZEPTIEREN
-    $(document).on("click", "[werkzeug='datenschutz_richtlinie_akzeptieren']", function () {
+    $(document).on("click", ".werkzeug[werkzeug='datenschutz_richtlinie_akzeptieren']", function () {
         Localstorage_Rein("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, DATETIME.now().toISO());
         Dom_$ModalSchliessen($(this).closest(".modal"));
     });

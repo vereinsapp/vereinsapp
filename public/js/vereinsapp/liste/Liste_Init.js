@@ -2,20 +2,18 @@
  */
 
 WERKZEUGE.bearbeiten_modus_ein_ausschalten.aktualisieren_aktion = function ($werkzeug) {
-    // GRÜNER PUNKT AKTUALISIEREN
-    $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
+    // GRÜNER HINWEISPUNKT AKTUALISIEREN
+    $werkzeug.removeClass("position-relative").find(".hinweispunkt").remove();
     if (
         LISTEN[Util_WertBereinigtZurueck($werkzeug.attr("liste"), undefined)].instanz[Util_WertBereinigtZurueck($werkzeug.attr("instanz"), undefined)]
             .bearbeiten_modus !== false
     )
-        $werkzeug
-            .addClass("position-relative")
-            .append('<span class="position-absolute bottom-0 end-1 translate-middle p-1 bg-success border border-success rounded-circle">');
+        $werkzeug.addClass("position-relative").append(Dom_$HinweispunktInitialisiertZurueck("success"));
 };
 
 WERKZEUGE.element_erstellen.aktualisieren_aktion = function ($werkzeug) {
-    // GRÜNER PUNKT AKTUALISIEREN
-    $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
+    // GRÜNER HINWEISPUNKT AKTUALISIEREN
+    $werkzeug.removeClass("position-relative").find(".hinweispunkt").remove();
     if (
         $(
             "#" +
@@ -27,9 +25,7 @@ WERKZEUGE.element_erstellen.aktualisieren_aktion = function ($werkzeug) {
             .find(".elemente")
             .find(".element").length === 0
     )
-        $werkzeug
-            .addClass("position-relative")
-            .append('<span class="position-absolute bottom-0 end-1 translate-middle p-1 bg-success border border-success rounded-circle">');
+        $werkzeug.addClass("position-relative").append(Dom_$HinweispunktInitialisiertZurueck("success"));
 };
 
 function Liste_Init() {
