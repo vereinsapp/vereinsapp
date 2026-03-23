@@ -1,6 +1,6 @@
 /**
  * @param {string} text
- * @param {object} data
+ * @param {Object} data
  */
 
 function Liste_ElementTextMitBeschriftungErsetztZurueck(text, data) {

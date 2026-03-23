@@ -18,10 +18,8 @@ function Liste_ElementAendern(data_vollstaendig, dom, data, modal_title, element
         Dom_$ModalOeffnen($modal);
 
         const $formular = $modal.find(".formular");
-        $formular
-            .attr("liste", liste)
-            .attr("werkzeug", "element_aendern")
-            .attr(LISTEN[liste].element + "_id", element_id);
+        $formular.attr("liste", liste).attr("werkzeug", "element_aendern");
+        if (typeof element_id !== "undefined") $formular.attr(LISTEN[liste].element + "_id", element_id);
         Liste_Element$FormularInitialisieren($formular);
     } else {
         const ajax_dom = dom;
@@ -50,7 +48,7 @@ function Liste_ElementAendern(data_vollstaendig, dom, data, modal_title, element
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Dom_$ModalSchliessen(AJAX.dom.$modal);
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_aendern.erfolg, {
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_aendern.beschriftung.erfolg, {
                         element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
                     }),
                 );
@@ -60,7 +58,7 @@ function Liste_ElementAendern(data_vollstaendig, dom, data, modal_title, element
                 else if (isObject(AJAX.antwort.validation) && "dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_aendern.fehler, {
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_aendern.beschriftung.fehler, {
                         element1: { liste: liste, [LISTEN[liste].element + "_id"]: AJAX.data[LISTEN[liste].element + "_id"] },
                     }),
                     "danger",

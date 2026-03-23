@@ -5,7 +5,13 @@
  */
 
 function Localstorage_Leeren(bestaetigt, dom, modal_title) {
-    if (!bestaetigt) Dom_BestaetigungEinfordern("Willst du wirklich deinen LocalStorage leeren?", modal_title, "localstorage_leeren", undefined);
+    if (!bestaetigt)
+        Dom_BestaetigungEinfordern(
+            Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.localstorage_leeren.beschriftung.bestaetigung, new Object()),
+            modal_title,
+            "localstorage_leeren",
+            undefined,
+        );
     else {
         const datenschutz_richtlinie = Localstorage_RausZurueck("datenschutz_richtlinie_" + DATENSCHUTZ_RICHTLINIE_DATUM, undefined);
 

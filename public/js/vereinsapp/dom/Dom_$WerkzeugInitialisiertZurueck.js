@@ -4,7 +4,7 @@ function Dom_$WerkzeugInitialisiertZurueck(werkzeug, data) {
     $werkzeug
         .attr("werkzeug", werkzeug)
         .addClass("bi-" + SYMBOLE[WERKZEUGE[werkzeug].symbol].bootstrap)
-        .attr("modal_title", WERKZEUGE[werkzeug].beschriftung);
+        .attr("modal_title", WERKZEUGE[werkzeug].beschriftung.beschriftung);
     if ("farbe" in WERKZEUGE[werkzeug]) $werkzeug.addClass("text-" + WERKZEUGE[werkzeug].farbe);
     else $werkzeug.addClass("text-primary");
 

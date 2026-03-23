@@ -7,7 +7,7 @@
             <button type="button" class="btn btn-outline-<?php
             if( array_key_exists('farbe', WERKZEUGE['bemerkung_aendern']) ) echo WERKZEUGE['bemerkung_aendern']['farbe']; else echo "primary";
             ?> flex-fill werkzeug" werkzeug="bemerkung_aendern" liste="<?= $verknuepfungen ?>">
-                <span class="beschriftung"><i class="bi bi-<?= SYMBOLE['bemerkung']['bootstrap']; ?>"></i></span>
+                <span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['bemerkung_aendern']['symbol'] ]['bootstrap']; ?>"></i></span>
             </button>
             <button type="button" class="btn btn-outline-<?= VERKNUEPFUNGEN[ $verknuepfungen ]['status_erlaubt'][2]['farbe']; ?> w-25 flex-fill werkzeug" werkzeug="<?= LISTEN[ $verknuepfungen ]['element']?>_erstellen" status="2">
                 <span class="beschriftung"><?= VERKNUEPFUNGEN[ $verknuepfungen ]['status_erlaubt'][2]['aktiv']; ?></span>

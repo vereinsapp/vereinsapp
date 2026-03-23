@@ -43,7 +43,7 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
             if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                 Dom_$ModalSchliessen(AJAX.dom.$modal);
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_aendern.erfolg, {
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_aendern.beschriftung.erfolg, {
                         element1: {
                             liste: verknuepfungen,
                             [LISTEN[verknuepfungen].element + "_id"]: AJAX.data[LISTEN[verknuepfungen].element + "_id"],
@@ -57,7 +57,7 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
             else if (isObject(AJAX.antwort.validation) && "dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                 Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
             Dom_ToastFeuern(
-                Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_aendern.fehler, {
+                Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_aendern.beschriftung.fehler, {
                     element1: {
                         liste: AJAX.data.verknuepfungen,
                         [LISTEN[AJAX.data.verknuepfungen].element + "_id"]: AJAX.data[LISTEN[AJAX.data.verknuepfungen].element + "_id"],

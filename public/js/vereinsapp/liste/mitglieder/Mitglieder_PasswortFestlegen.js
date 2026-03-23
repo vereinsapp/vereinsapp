@@ -12,6 +12,7 @@ function Mitglieder_PasswortFestlegen(dom, data, mitglied_id) {
         function (AJAX) {
             if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Dom_$ModalSchliessen(AJAX.dom.$modal);
             Dom_ToastFeuern("Du hast erfolgreich ein neues Passwort festgelegt.");
+            Dom_ToastFeuern(Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.passwort_festlegen.beschriftung.erfolg, new Object()));
         },
         function (AJAX) {
             if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");

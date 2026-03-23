@@ -32,7 +32,6 @@ const AJAX_ZYKLUSZEIT = <?= AJAX_ZYKLUSZEIT ?>;
 
 const DATENSCHUTZ_RICHTLINIE_DATUM = '<?= DATENSCHUTZ_RICHTLINIE_DATUM ?>';
 
-const TEXTE = <?= json_encode( TEXTE) ?>;
 const SYMBOLE = <?= json_encode( SYMBOLE) ?>;
 const SORT_ASC = <?= SORT_ASC ?>;
 const SORT_DESC = <?= SORT_DESC ?>;

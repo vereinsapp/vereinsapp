@@ -53,10 +53,13 @@ function Liste_Element$FormularInitialisieren($formular) {
         $data_vollstaendig_werkzeug.addClass("werkzeug").attr("werkzeug", werkzeug);
         if ("farbe" in WERKZEUGE[werkzeug])
             $data_vollstaendig_werkzeug.removeClass("btn-outline-success").addClass("btn-outline-" + WERKZEUGE[werkzeug].farbe);
-        $data_vollstaendig_werkzeug.find(".beschriftung").text(
-            Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE[werkzeug].beschriftung, {
-                element1: { liste: liste },
-            }),
+        $data_vollstaendig_werkzeug.find(".beschriftung").html(
+            '<i class="bi bi-' +
+                SYMBOLE[WERKZEUGE[werkzeug].symbol].bootstrap +
+                '"></i> ' +
+                Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE[werkzeug].beschriftung.beschriftung, {
+                    element1: { liste: liste },
+                }),
         );
     }
     $data_vollstaendig_werkzeug.attr("liste", liste).attr(LISTEN[liste].element + "_id", element_id);

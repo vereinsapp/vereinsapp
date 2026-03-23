@@ -47,8 +47,8 @@ Mit Github Copilot flex-nowrap, flex-grow, text-truncate und text-nowrap diskuti
 Mit Github Copilot Agent die Anordnung in Details optimieren
 Wie weiter mit Liste_$ListenstatistikAktualisieren?
 auswertung-Views vereinheitlichen?
-zusatzsymbol und Spinner an werkzeug angleichen (blanko, liste, js-Funktion, etc.)
-texte mit werkzeuge verheiraten
+zusatzsymbol und spinner an werkzeug angleichen (blanko, liste, js-Funktion, etc.)
+werkzeug bearbeiten_modus einführen
 
 ERLEDIGT
 

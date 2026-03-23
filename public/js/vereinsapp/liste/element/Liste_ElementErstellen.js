@@ -18,9 +18,8 @@ function Liste_ElementErstellen(data_vollstaendig, dom, data, modal_title, eleme
         Dom_$ModalOeffnen($modal);
 
         const $formular = $modal.find(".formular");
-        $formular.attr("liste", liste);
-        if (typeof element_id !== "undefined") $formular.attr("werkzeug", "element_duplizieren").attr(LISTEN[liste].element + "_id", element_id);
-        else $formular.attr("werkzeug", "element_erstellen");
+        $formular.attr("liste", liste).attr("werkzeug", "element_erstellen");
+        if (typeof element_id !== "undefined") $formular.attr(LISTEN[liste].element + "_id", element_id);
         Liste_Element$FormularInitialisieren($formular);
     } else {
         const ajax_dom = dom;
@@ -54,7 +53,7 @@ function Liste_ElementErstellen(data_vollstaendig, dom, data, modal_title, eleme
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Dom_$ModalSchliessen(AJAX.dom.$modal);
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_erstellen.erfolg, {
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_erstellen.beschriftung.erfolg, {
                         element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
                     }),
                 );
@@ -64,7 +63,7 @@ function Liste_ElementErstellen(data_vollstaendig, dom, data, modal_title, eleme
                 else if (isObject(AJAX.antwort.validation) && "dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_erstellen.fehler, {
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_erstellen.beschriftung.fehler, {
                         element1: {
                             liste: AJAX.data.liste,
                             [LISTEN[AJAX.data.liste].element + "_id"]: AJAX.data[LISTEN[AJAX.data.liste].element + "_id"],

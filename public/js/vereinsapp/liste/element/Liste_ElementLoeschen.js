@@ -14,7 +14,7 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
         else werkzeug = "element_loeschen";
 
         Dom_BestaetigungEinfordern(
-            Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_loeschen.bestaetigung, {
+            Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_loeschen.beschriftung.bestaetigung, {
                 element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
             }),
             Liste_ElementTextMitBeschriftungErsetztZurueck(modal_title, {
@@ -37,7 +37,7 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
             function (AJAX) {
                 const liste = AJAX.data.liste;
                 const element_id = AJAX.data[LISTEN[liste].element + "_id"];
-                const toast_text = Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_loeschen.erfolg, {
+                const toast_text = Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_loeschen.beschriftung.erfolg, {
                     element1: {
                         liste: liste,
                         [LISTEN[liste].element + "_id"]: element_id,
@@ -70,7 +70,7 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_loeschen.fehler, {
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_loeschen.beschriftung.fehler, {
                         element1: {
                             liste: liste,
                             [LISTEN[liste].element + "_id"]: data[LISTEN[liste].element + "_id"],

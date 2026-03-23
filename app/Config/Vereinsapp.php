@@ -97,50 +97,280 @@ class Vereinsapp extends BaseConfig
      * --------------------------------------------------------------------------
      */
     public $werkzeuge = array(
-        // Pflicht: symbol, beschriftung / Optional: farbe
-        'filtern_manip' => array( 'symbol' => 'filtern', 'beschriftung' => '{liste1} filtern', ),
-        'filtern_wert_inklusiv_exklusiv' => array( 'symbol' => 'inklusiv_exklusiv', 'beschriftung' => 'Wert inklusiv/exklusiv', ),
-        'filtern_wert_loeschen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Wert löschen', 'farbe' => 'danger', ),
-        'filtern_eigenschaft_zuruecksetzen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Eigenschaft zurücksetzen', 'farbe' => 'danger', ),
-        'sortieren_manip' => array( 'symbol' => 'sortieren', 'beschriftung' => '{liste1} sortieren', ),
-        'sortieren_eigenschaft_zuruecksetzen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Eigenschaft zurücksetzen', 'farbe' => 'danger', ),
-        'gruppieren_manip' => array( 'symbol' => 'gruppieren', 'beschriftung' => '{liste1} gruppieren', ),
-        'gruppieren_eigenschaft_zuruecksetzen' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Eigenschaft zurücksetzen', 'farbe' => 'danger', ),
-        'sortable' => array( 'symbol' => 'sortable', 'beschriftung' => '{liste1} sortieren', ),
-        'bemerkung_aendern' => array( 'symbol' => 'bemerkung', 'beschriftung' => 'Bemerkung ändern', ),
-        'localstorage_leeren' => array( 'symbol' => 'loeschen', 'beschriftung' => 'Gerätespeicher leeren', 'farbe' => 'danger', ),
-        'datenschutz_richtlinie_akzeptieren' => array( 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Datenschutz-Richtlinie akzeptieren', 'farbe' => 'success', ),
-        'inhalt_kopieren' => array( 'symbol' => 'inhalt_kopieren', 'beschriftung' => 'Inhalt kopieren', ),
-        'element_erstellen' => array( 'symbol' => 'erstellen', 'beschriftung' => '{element1} erstellen', ),
-        'element_aendern' => array( 'symbol' => 'aendern', 'beschriftung' => '{element1} ändern', ),
-        'element_duplizieren' => array( 'symbol' => 'duplizieren', 'beschriftung' => '{element1} duplizieren', ),
-        'element_loeschen' => array( 'symbol' => 'loeschen', 'beschriftung' => '{element1} löschen', 'farbe' => 'danger', ),
-        'element_loeschen_weiterleiten' => array( 'symbol' => 'loeschen', 'beschriftung' => '{element1} löschen', 'farbe' => 'danger', ),
+        // Pflicht: symbol, beschriftung (beschriftung, bestaetigung, erfolg, fehler) / Optional: farbe
+        'filtern_manip' => array(
+            'symbol' => 'filtern',
+            'beschriftung' => array(
+                'beschriftung' => '{liste1} filtern',
+            ),
+        ),
+        'filtern_wert_inklusiv_exklusiv' => array(
+            'symbol' => 'inklusiv_exklusiv',
+            'beschriftung' => array(
+                'beschriftung' => 'Wert inklusiv/exklusiv',
+            ),
+        ),
+        'filtern_wert_loeschen' => array(
+            'symbol' => 'loeschen',
+            'beschriftung' => array(
+                'beschriftung' => 'Wert löschen',
+            ),
+            'farbe' => 'danger',
+        ),
+        'filtern_eigenschaft_zuruecksetzen' => array(
+            'symbol' => 'loeschen',
+            'beschriftung' => array(
+                'beschriftung' => 'Eigenschaft zurücksetzen',
+            ),
+            'farbe' => 'danger',
+        ),
+        'sortieren_manip' => array(
+            'symbol' => 'sortieren',
+            'beschriftung' => array(
+                'beschriftung' => '{liste1} sortieren',
+            ),
+        ),
+        'sortieren_eigenschaft_zuruecksetzen' => array(
+            'symbol' => 'loeschen',
+            'beschriftung' => array(
+                'beschriftung' => 'Eigenschaft zurücksetzen',
+            ),
+            'farbe' => 'danger',
+        ),
+        'gruppieren_manip' => array(
+            'symbol' => 'gruppieren',
+            'beschriftung' => array(
+                'beschriftung' => '{liste1} gruppieren',
+            ),
+        ),
+        'gruppieren_eigenschaft_zuruecksetzen' => array(
+            'symbol' => 'loeschen',
+            'beschriftung' => array(
+                'beschriftung' => 'Eigenschaft zurücksetzen',
+            ),
+            'farbe' => 'danger',
+        ),
+        'sortable' => array(
+            'symbol' => 'sortable',
+            'beschriftung' => array(
+                'beschriftung' => '{liste1} sortieren',
+            ),
+        ),
+        'bemerkung_aendern' => array(
+            'symbol' => 'bemerkung',
+            'beschriftung' => array(
+                'beschriftung' => 'Bemerkung ändern',
+                'bestaetigung' => 'Willst du wirklich die Bemerkung ändern?',
+                'erfolg' => 'Bemerkung wurde erfolgreich geändert.',
+                'fehler' => 'Bemerkung konnte nicht geändert werden!',
+            ),
+        ),
+        'localstorage_leeren' => array(
+            'symbol' => 'loeschen',
+            'beschriftung' => array(
+                'beschriftung' => 'Gerätespeicher leeren',
+                'bestaetigung' => 'Willst du wirklich deinen Gerätespeicher leeren?',
+                'erfolg' => 'Dein Gerätespeicher wurde erfolgreich geleert.',
+                'fehler' => 'Dein Gerätespeicher konnte nicht geleert werden!',
+            ),
+            'farbe' => 'danger',
+        ),
+        'datenschutz_richtlinie_akzeptieren' => array(
+            'symbol' => 'pos_zuordnung',
+            'beschriftung' => array(
+                'beschriftung' => 'Datenschutz-Richtlinie akzeptieren',
+            ),
+            'farbe' => 'success',
+        ),
+        'inhalt_kopieren' => array(
+            'symbol' => 'inhalt_kopieren',
+            'beschriftung' => array(
+                'beschriftung' => 'Inhalt kopieren',
+            ),
+        ),
+        'element_erstellen' => array(
+            'symbol' => 'erstellen',
+            'beschriftung' => array(
+                'beschriftung' => '{element1} erstellen',
+                'bestaetigung' => 'Willst du wirklich {element1} erstellen?',
+                'erfolg' => '{element1} wurde erfolgreich erstellt.',
+                'fehler' => '{element1} konnte nicht erstellt werden!'
+            ),
+        ),
+        'element_aendern' => array(
+            'symbol' => 'aendern',
+            'beschriftung' => array(
+                'beschriftung' => '{element1} ändern',
+                'bestaetigung' => 'Willst du wirklich {element1} ändern?',
+                'erfolg' => '{element1} wurde erfolgreich geändert.',
+                'fehler' => '{element1} konnte nicht geändert werden!'
+            ),
+        ),
+        'element_duplizieren' => array(
+            'symbol' => 'duplizieren',
+            'beschriftung' => array(
+                'beschriftung' => '{element1} duplizieren',
+                'bestaetigung' => 'Willst du wirklich {element1} duplizieren?',
+                'erfolg' => '{element1} wurde erfolgreich dupliziert.',
+                'fehler' => '{element1} konnte nicht dupliziert werden!'
+            ),
+        ),
+        'element_loeschen' => array(
+            'symbol' => 'loeschen',
+            'beschriftung' => array(
+                'beschriftung' => '{element1} löschen',
+                'bestaetigung' => 'Willst du wirklich {element1} löschen?',
+                'erfolg' => '{element1} wurde erfolgreich gelöscht.',
+                'fehler' => '{element1} konnte nicht gelöscht werden!',
+            ),
+            'farbe' => 'danger',
+        ),
+        'element_loeschen_weiterleiten' => array(
+            'symbol' => 'loeschen',
+            'beschriftung' => array(
+                'beschriftung' => '{element1} löschen',
+            ),
+            'farbe' => 'danger', 
+        ),
 
-        'rechte_vergeben' => array( 'symbol' => 'rechte_vergeben', 'beschriftung' => 'Rechte vergeben', ),
-        'vergebenes_recht_erstellen' => array( 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Recht vergeben', ),
-        'einmal_link_anzeigen' => array( 'symbol' => 'einmal_link_anzeigen', 'beschriftung' => 'Einmal-Link anzeigen', ),
-        'einmal_link_email' => array( 'symbol' => 'einmal_link_email', 'beschriftung' => 'Einmal-Link per Email verschicken', ),
-        'passwort_aendern' => array( 'symbol' => 'passwort_aendern', 'beschriftung' => 'Mein Passwort ändern', ),
-        'passwort_festlegen' => array( 'symbol' => 'passwort_aendern', 'beschriftung' => 'Neues Passwort festlegen', ),
-        'passwort_anzeigen' => array( 'symbol' => 'unsichtbar', 'beschriftung' => 'Passwort anzeigen', ),
-        'meine_daten_aendern' => array( 'symbol' => 'aendern', 'beschriftung' => 'Meine Daten ändern', ),
+        'rechte_vergeben' => array(
+            'symbol' => 'rechte_vergeben',
+            'beschriftung' => array(
+                'beschriftung' => 'Rechte vergeben',
+            ),
+        ),
+        'vergebenes_recht_erstellen' => array(
+            'symbol' => 'pos_zuordnung',
+            'beschriftung' => array(
+                'beschriftung' => 'Recht vergeben',
+            ),
+        ),
+        'einmal_link_anzeigen' => array(
+            'symbol' => 'einmal_link_anzeigen',
+            'beschriftung' => array(
+                'beschriftung' => 'Einmal-Link anzeigen',
+                'bestaetigung' => 'Willst du wirklich für {element1} einen neuen Einmal-Link erstellen und anzeigen?',
+                'erfolg' => 'Einmal-Link für {element1} wurde erfolgreich erstellt und angezeigt.',
+                'fehler' => 'Einmal-Link für {element1} konnte nicht erstellt und angezeigt werden!',
+            ),
+        ),
+        'einmal_link_email' => array(
+            'symbol' => 'einmal_link_email',
+            'beschriftung' => array(
+                'beschriftung' => 'Einmal-Link per Email verschicken',
+                'bestaetigung' => 'Willst du wirklich für {element1} einen neuen Einmal-Link erstellen und per Email verschicken?',
+                'erfolg' => 'Einmal-Link für {element1} wurde erfolgreich erstellt und per Email verschickt.',
+                'fehler' => 'Einmal-Link für {element1} konnte nicht erstellt und per Email verschickt werden!',
+            ),
+        ),
+        'passwort_aendern' => array(
+            'symbol' => 'passwort_aendern',
+            'beschriftung' => array(
+                'beschriftung' => 'Passwort ändern',
+                'bestaetigung' => 'Willst du wirklich dein Passwort ändern?',
+                'erfolg' => 'Dein Passwort wurde erfolgreich geändert.',
+                'fehler' => 'Dein Passwort konnte nicht geändert werden!',
+            ),
+        ),
+        'passwort_festlegen' => array(
+            'symbol' => 'passwort_aendern',
+            'beschriftung' => array(
+                'beschriftung' => 'Passwort festlegen',
+                'bestaetigung' => 'Willst du wirklich ein neues Passwort festlegen?',
+                'erfolg' => 'Neues Passwort wurde erfolgreich festgelegt.',
+                'fehler' => 'Neues Passwort konnte nicht festgelegt werden!',
+            ),
+        ),
+        'passwort_anzeigen' => array(
+            'symbol' => 'unsichtbar',
+            'beschriftung' => array(
+                'beschriftung' => 'Passwort anzeigen',
+            ),
+        ),
+        'meine_daten_aendern' => array(
+            'symbol' => 'aendern',
+            'beschriftung' => array(
+                'beschriftung' => 'Meine Daten ändern',
+            ),
+        ),
 
-        'termine_aufgaben_zuordnen' => array( 'symbol' => 'aufgaben', 'beschriftung' => 'Aufgaben zuordnen', ),
-        'aufgaben_zuordnung_termine_erstellen' => array( 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Zuordnung machen', ),
-        'aufgaben_rueckmeldungen_verwalten' => array( 'symbol' => 'pos_rueckmeldung', 'beschriftung' => 'Aufgabe-Rückmeldungen verwalten', ),
-        'aufgaben_rueckmeldung_erstellen' => array( 'symbol' => 'angenommen_rueckmeldung', 'beschriftung' => 'Rückmeldung machen', ),
+        'termine_aufgaben_zuordnen' => array(
+            'symbol' => 'aufgaben',
+            'beschriftung' => array(
+                'beschriftung' => 'Aufgaben zuordnen',
+            ),
+        ),
+        'aufgaben_zuordnung_termine_erstellen' => array(
+            'symbol' => 'pos_zuordnung',
+            'beschriftung' => array(
+                'beschriftung' => 'Zuordnung machen',
+            ),
+        ),
+        'aufgaben_rueckmeldungen_verwalten' => array(
+            'symbol' => 'pos_rueckmeldung',
+            'beschriftung' => array(
+                'beschriftung' => 'Aufgabe-Rückmeldungen verwalten',
+            ),
+        ),
+        'aufgaben_rueckmeldung_erstellen' => array(
+            'symbol' => 'angenommen_rueckmeldung',
+            'beschriftung' => array(
+                'beschriftung' => 'Rückmeldung machen',
+            ),
+        ),
 
-        'termine_rueckmeldungen_verwalten' => array( 'symbol' => 'pos_rueckmeldung', 'beschriftung' => 'Termin-Rückmeldungen verwalten', ),
-        'termine_rueckmeldung_erstellen' => array( 'symbol' => 'angenommen_rueckmeldung', 'beschriftung' => 'Rückmeldung machen', ),
-        'termine_anwesenheiten_dokumentieren' => array( 'symbol' => 'anwesenheiten_dokumentieren', 'beschriftung' => 'Termin-Anwesenheiten dokumentieren', ),
-        'termine_anwesenheit_erstellen' => array( 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Termin-Anwesenheit dokumentieren', ),
+        'termine_rueckmeldungen_verwalten' => array(
+            'symbol' => 'pos_rueckmeldung',
+            'beschriftung' => array(
+                'beschriftung' => 'Termin-Rückmeldungen verwalten',
+            ),
+        ),
+        'termine_rueckmeldung_erstellen' => array(
+            'symbol' => 'angenommen_rueckmeldung',
+            'beschriftung' => array(
+                'beschriftung' => 'Rückmeldung machen',
+            ),
+        ),
+        'termine_anwesenheiten_dokumentieren' => array(
+            'symbol' => 'anwesenheiten_dokumentieren',
+            'beschriftung' => array(
+                'beschriftung' => 'Termin-Anwesenheiten dokumentieren',
+            ),
+        ),
+        'termine_anwesenheit_erstellen' => array(
+            'symbol' => 'pos_zuordnung',
+            'beschriftung' => array(
+                'beschriftung' => 'Termin-Anwesenheit dokumentieren',
+            ),
+        ),
 
-        'strafen_zuweisen' => array( 'symbol' => 'strafen_zuweisen', 'beschriftung' => 'Strafe einem Mitglied zuweisen', ),
-        'strafkatalog_zugewiesene_strafe_erstellen' => array( 'symbol' => 'strafen_zuweisen', 'beschriftung' => 'Strafe einem Mitglied zuweisen', ),
-
-        'setliste_verwalten' => array( 'symbol' => 'setliste', 'beschriftung' => 'Setliste verwalten', ),
-        'notenbank_setlisteneintrag_erstellen' => array( 'symbol' => 'pos_zuordnung', 'beschriftung' => 'Titel hinzufügen', ),
+        'strafen_zuweisen' => array(
+            'symbol' => 'strafen_zuweisen',
+            'beschriftung' => array(
+                'beschriftung' => 'Strafe einem Mitglied zuweisen',
+            ),
+        ),
+        'strafkatalog_zugewiesene_strafe_erstellen' => array(
+            'symbol' => 'strafen_zuweisen',
+            'beschriftung' => array(
+                'beschriftung' => 'Strafe einem Mitglied zuweisen',
+                'bestaetigung' => 'Willst du wirklich {element2} die Strafe {element1} zuweisen?',
+                'erfolg' => '{element2} wurde erfolgreich die Strafe {element1} zugewiesen.',
+                'fehler' => '{element2} konnte nicht die Strafe {element1} zugewiesen werden!',
+            ),
+        ),
+        'setliste_verwalten' => array(
+            'symbol' => 'setliste',
+            'beschriftung' => array(
+                'beschriftung' => 'Setliste verwalten',
+            ),
+        ),
+        'notenbank_setlisteneintrag_erstellen' => array(
+            'symbol' => 'pos_zuordnung',
+            'beschriftung' => array(
+                'beschriftung' => 'Titel hinzufügen',
+            ),
+        ),
     );
 
     /**
@@ -1295,58 +1525,5 @@ class Vereinsapp extends BaseConfig
      * Winterzeit: +01:00 / Sommerzeit: +02:00
      */
     public $force_localstorage_reset_zeitpunkt = '2025-05-21T16:00:00.000+02:00';
-
-    /**
-     * --------------------------------------------------------------------------
-     * Texte
-     * --------------------------------------------------------------------------
-     *
-     */
-    public $texte = array(
-        'element1_erstellen' => array(
-            'modal_title' => '{element1} erstellen',
-            // 'bestaetigung' => 'Willst du wirklich {element1} erstellen?',
-            'erfolg' => '{element1} wurde erfolgreich erstellt.',
-            'fehler' => '{element1} konnte nicht erstellt werden!'
-        ),
-        'element1_duplizieren' => array(
-            'modal_title' => '{element1} duplizieren',
-            'bestaetigung' => 'Willst du wirklich {element1} duplizieren?',
-            'erfolg' => '{element1} wurde erfolgreich dupliziert.',
-            'fehler' => '{element1} konnte nicht dupliziert werden!'
-        ),
-        'element1_aendern' => array(
-            'modal_title' => '{element1} ändern',
-            'bestaetigung' => 'Willst du wirklich {element1} ändern?',
-            'erfolg' => '{element1} wurde erfolgreich geändert.',
-            'fehler' => '{element1} konnte nicht geändert werden!'
-        ),
-        'element1_loeschen' => array(
-            'modal_title' => '{element1} löschen',
-            'bestaetigung' => 'Willst du wirklich {element1} löschen?',
-            'erfolg' => '{element1} wurde erfolgreich gelöscht.',
-            'fehler' => '{element1} konnte nicht gelöscht werden!',
-        ),
-
-        'element1_einmal_link_anzeigen' => array(
-            'modal_title' => 'Einmal-Link anzeigen',
-            'bestaetigung' => 'Willst du wirklich für {element1} einen neuen Einmal-Link erstellen und anzeigen?',
-            'erfolg' => 'Einmal-Link für {element1} wurde erfolgreich erstellt und angezeigt.',
-            'fehler' => 'Einmal-Link für {element1} konnte nicht erstellt und angezeigt werden!',
-        ),
-        'element1_einmal_link_email' => array(
-            'modal_title' => 'Einmal-Link per Email verschicken',
-            'bestaetigung' => 'Willst du wirklich für {element1} einen neuen Einmal-Link erstellen und per Email verschicken?',
-            'erfolg' => 'Einmal-Link für {element1} wurde erfolgreich erstellt und per Email verschickt.',
-            'fehler' => 'Einmal-Link für {element1} konnte nicht erstellt und per Email verschickt werden!',
-        ),
-
-        'strafkatalog_zugewiesene_strafe_erstellen' => array(
-            'modal_title' => 'Strafe einem Mitglied zuweisen',
-            'bestaetigung' => 'Willst du wirklich {element2} die Strafe {element1} zuweisen?',
-            'erfolg' => '{element2} wurde erfolgreich die Strafe {element1} zugewiesen.',
-            'fehler' => '{element2} konnte nicht die Strafe {element1} zugewiesen werden!',
-        ),
-    );
 
 }

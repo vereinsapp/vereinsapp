@@ -11,7 +11,7 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
 
     if (VERKNUEPFUNGEN[verknuepfungen].bestaetigung_einfordern && !bestaetigt)
         Dom_BestaetigungEinfordern(
-            Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE[LISTEN[verknuepfungen].element + "_erstellen"].bestaetigung, {
+            Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE[LISTEN[verknuepfungen].element + "_erstellen"].beschriftung.bestaetigung, {
                 element1: {
                     liste: VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[0],
                     [LISTEN[VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[0]].element + "_id"]:
@@ -106,7 +106,7 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(TEXTE.element1_erstellen.fehler, {
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_erstellen.beschriftung.fehler, {
                         element1: {
                             liste: AJAX.data.verknuepfungen,
                             [LISTEN[verknuepfungen].element + "_id"]: AJAX.data[LISTEN[verknuepfungen].element + "_id"],

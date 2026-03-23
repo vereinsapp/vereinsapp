@@ -11,7 +11,7 @@ function Mitglieder_PasswortAendern(dom, data, mitglied_id) {
         ajax_dom,
         function (AJAX) {
             if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists()) AJAX.dom.$formular.find(".eingabe").val("");
-            Dom_ToastFeuern("Du hast erfolgreich das Passwort geändert.");
+            Dom_ToastFeuern(Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.passwort_aendern.beschriftung.erfolg, new Object()));
         },
         function (AJAX) {
             if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");

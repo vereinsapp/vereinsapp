@@ -49,14 +49,17 @@ function Liste_ElementBemerkungAendern(data_vollstaendig, dom, data, element_id,
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                     Dom_$ModalSchliessen(AJAX.dom.$modal);
-                    Dom_ToastFeuern("Bemerkung wurde erfolgreich geändert.");
+                    Dom_ToastFeuern(Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.bemerkung_aendern.beschriftung.erfolg, new Object()));
                 }
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");
                 else if ("dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-                Dom_ToastFeuern("Bemerkung konnte nicht geändert werden.", "danger");
+                Dom_ToastFeuern(
+                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.bemerkung_aendern.beschriftung.fehler, new Object()),
+                    "danger",
+                );
             },
         );
     }
