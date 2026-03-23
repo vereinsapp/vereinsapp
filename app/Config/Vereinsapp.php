@@ -98,6 +98,32 @@ class Vereinsapp extends BaseConfig
      */
     public $werkzeuge = array(
         // Pflicht: symbol, beschriftung (beschriftung, bestaetigung, erfolg, fehler) / Optional: farbe
+        'datenschutz_richtlinie_akzeptieren' => array(
+            'symbol' => 'pos_zuordnung',
+            'beschriftung' => array(
+                'beschriftung' => 'Datenschutz-Richtlinie akzeptieren',
+            ),
+            'farbe' => 'success',
+        ),
+
+        'localstorage_leeren' => array(
+            'symbol' => 'loeschen',
+            'beschriftung' => array(
+                'beschriftung' => 'Gerätespeicher leeren',
+                'bestaetigung' => 'Willst du wirklich deinen Gerätespeicher leeren?',
+                'erfolg' => 'Dein Gerätespeicher wurde erfolgreich geleert.',
+                'fehler' => 'Dein Gerätespeicher konnte nicht geleert werden!',
+            ),
+            'farbe' => 'danger',
+        ),
+
+        'inhalt_kopieren' => array(
+            'symbol' => 'inhalt_kopieren',
+            'beschriftung' => array(
+                'beschriftung' => 'Inhalt kopieren',
+            ),
+        ),
+
         'filtern_manip' => array(
             'symbol' => 'filtern',
             'beschriftung' => array(
@@ -150,44 +176,7 @@ class Vereinsapp extends BaseConfig
             ),
             'farbe' => 'danger',
         ),
-        'sortable' => array(
-            'symbol' => 'sortable',
-            'beschriftung' => array(
-                'beschriftung' => '{liste1} sortieren',
-            ),
-        ),
-        'bemerkung_aendern' => array(
-            'symbol' => 'bemerkung',
-            'beschriftung' => array(
-                'beschriftung' => 'Bemerkung ändern',
-                'bestaetigung' => 'Willst du wirklich die Bemerkung ändern?',
-                'erfolg' => 'Bemerkung wurde erfolgreich geändert.',
-                'fehler' => 'Bemerkung konnte nicht geändert werden!',
-            ),
-        ),
-        'localstorage_leeren' => array(
-            'symbol' => 'loeschen',
-            'beschriftung' => array(
-                'beschriftung' => 'Gerätespeicher leeren',
-                'bestaetigung' => 'Willst du wirklich deinen Gerätespeicher leeren?',
-                'erfolg' => 'Dein Gerätespeicher wurde erfolgreich geleert.',
-                'fehler' => 'Dein Gerätespeicher konnte nicht geleert werden!',
-            ),
-            'farbe' => 'danger',
-        ),
-        'datenschutz_richtlinie_akzeptieren' => array(
-            'symbol' => 'pos_zuordnung',
-            'beschriftung' => array(
-                'beschriftung' => 'Datenschutz-Richtlinie akzeptieren',
-            ),
-            'farbe' => 'success',
-        ),
-        'inhalt_kopieren' => array(
-            'symbol' => 'inhalt_kopieren',
-            'beschriftung' => array(
-                'beschriftung' => 'Inhalt kopieren',
-            ),
-        ),
+
         'element_erstellen' => array(
             'symbol' => 'erstellen',
             'beschriftung' => array(
@@ -231,6 +220,30 @@ class Vereinsapp extends BaseConfig
                 'beschriftung' => '{element1} löschen',
             ),
             'farbe' => 'danger', 
+        ),
+
+        'bearbeiten_modus_ein_ausschalten' => array(
+            'symbol' => 'werkzeuge',
+            'beschriftung' => array(
+                'beschriftung' => 'Bearbeiten-Modus ein-/ausschalten',
+            ),
+        ),
+
+        'sortable' => array(
+            'symbol' => 'sortable',
+            'beschriftung' => array(
+                'beschriftung' => '{liste1} sortieren',
+            ),
+        ),
+
+        'bemerkung_aendern' => array(
+            'symbol' => 'bemerkung',
+            'beschriftung' => array(
+                'beschriftung' => 'Bemerkung ändern',
+                'bestaetigung' => 'Willst du wirklich die Bemerkung ändern?',
+                'erfolg' => 'Bemerkung wurde erfolgreich geändert.',
+                'fehler' => 'Bemerkung konnte nicht geändert werden!',
+            ),
         ),
 
         'rechte_vergeben' => array(

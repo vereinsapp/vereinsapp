@@ -12,5 +12,6 @@ function Liste_EventLocalstorageUpdVariable(liste) {
         LISTEN[liste].instanz[instanz].filtern = Localstorage_RausZurueck(liste + "_" + instanz + "_filtern", new Object());
         LISTEN[liste].instanz[instanz].sortieren = Localstorage_RausZurueck(liste + "_" + instanz + "_sortieren", undefined);
         LISTEN[liste].instanz[instanz].gruppieren = Localstorage_RausZurueck(liste + "_" + instanz + "_gruppieren", undefined);
+        LISTEN[liste].instanz[instanz].bearbeiten_modus = Localstorage_RausZurueck(liste + "_" + instanz + "_bearbeiten_modus", false);
     });
 }

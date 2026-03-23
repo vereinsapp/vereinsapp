@@ -26,5 +26,9 @@ function Liste_EventVariableUpdLocalstorage(liste) {
         if (typeof LISTEN[liste].instanz[instanz].gruppieren !== "undefined")
             Localstorage_Rein(liste + "_" + instanz + "_gruppieren", LISTEN[liste].instanz[instanz].gruppieren);
         else Localstorage_Loeschen(liste + "_" + instanz + "_gruppieren");
+        // bearbeiten_modus wird im LocalStorage gespeichert
+        if (LISTEN[liste].instanz[instanz].bearbeiten_modus !== false)
+            Localstorage_Rein(liste + "_" + instanz + "_bearbeiten_modus", LISTEN[liste].instanz[instanz].bearbeiten_modus);
+        else Localstorage_Loeschen(liste + "_" + instanz + "_bearbeiten_modus");
     });
 }

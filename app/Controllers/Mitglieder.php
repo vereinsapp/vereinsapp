@@ -87,6 +87,7 @@ class Mitglieder extends BaseController {
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
+            $this->viewdata['liste']['alle_mitglieder']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
             $this->viewdata['liste']['alle_mitglieder']['werkzeuge'][] = 'element_erstellen';
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'einmal_link_anzeigen';
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'einmal_link_email';

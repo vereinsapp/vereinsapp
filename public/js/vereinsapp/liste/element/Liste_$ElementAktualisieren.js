@@ -70,6 +70,12 @@ function Liste_$ElementAktualisieren($element) {
     }
 
     // META EIN-/AUSBLENDEN
-    if (isEmptyString($meta.text()) && $meta.find(".werkzeug").length === 0) $meta.addClass("invisible");
+    const $liste = $element.closest('.liste[liste="' + liste + '"][id]');
+    if (
+        isEmptyString($meta.text()) &&
+        ($meta.find(".werkzeug").length === 0 ||
+            ($liste.exists() && LISTEN[liste].instanz[Util_WertBereinigtZurueck($liste.attr("id"), undefined)].bearbeiten_modus === false))
+    )
+        $meta.addClass("invisible");
     else $meta.removeClass("invisible");
 }

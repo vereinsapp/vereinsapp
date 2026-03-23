@@ -75,6 +75,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/Liste_Init.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_$ListeAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_$ListenstatistikAktualisieren.js?v='.VERSION,
+        'js/vereinsapp/liste/Liste_BearbeitenModusEinAusschalten.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_WertNachEigenschaftFormatiertZurueck.js?v='.VERSION,
 
         'js/vereinsapp/liste/element/Liste_ElementErstellen.js?v='.VERSION,

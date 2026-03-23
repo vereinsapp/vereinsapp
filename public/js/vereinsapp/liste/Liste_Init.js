@@ -1,6 +1,18 @@
 /**
  */
 
+WERKZEUGE.bearbeiten_modus_ein_ausschalten.aktualisieren_aktion = function ($werkzeug) {
+    // GRÜNER PUNKT AKTUALISIEREN
+    $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
+    if (
+        LISTEN[Util_WertBereinigtZurueck($werkzeug.attr("liste"), undefined)].instanz[Util_WertBereinigtZurueck($werkzeug.attr("instanz"), undefined)]
+            .bearbeiten_modus !== false
+    )
+        $werkzeug
+            .addClass("position-relative")
+            .append('<span class="position-absolute bottom-0 end-1 translate-middle p-1 bg-success border border-success rounded-circle">');
+};
+
 WERKZEUGE.element_erstellen.aktualisieren_aktion = function ($werkzeug) {
     // GRÜNER PUNKT AKTUALISIEREN
     $werkzeug.removeClass("position-relative").find("span.position-absolute").remove();
@@ -33,6 +45,7 @@ function Liste_Init() {
                 filtern: new Object(),
                 sortieren: undefined,
                 gruppieren: undefined,
+                bearbeiten_modus: undefined,
             };
         LISTEN[liste].instanz[instanz].$blanko_element = $blanko;
     });
@@ -85,6 +98,11 @@ function Liste_Init() {
             typeof EIGENSCHAFTEN[$(this).closest("[liste]").attr("liste")][$(this).attr("eingabe")].eingabe_aendern_aktion === "function"
         )
             EIGENSCHAFTEN[$(this).closest("[liste]").attr("liste")][$(this).attr("eingabe")].eingabe_aendern_aktion($(this));
+    });
+
+    // BEARBEITEN-MODUS EIN-/AUSSCHALTEN
+    $(document).on("click", '.werkzeug[werkzeug="bearbeiten_modus_ein_ausschalten"]', function () {
+        Liste_BearbeitenModusEinAusschalten(Util_WertBereinigtZurueck($(this).attr("instanz")), Util_WertBereinigtZurueck($(this).attr("liste")));
     });
 
     // ELEMENT ERSTELLEN / DUPLIZIEREN

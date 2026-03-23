@@ -15,6 +15,7 @@ function Liste_AuswertungenInit() {
                 filtern: new Object(),
                 sortieren: undefined,
                 gruppieren: undefined,
+                bearbeiten_modus: false,
             };
         LISTEN[auswertungen].instanz[instanz].$blanko_auswertung = $blanko;
 
@@ -24,6 +25,7 @@ function Liste_AuswertungenInit() {
                 filtern: new Object(),
                 sortieren: undefined,
                 gruppieren: undefined,
+                bearbeiten_modus: false,
             };
     });
 }

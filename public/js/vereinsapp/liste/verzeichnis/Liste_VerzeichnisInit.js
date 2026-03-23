@@ -14,6 +14,7 @@ function Liste_VerzeichnisInit() {
                 filtern: new Object(),
                 sortieren: undefined,
                 gruppieren: undefined,
+                bearbeiten_modus: false,
             };
         LISTEN[verzeichnis].instanz[instanz].$blanko_unterverzeichnis = $blanko;
     });
@@ -29,6 +30,7 @@ function Liste_VerzeichnisInit() {
                 filtern: new Object(),
                 sortieren: undefined,
                 gruppieren: undefined,
+                bearbeiten_modus: false,
             };
         LISTEN[verzeichnis].instanz[instanz].$blanko_datei = $blanko;
     });

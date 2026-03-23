@@ -28,6 +28,7 @@ class Strafkatalog extends BaseController {
 
             }
 
+            $this->viewdata['liste']['aktueller_strafkatalog']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
             $this->viewdata['liste']['aktueller_strafkatalog']['werkzeuge'][] = 'element_erstellen';
             $this->viewdata['liste']['aktueller_strafkatalog']['element']['werkzeuge'][] = 'strafen_zuweisen';
             $this->viewdata['liste']['aktueller_strafkatalog']['element']['werkzeuge'][] = 'element_aendern';

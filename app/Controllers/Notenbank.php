@@ -15,6 +15,7 @@ class Notenbank extends BaseController {
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
+            $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge'][] = 'element_erstellen';
             $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_aendern';
             $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_duplizieren';

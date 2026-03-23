@@ -8,6 +8,8 @@ function Util_WertBereinigtZurueck(wert, wert_undefined) {
         else if (DATETIME.fromISO(wert).isValid) wert_bereinigt = DATETIME.fromISO(wert);
         else if (isJson(wert)) wert_bereinigt = Util_WertBereinigtZurueck(JSON.parse(wert), undefined);
         else if (isJquery(wert)) wert_bereinigt = wert;
+        else if (wert === "true") wert_bereinigt = true;
+        else if (wert === "false") wert_bereinigt = false;
         else wert_bereinigt = wert;
     } else if (isLuxonDateTime(wert)) wert_bereinigt = wert;
     else if (isObject(wert)) {

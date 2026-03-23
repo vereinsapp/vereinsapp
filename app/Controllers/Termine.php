@@ -21,6 +21,7 @@ class Termine extends BaseController {
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
 
+            $this->viewdata['liste']['bevorstehende_termine']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
             $this->viewdata['liste']['bevorstehende_termine']['werkzeuge'][] = 'element_erstellen';
             $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'element_aendern';
             $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'element_duplizieren';
