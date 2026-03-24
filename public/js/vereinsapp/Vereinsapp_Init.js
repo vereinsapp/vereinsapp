@@ -41,13 +41,17 @@ Verinsapp_env aufspalten in mehrere _env
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
 Werkzeug zum Unterdrücken der Werkzeuge? Inkl. Speichern im LocalStorage?
 Zugewiesene Strafen anzeigen
-LISTEN[liste].beschriftung umbenennen in LISTEN[liste].liste_beschriftung und mit beschriftung in VIEWDATA und beschriftung im Details-View verheiraten
 VIEWDATA in LISTEN integrieren
 Mit Github Copilot flex-nowrap, flex-grow, text-truncate und text-nowrap diskutieren
 Mit Github Copilot Agent die Anordnung in Details optimieren
 Wie weiter mit Liste_$ListenstatistikAktualisieren?
 auswertung-Views vereinheitlichen?
+LISTEN[liste].beschriftung umbenennen in LISTEN[liste].liste_beschriftung und mit beschriftung in VIEWDATA und beschriftung im Details-View verheiraten
 zusatzsymbol an werkzeug angleichen (blanko, liste, js-Funktion, etc.)
+Bugfix Werkzeuge filtern-Formular
+
+werkzeug-Array direkt an .werkzeuge hängen
+Bugfix .liste zeigt keine .werkzeuge im .element an (bspw. setliste_verwalten)
 
 ERLEDIGT
 

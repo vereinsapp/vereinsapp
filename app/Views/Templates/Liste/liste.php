@@ -3,18 +3,18 @@
     if( array_key_exists( 'sortieren', $liste ) AND is_array( $liste['sortieren'] ) AND count( $liste['sortieren'] ) > 0 ) { ?> sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $liste_ ]['element'].'_id', $liste ) ) { ?> <?= LISTEN[ $liste_ ]['element']; ?>_id="<?= $liste[ LISTEN[ $liste_ ]['element'].'_id' ]; ?>"<?php }
     if( array_key_exists( 'disabled_ids', $liste ) AND is_array( $liste['disabled_ids'] ) AND count( $liste['disabled_ids'] ) > 0 ) { ?> disabled_ids='<?= json_encode( $liste['disabled_ids'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
-    if( array_key_exists( 'werkzeuge', $liste ) AND is_array( $liste['werkzeuge'] ) AND count( $liste['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['werkzeuge'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
+    if( array_key_exists( 'werkzeuge', $liste ) AND is_array( $liste['werkzeuge'] ) AND count( $liste['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( $liste['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     ?>><div class="card">
-    <div class="meta card-header text-center text-secondary invisible"><?php
-        if( array_key_exists( 'ueberschrift', $liste ) ) echo $liste['ueberschrift']; 
-    ?></div>
+    <div class="meta card-header text-center invisible"><?php
+        if( array_key_exists( 'ueberschrift', $liste ) ) { ?><span class="text-secondary"><?= $liste['ueberschrift']; ?></span><?php }
+    ?><span class="werkzeuge float-end"></span></div>
     <div class="elemente list-group list-group-flush<?php
         if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND in_array( 'sortable', $liste['element']['werkzeuge'] ) ) echo ' sortable';
     ?>" liste="<?= $liste['liste']; ?>">
 
         <div class="list-group-item blanko invisible" blanko="element" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>"<?php
         if( array_key_exists( 'modal_title', $liste['element'] ) ) { ?> modal_title="<?= $liste['element']['modal_title'] ?>"<?php }
-        if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND count( $liste['element']['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( array_reverse( $liste['element']['werkzeuge'] ), JSON_UNESCAPED_UNICODE ); ?>'<?php }
+        if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND count( $liste['element']['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( $liste['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
         ?>>
 
             <div class="text-truncate d-flex flex-nowrap align-items-center">
@@ -28,7 +28,7 @@
                 ?>><span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste['element'] ) ) { ?><?= $liste['element']['beschriftung']; ?><?php } ?></span></label>
                 <?php if( array_key_exists( 'zusatzsymbol', $liste['element'] ) AND is_array( $liste['element']['zusatzsymbol'] ) AND count( $liste['element']['zusatzsymbol'] ) > 0 ) foreach( $liste['element']['zusatzsymbol'] as $zusatzsymbol ) { ?><span class="zusatzsymbol float-end ms-2 stretched-link-unwirksam" zusatzsymbol="<?= $zusatzsymbol ?>"></span><?php } ?>
                 <?php if( array_key_exists( 'link', $liste['element'] ) AND is_array( $liste['element']['link'] ) ) { ?><a class="stretched-link" link='<?= json_encode( $liste['element']['link'], JSON_UNESCAPED_UNICODE ); ?>'></a><?php } ?>
-                <div class="meta invisible"></div>
+                <div class="meta float-end invisible"><span class="werkzeuge stretched-link-unwirksam float-end"></span></div>
             </div>
 
             <?php if( array_key_exists( 'vorschau', $liste['element'] ) ) { ?><div class="vorschau text-truncate text-secondary small"><?php

@@ -1,3 +1,8 @@
+/**
+ * @param {string} modal_title
+ * @param {string} modal_id
+ */
+
 function Dom_$ModalInitialisiertZurueck(modal_title, modal_id) {
     const $modal = MODALS[modal_id].clone().removeClass("blanko invisible autoload").addClass("modal");
 

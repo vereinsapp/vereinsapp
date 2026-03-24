@@ -1,3 +1,8 @@
+/**
+ * @param {string} werkzeug
+ * @param {Object} data
+ */
+
 function Dom_$WerkzeugInitialisiertZurueck(werkzeug, data) {
     const $werkzeug = WERKZEUGE.$blanko_werkzeug.clone().removeClass("blanko invisible").addClass("werkzeug");
 
@@ -12,6 +17,8 @@ function Dom_$WerkzeugInitialisiertZurueck(werkzeug, data) {
         $.each(data, function (eigenschaft, wert) {
             $werkzeug.attr(eigenschaft, wert);
         });
+
+    if (typeof WERKZEUGE[werkzeug].aktualisieren_aktion === "function") WERKZEUGE[werkzeug].aktualisieren_aktion($werkzeug);
 
     return $werkzeug;
 }

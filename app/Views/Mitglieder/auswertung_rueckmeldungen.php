@@ -14,13 +14,13 @@
     </div>
     <?php if( array_key_exists( 'collapse', $auswertung ) AND $auswertung['collapse'] ) { ?><div class="row g-0 collapse auswertung_collapse">
         <div id="<?= $auswertung['instanz']; ?>_ergebnis_1" class="ergebnis liste col-6 text-center text-<?= VERKNUEPFUNGEN['termine_rueckmeldungen']['status_erlaubt'][1]['farbe']; ?>" liste="termine_rueckmeldungen" status=1>
-            <div class="meta invisible"></div><div class="elemente"><div class="blanko invisible" blanko="element" liste="termine_rueckmeldungen" instanz="<?= $auswertung['instanz']; ?>_ergebnis_1"><span class="eigenschaft" eigenschaft="termin_start"></span> <span class="eigenschaft" eigenschaft="termin_titel"></span><span class="zusatzsymbol ms-2" zusatzsymbol="bemerkung"></span></div></div>
+            <div class="elemente"><div class="blanko invisible" blanko="element" liste="termine_rueckmeldungen" instanz="<?= $auswertung['instanz']; ?>_ergebnis_1"><span class="eigenschaft" eigenschaft="termin_start"></span> <span class="eigenschaft" eigenschaft="termin_titel"></span><span class="zusatzsymbol ms-2" zusatzsymbol="bemerkung"></span></div></div>
         </div>
         <div id="<?= $auswertung['instanz']; ?>_ergebnis_2" class="ergebnis liste col-6 text-center text-<?= VERKNUEPFUNGEN['termine_rueckmeldungen']['status_erlaubt'][2]['farbe']; ?>" liste="termine_rueckmeldungen" status=2>
-            <div class="meta invisible"></div><div class="elemente"><div class="blanko invisible" blanko="element" liste="termine_rueckmeldungen" instanz="<?= $auswertung['instanz']; ?>_ergebnis_2"><span class="eigenschaft" eigenschaft="termin_start"></span> <span class="eigenschaft" eigenschaft="termin_titel"></span><span class="zusatzsymbol ms-2" zusatzsymbol="bemerkung"></span></div></div>
+            <div class="elemente"><div class="blanko invisible" blanko="element" liste="termine_rueckmeldungen" instanz="<?= $auswertung['instanz']; ?>_ergebnis_2"><span class="eigenschaft" eigenschaft="termin_start"></span> <span class="eigenschaft" eigenschaft="termin_titel"></span><span class="zusatzsymbol ms-2" zusatzsymbol="bemerkung"></span></div></div>
         </div>
         <div id="<?= $auswertung['instanz']; ?>_ergebnis_0" class="ergebnis liste col-12 text-center text-<?= VERKNUEPFUNGEN['termine_rueckmeldungen']['status_erlaubt'][0]['farbe']; ?> small" liste="termine" status=0>
-            <div class="meta invisible"></div><div class="elemente"><span class="me-1 blanko invisible" blanko="element" liste="termine" instanz="<?= $auswertung['instanz']; ?>_ergebnis_0"><span class="eigenschaft" eigenschaft="start"></span> <span class="eigenschaft" eigenschaft="titel"></span><?= VERKNUEPFUNGEN['termine_rueckmeldungen']['status_erlaubt'][0]['aktiv']; ?></span></div>
+            <div class="elemente"><span class="me-1 blanko invisible" blanko="element" liste="termine" instanz="<?= $auswertung['instanz']; ?>_ergebnis_0"><span class="eigenschaft" eigenschaft="start"></span> <span class="eigenschaft" eigenschaft="titel"></span><?= VERKNUEPFUNGEN['termine_rueckmeldungen']['status_erlaubt'][0]['aktiv']; ?></span></div>
         </div>
     </div><?php } ?>
 </div>

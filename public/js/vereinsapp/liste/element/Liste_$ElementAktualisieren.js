@@ -18,9 +18,12 @@ function Liste_$ElementAktualisieren($element) {
     });
 
     // WERKZEUGE EINFÜGEN
-    Dom_$WerkzeugIn$UmgebungEinfuegen(Util_WertBereinigtZurueck($element.attr("werkzeuge"), new Array()), $element.find(".meta").first(), {
-        liste: liste,
-        [LISTEN[liste].element + "_id"]: element_id,
+    const $werkzeuge = $element.find(".meta").find(".werkzeuge").empty();
+    $.each(Util_WertBereinigtZurueck($element.attr("werkzeuge"), new Array()), function (position, werkzeug) {
+        Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
+            liste: liste,
+            [LISTEN[liste].element + "_id"]: element_id,
+        }).appendTo($werkzeuge);
     });
 
     // VERKNUEPFUNGEN AKTUALISIEREN

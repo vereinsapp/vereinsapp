@@ -52,9 +52,12 @@ function Liste_$ListeAktualisieren($liste) {
     });
 
     // WERKZEUGE EINFÜGEN
-    Dom_$WerkzeugIn$UmgebungEinfuegen(Util_WertBereinigtZurueck($liste.attr("werkzeuge"), new Array()), $meta, {
-        liste: liste,
-        instanz: instanz,
+    const $werkzeuge = $meta.find(".werkzeuge").empty();
+    $.each(Util_WertBereinigtZurueck($liste.attr("werkzeuge"), new Array()), function (position, werkzeug) {
+        Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
+            liste: liste,
+            instanz: instanz,
+        }).appendTo($werkzeuge);
     });
 
     // META EIN-/AUSBLENDEN

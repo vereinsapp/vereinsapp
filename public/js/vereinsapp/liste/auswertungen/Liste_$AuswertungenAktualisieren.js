@@ -115,9 +115,12 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
     });
 
     // WERKZEUGE EINFÜGEN
-    Dom_$WerkzeugIn$UmgebungEinfuegen(Util_WertBereinigtZurueck($auswertungen.attr("werkzeuge"), new Array()), $meta, {
-        liste: liste,
-        instanz: auswertungen_instanz,
+    const $werkzeuge = $meta.find(".werkzeuge").empty();
+    $.each(Util_WertBereinigtZurueck($auswertungen.attr("werkzeuge"), new Array()), function (position, werkzeug) {
+        Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
+            liste: liste,
+            instanz: auswertungen_instanz,
+        }).appendTo($werkzeuge);
     });
 
     if (isEmptyString($meta.text()) && $meta.find(".werkzeug").length === 0) $meta.addClass("invisible");

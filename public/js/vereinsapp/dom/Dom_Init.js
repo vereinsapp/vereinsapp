@@ -104,7 +104,11 @@ function Dom_Init() {
 
     // SEITE VERLASSEN
     $(window).on("beforeunload", function () {
-        $("#status").empty().append(Dom_$SpinnerInitialisiertZurueck());
+        $("#status").find(".spinner").remove();
+        $("#status")
+            .find(".bi-" + SYMBOLE.status.bootstrap)
+            .addClass("invisible")
+            .after(Dom_$SpinnerInitialisiertZurueck());
     });
 
     // MODAL SCHLIESSEN
