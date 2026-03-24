@@ -3,13 +3,10 @@
 
 const BLANKOS = new Object();
 const HINWEISPUNKTE = new Object(); // enthält später lediglich $blanko_hinweispunkt
+const SPINNER = new Object(); // enthält später lediglich $blanko_spinner
 const TOASTS = new Object(); // enthält später lediglich $blanko_toast
 const MODALS = new Object();
 const AUTOLOAD_MODALS = new Array();
-
-const STATUS_SPINNER_CLASS = "spinner-border";
-const STATUS_SPINNER_HTML =
-    '<span class="' + STATUS_SPINNER_CLASS + ' spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></span>';
 
 function Dom_Init() {
     // BLANKOS BEREITSTELLEN
@@ -32,6 +29,11 @@ function Dom_Init() {
     // HINWEISPUNKT-BLANKO IN HINWEISPUNKTE BEREITSTELLEN
     $.each(BLANKOS.hinweispunkt, function (position, $blanko) {
         HINWEISPUNKTE.$blanko_hinweispunkt = $blanko;
+    });
+
+    // SPINNER-BLANKO IN SPINNER BEREITSTELLEN
+    $.each(BLANKOS.spinner, function (position, $blanko) {
+        SPINNER.$blanko_spinner = $blanko;
     });
 
     // TOAST-BLANKO IN TOASTS BEREITSTELLEN
@@ -76,12 +78,18 @@ function Dom_Init() {
 
     // AJAX
     $(document).ajaxStart(function () {
-        $("#status").html(STATUS_SPINNER_HTML);
+        $("#status").find(".spinner").remove();
+        $("#status")
+            .find(".bi-" + SYMBOLE.status.bootstrap)
+            .addClass("invisible")
+            .after(Dom_$SpinnerInitialisiertZurueck());
     });
 
-    const status_standard_html = $("#status").html();
     $(document).ajaxStop(function () {
-        $("#status").html(status_standard_html);
+        $("#status").find(".spinner").remove();
+        $("#status")
+            .find(".bi-" + SYMBOLE.status.bootstrap)
+            .removeClass("invisible");
     });
 
     $(document).ajaxSuccess(function () {
@@ -96,7 +104,7 @@ function Dom_Init() {
 
     // SEITE VERLASSEN
     $(window).on("beforeunload", function () {
-        $("#status").html(STATUS_SPINNER_HTML);
+        $("#status").empty().append(Dom_$SpinnerInitialisiertZurueck());
     });
 
     // MODAL SCHLIESSEN

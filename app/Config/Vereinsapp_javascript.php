@@ -64,6 +64,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/dom/Dom_$WerkzeugInitialisiertZurueck.js?v='.VERSION,
         'js/vereinsapp/dom/Dom_$WerkzeugIn$UmgebungEinfuegen.js?v='.VERSION,
         'js/vereinsapp/dom/Dom_$HinweispunktInitialisiertZurueck.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$SpinnerInitialisiertZurueck.js?v='.VERSION,
         'js/vereinsapp/dom/Dom_ToastFeuern.js?v='.VERSION,
         'js/vereinsapp/dom/Dom_$ModalOeffnen.js?v='.VERSION,
         'js/vereinsapp/dom/Dom_$ModalInitialisiertZurueck.js?v='.VERSION,

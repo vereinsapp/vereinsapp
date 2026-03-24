@@ -32,6 +32,7 @@
 
 <?= view( 'Templates/werkzeug' ); ?>
 <?= view( 'Templates/hinweispunkt' ); ?>
+<?= view( 'Templates/spinner' ); ?>
 
     <div id="toasts" class="container toast-container position-fixed end-0 pe-3">
 <?= view( 'Templates/toast' ); ?>

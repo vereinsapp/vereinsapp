@@ -1,13 +1,11 @@
 function Ajax_InDieSchlange(url, data, dom, rein_validation_pos_aktion, rein_validation_neg_aktion) {
     if ("$werkzeug" in dom && dom.$werkzeug.exists()) {
-        dom.$werkzeug.find("." + STATUS_SPINNER_CLASS).remove();
-        dom.$werkzeug.find(".beschriftung").addClass("invisible");
-        dom.$werkzeug.find(".beschriftung").after(STATUS_SPINNER_HTML);
+        dom.$werkzeug.find(".spinner").remove();
+        dom.$werkzeug.find(".beschriftung").addClass("invisible").after(Dom_$SpinnerInitialisiertZurueck());
 
         const $label = dom.$werkzeug.closest(".verknuepfungen").siblings("label");
-        $label.find("." + STATUS_SPINNER_CLASS).remove();
-        $label.find(".beschriftung").addClass("invisible");
-        $label.find(".beschriftung").after(STATUS_SPINNER_HTML);
+        $label.find(".spinner").remove();
+        $label.find(".beschriftung").addClass("invisible").after(Dom_$SpinnerInitialisiertZurueck());
 
         dom.$werkzeug.prop("disabled", true);
     }
@@ -45,11 +43,11 @@ function Ajax_InDieSchlange(url, data, dom, rein_validation_pos_aktion, rein_val
                 if ("dom" in AJAX && "$werkzeug" in AJAX.dom && AJAX.dom.$werkzeug.exists()) {
                     AJAX.dom.$werkzeug.prop("disabled", false);
 
-                    AJAX.dom.$werkzeug.find("." + STATUS_SPINNER_CLASS).remove();
+                    AJAX.dom.$werkzeug.find(".spinner").remove();
                     AJAX.dom.$werkzeug.find(".beschriftung").removeClass("invisible");
 
                     const $label = AJAX.dom.$werkzeug.closest(".verknuepfungen").siblings("label");
-                    $label.find("." + STATUS_SPINNER_CLASS).remove();
+                    $label.find(".spinner").remove();
                     $label.find(".beschriftung").removeClass("invisible");
                 }
 

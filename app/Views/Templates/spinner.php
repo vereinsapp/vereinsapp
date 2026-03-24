@@ -1,0 +1,1 @@
+<span class="spinner-border spinner-border-sm blanko invisible" blanko="spinner" role="status"></span>
