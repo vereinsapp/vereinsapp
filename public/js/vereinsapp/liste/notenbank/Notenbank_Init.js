@@ -23,17 +23,34 @@ LISTEN.notenbank.element_aendern_data_vervollstaendigen_aktion = function (data,
 };
 
 LISTEN.notenbank.element_ergaenzen_aktion = function (titel) {
-    titel["anzahl_noten"] = 0;
+    titel.anzahl_noten = 0;
     $.each(NOTENBANK_ERLAUBTE_DATEITYPEN_NOTEN, function (index, typ) {
-        titel["anzahl_noten"] += Liste_VerzeichnisAnzahlZurueck(titel["verzeichnis"], typ);
+        titel.anzahl_noten += verzeichnis_anzahl_zurueck(titel.verzeichnis, typ);
     });
 
-    titel["anzahl_audio"] = 0;
+    titel.anzahl_audio = 0;
     $.each(NOTENBANK_ERLAUBTE_DATEITYPEN_AUDIO, function (index, typ) {
-        titel["anzahl_audio"] += Liste_VerzeichnisAnzahlZurueck(titel["verzeichnis"], typ);
+        titel.anzahl_audio += verzeichnis_anzahl_zurueck(titel.verzeichnis, typ);
     });
 
-    titel["anzahl_verzeichnis"] = Liste_VerzeichnisAnzahlZurueck(titel["verzeichnis"]);
+    titel.anzahl_verzeichnis = verzeichnis_anzahl_zurueck(titel.verzeichnis);
+
+    function verzeichnis_anzahl_zurueck(verzeichnis, typ = "verzeichnis") {
+        let anzahl = 0;
+
+        if (typeof verzeichnis !== "undefined") {
+            $.each(verzeichnis.unterverzeichnisse, function (position, unterverzeichnis) {
+                if (typ == "verzeichnis") anzahl++;
+                anzahl += verzeichnis_anzahl_zurueck(unterverzeichnis, typ);
+            });
+            $.each(verzeichnis.dateien, function (position, datei) {
+                const punkt = datei.lastIndexOf(".");
+                if (typ == datei.slice(punkt + 1)) anzahl++;
+            });
+        }
+
+        return anzahl;
+    }
 };
 
 LISTEN.notenbank_setliste.element_ergaenzen_aktion = function (setlisteneintrag) {

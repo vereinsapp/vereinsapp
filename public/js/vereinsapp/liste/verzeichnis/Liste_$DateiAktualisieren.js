@@ -4,12 +4,24 @@
 
 function Liste_$DateiAktualisieren($datei) {
     const liste = Util_WertBereinigtZurueck($datei.attr("liste"), undefined);
-    const datei = $datei.attr("datei");
+    const datei = Util_WertBereinigtZurueck($datei.attr("datei"), undefined);
     const $verzeichnis = $datei.closest(".verzeichnis");
 
-    // const punkt = datei.lastIndexOf(".");
-    // const typ = datei.slice(punkt + 1);
+    // EIGENSCHAFTEN AKTUALISIEREN
+    $datei.find(".beschriftung").text(datei);
 
+    // TYP-SYMBOL VOR DER BESCHRIFTUNG AKTUALISIEREN
+    $datei
+        .find(".beschriftung")
+        .siblings("i.bi")
+        .each(function () {
+            const datei = Util_WertBereinigtZurueck($datei.attr("datei"), undefined);
+            const punkt = datei.lastIndexOf(".");
+            const typ = datei.slice(punkt + 1);
+            $(this).addClass("bi-" + SYMBOLE[typ].bootstrap);
+        });
+
+    // LINK AKTUALISIEREN
     let link =
         BASE_URL +
         "storage/" +
@@ -25,25 +37,5 @@ function Liste_$DateiAktualisieren($datei) {
         link += unterverzeichnis;
     });
     link += datei;
-
-    // EIGENSCHAFTEN AKTUALISIEREN
-    $datei.find(".beschriftung").text(datei);
-
-    // LINK AKTUALISIEREN
     $datei.find("a.stretched-link").attr("href", link);
-
-    // AUDIO AKTUALISIEREN
-    // if (typ == "mp3")
-    //     $datei
-    //         .find(".audio")
-    //         .html(
-    //             '<audio controls class="float-end ms-1" style="width: 50px; height:20px;" src="' +
-    //                 link +
-    //                 '" type="audio/mpeg"></audio>'
-    //         );
-
-    // ZUSATZSYMBOL AKTUALISIEREN
-    $datei.find(".zusatzsymbol").each(function () {
-        Liste_Element$ZusatzsymbolAktualisieren($(this), $datei);
-    });
 }

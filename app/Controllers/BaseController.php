@@ -99,7 +99,6 @@ abstract class BaseController extends Controller
     protected function viewdata_bereinigen() {
         if( array_key_exists( 'liste', $this->viewdata ) ) foreach( $this->viewdata['liste'] as $instanz => $liste ) $this->viewdata['liste'][ $instanz ]['instanz'] = $instanz;
         if( array_key_exists( 'auswertungen', $this->viewdata ) ) foreach( $this->viewdata['auswertungen'] as $instanz => $auswertungen ) $this->viewdata['auswertungen'][ $instanz ]['instanz'] = $instanz;
-        if( array_key_exists( 'verzeichnis', $this->viewdata ) ) foreach( $this->viewdata['verzeichnis'] as $instanz => $verzeichnis ) $this->viewdata['verzeichnis'][ $instanz ]['instanz'] = $instanz;
     }
 
     protected function filtern_manipuliert_zurueck( $filtern_basis, $filtern_manip, $liste )  {

@@ -34,8 +34,6 @@ class Notenbank extends BaseController {
         $this->viewdata['liste']['aktuelles_verzeichnis']['titel_id'] = $titel_id;
         $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'] = array();
 
-        $this->viewdata['verzeichnis']['aktuelles_verzeichnis'] = array( 'liste' => 'notenbank', 'link' => TRUE, 'titel_id' => $titel_id, );
-
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
             $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_aendern';

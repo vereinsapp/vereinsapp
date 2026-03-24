@@ -25,7 +25,7 @@
     </div></div>
 
     <div class="col">
-    <?= view( 'Templates/Liste/verzeichnis', array( 'verzeichnis' => $verzeichnis['aktuelles_verzeichnis'] ) ); ?>
+<?= view( 'Templates/Liste/verzeichnis', array( 'verzeichnis' => array( 'liste' => 'notenbank', 'instanz' => 'aktuelles_verzeichnis', 'titel_id' => $liste['aktuelles_verzeichnis']['titel_id'], ) ) ); ?>
     </div>
 
 </div>

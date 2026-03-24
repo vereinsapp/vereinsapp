@@ -46,7 +46,6 @@ VIEWDATA in LISTEN integrieren
 Mit Github Copilot flex-nowrap, flex-grow, text-truncate und text-nowrap diskutieren
 Mit Github Copilot Agent die Anordnung in Details optimieren
 Wie weiter mit Liste_$ListenstatistikAktualisieren?
-verzeichnis radikal ausmisten
 auswertung-Views vereinheitlichen?
 zusatzsymbol an werkzeug angleichen (blanko, liste, js-Funktion, etc.)
 

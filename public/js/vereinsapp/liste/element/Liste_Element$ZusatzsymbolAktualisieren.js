@@ -11,8 +11,6 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
     $zusatzsymbol.find('[data-bs-toggle="popover"]').popover("hide");
     $zusatzsymbol.empty();
 
-    let farbe;
-
     switch (zusatzsymbol) {
         // Zusatzsymbol für Geburtstag
         case "geburtstag":
@@ -31,14 +29,6 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                 "symbol" in VORGEGEBENE_WERTE[liste]["kategorie"][kategorie]
             )
                 $zusatzsymbol.html(VORGEGEBENE_WERTE[liste]["kategorie"][kategorie]["symbol"]);
-            break;
-
-        // Zusatzsymbol für Datei
-        case "datei":
-            const datei = Util_WertBereinigtZurueck($element.attr("datei"), undefined);
-            const punkt = datei.lastIndexOf(".");
-            const typ = datei.slice(punkt + 1);
-            $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE[typ]["bootstrap"] + ' text-primary"></i>');
             break;
 
         // Zusatzsymbol für Bemerkung bei Rückmeldung
