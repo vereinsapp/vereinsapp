@@ -114,13 +114,15 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
         else $auswertung.insertAfter($auswertungen_auswertungen.find('.auswertung[wert="' + gruppieren_werte_sortiert[position - 1] + '"]'));
     });
 
-    // WERKZEUGE EINFÜGEN
-    const $werkzeuge = $meta.find(".werkzeuge").empty();
-    $.each(Util_WertBereinigtZurueck($auswertungen.attr("werkzeuge"), new Array()), function (position, werkzeug) {
-        Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
-            liste: liste,
-            instanz: auswertungen_instanz,
-        }).appendTo($werkzeuge);
+    // WERKZEUGE AKTUALISIEREN
+    $meta.find(".werkzeuge").each(function () {
+        const $werkzeuge = $(this).empty();
+        $.each(Util_WertBereinigtZurueck($werkzeuge.attr("werkzeuge"), new Array()), function (position, werkzeug) {
+            Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
+                liste: liste,
+                instanz: auswertungen_instanz,
+            }).appendTo($werkzeuge);
+        });
     });
 
     if (isEmptyString($meta.text()) && $meta.find(".werkzeug").length === 0) $meta.addClass("invisible");

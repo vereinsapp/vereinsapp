@@ -5,7 +5,7 @@
 function Liste_$ElementAktualisieren($element) {
     const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
     const element_id = Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
-    const $meta = $element.find(".meta").first();
+    const $meta = $element.find(".meta");
 
     // EIGENSCHAFTEN AKTUALISIEREN
     $element.find(".eigenschaft").each(function () {
@@ -17,13 +17,15 @@ function Liste_$ElementAktualisieren($element) {
         );
     });
 
-    // WERKZEUGE EINFÜGEN
-    const $werkzeuge = $element.find(".meta").find(".werkzeuge").empty();
-    $.each(Util_WertBereinigtZurueck($element.attr("werkzeuge"), new Array()), function (position, werkzeug) {
-        Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
-            liste: liste,
-            [LISTEN[liste].element + "_id"]: element_id,
-        }).appendTo($werkzeuge);
+    // WERKZEUGE AKTUALISIEREN
+    $meta.find(".werkzeuge").each(function () {
+        const $werkzeuge = $(this).empty();
+        $.each(Util_WertBereinigtZurueck($werkzeuge.attr("werkzeuge"), new Array()), function (position, werkzeug) {
+            Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
+                liste: liste,
+                [LISTEN[liste].element + "_id"]: element_id,
+            }).appendTo($werkzeuge);
+        });
     });
 
     // VERKNUEPFUNGEN AKTUALISIEREN

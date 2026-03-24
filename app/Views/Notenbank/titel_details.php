@@ -8,10 +8,11 @@
 
 <div class="row row-cols-1 row-cols-lg-2 gy-3 gx-0 gx-lg-3 w-100">
 
-    <div class="col"><div class="card element" liste="notenbank" titel_id="<?= $liste['aktuelles_verzeichnis']['titel_id']; ?>"<?php
-        if( array_key_exists( 'werkzeuge', $liste['aktuelles_verzeichnis']['element'] ) AND is_array( $liste['aktuelles_verzeichnis']['element']['werkzeuge'] ) AND count( $liste['aktuelles_verzeichnis']['element']['werkzeuge'] ) > 0 ) { ?> werkzeuge='<?= json_encode( $liste['aktuelles_verzeichnis']['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
-    ?>>
-        <div class="meta card-header invisible"><span class="werkzeuge float-end"></span></div>
+    <div class="col"><div class="card element" liste="notenbank" titel_id="<?= $liste['aktuelles_verzeichnis']['titel_id']; ?>">
+        <div class="meta card-header invisible"><?php
+        if( array_key_exists( 'werkzeuge', $liste['aktuelles_verzeichnis']['element'] ) AND is_array( $liste['aktuelles_verzeichnis']['element']['werkzeuge'] ) AND count( $liste['aktuelles_verzeichnis']['element']['werkzeuge'] ) > 0 ) {
+            ?><span class="werkzeuge float-end" werkzeuge='<?= json_encode( $liste['aktuelles_verzeichnis']['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php }
+        ?></div>
         <div class="card-body p-2">
             <h5 class="card-title text-center text-truncate text-nowrap">
                 <span class="beschriftung"><span class="eigenschaft" eigenschaft="titel_nr"></span> <span class="eigenschaft" eigenschaft="titel"></span></span>

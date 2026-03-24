@@ -49,8 +49,10 @@ auswertung-Views vereinheitlichen?
 LISTEN[liste].beschriftung umbenennen in LISTEN[liste].liste_beschriftung und mit beschriftung in VIEWDATA und beschriftung im Details-View verheiraten
 zusatzsymbol an werkzeug angleichen (blanko, liste, js-Funktion, etc.)
 Bugfix Werkzeuge filtern-Formular
+Braucht es in .liste auch modal_title am .werkzeug?
+.auswertungen innerhalb .auswertungen umbenennen in auswertungen_auswertungen
 
-werkzeug-Array direkt an .werkzeuge hängen
+meta loswerden?
 Bugfix .liste zeigt keine .werkzeuge im .element an (bspw. setliste_verwalten)
 
 ERLEDIGT

@@ -51,13 +51,15 @@ function Liste_$ListeAktualisieren($liste) {
         else $element.insertAfter($elemente.find(".element[" + LISTEN[liste].element + '_id="' + tabelle_gefiltert_sortiert[position - 1].id + '"]'));
     });
 
-    // WERKZEUGE EINFÜGEN
-    const $werkzeuge = $meta.find(".werkzeuge").empty();
-    $.each(Util_WertBereinigtZurueck($liste.attr("werkzeuge"), new Array()), function (position, werkzeug) {
-        Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
-            liste: liste,
-            instanz: instanz,
-        }).appendTo($werkzeuge);
+    // WERKZEUGE AKTUALISIEREN
+    $meta.find(".werkzeuge").each(function () {
+        const $werkzeuge = $(this).empty();
+        $.each(Util_WertBereinigtZurueck($werkzeuge.attr("werkzeuge"), new Array()), function (position, werkzeug) {
+            Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
+                liste: liste,
+                instanz: instanz,
+            }).appendTo($werkzeuge);
+        });
     });
 
     // META EIN-/AUSBLENDEN
