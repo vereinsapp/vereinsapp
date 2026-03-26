@@ -132,6 +132,12 @@ public/favicon.ico
 
 public/storage/notenbank/*
 !public/storage/notenbank/index.html
+public/storage/notenarchiv/*
+!public/storage/notenarchiv/index.html
+!public/storage/notenarchiv/theorie.txt
+public/storage/cache/*
+!public/storage/cache/index.html
+public/storage/index.txt
 
 public/images/*
 !public/images/index.html

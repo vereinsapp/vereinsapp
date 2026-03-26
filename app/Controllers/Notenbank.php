@@ -7,11 +7,10 @@ use App\Models\Notenbank\Titel_Model;
 
 class Notenbank extends BaseController {
 
-    public function notensuche() {
+    public function fuzzy_synonym_sheet_search() {
 
-        $this->viewdata['schluessel'] = 'Platz zum austoben';
+        echo view( 'Notenbank/fuzzy_synonym_sheet_search', $this->viewdata );
 
-        echo view( 'Notenbank/notensuche', $this->viewdata );
     }
 
     public function notenbank() {

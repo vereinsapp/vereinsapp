@@ -1,0 +1,49 @@
+rfc notenverwaltung
+
+	notenarchiv
+		- das notenarchiv liegt ausschließlich im dateisystem vor
+		- für jeden notensatz gibt es ein verzeichnis
+		- der verzeichnisname beginnt mit einer eindeutigen vierstelligen id mit aufgefüllten nullen, nach unterstrich gefolgt vom titel in kleinbuchstaben und ggf. ziffern, aber keinerlei sonderzeichen oder umlaute -> [a-z0-9]
+		- im verzeichnis befindet sich jeweils eine metadata.xml mit weiteren informationen und dem offiziellen titel 
+			<?xml version="1.0" encoding="UTF-8"?>
+			<musicPiece>
+				<title>Beispieltitel Ö$</title>
+				<composer>Max Mustermann</composer>
+				<arranger>Erika Musterfrau</arranger>
+				<editor>Hans Beispiel</editor>
+				<year>1995</year>
+				<gemaNumber>123456789</gemaNumber>
+				<publisher>Hans A. Bier</publisher>
+				<genre>Mitgröhlmusik</genre>
+				<duration>333</duration>
+			</musicPiece>
+		- wenn keine metadata.xml nicht vorliegt, dann liegt sich halt nicht vor. kann auch später nachgetragen werden
+		- für jede stimme gibt es 1 pdf-datei, die alle seiten enthält. der dateiname ist normiert und auf wenige instrumentengruppen beschränkt. liste folgt (z.b. "bass", "flute", "horn", "trumpet", "baritone", "percussion")
+		- doppelte scans oder weitere stimmen eines instruments werden schlicht durchnummeriert, z.b. bass_1, bass_2, bass_345
+		- zu den pdf-dateien kann nun zusätzlich eine xml-datei mit gleichem dateinamen erzeugt werden, die wieder die weiteren informationen enthält:
+			<?xml version="1.0" encoding="UTF-8"?>
+			<sheet>
+				<instrument>1. Bass in C</instrument>
+				<transposition>C</transposition>
+				<clef>bass</clef>
+				<comments>Achtung, Ohrwurm</comments>
+			</sheet>
+		- die xml-dateien können also händisch erstellt werden, mit einem lokalen tool bearbeitet und dann hochgeladen, oder erst nach dem upload direkt auf dem server bearbeitet werden
+		- bei großen archiven wäre es sinnvoll, die xml-daten in eine datenbank zu übernehmen, aber bei bearbeitung die änderungen auch ins xml zurückzuschreiben, um stets den kompletten und aktuellen satz auch im dateisystem vorliegen zu haben und sehr einfach backups anlegen oder migrieren zu können
+
+	aktive notenmappe
+		- die aktive mappe ist nur ein abbild des archivs und kann wie ein cache jederzeit gelöscht und neu aufgebaut werden
+		- dieser vorgang wird über die webanwendung gesteuert, z.b. als liste 1-100 und neben jedem listenpunkt ein dropdown mit den titeln aus dem notenarchiv in alphanumerischer reihenfolge (und ein leerfeld zu beginn)
+		- um ein titel aus dem archiv in die aktive mappe zu übernehmen, muss dieser also nur aus dem dropdown-menü gewählt werden + speichern
+		- dadurch wird die funktion zur neuerstellung des caches aufgerufen
+		- vom notenarchiv werden die entsprechenden pdf-dateien dreifach ins verzeichnis notenbank (oder "mappe" oder "aktiv" oder whatever) kopiert und dabei umbenannt (mit infos aus der xml):
+			"1. Bass in C.pdf"
+			"Beispieltitel Ö$_1. Bass in C.pdf"
+			"1. Bass in C_Beispieltitel Ö$.pdf"
+		- diese umständlichkeit ist verschiedenen anwendungsarten geschuldet, wo einerseits lange dateinamen ein problem darstellen, aber gleichzeitig die komplette mappe in einem einzigen verzeichnis liegen kann
+		
+	future-projects
+		- generierung individueller mappen auf grundlage der instrumentengruppe, stimmung, notenschlüssel oder bei zwei instrumenten auch in kombination (z.b. als schnelle bereitstellung der gesamten mappe für neue musiker)
+		- bereitstellung als zip-archiv, um die aktive individuelle notenmappe auf einem endgerät lokal für den offline-betrieb abzulegen
+		- export als bibliothek für mobile-sheets (bzw. zwischenformat für 1-klick-import)
+			

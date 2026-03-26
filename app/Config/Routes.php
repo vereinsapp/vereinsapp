@@ -98,17 +98,16 @@ $routes->group('strafkatalog', static function ($routes) {
     $routes->post('ajax_kassenbucheintrag_loeschen',        'Strafkatalog::ajax_kassenbucheintrag_loeschen');
 });
 
-$routes->group('notenbank', static function ($routes) {
-    $routes->get('',                                        'Notenbank::notenbank');
-    $routes->get('notensuche',                              'Notenbank::notensuche');
+$routes->get('notenbank', 'Notenbank::fuzzy_synonym_sheet_search');
+// $routes->group('notenbank', static function ($routes) {
+//     $routes->get('',                                        'Notenbank::notenbank');
+//     $routes->get('notenbank',                               'Notenbank::notenbank');
+//     $routes->get('(:num)',                                  'Notenbank::details/$1');
+//     $routes->get('details/(:num)',                          'Notenbank::details/$1');
 
-    $routes->get('notenbank',                               'Notenbank::notenbank');
-    $routes->get('(:num)',                                  'Notenbank::details/$1');
-    $routes->get('details/(:num)',                          'Notenbank::details/$1');
-
-    $routes->post('ajax_titel_speichern',                   'Notenbank::ajax_titel_speichern');
-    $routes->post('ajax_titel_loeschen',                    'Notenbank::ajax_titel_loeschen');
-});
+//     $routes->post('ajax_titel_speichern',                   'Notenbank::ajax_titel_speichern');
+//     $routes->post('ajax_titel_loeschen',                    'Notenbank::ajax_titel_loeschen');
+// });
 
 $routes->group('status', static function ($routes) {
     $routes->get('wartungsarbeiten', 'Status::wartungsarbeiten');
