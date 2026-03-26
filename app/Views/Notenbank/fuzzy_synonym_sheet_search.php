@@ -2,6 +2,10 @@
 <?= $this->section( 'navbar' ); ?><?= view( 'Templates/navbar_int' ); ?><?= $this->endSection(); ?>
 <?= $this->section( 'containers' ); ?>
 
+<?php if( NOTENBANK_VERZEICHNIS != NULL AND !empty(NOTENBANK_VERZEICHNIS) ) { ?><div class="container mb-3">
+<?= view( 'Notenbank/verzeichnis_oeffnen' ); ?>
+</div><?php } ?>
+
 <style>
 
 	#results a {
