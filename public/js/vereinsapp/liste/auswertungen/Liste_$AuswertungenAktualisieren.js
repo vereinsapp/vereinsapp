@@ -4,19 +4,19 @@
 
 function Liste_$AuswertungenAktualisieren($auswertungen) {
     const auswertungen = Util_WertBereinigtZurueck($auswertungen.attr("auswertungen"), undefined);
-    const auswertungen_instanz = Util_WertBereinigtZurueck($auswertungen.attr("id"), undefined);
+    const instanz = Util_WertBereinigtZurueck($auswertungen.attr("id"), undefined);
     const liste = Util_WertBereinigtZurueck($auswertungen.attr("liste"), undefined);
-    const $meta = $auswertungen.find(".meta").first();
-    const $auswertungen_auswertungen = $auswertungen.find(".auswertungen");
+    const $auswertungen_auswertungen = $auswertungen.find(".auswertungen_auswertungen");
+    const $meta = $auswertungen.find(".meta");
 
     // GRUPPIEREN DEFINIEREN
     const gruppieren_data = Util_WertBereinigtZurueck($auswertungen.attr("gruppieren"), undefined);
-    const gruppieren_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].gruppieren;
+    const gruppieren_LocalStorage = LISTEN[liste].instanz[instanz].gruppieren;
     const gruppieren = Liste_GruppierenManipuliertZurueck(gruppieren_data, gruppieren_LocalStorage, liste);
 
     // TABELLE FILTERN
     const filtern_data = Util_WertBereinigtZurueck($auswertungen.attr("filtern"), new Object());
-    const filtern_LocalStorage = LISTEN[liste].instanz[auswertungen_instanz].filtern;
+    const filtern_LocalStorage = LISTEN[liste].instanz[instanz].filtern;
     const tabelle_gefiltert = Liste_TabelleGefiltertZurueck(
         LISTEN[liste].tabelle,
         Liste_FilternManipuliertZurueck(filtern_data, filtern_LocalStorage, liste),
@@ -81,8 +81,7 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
     gruppieren_werte_sortiert.push(null); // für die Zusammenfassung
     $.each(gruppieren_werte_sortiert, function (position, wert) {
         let $auswertung = $auswertungen_auswertungen.find('.auswertung[wert="' + wert + '"]');
-        if (!$auswertung.exists())
-            $auswertung = LISTEN[auswertungen].instanz[auswertungen_instanz].$blanko_auswertung.clone().removeClass("blanko invisible");
+        if (!$auswertung.exists()) $auswertung = LISTEN[auswertungen].instanz[instanz].$blanko_auswertung.clone().removeClass("blanko invisible");
 
         $auswertung.attr("auswertungen", auswertungen).attr("liste", liste);
 
@@ -114,25 +113,57 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
         else $auswertung.insertAfter($auswertungen_auswertungen.find('.auswertung[wert="' + gruppieren_werte_sortiert[position - 1] + '"]'));
     });
 
-    // WERKZEUGE AKTUALISIEREN
-    $meta.find(".werkzeuge").each(function () {
-        const $werkzeuge = $(this).empty();
-        $.each(Util_WertBereinigtZurueck($werkzeuge.attr("werkzeuge"), new Array()), function (position, werkzeug) {
-            Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
-                liste: liste,
-                instanz: auswertungen_instanz,
-            }).appendTo($werkzeuge);
+    // META AKTUALISIEREN
+    $meta.each(function () {
+        const $meta = $(this);
+
+        // Überschrift aktualisieren
+        $meta.find(".ueberschrift").each(function () {
+            const $ueberschrift = $(this);
+
+            if (isEmptyString($ueberschrift.text())) $ueberschrift.addClass("invisible");
+            else $ueberschrift.removeClass("invisible");
         });
+
+        // Werkzeuge aktualisieren
+        $meta.find(".werkzeuge").each(function () {
+            const $werkzeuge = $(this).empty();
+
+            $.each(Util_WertBereinigtZurueck($werkzeuge.attr("werkzeuge"), new Array()), function (position, werkzeug) {
+                Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
+                    liste: liste,
+                    instanz: instanz,
+                }).appendTo($werkzeuge);
+            });
+
+            if ($werkzeuge.find(".werkzeug").length === 0) $werkzeuge.addClass("invisible");
+            else $werkzeuge.removeClass("invisible");
+        });
+
+        // Listenstatisik aktualisieren
+        $meta.find(".listenstatistik_todo").each(function () {
+            $(this)
+                .find(".listenstatistik")
+                .each(function () {
+                    Liste_$ListenstatistikAktualisieren($(this), $liste);
+                });
+        });
+
+        if (
+            ($meta.find(".ueberschrift").length === 0 || $meta.find(".ueberschrift").hasClass("invisible")) &&
+            ($meta.find(".werkzeuge").length === 0 || $meta.find(".werkzeuge").hasClass("invisible")) &&
+            ($meta.find(".listenstatistik_todo").length === 0 || $meta.find(".listenstatistik_todo").hasClass("invisible"))
+        )
+            $meta.addClass("invisible");
+        else $meta.removeClass("invisible");
     });
 
-    if (isEmptyString($meta.text()) && $meta.find(".werkzeug").length === 0) $meta.addClass("invisible");
-    else $meta.removeClass("invisible");
-
-    if ($auswertungen_auswertungen.find(".auswertung").length <= 1 && $meta.find(".werkzeug").length === 0) $auswertungen.addClass("invisible");
+    // LISTE AUSBLENDEN
+    if (
+        $auswertungen_auswertungen.find(".auswertung").length <= 1 &&
+        ($meta.find(".werkzeuge").length === 0 || $meta.find(".werkzeuge").hasClass("invisible")) &&
+        ($meta.find(".listenstatistik_todo").length === 0 || $meta.find(".listenstatistik_todo").hasClass("invisible"))
+    )
+        $auswertungen.addClass("invisible");
     else $auswertungen.removeClass("invisible");
-
-    // LISTENSTATISTIK AKTUALISIEREN
-    $auswertungen.find(".listenstatistik").each(function () {
-        Liste_$ListenstatistikAktualisieren($(this), $auswertungen);
-    });
 }

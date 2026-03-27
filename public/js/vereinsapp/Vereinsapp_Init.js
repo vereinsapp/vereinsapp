@@ -39,7 +39,6 @@ event einführen, dass Liste_Element$FormularInitialisieren ausgeführt wird, we
 Aufgaben detaillieren
 Verinsapp_env aufspalten in mehrere _env
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
-Werkzeug zum Unterdrücken der Werkzeuge? Inkl. Speichern im LocalStorage?
 Zugewiesene Strafen anzeigen
 VIEWDATA in LISTEN integrieren
 Mit Github Copilot flex-nowrap, flex-grow, text-truncate und text-nowrap diskutieren
@@ -50,10 +49,6 @@ LISTEN[liste].beschriftung umbenennen in LISTEN[liste].liste_beschriftung und mi
 zusatzsymbol an werkzeug angleichen (blanko, liste, js-Funktion, etc.)
 Bugfix Werkzeuge filtern-Formular
 Braucht es in .liste auch modal_title am .werkzeug?
-.auswertungen innerhalb .auswertungen umbenennen in auswertungen_auswertungen
-
-meta loswerden?
-Bugfix .liste zeigt keine .werkzeuge im .element an (bspw. setliste_verwalten)
 
 ERLEDIGT
 

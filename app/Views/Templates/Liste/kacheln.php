@@ -12,7 +12,7 @@
     if( array_key_exists( 'werkzeuge', $liste ) AND is_array( $liste['werkzeuge'] ) AND count( $liste['werkzeuge'] ) > 0 ) {
         ?><span class="werkzeuge float-end" werkzeuge='<?= json_encode( $liste['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php }
     if( array_key_exists( 'listenstatistik', $liste ) AND is_array( $liste['listenstatistik'] ) AND count( $liste['listenstatistik'] ) > 0 ) {
-        ?><span class="text-secondary float-end"><?php
+        ?><span class="listenstatistik_todo text-secondary float-end"><?php
         if( array_key_exists( 'anzahl', $liste['listenstatistik'] ) ) { ?><span class="listenstatistik" listenstatistik="anzahl"></span> Element(e)<?php }
         if( array_key_exists( 'anzahl', $liste['listenstatistik'] ) AND array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer']['bootstrap'] ?> spacer"></i><?php }
         if( array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?>Summe: <span class="listenstatistik" listenstatistik="summe" eigenschaft="<?= $liste['listenstatistik']['summe']; ?>"></span><?php }
@@ -21,11 +21,9 @@
     <div class="elemente row row-cols-1 row-cols-lg-2 row-cols-xxl-3 gy-3 gx-0 gx-lg-3 w-100">
 
         <div class="col blanko invisible" blanko="element" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>">
-            <div class="card">
-                <div class="meta card-header text-center invisible"><?php
-                if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND count( $liste['element']['werkzeuge'] ) > 0 ) {
-                    ?><span class="werkzeuge stretched-link-unwirksam float-end" werkzeuge='<?= json_encode( $liste['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php }
-                ?></div>
+            <div class="card"><?php
+            if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND count( $liste['element']['werkzeuge'] ) > 0 ) {
+                ?><div class="werkzeuge card-header text-end stretched-link-unwirksam invisible" werkzeuge='<?= json_encode( $liste['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></div><?php } ?>
                 <div class="card-body p-2">
                     <h5 class="card-title text-truncate text-nowrap">
                         <span class="beschriftung"><?= $liste['element']['beschriftung']; ?></span>

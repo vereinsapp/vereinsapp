@@ -5,8 +5,8 @@
 function Liste_$ListeAktualisieren($liste) {
     const liste = Util_WertBereinigtZurueck($liste.attr("liste"), undefined);
     const instanz = Util_WertBereinigtZurueck($liste.attr("id"), undefined);
-    const $meta = $liste.find(".meta").first();
     const $elemente = $liste.find(".elemente");
+    const $meta = $liste.find(".meta");
 
     // TABELLE FILTERN
     const filtern_data = Util_WertBereinigtZurueck($liste.attr("filtern"), new Object());
@@ -51,27 +51,57 @@ function Liste_$ListeAktualisieren($liste) {
         else $element.insertAfter($elemente.find(".element[" + LISTEN[liste].element + '_id="' + tabelle_gefiltert_sortiert[position - 1].id + '"]'));
     });
 
-    // WERKZEUGE AKTUALISIEREN
-    $meta.find(".werkzeuge").each(function () {
-        const $werkzeuge = $(this).empty();
-        $.each(Util_WertBereinigtZurueck($werkzeuge.attr("werkzeuge"), new Array()), function (position, werkzeug) {
-            Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
-                liste: liste,
-                instanz: instanz,
-            }).appendTo($werkzeuge);
+    // META AKTUALISIEREN
+    $meta.each(function () {
+        const $meta = $(this);
+
+        // Überschrift aktualisieren
+        $meta.find(".ueberschrift").each(function () {
+            const $ueberschrift = $(this);
+
+            if (isEmptyString($ueberschrift.text())) $ueberschrift.addClass("invisible");
+            else $ueberschrift.removeClass("invisible");
         });
+
+        // Werkzeuge aktualisieren
+        $meta.find(".werkzeuge").each(function () {
+            const $werkzeuge = $(this).empty();
+
+            $.each(Util_WertBereinigtZurueck($werkzeuge.attr("werkzeuge"), new Array()), function (position, werkzeug) {
+                Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
+                    liste: liste,
+                    instanz: instanz,
+                }).appendTo($werkzeuge);
+            });
+
+            if ($werkzeuge.find(".werkzeug").length === 0) $werkzeuge.addClass("invisible");
+            else $werkzeuge.removeClass("invisible");
+        });
+
+        // Listenstatisik aktualisieren
+        $meta.find(".listenstatistik_todo").each(function () {
+            $(this)
+                .find(".listenstatistik")
+                .each(function () {
+                    Liste_$ListenstatistikAktualisieren($(this), $liste);
+                });
+        });
+
+        if (
+            ($meta.find(".ueberschrift").length === 0 || $meta.find(".ueberschrift").hasClass("invisible")) &&
+            ($meta.find(".werkzeuge").length === 0 || $meta.find(".werkzeuge").hasClass("invisible")) &&
+            ($meta.find(".listenstatistik_todo").length === 0 || $meta.find(".listenstatistik_todo").hasClass("invisible"))
+        )
+            $meta.addClass("invisible");
+        else $meta.removeClass("invisible");
     });
 
-    // META EIN-/AUSBLENDEN
-    if (isEmptyString($meta.text()) && $meta.find(".werkzeug").length === 0) $meta.addClass("invisible");
-    else $meta.removeClass("invisible");
-
-    // LISTE EIN-/AUSBLENDEN
-    if ($elemente.find(".element").length === 0 && $meta.find(".werkzeug").length === 0) $liste.addClass("invisible");
+    // LISTE AUSBLENDEN
+    if (
+        $elemente.find(".element").length <= 0 &&
+        ($meta.find(".werkzeuge").length === 0 || $meta.find(".werkzeuge").hasClass("invisible")) &&
+        ($meta.find(".listenstatistik_todo").length === 0 || $meta.find(".listenstatistik_todo").hasClass("invisible"))
+    )
+        $liste.addClass("invisible");
     else $liste.removeClass("invisible");
-
-    // LISTENSTATISTIK AKTUALISIEREN
-    $liste.find(".listenstatistik").each(function () {
-        Liste_$ListenstatistikAktualisieren($(this), $liste);
-    });
 }

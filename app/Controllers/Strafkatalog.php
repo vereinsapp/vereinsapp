@@ -21,6 +21,7 @@ class Strafkatalog extends BaseController {
 
             if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
+                $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
                 $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'element_erstellen';
                 $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_aendern';
                 $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_duplizieren';

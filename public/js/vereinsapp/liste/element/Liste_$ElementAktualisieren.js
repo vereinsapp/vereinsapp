@@ -5,7 +5,6 @@
 function Liste_$ElementAktualisieren($element) {
     const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
     const element_id = Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
-    const $meta = $element.find(".meta");
 
     // EIGENSCHAFTEN AKTUALISIEREN
     $element.find(".eigenschaft").each(function () {
@@ -18,14 +17,23 @@ function Liste_$ElementAktualisieren($element) {
     });
 
     // WERKZEUGE AKTUALISIEREN
-    $meta.find(".werkzeuge").each(function () {
+    const $liste = $element.closest('.liste[liste="' + liste + '"][id]');
+    $element.find(".werkzeuge").each(function () {
         const $werkzeuge = $(this).empty();
+
         $.each(Util_WertBereinigtZurueck($werkzeuge.attr("werkzeuge"), new Array()), function (position, werkzeug) {
             Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
                 liste: liste,
                 [LISTEN[liste].element + "_id"]: element_id,
             }).appendTo($werkzeuge);
         });
+
+        if (
+            $werkzeuge.find(".werkzeug").length === 0 ||
+            ($liste.exists() && LISTEN[liste].instanz[Util_WertBereinigtZurueck($liste.attr("id"), undefined)].bearbeiten_modus === false)
+        )
+            $werkzeuge.addClass("invisible");
+        else $werkzeuge.removeClass("invisible");
     });
 
     // VERKNUEPFUNGEN AKTUALISIEREN
@@ -73,14 +81,4 @@ function Liste_$ElementAktualisieren($element) {
         $element.find(".card").removeAttr("role").removeClass("element-action");
         $element.find("label").removeAttr("role", "button");
     }
-
-    // META EIN-/AUSBLENDEN
-    const $liste = $element.closest('.liste[liste="' + liste + '"][id]');
-    if (
-        isEmptyString($meta.text()) &&
-        ($meta.find(".werkzeug").length === 0 ||
-            ($liste.exists() && LISTEN[liste].instanz[Util_WertBereinigtZurueck($liste.attr("id"), undefined)].bearbeiten_modus === false))
-    )
-        $meta.addClass("invisible");
-    else $meta.removeClass("invisible");
 }

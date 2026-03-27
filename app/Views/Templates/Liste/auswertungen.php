@@ -10,10 +10,8 @@
     if( array_key_exists( 'werkzeuge', $auswertungen ) AND is_array( $auswertungen['werkzeuge'] ) AND count( $auswertungen['werkzeuge'] ) > 0 ) {
         ?><span class="werkzeuge float-end" werkzeuge='<?= json_encode( $auswertungen['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php }
     ?></div>
-    <div class="auswertungen row w-100 g-0">
-
+    <div class="auswertungen_auswertungen row w-100 g-0">
 <?= view( $view, array( 'auswertung' => array( 'instanz' => $auswertungen['instanz'], 'collapse' => $auswertungen['collapse'], 'progress' => $auswertungen['progress'], ) ) ); ?>
-
     </div>
 
 </div>

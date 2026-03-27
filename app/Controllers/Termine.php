@@ -76,6 +76,7 @@ class Termine extends BaseController {
                 $this->viewdata['liste']['termine_aufgaben_zuordnen'] = VIEWDATA['aufgaben'];
                 // unset($this->viewdata['liste']['termine_aufgaben_zuordnen']['filtern']);
                 $this->viewdata['liste']['termine_aufgaben_zuordnen']['termin_id'] = $termin_id;
+                $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
                 $this->viewdata['liste']['termine_aufgaben_zuordnen']['werkzeuge'][] = 'element_erstellen';
                 $this->viewdata['liste']['termine_aufgaben_zuordnen']['element']['werkzeuge'][] = 'element_aendern';
                 $this->viewdata['liste']['termine_aufgaben_zuordnen']['element']['werkzeuge'][] = 'element_duplizieren';
@@ -92,17 +93,19 @@ class Termine extends BaseController {
             $this->viewdata['liste']['zugeordnete_setliste']['filtern'] = array( 'termin_id' => array( 'inklusiv' => array( $termin_id ), ), );
             $this->viewdata['liste']['zugeordnete_setliste']['ueberschrift'] = 'Setliste';
             $this->viewdata['liste']['zugeordnete_setliste']['element']['beschriftung'] = '<span class="eigenschaft text-secondary small" eigenschaft="status"></span> <i class="bi bi-'.SYMBOLE['notenbank']['bootstrap'].'"></i> <span class="eigenschaft" eigenschaft="titel_titel_nr"></span> <span class="eigenschaft" eigenschaft="titel_titel"></span>';
-            $this->viewdata['liste']['zugeordnete_setliste']['element']['werkzeuge'][] = 'element_loeschen';
             $this->viewdata['liste']['zugeordnete_setliste']['element']['link'] = array( 'liste' => 'notenbank', 'eigenschaften' => array( 'titel_id', ), );
 
             if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 
+                $this->viewdata['liste']['zugeordnete_setliste']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
                 $this->viewdata['liste']['zugeordnete_setliste']['werkzeuge'][] = 'setliste_verwalten';
                 $this->viewdata['liste']['zugeordnete_setliste']['element']['werkzeuge'][] = 'sortable';
+                $this->viewdata['liste']['zugeordnete_setliste']['element']['werkzeuge'][] = 'element_loeschen';
 
                 $this->viewdata['liste']['setliste_verwalten'] = VIEWDATA['notenbank'];
                 // unset($this->viewdata['liste']['setliste_verwalten']['filtern']);
                 $this->viewdata['liste']['setliste_verwalten']['termin_id'] = $termin_id;
+                $this->viewdata['liste']['setliste_verwalten']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
                 $this->viewdata['liste']['setliste_verwalten']['werkzeuge'][] = 'element_erstellen';
                 $this->viewdata['liste']['setliste_verwalten']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['notenbank']['bootstrap'].'"></i> '.VIEWDATA['notenbank']['element']['beschriftung'];
                 $this->viewdata['liste']['setliste_verwalten']['element']['werkzeuge'][] = 'element_aendern';
@@ -123,6 +126,7 @@ class Termine extends BaseController {
 
             if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
+                $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
                 $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['werkzeuge'][] = 'element_erstellen';
                 $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['werkzeuge'][] = 'element_aendern';
                 $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['werkzeuge'][] = 'element_duplizieren';
@@ -143,6 +147,7 @@ class Termine extends BaseController {
 
             if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
 
+                $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
                 $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeuge'][] = 'element_erstellen';
                 $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['werkzeuge'][] = 'element_aendern';
                 $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['werkzeuge'][] = 'element_duplizieren';
