@@ -36,6 +36,7 @@ Besseres Symbol für _eigenschaft_zuruecksetzen und _eigenschaft_zuruecksetzen-B
 Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen (ausschließlich spezielle Zusatzsymbole wie beispiele Termin-Kategorie als hex-Symbole)
 Neue bootstrap icons Version einführen (unlock2 statt lock)
 event einführen, dass Liste_Element$FormularInitialisieren ausgeführt wird, wenn ein modal geöffnet wurde (mittels Dom_$ModalOeffnen)
+Liste_$AuswertungInitialisiertZurueck und Liste_$ElementInitialisiertZurueck einführen
 Aufgaben detaillieren
 Verinsapp_env aufspalten in mehrere _env
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
@@ -47,8 +48,6 @@ Wie weiter mit Liste_$ListenstatistikAktualisieren?
 auswertung-Views vereinheitlichen?
 LISTEN[liste].beschriftung umbenennen in LISTEN[liste].liste_beschriftung und mit beschriftung in VIEWDATA und beschriftung im Details-View verheiraten
 zusatzsymbol an werkzeug angleichen (blanko, liste, js-Funktion, etc.)
-Bugfix Werkzeuge filtern-Formular
-Braucht es in .liste auch modal_title am .werkzeug?
 
 ERLEDIGT
 

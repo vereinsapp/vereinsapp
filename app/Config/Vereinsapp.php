@@ -509,7 +509,6 @@ class Vereinsapp extends BaseConfig
             // 'ueberschrift' => 'Alle Mitglider',
             'element' => array(
                 'werkzeuge' => array(),
-                // 'modal_title' => 'Titel für ein Modal',
                 'beschriftung' => '<span class="eigenschaft" eigenschaft="vorname"></span> <span class="eigenschaft" eigenschaft="nachname"></span>',
                 'zusatzsymbol' => array('geburtstag'),
                 // 'link' => array( 'liste' => 'mitglieder', 'eigenschaften' => array( 'id', ), ),

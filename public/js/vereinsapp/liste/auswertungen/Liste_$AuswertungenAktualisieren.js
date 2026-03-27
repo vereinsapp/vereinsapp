@@ -127,13 +127,11 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
 
         // Werkzeuge aktualisieren
         $meta.find(".werkzeuge").each(function () {
-            const $werkzeuge = $(this).empty();
+            const $werkzeuge = $(this);
 
-            $.each(Util_WertBereinigtZurueck($werkzeuge.attr("werkzeuge"), new Array()), function (position, werkzeug) {
-                Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
-                    liste: liste,
-                    instanz: instanz,
-                }).appendTo($werkzeuge);
+            Dom_$WerkzeugeAktualisieren($werkzeuge, {
+                liste: liste,
+                instanz: instanz,
             });
 
             if ($werkzeuge.find(".werkzeug").length === 0) $werkzeuge.addClass("invisible");

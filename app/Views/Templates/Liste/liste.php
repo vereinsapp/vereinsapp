@@ -19,9 +19,7 @@
         echo ' sortable';
     ?>" liste="<?= $liste['liste']; ?>">
 
-        <div class="list-group-item blanko invisible" blanko="element" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>"<?php
-        if( array_key_exists( 'modal_title', $liste['element'] ) ) { ?> modal_title="<?= $liste['element']['modal_title'] ?>"<?php }
-        ?>>
+        <div class="list-group-item blanko invisible" blanko="element" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>">
 
             <div class="text-truncate d-flex flex-nowrap align-items-center">
 <?php if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'janein_auswahl' ) echo view( 'Templates/Liste/verknuepfungen_janein_auswahl', array( 'verknuepfungen' => $liste['element']['verknuepfungen'], ) ); ?>
@@ -30,7 +28,7 @@
                     echo ' werkzeug';
                 ?>"<?php
                 if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'element_auswahl' ) {
-                    ?> werkzeug="<?= LISTEN[ $liste['element']['verknuepfungen'] ]['element']?>_erstellen" verknuepfungen="<?= $liste['element']['verknuepfungen'] ?>"<?php }
+                    ?> werkzeug="<?= LISTEN[ $liste['element']['verknuepfungen'] ]['element'].'_erstellen' ?>" modal_title="<?= WERKZEUGE[ LISTEN[ $liste['element']['verknuepfungen'] ]['element'].'_erstellen' ]['beschriftung']['beschriftung'] ?>" verknuepfungen="<?= $liste['element']['verknuepfungen'] ?>"<?php }
                 ?>><span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste['element'] ) ) { ?><?= $liste['element']['beschriftung']; ?><?php } ?></span></label><?php
                 if( array_key_exists( 'zusatzsymbol', $liste['element'] ) AND is_array( $liste['element']['zusatzsymbol'] ) AND count( $liste['element']['zusatzsymbol'] ) > 0 )
                     foreach( $liste['element']['zusatzsymbol'] as $zusatzsymbol ) { ?><span class="zusatzsymbol float-end ms-2 stretched-link-unwirksam" zusatzsymbol="<?= $zusatzsymbol ?>"></span><?php }

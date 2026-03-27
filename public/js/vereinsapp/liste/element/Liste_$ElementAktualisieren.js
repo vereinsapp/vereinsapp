@@ -19,13 +19,11 @@ function Liste_$ElementAktualisieren($element) {
     // WERKZEUGE AKTUALISIEREN
     const $liste = $element.closest('.liste[liste="' + liste + '"][id]');
     $element.find(".werkzeuge").each(function () {
-        const $werkzeuge = $(this).empty();
+        const $werkzeuge = $(this);
 
-        $.each(Util_WertBereinigtZurueck($werkzeuge.attr("werkzeuge"), new Array()), function (position, werkzeug) {
-            Dom_$WerkzeugInitialisiertZurueck(werkzeug, {
-                liste: liste,
-                [LISTEN[liste].element + "_id"]: element_id,
-            }).appendTo($werkzeuge);
+        Dom_$WerkzeugeAktualisieren($werkzeuge, {
+            liste: liste,
+            [LISTEN[liste].element + "_id"]: element_id,
         });
 
         if (
