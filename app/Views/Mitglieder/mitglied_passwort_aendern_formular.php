@@ -5,7 +5,7 @@
     </div>
     <div class="input-group-text text-<?php
     if( array_key_exists('farbe', WERKZEUGE['passwort_anzeigen']) ) echo WERKZEUGE['passwort_anzeigen']['farbe']; else echo "primary";
-    ?> werkzeug" werkzeug="passwort_anzeigen" role="button"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['passwort_anzeigen']['symbol'] ]['bootstrap']; ?>"></i></div>
+    ?> werkzeug" werkzeug="passwort_anzeigen" role="button"><i class="bi bi-<?= ICONS[ WERKZEUGE['passwort_anzeigen']['symbol'] ]; ?>"></i></div>
 </div>
 
 <div class="input-group mb-2">
@@ -15,7 +15,7 @@
     </div>
     <div class="input-group-text text-<?php
     if( array_key_exists('farbe', WERKZEUGE['passwort_anzeigen']) ) echo WERKZEUGE['passwort_anzeigen']['farbe']; else echo "primary";
-    ?> werkzeug" werkzeug="passwort_anzeigen" role="button"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['passwort_anzeigen']['symbol'] ]['bootstrap']; ?>"></i></div>
+    ?> werkzeug" werkzeug="passwort_anzeigen" role="button"><i class="bi bi-<?= ICONS[ WERKZEUGE['passwort_anzeigen']['symbol'] ]; ?>"></i></div>
 </div>
 
 <div class="input-group mb-2">
@@ -25,5 +25,5 @@
     </div>
     <div class="input-group-text text-<?php
     if( array_key_exists('farbe', WERKZEUGE['passwort_anzeigen']) ) echo WERKZEUGE['passwort_anzeigen']['farbe']; else echo "primary";
-    ?> werkzeug" werkzeug="passwort_anzeigen" role="button"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['passwort_anzeigen']['symbol'] ]['bootstrap']; ?>"></i></div>
+    ?> werkzeug" werkzeug="passwort_anzeigen" role="button"><i class="bi bi-<?= ICONS[ WERKZEUGE['passwort_anzeigen']['symbol'] ]; ?>"></i></div>
 </div>

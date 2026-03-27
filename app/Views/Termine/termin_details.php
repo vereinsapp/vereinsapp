@@ -18,12 +18,12 @@
             </h5>
             <div class="card-text row row-cols-3 g-0">
                 <div class="col-6 text-center">
-                    <div><i class="bi bi-<?= SYMBOLE["zeitraum"]["bootstrap"]; ?>"></i></div>
+                    <div><i class="bi bi-<?= ICONS["zeitraum"]; ?>"></i></div>
                     <div><span class="eigenschaft" eigenschaft="start"></span></div>
                     <?php if( array_key_exists( 'ende', EIGENSCHAFTEN['termine'] ) ) { ?><div class="text-secondary small">bis <span class="eigenschaft" eigenschaft="ende"></span></div><?php } ?>
                 </div>
                 <div class="col-6 text-center">
-                    <div><i class="bi bi-<?= SYMBOLE["ort"]["bootstrap"]; ?>"></i></div>
+                    <div><i class="bi bi-<?= ICONS["ort"]; ?>"></i></div>
                     <div><span class="eigenschaft" eigenschaft="ort"></span></div>
                 </div>
             </div>

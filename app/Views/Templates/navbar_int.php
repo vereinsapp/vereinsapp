@@ -8,7 +8,7 @@
         <div>
             <i class="bi-<?php if( array_key_exists( AKTIVER_CONTROLLER, CONTROLLERS ) AND array_key_exists( 'symbol', CONTROLLERS[ AKTIVER_CONTROLLER ] ) ) echo CONTROLLERS[ AKTIVER_CONTROLLER ]['symbol']; ?> me-1"></i>
             <span class="navbar-text"><?php if( array_key_exists( AKTIVER_CONTROLLER, CONTROLLERS ) AND array_key_exists( 'beschriftung', CONTROLLERS[ AKTIVER_CONTROLLER ] ) ) echo CONTROLLERS[ AKTIVER_CONTROLLER ]['beschriftung']; ?></span>
-            <span id="status" class="ms-1 text-success"><i class="bi-<?= SYMBOLE["status"]["bootstrap"]; ?>"></i></span>
+            <span id="status" class="ms-1 text-success"><i class="bi-<?= ICONS["status"]; ?>"></i></span>
         </div>
         <div class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" role="button">
             <span class="navbar-toggler-icon"></span>

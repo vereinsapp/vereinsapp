@@ -16,7 +16,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
         case "geburtstag":
             const geburtstag = Liste_VariableRausZurueck("geburtstag", element_id, liste, undefined);
             if (typeof geburtstag !== "undefined" && geburtstag <= DATETIME.now() && DATETIME.now() <= geburtstag.plus({ days: 1 }))
-                $zusatzsymbol.html('<i class="bi bi-' + SYMBOLE["geburtstag"]["bootstrap"] + ' text-primary"></i>');
+                $zusatzsymbol.html('<i class="bi bi-' + ICONS.geburtstag + ' text-primary"></i>');
             break;
 
         // Zusatzsymbol für Kategorie
@@ -28,7 +28,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                 kategorie in VORGEGEBENE_WERTE[liste]["kategorie"] &&
                 "symbol" in VORGEGEBENE_WERTE[liste]["kategorie"][kategorie]
             )
-                $zusatzsymbol.html(VORGEGEBENE_WERTE[liste]["kategorie"][kategorie]["symbol"]);
+                $zusatzsymbol.html(VORGEGEBENE_WERTE[liste]["kategorie"][kategorie].symbol);
             break;
 
         // Zusatzsymbol für Bemerkung bei Rückmeldung
@@ -39,7 +39,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
                     .removeClass("invisible")
                     .html(
                         '<i class="bi bi-' +
-                            SYMBOLE["bemerkung"]["bootstrap"] +
+                            ICONS.bemerkung +
                             ' text-primary" data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="focus" tabindex="0" data-bs-placement="right" data-bs-content="' +
                             bemerkung +
                             '" role="button"></i>',

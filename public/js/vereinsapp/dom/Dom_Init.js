@@ -80,7 +80,7 @@ function Dom_Init() {
     $(document).ajaxStart(function () {
         $("#status").find(".spinner").remove();
         $("#status")
-            .find(".bi-" + SYMBOLE.status.bootstrap)
+            .find(".bi-" + ICONS.status)
             .addClass("invisible")
             .after(Dom_$SpinnerInitialisiertZurueck());
     });
@@ -88,7 +88,7 @@ function Dom_Init() {
     $(document).ajaxStop(function () {
         $("#status").find(".spinner").remove();
         $("#status")
-            .find(".bi-" + SYMBOLE.status.bootstrap)
+            .find(".bi-" + ICONS.status)
             .removeClass("invisible");
     });
 
@@ -106,7 +106,7 @@ function Dom_Init() {
     $(window).on("beforeunload", function () {
         $("#status").find(".spinner").remove();
         $("#status")
-            .find(".bi-" + SYMBOLE.status.bootstrap)
+            .find(".bi-" + ICONS.status)
             .addClass("invisible")
             .after(Dom_$SpinnerInitialisiertZurueck());
     });

@@ -171,12 +171,12 @@ function Liste_Init() {
 
         if ($eingabe.attr("type") == "text") {
             $eingabe.attr("type", "password");
-            $werkzeug.find("i").removeClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
-            $werkzeug.find("i").addClass("bi-" + SYMBOLE[WERKZEUGE["passwort_anzeigen"]["symbol"]]["bootstrap"]);
+            $werkzeug.find("i").removeClass("bi-" + ICONS.sichtbar);
+            $werkzeug.find("i").addClass("bi-" + ICONS[WERKZEUGE["passwort_anzeigen"].symbol]);
         } else if ($eingabe.attr("type") == "password") {
             $eingabe.attr("type", "text");
-            $werkzeug.find("i").removeClass("bi-" + SYMBOLE[WERKZEUGE["passwort_anzeigen"]["symbol"]]["bootstrap"]);
-            $werkzeug.find("i").addClass("bi-" + SYMBOLE["sichtbar"]["bootstrap"]);
+            $werkzeug.find("i").removeClass("bi-" + ICONS[WERKZEUGE["passwort_anzeigen"].symbol]);
+            $werkzeug.find("i").addClass("bi-" + ICONS.sichtbar);
         }
     });
 }

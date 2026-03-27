@@ -5,5 +5,5 @@
     </div>
     <button type="button" class="btn btn-outline-<?php
     if( array_key_exists('farbe', WERKZEUGE['gruppieren_eigenschaft_zuruecksetzen']) ) echo WERKZEUGE['gruppieren_eigenschaft_zuruecksetzen']['farbe']; else echo "primary";
-    ?> werkzeug" werkzeug="gruppieren_eigenschaft_zuruecksetzen"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['gruppieren_eigenschaft_zuruecksetzen']['symbol'] ]['bootstrap']; ?>"></i></span></button>
+    ?> werkzeug" werkzeug="gruppieren_eigenschaft_zuruecksetzen"><span class="beschriftung"><i class="bi bi-<?= ICONS[ WERKZEUGE['gruppieren_eigenschaft_zuruecksetzen']['symbol'] ]; ?>"></i></span></button>
 </div>

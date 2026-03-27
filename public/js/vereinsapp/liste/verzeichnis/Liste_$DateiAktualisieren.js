@@ -18,7 +18,7 @@ function Liste_$DateiAktualisieren($datei) {
             const datei = Util_WertBereinigtZurueck($datei.attr("datei"), undefined);
             const punkt = datei.lastIndexOf(".");
             const typ = datei.slice(punkt + 1);
-            $(this).addClass("bi-" + SYMBOLE[typ].bootstrap);
+            $(this).addClass("bi-" + ICONS[typ]);
         });
 
     // LINK AKTUALISIEREN

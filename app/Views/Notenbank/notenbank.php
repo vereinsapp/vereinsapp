@@ -4,7 +4,7 @@
 
 <?php if( NOTENBANK_VERZEICHNIS != NULL AND !empty(NOTENBANK_VERZEICHNIS) ) { ?>
 <div class="w-100"><a href="<?= base_url( NOTENBANK_VERZEICHNIS ); ?>" type="button" class="btn btn-outline-primary" target="_blank">
-    <span class="beschriftung"><i class="bi bi-<?= SYMBOLE['notenbank']['bootstrap']; ?>"></i> Verzeichnis öffnen</span>
+    <span class="beschriftung"><i class="bi bi-<?= ICONS['notenbank']; ?>"></i> Verzeichnis öffnen</span>
 </a></div>
 <?php } ?>
 

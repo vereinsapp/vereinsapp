@@ -37,7 +37,7 @@
             </div>
             <div class="input-group-text text-<?php
             if( array_key_exists('farbe', WERKZEUGE['passwort_anzeigen']) ) echo WERKZEUGE['passwort_anzeigen']['farbe']; else echo "primary";
-            ?> werkzeug" werkzeug="passwort_anzeigen" role="button"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['passwort_anzeigen']['symbol'] ]['bootstrap']; ?>"></i></div>
+            ?> werkzeug" werkzeug="passwort_anzeigen" role="button"><i class="bi bi-<?= ICONS[ WERKZEUGE['passwort_anzeigen']['symbol'] ]; ?>"></i></div>
         </div>
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" value="angemeldet_bleiben" name="remember" id="angemeldet_bleiben" <?php //if (old('remember')): ?> checked<?php //endif ?> role="switch" />
