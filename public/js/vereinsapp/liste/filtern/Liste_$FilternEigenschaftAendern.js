@@ -32,19 +32,33 @@ function Liste_$FilternEigenschaftAendern($filtern_eigenschaft) {
                     });
                     break;
                 case "janein":
-                    const neuer_filtern_wert_janein = Util_WertBereinigtZurueck($filtern_eigenschaft.find(".filtern_auswahl").val(), undefined);
-                    if (neuer_filtern_wert_janein === 0 || neuer_filtern_wert_janein === 1) {
+                    const neuer_filtern_wert_janein = !!Util_WertBereinigtZurueck($filtern_eigenschaft.find(".filtern_auswahl").val(), undefined);
+                    if (neuer_filtern_wert_janein === true || neuer_filtern_wert_janein === false) {
                         if (!("inklusiv" in filtern_eigenschaft)) filtern_eigenschaft.inklusiv = new Array();
-                        if (!filtern_eigenschaft.inklusiv.includes(JANEIN[neuer_filtern_wert_janein].wert))
-                            filtern_eigenschaft.inklusiv.push(JANEIN[neuer_filtern_wert_janein].wert);
-                    }
+                        if (!filtern_eigenschaft.inklusiv.includes(!!neuer_filtern_wert_janein))
+                            filtern_eigenschaft.inklusiv.push(!!neuer_filtern_wert_janein);
+                    } else
+                        Log_InDieKonsole(
+                            "Liste_$FilternEigenschaftAendern: " +
+                                neuer_filtern_wert_janein +
+                                " (" +
+                                EIGENSCHAFTEN[liste][eigenschaft].typ +
+                                ") ist nicht true oder false!",
+                        );
                     break;
                 case "vorgegebene_werte":
                     const neuer_filtern_wert = Util_WertBereinigtZurueck($filtern_eigenschaft.find(".filtern_auswahl").val(), undefined);
                     if (neuer_filtern_wert.length > 0) {
                         if (!("inklusiv" in filtern_eigenschaft)) filtern_eigenschaft.inklusiv = new Array();
                         if (!filtern_eigenschaft.inklusiv.includes(neuer_filtern_wert)) filtern_eigenschaft.inklusiv.push(neuer_filtern_wert);
-                    }
+                    } else
+                        Log_InDieKonsole(
+                            "Liste_$FilternEigenschaftAendern: " +
+                                neuer_filtern_wert_janein +
+                                " (" +
+                                EIGENSCHAFTEN[liste][eigenschaft].typ +
+                                ") ist nicht größer 0!",
+                        );
                     break;
                 case "element_id":
                 case "element_ids":
@@ -52,7 +66,14 @@ function Liste_$FilternEigenschaftAendern($filtern_eigenschaft) {
                     if (neuer_filtern_wert_id > 0) {
                         if (!("inklusiv" in filtern_eigenschaft)) filtern_eigenschaft.inklusiv = new Array();
                         if (!filtern_eigenschaft.inklusiv.includes(neuer_filtern_wert_id)) filtern_eigenschaft.inklusiv.push(neuer_filtern_wert_id);
-                    }
+                    } else
+                        Log_InDieKonsole(
+                            "Liste_$FilternEigenschaftAendern: " +
+                                neuer_filtern_wert_janein +
+                                " (" +
+                                EIGENSCHAFTEN[liste][eigenschaft].typ +
+                                ") ist nicht größer 0!",
+                        );
                     break;
             }
 

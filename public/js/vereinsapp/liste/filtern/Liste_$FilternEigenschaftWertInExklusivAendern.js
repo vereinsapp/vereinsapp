@@ -26,7 +26,7 @@ function Liste_$FilternEigenschaftWertInExklusivAendern($filtern_eigenschaft, fi
                     // (noch) keine Vielzahl an Werten
                     break;
                 case "janein":
-                    filtern_wert = JANEIN[filtern_wert].wert;
+                    filtern_wert = !!filtern_wert;
                 case "vorgegebene_werte":
                 case "element_id":
                 case "element_ids":

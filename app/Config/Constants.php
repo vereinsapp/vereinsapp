@@ -99,28 +99,18 @@ define('EVENT_PRIORITY_HIGH', 10);
 |--------------------------------------------------------------------------*/
 
 defined('JANEIN') OR define( 'JANEIN', array(
-	0 => array( 'beschriftung' => 'Nein', 'wert' => FALSE ),
-	1 => array( 'beschriftung' => 'Ja', 'wert' => TRUE ),
+	0 => 'Nein',
+	1 => 'Ja',
 ) );
 
-defined('WOCHENTAGE_KURZ') OR define( 'WOCHENTAGE_KURZ', array(
-	1 => array( 'beschriftung' => 'Mo.' ),
-	2 => array( 'beschriftung' => 'Di.' ),
-	3 => array( 'beschriftung' => 'Mi.' ),
-	4 => array( 'beschriftung' => 'Do.' ),
-	5 => array( 'beschriftung' => 'Fr.' ),
-	6 => array( 'beschriftung' => 'Sa.' ),
-	7 => array( 'beschriftung' => 'So.' ),
-) );
-
-defined('WOCHENTAGE_LANG') OR define( 'WOCHENTAGE_LANG', array(
-	1 => array( 'beschriftung' => 'Montag' ),
-	2 => array( 'beschriftung' => 'Dienstag' ),
-	3 => array( 'beschriftung' => 'Mittwoch' ),
-	4 => array( 'beschriftung' => 'Donnnerstag' ),
-	5 => array( 'beschriftung' => 'Freitag' ),
-	6 => array( 'beschriftung' => 'Samstag' ),
-	7 => array( 'beschriftung' => 'Sonntag' ),
+defined('WOCHENTAGE') OR define( 'WOCHENTAGE', array(
+	1 => 'Mo.',
+	2 => 'Di.',
+	3 => 'Mi.',
+	4 => 'Do.',
+	5 => 'Fr.',
+	6 => 'Sa.',
+	7 => 'So.',
 ) );
 
 defined('SYMBOLE') OR define( 'SYMBOLE', array(
@@ -149,6 +139,7 @@ defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'filtern' => 'funnel',
     'sortieren' => 'sort-down',
     'gruppieren' => 'hdd-stack',
+    'inhalt_kopieren' => 'files',
     'inklusiv_exklusiv' => 'transparency',
     'asc' => 'sort-alpha-down',
     'desc' => 'sort-alpha-up',

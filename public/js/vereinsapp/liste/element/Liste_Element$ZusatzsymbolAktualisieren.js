@@ -22,13 +22,7 @@ function Liste_Element$ZusatzsymbolAktualisieren($zusatzsymbol, $element) {
         // Zusatzsymbol für Kategorie
         case "kategorie":
             const kategorie = Liste_VariableRausZurueck("kategorie", element_id, liste, undefined);
-            if (
-                liste in VORGEGEBENE_WERTE &&
-                "kategorie" in VORGEGEBENE_WERTE[liste] &&
-                kategorie in VORGEGEBENE_WERTE[liste]["kategorie"] &&
-                "symbol" in VORGEGEBENE_WERTE[liste]["kategorie"][kategorie]
-            )
-                $zusatzsymbol.html(VORGEGEBENE_WERTE[liste]["kategorie"][kategorie].symbol);
+            if (kategorie in TERMINE_KATEGORIE_STATUSSYMBOLE) $zusatzsymbol.html(TERMINE_KATEGORIE_STATUSSYMBOLE[kategorie]);
             break;
 
         // Zusatzsymbol für Bemerkung bei Rückmeldung

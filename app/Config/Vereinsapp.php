@@ -67,17 +67,17 @@ class Vereinsapp extends BaseConfig
      * Pflicht: beschriftung, symbol
      */
     public $controllers = array(
-        'einstellungen' => array ( 'beschriftung' => 'Einstellungen', 'symbol' => SYMBOLE['einstellungen'] ),
-        'mitglieder' => array ( 'beschriftung' => 'Mitglieder', 'symbol' => SYMBOLE['mitglieder'] ),
-        'aufgaben' => array ( 'beschriftung' => 'Aufgaben', 'symbol' => SYMBOLE['aufgaben'] ),
-        'termine' => array ( 'beschriftung' => 'Termine', 'symbol' => SYMBOLE['termine'] ),
-        'strafkatalog' => array ( 'beschriftung' => 'Strafkatalog', 'symbol' => SYMBOLE['strafkatalog'] ),
-        'notenbank' => array ( 'beschriftung' => 'Notenbank', 'symbol' => SYMBOLE['notenbank'] ),
-        'startseite' => array ( 'beschriftung' => 'Willkommen', 'symbol' => SYMBOLE['startseite'] ),
-        'status' => array ( 'beschriftung' => 'Status', 'symbol' => SYMBOLE['einstellungen'] ),
-        'loginController' => array ( 'beschriftung' => 'Login', 'symbol' => SYMBOLE['einstellungen'] ),
-        'actionController' => array ( 'beschriftung' => 'Login-Action', 'symbol' => SYMBOLE['einstellungen'] ),        
-        'magicLinkController' => array ( 'beschriftung' => 'Einmal-Link', 'symbol' => SYMBOLE['einstellungen'] ),        
+        'einstellungen' => array ( 'beschriftung' => 'Einstellungen', 'symbol' => 'einstellungen' ),
+        'mitglieder' => array ( 'beschriftung' => 'Mitglieder', 'symbol' => 'mitglieder' ),
+        'aufgaben' => array ( 'beschriftung' => 'Aufgaben', 'symbol' => 'aufgaben' ),
+        'termine' => array ( 'beschriftung' => 'Termine', 'symbol' => 'termine' ),
+        'strafkatalog' => array ( 'beschriftung' => 'Strafkatalog', 'symbol' => 'strafkatalog' ),
+        'notenbank' => array ( 'beschriftung' => 'Notenbank', 'symbol' => 'notenbank' ),
+        'startseite' => array ( 'beschriftung' => 'Willkommen', 'symbol' => 'startseite' ),
+        'status' => array ( 'beschriftung' => 'Status', 'symbol' => 'einstellungen' ),
+        'loginController' => array ( 'beschriftung' => 'Login', 'symbol' => 'einstellungen' ),
+        'actionController' => array ( 'beschriftung' => 'Login-Action', 'symbol' => 'einstellungen' ),        
+        'magicLinkController' => array ( 'beschriftung' => 'Einmal-Link', 'symbol' => 'einstellungen' ),        
     );
 
     /**
@@ -89,7 +89,7 @@ class Vereinsapp extends BaseConfig
         array( 'typ' => 'controller', 'data' => 'notenbank' ),
         array( 'typ' => 'controller', 'data' => 'mitglieder' ),
         array( 'typ' => 'controller', 'data' => 'einstellungen' ),
-        array( 'typ' => 'intern', 'data' => array( 'url' => 'logout', 'beschriftung' => 'Abmelden', 'symbol' => SYMBOLE['logout'] ) ),
+        array( 'typ' => 'intern', 'data' => array( 'url' => 'logout', 'beschriftung' => 'Abmelden', 'symbol' => 'logout' ) ),
     );
 
     /**
@@ -865,46 +865,46 @@ class Vereinsapp extends BaseConfig
         'mitglieder' => array(
 
             'geschlecht' => array (
-                'm' => array( 'beschriftung' => 'Männl.', ),
-                'w' => array( 'beschriftung' => 'Weibl.', ),
-                'd' => array( 'beschriftung' => 'Keine Angabe', ),
+                'm' => 'Männl.',
+                'w' => 'Weibl.',
+                'd' => 'Keine Angabe',
             ),
 
             'register' => array (
-                'ohne' => array( 'beschriftung' => 'ohne Instrument', ),
-                'dirigent' => array( 'beschriftung' => 'Dirigent', ),
-                'ebass' => array( 'beschriftung' => 'E-Bass', ),
-                'querfloete' => array( 'beschriftung' => 'Querflöte', ),
-                'fluegelhorn' => array( 'beschriftung' => 'Flügelhorn', ),
-                'klarinette' => array( 'beschriftung' => 'Klarinette', ),
-                'posaune' => array( 'beschriftung' => 'Posaune', ),
-                'saxophon' => array( 'beschriftung' => 'Saxophon', ),
-                'schlagzeug' => array( 'beschriftung' => 'Schlagzeug', ),
-                'tenorhorn' => array( 'beschriftung' => 'Tenorhorn', ),
-                'trompete' => array( 'beschriftung' => 'Trompete', ),
-                'tuba' => array( 'beschriftung' => 'Tuba', ),
-                'waldhorn' => array( 'beschriftung' => 'Waldhorn', ),
+                'ohne' => 'ohne Instrument',
+                'dirigent' => 'Dirigent',
+                'ebass' => 'E-Bass',
+                'querfloete' => 'Querflöte',
+                'fluegelhorn' => 'Flügelhorn',
+                'klarinette' => 'Klarinette',
+                'posaune' => 'Posaune',
+                'saxophon' => 'Saxophon',
+                'schlagzeug' => 'Schlagzeug',
+                'tenorhorn' => 'Tenorhorn',
+                'trompete' => 'Trompete',
+                'tuba' => 'Tuba',
+                'waldhorn' => 'Waldhorn',
             ),
 
             'auto' => array (
-                'ohne' => array( 'beschriftung' => 'ohne Auto', ),
-                'bus' => array( 'beschriftung' => 'Bus', ),
-                'auto_1' => array( 'beschriftung' => 'Auto 1', ),
-                'auto_2' => array( 'beschriftung' => 'Auto 2', ),
-                'auto_3' => array( 'beschriftung' => 'Auto 3', ),
-                'auto_4' => array( 'beschriftung' => 'Auto 4', ),
+                'ohne' => 'ohne Auto',
+                'bus' => 'Bus',
+                'auto_1' => 'Auto 1',
+                'auto_2' => 'Auto 2',
+                'auto_3' => 'Auto 3',
+                'auto_4' => 'Auto 4',
             ),
 
             'funktion' => array (
-                'ohne' => array( 'beschriftung' => 'keine Funktion', ),
-                'vorsitz' => array( 'beschriftung' => 'Vorstand', ),
-                'schriftfuehrer' => array( 'beschriftung' => 'Schriftführung', ),
-                'kasse' => array( 'beschriftung' => 'Kasse', ),
-                'jugend' => array( 'beschriftung' => 'Jugendleitung', ),
-                'presse' => array( 'beschriftung' => 'Presse', ),
-                'beisitz' => array( 'beschriftung' => 'Beisitz', ),
-                'instrumente' => array( 'beschriftung' => 'Instrumentenwart', ),
-                'noten' => array( 'beschriftung' => 'Notenwart', ),
+                'ohne' => 'keine Funktion',
+                'vorsitz' => 'Vorstand',
+                'schriftfuehrer' => 'Schriftführung',
+                'kasse' => 'Kasse',
+                'jugend' => 'Jugendleitung',
+                'presse' => 'Presse',
+                'beisitz' => 'Beisitz',
+                'instrumente' => 'Instrumentenwart',
+                'noten' => 'Notenwart',
             ),
 
         ),
@@ -921,10 +921,10 @@ class Vereinsapp extends BaseConfig
         'aufgaben_zuordnungen_termine' => array(
 
             'termin_kategorie' => array (
-                'allgemein' => array( 'beschriftung' => 'Allgemein', 'symbol' => '' ),
-                'auftritt' => array( 'beschriftung' => 'Auftritt', 'symbol' => '&#127930' ),
-                'probe' => array( 'beschriftung' => 'Musikprobe', 'symbol' => '&#128218' ),
-                'vorstandschaftssitzung' => array( 'beschriftung' => 'Vorstandschaftssitzung', 'symbol' => '&#128186' ),
+                'allgemein' => 'Allgemein',
+                'auftritt' => 'Auftritt',
+                'probe' => 'Musikprobe',
+                'vorstandschaftssitzung' => 'Vorstandschaftssitzung',
             ),
 
         ),
@@ -932,10 +932,10 @@ class Vereinsapp extends BaseConfig
         'termine' => array(
 
             'kategorie' => array (
-                'allgemein' => array( 'beschriftung' => 'Allgemein', 'symbol' => '' ),
-                'auftritt' => array( 'beschriftung' => 'Auftritt', 'symbol' => '&#127930' ),
-                'probe' => array( 'beschriftung' => 'Musikprobe', 'symbol' => '&#128218' ),
-                'vorstandschaftssitzung' => array( 'beschriftung' => 'Vorstandschaftssitzung', 'symbol' => '&#128186' ),
+                'allgemein' => 'Allgemein',
+                'auftritt' => 'Auftritt',
+                'probe' => 'Musikprobe',
+                'vorstandschaftssitzung' => 'Vorstandschaftssitzung',
             ),
 
         ),
@@ -949,10 +949,10 @@ class Vereinsapp extends BaseConfig
         'strafkatalog' => array(
 
             'kategorie' => array (
-                'ohne' => array( 'beschriftung' => 'Sonstiges', ),
-                'proben' => array( 'beschriftung' => 'Proben', ),
-                'veranstaltungen' => array( 'beschriftung' => 'Veranstaltungen', ),
-                'haessordnung' => array( 'beschriftung' => 'Häßordnung', ),
+                'ohne' => 'Sonstiges',
+                'proben' => 'Proben',
+                'veranstaltungen' => 'Veranstaltungen',
+                'haessordnung' => 'Häßordnung',
             ),
 
         ),
@@ -963,11 +963,11 @@ class Vereinsapp extends BaseConfig
         'notenbank' => array(
 
             'kategorie' => array (
-                'ohne' => array( 'beschriftung' => 'Ohne Zuordnung', ),
-                'modern' => array( 'beschriftung' => 'Modern', ),
-                'klassik' => array( 'beschriftung' => 'Klassik', ),
-                'kirche' => array( 'beschriftung' => 'Kirche', ),
-                'volkstuemlich' => array( 'beschriftung' => 'Volkstümlich', ),
+                'ohne' => 'Ohne Zuordnung',
+                'modern' => 'Modern',
+                'klassik' => 'Klassik',
+                'kirche' => 'Kirche',
+                'volkstuemlich' => 'Volkstümlich',
             ),
 
         ),
@@ -975,11 +975,11 @@ class Vereinsapp extends BaseConfig
         'notenbank_setliste' => array(
 
             'titel_kategorie' => array (
-                'ohne' => array( 'beschriftung' => 'Ohne Zuordnung', ),
-                'modern' => array( 'beschriftung' => 'Modern', ),
-                'klassik' => array( 'beschriftung' => 'Klassik', ),
-                'kirche' => array( 'beschriftung' => 'Kirche', ),
-                'volkstuemlich' => array( 'beschriftung' => 'Volkstümlich', ),
+                'ohne' => 'Ohne Zuordnung',
+                'modern' => 'Modern',
+                'klassik' => 'Klassik',
+                'kirche' => 'Kirche',
+                'volkstuemlich' => 'Volkstümlich',
             ),
 
         ),
@@ -1332,6 +1332,18 @@ class Vereinsapp extends BaseConfig
         'probe' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ), ),
         'auftritt' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ), ),
         'vorstandschaftssitzung' => array( 'vorstandschaft_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ), ),
+    );
+
+    /**
+     * --------------------------------------------------------------------------
+     * Termin-Kategorie Statussymbole
+     * --------------------------------------------------------------------------
+     */
+    public $termine_kategorie_statussymbole = array(
+        'allgemein' => '',
+        'auftritt' => '&#127930',
+        'probe' => '&#128218',
+        'vorstandschaftssitzung' => '&#128186',
     );
 
     /**

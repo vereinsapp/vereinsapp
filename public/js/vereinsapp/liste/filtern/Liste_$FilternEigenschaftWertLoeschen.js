@@ -8,6 +8,7 @@ function Liste_$FilternEigenschaftWertLoeschen($filtern_eigenschaft, filtern_wer
     const eigenschaft = Util_WertBereinigtZurueck($filtern_eigenschaft.attr("eigenschaft"), undefined);
 
     if (liste in EIGENSCHAFTEN && eigenschaft in EIGENSCHAFTEN[liste]) {
+        const typ = EIGENSCHAFTEN[liste][eigenschaft].typ;
         if (liste in FILTERBARE_EIGENSCHAFTEN && FILTERBARE_EIGENSCHAFTEN[liste].includes(eigenschaft)) {
             const $werkzeug = Dom_$ZielZu$QuelleZurueck($filtern_eigenschaft);
 
@@ -17,7 +18,7 @@ function Liste_$FilternEigenschaftWertLoeschen($filtern_eigenschaft, filtern_wer
 
             // Ändern von filtern_manip
             const filtern_eigenschaft = filtern_manip[eigenschaft];
-            switch (EIGENSCHAFTEN[liste][eigenschaft].typ) {
+            switch (typ) {
                 case "text":
                     // (noch) nicht möglich
                     break;
@@ -26,7 +27,7 @@ function Liste_$FilternEigenschaftWertLoeschen($filtern_eigenschaft, filtern_wer
                     // (noch) keine Vielzahl an Werten
                     break;
                 case "janein":
-                    filtern_wert = JANEIN[filtern_wert].wert;
+                    filtern_wert = !!filtern_wert;
                 case "vorgegebene_werte":
                 case "element_id":
                 case "element_ids":

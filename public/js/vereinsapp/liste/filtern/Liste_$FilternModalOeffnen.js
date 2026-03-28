@@ -42,18 +42,14 @@ function Liste_$FilternModalOeffnen($werkzeug) {
             if (typ == "janein") {
                 $filtern_eigenschaft.find(".filtern_auswahl, .filtern_werte").empty();
                 $("<option selected></option>").appendTo($filtern_eigenschaft.find(".filtern_auswahl"));
-                $.each(JANEIN, function (wert, eigenschaften) {
-                    $('<option value="' + wert + '">' + eigenschaften.beschriftung + "</option>").appendTo(
-                        $filtern_eigenschaft.find(".filtern_auswahl"),
-                    );
+                $.each(JANEIN, function (wert, beschriftung) {
+                    $('<option value="' + wert + '">' + beschriftung + "</option>").appendTo($filtern_eigenschaft.find(".filtern_auswahl"));
                 });
             } else if (typ == "vorgegebene_werte") {
                 $filtern_eigenschaft.find(".filtern_auswahl, .filtern_werte").empty();
                 $("<option selected></option>").appendTo($filtern_eigenschaft.find(".filtern_auswahl"));
-                $.each(VORGEGEBENE_WERTE[liste][eigenschaft], function (wert, eigenschaften) {
-                    $('<option value="' + wert + '">' + eigenschaften.beschriftung + "</option>").appendTo(
-                        $filtern_eigenschaft.find(".filtern_auswahl"),
-                    );
+                $.each(VORGEGEBENE_WERTE[liste][eigenschaft], function (wert, beschriftung) {
+                    $('<option value="' + wert + '">' + beschriftung + "</option>").appendTo($filtern_eigenschaft.find(".filtern_auswahl"));
                 });
             }
 

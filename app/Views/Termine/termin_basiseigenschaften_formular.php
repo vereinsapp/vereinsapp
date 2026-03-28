@@ -25,8 +25,8 @@
 
 <div class="form-floating mb-2">
     <select class="form-select eingabe" eingabe="kategorie">
-    <?php foreach ( VORGEGEBENE_WERTE['termine']['kategorie'] as $kategorie => $eigenschaften ): ?>
-        <option value="<?= $kategorie; ?>"><?= $eigenschaften['beschriftung']; ?></option>
+    <?php foreach ( VORGEGEBENE_WERTE['termine']['kategorie'] as $wert => $beschriftung ): ?>
+        <option value="<?= $wert; ?>"><?= $beschriftung; ?></option>
     <?php endforeach; ?>
     </select>
     <label><?= EIGENSCHAFTEN['termine']['kategorie']['beschriftung']; ?></label>
@@ -36,8 +36,8 @@
     <div class="col"></div>
     <div class="col form-floating mb-2">
         <select class="form-select eingabe" eingabe="oeffentlich_janein">
-        <?php foreach ( JANEIN as $janein => $eigenschaften ): ?>
-            <option value="<?= $janein; ?>"><?= $eigenschaften['beschriftung']; ?></option>
+        <?php foreach ( JANEIN as $wert => $beschriftung ): ?>
+        <option value="<?= $wert; ?>"><?= $beschriftung; ?></option>
         <?php endforeach; ?>
         </select>
         <label><?= EIGENSCHAFTEN['termine']['oeffentlich_janein']['beschriftung']; ?></label>

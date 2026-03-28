@@ -10,8 +10,8 @@
 
 <div class="form-floating mb-2">
     <select class="form-select eingabe" eingabe="kategorie">
-    <?php foreach ( VORGEGEBENE_WERTE['notenbank']['kategorie'] as $kategorie => $eigenschaften ): ?>
-        <option value="<?= $kategorie; ?>"><?= $eigenschaften['beschriftung']; ?></option>
+    <?php foreach ( VORGEGEBENE_WERTE['notenbank']['kategorie'] as $wert => $beschriftung ): ?>
+        <option value="<?= $wert; ?>"><?= $beschriftung; ?></option>
     <?php endforeach; ?>
     </select>
     <label><?= EIGENSCHAFTEN['notenbank']['kategorie']['beschriftung']; ?></label>

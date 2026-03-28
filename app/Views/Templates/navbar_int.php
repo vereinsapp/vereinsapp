@@ -21,17 +21,17 @@
 
                         $url = site_url( $eintrag['data'] );
                         $beschriftung = CONTROLLERS[ $eintrag['data'] ]['beschriftung'];
-                        $symbol = CONTROLLERS[ $eintrag['data'] ]['symbol'];
+                        $symbol = SYMBOLE[ CONTROLLERS[ $eintrag['data'] ]['symbol'] ];
                         break;
                     case 'intern':
                         $url = site_url( $eintrag['data']['url'] );
                         $beschriftung = $eintrag['data']['beschriftung'];
-                        $symbol = $eintrag['data']['symbol'];
+                        $symbol = SYMBOLE[ $eintrag['data']['symbol'] ];
                         break;
                     case 'extern':
                         $url = $eintrag['data']['url'];
                         $beschriftung = $eintrag['data']['beschriftung'];
-                        $symbol = $eintrag['data']['symbol'];
+                        $symbol = SYMBOLE[ $eintrag['data']['symbol'] ];
                         break;
                 } ?><li class="nav-item"><a class="nav-link" href="<?= $url ?>"><i class="bi-<?= $symbol ?> float-start me-1"></i><?= $beschriftung ?></a></li>
             <?php }; ?></ul>

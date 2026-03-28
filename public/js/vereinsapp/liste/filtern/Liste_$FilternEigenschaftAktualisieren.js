@@ -58,10 +58,10 @@ function Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft) {
                     $.each(Object.keys(filtern_eigenschaft), function (position, filtern_klasse) {
                         $.each(filtern_eigenschaft[filtern_klasse], function (position, filtern_wert_janein) {
                             const $neuer_filtern_wert = FILTERN.$blanko_filtern_wert.clone().removeClass("blanko invisible");
-                            $neuer_filtern_wert.attr("wert", Number(filtern_wert_janein));
+                            $neuer_filtern_wert.attr("wert", filtern_wert_janein);
                             const $neuer_filtern_wert_beschriftung = $neuer_filtern_wert.find(".filtern_wert_beschriftung").find(".beschriftung");
                             $neuer_filtern_wert_beschriftung.text(
-                                Liste_WertNachEigenschaftFormatiertZurueck(JANEIN[Number(filtern_wert_janein)].wert, eigenschaft, liste),
+                                Liste_WertNachEigenschaftFormatiertZurueck(filtern_wert_janein, eigenschaft, liste),
                             );
                             if (filtern_klasse == "exklusiv") $neuer_filtern_wert_beschriftung.addClass("text-decoration-line-through");
                             else if (filtern_klasse == "inklusiv") $neuer_filtern_wert_beschriftung.removeClass("text-decoration-line-through");

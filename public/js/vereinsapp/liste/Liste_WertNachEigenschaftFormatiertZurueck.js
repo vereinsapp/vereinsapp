@@ -18,17 +18,17 @@ function Liste_WertNachEigenschaftFormatiertZurueck(wert, eigenschaft, liste) {
             case "auto":
             case "funktion":
             case "kategorie":
-                wert_formatiert = VORGEGEBENE_WERTE[liste][eigenschaft][wert].beschriftung;
+                wert_formatiert = VORGEGEBENE_WERTE[liste][eigenschaft][wert];
                 break;
             case "vorstandschaft_janein":
             case "aktiv_janein":
             case "real_janein":
             case "ich_eingeladen_janein":
             case "ich_rueckgemeldet_janein":
-                if (wert == "true")
+                if (wert === "true" || wert === true)
                     wert = 1; // todo: es darf kein string "true" geben (nur boolean true)
-                else if (wert == "false") wert = 0; // todo: es darf kein string "false" geben (nur boolean false)
-                wert_formatiert = JANEIN[Number(wert)].beschriftung;
+                else if (wert === "false" || wert === false) wert = 0; // todo: es darf kein string "false" geben (nur boolean false)
+                wert_formatiert = JANEIN[wert];
                 break;
             case "erstellung":
             case "letzte_aktivitaet":
@@ -40,7 +40,7 @@ function Liste_WertNachEigenschaftFormatiertZurueck(wert, eigenschaft, liste) {
             case "start":
             case "termin_start":
             case "ende":
-                wert_formatiert = WOCHENTAGE_KURZ[wert.weekday].beschriftung + ", " + wert.toFormat("dd.MM.yyyy HH:mm");
+                wert_formatiert = WOCHENTAGE[wert.weekday] + ", " + wert.toFormat("dd.MM.yyyy HH:mm");
                 break;
             case "titel_titel_nr":
             case "titel_nr":
