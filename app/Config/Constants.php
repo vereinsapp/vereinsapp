@@ -123,7 +123,7 @@ defined('WOCHENTAGE_LANG') OR define( 'WOCHENTAGE_LANG', array(
 	7 => array( 'beschriftung' => 'Sonntag' ),
 ) );
 
-defined('ICONS') OR define( 'ICONS', array(
+defined('SYMBOLE') OR define( 'SYMBOLE', array(
     'einstellungen' => 'gear',
     'mitglieder' => 'people',
     'aufgaben' => 'award',

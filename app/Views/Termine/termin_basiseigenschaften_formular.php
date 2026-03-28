@@ -48,6 +48,6 @@
     <button type="button" class="btn btn-outline-<?php
     if( array_key_exists('farbe', WERKZEUGE['filtern_manip']) ) echo WERKZEUGE['filtern_manip']['farbe']; else echo "primary";
     ?> eingabe werkzeug" werkzeug="filtern_manip" eingabe="filtern_mitglieder" liste="mitglieder" modal_title="<?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?>">
-        <span class="beschriftung"><i class="bi bi-<?= ICONS['filtern_mitglieder']; ?>"></i> <?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?></span>
+        <span class="beschriftung"><i class="bi bi-<?= SYMBOLE['filtern_mitglieder']; ?>"></i> <?= EIGENSCHAFTEN['termine']['filtern_mitglieder']['beschriftung']; ?></span>
     </button>
 </div>

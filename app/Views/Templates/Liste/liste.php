@@ -40,7 +40,7 @@
             <?php if( array_key_exists( 'vorschau', $liste['element'] ) ) {
                 ?><div class="vorschau text-truncate text-secondary small"><?php
                 foreach( $liste['element']['vorschau'] as $vorschau ) {
-                    ?><span class="eigenschaft" eigenschaft="<?= $vorschau ?>"></span><i class="bi bi-<?= ICONS['spacer']; ?> spacer"></i><?php }
+                    ?><span class="eigenschaft" eigenschaft="<?= $vorschau ?>"></span><i class="bi bi-<?= SYMBOLE['spacer']; ?> spacer"></i><?php }
                 ?></div><?php }
             ?>
 <?php if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'status_auswahl' ) echo view( 'Templates/Liste/verknuepfungen_status_auswahl', array( 'verknuepfungen' => $liste['element']['verknuepfungen'], ) ); ?>

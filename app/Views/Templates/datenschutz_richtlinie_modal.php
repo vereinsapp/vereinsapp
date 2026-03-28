@@ -41,7 +41,7 @@
                 <button type="button" class="btn btn-outline-<?php
                 if( array_key_exists('farbe', WERKZEUGE['datenschutz_richtlinie_akzeptieren']) ) echo WERKZEUGE['datenschutz_richtlinie_akzeptieren']['farbe']; else echo "primary";
                 ?> w-100 werkzeug" werkzeug="datenschutz_richtlinie_akzeptieren">
-                    <span class="beschriftung"><i class="bi bi-<?= ICONS[ WERKZEUGE['datenschutz_richtlinie_akzeptieren']['symbol'] ]; ?>"></i> <?= WERKZEUGE['datenschutz_richtlinie_akzeptieren']['beschriftung']['beschriftung']; ?></span>
+                    <span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['datenschutz_richtlinie_akzeptieren']['symbol'] ]; ?>"></i> <?= WERKZEUGE['datenschutz_richtlinie_akzeptieren']['beschriftung']['beschriftung']; ?></span>
                 </button>
             </div>
         </div>

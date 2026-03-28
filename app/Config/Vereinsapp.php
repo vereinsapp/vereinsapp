@@ -67,17 +67,17 @@ class Vereinsapp extends BaseConfig
      * Pflicht: beschriftung, symbol
      */
     public $controllers = array(
-        'einstellungen' => array ( 'beschriftung' => 'Einstellungen', 'symbol' => ICONS['einstellungen'] ),
-        'mitglieder' => array ( 'beschriftung' => 'Mitglieder', 'symbol' => ICONS['mitglieder'] ),
-        'aufgaben' => array ( 'beschriftung' => 'Aufgaben', 'symbol' => ICONS['aufgaben'] ),
-        'termine' => array ( 'beschriftung' => 'Termine', 'symbol' => ICONS['termine'] ),
-        'strafkatalog' => array ( 'beschriftung' => 'Strafkatalog', 'symbol' => ICONS['strafkatalog'] ),
-        'notenbank' => array ( 'beschriftung' => 'Notenbank', 'symbol' => ICONS['notenbank'] ),
-        'startseite' => array ( 'beschriftung' => 'Willkommen', 'symbol' => ICONS['startseite'] ),
-        'status' => array ( 'beschriftung' => 'Status', 'symbol' => ICONS['einstellungen'] ),
-        'loginController' => array ( 'beschriftung' => 'Login', 'symbol' => ICONS['einstellungen'] ),
-        'actionController' => array ( 'beschriftung' => 'Login-Action', 'symbol' => ICONS['einstellungen'] ),        
-        'magicLinkController' => array ( 'beschriftung' => 'Einmal-Link', 'symbol' => ICONS['einstellungen'] ),        
+        'einstellungen' => array ( 'beschriftung' => 'Einstellungen', 'symbol' => SYMBOLE['einstellungen'] ),
+        'mitglieder' => array ( 'beschriftung' => 'Mitglieder', 'symbol' => SYMBOLE['mitglieder'] ),
+        'aufgaben' => array ( 'beschriftung' => 'Aufgaben', 'symbol' => SYMBOLE['aufgaben'] ),
+        'termine' => array ( 'beschriftung' => 'Termine', 'symbol' => SYMBOLE['termine'] ),
+        'strafkatalog' => array ( 'beschriftung' => 'Strafkatalog', 'symbol' => SYMBOLE['strafkatalog'] ),
+        'notenbank' => array ( 'beschriftung' => 'Notenbank', 'symbol' => SYMBOLE['notenbank'] ),
+        'startseite' => array ( 'beschriftung' => 'Willkommen', 'symbol' => SYMBOLE['startseite'] ),
+        'status' => array ( 'beschriftung' => 'Status', 'symbol' => SYMBOLE['einstellungen'] ),
+        'loginController' => array ( 'beschriftung' => 'Login', 'symbol' => SYMBOLE['einstellungen'] ),
+        'actionController' => array ( 'beschriftung' => 'Login-Action', 'symbol' => SYMBOLE['einstellungen'] ),        
+        'magicLinkController' => array ( 'beschriftung' => 'Einmal-Link', 'symbol' => SYMBOLE['einstellungen'] ),        
     );
 
     /**
@@ -89,7 +89,7 @@ class Vereinsapp extends BaseConfig
         array( 'typ' => 'controller', 'data' => 'notenbank' ),
         array( 'typ' => 'controller', 'data' => 'mitglieder' ),
         array( 'typ' => 'controller', 'data' => 'einstellungen' ),
-        array( 'typ' => 'intern', 'data' => array( 'url' => 'logout', 'beschriftung' => 'Abmelden', 'symbol' => ICONS['logout'] ) ),
+        array( 'typ' => 'intern', 'data' => array( 'url' => 'logout', 'beschriftung' => 'Abmelden', 'symbol' => SYMBOLE['logout'] ) ),
     );
 
     /**
@@ -1413,8 +1413,8 @@ class Vereinsapp extends BaseConfig
             'bestaetigung_einfordern' => FALSE,
             'nur_eins_erlaubt_janein' => TRUE,
             'status_erlaubt' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.ICONS['neg_zuordnung'].'"></i>' ),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.ICONS['pos_zuordnung'].'"></i>' ),
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>' ),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
              ),
         ),
         'aufgaben_rueckmeldungen' => array(
@@ -1423,9 +1423,9 @@ class Vereinsapp extends BaseConfig
             'bestaetigung_einfordern' => FALSE,
             'nur_eins_erlaubt_janein' => TRUE,
             'status_erlaubt' => array(
-                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.ICONS['ohne_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.ICONS['ohne_rueckmeldung'].'"></i>' ),
-                1 => array( 'farbe' => 'primary', 'aktiv' => '<i class="bi bi-'.ICONS['angenommen_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.ICONS['angenommen_rueckmeldung'].'-fill"></i>' ),
-                2 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.ICONS['erledigt'].'"></i>', 'passiv' => '<i class="bi bi-'.ICONS['erledigt'].'"></i>' ),
+                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>' ),
+                1 => array( 'farbe' => 'primary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['angenommen_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['angenommen_rueckmeldung'].'-fill"></i>' ),
+                2 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['erledigt'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['erledigt'].'"></i>' ),
             ),
         ),
         'aufgaben_zuordnungen_termine' => array(
@@ -1434,8 +1434,8 @@ class Vereinsapp extends BaseConfig
             'bestaetigung_einfordern' => FALSE,
             'nur_eins_erlaubt_janein' => TRUE,
             'status_erlaubt' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.ICONS['neg_zuordnung'].'"></i>' ),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.ICONS['pos_zuordnung'].'"></i>' ),
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>' ),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
              ),
         ),
         'termine_rueckmeldungen' => array(
@@ -1444,9 +1444,9 @@ class Vereinsapp extends BaseConfig
             'bestaetigung_einfordern' => FALSE,
             'nur_eins_erlaubt_janein' => TRUE,
             'status_erlaubt' => array(
-                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.ICONS['ohne_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.ICONS['ohne_rueckmeldung'].'"></i>' ),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.ICONS['pos_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.ICONS['pos_rueckmeldung'].'-fill"></i>' ),
-                2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.ICONS['neg_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.ICONS['neg_rueckmeldung'].'-fill"></i>' ),
+                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>' ),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung'].'-fill"></i>' ),
+                2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung'].'-fill"></i>' ),
             ),
             'verknuepfung_moeglich_eingeladen' => array( 'eigenschaft' => 'mitglied_ids_eingeladen', 'liste' => 'termine' ),
             'verknuepfung_moeglich_frist' => array( 'eigenschaft' => 'start', 'liste' => 'termine', 'frist' => 0 ),
@@ -1462,8 +1462,8 @@ class Vereinsapp extends BaseConfig
             'bestaetigung_einfordern' => FALSE,
             'nur_eins_erlaubt_janein' => TRUE,
             'status_erlaubt' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.ICONS['neg_zuordnung'].'"></i>'),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.ICONS['pos_zuordnung'].'"></i>' ),
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>'),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
              ),
         ),
         'strafkatalog_zugewiesene_strafen' => array(
@@ -1472,9 +1472,9 @@ class Vereinsapp extends BaseConfig
             'bestaetigung_einfordern' => TRUE,
             'nur_eins_erlaubt_janein' => FALSE,
             'status_erlaubt' => array(
-                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.ICONS['ohne_rueckmeldung'].'"></i>' ),
-                1 => array( 'farbe' => 'warning', 'aktiv' => '<i class="bi bi-'.ICONS['offen'].'"></i>' ),
-                2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.ICONS['pos_zuordnung'].'"></i>' ),
+                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>' ),
+                1 => array( 'farbe' => 'warning', 'aktiv' => '<i class="bi bi-'.SYMBOLE['offen'].'"></i>' ),
+                2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
              ),
         ),
         'notenbank_setliste' => array(
@@ -1483,8 +1483,8 @@ class Vereinsapp extends BaseConfig
             'bestaetigung_einfordern' => FALSE,
             'nur_eins_erlaubt_janein' => FALSE,
             'status_erlaubt' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.ICONS['neg_zuordnung'].'"></i>'),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.ICONS['pos_zuordnung'].'"></i>' ),
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>'),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
              ),
         ),
     );

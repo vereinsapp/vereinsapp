@@ -55,7 +55,7 @@ function Liste_Element$FormularInitialisieren($formular) {
             $data_vollstaendig_werkzeug.removeClass("btn-outline-success").addClass("btn-outline-" + WERKZEUGE[werkzeug].farbe);
         $data_vollstaendig_werkzeug.find(".beschriftung").html(
             '<i class="bi bi-' +
-                ICONS[WERKZEUGE[werkzeug].symbol] +
+                SYMBOLE[WERKZEUGE[werkzeug].symbol] +
                 '"></i> ' +
                 Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE[werkzeug].beschriftung.beschriftung, {
                     element1: { liste: liste },

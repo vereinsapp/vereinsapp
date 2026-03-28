@@ -54,13 +54,13 @@ function Liste_WertNachEigenschaftFormatiertZurueck(wert, eigenschaft, liste) {
                 wert_formatiert = parseFloat(wert).toFixed(2).replace(".", ";").replace(",", ".").replace(";", ",") + "€";
                 break;
             case "anzahl_noten":
-                wert_formatiert = wert + '<i class="bi bi-' + ICONS.noten + '">';
+                wert_formatiert = wert + '<i class="bi bi-' + SYMBOLE.noten + '">';
                 break;
             case "anzahl_audio":
-                wert_formatiert = wert + '<i class="bi bi-' + ICONS.audio + '">';
+                wert_formatiert = wert + '<i class="bi bi-' + SYMBOLE.audio + '">';
                 break;
             case "anzahl_verzeichnis":
-                wert_formatiert = wert + '<i class="bi bi-' + ICONS.verzeichnis + '">';
+                wert_formatiert = wert + '<i class="bi bi-' + SYMBOLE.verzeichnis + '">';
                 break;
             default:
                 wert_formatiert = wert;

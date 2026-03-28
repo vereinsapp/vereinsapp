@@ -5,7 +5,7 @@ foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $li
     <div class="text-body list-group-item p-0 blanko invisible" blanko="unterverzeichnis" liste="<?= $verzeichnis['liste']; ?>" instanz="<?= $verzeichnis['instanz']; ?>">
         <div class="card border-0">
             <div class="card-header border-0 bg-transparent text-truncate" data-bs-toggle="collapse" role="button">
-                <i class="bi bi-<?= ICONS["verzeichnis"]; ?> toggle_symbol text-primary" toggle_symbol="<?= ICONS['verzeichnis_geoeffnet']; ?>"></i> <span class="beschriftung"></span>
+                <i class="bi bi-<?= SYMBOLE["verzeichnis"]; ?> toggle_symbol text-primary" toggle_symbol="<?= SYMBOLE['verzeichnis_geoeffnet']; ?>"></i> <span class="beschriftung"></span>
             </div>
             <div class="list-group verzeichnis p-1 pt-0 collapse verzeichnis_collapse">
 

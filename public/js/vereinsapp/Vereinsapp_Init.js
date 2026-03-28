@@ -50,7 +50,7 @@ LISTEN[liste].beschriftung umbenennen in LISTEN[liste].liste_beschriftung und mi
 Wie umgehen mit toggle_symbol?
 spacer an hinweispunkt angleichen (blanko, liste, js-Funktion, etc.)
 
-ICONS aus CONTROLLER in Vereinsapp-config loswerden
+SYMBOLE aus CONTROLLER in Vereinsapp-config loswerden
 Wie umgehen mit symbol in VORGEGEBENE_WERTE?
 zusatzsymbol an werkzeug angleichen (blanko, liste, js-Funktion, etc.)
 
