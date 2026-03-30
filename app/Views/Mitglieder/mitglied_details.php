@@ -13,7 +13,9 @@
             ?><div class="werkzeuge card-header text-end invisible" werkzeuge='<?= json_encode( $liste['alle_mitglieder']['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></div><?php } ?>
         <div class="card-body p-2">
             <h5 class="card-title text-center text-truncate text-nowrap">
-                <span class="beschriftung"><span class="eigenschaft" eigenschaft="vorname"></span> <span class="eigenschaft" eigenschaft="nachname"></span></span>
+                <span class="beschriftung"><span class="eigenschaft" eigenschaft="vorname"></span> <span class="eigenschaft" eigenschaft="nachname"></span></span><?php
+                if( array_key_exists( 'zusatzsymbole', $liste['alle_mitglieder']['element'] ) AND is_array( $liste['alle_mitglieder']['element']['zusatzsymbole'] ) AND count( $liste['alle_mitglieder']['element']['zusatzsymbole'] ) > 0 ) {
+                    ?><span class="zusatzsymbole float-end invisible" zusatzsymbole='<?= json_encode( $liste['alle_mitglieder']['element']['zusatzsymbole'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php } ?>
             </h5>
             <div class="card-text row row-cols-2 g-0">
                 <div class="col-4 text-secondary small"><?= EIGENSCHAFTEN['mitglieder']['vorname']['beschriftung']; ?>:</div><div class="col-8"><span class="eigenschaft" eigenschaft="vorname"></span></div>

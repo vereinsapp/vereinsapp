@@ -71,7 +71,7 @@ class Mitglied_Model extends UserModel {
         $tabelle = array();
 
         foreach( VERFUEGBARE_RECHTE as $eintrag )
-            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'verfuegbare_rechte' );
+            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag, JSON_UNESCAPED_UNICODE ), TRUE ), 'verfuegbare_rechte' );
 
         return $tabelle;
     }
@@ -90,7 +90,7 @@ class Mitglied_Model extends UserModel {
                     'bemerkung' => NULL,
                 );
 
-                $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'vergebene_rechte' );
+                $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag, JSON_UNESCAPED_UNICODE ), TRUE ), 'vergebene_rechte' );
             }
 
         return $tabelle;

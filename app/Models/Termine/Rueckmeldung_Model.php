@@ -25,7 +25,7 @@ class Rueckmeldung_Model extends BaseModel {
         $tabelle = array();
 
         foreach( $this->findAll() as $eintrag )
-            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'termine_rueckmeldungen' );
+            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag, JSON_UNESCAPED_UNICODE ), TRUE ), 'termine_rueckmeldungen' );
 
         return $tabelle;
     }

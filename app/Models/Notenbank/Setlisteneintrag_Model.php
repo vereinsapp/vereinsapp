@@ -25,7 +25,7 @@ class Setlisteneintrag_Model extends BaseModel {
         $tabelle = array();
 
         foreach( $this->findAll() as $eintrag )
-            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'notenbank_setliste' );
+            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag, JSON_UNESCAPED_UNICODE ), TRUE ), 'notenbank_setliste' );
         return $tabelle;
     }
 }

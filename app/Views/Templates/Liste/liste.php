@@ -30,10 +30,10 @@
                 if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'element_auswahl' ) {
                     ?> werkzeug="<?= LISTEN[ $liste['element']['verknuepfungen'] ]['element'].'_erstellen' ?>" modal_title="<?= WERKZEUGE[ LISTEN[ $liste['element']['verknuepfungen'] ]['element'].'_erstellen' ]['beschriftung']['beschriftung'] ?>" verknuepfungen="<?= $liste['element']['verknuepfungen'] ?>"<?php }
                 ?>><span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste['element'] ) ) { ?><?= $liste['element']['beschriftung']; ?><?php } ?></span></label><?php
-                if( array_key_exists( 'zusatzsymbol', $liste['element'] ) AND is_array( $liste['element']['zusatzsymbol'] ) AND count( $liste['element']['zusatzsymbol'] ) > 0 )
-                    foreach( $liste['element']['zusatzsymbol'] as $zusatzsymbol ) { ?><span class="zusatzsymbol float-end ms-2 stretched-link-unwirksam" zusatzsymbol="<?= $zusatzsymbol ?>"></span><?php }
                 if( array_key_exists( 'link', $liste['element'] ) AND is_array( $liste['element']['link'] ) ) {
                     ?><a class="stretched-link" link='<?= json_encode( $liste['element']['link'], JSON_UNESCAPED_UNICODE ); ?>'></a><?php }
+                if( array_key_exists( 'zusatzsymbole', $liste['element'] ) AND is_array( $liste['element']['zusatzsymbole'] ) AND count( $liste['element']['zusatzsymbole'] ) > 0 ) {
+                    ?><span class="zusatzsymbole float-end stretched-link-unwirksam invisible" zusatzsymbole='<?= json_encode( $liste['element']['zusatzsymbole'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php }
                 if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND count( $liste['element']['werkzeuge'] ) > 0 ) {
                     ?><span class="werkzeuge float-end stretched-link-unwirksam invisible" werkzeuge='<?= json_encode( $liste['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php } ?>
             </div>

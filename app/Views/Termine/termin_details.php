@@ -13,8 +13,9 @@
             ?><div class="werkzeuge card-header text-end invisible" werkzeuge='<?= json_encode( $liste['bevorstehende_termine']['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></div><?php } ?>
         <div class="card-body p-2">
             <h5 class="card-title text-center text-truncate text-nowrap">
-                <span class="beschriftung"><span class="eigenschaft" eigenschaft="titel"></span></span>
-                <span class="zusatzsymbol float-end" zusatzsymbol="kategorie"></span>
+                <span class="beschriftung"><span class="eigenschaft" eigenschaft="titel"></span></span><?php
+                if( array_key_exists( 'zusatzsymbole', $liste['bevorstehende_termine']['element'] ) AND is_array( $liste['bevorstehende_termine']['element']['zusatzsymbole'] ) AND count( $liste['bevorstehende_termine']['element']['zusatzsymbole'] ) > 0 ) {
+                    ?><span class="zusatzsymbole float-end invisible" zusatzsymbole='<?= json_encode( $liste['bevorstehende_termine']['element']['zusatzsymbole'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php } ?>
             </h5>
             <div class="card-text row row-cols-3 g-0">
                 <div class="col-6 text-center">

@@ -13,7 +13,7 @@
     </div>
     <?php if( array_key_exists( 'collapse', $auswertung ) AND $auswertung['collapse'] ) { ?><div class="row g-0 collapse auswertung_collapse">
         <div id="<?= $auswertung['instanz']; ?>_ergebnis_1" class="ergebnis liste col-6 text-center text-<?= VERKNUEPFUNGEN['termine_anwesenheiten']['status_erlaubt'][1]['farbe']; ?>" liste="termine_anwesenheiten" status=1>
-            <div class="elemente"><div class="blanko invisible" blanko="element" liste="termine_anwesenheiten" instanz="<?= $auswertung['instanz']; ?>_ergebnis_1"><span class="eigenschaft" eigenschaft="termin_start"></span> <span class="eigenschaft" eigenschaft="termin_titel"></span><span class="zusatzsymbol ms-2" zusatzsymbol="bemerkung"></span></div></div>
+            <div class="elemente"><div class="blanko invisible" blanko="element" liste="termine_anwesenheiten" instanz="<?= $auswertung['instanz']; ?>_ergebnis_1"><span class="eigenschaft" eigenschaft="termin_start"></span> <span class="eigenschaft" eigenschaft="termin_titel"></span><span class="zusatzsymbole" zusatzsymbole='<?= json_encode( array( 'bemerkung' ), JSON_UNESCAPED_UNICODE ) ?>'></span></div></div>
         </div>
         <div id="<?= $auswertung['instanz']; ?>_ergebnis_0" class="ergebnis liste col-6 text-center text-<?= VERKNUEPFUNGEN['termine_anwesenheiten']['status_erlaubt'][0]['farbe']; ?>" liste="termine" status=0>
             <div class="elemente"><div class="blanko invisible" blanko="element" liste="termine" instanz="<?= $auswertung['instanz']; ?>_ergebnis_0"><span class="eigenschaft" eigenschaft="start"></span> <span class="eigenschaft" eigenschaft="titel"></span></div></div>

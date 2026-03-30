@@ -142,7 +142,7 @@ class Termine extends BaseController {
 
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = VIEWDATA['mitglieder'];
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern'] = $this->filtern_mitglieder_kombiniert( $termin_id );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['zusatzsymbol'] = array( 'termine_rueckmeldungen' );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['zusatzsymbole'] = array( 'termine_rueckmeldungen' );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen'] = 'termine_anwesenheiten';
 
             if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
@@ -161,7 +161,7 @@ class Termine extends BaseController {
 
         //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = VIEWDATA['mitglieder'];
         //     unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']);
-        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['zusatzsymbol'] = array( 'termine_anwesenheiten' );
+        //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['zusatzsymbole'] = array( 'termine_anwesenheiten' );
         //     $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['mitglied'].'"></i> '.VIEWDATA['mitglieder']['element']['beschriftung'];
         //     $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'][] = 'termine_anwesenheiten_dokumentieren';
 

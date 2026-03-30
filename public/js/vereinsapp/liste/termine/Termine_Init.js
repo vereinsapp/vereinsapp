@@ -97,6 +97,21 @@ LISTEN.termine_anwesenheiten.element_ergaenzen_aktion = function (anwesenheit) {
         anwesenheit.mitglied_nachname = Liste_VariableRausZurueck("nachname", anwesenheit.mitglied_id, "mitglieder", undefined);
 };
 
+ZUSATZSYMBOLE.termine_rueckmeldungen.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
+ZUSATZSYMBOLE.termine_anwesenheiten.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
+ZUSATZSYMBOLE.kategorie.aktualisieren_aktion = function ($zusatzsymbol, $element) {
+    const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
+
+    const kategorie = Liste_VariableRausZurueck(
+        "kategorie",
+        Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined),
+        liste,
+        undefined,
+    );
+    if (kategorie in TERMINE_KATEGORIE_STATUSSYMBOLE) $zusatzsymbol.html(TERMINE_KATEGORIE_STATUSSYMBOLE[kategorie]);
+    else $zusatzsymbol.empty();
+};
+
 function Termine_Init() {
     // RÜCKMELDUNGEN VERWALTEN (MODAL) ÖFFNEN
     $(document).on("click", '.werkzeug[werkzeug="termine_rueckmeldungen_verwalten"]', function () {

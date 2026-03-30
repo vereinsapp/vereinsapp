@@ -33,7 +33,6 @@ Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bs
 Mit Github Copilot Datei-Upload implementieren
 Besseres Symbol für _eigenschaft_zuruecksetzen und _eigenschaft_zuruecksetzen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
 .werkzeug in .formular mit ENTER betätigbar machen
-Zusatzsymbole in Liste durch Bootstrap-Icons ersetzen (ausschließlich spezielle Zusatzsymbole wie beispiele Termin-Kategorie als hex-Symbole)
 Neue bootstrap icons Version einführen (unlock2 statt lock)
 event einführen, dass Liste_Element$FormularInitialisieren ausgeführt wird, wenn ein modal geöffnet wurde (mittels Dom_$ModalOeffnen)
 Liste_$AuswertungInitialisiertZurueck und Liste_$ElementInitialisiertZurueck einführen
@@ -49,8 +48,6 @@ auswertung-Views vereinheitlichen?
 LISTEN[liste].beschriftung umbenennen in LISTEN[liste].liste_beschriftung und mit beschriftung in VIEWDATA und beschriftung im Details-View verheiraten
 Wie umgehen mit toggle_symbol?
 spacer an hinweispunkt angleichen (blanko, liste, js-Funktion, etc.)
-
-zusatzsymbol an werkzeug angleichen (blanko, liste, js-Funktion, etc.)
 
 ERLEDIGT
 

@@ -63,6 +63,22 @@ LISTEN.vergebene_rechte.element_ergaenzen_aktion = function (vergebenes_recht) {
         vergebenes_recht.mitglied_nachname = Liste_VariableRausZurueck("nachname", vergebenes_recht.mitglied_id, "mitglieder", undefined);
 };
 
+ZUSATZSYMBOLE.vergebene_rechte.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
+
+ZUSATZSYMBOLE.geburtstag.aktualisieren_aktion = function ($zusatzsymbol, $element) {
+    const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
+
+    const geburtstag = Liste_VariableRausZurueck(
+        "geburtstag",
+        Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined),
+        liste,
+        undefined,
+    );
+    if (typeof geburtstag !== "undefined" && geburtstag <= DATETIME.now() && DATETIME.now() <= geburtstag.plus({ days: 1 }))
+        $zusatzsymbol.removeClass("invisible");
+    else $zusatzsymbol.addClass("invisible");
+};
+
 function Mitglieder_Init() {
     // PASSWORT ÄNDERN
     $(document).on("click", '.werkzeug[werkzeug="passwort_aendern"]', function () {

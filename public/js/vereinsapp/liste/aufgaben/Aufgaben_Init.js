@@ -41,6 +41,8 @@ LISTEN.aufgaben_zuordnungen_termine.element_ergaenzen_aktion = function (zuordnu
 
 WERKZEUGE.termine_aufgaben_zuordnen.aktualisieren_aktion = WERKZEUGE.element_erstellen.aktualisieren_aktion;
 
+ZUSATZSYMBOLE.aufgaben_zuordnungen_termine.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
+
 function Aufgaben_Init() {
     // RUECKMELDUNGEN VERWALTEN (MODAL) ÖFFNEN
     $(document).on("click", '.werkzeug[werkzeug="aufgaben_rueckmeldungen_verwalten"]', function () {

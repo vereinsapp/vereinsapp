@@ -16,6 +16,11 @@ function Liste_$ElementAktualisieren($element) {
         );
     });
 
+    // LINK AKTUALISIEREN
+    $element.find("a.stretched-link").each(function () {
+        Liste_Element$LinkAktualisieren($(this), $element);
+    });
+
     // WERKZEUGE AKTUALISIEREN
     const $liste = $element.closest('.liste[liste="' + liste + '"][id]');
     $element.find(".werkzeuge").each(function () {
@@ -34,19 +39,19 @@ function Liste_$ElementAktualisieren($element) {
         else $werkzeuge.removeClass("invisible");
     });
 
+    // ZUSATZSYMBOLE AKTUALISIEREN
+    $element.find(".zusatzsymbole").each(function () {
+        const $zusatzsymbole = $(this);
+
+        Dom_$ZusatzsymboleAktualisieren($zusatzsymbole);
+
+        if ($zusatzsymbole.find(".zusatzsymbol").length === 0) $zusatzsymbole.addClass("invisible");
+        else $zusatzsymbole.removeClass("invisible");
+    });
+
     // VERKNUEPFUNGEN AKTUALISIEREN
     $element.find(".verknuepfungen").each(function () {
         Liste_$VerknuepfungenAktualisieren($(this), $element);
-    });
-
-    // LINK AKTUALISIEREN
-    $element.find("a.stretched-link").each(function () {
-        Liste_Element$LinkAktualisieren($(this), $element);
-    });
-
-    // ZUSATZSYMBOL AKTUALISIEREN
-    $element.find(".zusatzsymbol").each(function () {
-        Liste_Element$ZusatzsymbolAktualisieren($(this), $element);
     });
 
     // VORSCHAU AKTUALISIEREN

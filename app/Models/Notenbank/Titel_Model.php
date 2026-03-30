@@ -45,7 +45,7 @@ class Titel_Model extends BaseModel {
             if( $verzeichnis_basis !== null ) $eintrag['verzeichnis'] = $this->verzeichnis_indizieren( directory_map( './storage/notenbank/'.$verzeichnis_basis ) ); 
             else $eintrag['verzeichnis'] = $this->verzeichnis_indizieren( array() );
 
-            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag ), TRUE ), 'notenbank' );
+            $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag, JSON_UNESCAPED_UNICODE ), TRUE ), 'notenbank' );
         }
 
         return $tabelle;

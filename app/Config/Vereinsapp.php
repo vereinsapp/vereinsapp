@@ -390,6 +390,25 @@ class Vereinsapp extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
+     * Zusatzsymbole
+     * --------------------------------------------------------------------------
+     * 
+     * Aktuell lediglich als Platzhalter
+     */
+    public $zusatzsymbole = array(
+        'geburtstag' => array( 'aktualisieren_aktion' => NULL, ),
+        'kategorie' => array( 'aktualisieren_aktion' => NULL, ),
+        'bemerkung' => array( 'aktualisieren_aktion' => NULL, ),
+        'vergebene_rechte' => array( 'aktualisieren_aktion' => NULL, ),
+        'aufgaben_zuordnungen_termine' => array( 'aktualisieren_aktion' => NULL, ),
+        'termine_rueckmeldungen' => array( 'aktualisieren_aktion' => NULL, ),
+        'termine_anwesenheiten' => array( 'aktualisieren_aktion' => NULL, ),
+        'strafkatalog_zugewiesene_strafen' => array( 'aktualisieren_aktion' => NULL, ),
+        'notenbank_setliste' => array( 'aktualisieren_aktion' => NULL, ),
+    );
+
+    /**
+     * --------------------------------------------------------------------------
      * Listen
      * --------------------------------------------------------------------------
      */
@@ -511,8 +530,8 @@ class Vereinsapp extends BaseConfig
             // 'ueberschrift' => 'Alle Mitglider',
             'element' => array(
                 'werkzeuge' => array(),
+                'zusatzsymbole' => array('geburtstag'),
                 'beschriftung' => '<span class="eigenschaft" eigenschaft="vorname"></span> <span class="eigenschaft" eigenschaft="nachname"></span>',
-                'zusatzsymbol' => array('geburtstag'),
                 // 'link' => array( 'liste' => 'mitglieder', 'eigenschaften' => array( 'id', ), ),
                 // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion' ),
                 // 'verknuepfungen' => 'termine_rueckmeldungen',
@@ -584,8 +603,8 @@ class Vereinsapp extends BaseConfig
             'listenstatistik' => array( 'anzahl' => array() ),
             'element' => array(
                 'werkzeuge' => array(),
+                'zusatzsymbole' => array('kategorie'),
                 'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
-                'zusatzsymbol' => array('kategorie'),
             ),
         ),
 

@@ -1,0 +1,1 @@
+<span class="text-primary ms-3 blanko invisible" blanko="zusatzsymbol"><i class="bi"></i></span>

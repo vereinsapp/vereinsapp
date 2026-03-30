@@ -2,6 +2,7 @@
  */
 
 const BLANKOS = new Object();
+// const ZUSATZSYMBOLE = new Object();
 const HINWEISPUNKTE = new Object(); // enthält später lediglich $blanko_hinweispunkt
 const SPINNER = new Object(); // enthält später lediglich $blanko_spinner
 const TOASTS = new Object(); // enthält später lediglich $blanko_toast
@@ -24,6 +25,11 @@ function Dom_Init() {
     // WERKZEUG-BLANKO IN WERKZEUGE BEREITSTELLEN
     $.each(BLANKOS.werkzeug, function (position, $blanko) {
         WERKZEUGE.$blanko_werkzeug = $blanko;
+    });
+
+    // ZUSATZSYMBOL-BLANKO IN ZUSATZSYMBOLE BEREITSTELLEN
+    $.each(BLANKOS.zusatzsymbol, function (position, $blanko) {
+        ZUSATZSYMBOLE.$blanko_zusatzsymbol = $blanko;
     });
 
     // HINWEISPUNKT-BLANKO IN HINWEISPUNKTE BEREITSTELLEN

@@ -31,6 +31,7 @@
     </div>
 
 <?= view( 'Templates/werkzeug' ); ?>
+<?= view( 'Templates/zusatzsymbol' ); ?>
 <?= view( 'Templates/hinweispunkt' ); ?>
 <?= view( 'Templates/spinner' ); ?>
 
