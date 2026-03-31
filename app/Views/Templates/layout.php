@@ -32,8 +32,10 @@
 
 <?= view( 'Templates/werkzeug' ); ?>
 <?= view( 'Templates/zusatzsymbol' ); ?>
+<?= view( 'Templates/spacer' ); ?>
 <?= view( 'Templates/hinweispunkt' ); ?>
 <?= view( 'Templates/spinner' ); ?>
+<?= view( 'Templates/Liste/vorschau_eigenschaft' ); ?>
 
     <div id="toasts" class="container toast-container position-fixed end-0 pe-3">
 <?= view( 'Templates/toast' ); ?>

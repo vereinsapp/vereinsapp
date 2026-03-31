@@ -33,10 +33,7 @@
                             ?><span class="zusatzsymbole float-end stretched-link-unwirksam invisible" zusatzsymbole='<?= json_encode( $liste['element']['zusatzsymbole'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php } ?>
                     </h5>
                     <?php if( array_key_exists( 'vorschau', $liste['element'] ) AND is_array( $liste['element']['vorschau'] ) AND count( $liste['element']['vorschau'] ) > 0 ) {
-                        ?><div class="card-text mt-1 vorschau text-truncate text-secondary"><?php
-                        foreach( $liste['element']['vorschau'] as $vorschau ) {
-                            ?><span class="eigenschaft" eigenschaft="<?= $vorschau ?>"></span><i class="bi bi-<?= SYMBOLE['spacer']; ?> spacer"></i><?php }
-                    ?></div><?php } ?>
+                        ?><div class="card-text mt-1 vorschau text-truncate text-secondary" vorschau='<?= json_encode( $liste['element']['vorschau'], JSON_UNESCAPED_UNICODE ); ?>'></div><?php } ?>
                     <?php if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'status_auswahl' ) { ?><div class="card-text mt-1">
 <?= view( 'Templates/Liste/verknuepfungen_status_auswahl', array( 'verknuepfungen' => $liste['element']['verknuepfungen'], ) ); ?>
                     </div><?php }?>

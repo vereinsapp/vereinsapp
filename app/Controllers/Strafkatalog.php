@@ -10,7 +10,7 @@ class Strafkatalog extends BaseController {
     public function strafkatalog() {
 
         $this->viewdata['liste']['aktueller_strafkatalog'] = VIEWDATA['strafkatalog'];
-        $this->viewdata['liste']['aktueller_strafkatalog']['element']['vorschau'] = array( 'wert', 'kategorie' );
+        $this->viewdata['liste']['aktueller_strafkatalog']['element']['vorschau'] = STRAFKATALOG_EIGENSCHAFTEN_VORSCHAU;
 
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
 

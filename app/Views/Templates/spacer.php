@@ -1,0 +1,1 @@
+<i class="bi bi-<?= SYMBOLE['spacer']; ?> blanko invisible" blanko="spacer"></i>

@@ -63,8 +63,10 @@ LISTEN.vergebene_rechte.element_ergaenzen_aktion = function (vergebenes_recht) {
         vergebenes_recht.mitglied_nachname = Liste_VariableRausZurueck("nachname", vergebenes_recht.mitglied_id, "mitglieder", undefined);
 };
 
+ZUSATZSYMBOLE.vergebene_rechte = new Object();
 ZUSATZSYMBOLE.vergebene_rechte.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
 
+ZUSATZSYMBOLE.geburtstag = new Object();
 ZUSATZSYMBOLE.geburtstag.aktualisieren_aktion = function ($zusatzsymbol, $element) {
     const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
 

@@ -1,6 +1,5 @@
 /**
  * @param {JQuery} $zusatzsymbole
- * @param {Object} data
  */
 
 function Dom_$ZusatzsymboleAktualisieren($zusatzsymbole) {

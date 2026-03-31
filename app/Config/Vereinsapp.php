@@ -390,25 +390,6 @@ class Vereinsapp extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
-     * Zusatzsymbole
-     * --------------------------------------------------------------------------
-     * 
-     * Aktuell lediglich als Platzhalter
-     */
-    public $zusatzsymbole = array(
-        'geburtstag' => array( 'aktualisieren_aktion' => NULL, ),
-        'kategorie' => array( 'aktualisieren_aktion' => NULL, ),
-        'bemerkung' => array( 'aktualisieren_aktion' => NULL, ),
-        'vergebene_rechte' => array( 'aktualisieren_aktion' => NULL, ),
-        'aufgaben_zuordnungen_termine' => array( 'aktualisieren_aktion' => NULL, ),
-        'termine_rueckmeldungen' => array( 'aktualisieren_aktion' => NULL, ),
-        'termine_anwesenheiten' => array( 'aktualisieren_aktion' => NULL, ),
-        'strafkatalog_zugewiesene_strafen' => array( 'aktualisieren_aktion' => NULL, ),
-        'notenbank_setliste' => array( 'aktualisieren_aktion' => NULL, ),
-    );
-
-    /**
-     * --------------------------------------------------------------------------
      * Listen
      * --------------------------------------------------------------------------
      */
@@ -1341,6 +1322,13 @@ class Vereinsapp extends BaseConfig
     );
 
     /**
+     * Termine-Eigenschaften Vorschau
+     *
+     * Angezeigte Termine-Eigenschaften als Vorschau
+     */
+    public $termine_eigenschaften_vorschau = array( 'start', 'ort', );
+
+    /**
      * Termin-Kategorie filtern_mitglieder
      *
      * Voreinstellungen für Termin-Kategorien
@@ -1397,6 +1385,20 @@ class Vereinsapp extends BaseConfig
      * in ein ics-Format verwendet bzw. erstellt wird
      */
     public $termine_ics_export_dateiname = 'termine.ics';
+
+    /**
+     * Strafkatalog-Eigenschaften Vorschau
+     *
+     * Angezeigte Strafkatalog-Eigenschaften als Vorschau
+     */
+    public $strafkatalog_eigenschaften_vorschau = array( 'wert', 'kategorie', );
+
+    /**
+     * Notenbank-Eigenschaften Vorschau
+     *
+     * Angezeigte Notenbank-Eigenschaften als Vorschau
+     */
+    public $notenbank_eigenschaften_vorschau = array( 'kategorie', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis', );
 
     /**
      * Notenbank Verzeichnis Anzahl Ziffern

@@ -81,6 +81,7 @@ LISTEN.notenbank_setliste.element_ergaenzen_aktion = function (setlisteneintrag)
 
 WERKZEUGE.setliste_verwalten.aktualisieren_aktion = WERKZEUGE.element_erstellen.aktualisieren_aktion;
 
+ZUSATZSYMBOLE.notenbank_setliste = new Object();
 ZUSATZSYMBOLE.notenbank_setliste.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
 
 function Notenbank_Init() {

@@ -30,7 +30,7 @@ class Startseite extends BaseController {
             $this->viewdata['liste']['bevorstehende_termine_startseite']['ueberschrift'] = 'Termine in den nächsten 14 Tagen';
             $this->viewdata['liste']['bevorstehende_termine_startseite']['element']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
             $this->viewdata['liste']['bevorstehende_termine_startseite']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine'].'"></i> '.VIEWDATA['termine']['element']['beschriftung'];
-            $this->viewdata['liste']['bevorstehende_termine_startseite']['element']['vorschau'] = array( 'start', 'ort' );
+            $this->viewdata['liste']['bevorstehende_termine_startseite']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
         }
 
         if( array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) {
@@ -43,7 +43,7 @@ class Startseite extends BaseController {
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['ueberschrift'] = 'Termine ohne Rückmeldung';
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine'].'"></i> '.VIEWDATA['termine']['element']['beschriftung'];
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['element']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
-            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['element']['vorschau'] = array( 'start', 'ort' );
+            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['element']['verknuepfungen'] = 'termine_rueckmeldungen';
         }
 

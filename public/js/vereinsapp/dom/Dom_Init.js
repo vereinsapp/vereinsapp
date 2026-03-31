@@ -2,7 +2,8 @@
  */
 
 const BLANKOS = new Object();
-// const ZUSATZSYMBOLE = new Object();
+const ZUSATZSYMBOLE = new Object();
+const SPACER = new Object(); // enthält später lediglich $blanko_spacer
 const HINWEISPUNKTE = new Object(); // enthält später lediglich $blanko_hinweispunkt
 const SPINNER = new Object(); // enthält später lediglich $blanko_spinner
 const TOASTS = new Object(); // enthält später lediglich $blanko_toast
@@ -30,6 +31,11 @@ function Dom_Init() {
     // ZUSATZSYMBOL-BLANKO IN ZUSATZSYMBOLE BEREITSTELLEN
     $.each(BLANKOS.zusatzsymbol, function (position, $blanko) {
         ZUSATZSYMBOLE.$blanko_zusatzsymbol = $blanko;
+    });
+
+    // SPACER-BLANKO IN SPACER BEREITSTELLEN
+    $.each(BLANKOS.spacer, function (position, $blanko) {
+        SPACER.$blanko_spacer = $blanko;
     });
 
     // HINWEISPUNKT-BLANKO IN HINWEISPUNKTE BEREITSTELLEN

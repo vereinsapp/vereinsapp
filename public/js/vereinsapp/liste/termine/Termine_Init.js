@@ -97,8 +97,13 @@ LISTEN.termine_anwesenheiten.element_ergaenzen_aktion = function (anwesenheit) {
         anwesenheit.mitglied_nachname = Liste_VariableRausZurueck("nachname", anwesenheit.mitglied_id, "mitglieder", undefined);
 };
 
+ZUSATZSYMBOLE.termine_rueckmeldungen = new Object();
 ZUSATZSYMBOLE.termine_rueckmeldungen.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
+
+ZUSATZSYMBOLE.termine_anwesenheiten = new Object();
 ZUSATZSYMBOLE.termine_anwesenheiten.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
+
+ZUSATZSYMBOLE.kategorie = new Object();
 ZUSATZSYMBOLE.kategorie.aktualisieren_aktion = function ($zusatzsymbol, $element) {
     const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
 

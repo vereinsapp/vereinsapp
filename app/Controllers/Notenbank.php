@@ -11,7 +11,7 @@ class Notenbank extends BaseController {
 
         $this->viewdata['liste']['aktuelles_verzeichnis'] = VIEWDATA['notenbank'];
         $this->viewdata['liste']['aktuelles_verzeichnis']['element']['link'] = array( 'liste' => 'notenbank', 'eigenschaften' => array( 'id', ), );
-        $this->viewdata['liste']['aktuelles_verzeichnis']['element']['vorschau'] = array( 'kategorie', 'anzahl_noten', 'anzahl_audio', 'anzahl_verzeichnis' );
+        $this->viewdata['liste']['aktuelles_verzeichnis']['element']['vorschau'] = NOTENBANK_EIGENSCHAFTEN_VORSCHAU;
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 

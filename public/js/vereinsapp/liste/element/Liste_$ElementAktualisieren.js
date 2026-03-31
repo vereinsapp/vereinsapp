@@ -49,14 +49,19 @@ function Liste_$ElementAktualisieren($element) {
         else $zusatzsymbole.removeClass("invisible");
     });
 
+    // VORSCHAU AKTUALISIEREN
+    $element.find(".vorschau").each(function () {
+        const $vorschau = $(this);
+
+        Liste_Element$VorschauAktualisieren($vorschau, $element);
+
+        if ($vorschau.find(".eigenschaft").length === 0) $vorschau.addClass("invisible");
+        else $vorschau.removeClass("invisible");
+    });
+
     // VERKNUEPFUNGEN AKTUALISIEREN
     $element.find(".verknuepfungen").each(function () {
         Liste_$VerknuepfungenAktualisieren($(this), $element);
-    });
-
-    // VORSCHAU AKTUALISIEREN
-    $element.find(".vorschau").each(function () {
-        Liste_Element$VorschauAktualisieren($(this), $element);
     });
 
     // NAVIGATION AKTUALISIEREN

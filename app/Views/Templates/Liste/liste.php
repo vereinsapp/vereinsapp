@@ -37,13 +37,10 @@
                 if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND count( $liste['element']['werkzeuge'] ) > 0 ) {
                     ?><span class="werkzeuge float-end stretched-link-unwirksam invisible" werkzeuge='<?= json_encode( $liste['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php } ?>
             </div>
-            <?php if( array_key_exists( 'vorschau', $liste['element'] ) ) {
-                ?><div class="vorschau text-truncate text-secondary small"><?php
-                foreach( $liste['element']['vorschau'] as $vorschau ) {
-                    ?><span class="eigenschaft" eigenschaft="<?= $vorschau ?>"></span><i class="bi bi-<?= SYMBOLE['spacer']; ?> spacer"></i><?php }
-                ?></div><?php }
-            ?>
-<?php if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'status_auswahl' ) echo view( 'Templates/Liste/verknuepfungen_status_auswahl', array( 'verknuepfungen' => $liste['element']['verknuepfungen'], ) ); ?>
+            <?php if( array_key_exists( 'vorschau', $liste['element'] ) AND is_array( $liste['element']['vorschau'] ) AND count( $liste['element']['vorschau'] ) > 0 ) {
+                ?><div class="vorschau text-truncate text-secondary small" vorschau='<?= json_encode( $liste['element']['vorschau'], JSON_UNESCAPED_UNICODE ); ?>'></div><?php } ?>
+<?php if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'status_auswahl' )
+    echo view( 'Templates/Liste/verknuepfungen_status_auswahl', array( 'verknuepfungen' => $liste['element']['verknuepfungen'], ) ); ?>
         </div>
 
     </div>

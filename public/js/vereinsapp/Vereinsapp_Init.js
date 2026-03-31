@@ -35,7 +35,7 @@ Besseres Symbol für _eigenschaft_zuruecksetzen und _eigenschaft_zuruecksetzen-B
 .werkzeug in .formular mit ENTER betätigbar machen
 Neue bootstrap icons Version einführen (unlock2 statt lock)
 event einführen, dass Liste_Element$FormularInitialisieren ausgeführt wird, wenn ein modal geöffnet wurde (mittels Dom_$ModalOeffnen)
-Liste_$AuswertungInitialisiertZurueck und Liste_$ElementInitialisiertZurueck einführen
+Liste_$AuswertungInitialisiertZurueck, Liste_$ElementInitialisiertZurueck Liste_Element$VorschauEigenschaftInitialisiertZurueck einführen
 Aufgaben detaillieren
 Verinsapp_env aufspalten in mehrere _env
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
@@ -47,7 +47,6 @@ Wie weiter mit Liste_$ListenstatistikAktualisieren?
 auswertung-Views vereinheitlichen?
 LISTEN[liste].beschriftung umbenennen in LISTEN[liste].liste_beschriftung und mit beschriftung in VIEWDATA und beschriftung im Details-View verheiraten
 Wie umgehen mit toggle_symbol?
-spacer an hinweispunkt angleichen (blanko, liste, js-Funktion, etc.)
 
 ERLEDIGT
 

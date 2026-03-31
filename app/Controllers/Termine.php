@@ -16,7 +16,7 @@ class Termine extends BaseController {
         $this->viewdata['liste']['bevorstehende_termine'] = VIEWDATA['termine'];
         $this->viewdata['liste']['bevorstehende_termine']['mitglied_id'] = ICH_ID;
         $this->viewdata['liste']['bevorstehende_termine']['element']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
-        $this->viewdata['liste']['bevorstehende_termine']['element']['vorschau'] = array( 'start', 'ort' );
+        $this->viewdata['liste']['bevorstehende_termine']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
         $this->viewdata['liste']['bevorstehende_termine']['element']['verknuepfungen'] = 'termine_rueckmeldungen';
 
         if( auth()->user()->can( 'termine.verwaltung' ) ) {
