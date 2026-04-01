@@ -54,7 +54,7 @@ function Liste_$VerzeichnisAktualisieren($verzeichnis) {
                 .find('[data-bs-toggle="collapse"]')
                 .first()
                 .attr("data-bs-target", "#" + $zugehoeriges_collapse.attr("id"));
-            $neues_unterverzeichnis.find(".toggle_symbol").attr("data-bs-target", "#" + $zugehoeriges_collapse.attr("id"));
+            Dom_$Quelle$ZielVerknuepfen($neues_unterverzeichnis.find(".wechselsymbol"), $zugehoeriges_collapse);
 
             const neue_basis = JSON.parse(JSON.stringify(basis));
             neue_basis.push(unterverzeichnis);

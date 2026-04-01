@@ -159,66 +159,35 @@ function Dom_Init() {
     });
 
     // COLLAPSE ÖFFNEN
-    $(document).on("show.bs.collapse", ".collapse.tab_collapse", function (event) {
-        const $collapse = $(this);
-
-        if ($collapse.is(event.target)) {
-            $('.nav-item[data-bs-target="#' + $collapse.attr("id") + '"]').each(function () {
-                const $toggle = $(this);
-
-                $toggle.removeAttr("data-bs-toggle");
-                $toggle.find(".nav-link").addClass("active");
-
-                $toggle
-                    .closest(".nav-tabs")
-                    .find(".nav-item")
-                    .each(function () {
-                        const $anderes_toggle = $(this);
-                        if ($anderes_toggle.attr("data-bs-target") != $toggle.attr("data-bs-target")) {
-                            $anderes_toggle.attr("data-bs-toggle", "collapse");
-                            $anderes_toggle.find(".nav-link").removeClass("active");
-                        }
-                    });
-            });
-        }
-    });
-
-    $(document).on("show.bs.collapse", ".collapse.auswertung_collapse, .collapse.verzeichnis_collapse", function (event) {
-        const $collapse = $(this);
-
-        if ($collapse.is(event.target)) {
-            $('.toggle_symbol[data-bs-target="#' + $collapse.attr("id") + '"]').each(function () {
-                toggle_symbol($(this));
-            });
-        }
+    $(document).on("show.bs.collapse", ".collapse", function (event) {
+        if ($(this).is(event.target) && Dom_$QuelleZu$ZielZurueck($(event.target)).filter(".wechselsymbol").exists())
+            Dom_$WechselsymbolWechseln(Dom_$QuelleZu$ZielZurueck($(event.target)).filter(".wechselsymbol"));
     });
 
     // COLLAPSE SCHLIESSEN
-    $(document).on("hide.bs.collapse", ".collapse.auswertung_collapse, .collapse.verzeichnis_collapse", function (event) {
-        const $collapse = $(this);
-
-        if ($collapse.is(event.target)) {
-            $('.toggle_symbol[data-bs-target="#' + $collapse.attr("id") + '"]').each(function () {
-                toggle_symbol($(this));
-            });
-        }
+    $(document).on("hide.bs.collapse", ".collapse", function (event) {
+        if ($(this).is(event.target) && Dom_$QuelleZu$ZielZurueck($(event.target)).filter(".wechselsymbol").exists())
+            Dom_$WechselsymbolWechseln(Dom_$QuelleZu$ZielZurueck($(event.target)).filter(".wechselsymbol"));
     });
 
-    function toggle_symbol($symbol) {
-        const toggle_symbol_neu = $symbol.attr("toggle_symbol");
+    // TAB-COLLAPSE WECHSELN
+    $(document).on("show.bs.collapse", ".collapse.tab-collapse", function (event) {
+        if ($(this).is(event.target))
+            $('[data-bs-target="#' + $(this).attr("id") + '"]').each(function () {
+                const $tab = $(this);
 
-        let toggle_symbol_alt = undefined;
-        $.each($symbol.attr("class").split(/\s+/), function (position, klasse) {
-            if (klasse.slice(0, 3) == "bi-") {
-                toggle_symbol_alt = klasse.slice(3, klasse.length);
-                return false;
-            }
-        });
+                $tab.removeAttr("data-bs-toggle");
+                $tab.find(".nav-link").addClass("active");
 
-        if (typeof toggle_symbol_alt !== "undefined" && typeof toggle_symbol_neu !== "undefined")
-            $symbol
-                .removeClass("bi-" + toggle_symbol_alt)
-                .addClass("bi-" + toggle_symbol_neu)
-                .attr("toggle_symbol", toggle_symbol_alt);
-    }
+                $tab.closest(".nav-tabs")
+                    .find("[data-bs-target")
+                    .each(function () {
+                        const $anderer_tab = $(this);
+                        if ($anderer_tab.attr("data-bs-target") != $tab.attr("data-bs-target")) {
+                            $anderer_tab.attr("data-bs-toggle", "collapse");
+                            $anderer_tab.find(".nav-link").removeClass("active");
+                        }
+                    });
+            });
+    });
 }

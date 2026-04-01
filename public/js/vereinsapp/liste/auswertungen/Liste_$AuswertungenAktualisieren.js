@@ -86,17 +86,18 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
         $auswertung.attr("auswertungen", auswertungen).attr("liste", liste);
 
         if (wert !== null) {
+            // Auswertung ist Standard
             $auswertung
                 .attr(LISTEN[auswertungen].element + "_ids", JsonStringifiedZurueck(auswertung_ids_nach_wert[wert], new Array()))
                 .attr("wert", wert)
                 .attr(LISTEN[liste].element + "_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
                 .attr("beschriftung", Liste_WertNachEigenschaftFormatiertZurueck(wert, gruppieren, liste));
 
-            const $zugehoeriges_collapse = $auswertung.find(".auswertung_collapse");
-            $zugehoeriges_collapse.attr("id", zufaelligeZeichenketteZurueck(8));
-            $auswertung.find('[data-bs-toggle="collapse"]').attr("data-bs-target", "#" + $zugehoeriges_collapse.attr("id"));
-            $auswertung.find(".toggle_symbol").attr("data-bs-target", "#" + $zugehoeriges_collapse.attr("id"));
+            $auswertung.find(".collapse").attr("id", zufaelligeZeichenketteZurueck(8));
+            $auswertung.find('[data-bs-toggle="collapse"]').attr("data-bs-target", "#" + $auswertung.find(".collapse").attr("id"));
+            Dom_$Quelle$ZielVerknuepfen($auswertung.find(".wechselsymbol.bi-" + SYMBOLE.collapse_oeffnen), $auswertung.find(".collapse"));
         } else {
+            // Auswertung ist Zusammenfassung
             $auswertung
                 .attr(LISTEN[auswertungen].element + "_ids", JsonStringifiedZurueck(auswertung_ids, new Array()))
                 // .attr("wert", wert)
@@ -104,9 +105,9 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
                 .attr("beschriftung", "Gesamt");
 
             $auswertung.find(".auswertung_progress").remove();
+            $auswertung.find(".collapse").remove();
             $auswertung.find('[data-bs-toggle="collapse"]').removeAttr("data-bs-toggle").removeAttr("role");
-            $auswertung.find(".toggle_symbol").remove();
-            $auswertung.find(".auswertung_collapse").remove();
+            $auswertung.find(".wechselsymbol." + SYMBOLE.collapse_oeffnen).remove();
         }
 
         if (position === 0) $auswertung.appendTo($auswertungen_auswertungen);

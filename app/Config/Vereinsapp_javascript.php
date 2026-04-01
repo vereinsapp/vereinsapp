@@ -76,6 +76,8 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/dom/Dom_$Quelle$ZielVerknuepfen.js?v='.VERSION,
         'js/vereinsapp/dom/Dom_$Quelle$ZielEntknuepfen.js?v='.VERSION,
         'js/vereinsapp/dom/Dom_$ZielZu$QuelleZurueck.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$QuelleZu$ZielZurueck.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_$WechselsymbolWechseln.js?v='.VERSION,
         
         'js/vereinsapp/liste/Liste_Init.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_$ListeAktualisieren.js?v='.VERSION,

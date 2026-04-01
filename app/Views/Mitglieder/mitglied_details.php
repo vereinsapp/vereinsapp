@@ -52,10 +52,10 @@
         </div>
         <div class="card-body">
             <div class="rueckmeldungen_anwesenheiten_parent">
-                <div id="rueckmeldungen_container" class="collapse tab_collapse no-transition" data-bs-parent=".rueckmeldungen_anwesenheiten_parent">
+                <div id="rueckmeldungen_container" class="collapse tab-collapse no-transition" data-bs-parent=".rueckmeldungen_anwesenheiten_parent">
             <?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['rueckmeldungen_mitglied'], 'view' => 'Mitglieder/auswertung_rueckmeldungen' ) ); ?>
                 </div>
-                <div id="anwesenheiten_container" class="collapse tab_collapse no-transition show" data-bs-parent=".rueckmeldungen_anwesenheiten_parent">
+                <div id="anwesenheiten_container" class="collapse tab-collapse no-transition show" data-bs-parent=".rueckmeldungen_anwesenheiten_parent">
             <?= view( 'Templates/Liste/auswertungen', array( 'auswertungen' => $auswertungen['anwesenheiten_mitglied'], 'view' => 'Mitglieder/auswertung_anwesenheiten' ) ); ?>
                 </div>
             </div>

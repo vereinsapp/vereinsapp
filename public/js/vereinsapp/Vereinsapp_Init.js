@@ -46,7 +46,6 @@ Mit Github Copilot Agent die Anordnung in Details optimieren
 Wie weiter mit Liste_$ListenstatistikAktualisieren?
 auswertung-Views vereinheitlichen?
 LISTEN[liste].beschriftung umbenennen in LISTEN[liste].liste_beschriftung und mit beschriftung in VIEWDATA und beschriftung im Details-View verheiraten
-Wie umgehen mit toggle_symbol?
 
 ERLEDIGT
 
