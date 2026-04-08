@@ -35,21 +35,19 @@ Besseres Symbol für _eigenschaft_zuruecksetzen und _eigenschaft_zuruecksetzen-B
 .werkzeug in .formular mit ENTER betätigbar machen
 Neue bootstrap icons Version einführen (unlock2 statt lock)
 event einführen, dass Liste_Element$FormularInitialisieren ausgeführt wird, wenn ein modal geöffnet wurde (mittels Dom_$ModalOeffnen)
-Liste_$AuswertungInitialisiertZurueck, Liste_$ElementInitialisiertZurueck Liste_Element$VorschauEigenschaftInitialisiertZurueck einführen
+Mit Github Copilot flex-nowrap, flex-grow, text-truncate und text-nowrap diskutieren
+Mit Github Copilot Agent die Anordnung in Details optimieren
+Liste_$AuswertungInitialisiertZurueck und Liste_$ElementInitialisiertZurueck einführen
 Aufgaben detaillieren
-Verinsapp_env aufspalten in mehrere _env
+Vereinsapp_env aufspalten in mehrere _env
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
 Zugewiesene Strafen anzeigen
 VIEWDATA in LISTEN integrieren
-Mit Github Copilot flex-nowrap, flex-grow, text-truncate und text-nowrap diskutieren
-Mit Github Copilot Agent die Anordnung in Details optimieren
 Wie weiter mit Liste_$ListenstatistikAktualisieren?
 status_erlaubt enthält nur noch Symbole, kein html mehr
 texte zu inhalt_kopieren aus js in Vereinsapp-config verschieben
 auswertung-Views vereinheitlichen?
-Gibt es eine Möglichkeit die Geburtstag-Symbole auf der Startseite wiederherzustellen?
 VERKNUEPFUNGEN komplett loslösen aus LISTEN -> zuordnung dann nach php verschieben
-Vorschau soll keine span.eigenschaft mehr enthalten sondern bekommt direkt die Werte und spacer eingefügt
 
 ERLEDIGT
 

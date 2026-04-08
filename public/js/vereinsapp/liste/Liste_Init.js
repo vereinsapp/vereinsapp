@@ -1,8 +1,6 @@
 /**
  */
 
-const VORSCHAU = new Object();
-
 WERKZEUGE.bearbeiten_modus_ein_ausschalten.aktualisieren_aktion = function ($werkzeug) {
     // GRÜNER HINWEISPUNKT AKTUALISIEREN
     $werkzeug.removeClass("position-relative").find(".hinweispunkt").remove();
@@ -112,11 +110,6 @@ function Liste_Init() {
                 bearbeiten_modus: undefined,
             };
         LISTEN[liste].instanz[instanz].$blanko_element = $blanko;
-    });
-
-    // EIGENSCHAFT-BLANKO IN VORSCHAU BEREITSTELLEN
-    $.each(BLANKOS.vorschau_eigenschaft, function (position, $blanko) {
-        VORSCHAU.$blanko_eigenschaft = $blanko;
     });
 
     Liste_AuswertungenInit();

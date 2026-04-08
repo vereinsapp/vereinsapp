@@ -9,12 +9,35 @@ function Liste_$ElementAktualisieren($element) {
     // ELEMENT-BESCHRIFTUNG AKTUALISIEREN
     $element.find(".element_beschriftung").text(Liste_ElementBeschriftungErweitertZurueck(element_id, liste));
 
+    // VORSCHAU AKTUALISIEREN
+    $element.find(".vorschau").each(function () {
+        const $vorschau = $(this);
+
+        $.each(Util_WertBereinigtZurueck($vorschau.attr("vorschau"), new Array()), function (position, eigenschaft) {
+            if (position === 0) $vorschau.empty();
+            else $vorschau.append(Dom_$SpacerInitialisiertZurueck());
+
+            const bisherige_vorschau = $vorschau.html();
+            $vorschau.html(
+                bisherige_vorschau +
+                    Liste_WertNachEigenschaftFormatiertZurueck(
+                        Liste_VariableRausZurueck(eigenschaft, element_id, liste, undefined),
+                        eigenschaft,
+                        liste,
+                    ),
+            );
+        });
+
+        if (isEmptyString($vorschau.text())) $vorschau.addClass("invisible");
+        else $vorschau.removeClass("invisible");
+    });
+
     // EIGENSCHAFTEN AKTUALISIEREN
     $element.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
         const eigenschaft = Util_WertBereinigtZurueck($eigenschaft.attr("eigenschaft"), undefined);
 
-        $eigenschaft.html(
+        $eigenschaft.text(
             Liste_WertNachEigenschaftFormatiertZurueck(Liste_VariableRausZurueck(eigenschaft, element_id, liste, undefined), eigenschaft, liste),
         );
     });
@@ -50,16 +73,6 @@ function Liste_$ElementAktualisieren($element) {
 
         if ($zusatzsymbole.find(".zusatzsymbol").length === 0) $zusatzsymbole.addClass("invisible");
         else $zusatzsymbole.removeClass("invisible");
-    });
-
-    // VORSCHAU AKTUALISIEREN
-    $element.find(".vorschau").each(function () {
-        const $vorschau = $(this);
-
-        Liste_Element$VorschauAktualisieren($vorschau, $element);
-
-        if ($vorschau.find(".eigenschaft").length === 0) $vorschau.addClass("invisible");
-        else $vorschau.removeClass("invisible");
     });
 
     // VERKNUEPFUNGEN AKTUALISIEREN
