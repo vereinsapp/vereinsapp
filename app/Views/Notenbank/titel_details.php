@@ -13,7 +13,7 @@
             ?><div class="werkzeuge card-header text-end invisible" werkzeuge='<?= json_encode( $liste['aktuelles_verzeichnis']['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></div><?php } ?>
         <div class="card-body p-2">
             <h5 class="card-title text-center text-truncate text-nowrap">
-                <span class="beschriftung"><span class="eigenschaft" eigenschaft="titel_nr"></span> <span class="eigenschaft" eigenschaft="titel"></span></span><?php
+                <span class="element_beschriftung"></span><?php
                 if( array_key_exists( 'zusatzsymbole', $liste['aktuelles_verzeichnis']['element'] ) AND is_array( $liste['aktuelles_verzeichnis']['element']['zusatzsymbole'] ) AND count( $liste['aktuelles_verzeichnis']['element']['zusatzsymbole'] ) > 0 ) {
                     ?><span class="zusatzsymbole float-end invisible" zusatzsymbole='<?= json_encode( $liste['aktuelles_verzeichnis']['element']['zusatzsymbole'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php } ?>
             </h5>

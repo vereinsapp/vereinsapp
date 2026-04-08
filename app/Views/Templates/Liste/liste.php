@@ -29,7 +29,7 @@
                 ?>"<?php
                 if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'element_auswahl' ) {
                     ?> werkzeug="<?= LISTEN[ $liste['element']['verknuepfungen'] ]['element'].'_erstellen' ?>" modal_title="<?= WERKZEUGE[ LISTEN[ $liste['element']['verknuepfungen'] ]['element'].'_erstellen' ]['beschriftung']['beschriftung'] ?>" verknuepfungen="<?= $liste['element']['verknuepfungen'] ?>"<?php }
-                ?>><span class="beschriftung"><?php if( array_key_exists( 'beschriftung', $liste['element'] ) ) { ?><?= $liste['element']['beschriftung']; ?><?php } ?></span></label><?php
+                ?>><?php if( !array_key_exists( 'verknuepfungen', $liste['element'] ) OR VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] !== 'janein_auswahl' ) { ?><i class="bi bi-<?= SYMBOLE[ $liste['liste'] ] ?>"></i> <?php } ?><span class="element_beschriftung"></span></label><?php
                 if( array_key_exists( 'link', $liste['element'] ) AND is_array( $liste['element']['link'] ) ) {
                     ?><a class="stretched-link" link='<?= json_encode( $liste['element']['link'], JSON_UNESCAPED_UNICODE ); ?>'></a><?php }
                 if( array_key_exists( 'zusatzsymbole', $liste['element'] ) AND is_array( $liste['element']['zusatzsymbole'] ) AND count( $liste['element']['zusatzsymbole'] ) > 0 ) {

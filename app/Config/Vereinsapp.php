@@ -375,7 +375,7 @@ class Vereinsapp extends BaseConfig
             ),
         ),
         'setliste_verwalten' => array(
-            'symbol' => 'setliste',
+            'symbol' => 'notenbank_setliste',
             'beschriftung' => array(
                 'beschriftung' => 'Setliste verwalten',
             ),
@@ -395,103 +395,150 @@ class Vereinsapp extends BaseConfig
      */
     public $listen = array(
         'mitglieder' => array(
-            'beschriftung' => 'Mitglieder',
+            'liste' => 'mitglieder',
+            'liste_beschriftung' => 'Mitglieder',
             'controller' => 'mitglieder',
             'element' => 'mitglied',
             'element_beschriftung' => 'Mitglied',
             'element_beschriftung_erweitert' => array(
-                array( 'eigenschaft' => 'vorname' ),
-                array( 'eigenschaft' => 'nachname', 'prefix' => ' ' )
+                array( 'eigenschaft' => 'vorname', ),
+                array( 'freitext' => ' ', ),
+                array( 'eigenschaft' => 'nachname', )
             ),
         ),
         'verfuegbare_rechte' => array(
-            'beschriftung' => 'Verfügbare Rechte',
+            'liste' => 'verfuegbare_rechte',
+            'liste_beschriftung' => 'Verfügbare Rechte',
             'controller' => 'mitglieder',
             'element' => 'verfuegbares_recht',
             'element_beschriftung' => 'Verfügbares Recht',
+            'element_beschriftung_erweitert' => array(
+                array( 'freitext' => 'Verfügbares Recht ', ),
+                array( 'eigenschaft' => 'id', ),
+            ),
         ),
         'vergebene_rechte' => array(
-            'beschriftung' => 'Vergebene Rechte',
+            'liste' => 'vergebene_rechte',
+            'liste_beschriftung' => 'Vergebene Rechte',
             'controller' => 'mitglieder',
             'element' => 'vergebenes_recht',
             'element_beschriftung' => 'Vergebenes Recht',
+            'element_beschriftung_erweitert' => array(
+                array( 'freitext' => 'Vergebenes Recht ', ),
+                array( 'eigenschaft' => 'id', ),
+            ),
         ),
 
         'aufgaben' => array(
-            'beschriftung' => 'Aufgaben',
+            'liste' => 'aufgaben',
+            'liste_beschriftung' => 'Aufgaben',
             'controller' => 'aufgaben',
             'element' => 'aufgabe',
             'element_beschriftung' => 'Aufgabe',
-            'element_beschriftung_erweitert' => array( array( 'eigenschaft' => 'titel' ) ),
+            'element_beschriftung_erweitert' => array(
+                array( 'eigenschaft' => 'titel', )
+            ),
         ),
         'aufgaben_rueckmeldungen' => array(
-            'beschriftung' => 'Rückmeldungen',
+            'liste' => 'aufgaben_rueckmeldungen',
+            'liste_beschriftung' => 'Rückmeldungen',
             'controller' => 'aufgaben',
             'element' => 'aufgaben_rueckmeldung',
             'element_beschriftung' => 'Rückmeldung',
+            'element_beschriftung_erweitert' => array(
+                array( 'freitext' => 'Rückmeldung ', ),
+                array( 'eigenschaft' => 'id', ),
+            ),
         ),
         'aufgaben_zuordnungen_termine' => array(
-            'beschriftung' => 'Termin-Zuordnungen',
+            'liste' => 'aufgaben_zuordnungen_termine',
+            'liste_beschriftung' => 'Termin-Zuordnungen',
             'controller' => 'aufgaben',
             'element' => 'aufgaben_zuordnung_termine',
             'element_beschriftung' => 'Termin-Zuordnung',
+            'element_beschriftung_erweitert' => array(
+                array( 'freitext' => 'Termin-Zuordnung ', ),
+                array( 'eigenschaft' => 'id', ),
+            ),
         ),
 
         'termine' => array(
-            'beschriftung' => 'Termine',
+            'liste' => 'termine',
+            'liste_beschriftung' => 'Termine',
             'controller' => 'termine',
             'element' => 'termin',
             'element_beschriftung' => 'Termin',
             'element_beschriftung_erweitert' => array(
-                array( 'eigenschaft' => 'titel' ),
-                array( 'eigenschaft' => 'start', 'prefix' => ' (', 'suffix' => ')' )
+                array( 'eigenschaft' => 'titel', ),
             ),
         ),
         'termine_rueckmeldungen' => array(
-            'beschriftung' => 'Rückmeldungen',
+            'liste' => 'termine_rueckmeldungen',
+            'liste_beschriftung' => 'Rückmeldungen',
             'controller' => 'termine',
             'element' => 'termine_rueckmeldung',
             'element_beschriftung' => 'Rückmeldung',
+            'element_beschriftung_erweitert' => array(
+                array( 'freitext' => 'Rückmeldung ', ),
+                array( 'eigenschaft' => 'id', ),
+            ),
         ),
         'termine_anwesenheiten' => array(
-            'beschriftung' => 'Anwesenheiten',
+            'liste' => 'termine_anwesenheiten',
+            'liste_beschriftung' => 'Anwesenheiten',
             'controller' => 'termine',
             'element' => 'termine_anwesenheit',
             'element_beschriftung' => 'Anwesenheit',
+            'element_beschriftung_erweitert' => array(
+                array( 'freitext' => 'Anwesenheit ', ),
+                array( 'eigenschaft' => 'id', ),
+            ),
         ),
 
         'strafkatalog' => array(
-            'beschriftung' => 'Strafkatalog',
+            'liste' => 'strafkatalog',
+            'liste_beschriftung' => 'Strafkatalog',
             'controller' => 'strafkatalog',
             'element' => 'strafe',
             'element_beschriftung' => 'Strafe',
             'element_beschriftung_erweitert' => array(
-                array( 'eigenschaft' => 'titel' ),
-                array( 'eigenschaft' => 'wert', 'prefix' => ' (', 'suffix' => ')' )
+                array( 'eigenschaft' => 'titel', ),
             ),
         ),
         'strafkatalog_zugewiesene_strafen' => array(
-            'beschriftung' => 'Zugewiesene Strafen',
+            'liste' => 'strafkatalog_zugewiesene_strafen',
+            'liste_beschriftung' => 'Zugewiesene Strafen',
             'controller' => 'strafkatalog',
             'element' => 'strafkatalog_zugewiesene_strafe',
             'element_beschriftung' => 'Zugewiesene Strafe',
+            'element_beschriftung_erweitert' => array(
+                array( 'freitext' => 'Zugewiesene Strafe ', ),
+                array( 'eigenschaft' => 'id', ),
+            ),
         ),
 
         'notenbank' => array(
-            'beschriftung' => 'Notenbank',
+            'liste' => 'notenbank',
+            'liste_beschriftung' => 'Notenbank',
             'controller' => 'notenbank',
             'element' => 'titel',
             'element_beschriftung' => 'Titel',
             'element_beschriftung_erweitert' => array(
-                array( 'eigenschaft' => 'titel_nr' ),
-                array( 'eigenschaft' => 'titel', 'prefix' => ' ' )
+                array( 'eigenschaft' => 'titel_nr', ),
+                array( 'freitext' => ' ', ),
+                array( 'eigenschaft' => 'titel', )
             ),
         ),
         'notenbank_setliste' => array(
-            'beschriftung' => 'Setliste',
+            'liste' => 'notenbank_setliste',
+            'liste_beschriftung' => 'Setliste',
             'controller' => 'notenbank',
             'element' => 'notenbank_setlisteneintrag',
             'element_beschriftung' => 'Setlisteneintrag',
+            'element_beschriftung_erweitert' => array(
+                array( 'freitext' => 'Setlisteneintrag ', ),
+                array( 'eigenschaft' => 'id', ),
+            ),
         ),
     );
 
@@ -502,19 +549,18 @@ class Vereinsapp extends BaseConfig
 
         'mitglieder' => array(
             'liste' => 'mitglieder',
-            'filtern' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ) ),
+            'filtern' => array( 'aktiv_janein' => array( 'inklusiv' => array( TRUE ), ), 'real_janein' => array( 'inklusiv' => array( TRUE ), ), ),
             'sortieren' => array( 'eigenschaft' => 'nachname', 'richtung' => SORT_ASC, ),
             // '[element]_id' => 42,
             // 'disabled_ids' => array(),
             'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array() ),
+            'listenstatistik' => array( 'anzahl' => array(), ),
             // 'ueberschrift' => 'Alle Mitglider',
             'element' => array(
                 'werkzeuge' => array(),
                 'zusatzsymbole' => array('geburtstag'),
-                'beschriftung' => '<span class="eigenschaft" eigenschaft="vorname"></span> <span class="eigenschaft" eigenschaft="nachname"></span>',
                 // 'link' => array( 'liste' => 'mitglieder', 'eigenschaften' => array( 'id', ), ),
-                // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion' ),
+                // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion', ),
                 // 'verknuepfungen' => 'termine_rueckmeldungen',
             ),
         ),
@@ -527,7 +573,6 @@ class Vereinsapp extends BaseConfig
             'listenstatistik' => array(),
             'element' => array(
                 'werkzeuge' => array(),
-                'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
             ),
         ),
 
@@ -547,10 +592,9 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
             'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array() ),
+            'listenstatistik' => array( 'anzahl' => array(), ),
             'element' => array(
                 'werkzeuge' => array(),
-                'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
             ),
         ),
 
@@ -570,7 +614,7 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'aufgabe_titel', 'richtung' => SORT_ASC, ),
             'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array() ),
+            'listenstatistik' => array( 'anzahl' => array(), ),
             'element' => array(
                 'werkzeuge' => array(),
             ),
@@ -578,14 +622,13 @@ class Vereinsapp extends BaseConfig
 
         'termine' => array(
             'liste' => 'termine',
-            'filtern' => array( 'start' => array( 'start' => HEUTE ), 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ) ), ),
+            'filtern' => array( 'start' => array( 'start' => HEUTE ), 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ), ), ),
             'sortieren' => array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array() ),
+            'listenstatistik' => array( 'anzahl' => array(), ),
             'element' => array(
                 'werkzeuge' => array(),
                 'zusatzsymbole' => array('kategorie'),
-                'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
             ),
         ),
 
@@ -616,10 +659,9 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
             'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array() ),
+            'listenstatistik' => array( 'anzahl' => array(), ),
             'element' => array(
                 'werkzeuge' => array(),
-                'beschriftung' => '<span class="eigenschaft" eigenschaft="titel"></span>',
             ),
         ),
 
@@ -628,7 +670,7 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array(),
             'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array(), 'summe' => array( 'eigenschaft' => 'strafe_wert' ) ),
+            'listenstatistik' => array( 'anzahl' => array(), 'summe' => array( 'eigenschaft' => 'strafe_wert', ), ),
             'element' => array(
                 'werkzeuge' => array(),
             ),
@@ -639,10 +681,9 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
             'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array() ),
+            'listenstatistik' => array( 'anzahl' => array(), ),
             'element' => array(
                 'werkzeuge' => array(),
-                'beschriftung' => '<span class="eigenschaft" eigenschaft="titel_nr"></span> <span class="eigenschaft" eigenschaft="titel"></span>',
             ),
         ),
 
@@ -651,7 +692,7 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'status', 'richtung' => SORT_ASC, ),
             'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array() ),
+            'listenstatistik' => array( 'anzahl' => array(), ),
             'element' => array(
                 'werkzeuge' => array(),
             ),

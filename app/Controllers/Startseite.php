@@ -15,7 +15,6 @@ class Startseite extends BaseController {
         $this->viewdata['liste']['anstehende_geburtstage']['werkzeuge'] = array();
         $this->viewdata['liste']['anstehende_geburtstage']['listenstatistik'] = array();
         $this->viewdata['liste']['anstehende_geburtstage']['ueberschrift'] = 'Geburtstage in den nächsten 14 Tagen';
-        $this->viewdata['liste']['anstehende_geburtstage']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['geburtstag'].'"></i> '.VIEWDATA['mitglieder']['element']['beschriftung'];
         $this->viewdata['liste']['anstehende_geburtstage']['element']['link'] = array( 'liste' => 'mitglieder', 'eigenschaften' => array( 'id', ), );
         $this->viewdata['liste']['anstehende_geburtstage']['element']['vorschau'] = array( 'geburtstag', 'alter_geburtstag' );
 
@@ -29,7 +28,6 @@ class Startseite extends BaseController {
             $this->viewdata['liste']['bevorstehende_termine_startseite']['listenstatistik'] = array();
             $this->viewdata['liste']['bevorstehende_termine_startseite']['ueberschrift'] = 'Termine in den nächsten 14 Tagen';
             $this->viewdata['liste']['bevorstehende_termine_startseite']['element']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
-            $this->viewdata['liste']['bevorstehende_termine_startseite']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine'].'"></i> '.VIEWDATA['termine']['element']['beschriftung'];
             $this->viewdata['liste']['bevorstehende_termine_startseite']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
         }
 
@@ -41,7 +39,6 @@ class Startseite extends BaseController {
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['werkzeuge'] = array();
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['listenstatistik'] = array();
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['ueberschrift'] = 'Termine ohne Rückmeldung';
-            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine'].'"></i> '.VIEWDATA['termine']['element']['beschriftung'];
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['element']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['element']['verknuepfungen'] = 'termine_rueckmeldungen';

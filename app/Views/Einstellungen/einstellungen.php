@@ -3,7 +3,7 @@
 <?= $this->section( 'cards' ); ?>
 
 <div class="card border-success text-success w-100">
-    <div class="card-body">Dein Gerät ist verknüpft mit dem Zugang von <span class="element" liste="mitglieder" mitglied_id="<?= ICH_ID ?>"><span class="eigenschaft" eigenschaft="vorname"></span> <span class="eigenschaft" eigenschaft="nachname"></span></span>.</div>
+    <div class="card-body">Dein Gerät ist verknüpft mit dem Zugang von <span class="element" liste="mitglieder" mitglied_id="<?= ICH_ID ?>"><span class="element_beschriftung"></span></span>.</div>
 </div>
 
 <div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3 gy-3 gx-0 gx-lg-3 w-100">

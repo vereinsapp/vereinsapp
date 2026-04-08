@@ -33,7 +33,7 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = VIEWDATA['termine'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine'].'"></i> '.VIEWDATA['termine']['element']['beschriftung'];
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['verknuepfungen'] = 'termine_rueckmeldungen';
 
             if( auth()->user()->can( 'termine.verwaltung' ) ) {
@@ -56,6 +56,7 @@ class Mitglieder extends BaseController {
             unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['ich_eingeladen_janein']);
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['start'] = array( 'start' => JAHRESBEGINN, 'ende' => MORGEN );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['zusatzsymbole'] = array( 'termine_rueckmeldungen' );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen'] = 'termine_anwesenheiten';
 
             if( auth()->user()->can( 'termine.verwaltung' ) ) {
@@ -78,7 +79,6 @@ class Mitglieder extends BaseController {
             unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
             $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
             $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'element_erstellen';
-            $this->viewdata['liste']['strafen_zuweisen']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['strafkatalog'].'"></i> '.VIEWDATA['strafkatalog']['element']['beschriftung'];
             $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_aendern';
             $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_duplizieren';
             $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_loeschen';
@@ -147,7 +147,7 @@ class Mitglieder extends BaseController {
 
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = VIEWDATA['termine'];
             unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['termine'].'"></i> '.VIEWDATA['termine']['element']['beschriftung'];
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
             $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['verknuepfungen'] = 'termine_rueckmeldungen';
 
             if( auth()->user()->can( 'termine.verwaltung' ) ) {
@@ -170,6 +170,7 @@ class Mitglieder extends BaseController {
             unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['ich_eingeladen_janein']);
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['start'] = array( 'start' => JAHRESBEGINN, 'ende' => MORGEN );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['zusatzsymbole'] = array( 'termine_rueckmeldungen' );
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen'] = 'termine_anwesenheiten';
 
             if( auth()->user()->can( 'termine.verwaltung' ) ) {
@@ -192,7 +193,6 @@ class Mitglieder extends BaseController {
             unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
             $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
             $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'element_erstellen';
-            $this->viewdata['liste']['strafen_zuweisen']['element']['beschriftung'] = '<i class="bi bi-'.SYMBOLE['strafkatalog'].'"></i> '.VIEWDATA['strafkatalog']['element']['beschriftung'];
             $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_aendern';
             $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_duplizieren';
             $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_loeschen';

@@ -26,7 +26,7 @@
                 ?><div class="werkzeuge card-header text-end stretched-link-unwirksam invisible" werkzeuge='<?= json_encode( $liste['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></div><?php } ?>
                 <div class="card-body p-2">
                     <h5 class="card-title text-truncate text-nowrap">
-                        <span class="beschriftung"><?= $liste['element']['beschriftung']; ?></span><?php
+                        <span class="element_beschriftung"></span><?php
                         if( array_key_exists( 'link', $liste['element'] ) AND is_array( $liste['element']['link'] ) ) {
                             ?><a class="stretched-link" link='<?= json_encode( $liste['element']['link'], JSON_UNESCAPED_UNICODE ); ?>'></a><?php }
                         if( array_key_exists( 'zusatzsymbole', $liste['element'] ) AND is_array( $liste['element']['zusatzsymbole'] ) AND count( $liste['element']['zusatzsymbole'] ) > 0 ) {

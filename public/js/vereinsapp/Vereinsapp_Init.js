@@ -44,8 +44,12 @@ VIEWDATA in LISTEN integrieren
 Mit Github Copilot flex-nowrap, flex-grow, text-truncate und text-nowrap diskutieren
 Mit Github Copilot Agent die Anordnung in Details optimieren
 Wie weiter mit Liste_$ListenstatistikAktualisieren?
+status_erlaubt enthält nur noch Symbole, kein html mehr
+texte zu inhalt_kopieren aus js in Vereinsapp-config verschieben
 auswertung-Views vereinheitlichen?
-LISTEN[liste].beschriftung umbenennen in LISTEN[liste].liste_beschriftung und mit beschriftung in VIEWDATA und beschriftung im Details-View verheiraten
+Gibt es eine Möglichkeit die Geburtstag-Symbole auf der Startseite wiederherzustellen?
+VERKNUEPFUNGEN komplett loslösen aus LISTEN -> zuordnung dann nach php verschieben
+Vorschau soll keine span.eigenschaft mehr enthalten sondern bekommt direkt die Werte und spacer eingefügt
 
 ERLEDIGT
 

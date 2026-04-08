@@ -12,4 +12,4 @@
 
 <div class="d-grid"><button type="button" class="btn btn-outline-<?php
 if( array_key_exists('farbe', WERKZEUGE['einmal_link_anzeigen']) ) echo WERKZEUGE['einmal_link_anzeigen']['farbe']; else echo "success";
-?> werkzeug" werkzeug="einmal_link_anzeigen"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['einmal_link_anzeigen']['symbol'] ]; ?>"></i>  <?= WERKZEUGE['einmal_link_anzeigen']['beschriftung']['beschriftung']; ?></span></button></div>
+?> werkzeug" werkzeug="einmal_link_anzeigen"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['einmal_link_anzeigen']['symbol'] ]; ?>"></i> <?= WERKZEUGE['einmal_link_anzeigen']['beschriftung']['beschriftung']; ?></span></button></div>

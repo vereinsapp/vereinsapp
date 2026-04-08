@@ -6,6 +6,9 @@ function Liste_$ElementAktualisieren($element) {
     const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
     const element_id = Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
 
+    // ELEMENT-BESCHRIFTUNG AKTUALISIEREN
+    $element.find(".element_beschriftung").text(Liste_ElementBeschriftungErweitertZurueck(element_id, liste));
+
     // EIGENSCHAFTEN AKTUALISIEREN
     $element.find(".eigenschaft").each(function () {
         const $eigenschaft = $(this);
