@@ -46,7 +46,7 @@ ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION = function ($zusatzsymbol, $el
     let verknuepfung_id = undefined;
     $.each(
         Liste_VariableRausZurueck(
-            "zugeordnete_" + LISTEN[verknuepfungen].element + "_ids",
+            "zugeordnete_" + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids",
             verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
             verknuepfte_listen[0],
             new Array(),
@@ -114,6 +114,7 @@ function Liste_Init() {
         LISTEN[liste].instanz[instanz].$blanko_element = $blanko;
     });
 
+    Liste_VerknuepfungenInit();
     Liste_AuswertungenInit();
     Liste_VerzeichnisInit();
 
@@ -188,18 +189,6 @@ function Liste_Init() {
             Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
             Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),
             Util_WertBereinigtZurueck($(this).attr(LISTEN[liste].element + "_id"), undefined),
-            liste,
-        );
-    });
-
-    // BEMERKUNG AENDERN
-    $(document).on("click", '.werkzeug[werkzeug="bemerkung_aendern"]', function () {
-        const liste = Util_WertBereinigtZurueck($(this).attr("liste"));
-        Liste_ElementBemerkungAendern(
-            $(this).hasClass("data_vollstaendig"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $formular: $(this).closest(".formular") },
-            Liste_Element$FormularWerteNachEigenschaftZurueck($(this).closest(".formular")),
-            Util_WertBereinigtZurueck($(this).attr(LISTEN[liste].element + "_id")),
             liste,
         );
     });

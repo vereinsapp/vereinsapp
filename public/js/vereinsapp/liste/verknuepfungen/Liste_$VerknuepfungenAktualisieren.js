@@ -105,7 +105,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
         });
 
         // Zugehöriges Bemerkung-ändern-Werkzeug bearbeiten
-        $verknuepfungen.find('.werkzeug[werkzeug="bemerkung_aendern"]').each(function () {
+        $verknuepfungen.find('.werkzeug[werkzeug="verknuepfung_bemerkung_aendern"]').each(function () {
             const $werkzeug = $(this);
 
             $.each(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt, function (status) {

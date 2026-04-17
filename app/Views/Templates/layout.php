@@ -43,8 +43,8 @@
     <div id="modals">
 <?= view( 'Templates/modal', array( 'modal_id' => 'bestaetigung_modal', 'modal' =>
     view( 'Templates/bestaetigung' ) ) ); ?>
-<?= view( 'Templates/modal', array( 'modal_id' => 'bemerkung_aendern_modal', 'modal_title' => 'Bemerkung ändern', 'modal' =>
-    view( 'Templates/Liste/formular', array( 'formular' => view( 'Templates/Liste/bemerkung_formular' ) ) ) ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'verknuepfung_bemerkung_aendern_modal', 'modal_title' => 'Bemerkung ändern', 'modal' =>
+     view( 'Templates/Liste/verknuepfung_bemerkung_aendern' ) ) ); ?>
 <?= view( 'Templates/modal', array( 'modal_id' => 'filtern_manip_modal', 'modal' =>
     view( 'Templates/Liste/filtern' ) ) ); ?>
 <?= view( 'Templates/modal', array( 'modal_id' => 'sortieren_manip_modal', 'modal' =>

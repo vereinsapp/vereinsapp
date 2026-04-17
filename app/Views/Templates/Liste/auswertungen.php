@@ -3,8 +3,8 @@
         ?> filtern='<?= json_encode( $auswertungen['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     if( array_key_exists( 'gruppieren', $auswertungen ) AND is_string( $auswertungen['gruppieren'] ) ) {
         ?> gruppieren='<?= $auswertungen['gruppieren']; ?>'<?php }
-    foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $liste_ ]['element'].'_id', $auswertungen ) ) {
-        ?> <?= LISTEN[ $liste_ ]['element']; ?>_id="<?= $auswertungen[ LISTEN[ $liste_ ]['element'].'_id' ]; ?>"<?php }
+    foreach( LISTEN as $liste_eigenschaften ) if( array_key_exists( $liste_eigenschaften['element'].'_id', $auswertungen ) ) {
+        ?> <?= $liste_eigenschaften['element']; ?>_id="<?= $auswertungen[ $liste_eigenschaften['element'].'_id' ]; ?>"<?php }
     ?>>
     <div class="meta w-100 text-center invisible"><?php
     if( array_key_exists( 'werkzeuge', $auswertungen ) AND is_array( $auswertungen['werkzeuge'] ) AND count( $auswertungen['werkzeuge'] ) > 0 ) {

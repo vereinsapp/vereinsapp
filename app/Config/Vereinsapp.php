@@ -238,7 +238,7 @@ class Vereinsapp extends BaseConfig
             ),
         ),
 
-        'bemerkung_aendern' => array(
+        'verknuepfung_bemerkung_aendern' => array(
             'symbol' => 'bemerkung',
             'beschriftung' => array(
                 'beschriftung' => 'Bemerkung ändern',
@@ -539,6 +539,134 @@ class Vereinsapp extends BaseConfig
                 array( 'freitext' => 'Setlisteneintrag ', ),
                 array( 'eigenschaft' => 'id', ),
             ),
+        ),
+
+    );
+
+    /**
+     * Verknüpfungen
+     */
+    public $verknuepfungen = array(
+        'vergebene_rechte' => array(
+            'controller' => 'mitglieder',
+            'verknuepfungen' => 'vergebene_rechte',
+            'verknuepfungen_beschriftung' => 'Vergebene Rechte',
+            'verknuepfung' => 'vergebenes_recht',
+            'verknuepfung_beschriftung' => 'Vergebenes Recht',
+            'verknuepfte_listen' => array( 'verfuegbare_rechte', 'mitglieder', ),
+            'typ' => 'janein_auswahl',
+            'bestaetigung_einfordern' => FALSE,
+            'nur_eins_erlaubt_janein' => TRUE,
+            'status_erlaubt' => array(
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>' ),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
+             ),
+        ),
+
+        'aufgaben_rueckmeldungen' => array(
+            'controller' => 'aufgaben',
+            'verknuepfungen' => 'aufgaben_rueckmeldungen',
+            'verknuepfungen_beschriftung' => 'Rückmeldungen',
+            'verknuepfung' => 'aufgaben_rueckmeldung',
+            'verknuepfung_beschriftung' => 'Rückmeldung',
+            'verknuepfte_listen' => array( 'aufgaben', 'mitglieder', ),
+            'typ' => 'status_auswahl',
+            'bestaetigung_einfordern' => FALSE,
+            'nur_eins_erlaubt_janein' => TRUE,
+            'status_erlaubt' => array(
+                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>' ),
+                1 => array( 'farbe' => 'primary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['angenommen_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['angenommen_rueckmeldung'].'-fill"></i>' ),
+                2 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['erledigt'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['erledigt'].'"></i>' ),
+            ),
+        ),
+
+        'aufgaben_zuordnungen_termine' => array(
+            'controller' => 'aufgaben',
+            'verknuepfungen' => 'aufgaben_zuordnungen_termine',
+            'verknuepfungen_beschriftung' => 'Termin-Zuordnungen',
+            'verknuepfung' => 'aufgaben_zuordnung_termine',
+            'verknuepfung_beschriftung' => 'Termin-Zuordnung',
+            'verknuepfte_listen' => array( 'aufgaben', 'termine', ),
+            'typ' => 'janein_auswahl',
+            'bestaetigung_einfordern' => FALSE,
+            'nur_eins_erlaubt_janein' => TRUE,
+            'status_erlaubt' => array(
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>' ),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
+             ),
+        ),
+
+        'termine_rueckmeldungen' => array(
+            'controller' => 'termine',
+            'verknuepfungen' => 'termine_rueckmeldungen',
+            'verknuepfungen_beschriftung' => 'Rückmeldungen',
+            'verknuepfung' => 'termine_rueckmeldung',
+            'verknuepfung_beschriftung' => 'Rückmeldung',
+            'verknuepfte_listen' => array( 'termine', 'mitglieder', ),
+            'typ' => 'status_auswahl',
+            'bestaetigung_einfordern' => FALSE,
+            'nur_eins_erlaubt_janein' => TRUE,
+            'status_erlaubt' => array(
+                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>' ),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung'].'-fill"></i>' ),
+                2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung'].'-fill"></i>' ),
+            ),
+            'verknuepfung_moeglich_eingeladen' => array( 'eigenschaft' => 'mitglied_ids_eingeladen', 'liste' => 'termine' ),
+            'verknuepfung_moeglich_frist' => array( 'eigenschaft' => 'start', 'liste' => 'termine', 'frist' => 0 ),
+            'verknuepfung_nicht_moeglich' => array(
+                'keine_verknuepfung_moeglich' => 'Keine Rückmeldung möglich!',
+                'keine_verknuepfung_fuer_dich_moeglich' => 'Du bist nicht eingeladen und kannst deshalb keine Rückmeldung geben.',
+                'keine_verknuepfung_fuer_mitglied_moeglich' => 'Das Mitglied ist nicht eingeladen und kann deshalb keine Rückmeldung geben.',
+            ),
+        ),
+
+        'termine_anwesenheiten' => array(
+            'controller' => 'termine',
+            'verknuepfungen' => 'termine_anwesenheiten',
+            'verknuepfungen_beschriftung' => 'Anwesenheiten',
+            'verknuepfung' => 'termine_anwesenheit',
+            'verknuepfung_beschriftung' => 'Anwesenheit',
+            'verknuepfte_listen' => array( 'termine', 'mitglieder', ),
+            'typ' => 'janein_auswahl',
+            'bestaetigung_einfordern' => FALSE,
+            'nur_eins_erlaubt_janein' => TRUE,
+            'status_erlaubt' => array(
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>'),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
+             ),
+        ),
+
+        'strafkatalog_zugewiesene_strafen' => array(
+            'controller' => 'strafkatalog',
+            'verknuepfungen' => 'strafkatalog_zugewiesene_strafen',
+            'verknuepfungen_beschriftung' => 'Zugewiesene Strafen',
+            'verknuepfung' => 'strafkatalog_zugewiesene_strafe',
+            'verknuepfung_beschriftung' => 'Zugewiesene Strafe',
+            'verknuepfte_listen' => array( 'strafkatalog', 'mitglieder', ),
+            'typ' => 'element_auswahl',
+            'bestaetigung_einfordern' => TRUE,
+            'nur_eins_erlaubt_janein' => FALSE,
+            'status_erlaubt' => array(
+                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>' ),
+                1 => array( 'farbe' => 'warning', 'aktiv' => '<i class="bi bi-'.SYMBOLE['offen'].'"></i>' ),
+                2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
+             ),
+        ),
+
+        'notenbank_setliste' => array(
+            'controller' => 'notenbank',
+            'verknuepfungen' => 'notenbank_setliste',
+            'verknuepfungen_beschriftung' => 'Setliste',
+            'verknuepfung' => 'notenbank_setlisteneintrag',
+            'verknuepfung_beschriftung' => 'Setlisteneintrag',
+            'verknuepfte_listen' => array( 'notenbank', 'termine', ),
+            'typ' => 'element_auswahl',
+            'bestaetigung_einfordern' => FALSE,
+            'nur_eins_erlaubt_janein' => FALSE,
+            'status_erlaubt' => array(
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>'),
+                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
+             ),
         ),
     );
 
@@ -1475,99 +1603,6 @@ class Vereinsapp extends BaseConfig
     public $notenbank_erlaubte_dateitypen_audio = array(
         'mp3',
         'm4a',
-    );
-
-    /**
-     * Verknüpfungen
-     */
-    public $verknuepfungen = array(
-        'vergebene_rechte' => array(
-            'controller' => 'mitglieder',
-            'verknuepfte_listen' => array( 'verfuegbare_rechte', 'mitglieder', ),
-            'typ' => 'janein_auswahl',
-            'bestaetigung_einfordern' => FALSE,
-            'nur_eins_erlaubt_janein' => TRUE,
-            'status_erlaubt' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>' ),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
-             ),
-        ),
-        'aufgaben_rueckmeldungen' => array(
-            'controller' => 'aufgaben',
-            'verknuepfte_listen' => array( 'aufgaben', 'mitglieder', ),
-            'typ' => 'status_auswahl',
-            'bestaetigung_einfordern' => FALSE,
-            'nur_eins_erlaubt_janein' => TRUE,
-            'status_erlaubt' => array(
-                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>' ),
-                1 => array( 'farbe' => 'primary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['angenommen_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['angenommen_rueckmeldung'].'-fill"></i>' ),
-                2 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['erledigt'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['erledigt'].'"></i>' ),
-            ),
-        ),
-        'aufgaben_zuordnungen_termine' => array(
-            'controller' => 'aufgaben',
-            'verknuepfte_listen' => array( 'aufgaben', 'termine', ),
-            'typ' => 'janein_auswahl',
-            'bestaetigung_einfordern' => FALSE,
-            'nur_eins_erlaubt_janein' => TRUE,
-            'status_erlaubt' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>' ),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
-             ),
-        ),
-        'termine_rueckmeldungen' => array(
-            'controller' => 'termine',
-            'verknuepfte_listen' => array( 'termine', 'mitglieder', ),
-            'typ' => 'status_auswahl',
-            'bestaetigung_einfordern' => FALSE,
-            'nur_eins_erlaubt_janein' => TRUE,
-            'status_erlaubt' => array(
-                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>' ),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung'].'-fill"></i>' ),
-                2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung'].'-fill"></i>' ),
-            ),
-            'verknuepfung_moeglich_eingeladen' => array( 'eigenschaft' => 'mitglied_ids_eingeladen', 'liste' => 'termine' ),
-            'verknuepfung_moeglich_frist' => array( 'eigenschaft' => 'start', 'liste' => 'termine', 'frist' => 0 ),
-            'verknuepfung_nicht_moeglich' => array(
-                'keine_verknuepfung_moeglich' => 'Keine Rückmeldung möglich!',
-                'keine_verknuepfung_fuer_dich_moeglich' => 'Du bist nicht eingeladen und kannst deshalb keine Rückmeldung geben.',
-                'keine_verknuepfung_fuer_mitglied_moeglich' => 'Das Mitglied ist nicht eingeladen und kann deshalb keine Rückmeldung geben.',
-            ),
-        ),
-        'termine_anwesenheiten' => array(
-            'controller' => 'termine',
-            'verknuepfte_listen' => array( 'termine', 'mitglieder', ),
-            'typ' => 'janein_auswahl',
-            'bestaetigung_einfordern' => FALSE,
-            'nur_eins_erlaubt_janein' => TRUE,
-            'status_erlaubt' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>'),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
-             ),
-        ),
-        'strafkatalog_zugewiesene_strafen' => array(
-            'controller' => 'strafkatalog',
-            'verknuepfte_listen' => array( 'strafkatalog', 'mitglieder', ),
-            'typ' => 'element_auswahl',
-            'bestaetigung_einfordern' => TRUE,
-            'nur_eins_erlaubt_janein' => FALSE,
-            'status_erlaubt' => array(
-                0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>' ),
-                1 => array( 'farbe' => 'warning', 'aktiv' => '<i class="bi bi-'.SYMBOLE['offen'].'"></i>' ),
-                2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
-             ),
-        ),
-        'notenbank_setliste' => array(
-            'controller' => 'notenbank',
-            'verknuepfte_listen' => array( 'notenbank', 'termine', ),
-            'typ' => 'element_auswahl',
-            'bestaetigung_einfordern' => FALSE,
-            'nur_eins_erlaubt_janein' => FALSE,
-            'status_erlaubt' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>'),
-                1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
-             ),
-        ),
     );
 
     /**

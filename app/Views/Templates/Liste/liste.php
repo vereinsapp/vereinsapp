@@ -3,8 +3,8 @@
         ?> filtern='<?= json_encode( $liste['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     if( array_key_exists( 'sortieren', $liste ) AND is_array( $liste['sortieren'] ) AND count( $liste['sortieren'] ) > 0 ) {
         ?> sortieren='<?= json_encode( $liste['sortieren'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
-    foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $liste_ ]['element'].'_id', $liste ) ) {
-        ?> <?= LISTEN[ $liste_ ]['element']; ?>_id="<?= $liste[ LISTEN[ $liste_ ]['element'].'_id' ]; ?>"<?php }
+    foreach( LISTEN as $liste_eigenschaften ) if( array_key_exists( $liste_eigenschaften['element'].'_id', $liste ) ) {
+        ?> <?= $liste_eigenschaften['element']; ?>_id="<?= $liste[ $liste_eigenschaften['element'].'_id' ]; ?>"<?php }
     if( array_key_exists( 'disabled_ids', $liste ) AND is_array( $liste['disabled_ids'] ) AND count( $liste['disabled_ids'] ) > 0 ) {
         ?> disabled_ids='<?= json_encode( $liste['disabled_ids'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     ?>><div class="card">
@@ -28,7 +28,7 @@
                     echo ' werkzeug';
                 ?>"<?php
                 if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'element_auswahl' ) {
-                    ?> werkzeug="<?= LISTEN[ $liste['element']['verknuepfungen'] ]['element'].'_erstellen' ?>" modal_title="<?= WERKZEUGE[ LISTEN[ $liste['element']['verknuepfungen'] ]['element'].'_erstellen' ]['beschriftung']['beschriftung'] ?>" verknuepfungen="<?= $liste['element']['verknuepfungen'] ?>"<?php }
+                    ?> werkzeug="<?= VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['verknuepfung'].'_erstellen' ?>" modal_title="<?= WERKZEUGE[ VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['verknuepfung'].'_erstellen' ]['beschriftung']['beschriftung'] ?>" verknuepfungen="<?= $liste['element']['verknuepfungen'] ?>"<?php }
                 ?>><?php if( !array_key_exists( 'verknuepfungen', $liste['element'] ) OR VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] !== 'janein_auswahl' ) { ?><i class="bi bi-<?= SYMBOLE[ $liste['liste'] ] ?>"></i> <?php } ?><span class="element_beschriftung"></span></label><?php
                 if( array_key_exists( 'link', $liste['element'] ) AND is_array( $liste['element']['link'] ) ) {
                     ?><a class="stretched-link" link='<?= json_encode( $liste['element']['link'], JSON_UNESCAPED_UNICODE ); ?>'></a><?php }

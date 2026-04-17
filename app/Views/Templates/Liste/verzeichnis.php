@@ -1,6 +1,7 @@
 <div id="<?= $verzeichnis['instanz']; ?>" class="verzeichnis list-group" liste="<?= $verzeichnis['liste']; ?>"<?php
-foreach( LISTEN as $liste_ => $eigenschaften ) if( array_key_exists( LISTEN[ $liste_ ]['element'].'_id', $verzeichnis ) ) { ?> <?= LISTEN[ $liste_ ]['element']; ?>_id="<?= $verzeichnis[ LISTEN[ $liste_ ]['element'].'_id' ]; ?>"<?php }
-?>>
+    foreach( LISTEN as $liste_eigenschaften ) if( array_key_exists( $liste_eigenschaften['element'].'_id', $verzeichnis ) ) {
+        ?> <?= $liste_eigenschaften['element']; ?>_id="<?= $verzeichnis[ $liste_eigenschaften['element'].'_id' ]; ?>"<?php }
+    ?>>
 
     <div class="text-body list-group-item p-0 blanko invisible" blanko="unterverzeichnis" liste="<?= $verzeichnis['liste']; ?>" instanz="<?= $verzeichnis['instanz']; ?>">
         <div class="card border-0">

@@ -56,7 +56,9 @@ auswertung(en) umbenennen in verknuepfung(en)
 instanz[instanz].$blanko_auswertung umbauen zu $blanko_auswertung[instanz]
 
 VERKNUEPFUNGEN komplett loslösen aus LISTEN -> zuordnung dann nach php verschieben
-    controller aus LISTEN entfernen
+    controller und verknuepfungen-Einträge aus LISTEN entfernen
+    Liste_VerknuepfungenZuordnen entfernen
+    Liste_ElementErgaenzen nur für Liste
 
 ERLEDIGT
 

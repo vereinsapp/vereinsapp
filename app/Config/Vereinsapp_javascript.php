@@ -94,7 +94,6 @@ class Vereinsapp_javascript extends BaseConfig
 
         'js/vereinsapp/liste/element/Liste_ElementErstellen.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementAendern.js?v='.VERSION,
-        'js/vereinsapp/liste/element/Liste_ElementBemerkungAendern.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementLoeschen.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementErgaenzen.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_$ElementAktualisieren.js?v='.VERSION,
@@ -115,7 +114,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/variable/Liste_VariableRausZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/variable/Liste_VariableLoeschen.js?v='.VERSION,
 
-        'js/vereinsapp/liste/filtern/Liste_FilternInit.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_$FilternModalOeffnen.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_$FilternEigenschaftAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_$FilternEigenschaftAendern.js?v='.VERSION,
@@ -126,8 +124,8 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/filtern/Liste_$FilternLocalStorageSpeichern.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_FilternManipuliertZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_TabelleGefiltertZurueck.js?v='.VERSION,
+        'js/vereinsapp/liste/filtern/Liste_FilternInit.js?v='.VERSION,
 
-        'js/vereinsapp/liste/sortieren/Liste_SortierenInit.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_$SortierenModalOeffnen.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_$SortierenEigenschaftAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_$SortierenEigenschaftAendern.js?v='.VERSION,
@@ -135,8 +133,8 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/sortieren/Liste_$SortierenLocalStorageSpeichern.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_SortierenManipuliertZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/sortieren/Liste_ArraySortiertZurueck.js?v='.VERSION,
+        'js/vereinsapp/liste/sortieren/Liste_SortierenInit.js?v='.VERSION,
 
-        'js/vereinsapp/liste/gruppieren/Liste_GruppierenInit.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_$GruppierenModalOeffnen.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_$GruppierenEigenschaftAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_$GruppierenEigenschaftAendern.js?v='.VERSION,
@@ -144,20 +142,23 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/gruppieren/Liste_$GruppierenLocalStorageSpeichern.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_GruppierenManipuliertZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/gruppieren/Liste_ArrayGruppiertZurueck.js?v='.VERSION,
+        'js/vereinsapp/liste/gruppieren/Liste_GruppierenInit.js?v='.VERSION,
 
-        'js/vereinsapp/liste/auswertungen/Liste_AuswertungenInit.js?v='.VERSION,
-        'js/vereinsapp/liste/auswertungen/Liste_$AuswertungenAktualisieren.js?v='.VERSION,
-        'js/vereinsapp/liste/auswertungen/Liste_$AuswertungAktualisieren.js?v='.VERSION,
-        
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungenModalOeffnen.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungErstellen.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungStatusAendern.js?v='.VERSION,
+        'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungBemerkungAendern.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_$VerknuepfungenAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungenZuordnen.js?v='.VERSION,
+        'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungenInit.js?v='.VERSION,
 
-        'js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisInit.js?v='.VERSION,
+        'js/vereinsapp/liste/auswertungen/Liste_$AuswertungenAktualisieren.js?v='.VERSION,
+        'js/vereinsapp/liste/auswertungen/Liste_$AuswertungAktualisieren.js?v='.VERSION,
+        'js/vereinsapp/liste/auswertungen/Liste_AuswertungenInit.js?v='.VERSION,
+
         'js/vereinsapp/liste/verzeichnis/Liste_$VerzeichnisAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/verzeichnis/Liste_$DateiAktualisieren.js?v='.VERSION,
+        'js/vereinsapp/liste/verzeichnis/Liste_VerzeichnisInit.js?v='.VERSION,
 
         'js/vereinsapp/liste/Liste_Init.js?v='.VERSION,
 
