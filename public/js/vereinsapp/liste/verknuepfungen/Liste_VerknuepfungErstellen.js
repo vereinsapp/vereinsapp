@@ -11,20 +11,23 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
 
     if (VERKNUEPFUNGEN[verknuepfungen].bestaetigung_einfordern && !bestaetigt)
         Dom_BestaetigungEinfordern(
-            Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE[LISTEN[verknuepfungen].element + "_erstellen"].beschriftung.bestaetigung, {
-                element1: {
-                    liste: VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[0],
-                    [LISTEN[VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[0]].element + "_id"]:
-                        data[LISTEN[VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[0]].element + "_id"],
+            Liste_ElementTextMitBeschriftungErsetztZurueck(
+                WERKZEUGE[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_erstellen"].beschriftung.bestaetigung,
+                {
+                    element1: {
+                        liste: VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[0],
+                        [LISTEN[VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[0]].element + "_id"]:
+                            data[LISTEN[VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[0]].element + "_id"],
+                    },
+                    element2: {
+                        liste: VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[1],
+                        [LISTEN[VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[1]].element + "_id"]:
+                            data[LISTEN[VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[1]].element + "_id"],
+                    },
                 },
-                element2: {
-                    liste: VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[1],
-                    [LISTEN[VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[1]].element + "_id"]:
-                        data[LISTEN[VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen[1]].element + "_id"],
-                },
-            }),
+            ),
             modal_title,
-            LISTEN[verknuepfungen].element + "_erstellen",
+            VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_erstellen",
             data,
         );
     else {
@@ -33,7 +36,7 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
         if (!("bemerkung" in ajax_data) || isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
         Ajax_InDieSchlange(
-            LISTEN[verknuepfungen].controller + "/ajax_" + LISTEN[verknuepfungen].element + "_speichern",
+            VERKNUEPFUNGEN[verknuepfungen].controller + "/ajax_" + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_speichern",
             ajax_data,
             ajax_dom,
             function (AJAX) {
@@ -50,7 +53,7 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                 if (VERKNUEPFUNGEN[verknuepfungen].nur_eins_erlaubt_janein)
                     $.each(
                         Liste_VariableRausZurueck(
-                            "zugeordnete_" + LISTEN[verknuepfungen].element + "_ids",
+                            "zugeordnete_" + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids",
                             verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
                             verknuepfte_listen[0],
                             new Array(),
@@ -70,11 +73,13 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
 
                 // eine neue Verknüpfung wird hinzugefügt
                 if (AJAX.data.status > 0) {
-                    if (typeof AJAX.antwort[LISTEN[verknuepfungen].element + "_id"] !== "undefined")
-                        AJAX.data[LISTEN[verknuepfungen].element + "_id"] = Number(AJAX.antwort[LISTEN[verknuepfungen].element + "_id"]);
-                    else AJAX.data[LISTEN[verknuepfungen].element + "_id"] = LISTEN[verknuepfungen].tabelle.length + 1;
-                    const verknuepfung_id = AJAX.data[LISTEN[verknuepfungen].element + "_id"];
-                    delete AJAX.data[LISTEN[verknuepfungen].element + "_id"];
+                    if (typeof AJAX.antwort[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"] !== "undefined")
+                        AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"] = Number(
+                            AJAX.antwort[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"],
+                        );
+                    else AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"] = LISTEN[verknuepfungen].tabelle.length + 1;
+                    const verknuepfung_id = AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"];
+                    delete AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"];
 
                     Liste_VariableRein(verknuepfung_id, "id", verknuepfung_id, verknuepfungen);
                     $.each(AJAX.data, function (eigenschaft, wert) {
@@ -109,7 +114,7 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                     Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_erstellen.beschriftung.fehler, {
                         element1: {
                             liste: AJAX.data.verknuepfungen,
-                            [LISTEN[verknuepfungen].element + "_id"]: AJAX.data[LISTEN[verknuepfungen].element + "_id"],
+                            [VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"]: AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"],
                         },
                     }),
                     "danger",

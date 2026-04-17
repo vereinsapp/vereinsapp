@@ -53,32 +53,6 @@ LISTEN.notenbank.element_ergaenzen_aktion = function (titel) {
     }
 };
 
-LISTEN.notenbank_setliste.element_ergaenzen_aktion = function (setlisteneintrag) {
-    if ("titel_id" in setlisteneintrag)
-        setlisteneintrag.titel_titel = Liste_VariableRausZurueck("titel", setlisteneintrag.titel_id, "notenbank", undefined);
-    if ("titel_id" in setlisteneintrag)
-        setlisteneintrag.titel_titel_nr = Liste_VariableRausZurueck("titel_nr", setlisteneintrag.titel_id, "notenbank", undefined);
-    if ("titel_id" in setlisteneintrag)
-        setlisteneintrag.titel_kategorie = Liste_VariableRausZurueck("kategorie", setlisteneintrag.titel_id, "notenbank", undefined);
-    if ("titel_id" in setlisteneintrag)
-        setlisteneintrag.titel_komponist = Liste_VariableRausZurueck("komponist", setlisteneintrag.titel_id, "notenbank", undefined);
-    if ("titel_id" in setlisteneintrag)
-        setlisteneintrag.titel_anzahl_noten = Liste_VariableRausZurueck("anzahl_noten", setlisteneintrag.titel_id, "notenbank", undefined);
-    if ("titel_id" in setlisteneintrag)
-        setlisteneintrag.titel_anzahl_audio = Liste_VariableRausZurueck("anzahl_audio", setlisteneintrag.titel_id, "notenbank", undefined);
-    if ("titel_id" in setlisteneintrag)
-        setlisteneintrag.titel_anzahl_verzeichnis = Liste_VariableRausZurueck(
-            "anzahl_verzeichnis",
-            setlisteneintrag.titel_id,
-            "notenbank",
-            undefined,
-        );
-    if ("termin_id" in setlisteneintrag)
-        setlisteneintrag.termin_start = Liste_VariableRausZurueck("start", setlisteneintrag.termin_id, "termine", undefined);
-    if ("termin_id" in setlisteneintrag)
-        setlisteneintrag.termin_titel = Liste_VariableRausZurueck("titel", setlisteneintrag.termin_id, "termine", undefined);
-};
-
 WERKZEUGE.setliste_verwalten.aktualisieren_aktion = WERKZEUGE.element_erstellen.aktualisieren_aktion;
 
 ZUSATZSYMBOLE.notenbank_setliste = new Object();

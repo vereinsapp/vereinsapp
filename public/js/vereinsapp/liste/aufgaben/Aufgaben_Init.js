@@ -21,24 +21,6 @@ LISTEN.aufgaben.element_aendern_data_vervollstaendigen_aktion = function (data, 
     return data;
 };
 
-LISTEN.aufgaben_rueckmeldungen.element_ergaenzen_aktion = function (rueckmeldung) {
-    if ("aufgabe_id" in rueckmeldung) rueckmeldung.aufgabe_titel = Liste_VariableRausZurueck("titel", rueckmeldung.aufgabe_id, "aufgaben", undefined);
-    if ("mitglied_id" in rueckmeldung)
-        rueckmeldung.mitglied_vorname = Liste_VariableRausZurueck("vorname", rueckmeldung.mitglied_id, "mitglieder", undefined);
-    if ("mitglied_id" in rueckmeldung)
-        rueckmeldung.mitglied_nachname = Liste_VariableRausZurueck("nachname", rueckmeldung.mitglied_id, "mitglieder", undefined);
-};
-
-LISTEN.aufgaben_zuordnungen_termine.element_ergaenzen_aktion = function (zuordnung) {
-    if ("aufgabe_id" in zuordnung) zuordnung.aufgabe_titel = Liste_VariableRausZurueck("titel", zuordnung.aufgabe_id, "aufgaben", undefined);
-    if ("aufgabe_id" in zuordnung)
-        zuordnung.aufgabe_max_anzahl_mitglieder = Liste_VariableRausZurueck("max_anzahl_mitglieder", zuordnung.aufgabe_id, "aufgaben", undefined);
-    if ("termin_id" in zuordnung) zuordnung.termin_titel = Liste_VariableRausZurueck("titel", zuordnung.termin_id, "termine", undefined);
-    if ("termin_id" in zuordnung) zuordnung.termin_start = Liste_VariableRausZurueck("start", zuordnung.termin_id, "termine", undefined);
-    if ("termin_id" in zuordnung) zuordnung.termin_ort = Liste_VariableRausZurueck("ort", zuordnung.termin_id, "termine", undefined);
-    if ("termin_id" in zuordnung) zuordnung.termin_kategorie = Liste_VariableRausZurueck("kategorie", zuordnung.termin_id, "termine", undefined);
-};
-
 WERKZEUGE.termine_aufgaben_zuordnen.aktualisieren_aktion = WERKZEUGE.element_erstellen.aktualisieren_aktion;
 
 ZUSATZSYMBOLE.aufgaben_zuordnungen_termine = new Object();

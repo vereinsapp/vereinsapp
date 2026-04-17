@@ -17,12 +17,15 @@ function Liste_VerknuepfungenZuordnen(verknuepfungen) {
                         const verknuepftes_element = LISTEN[verknuepfte_liste].tabelle[verknuepfte_element_id];
 
                         if (typeof verknuepftes_element !== "undefined") {
-                            if (!("zugeordnete_" + LISTEN[verknuepfungen].element + "_ids" in verknuepftes_element))
-                                LISTEN[verknuepfte_liste].tabelle[verknuepfte_element_id]["zugeordnete_" + LISTEN[verknuepfungen].element + "_ids"] =
-                                    [verknuepfung_id];
-                            else if (!verknuepftes_element["zugeordnete_" + LISTEN[verknuepfungen].element + "_ids"].includes(verknuepfung_id))
+                            if (!("zugeordnete_" + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids" in verknuepftes_element))
                                 LISTEN[verknuepfte_liste].tabelle[verknuepfte_element_id][
-                                    "zugeordnete_" + LISTEN[verknuepfungen].element + "_ids"
+                                    "zugeordnete_" + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids"
+                                ] = [verknuepfung_id];
+                            else if (
+                                !verknuepftes_element["zugeordnete_" + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids"].includes(verknuepfung_id)
+                            )
+                                LISTEN[verknuepfte_liste].tabelle[verknuepfte_element_id][
+                                    "zugeordnete_" + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids"
                                 ].push(verknuepfung_id);
                         }
                     }

@@ -49,20 +49,6 @@ LISTEN.mitglieder.element_ergaenzen_aktion = function (mitglied) {
     }
 };
 
-LISTEN.vergebene_rechte.element_ergaenzen_aktion = function (vergebenes_recht) {
-    if ("verfuegbares_recht_id" in vergebenes_recht)
-        vergebenes_recht.verfuegbares_recht_titel = Liste_VariableRausZurueck(
-            "titel",
-            vergebenes_recht.verfuegbares_recht_id,
-            "verfuegbare_rechte",
-            undefined,
-        );
-    if ("mitglied_id" in vergebenes_recht)
-        vergebenes_recht.mitglied_vorname = Liste_VariableRausZurueck("vorname", vergebenes_recht.mitglied_id, "mitglieder", undefined);
-    if ("mitglied_id" in vergebenes_recht)
-        vergebenes_recht.mitglied_nachname = Liste_VariableRausZurueck("nachname", vergebenes_recht.mitglied_id, "mitglieder", undefined);
-};
-
 ZUSATZSYMBOLE.vergebene_rechte = new Object();
 ZUSATZSYMBOLE.vergebene_rechte.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
 

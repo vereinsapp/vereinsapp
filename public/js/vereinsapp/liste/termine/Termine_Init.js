@@ -79,24 +79,6 @@ LISTEN.termine.element_ergaenzen_aktion = function (termin) {
         });
 };
 
-LISTEN.termine_rueckmeldungen.element_ergaenzen_aktion = function (rueckmeldung) {
-    if ("termin_id" in rueckmeldung) rueckmeldung.termin_start = Liste_VariableRausZurueck("start", rueckmeldung.termin_id, "termine", undefined);
-    if ("termin_id" in rueckmeldung) rueckmeldung.termin_titel = Liste_VariableRausZurueck("titel", rueckmeldung.termin_id, "termine", undefined);
-    if ("mitglied_id" in rueckmeldung)
-        rueckmeldung.mitglied_vorname = Liste_VariableRausZurueck("vorname", rueckmeldung.mitglied_id, "mitglieder", undefined);
-    if ("mitglied_id" in rueckmeldung)
-        rueckmeldung.mitglied_nachname = Liste_VariableRausZurueck("nachname", rueckmeldung.mitglied_id, "mitglieder", undefined);
-};
-
-LISTEN.termine_anwesenheiten.element_ergaenzen_aktion = function (anwesenheit) {
-    if ("termin_id" in anwesenheit) anwesenheit.termin_start = Liste_VariableRausZurueck("start", anwesenheit.termin_id, "termine", undefined);
-    if ("termin_id" in anwesenheit) anwesenheit.termin_titel = Liste_VariableRausZurueck("titel", anwesenheit.termin_id, "termine", undefined);
-    if ("mitglied_id" in anwesenheit)
-        anwesenheit.mitglied_vorname = Liste_VariableRausZurueck("vorname", anwesenheit.mitglied_id, "mitglieder", undefined);
-    if ("mitglied_id" in anwesenheit)
-        anwesenheit.mitglied_nachname = Liste_VariableRausZurueck("nachname", anwesenheit.mitglied_id, "mitglieder", undefined);
-};
-
 ZUSATZSYMBOLE.termine_rueckmeldungen = new Object();
 ZUSATZSYMBOLE.termine_rueckmeldungen.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
 

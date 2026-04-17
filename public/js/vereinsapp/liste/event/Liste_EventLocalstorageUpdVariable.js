@@ -14,4 +14,22 @@ function Liste_EventLocalstorageUpdVariable(liste) {
         LISTEN[liste].instanz[instanz].gruppieren = Localstorage_RausZurueck(liste + "_" + instanz + "_gruppieren", undefined);
         LISTEN[liste].instanz[instanz].bearbeiten_modus = Localstorage_RausZurueck(liste + "_" + instanz + "_bearbeiten_modus", false);
     });
+
+    // VERKNUEPFUNGEN[verknuepfungen].tabelle = new Array();
+    // $.each(Localstorage_RausZurueck(verknuepfungen + "_tabelle", new Array()), function (position, verknuepfung) {
+    //     VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(verknuepfung.id)] = verknuepfung;
+    // });
+
+    // VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste = new Object();
+    // $.each(
+    //     Localstorage_RausZurueck(verknuepfungen + "_verknuepfung_ids_nach_liste", new Object()),
+    //     function (liste, verknuepfung_ids_nach_element_id) {
+    //         VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[liste] = new Array();
+    //         $.each(verknuepfung_ids_nach_element_id, function (element_id, verknuepfung_ids) {
+    //             if (!(Number(element_id) in VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[liste]))
+    //                 VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[liste] = new Array();
+    //             VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[liste].push(verknuepfung_ids);
+    //         });
+    //     },
+    // );
 }

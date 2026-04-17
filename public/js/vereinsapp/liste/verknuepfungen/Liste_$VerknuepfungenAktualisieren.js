@@ -46,7 +46,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
         let verknuepfung_id = undefined;
         $.each(
             Liste_VariableRausZurueck(
-                "zugeordnete_" + LISTEN[verknuepfungen].element + "_ids",
+                "zugeordnete_" + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids",
                 verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"],
                 verknuepfte_listen[0],
                 new Array(),
@@ -71,7 +71,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
         $zugehoeriges_label.addClass("form-check-label").attr("for", zufaelligeZeichenketteZurueck(8));
 
         // Zugehöriges Werkzeug bearbeiten
-        $verknuepfungen.find('.werkzeug[werkzeug="' + LISTEN[verknuepfungen].element + '_erstellen"]').each(function () {
+        $verknuepfungen.find('.werkzeug[werkzeug="' + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + '_erstellen"]').each(function () {
             const $werkzeug = $(this);
             if (VERKNUEPFUNGEN[verknuepfungen].typ === "janein_auswahl") {
                 $werkzeug
@@ -122,12 +122,12 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
                     else $werkzeug.addClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[verknuepfung_status].farbe);
                 } else $werkzeug.addClass("btn-outline-primary");
 
-                $werkzeug.removeClass("invisible").attr(LISTEN[verknuepfungen].element + "_id", verknuepfung_id);
+                $werkzeug.removeClass("invisible").attr(VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id", verknuepfung_id);
             } else
                 $werkzeug
                     .addClass("btn-outline-primary")
                     .addClass("invisible")
-                    .removeAttr(LISTEN[verknuepfungen].element + "_id");
+                    .removeAttr(VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id");
         });
 
         if (

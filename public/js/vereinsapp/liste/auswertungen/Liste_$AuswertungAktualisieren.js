@@ -14,12 +14,15 @@ function Liste_$AuswertungAktualisieren($auswertung) {
     ergebnis_nach_status[0] = Util_WertBereinigtZurueck($auswertung.attr(LISTEN[liste].element + "_ids"), new Array());
     const ergebnis_referenz_anzahl = ergebnis_nach_status[0].length;
 
-    $.each(Util_WertBereinigtZurueck($auswertung.attr(LISTEN[auswertungen].element + "_ids"), new Array()), function (position, auswertung_id) {
-        ergebnis_nach_status[Liste_VariableRausZurueck("status", auswertung_id, auswertungen, undefined)].push(auswertung_id);
-        ergebnis_nach_status[0] = ergebnis_nach_status[0].filter(
-            (element_id) => element_id != Liste_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined),
-        );
-    });
+    $.each(
+        Util_WertBereinigtZurueck($auswertung.attr(VERKNUEPFUNGEN[auswertungen].verknuepfung + "_ids"), new Array()),
+        function (position, auswertung_id) {
+            ergebnis_nach_status[Liste_VariableRausZurueck("status", auswertung_id, auswertungen, undefined)].push(auswertung_id);
+            ergebnis_nach_status[0] = ergebnis_nach_status[0].filter(
+                (element_id) => element_id != Liste_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined),
+            );
+        },
+    );
 
     // ERGEBNIS_ANZAHL AKTUALISIEREN
     $auswertung.find(".ergebnis_anzahl").each(function () {
@@ -49,10 +52,10 @@ function Liste_$AuswertungAktualisieren($auswertung) {
     if (typeof beschriftung !== "undefined") $auswertung.find(".beschriftung").text(beschriftung);
 
     // BEINHALTETE LISTE AKTUALISIEREN
-    $auswertung.find('.liste[liste="' + liste + '"], .liste[liste="' + auswertungen + '"]').each(function () {
+    $auswertung.find('.liste[liste="' + liste + '"]').each(function () {
         Liste_$ListeAktualisieren($(this));
     });
-    $auswertung.find('.element[liste="' + liste + '"], .element[liste="' + auswertungen + '"]').each(function () {
+    $auswertung.find('.element[liste="' + liste + '"]').each(function () {
         Liste_$ElementAktualisieren($(this));
     });
 }

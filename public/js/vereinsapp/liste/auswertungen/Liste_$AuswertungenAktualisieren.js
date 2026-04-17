@@ -52,7 +52,7 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
     const auswertung_ids_nach_wert = new Object();
     $.each(
         Liste_VariableRausZurueck(
-            "zugeordnete_" + LISTEN[auswertungen].element + "_ids",
+            "zugeordnete_" + VERKNUEPFUNGEN[auswertungen].verknuepfung + "_ids",
             andere_verknuepfte_element_id,
             andere_verknuepfte_liste,
             new Array(),
@@ -88,7 +88,7 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
         if (wert !== null) {
             // Auswertung ist Standard
             $auswertung
-                .attr(LISTEN[auswertungen].element + "_ids", JsonStringifiedZurueck(auswertung_ids_nach_wert[wert], new Array()))
+                .attr(VERKNUEPFUNGEN[auswertungen].verknuepfung + "_ids", JsonStringifiedZurueck(auswertung_ids_nach_wert[wert], new Array()))
                 .attr("wert", wert)
                 .attr(LISTEN[liste].element + "_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
                 .attr("beschriftung", Liste_WertNachEigenschaftFormatiertZurueck(wert, gruppieren, liste));
@@ -99,7 +99,7 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
         } else {
             // Auswertung ist Zusammenfassung
             $auswertung
-                .attr(LISTEN[auswertungen].element + "_ids", JsonStringifiedZurueck(auswertung_ids, new Array()))
+                .attr(VERKNUEPFUNGEN[auswertungen].verknuepfung + "_ids", JsonStringifiedZurueck(auswertung_ids, new Array()))
                 // .attr("wert", wert)
                 // .attr(LISTEN[liste].element + "_ids", JsonStringifiedZurueck(element_ids, new Array()))
                 .attr("beschriftung", "Gesamt");
