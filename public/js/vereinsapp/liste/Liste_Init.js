@@ -1,6 +1,8 @@
 /**
  */
 
+SERVERDATA_HOLEN_EVENTS.push(Liste_EventServerdata);
+
 WERKZEUGE.bearbeiten_modus_ein_ausschalten.aktualisieren_aktion = function ($werkzeug) {
     // GRÜNER HINWEISPUNKT AKTUALISIEREN
     $werkzeug.removeClass("position-relative").find(".hinweispunkt").remove();
@@ -143,9 +145,6 @@ function Liste_Init() {
         $.each(LISTEN, function (liste) {
             Liste_EventVariableUpdDom(liste);
         });
-
-        Liste_EventSqlUpdLocalstorage();
-        setInterval(Liste_EventSqlUpdLocalstorage, AJAX_ZYKLUSZEIT * 1000);
     }
 
     // FORMULARE INITIALISIEREN

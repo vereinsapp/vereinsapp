@@ -1582,12 +1582,12 @@ class Vereinsapp extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
-     * AJAX-Zykluszeit
+     * ServerdataHolen-Zykluszeit
      * --------------------------------------------------------------------------
      *
      * Zeit in Sekunden bis zum nächsten Schleifendurchgang
      */
-    public $ajax_zykluszeit = 15;
+    public $serverdata_holen_zykluszeit = 15;
 
     /**
      * --------------------------------------------------------------------------

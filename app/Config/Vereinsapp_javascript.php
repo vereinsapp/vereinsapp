@@ -43,24 +43,30 @@ class Vereinsapp_javascript extends BaseConfig
         'js/lib/zufaelligeZeichenketteZurueck.js?v='.VERSION,
         'js/lib/exists.js?v='.VERSION,
 
-        'js/vereinsapp/Vereinsapp_Init.js?v='.VERSION,
-
-        'js/vereinsapp/util/Util_Init.js?v='.VERSION,
+        // util
         'js/vereinsapp/util/Util_WertBereinigtZurueck.js?v='.VERSION,
-        
-        'js/vereinsapp/ajax/Ajax_Init.js?v='.VERSION,
-        'js/vereinsapp/ajax/Ajax_InDieSchlange.js?v='.VERSION,
+        'js/vereinsapp/util/Util_Init.js?v='.VERSION,
 
-        'js/vereinsapp/localstorage/Localstorage_Init.js?v='.VERSION,
+        // ajax
+        'js/vereinsapp/ajax/Ajax_InDieSchlange.js?v='.VERSION,
+        'js/vereinsapp/ajax/Ajax_Init.js?v='.VERSION,
+
+        // serverdata
+        'js/vereinsapp/serverdata/Serverdata_ServerdataHolen.js?v='.VERSION,
+        'js/vereinsapp/serverdata/Serverdata_Init.js?v='.VERSION,
+
+        // localstorage
         'js/vereinsapp/localstorage/Localstorage_Rein.js?v='.VERSION,
         'js/vereinsapp/localstorage/Localstorage_RausZurueck.js?v='.VERSION,
         'js/vereinsapp/localstorage/Localstorage_Loeschen.js?v='.VERSION,
         'js/vereinsapp/localstorage/Localstorage_Leeren.js?v='.VERSION,
+        'js/vereinsapp/localstorage/Localstorage_Init.js?v='.VERSION,
 
-        'js/vereinsapp/log/Log_Init.js?v='.VERSION,
+        // log
         'js/vereinsapp/log/Log_InDieKonsole.js?v='.VERSION,
+        'js/vereinsapp/log/Log_Init.js?v='.VERSION,
 
-        'js/vereinsapp/dom/Dom_Init.js?v='.VERSION,
+        // dom
         'js/vereinsapp/dom/Dom_$WerkzeugeAktualisieren.js?v='.VERSION,
         'js/vereinsapp/dom/Dom_$WerkzeugInitialisiertZurueck.js?v='.VERSION,
         'js/vereinsapp/dom/Dom_$ZusatzsymboleAktualisieren.js?v='.VERSION,
@@ -78,8 +84,9 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/dom/Dom_$ZielZu$QuelleZurueck.js?v='.VERSION,
         'js/vereinsapp/dom/Dom_$QuelleZu$ZielZurueck.js?v='.VERSION,
         'js/vereinsapp/dom/Dom_$WechselsymbolWechseln.js?v='.VERSION,
-        
-        'js/vereinsapp/liste/Liste_Init.js?v='.VERSION,
+        'js/vereinsapp/dom/Dom_Init.js?v='.VERSION,
+
+        // liste
         'js/vereinsapp/liste/Liste_$ListeAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_$ListenstatistikAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/Liste_BearbeitenModusEinAusschalten.js?v='.VERSION,
@@ -99,7 +106,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/element/Liste_ElementBeschriftungErweitertZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementTextMitBeschriftungErsetztZurueck.js?v='.VERSION,
 
-        'js/vereinsapp/liste/event/Liste_EventSqlUpdLocalstorage.js?v='.VERSION,
+        'js/vereinsapp/liste/event/Liste_EventServerdata.js?v='.VERSION,
         'js/vereinsapp/liste/event/Liste_EventLocalstorageUpdVariable.js?v='.VERSION,
         'js/vereinsapp/liste/event/Liste_EventVariableUpdLocalstorage.js?v='.VERSION,
         'js/vereinsapp/liste/event/Liste_EventVariableUpdDom.js?v='.VERSION,
@@ -152,6 +159,9 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/verzeichnis/Liste_$VerzeichnisAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/verzeichnis/Liste_$DateiAktualisieren.js?v='.VERSION,
 
+        'js/vereinsapp/liste/Liste_Init.js?v='.VERSION,
+
+        'js/vereinsapp/Vereinsapp_Init.js?v='.VERSION,
     );
 
     /**
@@ -159,18 +169,23 @@ class Vereinsapp_javascript extends BaseConfig
      * wenn der Benutzer eingeloggt ist.
      */
     public $pfad_loggedin = array(
+        // mitglieder
         'js/vereinsapp/liste/mitglieder/Mitglieder_Init.js?v='.VERSION,
         'js/vereinsapp/liste/mitglieder/Mitglieder_PasswortAendern.js?v='.VERSION,
         'js/vereinsapp/liste/mitglieder/Mitglieder_PasswortFestlegen.js?v='.VERSION,
         'js/vereinsapp/liste/mitglieder/Mitglieder_EinmalLinkAnzeigen.js?v='.VERSION,
         'js/vereinsapp/liste/mitglieder/Mitglieder_EinmalLinkEmail.js?v='.VERSION,
 
+        // aufgaben
         'js/vereinsapp/liste/aufgaben/Aufgaben_Init.js?v='.VERSION,
 
+        // termine
         'js/vereinsapp/liste/termine/Termine_Init.js?v='.VERSION,
 
+        // strafkatalog
         'js/vereinsapp/liste/strafkatalog/Strafkatalog_Init.js?v='.VERSION,
 
+        // notenbank
         'js/vereinsapp/liste/notenbank/Notenbank_Init.js?v='.VERSION,
     );
 }

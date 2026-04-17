@@ -27,7 +27,7 @@ const NOTENBANK_ERLAUBTE_DATEITYPEN_AUDIO = <?= json_encode( NOTENBANK_ERLAUBTE_
 
 const VERKNUEPFUNGEN = <?= json_encode( VERKNUEPFUNGEN, JSON_UNESCAPED_UNICODE ) ?>;
 
-const AJAX_ZYKLUSZEIT = <?= AJAX_ZYKLUSZEIT ?>;
+const SERVERDATA_HOLEN_ZYKLUSZEIT = <?= SERVERDATA_HOLEN_ZYKLUSZEIT ?>;
 //const ZUSTAND = Object.freeze({<?php //foreach (ZUSTAND::cases() as $zustand) { echo $zustand->name . ': Symbol("'.$zustand->name.'"), '; } ?>});
 
 const DATENSCHUTZ_RICHTLINIE_DATUM = '<?= DATENSCHUTZ_RICHTLINIE_DATUM ?>';

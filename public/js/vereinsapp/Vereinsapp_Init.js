@@ -4,6 +4,8 @@ $(document).ready(function () {
     Ajax_Init();
     Localstorage_Init();
     Log_Init();
+
+    Serverdata_Init();
     Dom_Init();
 
     Liste_Init();
