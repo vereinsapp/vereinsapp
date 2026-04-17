@@ -42,7 +42,7 @@ $routes->get('startseite', 'Startseite::startseite');
 $routes->group('einstellungen', static function ($routes) {
     $routes->get('',                                        'Einstellungen::einstellungen');
     $routes->get('einstellungen',                           'Einstellungen::einstellungen');
-    $routes->post('ajax_tabellen',                          'Einstellungen::ajax_tabellen');
+    $routes->post('ajax_serverdata_holen',                  'Einstellungen::ajax_serverdata_holen');
 });
 
 $routes->get('mitglied/(:num)',                             'Mitglieder::mitglied/$1');

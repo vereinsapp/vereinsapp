@@ -21,7 +21,7 @@ class Anwesenheit_Model extends BaseModel {
 
     protected $useSoftDeletes = TRUE;
 
-    public function anwesenheiten_tabelle() {
+    public function anwesenheiten_serverdata() {
         $tabelle = array();
 
         foreach( $this->findAll() as $eintrag )

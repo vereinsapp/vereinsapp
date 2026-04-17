@@ -21,7 +21,7 @@ class Rueckmeldung_Model extends BaseModel {
 
     protected $useSoftDeletes = TRUE;
 
-    public function rueckmeldungen_tabelle() {
+    public function rueckmeldungen_serverdata() {
         $tabelle = array();
 
         foreach( $this->findAll() as $eintrag )

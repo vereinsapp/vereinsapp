@@ -21,7 +21,7 @@ class Zuordnung_Termine_Model extends BaseModel {
 
     protected $useSoftDeletes = TRUE;
 
-    public function zuordnungen_termine_tabelle() {
+    public function zuordnungen_termine_serverdata() {
         $tabelle = array();
 
         foreach( $this->findAll() as $eintrag )

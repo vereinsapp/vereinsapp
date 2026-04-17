@@ -50,6 +50,7 @@ status_erlaubt enthält nur noch Symbole, kein html mehr
 texte zu inhalt_kopieren aus js in Vereinsapp-config verschieben
 auswertung-Views vereinheitlichen?
 VERKNUEPFUNGEN komplett loslösen aus LISTEN -> zuordnung dann nach php verschieben
+    controller aus LISTEN entfernen
 
 ERLEDIGT
 

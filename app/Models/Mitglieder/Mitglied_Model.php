@@ -31,7 +31,7 @@ class Mitglied_Model extends UserModel {
         'bemerkung',
     ];
 
-    public function mitglieder_tabelle() {
+    public function mitglieder_serverdata() {
         $tabelle = array();
 
         foreach( $this->findAll() as $eintrag_class ) {
@@ -67,7 +67,7 @@ class Mitglied_Model extends UserModel {
         return $tabelle;
     }
 
-    public function verfuegbare_rechte_tabelle() {
+    public function verfuegbare_rechte_serverdata() {
         $tabelle = array();
 
         foreach( VERFUEGBARE_RECHTE as $eintrag )
@@ -76,7 +76,7 @@ class Mitglied_Model extends UserModel {
         return $tabelle;
     }
 
-    public function vergebene_rechte_tabelle() {
+    public function vergebene_rechte_serverdata() {
         $tabelle = array();
 
         $vergebenes_recht_id = 1;

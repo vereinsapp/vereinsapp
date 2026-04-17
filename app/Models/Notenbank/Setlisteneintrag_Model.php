@@ -21,7 +21,7 @@ class Setlisteneintrag_Model extends BaseModel {
 
     protected $useSoftDeletes = TRUE;
 
-    public function setliste_tabelle() {
+    public function setliste_serverdata() {
         $tabelle = array();
 
         foreach( $this->findAll() as $eintrag )

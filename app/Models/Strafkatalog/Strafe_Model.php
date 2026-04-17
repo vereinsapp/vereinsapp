@@ -21,7 +21,7 @@ class Strafe_Model extends BaseModel {
 
     protected $useSoftDeletes = TRUE;
 
-    public function strafkatalog_tabelle() {
+    public function strafkatalog_serverdata() {
         $tabelle = array();
 
         foreach( $this->findAll() as $eintrag )

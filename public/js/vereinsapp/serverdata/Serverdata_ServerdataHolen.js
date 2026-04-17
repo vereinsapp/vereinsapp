@@ -3,7 +3,7 @@
 
 function Serverdata_ServerdataHolen() {
     Ajax_InDieSchlange(
-        "einstellungen/ajax_tabellen",
+        "einstellungen/ajax_serverdata_holen",
         new Object(),
         new Object(),
         function (AJAX) {

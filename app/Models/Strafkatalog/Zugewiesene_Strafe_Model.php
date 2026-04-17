@@ -21,7 +21,7 @@ class Zugewiesene_Strafe_Model extends BaseModel {
 
     protected $useSoftDeletes = TRUE;
 
-    public function zugewiesene_strafen_tabelle() {
+    public function zugewiesene_strafen_serverdata() {
         $tabelle = array();
 
         foreach( $this->findAll() as $eintrag )
