@@ -58,10 +58,10 @@
         </div>
     </div></div>
 
-<?php if( array_key_exists( LISTEN['notenbank']['controller'], CONTROLLERS ) ) echo
+<?php if( array_key_exists( 'notenbank', CONTROLLERS ) ) echo
     view( 'Templates/Liste/liste', array( 'liste' => $liste['zugeordnete_setliste'] ) ); ?>
 
-<?php if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) echo
+<?php if( array_key_exists( 'aufgaben', CONTROLLERS ) ) echo
     view( 'Templates/Liste/liste', array( 'liste' => $liste['zugeordnete_aufgaben'] ) ); ?>
 
 </div>

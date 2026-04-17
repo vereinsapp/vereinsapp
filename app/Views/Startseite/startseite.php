@@ -21,10 +21,10 @@
 
 <?= view( 'Templates/Liste/liste', array( 'liste' => $liste['anstehende_geburtstage'] ) ); ?>
 
-<?php if( array_key_exists( LISTEN['termine']['controller'], CONTROLLERS ) ) echo
+<?php if( array_key_exists( 'termine', CONTROLLERS ) ) echo
     view( 'Templates/Liste/liste', array( 'liste' => $liste['bevorstehende_termine_startseite'] ) ); ?>
 
-<?php if( array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) echo
+<?php if( array_key_exists( VERKNUEPFUNGEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) echo
     view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_ausstehende_rueckmeldung'] ) ); ?>
 
 </div>

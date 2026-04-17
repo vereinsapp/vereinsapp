@@ -39,7 +39,7 @@
         </div>
     </div></div>
 
-    <?php if( array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) AND array_key_exists( LISTEN['termine_anwesenheiten']['controller'], CONTROLLERS ) ) { ?><div class="col"><div class="card">
+    <?php if( array_key_exists( VERKNUEPFUNGEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) AND array_key_exists( VERKNUEPFUNGEN['termine_anwesenheiten']['controller'], CONTROLLERS ) ) { ?><div class="col"><div class="card">
         <div class="card-header">
             <div class="nav nav-tabs card-header-tabs">
                 <div class="nav-item collapsed text-center w-50" data-bs-toggle="collapse" data-bs-target="#rueckmeldungen_container" role="button">

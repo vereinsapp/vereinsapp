@@ -40,24 +40,22 @@ class Einstellungen extends BaseController {
             'ajax_id' => 'required|is_natural',
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else {
-            $ajax_antwort['tabellen'] = array();
-
             // listen
-            $ajax_antwort['tabellen']['mitglieder'] = model(Mitglied_Model::class)->mitglieder_serverdata();
-            $ajax_antwort['tabellen']['verfuegbare_rechte'] = model(Mitglied_Model::class)->verfuegbare_rechte_serverdata();
-            if( array_key_exists( 'aufgaben', CONTROLLERS ) ) $ajax_antwort['tabellen']['aufgaben'] = model(Aufgabe_Model::class)->aufgaben_serverdata();
-            if( array_key_exists( 'termine', CONTROLLERS ) ) $ajax_antwort['tabellen']['termine'] = model(Termin_Model::class)->termine_serverdata();
-            if( array_key_exists( 'strafkatalog', CONTROLLERS ) ) $ajax_antwort['tabellen']['strafkatalog'] = model(Strafe_Model::class)->strafkatalog_serverdata();
-            if( array_key_exists( 'notenbank', CONTROLLERS ) ) $ajax_antwort['tabellen']['notenbank'] = model(Titel_Model::class)->notenbank_serverdata();
+            $ajax_antwort['liste']['mitglieder'] = model(Mitglied_Model::class)->mitglieder_serverdata();
+            $ajax_antwort['liste']['verfuegbare_rechte'] = model(Mitglied_Model::class)->verfuegbare_rechte_serverdata();
+            if( array_key_exists( 'aufgaben', CONTROLLERS ) ) $ajax_antwort['liste']['aufgaben'] = model(Aufgabe_Model::class)->aufgaben_serverdata();
+            if( array_key_exists( 'termine', CONTROLLERS ) ) $ajax_antwort['liste']['termine'] = model(Termin_Model::class)->termine_serverdata();
+            if( array_key_exists( 'strafkatalog', CONTROLLERS ) ) $ajax_antwort['liste']['strafkatalog'] = model(Strafe_Model::class)->strafkatalog_serverdata();
+            if( array_key_exists( 'notenbank', CONTROLLERS ) ) $ajax_antwort['liste']['notenbank'] = model(Titel_Model::class)->notenbank_serverdata();
 
             // verknuepfungen
-            $ajax_antwort['tabellen']['vergebene_rechte'] = model(Mitglied_Model::class)->vergebene_rechte_serverdata();
-            if( array_key_exists( LISTEN['aufgaben_rueckmeldungen']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['aufgaben_rueckmeldungen'] = model(Aufgaben_Rueckmeldung_Model::class)->rueckmeldungen_serverdata();
-            if( array_key_exists( LISTEN['aufgaben_zuordnungen_termine']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['aufgaben_zuordnungen_termine'] = model(Zuordnung_Termine_Model::class)->zuordnungen_termine_serverdata();
-            if( array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['termine_rueckmeldungen'] = model(Termine_Rueckmeldung_Model::class)->rueckmeldungen_serverdata();
-            if( array_key_exists( LISTEN['termine_anwesenheiten']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['termine_anwesenheiten'] = model(Anwesenheit_Model::class)->anwesenheiten_serverdata();
-            if( array_key_exists( LISTEN['strafkatalog_zugewiesene_strafen']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['strafkatalog_zugewiesene_strafen'] = model(Zugewiesene_Strafe_Model::class)->zugewiesene_strafen_serverdata();
-            if( array_key_exists( LISTEN['notenbank_setliste']['controller'], CONTROLLERS ) ) $ajax_antwort['tabellen']['notenbank_setliste'] = model(Setlisteneintrag_Model::class)->setliste_serverdata();
+            $ajax_antwort['verknuepfungen']['vergebene_rechte'] = model(Mitglied_Model::class)->vergebene_rechte_serverdata();
+            if( array_key_exists( VERKNUEPFUNGEN['aufgaben_rueckmeldungen']['controller'], CONTROLLERS ) ) $ajax_antwort['verknuepfungen']['aufgaben_rueckmeldungen'] = model(Aufgaben_Rueckmeldung_Model::class)->rueckmeldungen_serverdata();
+            if( array_key_exists( VERKNUEPFUNGEN['aufgaben_zuordnungen_termine']['controller'], CONTROLLERS ) ) $ajax_antwort['verknuepfungen']['aufgaben_zuordnungen_termine'] = model(Zuordnung_Termine_Model::class)->zuordnungen_termine_serverdata();
+            if( array_key_exists( VERKNUEPFUNGEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) $ajax_antwort['verknuepfungen']['termine_rueckmeldungen'] = model(Termine_Rueckmeldung_Model::class)->rueckmeldungen_serverdata();
+            if( array_key_exists( VERKNUEPFUNGEN['termine_anwesenheiten']['controller'], CONTROLLERS ) ) $ajax_antwort['verknuepfungen']['termine_anwesenheiten'] = model(Anwesenheit_Model::class)->anwesenheiten_serverdata();
+            if( array_key_exists( VERKNUEPFUNGEN['strafkatalog_zugewiesene_strafen']['controller'], CONTROLLERS ) ) $ajax_antwort['verknuepfungen']['strafkatalog_zugewiesene_strafen'] = model(Zugewiesene_Strafe_Model::class)->zugewiesene_strafen_serverdata();
+            if( array_key_exists( VERKNUEPFUNGEN['notenbank_setliste']['controller'], CONTROLLERS ) ) $ajax_antwort['verknuepfungen']['notenbank_setliste'] = model(Setlisteneintrag_Model::class)->setliste_serverdata();
         }
         
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

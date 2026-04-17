@@ -18,7 +18,7 @@ class Startseite extends BaseController {
         $this->viewdata['liste']['anstehende_geburtstage']['element']['link'] = array( 'liste' => 'mitglieder', 'eigenschaften' => array( 'id', ), );
         $this->viewdata['liste']['anstehende_geburtstage']['element']['vorschau'] = array( 'geburtstag', 'alter_geburtstag' );
 
-        if( array_key_exists( LISTEN['termine']['controller'], CONTROLLERS ) ) {
+        if( array_key_exists( 'termine', CONTROLLERS ) ) {
             $this->viewdata['liste']['bevorstehende_termine_startseite'] = VIEWDATA['termine'];
             $this->viewdata['liste']['bevorstehende_termine_startseite']['filtern'] = array(
                 'start' => array( 'start' => Time::today( 'Europe/Berlin' )->toDateTimeString(), 'ende' => Time::today( 'Europe/Berlin' )->addDays(14)->subSeconds(1)->toDateTimeString(), ),
@@ -31,7 +31,7 @@ class Startseite extends BaseController {
             $this->viewdata['liste']['bevorstehende_termine_startseite']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
         }
 
-        if( array_key_exists( LISTEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) {
+        if( array_key_exists( VERKNUEPFUNGEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) {
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung'] = VIEWDATA['termine'];
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['mitglied_id'] = ICH_ID;
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['filtern']['start'] = array( VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['eigenschaft'] => Time::now( 'Europe/Berlin' )->addSeconds( VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['frist'] )->toDateTimeString(), );

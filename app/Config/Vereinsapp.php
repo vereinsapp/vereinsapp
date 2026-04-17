@@ -1482,6 +1482,7 @@ class Vereinsapp extends BaseConfig
      */
     public $verknuepfungen = array(
         'vergebene_rechte' => array(
+            'controller' => 'mitglieder',
             'verknuepfte_listen' => array( 'verfuegbare_rechte', 'mitglieder', ),
             'typ' => 'janein_auswahl',
             'bestaetigung_einfordern' => FALSE,
@@ -1492,6 +1493,7 @@ class Vereinsapp extends BaseConfig
              ),
         ),
         'aufgaben_rueckmeldungen' => array(
+            'controller' => 'aufgaben',
             'verknuepfte_listen' => array( 'aufgaben', 'mitglieder', ),
             'typ' => 'status_auswahl',
             'bestaetigung_einfordern' => FALSE,
@@ -1503,6 +1505,7 @@ class Vereinsapp extends BaseConfig
             ),
         ),
         'aufgaben_zuordnungen_termine' => array(
+            'controller' => 'aufgaben',
             'verknuepfte_listen' => array( 'aufgaben', 'termine', ),
             'typ' => 'janein_auswahl',
             'bestaetigung_einfordern' => FALSE,
@@ -1513,6 +1516,7 @@ class Vereinsapp extends BaseConfig
              ),
         ),
         'termine_rueckmeldungen' => array(
+            'controller' => 'termine',
             'verknuepfte_listen' => array( 'termine', 'mitglieder', ),
             'typ' => 'status_auswahl',
             'bestaetigung_einfordern' => FALSE,
@@ -1531,6 +1535,7 @@ class Vereinsapp extends BaseConfig
             ),
         ),
         'termine_anwesenheiten' => array(
+            'controller' => 'termine',
             'verknuepfte_listen' => array( 'termine', 'mitglieder', ),
             'typ' => 'janein_auswahl',
             'bestaetigung_einfordern' => FALSE,
@@ -1541,6 +1546,7 @@ class Vereinsapp extends BaseConfig
              ),
         ),
         'strafkatalog_zugewiesene_strafen' => array(
+            'controller' => 'strafkatalog',
             'verknuepfte_listen' => array( 'strafkatalog', 'mitglieder', ),
             'typ' => 'element_auswahl',
             'bestaetigung_einfordern' => TRUE,
@@ -1552,6 +1558,7 @@ class Vereinsapp extends BaseConfig
              ),
         ),
         'notenbank_setliste' => array(
+            'controller' => 'notenbank',
             'verknuepfte_listen' => array( 'notenbank', 'termine', ),
             'typ' => 'element_auswahl',
             'bestaetigung_einfordern' => FALSE,

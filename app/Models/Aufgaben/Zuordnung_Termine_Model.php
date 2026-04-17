@@ -23,10 +23,14 @@ class Zuordnung_Termine_Model extends BaseModel {
 
     public function zuordnungen_termine_serverdata() {
         $tabelle = array();
+        $verknuepfung_ids_nach_liste = array();
 
-        foreach( $this->findAll() as $eintrag )
+        foreach( $this->findAll() as $eintrag ) {
             $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag, JSON_UNESCAPED_UNICODE ), TRUE ), 'aufgaben_zuordnungen_termine' );
+            $verknuepfung_ids_nach_liste['aufgaben'][ (int) $eintrag['aufgabe_id'] ][] = $eintrag['id'];
+            $verknuepfung_ids_nach_liste['termine'][ (int) $eintrag['termin_id'] ][] = $eintrag['id'];
+        }
 
-        return $tabelle;
+        return array( 'tabelle' => $tabelle, 'verknuepfung_ids_nach_liste' => $verknuepfung_ids_nach_liste );
     }
 }

@@ -24,17 +24,17 @@ class Aufgabe_Model extends BaseModel {
     protected $afterDelete = [ 'softDeleteRueckmeldung', 'softDeleteZuordnungTermine' ];
 
     protected function softDeleteRueckmeldung(array $verknuepfung) {
-        $verknuepfung_ids = $verknuepfung['id'] ?? $verknuepfung['ids'] ?? null;
+        $element_ids = $verknuepfung['id'] ?? $verknuepfung['ids'] ?? null;
 
-        if ($verknuepfung_ids) model(Rueckmeldung_Model::class)->whereIn('aufgabe_id', (array)$verknuepfung_ids)->delete();
+        if ($element_ids) model(Rueckmeldung_Model::class)->whereIn('aufgabe_id', (array)$element_ids)->delete();
 
         return $verknuepfung;
     }
 
     protected function softDeleteZuordnungTermine(array $verknuepfung) {
-        $verknuepfung_ids = $verknuepfung['id'] ?? $verknuepfung['ids'] ?? null;
+        $element_ids = $verknuepfung['id'] ?? $verknuepfung['ids'] ?? null;
 
-        if ($verknuepfung_ids) model(Zuordnung_Termine_Model::class)->whereIn('aufgabe_id', (array)$verknuepfung_ids)->delete();
+        if ($element_ids) model(Zuordnung_Termine_Model::class)->whereIn('aufgabe_id', (array)$element_ids)->delete();
 
         return $verknuepfung;
     }
@@ -45,6 +45,6 @@ class Aufgabe_Model extends BaseModel {
         foreach( $this->findAll() as $eintrag )
             $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag, JSON_UNESCAPED_UNICODE ), TRUE ), 'aufgaben' );
 
-        return $tabelle;
+        return array( 'tabelle' => $tabelle );
     }
 }

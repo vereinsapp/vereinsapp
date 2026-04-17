@@ -3,6 +3,7 @@
 namespace App\Models\Strafkatalog;
 
 use App\Models\BaseModel;
+use App\Models\Strafkatalog\Zugewiesene_Strafe_Model;
 
 class Strafe_Model extends BaseModel {
    
@@ -20,6 +21,15 @@ class Strafe_Model extends BaseModel {
     protected $deletedField  = 'deleted_at';
 
     protected $useSoftDeletes = TRUE;
+    protected $afterDelete = [ 'softDeleteZugewieseneStrafe' ];
+
+    protected function softDeleteZugewieseneStrafe(array $verknuepfung) {
+        $element_ids = $verknuepfung['id'] ?? $verknuepfung['ids'] ?? null;
+
+        if ($element_ids) model(Zugewiesene_Strafe_Model::class)->whereIn('strafe_id', (array)$element_ids)->delete();
+
+        return $verknuepfung;
+    }
 
     public function strafkatalog_serverdata() {
         $tabelle = array();
@@ -27,6 +37,6 @@ class Strafe_Model extends BaseModel {
         foreach( $this->findAll() as $eintrag )
             $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag, JSON_UNESCAPED_UNICODE ), TRUE ), 'strafkatalog' );
 
-        return $tabelle;
+        return array( 'tabelle' => $tabelle );
     }
 }

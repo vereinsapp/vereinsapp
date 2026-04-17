@@ -62,7 +62,7 @@ class Termine extends BaseController {
             'werkzeuge' => array( 'gruppieren_manip', 'filtern_manip', ),
         );
 
-        if( array_key_exists( LISTEN['aufgaben']['controller'], CONTROLLERS ) ) {
+        if( array_key_exists( 'aufgaben', CONTROLLERS ) ) {
 
             $this->viewdata['liste']['zugeordnete_aufgaben'] = VIEWDATA['aufgaben_zuordnungen_termine'];
             $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( 'termin_id' => array( 'inklusiv' => array( $termin_id ), ), );
@@ -86,7 +86,7 @@ class Termine extends BaseController {
 
         }
 
-        if( array_key_exists( LISTEN['notenbank']['controller'], CONTROLLERS ) ) {
+        if( array_key_exists( 'notenbank', CONTROLLERS ) ) {
 
             $this->viewdata['liste']['zugeordnete_setliste'] = VIEWDATA['notenbank_setliste'];
             $this->viewdata['liste']['zugeordnete_setliste']['filtern'] = array( 'termin_id' => array( 'inklusiv' => array( $termin_id ), ), );

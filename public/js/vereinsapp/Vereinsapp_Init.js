@@ -45,10 +45,16 @@ Vereinsapp_env aufspalten in mehrere _env
 Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Start im Termine-Filter gesetzt wird)
 Zugewiesene Strafen anzeigen
 VIEWDATA in LISTEN integrieren
+Termin-Ende passt sich automatisch an Termin-Start an
 Wie weiter mit Liste_$ListenstatistikAktualisieren?
 status_erlaubt enthält nur noch Symbole, kein html mehr
 texte zu inhalt_kopieren aus js in Vereinsapp-config verschieben
 auswertung-Views vereinheitlichen?
+liste aus link_data loswerden
+Lässt sich Liste_ElementErgaenzen in Liste_EventLocalstorageUpdVariable integrieren?
+auswertung(en) umbenennen in verknuepfung(en)
+instanz[instanz].$blanko_auswertung umbauen zu $blanko_auswertung[instanz]
+
 VERKNUEPFUNGEN komplett loslösen aus LISTEN -> zuordnung dann nach php verschieben
     controller aus LISTEN entfernen
 

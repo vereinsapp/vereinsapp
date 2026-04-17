@@ -25,9 +25,9 @@ class Titel_Model extends BaseModel {
     protected $afterDelete = [ 'softDeleteSetlisteneintrag' ];
 
     protected function softDeleteSetlisteneintrag(array $verknuepfung) {
-        $verknuepfung_ids = $verknuepfung['id'] ?? $verknuepfung['ids'] ?? null;
+        $element_ids = $verknuepfung['id'] ?? $verknuepfung['ids'] ?? null;
 
-        if ($verknuepfung_ids) model(Setlisteneintrag_Model::class)->whereIn('titel_id', (array)$verknuepfung_ids)->delete();
+        if ($element_ids) model(Setlisteneintrag_Model::class)->whereIn('titel_id', (array)$element_ids)->delete();
 
         return $verknuepfung;
     }
@@ -48,7 +48,7 @@ class Titel_Model extends BaseModel {
             $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag, JSON_UNESCAPED_UNICODE ), TRUE ), 'notenbank' );
         }
 
-        return $tabelle;
+        return array( 'tabelle' => $tabelle );
     }
 
     private function verzeichnis_indizieren( $verzeichnis ) {

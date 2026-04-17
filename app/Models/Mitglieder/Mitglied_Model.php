@@ -64,7 +64,7 @@ class Mitglied_Model extends UserModel {
             $tabelle[] = $this->eintrag_bereinigen( $eintrag, 'mitglieder' );
         }
 
-        return $tabelle;
+        return array( 'tabelle' => $tabelle );
     }
 
     public function verfuegbare_rechte_serverdata() {
@@ -73,11 +73,12 @@ class Mitglied_Model extends UserModel {
         foreach( VERFUEGBARE_RECHTE as $eintrag )
             $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag, JSON_UNESCAPED_UNICODE ), TRUE ), 'verfuegbare_rechte' );
 
-        return $tabelle;
+        return array( 'tabelle' => $tabelle );
     }
 
     public function vergebene_rechte_serverdata() {
         $tabelle = array();
+        $verknuepfung_ids_nach_liste = array();
 
         $vergebenes_recht_id = 1;
         foreach( $this->findAll() as $mitglied ) if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) OR $mitglied->id == ICH_ID )
@@ -91,9 +92,11 @@ class Mitglied_Model extends UserModel {
                 );
 
                 $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag, JSON_UNESCAPED_UNICODE ), TRUE ), 'vergebene_rechte' );
+                $verknuepfung_ids_nach_liste['mitglieder'][ (int) ($mitglied->id) ][] = $eintrag['id'];
+                $verknuepfung_ids_nach_liste['vergebene_rechte'][ (int) (VERFUEGBARE_RECHTE[ $permission ]['id']) ][] = $eintrag['id'];
             }
 
-        return $tabelle;
+        return array( 'tabelle' => $tabelle, 'verknuepfung_ids_nach_liste' => $verknuepfung_ids_nach_liste );
     }
 
     private function eintrag_bereinigen( $eintrag, $liste ) {

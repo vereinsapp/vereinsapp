@@ -23,9 +23,14 @@ class Setlisteneintrag_Model extends BaseModel {
 
     public function setliste_serverdata() {
         $tabelle = array();
+        $verknuepfung_ids_nach_liste = array();
 
-        foreach( $this->findAll() as $eintrag )
+        foreach( $this->findAll() as $eintrag ) {
             $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag, JSON_UNESCAPED_UNICODE ), TRUE ), 'notenbank_setliste' );
-        return $tabelle;
+            $verknuepfung_ids_nach_liste['notenbank'][ (int) $eintrag['titel_id'] ][] = $eintrag['id'];
+            $verknuepfung_ids_nach_liste['termine'][ (int) $eintrag['termin_id'] ][] = $eintrag['id'];
+        }
+
+        return array( 'tabelle' => $tabelle, 'verknuepfung_ids_nach_liste' => $verknuepfung_ids_nach_liste );
     }
 }
