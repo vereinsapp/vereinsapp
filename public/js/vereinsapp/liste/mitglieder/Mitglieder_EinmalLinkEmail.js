@@ -25,11 +25,10 @@ function Mitglieder_EinmalLinkEmail(bestaetigt, dom, modal_title, mitglied_id) {
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                Liste_EventVariableUpdLocalstorage("mitglieder");
-                Liste_EventLocalstorageUpdVariable("mitglieder");
-                Liste_VerknuepfungenZuordnen("mitglieder");
+                Liste_EventLocalstorageAktualisieren("mitglieder");
+                Liste_EventVariableListenAktualisieren("mitglieder");
                 Liste_ElementErgaenzen("mitglieder");
-                Liste_EventVariableUpdDom("mitglieder");
+                Liste_EventDomAktualisieren("mitglieder");
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Dom_$ModalSchliessen(AJAX.dom.$modal);
                 Dom_ToastFeuern(

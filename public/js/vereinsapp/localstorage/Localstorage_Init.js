@@ -1,3 +1,8 @@
+/**
+ */
+
+const VARIABLE_AKTUALISIEREN_EVENTS = new Array();
+
 function Localstorage_Init() {
     // LOCALSTORAGE LEEREN ERZWINGEN
     const localstorage_reset_string = Localstorage_RausZurueck("localstorage_reset", undefined);

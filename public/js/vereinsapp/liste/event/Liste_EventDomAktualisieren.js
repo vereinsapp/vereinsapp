@@ -2,7 +2,7 @@
  * @param {string} liste
  */
 
-function Liste_EventVariableUpdDom(liste) {
+function Liste_EventDomAktualisieren(liste) {
     if (liste in LISTEN) {
         // LISTE AKTUALISIEREN
         $('.liste[liste="' + liste + '"]').each(function () {
@@ -16,7 +16,7 @@ function Liste_EventVariableUpdDom(liste) {
 
         // AUSWERTUNGEN AKTUALISIEREN
         $.each(VERKNUEPFUNGEN, function (verknuepfungen, eigenschaften) {
-            if (liste === verknuepfungen || eigenschaften.verknuepfte_listen.includes(liste)) {
+            if (eigenschaften.verknuepfte_listen.includes(liste)) {
                 $('.auswertungen[auswertungen="' + verknuepfungen + '"]').each(function () {
                     Liste_$AuswertungenAktualisieren($(this));
                 });

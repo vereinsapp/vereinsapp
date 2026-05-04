@@ -105,10 +105,10 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/element/Liste_ElementBeschriftungErweitertZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementTextMitBeschriftungErsetztZurueck.js?v='.VERSION,
 
-        'js/vereinsapp/liste/event/Liste_EventServerdata.js?v='.VERSION,
-        'js/vereinsapp/liste/event/Liste_EventLocalstorageUpdVariable.js?v='.VERSION,
-        'js/vereinsapp/liste/event/Liste_EventVariableUpdLocalstorage.js?v='.VERSION,
-        'js/vereinsapp/liste/event/Liste_EventVariableUpdDom.js?v='.VERSION,
+        'js/vereinsapp/liste/event/Liste_EventVariableListenAktualisieren.js?v='.VERSION,
+        'js/vereinsapp/liste/event/Liste_EventVariableVerknuepfungenAktualisieren.js?v='.VERSION,
+        'js/vereinsapp/liste/event/Liste_EventLocalstorageAktualisieren.js?v='.VERSION,
+        'js/vereinsapp/liste/event/Liste_EventDomAktualisieren.js?v='.VERSION,
 
         'js/vereinsapp/liste/variable/Liste_VariableRein.js?v='.VERSION,
         'js/vereinsapp/liste/variable/Liste_VariableRausZurueck.js?v='.VERSION,
@@ -149,7 +149,6 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungStatusAendern.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungBemerkungAendern.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_$VerknuepfungenAktualisieren.js?v='.VERSION,
-        'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungenZuordnen.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungenInit.js?v='.VERSION,
 
         'js/vereinsapp/liste/auswertungen/Liste_$AuswertungenAktualisieren.js?v='.VERSION,

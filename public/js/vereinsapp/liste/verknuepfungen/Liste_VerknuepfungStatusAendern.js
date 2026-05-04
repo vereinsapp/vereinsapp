@@ -34,11 +34,11 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
                         });
                 });
 
-            Liste_EventVariableUpdLocalstorage(verknuepfungen);
-            Liste_EventLocalstorageUpdVariable(verknuepfungen);
-            Liste_VerknuepfungenZuordnen(verknuepfungen);
-            Liste_ElementErgaenzen(verknuepfungen);
-            Liste_EventVariableUpdDom(verknuepfungen);
+            Liste_EventLocalstorageAktualisieren(verknuepfungen);
+            Liste_EventVariableVerknuepfungenAktualisieren(verknuepfungen);
+            $.each(VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen, function (position, liste) {
+                Liste_EventDomAktualisieren(liste);
+            });
 
             if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                 Dom_$ModalSchliessen(AJAX.dom.$modal);

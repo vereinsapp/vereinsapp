@@ -1,5 +1,6 @@
 /**
  */
+const DOM_AKTUALISIEREN_EVENTS = new Array();
 
 const BLANKOS = new Object();
 const ZUSATZSYMBOLE = new Object();

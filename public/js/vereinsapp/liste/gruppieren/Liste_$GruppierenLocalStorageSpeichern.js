@@ -30,9 +30,8 @@ function Liste_$GruppierenLocalStorageSpeichern($gruppieren_localstorage) {
             );
     }
 
-    Liste_EventVariableUpdLocalstorage(liste);
-    Liste_EventLocalstorageUpdVariable(liste);
-    Liste_VerknuepfungenZuordnen(liste);
+    Liste_EventLocalstorageAktualisieren(liste);
+    Liste_EventVariableListenAktualisieren(liste);
     Liste_ElementErgaenzen(liste);
-    Liste_EventVariableUpdDom(liste);
+    Liste_EventDomAktualisieren(liste);
 }

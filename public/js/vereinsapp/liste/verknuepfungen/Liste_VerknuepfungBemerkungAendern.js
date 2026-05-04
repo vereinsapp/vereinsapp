@@ -42,11 +42,11 @@ function Liste_VerknuepfungBemerkungAendern(data_vollstaendig, dom, data, verknu
 
                 Liste_VariableRein(AJAX.data.bemerkung, "bemerkung", verknuepfung_id, verknuepfungen);
 
-                Liste_EventVariableUpdLocalstorage(verknuepfungen);
-                Liste_EventLocalstorageUpdVariable(verknuepfungen);
-                Liste_VerknuepfungenZuordnen(verknuepfungen);
-                Liste_ElementErgaenzen(verknuepfungen);
-                Liste_EventVariableUpdDom(verknuepfungen);
+                Liste_EventLocalstorageAktualisieren(verknuepfungen);
+                Liste_EventVariableVerknuepfungenAktualisieren(verknuepfungen);
+                $.each(VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen, function (position, liste) {
+                    Liste_EventDomAktualisieren(liste);
+                });
 
                 if ("dom" in AJAX && "$element" in AJAX.dom && AJAX.dom.$element.exists()) Liste_$ElementAktualisieren(AJAX.dom.$element);
 

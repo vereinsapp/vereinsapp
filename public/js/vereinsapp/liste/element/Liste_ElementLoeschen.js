@@ -54,11 +54,10 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
                             });
                     });
 
-                Liste_EventVariableUpdLocalstorage(liste);
-                Liste_EventLocalstorageUpdVariable(liste);
-                Liste_VerknuepfungenZuordnen(liste);
+                Liste_EventLocalstorageAktualisieren(liste);
+                Liste_EventVariableListenAktualisieren(liste);
                 Liste_ElementErgaenzen(liste);
-                Liste_EventVariableUpdDom(liste);
+                Liste_EventDomAktualisieren(liste);
 
                 const weiterleiten = AJAX.data.weiterleiten;
                 if (typeof weiterleiten !== "undefined" && weiterleiten) $(location).attr("href", SITE_URL + AKTIVER_CONTROLLER);

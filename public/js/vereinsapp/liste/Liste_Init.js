@@ -1,7 +1,40 @@
 /**
  */
 
-SERVERDATA_HOLEN_EVENTS.push(Liste_EventServerdata);
+SERVERDATA_HOLEN_EVENTS.push(function (AJAX) {
+    if (isObject(AJAX) && "antwort" in AJAX && isObject(AJAX.antwort)) {
+        if ("liste" in AJAX.antwort && isObject(AJAX.antwort.liste))
+            $.each(AJAX.antwort.liste, function (liste, serverdata) {
+                Localstorage_Rein(liste + "_tabelle", serverdata.tabelle);
+            });
+
+        if ("verknuepfungen" in AJAX.antwort && isObject(AJAX.antwort.verknuepfungen))
+            $.each(AJAX.antwort.verknuepfungen, function (verknuepfungen, serverdata) {
+                Localstorage_Rein(verknuepfungen + "_tabelle", serverdata.tabelle);
+                // Localstorage_Rein(verknuepfungen + "_verknuepfung_ids_nach_liste", serverdata.verknuepfung_ids_nach_liste);
+            });
+    }
+});
+
+VARIABLE_AKTUALISIEREN_EVENTS.push(function () {
+    $.each(VERKNUEPFUNGEN, function (verknuepfungen) {
+        Liste_EventVariableVerknuepfungenAktualisieren(verknuepfungen);
+    });
+
+    $.each(LISTEN, function (liste) {
+        Liste_EventVariableListenAktualisieren(liste);
+    });
+
+    $.each(LISTEN, function (liste) {
+        Liste_ElementErgaenzen(liste);
+    });
+});
+
+DOM_AKTUALISIEREN_EVENTS.push(function () {
+    $.each(LISTEN, function (liste) {
+        Liste_EventDomAktualisieren(liste);
+    });
+});
 
 WERKZEUGE.bearbeiten_modus_ein_ausschalten.aktualisieren_aktion = function ($werkzeug) {
     // GRÜNER HINWEISPUNKT AKTUALISIEREN
@@ -131,12 +164,12 @@ function Liste_Init() {
     }
 
     if (ICH_ID !== null) {
-        $.each(LISTEN, function (liste) {
-            Liste_EventLocalstorageUpdVariable(liste);
+        $.each(VERKNUEPFUNGEN, function (verknuepfungen) {
+            Liste_EventVariableVerknuepfungenAktualisieren(verknuepfungen);
         });
 
         $.each(LISTEN, function (liste) {
-            Liste_VerknuepfungenZuordnen(liste);
+            Liste_EventVariableListenAktualisieren(liste);
         });
 
         $.each(LISTEN, function (liste) {
@@ -144,7 +177,7 @@ function Liste_Init() {
         });
 
         $.each(LISTEN, function (liste) {
-            Liste_EventVariableUpdDom(liste);
+            Liste_EventDomAktualisieren(liste);
         });
     }
 

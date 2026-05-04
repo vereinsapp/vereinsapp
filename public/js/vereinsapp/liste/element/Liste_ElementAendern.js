@@ -33,6 +33,9 @@ function Liste_ElementAendern(data_vollstaendig, dom, data, modal_title, element
             ajax_data,
             ajax_dom,
             function (AJAX) {
+                const liste = AJAX.data.liste;
+                delete AJAX.data.liste;
+
                 const element_id = AJAX.data[LISTEN[liste].element + "_id"];
                 delete AJAX.data[LISTEN[liste].element + "_id"];
 
@@ -40,11 +43,10 @@ function Liste_ElementAendern(data_vollstaendig, dom, data, modal_title, element
                     Liste_VariableRein(wert, eigenschaft, element_id, liste);
                 });
 
-                Liste_EventVariableUpdLocalstorage(liste);
-                Liste_EventLocalstorageUpdVariable(liste);
-                Liste_VerknuepfungenZuordnen(liste);
+                Liste_EventLocalstorageAktualisieren(liste);
+                Liste_EventVariableListenAktualisieren(liste);
                 Liste_ElementErgaenzen(liste);
-                Liste_EventVariableUpdDom(liste);
+                Liste_EventDomAktualisieren(liste);
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Dom_$ModalSchliessen(AJAX.dom.$modal);
                 Dom_ToastFeuern(

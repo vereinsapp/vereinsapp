@@ -1,14 +1,18 @@
 $(document).ready(function () {
     Util_Init();
 
-    Ajax_Init();
-    Localstorage_Init();
     Log_Init();
-
+    Ajax_Init();
     Serverdata_Init();
+    Localstorage_Init();
     Dom_Init();
 
     Liste_Init();
+
+    if (ICH_ID !== null) {
+        Serverdata_ServerdataHolen();
+        setInterval(Serverdata_ServerdataHolen, SERVERDATA_HOLEN_ZYKLUSZEIT * 1000);
+    }
 });
 
 /* TODO
@@ -51,12 +55,14 @@ status_erlaubt enthält nur noch Symbole, kein html mehr
 texte zu inhalt_kopieren aus js in Vereinsapp-config verschieben
 auswertung-Views vereinheitlichen?
 liste aus link_data loswerden
-Lässt sich Liste_ElementErgaenzen in Liste_EventLocalstorageUpdVariable integrieren?
+Lässt sich Liste_ElementErgaenzen in Liste_EventVariableListenAktualisieren integrieren?
 auswertung(en) umbenennen in verknuepfung(en)
 
 VERKNUEPFUNGEN komplett loslösen aus LISTEN -> zuordnung dann nach php verschieben
     controller und verknuepfungen-Einträge aus LISTEN entfernen
-    Liste_VerknuepfungenZuordnen entfernen
+    dbdata vereinheitlichen zu serverdata?
+    if (ICH_ID !== null) loswerden
+    VARIABLE_AKTUALISIEREN_EVENTS in eigene Variable_Init verschieben (vorher variable-Ordnerstruktur anlegen)
     Liste_ElementErgaenzen nur für Liste
     instanz[instanz].$blanko_auswertung umbauen zu $blanko_auswertung[instanz], dann instanz aus VERKNUEPFUNGEN/LISTEN[auswertungen/verknuepfungen] entfernen
     Ergebnis-Liste in Auswertungen fixen (zurück zu klassischen Listen vs. Bemerkung-Anzeigeproblematik)

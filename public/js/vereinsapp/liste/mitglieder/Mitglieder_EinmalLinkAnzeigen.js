@@ -25,11 +25,10 @@ function Mitglieder_EinmalLinkAnzeigen(bestaetigt, dom, modal_title, mitglied_id
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                Liste_EventVariableUpdLocalstorage("mitglieder");
-                Liste_EventLocalstorageUpdVariable("mitglieder");
-                Liste_VerknuepfungenZuordnen("mitglieder");
+                Liste_EventLocalstorageAktualisieren("mitglieder");
+                Liste_EventVariableListenAktualisieren("mitglieder");
                 Liste_ElementErgaenzen("mitglieder");
-                Liste_EventVariableUpdDom("mitglieder");
+                Liste_EventDomAktualisieren("mitglieder");
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.find(".einmal_link").exists())
                     AJAX.dom.$modal.find(".einmal_link").val(AJAX.antwort.einmal_link);

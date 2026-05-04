@@ -11,6 +11,14 @@ function Serverdata_ServerdataHolen() {
             $.each(SERVERDATA_HOLEN_EVENTS, function () {
                 if (typeof this === "function") this(AJAX);
             });
+
+            $.each(VARIABLE_AKTUALISIEREN_EVENTS, function () {
+                if (typeof this === "function") this();
+            });
+
+            $.each(DOM_AKTUALISIEREN_EVENTS, function () {
+                if (typeof this === "function") this();
+            });
         },
         function (AJAX) {
             // rein_validation_neg_aktion:
