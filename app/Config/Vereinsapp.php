@@ -397,7 +397,6 @@ class Vereinsapp extends BaseConfig
         'mitglieder' => array(
             'liste' => 'mitglieder',
             'liste_beschriftung' => 'Mitglieder',
-            'controller' => 'mitglieder',
             'element' => 'mitglied',
             'element_beschriftung' => 'Mitglied',
             'element_beschriftung_erweitert' => array(
@@ -406,10 +405,10 @@ class Vereinsapp extends BaseConfig
                 array( 'eigenschaft' => 'nachname', )
             ),
         ),
+
         'verfuegbare_rechte' => array(
             'liste' => 'verfuegbare_rechte',
             'liste_beschriftung' => 'Verfügbare Rechte',
-            'controller' => 'mitglieder',
             'element' => 'verfuegbares_recht',
             'element_beschriftung' => 'Verfügbares Recht',
             'element_beschriftung_erweitert' => array(
@@ -417,110 +416,40 @@ class Vereinsapp extends BaseConfig
                 array( 'eigenschaft' => 'id', ),
             ),
         ),
-        'vergebene_rechte' => array(
-            'liste' => 'vergebene_rechte',
-            'liste_beschriftung' => 'Vergebene Rechte',
-            'controller' => 'mitglieder',
-            'element' => 'vergebenes_recht',
-            'element_beschriftung' => 'Vergebenes Recht',
-            'element_beschriftung_erweitert' => array(
-                array( 'freitext' => 'Vergebenes Recht ', ),
-                array( 'eigenschaft' => 'id', ),
-            ),
-        ),
 
         'aufgaben' => array(
             'liste' => 'aufgaben',
             'liste_beschriftung' => 'Aufgaben',
-            'controller' => 'aufgaben',
             'element' => 'aufgabe',
             'element_beschriftung' => 'Aufgabe',
             'element_beschriftung_erweitert' => array(
                 array( 'eigenschaft' => 'titel', )
             ),
         ),
-        'aufgaben_rueckmeldungen' => array(
-            'liste' => 'aufgaben_rueckmeldungen',
-            'liste_beschriftung' => 'Rückmeldungen',
-            'controller' => 'aufgaben',
-            'element' => 'aufgaben_rueckmeldung',
-            'element_beschriftung' => 'Rückmeldung',
-            'element_beschriftung_erweitert' => array(
-                array( 'freitext' => 'Rückmeldung ', ),
-                array( 'eigenschaft' => 'id', ),
-            ),
-        ),
-        'aufgaben_zuordnungen_termine' => array(
-            'liste' => 'aufgaben_zuordnungen_termine',
-            'liste_beschriftung' => 'Termin-Zuordnungen',
-            'controller' => 'aufgaben',
-            'element' => 'aufgaben_zuordnung_termine',
-            'element_beschriftung' => 'Termin-Zuordnung',
-            'element_beschriftung_erweitert' => array(
-                array( 'freitext' => 'Termin-Zuordnung ', ),
-                array( 'eigenschaft' => 'id', ),
-            ),
-        ),
 
         'termine' => array(
             'liste' => 'termine',
             'liste_beschriftung' => 'Termine',
-            'controller' => 'termine',
             'element' => 'termin',
             'element_beschriftung' => 'Termin',
             'element_beschriftung_erweitert' => array(
                 array( 'eigenschaft' => 'titel', ),
             ),
         ),
-        'termine_rueckmeldungen' => array(
-            'liste' => 'termine_rueckmeldungen',
-            'liste_beschriftung' => 'Rückmeldungen',
-            'controller' => 'termine',
-            'element' => 'termine_rueckmeldung',
-            'element_beschriftung' => 'Rückmeldung',
-            'element_beschriftung_erweitert' => array(
-                array( 'freitext' => 'Rückmeldung ', ),
-                array( 'eigenschaft' => 'id', ),
-            ),
-        ),
-        'termine_anwesenheiten' => array(
-            'liste' => 'termine_anwesenheiten',
-            'liste_beschriftung' => 'Anwesenheiten',
-            'controller' => 'termine',
-            'element' => 'termine_anwesenheit',
-            'element_beschriftung' => 'Anwesenheit',
-            'element_beschriftung_erweitert' => array(
-                array( 'freitext' => 'Anwesenheit ', ),
-                array( 'eigenschaft' => 'id', ),
-            ),
-        ),
 
         'strafkatalog' => array(
             'liste' => 'strafkatalog',
             'liste_beschriftung' => 'Strafkatalog',
-            'controller' => 'strafkatalog',
             'element' => 'strafe',
             'element_beschriftung' => 'Strafe',
             'element_beschriftung_erweitert' => array(
                 array( 'eigenschaft' => 'titel', ),
             ),
         ),
-        'strafkatalog_zugewiesene_strafen' => array(
-            'liste' => 'strafkatalog_zugewiesene_strafen',
-            'liste_beschriftung' => 'Zugewiesene Strafen',
-            'controller' => 'strafkatalog',
-            'element' => 'strafkatalog_zugewiesene_strafe',
-            'element_beschriftung' => 'Zugewiesene Strafe',
-            'element_beschriftung_erweitert' => array(
-                array( 'freitext' => 'Zugewiesene Strafe ', ),
-                array( 'eigenschaft' => 'id', ),
-            ),
-        ),
 
         'notenbank' => array(
             'liste' => 'notenbank',
             'liste_beschriftung' => 'Notenbank',
-            'controller' => 'notenbank',
             'element' => 'titel',
             'element_beschriftung' => 'Titel',
             'element_beschriftung_erweitert' => array(
@@ -529,18 +458,6 @@ class Vereinsapp extends BaseConfig
                 array( 'eigenschaft' => 'titel', )
             ),
         ),
-        'notenbank_setliste' => array(
-            'liste' => 'notenbank_setliste',
-            'liste_beschriftung' => 'Setliste',
-            'controller' => 'notenbank',
-            'element' => 'notenbank_setlisteneintrag',
-            'element_beschriftung' => 'Setlisteneintrag',
-            'element_beschriftung_erweitert' => array(
-                array( 'freitext' => 'Setlisteneintrag ', ),
-                array( 'eigenschaft' => 'id', ),
-            ),
-        ),
-
     );
 
     /**
@@ -560,7 +477,7 @@ class Vereinsapp extends BaseConfig
             'status_erlaubt' => array(
                 0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
-             ),
+            ),
         ),
 
         'aufgaben_rueckmeldungen' => array(

@@ -14,9 +14,11 @@ function Liste_ElementTextMitBeschriftungErsetztZurueck(text, data) {
             } else if (platzhalter === "element") {
                 // Platzhalter bezieht sich auf ein Element
                 const element = data[platzhalter + zaehler];
-                if (typeof element !== "undefined" && "liste" in element && LISTEN[element.liste].element + "_id" in element)
-                    return Liste_ElementBeschriftungErweitertZurueck(element[LISTEN[element.liste].element + "_id"], element.liste) || match;
-                else return "Element" || match;
+                if (typeof element !== "undefined" && "liste" in element) {
+                    if (LISTEN[element.liste].element + "_id" in element)
+                        return Liste_ElementBeschriftungErweitertZurueck(element[LISTEN[element.liste].element + "_id"], element.liste) || match;
+                    else return Liste_ElementBeschriftungErweitertZurueck(undefined, element.liste) || match;
+                } else return Liste_ElementBeschriftungErweitertZurueck(undefined, undefined) || match;
             } else return match;
         } catch (error) {
             Log_InDieKonsole("Liste_ElementTextMitBeschriftungErsetztZurueck: Fehler beim Ersetzen von " + match);

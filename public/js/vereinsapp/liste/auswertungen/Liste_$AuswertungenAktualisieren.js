@@ -81,7 +81,8 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
     gruppieren_werte_sortiert.push(null); // für die Zusammenfassung
     $.each(gruppieren_werte_sortiert, function (position, wert) {
         let $auswertung = $auswertungen_auswertungen.find('.auswertung[wert="' + wert + '"]');
-        if (!$auswertung.exists()) $auswertung = LISTEN[auswertungen].instanz[instanz].$blanko_auswertung.clone().removeClass("blanko invisible");
+        if (!$auswertung.exists())
+            $auswertung = VERKNUEPFUNGEN[auswertungen].instanz[instanz].$blanko_auswertung.clone().removeClass("blanko invisible");
 
         $auswertung.attr("auswertungen", auswertungen).attr("liste", liste);
 

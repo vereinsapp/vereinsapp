@@ -31,7 +31,7 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
         ajax_data.liste = liste;
 
         Ajax_InDieSchlange(
-            LISTEN[liste].controller + "/ajax_" + LISTEN[liste].element + "_loeschen",
+            liste + "/ajax_" + LISTEN[liste].element + "_loeschen",
             ajax_data,
             ajax_dom,
             function (AJAX) {

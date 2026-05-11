@@ -64,10 +64,7 @@ function Liste_ElementErstellen(data_vollstaendig, dom, data, modal_title, eleme
                     Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Dom_ToastFeuern(
                     Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_erstellen.beschriftung.fehler, {
-                        element1: {
-                            liste: AJAX.data.liste,
-                            [LISTEN[AJAX.data.liste].element + "_id"]: AJAX.data[LISTEN[AJAX.data.liste].element + "_id"],
-                        },
+                        element1: { liste: AJAX.data.liste },
                     }),
                     "danger",
                 );

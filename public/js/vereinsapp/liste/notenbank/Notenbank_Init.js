@@ -88,7 +88,7 @@ function Notenbank_Init() {
         );
     });
 
-    $('.sortable[liste="notenbank_setliste"]').on("sortupdate update", function (event, ui) {
+    $('.sortable[verknuepfungen="notenbank_setliste"]').on("sortupdate update", function (event, ui) {
         Liste_VerknuepfungStatusAendern(
             { $werkzeug: ui.item },
             ui.item.index() + 1,

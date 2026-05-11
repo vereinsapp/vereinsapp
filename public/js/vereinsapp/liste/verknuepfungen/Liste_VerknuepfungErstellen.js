@@ -77,7 +77,7 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                         AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"] = Number(
                             AJAX.antwort[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"],
                         );
-                    else AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"] = LISTEN[verknuepfungen].tabelle.length + 1;
+                    else AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"] = VERKNUEPFUNGEN[verknuepfungen].tabelle.length + 1;
                     const verknuepfung_id = AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"];
                     delete AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"];
 

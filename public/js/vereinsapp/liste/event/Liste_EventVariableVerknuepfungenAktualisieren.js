@@ -6,9 +6,9 @@ function Liste_EventVariableVerknuepfungenAktualisieren(verknuepfungen) {
     if (verknuepfungen in VERKNUEPFUNGEN) {
         const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
 
-        LISTEN[verknuepfungen].tabelle = new Array();
+        VERKNUEPFUNGEN[verknuepfungen].tabelle = new Array();
         $.each(Localstorage_RausZurueck(verknuepfungen + "_tabelle", new Array()), function (position, verknuepfung) {
-            LISTEN[verknuepfungen].tabelle[Number(verknuepfung.id)] = verknuepfung;
+            VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(verknuepfung.id)] = verknuepfung;
 
             $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
                 if (verknuepfte_liste in LISTEN) {
@@ -39,15 +39,15 @@ function Liste_EventVariableVerknuepfungenAktualisieren(verknuepfungen) {
             });
         });
 
-        // LISTEN[verknuepfungen].verknuepfung_ids_nach_liste = new Object();
+        // VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste = new Object();
         // $.each(
         //     Localstorage_RausZurueck(verknuepfungen + "_verknuepfung_ids_nach_liste", new Object()),
         //     function (liste, verknuepfung_ids_nach_element_id) {
-        //         LISTEN[verknuepfungen].verknuepfung_ids_nach_liste[liste] = new Array();
+        //         VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[liste] = new Array();
         //         $.each(verknuepfung_ids_nach_element_id, function (element_id, verknuepfung_ids) {
-        //             if (!(Number(element_id) in LISTEN[verknuepfungen].verknuepfung_ids_nach_liste[liste]))
-        //                 LISTEN[verknuepfungen].verknuepfung_ids_nach_liste[liste] = new Array();
-        //             LISTEN[verknuepfungen].verknuepfung_ids_nach_liste[liste].push(verknuepfung_ids);
+        //             if (!(Number(element_id) in VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[liste]))
+        //                 VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[liste] = new Array();
+        //             VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[liste].push(verknuepfung_ids);
         //         });
         //     },
         // );

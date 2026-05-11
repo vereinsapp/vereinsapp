@@ -56,16 +56,18 @@ texte zu inhalt_kopieren aus js in Vereinsapp-config verschieben
 auswertung-Views vereinheitlichen?
 liste aus link_data loswerden
 Lässt sich Liste_ElementErgaenzen in Liste_EventVariableListenAktualisieren integrieren?
+    Dann muss Liste_EventVariableListenAktualisieren("termine") immer nach Liste_EventVariableListenAktualisieren("mitglieder") aufgerufen werden (siehe LISTEN.termine.element_ergaenzen_aktion)
 auswertung(en) umbenennen in verknuepfung(en)
+Alles außerhalb der _Init-Funktionen nach innen verschieben (außer Initialisierungen), dann die Reihenfolge der _Init-Funktionen optimieren
+Braucht es im Toast wirklich erweiterte Beschriftung?
 
 VERKNUEPFUNGEN komplett loslösen aus LISTEN -> zuordnung dann nach php verschieben
-    controller und verknuepfungen-Einträge aus LISTEN entfernen
+    zugeordnete_aufgaben, zugeordnete_setliste (beides in Termine-Controller) und auswertungen-Views korrekt darstellen (Bemerkung-Anzeigeproblematik und sortable-Event)
     dbdata vereinheitlichen zu serverdata?
     if (ICH_ID !== null) loswerden
     VARIABLE_AKTUALISIEREN_EVENTS in eigene Variable_Init verschieben (vorher variable-Ordnerstruktur anlegen)
-    Liste_ElementErgaenzen nur für Liste
     instanz[instanz].$blanko_auswertung umbauen zu $blanko_auswertung[instanz], dann instanz aus VERKNUEPFUNGEN/LISTEN[auswertungen/verknuepfungen] entfernen
-    Ergebnis-Liste in Auswertungen fixen (zurück zu klassischen Listen vs. Bemerkung-Anzeigeproblematik)
+    Braucht es die Einträge für Verkuepfungen in den Eigenschaften, Vorgegebene Werte, etc. noch?
 
 ERLEDIGT
 
