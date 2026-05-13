@@ -12,7 +12,7 @@ function Liste_ElementBeschriftungErweitertZurueck(element_id, liste) {
                 if ("freitext" in freitext_eigenschaft) element_beschriftung_erweitert += freitext_eigenschaft.freitext;
                 if ("eigenschaft" in freitext_eigenschaft)
                     element_beschriftung_erweitert += Liste_WertNachEigenschaftFormatiertZurueck(
-                        Liste_VariableRausZurueck(freitext_eigenschaft.eigenschaft, element_id, liste, undefined),
+                        Liste_ElementWertRausZurueck(freitext_eigenschaft.eigenschaft, element_id, liste, undefined),
                         freitext_eigenschaft.eigenschaft,
                         liste,
                     );

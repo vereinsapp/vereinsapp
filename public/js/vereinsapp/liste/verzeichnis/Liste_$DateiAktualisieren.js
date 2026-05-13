@@ -27,7 +27,7 @@ function Liste_$DateiAktualisieren($datei) {
         "storage/" +
         liste +
         "/" +
-        Liste_VariableRausZurueck(
+        Liste_ElementWertRausZurueck(
             "verzeichnis_basis",
             Util_WertBereinigtZurueck($verzeichnis.attr(LISTEN[liste].element + "_id"), undefined),
             liste,

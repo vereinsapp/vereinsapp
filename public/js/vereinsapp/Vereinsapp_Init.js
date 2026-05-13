@@ -55,7 +55,7 @@ status_erlaubt enthält nur noch Symbole, kein html mehr
 texte zu inhalt_kopieren aus js in Vereinsapp-config verschieben
 auswertung-Views vereinheitlichen?
 liste aus link_data loswerden
-Lässt sich Liste_ElementErgaenzen in Liste_EventVariableListenAktualisieren integrieren?
+Lässt sich Liste_ElementWertErgaenzen in Liste_EventVariableListenAktualisieren integrieren?
     Dann muss Liste_EventVariableListenAktualisieren("termine") immer nach Liste_EventVariableListenAktualisieren("mitglieder") aufgerufen werden (siehe LISTEN.termine.element_ergaenzen_aktion)
 auswertung(en) umbenennen in verknuepfung(en)
 Alles außerhalb der _Init-Funktionen nach innen verschieben (außer Initialisierungen), dann die Reihenfolge der _Init-Funktionen optimieren
@@ -68,6 +68,7 @@ VERKNUEPFUNGEN komplett loslösen aus LISTEN -> zuordnung dann nach php verschie
     VARIABLE_AKTUALISIEREN_EVENTS in eigene Variable_Init verschieben (vorher variable-Ordnerstruktur anlegen)
     instanz[instanz].$blanko_auswertung umbauen zu $blanko_auswertung[instanz], dann instanz aus VERKNUEPFUNGEN/LISTEN[auswertungen/verknuepfungen] entfernen
     Braucht es die Einträge für Verkuepfungen in den Eigenschaften, Vorgegebene Werte, etc. noch?
+    Liste_VariableLoeschen "zugeordnete_" + LISTEN[liste].element + "_ids" umbauen zu verknuepfung_ids_nach_liste
 
 ERLEDIGT
 

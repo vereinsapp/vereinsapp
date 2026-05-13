@@ -8,21 +8,21 @@ LISTEN.mitglieder.element_erstellen_data_vervollstaendigen_aktion = function (da
 };
 
 LISTEN.mitglieder.element_aendern_data_vervollstaendigen_aktion = function (data, mitglied_id) {
-    if (!("email" in data)) data.email = Liste_VariableRausZurueck("email", mitglied_id, "mitglieder", undefined);
-    if (!("vorname" in data)) data.vorname = Liste_VariableRausZurueck("vorname", mitglied_id, "mitglieder", undefined);
-    if (!("nachname" in data)) data.nachname = Liste_VariableRausZurueck("nachname", mitglied_id, "mitglieder", undefined);
-    if (!("geburt" in data)) data.geburt = Liste_VariableRausZurueck("geburt", mitglied_id, "mitglieder", undefined);
-    if (!("postleitzahl" in data)) data.postleitzahl = Liste_VariableRausZurueck("postleitzahl", mitglied_id, "mitglieder", undefined);
-    if (!("wohnort" in data)) data.wohnort = Liste_VariableRausZurueck("wohnort", mitglied_id, "mitglieder", undefined);
-    if (!("geschlecht" in data)) data.geschlecht = Liste_VariableRausZurueck("geschlecht", mitglied_id, "mitglieder", undefined);
-    if (!("register" in data)) data.register = Liste_VariableRausZurueck("register", mitglied_id, "mitglieder", undefined);
-    if (!("auto" in data)) data.auto = Liste_VariableRausZurueck("auto", mitglied_id, "mitglieder", undefined);
-    if (!("funktion" in data)) data.funktion = Liste_VariableRausZurueck("funktion", mitglied_id, "mitglieder", undefined);
+    if (!("email" in data)) data.email = Liste_ElementWertRausZurueck("email", mitglied_id, "mitglieder", undefined);
+    if (!("vorname" in data)) data.vorname = Liste_ElementWertRausZurueck("vorname", mitglied_id, "mitglieder", undefined);
+    if (!("nachname" in data)) data.nachname = Liste_ElementWertRausZurueck("nachname", mitglied_id, "mitglieder", undefined);
+    if (!("geburt" in data)) data.geburt = Liste_ElementWertRausZurueck("geburt", mitglied_id, "mitglieder", undefined);
+    if (!("postleitzahl" in data)) data.postleitzahl = Liste_ElementWertRausZurueck("postleitzahl", mitglied_id, "mitglieder", undefined);
+    if (!("wohnort" in data)) data.wohnort = Liste_ElementWertRausZurueck("wohnort", mitglied_id, "mitglieder", undefined);
+    if (!("geschlecht" in data)) data.geschlecht = Liste_ElementWertRausZurueck("geschlecht", mitglied_id, "mitglieder", undefined);
+    if (!("register" in data)) data.register = Liste_ElementWertRausZurueck("register", mitglied_id, "mitglieder", undefined);
+    if (!("auto" in data)) data.auto = Liste_ElementWertRausZurueck("auto", mitglied_id, "mitglieder", undefined);
+    if (!("funktion" in data)) data.funktion = Liste_ElementWertRausZurueck("funktion", mitglied_id, "mitglieder", undefined);
     if (!("vorstandschaft_janein" in data))
-        data.vorstandschaft_janein = Liste_VariableRausZurueck("vorstandschaft_janein", mitglied_id, "mitglieder", undefined);
-    if (!("aktiv_janein" in data)) data.aktiv_janein = Number(Liste_VariableRausZurueck("aktiv_janein", mitglied_id, "mitglieder", undefined));
-    if (!("real_janein" in data)) data.real_janein = Number(Liste_VariableRausZurueck("real_janein", mitglied_id, "mitglieder", undefined));
-    if (!("bemerkung" in data)) data.bemerkung = Liste_VariableRausZurueck("bemerkung", mitglied_id, "mitglieder", null);
+        data.vorstandschaft_janein = Liste_ElementWertRausZurueck("vorstandschaft_janein", mitglied_id, "mitglieder", undefined);
+    if (!("aktiv_janein" in data)) data.aktiv_janein = Number(Liste_ElementWertRausZurueck("aktiv_janein", mitglied_id, "mitglieder", undefined));
+    if (!("real_janein" in data)) data.real_janein = Number(Liste_ElementWertRausZurueck("real_janein", mitglied_id, "mitglieder", undefined));
+    if (!("bemerkung" in data)) data.bemerkung = Liste_ElementWertRausZurueck("bemerkung", mitglied_id, "mitglieder", null);
 
     data = Util_WertBereinigtZurueck(data, new Object());
 
@@ -54,12 +54,10 @@ ZUSATZSYMBOLE.vergebene_rechte.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNG
 
 ZUSATZSYMBOLE.geburtstag = new Object();
 ZUSATZSYMBOLE.geburtstag.aktualisieren_aktion = function ($zusatzsymbol, $element) {
-    const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
-
-    const geburtstag = Liste_VariableRausZurueck(
+    const geburtstag = Liste_ElementWertRausZurueck(
         "geburtstag",
-        Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined),
-        liste,
+        Util_WertBereinigtZurueck($element.attr("mitglied_id"), undefined),
+        "mitglieder",
         undefined,
     );
     if (typeof geburtstag !== "undefined" && geburtstag <= DATETIME.now() && DATETIME.now() <= geburtstag.plus({ days: 1 }))

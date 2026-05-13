@@ -21,7 +21,7 @@ function Liste_$ElementAktualisieren($element) {
             $vorschau.html(
                 bisherige_vorschau +
                     Liste_WertNachEigenschaftFormatiertZurueck(
-                        Liste_VariableRausZurueck(eigenschaft, element_id, liste, undefined),
+                        Liste_ElementWertRausZurueck(eigenschaft, element_id, liste, undefined),
                         eigenschaft,
                         liste,
                     ),
@@ -38,7 +38,7 @@ function Liste_$ElementAktualisieren($element) {
         const eigenschaft = Util_WertBereinigtZurueck($eigenschaft.attr("eigenschaft"), undefined);
 
         $eigenschaft.text(
-            Liste_WertNachEigenschaftFormatiertZurueck(Liste_VariableRausZurueck(eigenschaft, element_id, liste, undefined), eigenschaft, liste),
+            Liste_WertNachEigenschaftFormatiertZurueck(Liste_ElementWertRausZurueck(eigenschaft, element_id, liste, undefined), eigenschaft, liste),
         );
     });
 

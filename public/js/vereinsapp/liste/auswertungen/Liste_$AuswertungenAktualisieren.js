@@ -58,8 +58,8 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
             new Array(),
         ),
         function (position, auswertung_id) {
-            const element_id = Liste_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined);
-            const wert = Liste_VariableRausZurueck(gruppieren, element_id, liste, undefined);
+            const element_id = Liste_VerknuepfungWertRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined);
+            const wert = Liste_ElementWertRausZurueck(gruppieren, element_id, liste, undefined);
             if (element_ids.includes(element_id)) {
                 if (!auswertung_ids.includes(auswertung_id)) auswertung_ids.push(auswertung_id);
                 if (!(wert in auswertung_ids_nach_wert)) auswertung_ids_nach_wert[wert] = [auswertung_id];

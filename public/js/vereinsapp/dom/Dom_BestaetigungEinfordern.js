@@ -13,7 +13,7 @@ function Dom_BestaetigungEinfordern(nachricht, modal_title, werkzeug, data) {
         //     '<i class="bi bi-' +
         //         SYMBOLE[WERKZEUGE[werkzeug].symbol] +
         //         '"></i> ' +
-        //         Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE[werkzeug].beschriftung.beschriftung, {
+        //         Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE[werkzeug].beschriftung.beschriftung, {
         //             element1: { liste: liste },
         //         }),
         // );

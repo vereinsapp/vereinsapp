@@ -14,10 +14,10 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
         else werkzeug = "element_loeschen";
 
         Dom_BestaetigungEinfordern(
-            Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_loeschen.beschriftung.bestaetigung, {
+            Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.element_loeschen.beschriftung.bestaetigung, {
                 element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
             }),
-            Liste_ElementTextMitBeschriftungErsetztZurueck(modal_title, {
+            Liste_ElementBeschriftungErsetztZurueck(modal_title, {
                 element1: { liste: liste },
             }),
             werkzeug,
@@ -37,7 +37,7 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
             function (AJAX) {
                 const liste = AJAX.data.liste;
                 const element_id = AJAX.data[LISTEN[liste].element + "_id"];
-                const toast_text = Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_loeschen.beschriftung.erfolg, {
+                const toast_text = Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.element_loeschen.beschriftung.erfolg, {
                     element1: {
                         liste: liste,
                         [LISTEN[liste].element + "_id"]: element_id,
@@ -50,13 +50,13 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
                     $.each(AJAX.antwort.dbdata, function (position, element) {
                         if ("id" in element)
                             $.each(element, function (eigenschaft, wert) {
-                                Liste_VariableRein(wert, eigenschaft, Number(element.id), liste);
+                                Liste_ElementWertRein(wert, eigenschaft, Number(element.id), liste);
                             });
                     });
 
                 Liste_EventLocalstorageAktualisieren(liste);
                 Liste_EventVariableListenAktualisieren(liste);
-                Liste_ElementErgaenzen(liste);
+                Liste_ElementWertErgaenzen(liste);
                 Liste_EventDomAktualisieren(liste);
 
                 const weiterleiten = AJAX.data.weiterleiten;
@@ -69,7 +69,7 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_loeschen.beschriftung.fehler, {
+                    Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.element_loeschen.beschriftung.fehler, {
                         element1: {
                             liste: liste,
                             [LISTEN[liste].element + "_id"]: data[LISTEN[liste].element + "_id"],

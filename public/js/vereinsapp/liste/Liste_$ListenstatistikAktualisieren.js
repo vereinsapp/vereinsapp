@@ -18,7 +18,7 @@ function Liste_$ListenstatistikAktualisieren($listenstatistik, $liste) {
                     .find(".elemente")
                     .find(".element")
                     .each(function () {
-                        summe += Liste_VariableRausZurueck(
+                        summe += Liste_ElementWertRausZurueck(
                             eigenschaft,
                             Util_WertBereinigtZurueck($(this).attr(LISTEN[liste].element + "_id"), undefined),
                             liste,

@@ -7,7 +7,7 @@
 function Localstorage_Leeren(bestaetigt, dom, modal_title) {
     if (!bestaetigt)
         Dom_BestaetigungEinfordern(
-            Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.localstorage_leeren.beschriftung.bestaetigung, new Object()),
+            Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.localstorage_leeren.beschriftung.bestaetigung, new Object()),
             modal_title,
             "localstorage_leeren",
             undefined,

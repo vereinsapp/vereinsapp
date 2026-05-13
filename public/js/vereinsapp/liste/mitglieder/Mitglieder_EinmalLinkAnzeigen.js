@@ -10,7 +10,7 @@ function Mitglieder_EinmalLinkAnzeigen(bestaetigt, dom, modal_title, mitglied_id
         const $modal = Dom_$ModalInitialisiertZurueck(modal_title, "mitglied_einmal_link_anzeigen_modal");
         Dom_$ModalOeffnen($modal);
         $modal.find(".mitglied_einmal_link_anzeigen_nachricht").text(
-            Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.einmal_link_anzeigen.beschriftung.bestaetigung, {
+            Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.einmal_link_anzeigen.beschriftung.bestaetigung, {
                 element1: { liste: "mitglieder", mitglied_id: mitglied_id },
             }),
         );
@@ -27,7 +27,7 @@ function Mitglieder_EinmalLinkAnzeigen(bestaetigt, dom, modal_title, mitglied_id
             function (AJAX) {
                 Liste_EventLocalstorageAktualisieren("mitglieder");
                 Liste_EventVariableListenAktualisieren("mitglieder");
-                Liste_ElementErgaenzen("mitglieder");
+                Liste_ElementWertErgaenzen("mitglieder");
                 Liste_EventDomAktualisieren("mitglieder");
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.find(".einmal_link").exists())
@@ -38,7 +38,7 @@ function Mitglieder_EinmalLinkAnzeigen(bestaetigt, dom, modal_title, mitglied_id
                         AJAX.dom.$modal.find(".einmal_link").closest(".mb-2").removeClass("mb-2");
                 }
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.einmal_link_anzeigen.beschriftung.erfolg, {
+                    Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.einmal_link_anzeigen.beschriftung.erfolg, {
                         element1: { liste: "mitglieder", mitglied_id: AJAX.data.mitglied_id },
                     }),
                 );
@@ -46,7 +46,7 @@ function Mitglieder_EinmalLinkAnzeigen(bestaetigt, dom, modal_title, mitglied_id
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.einmal_link_anzeigen.beschriftung.fehler, {
+                    Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.einmal_link_anzeigen.beschriftung.fehler, {
                         element1: { liste: "mitglieder", mitglied_id: AJAX.data.mitglied_id },
                     }),
                     "danger",

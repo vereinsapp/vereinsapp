@@ -1,4 +1,4 @@
-function Liste_ElementErgaenzen(liste) {
+function Liste_ElementWertErgaenzen(liste) {
     if (typeof LISTEN[liste].element_ergaenzen_aktion === "function")
         $.each(LISTEN[liste].tabelle, function () {
             const element = this;

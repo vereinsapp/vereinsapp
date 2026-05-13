@@ -11,7 +11,7 @@ function Mitglieder_PasswortFestlegen(dom, data, mitglied_id) {
         ajax_dom,
         function (AJAX) {
             if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Dom_$ModalSchliessen(AJAX.dom.$modal);
-            Dom_ToastFeuern(Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.passwort_festlegen.beschriftung.erfolg, new Object()));
+            Dom_ToastFeuern(Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.passwort_festlegen.beschriftung.erfolg, new Object()));
         },
         function (AJAX) {
             if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");

@@ -26,7 +26,7 @@ VARIABLE_AKTUALISIEREN_EVENTS.push(function () {
     });
 
     $.each(LISTEN, function (liste) {
-        Liste_ElementErgaenzen(liste);
+        Liste_ElementWertErgaenzen(liste);
     });
 });
 
@@ -78,7 +78,7 @@ ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION = function ($zusatzsymbol, $el
 
     let verknuepfung_id = undefined;
     $.each(
-        Liste_VariableRausZurueck(
+        Liste_ElementWertRausZurueck(
             "zugeordnete_" + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids",
             verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
             verknuepfte_listen[0],
@@ -86,14 +86,18 @@ ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION = function ($zusatzsymbol, $el
         ),
         function (position, zugeordnete_verknuepfung_id) {
             if (
-                Liste_VariableRausZurueck(LISTEN[verknuepfte_listen[1]].element + "_id", zugeordnete_verknuepfung_id, verknuepfungen, undefined) ===
-                verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"]
+                Liste_VerknuepfungWertRausZurueck(
+                    LISTEN[verknuepfte_listen[1]].element + "_id",
+                    zugeordnete_verknuepfung_id,
+                    verknuepfungen,
+                    undefined,
+                ) === verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"]
             )
                 verknuepfung_id = zugeordnete_verknuepfung_id;
         },
     );
 
-    let verknuepfung_status = Liste_VariableRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
+    let verknuepfung_status = Liste_VerknuepfungWertRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
     if (verknuepfung_status > 0 && !(verknuepfung_status in VERKNUEPFUNGEN[verknuepfungen].status_erlaubt)) verknuepfung_status = 1;
 
     if (typeof verknuepfung_status !== "undefined")
@@ -117,7 +121,7 @@ ZUSATZSYMBOLE.bemerkung.aktualisieren_aktion = function ($zusatzsymbol, $element
         .attr("tabindex", 0)
         .attr("data-bs-placement", "right");
 
-    const bemerkung = Liste_VariableRausZurueck(
+    const bemerkung = Liste_ElementWertRausZurueck(
         "bemerkung",
         Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined),
         liste,
@@ -173,7 +177,7 @@ function Liste_Init() {
         });
 
         $.each(LISTEN, function (liste) {
-            Liste_ElementErgaenzen(liste);
+            Liste_ElementWertErgaenzen(liste);
         });
 
         $.each(LISTEN, function (liste) {

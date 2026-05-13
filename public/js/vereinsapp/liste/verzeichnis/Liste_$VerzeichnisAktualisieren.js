@@ -14,7 +14,7 @@ function Liste_$VerzeichnisAktualisieren($verzeichnis) {
             .find(".beschriftung")
             .text(basis[basis.length - 1]);
 
-    let inhalt = Liste_VariableRausZurueck("verzeichnis", element_id, liste, new Object());
+    let inhalt = Liste_ElementWertRausZurueck("verzeichnis", element_id, liste, new Object());
     $.each(basis, function (position, unterverzeichnis) {
         inhalt = inhalt.unterverzeichnisse[unterverzeichnis];
     });

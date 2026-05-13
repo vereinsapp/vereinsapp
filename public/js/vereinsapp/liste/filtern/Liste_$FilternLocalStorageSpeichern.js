@@ -25,6 +25,6 @@ function Liste_$FilternLocalStorageSpeichern($werkzeug) {
 
     Liste_EventLocalstorageAktualisieren(liste);
     Liste_EventVariableListenAktualisieren(liste);
-    Liste_ElementErgaenzen(liste);
+    Liste_ElementWertErgaenzen(liste);
     Liste_EventDomAktualisieren(liste);
 }

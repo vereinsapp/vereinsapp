@@ -30,15 +30,16 @@ LISTEN.termine.element_erstellen_data_vervollstaendigen_aktion = function (data)
 };
 
 LISTEN.termine.element_aendern_data_vervollstaendigen_aktion = function (data, termin_id) {
-    if (!("titel" in data)) data.titel = Liste_VariableRausZurueck("titel", termin_id, "termine", undefined);
-    if (!("start" in data)) data.start = Liste_VariableRausZurueck("start", termin_id, "termine", undefined);
-    if (!("ende" in data)) data.ende = Liste_VariableRausZurueck("ende", termin_id, "termine", undefined);
-    if (!("ort" in data)) data.ort = Liste_VariableRausZurueck("ort", termin_id, "termine", undefined);
-    if (!("kategorie" in data)) data.kategorie = Liste_VariableRausZurueck("kategorie", termin_id, "termine", undefined);
-    if (!("filtern_mitglieder" in data)) data.filtern_mitglieder = Liste_VariableRausZurueck("filtern_mitglieder", termin_id, "termine", undefined);
+    if (!("titel" in data)) data.titel = Liste_ElementWertRausZurueck("titel", termin_id, "termine", undefined);
+    if (!("start" in data)) data.start = Liste_ElementWertRausZurueck("start", termin_id, "termine", undefined);
+    if (!("ende" in data)) data.ende = Liste_ElementWertRausZurueck("ende", termin_id, "termine", undefined);
+    if (!("ort" in data)) data.ort = Liste_ElementWertRausZurueck("ort", termin_id, "termine", undefined);
+    if (!("kategorie" in data)) data.kategorie = Liste_ElementWertRausZurueck("kategorie", termin_id, "termine", undefined);
+    if (!("filtern_mitglieder" in data))
+        data.filtern_mitglieder = Liste_ElementWertRausZurueck("filtern_mitglieder", termin_id, "termine", undefined);
     if (!("oeffentlich_janein" in data))
-        data.oeffentlich_janein = Number(Liste_VariableRausZurueck("oeffentlich_janein", termin_id, "termine", undefined));
-    if (!("bemerkung" in data)) data.bemerkung = Liste_VariableRausZurueck("bemerkung", termin_id, "termine", null);
+        data.oeffentlich_janein = Number(Liste_ElementWertRausZurueck("oeffentlich_janein", termin_id, "termine", undefined));
+    if (!("bemerkung" in data)) data.bemerkung = Liste_ElementWertRausZurueck("bemerkung", termin_id, "termine", null);
 
     data = Util_WertBereinigtZurueck(data, new Object());
 
@@ -72,7 +73,7 @@ LISTEN.termine.element_ergaenzen_aktion = function (termin) {
     termin.ich_rueckgemeldet_janein = false;
     if ("zugeordnete_termine_rueckmeldung_ids" in termin)
         $.each(termin.zugeordnete_termine_rueckmeldung_ids, function (position, rueckmeldung_id) {
-            if (Liste_VariableRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == ICH_ID) {
+            if (Liste_VerknuepfungWertRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == ICH_ID) {
                 termin.ich_rueckgemeldet_janein = true;
                 return false;
             }
@@ -87,12 +88,10 @@ ZUSATZSYMBOLE.termine_anwesenheiten.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUE
 
 ZUSATZSYMBOLE.kategorie = new Object();
 ZUSATZSYMBOLE.kategorie.aktualisieren_aktion = function ($zusatzsymbol, $element) {
-    const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
-
-    const kategorie = Liste_VariableRausZurueck(
+    const kategorie = Liste_ElementWertRausZurueck(
         "kategorie",
-        Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined),
-        liste,
+        Util_WertBereinigtZurueck($element.attr("termin_id"), undefined),
+        "termine",
         undefined,
     );
     if (kategorie in TERMINE_KATEGORIE_STATUSSYMBOLE) $zusatzsymbol.html(TERMINE_KATEGORIE_STATUSSYMBOLE[kategorie]);

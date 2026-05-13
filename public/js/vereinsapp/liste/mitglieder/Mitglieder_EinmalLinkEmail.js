@@ -8,7 +8,7 @@
 function Mitglieder_EinmalLinkEmail(bestaetigt, dom, modal_title, mitglied_id) {
     if (!bestaetigt)
         Dom_BestaetigungEinfordern(
-            Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.einmal_link_email.beschriftung.bestaetigung, {
+            Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.einmal_link_email.beschriftung.bestaetigung, {
                 element1: { liste: "mitglieder", mitglied_id: mitglied_id },
             }),
             modal_title,
@@ -27,12 +27,12 @@ function Mitglieder_EinmalLinkEmail(bestaetigt, dom, modal_title, mitglied_id) {
             function (AJAX) {
                 Liste_EventLocalstorageAktualisieren("mitglieder");
                 Liste_EventVariableListenAktualisieren("mitglieder");
-                Liste_ElementErgaenzen("mitglieder");
+                Liste_ElementWertErgaenzen("mitglieder");
                 Liste_EventDomAktualisieren("mitglieder");
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Dom_$ModalSchliessen(AJAX.dom.$modal);
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.einmal_link_email.beschriftung.erfolg, {
+                    Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.einmal_link_email.beschriftung.erfolg, {
                         element1: { liste: "mitglieder", mitglied_id: AJAX.data.mitglied_id },
                     }),
                 );
@@ -40,7 +40,7 @@ function Mitglieder_EinmalLinkEmail(bestaetigt, dom, modal_title, mitglied_id) {
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.einmal_link_email.beschriftung.fehler, {
+                    Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.einmal_link_email.beschriftung.fehler, {
                         element1: { liste: "mitglieder", mitglied_id: AJAX.data.mitglied_id },
                     }),
                     "danger",

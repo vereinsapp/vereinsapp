@@ -8,10 +8,10 @@ LISTEN.aufgaben.element_erstellen_data_vervollstaendigen_aktion = function (data
 };
 
 LISTEN.aufgaben.element_aendern_data_vervollstaendigen_aktion = function (data, aufgabe_id) {
-    if (!("titel" in data)) data.titel = Liste_VariableRausZurueck("titel", aufgabe_id, "aufgaben", undefined);
+    if (!("titel" in data)) data.titel = Liste_ElementWertRausZurueck("titel", aufgabe_id, "aufgaben", undefined);
     if (!("max_anzahl_mitglieder" in data))
-        data.max_anzahl_mitglieder = Liste_VariableRausZurueck("max_anzahl_mitglieder", aufgabe_id, "aufgaben", null);
-    if (!("bemerkung" in data)) data.bemerkung = Liste_VariableRausZurueck("bemerkung", aufgabe_id, "aufgaben", null);
+        data.max_anzahl_mitglieder = Liste_ElementWertRausZurueck("max_anzahl_mitglieder", aufgabe_id, "aufgaben", null);
+    if (!("bemerkung" in data)) data.bemerkung = Liste_ElementWertRausZurueck("bemerkung", aufgabe_id, "aufgaben", null);
 
     data = Util_WertBereinigtZurueck(data, new Object());
 

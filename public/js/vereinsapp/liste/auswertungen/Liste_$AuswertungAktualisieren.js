@@ -17,9 +17,10 @@ function Liste_$AuswertungAktualisieren($auswertung) {
     $.each(
         Util_WertBereinigtZurueck($auswertung.attr(VERKNUEPFUNGEN[auswertungen].verknuepfung + "_ids"), new Array()),
         function (position, auswertung_id) {
-            ergebnis_nach_status[Liste_VariableRausZurueck("status", auswertung_id, auswertungen, undefined)].push(auswertung_id);
+            ergebnis_nach_status[Liste_VerknuepfungWertRausZurueck("status", auswertung_id, auswertungen, undefined)].push(auswertung_id);
             ergebnis_nach_status[0] = ergebnis_nach_status[0].filter(
-                (element_id) => element_id != Liste_VariableRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined),
+                (element_id) =>
+                    element_id != Liste_VerknuepfungWertRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined),
             );
         },
     );

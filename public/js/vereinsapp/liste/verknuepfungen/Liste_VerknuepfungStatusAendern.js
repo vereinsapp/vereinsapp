@@ -23,14 +23,14 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
             delete AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"];
 
             $.each(AJAX.data, function (eigenschaft, wert) {
-                Liste_VariableRein(wert, eigenschaft, verknuepfung_id, verknuepfungen);
+                Liste_VerknuepfungWertRausZurueck(wert, eigenschaft, verknuepfung_id, verknuepfungen);
             });
 
             if ("dbdata" in AJAX.antwort && isArray(AJAX.antwort.dbdata))
                 $.each(AJAX.antwort.dbdata, function (position, element) {
                     if ("id" in element)
                         $.each(element, function (eigenschaft, wert) {
-                            Liste_VariableRein(wert, eigenschaft, Number(element.id), verknuepfungen);
+                            Liste_VerknuepfungWertRausZurueck(wert, eigenschaft, Number(element.id), verknuepfungen);
                         });
                 });
 
@@ -43,7 +43,7 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
             if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                 Dom_$ModalSchliessen(AJAX.dom.$modal);
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_aendern.beschriftung.erfolg, {
+                    Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.element_aendern.beschriftung.erfolg, {
                         element1: {
                             liste: verknuepfungen,
                             [VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"]: AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"],
@@ -57,7 +57,7 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
             else if (isObject(AJAX.antwort.validation) && "dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                 Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
             Dom_ToastFeuern(
-                Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_aendern.beschriftung.fehler, {
+                Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.element_aendern.beschriftung.fehler, {
                     element1: {
                         liste: AJAX.data.verknuepfungen,
                         [VERKNUEPFUNGEN[AJAX.data.verknuepfungen].verknuepfung + "_id"]:

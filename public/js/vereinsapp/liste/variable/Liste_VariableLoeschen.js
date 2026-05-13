@@ -15,7 +15,7 @@ function Liste_VariableLoeschen(element_id, liste) {
                 if ("id" in element_mit_zuordnungen) {
                     const neue_zugeordnete_element_ids = new Array();
                     $.each(
-                        Liste_VariableRausZurueck(
+                        Liste_ElementWertRausZurueck(
                             "zugeordnete_" + LISTEN[liste].element + "_ids",
                             element_mit_zuordnungen.id,
                             liste_mit_zuordnungen,
@@ -25,7 +25,7 @@ function Liste_VariableLoeschen(element_id, liste) {
                             if (zugeordnete_element_id !== element_id) neue_zugeordnete_element_ids.push(zugeordnete_element_id);
                         },
                     );
-                    Liste_VariableRein(
+                    Liste_ElementWertRein(
                         neue_zugeordnete_element_ids,
                         "zugeordnete_" + LISTEN[liste].element + "_ids",
                         element_mit_zuordnungen.id,

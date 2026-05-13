@@ -10,7 +10,7 @@
 function Liste_ElementAendern(data_vollstaendig, dom, data, modal_title, element_id, liste) {
     if (!data_vollstaendig) {
         const $modal = Dom_$ModalInitialisiertZurueck(
-            Liste_ElementTextMitBeschriftungErsetztZurueck(modal_title, {
+            Liste_ElementBeschriftungErsetztZurueck(modal_title, {
                 element1: { liste: liste },
             }),
             LISTEN[liste].element + "_basiseigenschaften",
@@ -40,17 +40,17 @@ function Liste_ElementAendern(data_vollstaendig, dom, data, modal_title, element
                 delete AJAX.data[LISTEN[liste].element + "_id"];
 
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    Liste_VariableRein(wert, eigenschaft, element_id, liste);
+                    Liste_ElementWertRein(wert, eigenschaft, element_id, liste);
                 });
 
                 Liste_EventLocalstorageAktualisieren(liste);
                 Liste_EventVariableListenAktualisieren(liste);
-                Liste_ElementErgaenzen(liste);
+                Liste_ElementWertErgaenzen(liste);
                 Liste_EventDomAktualisieren(liste);
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Dom_$ModalSchliessen(AJAX.dom.$modal);
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_aendern.beschriftung.erfolg, {
+                    Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.element_aendern.beschriftung.erfolg, {
                         element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
                     }),
                 );
@@ -60,7 +60,7 @@ function Liste_ElementAendern(data_vollstaendig, dom, data, modal_title, element
                 else if (isObject(AJAX.antwort.validation) && "dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_aendern.beschriftung.fehler, {
+                    Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.element_aendern.beschriftung.fehler, {
                         element1: { liste: liste, [LISTEN[liste].element + "_id"]: AJAX.data[LISTEN[liste].element + "_id"] },
                     }),
                     "danger",

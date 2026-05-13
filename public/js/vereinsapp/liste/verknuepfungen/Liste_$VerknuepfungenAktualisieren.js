@@ -24,7 +24,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
         !("verknuepfung_moeglich_eingeladen" in VERKNUEPFUNGEN[verknuepfungen]) ||
         (VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_eingeladen.liste === verknuepfte_listen[0] &&
             VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_eingeladen.eigenschaft in EIGENSCHAFTEN[verknuepfte_listen[0]] &&
-            Liste_VariableRausZurueck(
+            Liste_ElementWertRausZurueck(
                 VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_eingeladen.eigenschaft,
                 verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"],
                 verknuepfte_listen[0],
@@ -32,7 +32,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
             ).includes(verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"])) ||
         (VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_eingeladen.liste === verknuepfte_listen[1] &&
             VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_eingeladen.eigenschaft in EIGENSCHAFTEN[verknuepfte_listen[1]] &&
-            Liste_VariableRausZurueck(
+            Liste_ElementWertRausZurueck(
                 VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_eingeladen.eigenschaft,
                 verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"],
                 verknuepfte_listen[1],
@@ -45,7 +45,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
 
         let verknuepfung_id = undefined;
         $.each(
-            Liste_VariableRausZurueck(
+            Liste_ElementWertRausZurueck(
                 "zugeordnete_" + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids",
                 verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"],
                 verknuepfte_listen[0],
@@ -53,7 +53,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
             ),
             function (position, zugeordnete_verknuepfung_id) {
                 if (
-                    Liste_VariableRausZurueck(
+                    Liste_VerknuepfungWertRausZurueck(
                         LISTEN[verknuepfte_listen[1]].element + "_id",
                         zugeordnete_verknuepfung_id,
                         verknuepfungen,
@@ -64,7 +64,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
             },
         );
 
-        const verknuepfung_status = Liste_VariableRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
+        const verknuepfung_status = Liste_VerknuepfungWertRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
 
         // Zugehöriges Label bearbeiten
         const $zugehoeriges_label = $verknuepfungen.siblings("label");
@@ -117,7 +117,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
 
             if (typeof verknuepfung_id !== "undefined") {
                 if (typeof verknuepfung_status !== "undefined") {
-                    if (Liste_VariableRausZurueck("bemerkung", verknuepfung_id, verknuepfungen, null) !== null)
+                    if (Liste_VerknuepfungWertRausZurueck("bemerkung", verknuepfung_id, verknuepfungen, null) !== null)
                         $werkzeug.addClass("btn-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[verknuepfung_status].farbe);
                     else $werkzeug.addClass("btn-outline-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[verknuepfung_status].farbe);
                 } else $werkzeug.addClass("btn-outline-primary");
@@ -138,7 +138,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
                 (VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.liste === verknuepfte_listen[0] &&
                     VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.eigenschaft in EIGENSCHAFTEN[verknuepfte_listen[0]] &&
                     !(
-                        Liste_VariableRausZurueck(
+                        Liste_ElementWertRausZurueck(
                             VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.eigenschaft,
                             verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"],
                             verknuepfte_listen[0],
@@ -148,7 +148,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
                 (VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.liste === verknuepfte_listen[1] &&
                     VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.eigenschaft in EIGENSCHAFTEN[verknuepfte_listen[1]] &&
                     !(
-                        Liste_VariableRausZurueck(
+                        Liste_ElementWertRausZurueck(
                             VERKNUEPFUNGEN[verknuepfungen].verknuepfung_moeglich_frist.eigenschaft,
                             verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"],
                             verknuepfte_listen[1],

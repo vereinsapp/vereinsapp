@@ -1,4 +1,4 @@
-function Liste_VariableRausZurueck(eigenschaft, element_id, liste, wert_nicht_gefunden) {
+function Liste_ElementWertRausZurueck(eigenschaft, element_id, liste, wert_nicht_gefunden) {
     let wert_zurueck;
 
     if (

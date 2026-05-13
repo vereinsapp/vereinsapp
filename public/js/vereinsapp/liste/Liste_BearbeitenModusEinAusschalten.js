@@ -11,6 +11,6 @@ function Liste_BearbeitenModusEinAusschalten(instanz, liste) {
 
     Liste_EventLocalstorageAktualisieren(liste);
     Liste_EventVariableListenAktualisieren(liste);
-    Liste_ElementErgaenzen(liste);
+    Liste_ElementWertErgaenzen(liste);
     Liste_EventDomAktualisieren(liste);
 }

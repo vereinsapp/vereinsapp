@@ -11,7 +11,7 @@ function Liste_Element$FormularInitialisieren($formular) {
         const $eingabe = $(this);
         const eingabe = $eingabe.attr("eingabe");
 
-        let wert = Liste_VariableRausZurueck(eingabe, element_id, liste, undefined);
+        let wert = Liste_ElementWertRausZurueck(eingabe, element_id, liste, undefined);
         // Wenn aber nichts definiert ist, dann nimm den Standard-Wert (je nach Typ)
         if (typeof wert === "undefined") {
             if ($eingabe.prop("tagName") == "SELECT") wert = $eingabe.find("option:first").val();
@@ -57,7 +57,7 @@ function Liste_Element$FormularInitialisieren($formular) {
             '<i class="bi bi-' +
                 SYMBOLE[WERKZEUGE[werkzeug].symbol] +
                 '"></i> ' +
-                Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE[werkzeug].beschriftung.beschriftung, {
+                Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE[werkzeug].beschriftung.beschriftung, {
                     element1: { liste: liste },
                 }),
         );

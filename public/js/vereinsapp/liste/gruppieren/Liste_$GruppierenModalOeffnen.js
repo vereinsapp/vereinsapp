@@ -6,7 +6,7 @@ function Liste_$GruppierenModalOeffnen($werkzeug) {
     const liste = Util_WertBereinigtZurueck($werkzeug.attr("liste"), undefined);
 
     const $modal = Dom_$ModalInitialisiertZurueck(
-        Liste_ElementTextMitBeschriftungErsetztZurueck(Util_WertBereinigtZurueck($werkzeug.attr("modal_title"), undefined), {
+        Liste_ElementBeschriftungErsetztZurueck(Util_WertBereinigtZurueck($werkzeug.attr("modal_title"), undefined), {
             liste1: liste,
         }),
         "gruppieren_manip_modal",

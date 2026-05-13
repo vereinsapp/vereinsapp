@@ -7,10 +7,10 @@ LISTEN.strafkatalog.element_erstellen_data_vervollstaendigen_aktion = function (
 };
 
 LISTEN.strafkatalog.element_aendern_data_vervollstaendigen_aktion = function (data, strafe_id) {
-    if (!("titel" in data)) data.titel = Liste_VariableRausZurueck("titel", strafe_id, "strafkatalog", undefined);
-    if (!("wert" in data)) data.wert = Liste_VariableRausZurueck("wert", strafe_id, "strafkatalog", undefined);
-    if (!("kategorie" in data)) data.kategorie = Liste_VariableRausZurueck("kategorie", strafe_id, "strafkatalog", undefined);
-    if (!("bemerkung" in data)) data.bemerkung = Liste_VariableRausZurueck("bemerkung", strafe_id, "strafkatalog", null);
+    if (!("titel" in data)) data.titel = Liste_ElementWertRausZurueck("titel", strafe_id, "strafkatalog", undefined);
+    if (!("wert" in data)) data.wert = Liste_ElementWertRausZurueck("wert", strafe_id, "strafkatalog", undefined);
+    if (!("kategorie" in data)) data.kategorie = Liste_ElementWertRausZurueck("kategorie", strafe_id, "strafkatalog", undefined);
+    if (!("bemerkung" in data)) data.bemerkung = Liste_ElementWertRausZurueck("bemerkung", strafe_id, "strafkatalog", null);
 
     data = Util_WertBereinigtZurueck(data, new Object());
 

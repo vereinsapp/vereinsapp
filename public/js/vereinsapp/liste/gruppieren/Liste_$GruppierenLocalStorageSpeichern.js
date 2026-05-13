@@ -32,6 +32,6 @@ function Liste_$GruppierenLocalStorageSpeichern($gruppieren_localstorage) {
 
     Liste_EventLocalstorageAktualisieren(liste);
     Liste_EventVariableListenAktualisieren(liste);
-    Liste_ElementErgaenzen(liste);
+    Liste_ElementWertErgaenzen(liste);
     Liste_EventDomAktualisieren(liste);
 }

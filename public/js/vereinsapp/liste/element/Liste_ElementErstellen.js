@@ -10,7 +10,7 @@
 function Liste_ElementErstellen(data_vollstaendig, dom, data, modal_title, element_id, liste) {
     if (!data_vollstaendig) {
         const $modal = Dom_$ModalInitialisiertZurueck(
-            Liste_ElementTextMitBeschriftungErsetztZurueck(modal_title, {
+            Liste_ElementBeschriftungErsetztZurueck(modal_title, {
                 element1: { liste: liste },
             }),
             LISTEN[liste].element + "_basiseigenschaften",
@@ -41,19 +41,19 @@ function Liste_ElementErstellen(data_vollstaendig, dom, data, modal_title, eleme
                 const element_id = AJAX.data[LISTEN[liste].element + "_id"];
                 delete AJAX.data[LISTEN[liste].element + "_id"];
 
-                Liste_VariableRein(element_id, "id", element_id, liste);
+                Liste_ElementWertRein(element_id, "id", element_id, liste);
                 $.each(AJAX.data, function (eigenschaft, wert) {
-                    Liste_VariableRein(wert, eigenschaft, element_id, liste);
+                    Liste_ElementWertRein(wert, eigenschaft, element_id, liste);
                 });
 
                 Liste_EventLocalstorageAktualisieren(liste);
                 Liste_EventVariableListenAktualisieren(liste);
-                Liste_ElementErgaenzen(liste);
+                Liste_ElementWertErgaenzen(liste);
                 Liste_EventDomAktualisieren(liste);
 
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) Dom_$ModalSchliessen(AJAX.dom.$modal);
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_erstellen.beschriftung.erfolg, {
+                    Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.element_erstellen.beschriftung.erfolg, {
                         element1: { liste: liste, [LISTEN[liste].element + "_id"]: element_id },
                     }),
                 );
@@ -63,7 +63,7 @@ function Liste_ElementErstellen(data_vollstaendig, dom, data, modal_title, eleme
                 else if (isObject(AJAX.antwort.validation) && "dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
                     Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
                 Dom_ToastFeuern(
-                    Liste_ElementTextMitBeschriftungErsetztZurueck(WERKZEUGE.element_erstellen.beschriftung.fehler, {
+                    Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.element_erstellen.beschriftung.fehler, {
                         element1: { liste: AJAX.data.liste },
                     }),
                     "danger",

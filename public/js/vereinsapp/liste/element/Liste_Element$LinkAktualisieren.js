@@ -13,7 +13,7 @@ function Liste_Element$LinkAktualisieren($link, $element) {
     else href += liste;
     if ("eigenschaften" in link_data && isArray(link_data.eigenschaften))
         $.each(link_data.eigenschaften, function (position, eigenschaft) {
-            href += "/" + Liste_VariableRausZurueck(eigenschaft, element_id, liste, undefined);
+            href += "/" + Liste_ElementWertRausZurueck(eigenschaft, element_id, liste, undefined);
         });
 
     $link.attr("href", href);

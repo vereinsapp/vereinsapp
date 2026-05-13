@@ -8,11 +8,11 @@ LISTEN.notenbank.element_erstellen_data_vervollstaendigen_aktion = function (dat
 };
 
 LISTEN.notenbank.element_aendern_data_vervollstaendigen_aktion = function (data, titel_id) {
-    if (!("titel" in data)) data.titel = Liste_VariableRausZurueck("titel", titel_id, "notenbank", undefined);
-    if (!("titel_nr" in data)) data.titel_nr = Liste_VariableRausZurueck("titel_nr", titel_id, "notenbank", undefined);
-    if (!("kategorie" in data)) data.kategorie = Liste_VariableRausZurueck("kategorie", titel_id, "notenbank", undefined);
-    if (!("komponist" in data)) data.komponist = Liste_VariableRausZurueck("komponist", titel_id, "notenbank", null);
-    if (!("bemerkung" in data)) data.bemerkung = Liste_VariableRausZurueck("bemerkung", titel_id, "notenbank", null);
+    if (!("titel" in data)) data.titel = Liste_ElementWertRausZurueck("titel", titel_id, "notenbank", undefined);
+    if (!("titel_nr" in data)) data.titel_nr = Liste_ElementWertRausZurueck("titel_nr", titel_id, "notenbank", undefined);
+    if (!("kategorie" in data)) data.kategorie = Liste_ElementWertRausZurueck("kategorie", titel_id, "notenbank", undefined);
+    if (!("komponist" in data)) data.komponist = Liste_ElementWertRausZurueck("komponist", titel_id, "notenbank", null);
+    if (!("bemerkung" in data)) data.bemerkung = Liste_ElementWertRausZurueck("bemerkung", titel_id, "notenbank", null);
 
     data = Util_WertBereinigtZurueck(data, new Object());
 

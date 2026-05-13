@@ -95,7 +95,9 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/element/Liste_ElementErstellen.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementAendern.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementLoeschen.js?v='.VERSION,
-        'js/vereinsapp/liste/element/Liste_ElementErgaenzen.js?v='.VERSION,
+        'js/vereinsapp/liste/element/Liste_ElementWertErgaenzen.js?v='.VERSION,
+        'js/vereinsapp/liste/element/Liste_ElementWertRein.js?v='.VERSION,
+        'js/vereinsapp/liste/element/Liste_ElementWertRausZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_$ElementAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$LinkAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$NavigationAktualisieren.js?v='.VERSION,
@@ -103,15 +105,13 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/element/Liste_Element$FormularWerteNachEigenschaftZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_Element$FormularValidationAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/element/Liste_ElementBeschriftungErweitertZurueck.js?v='.VERSION,
-        'js/vereinsapp/liste/element/Liste_ElementTextMitBeschriftungErsetztZurueck.js?v='.VERSION,
+        'js/vereinsapp/liste/element/Liste_ElementBeschriftungErsetztZurueck.js?v='.VERSION,
 
         'js/vereinsapp/liste/event/Liste_EventVariableListenAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/event/Liste_EventVariableVerknuepfungenAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/event/Liste_EventLocalstorageAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/event/Liste_EventDomAktualisieren.js?v='.VERSION,
 
-        'js/vereinsapp/liste/variable/Liste_VariableRein.js?v='.VERSION,
-        'js/vereinsapp/liste/variable/Liste_VariableRausZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/variable/Liste_VariableLoeschen.js?v='.VERSION,
 
         'js/vereinsapp/liste/filtern/Liste_$FilternModalOeffnen.js?v='.VERSION,
@@ -148,6 +148,8 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungErstellen.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungStatusAendern.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungBemerkungAendern.js?v='.VERSION,
+        'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungWertRein.js?v='.VERSION,
+        'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungWertRausZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_$VerknuepfungenAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungenInit.js?v='.VERSION,
 

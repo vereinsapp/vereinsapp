@@ -1,10 +1,10 @@
 /**
- * @param {string} text
+ * @param {string} beschriftung
  * @param {Object} data
  */
 
-function Liste_ElementTextMitBeschriftungErsetztZurueck(text, data) {
-    return text.replace(/\{(liste|element)(\d+)\}/g, (match, platzhalter, zaehler) => {
+function Liste_ElementBeschriftungErsetztZurueck(beschriftung, data) {
+    return beschriftung.replace(/\{(liste|element)(\d+)\}/g, (match, platzhalter, zaehler) => {
         try {
             if (platzhalter === "liste") {
                 // Platzhalter bezieht sich auf eine Liste
@@ -21,7 +21,7 @@ function Liste_ElementTextMitBeschriftungErsetztZurueck(text, data) {
                 } else return Liste_ElementBeschriftungErweitertZurueck(undefined, undefined) || match;
             } else return match;
         } catch (error) {
-            Log_InDieKonsole("Liste_ElementTextMitBeschriftungErsetztZurueck: Fehler beim Ersetzen von " + match);
+            Log_InDieKonsole("Liste_ElementBeschriftungErsetztZurueck: Fehler beim Ersetzen von " + match);
             return match; // Original bei Exception beibehalten
         }
     });
