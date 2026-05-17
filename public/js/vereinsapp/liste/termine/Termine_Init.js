@@ -71,13 +71,12 @@ LISTEN.termine.element_ergaenzen_aktion = function (termin) {
     termin.ich_eingeladen_janein = termin.mitglied_ids_eingeladen.includes(ICH_ID);
 
     termin.ich_rueckgemeldet_janein = false;
-    if ("zugeordnete_termine_rueckmeldung_ids" in termin)
-        $.each(termin.zugeordnete_termine_rueckmeldung_ids, function (position, rueckmeldung_id) {
-            if (Liste_VerknuepfungWertRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == ICH_ID) {
-                termin.ich_rueckgemeldet_janein = true;
-                return false;
-            }
-        });
+    $.each(VERKNUEPFUNGEN.termine_rueckmeldungen.verknuepfung_ids_nach_liste.termine[Number(termin.id)], function (position, rueckmeldung_id) {
+        if (Liste_VerknuepfungWertRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined) == ICH_ID) {
+            termin.ich_rueckgemeldet_janein = true;
+            return false;
+        }
+    });
 };
 
 ZUSATZSYMBOLE.termine_rueckmeldungen = new Object();

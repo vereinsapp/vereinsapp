@@ -41,30 +41,27 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                 delete AJAX.data.verknuepfungen;
 
                 const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
-                const verknuepfte_element_ids = new Object();
+                const verknuepfte_element_id = new Object();
                 $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
-                    verknuepfte_element_ids[LISTEN[verknuepfte_liste].element + "_id"] = AJAX.data[LISTEN[verknuepfte_liste].element + "_id"];
+                    verknuepfte_element_id[LISTEN[verknuepfte_liste].element + "_id"] = AJAX.data[LISTEN[verknuepfte_liste].element + "_id"];
                 });
 
                 // bereits vorhandene identische Verknüpfungen werden gelöscht
                 if (VERKNUEPFUNGEN[verknuepfungen].nur_eins_erlaubt_janein)
                     $.each(
-                        Liste_ElementWertRausZurueck(
-                            "zugeordnete_" + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids",
-                            verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
-                            verknuepfte_listen[0],
-                            new Array(),
-                        ),
-                        function (position, zugeordnete_verknuepfung_id) {
+                        VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[verknuepfte_listen[0]][
+                            Number(verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"])
+                        ],
+                        function (position, verknuepfung_id_nach_liste) {
                             if (
                                 Liste_VerknuepfungWertRausZurueck(
                                     LISTEN[verknuepfte_listen[1]].element + "_id",
-                                    zugeordnete_verknuepfung_id,
+                                    verknuepfung_id_nach_liste,
                                     verknuepfungen,
                                     undefined,
-                                ) === verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"]
+                                ) === verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"]
                             )
-                                Liste_VariableLoeschen(zugeordnete_verknuepfung_id, verknuepfungen);
+                                Liste_VariableLoeschen(verknuepfung_id_nach_liste, verknuepfungen);
                         },
                     );
 

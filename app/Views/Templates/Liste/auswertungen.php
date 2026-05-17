@@ -1,4 +1,4 @@
-<div id="<?= $auswertungen['instanz']; ?>" class="auswertungen w-100" auswertungen="<?= $auswertungen['auswertungen']; ?>" liste="<?= $auswertungen['liste']; ?>"<?php
+<div id="<?= $auswertungen['instanz']; ?>" class="auswertungen w-100" verknuepfungen="<?= $auswertungen['verknuepfungen']; ?>" liste="<?= $auswertungen['liste']; ?>"<?php
     if( array_key_exists( 'filtern', $auswertungen ) AND is_array( $auswertungen['filtern'] ) AND count( $auswertungen['filtern'] ) > 0 ) {
         ?> filtern='<?= json_encode( $auswertungen['filtern'], JSON_UNESCAPED_UNICODE ); ?>'<?php }
     if( array_key_exists( 'gruppieren', $auswertungen ) AND is_string( $auswertungen['gruppieren'] ) ) {

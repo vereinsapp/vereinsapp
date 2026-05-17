@@ -3,24 +3,24 @@
  */
 
 function Liste_$AuswertungAktualisieren($auswertung) {
-    const auswertungen = Util_WertBereinigtZurueck($auswertung.attr("auswertungen"), undefined);
+    const verknuepfungen = Util_WertBereinigtZurueck($auswertung.attr("verknuepfungen"), undefined);
     const liste = Util_WertBereinigtZurueck($auswertung.attr("liste"), undefined);
 
     // ERGEBNIS NACH STATUS ERMITTELN
     const ergebnis_nach_status = new Array();
-    $.each(Object.keys(VERKNUEPFUNGEN[auswertungen].status_erlaubt), function (position, status) {
+    $.each(Object.keys(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt), function (position, status) {
         ergebnis_nach_status[status] = new Array();
     });
     ergebnis_nach_status[0] = Util_WertBereinigtZurueck($auswertung.attr(LISTEN[liste].element + "_ids"), new Array());
     const ergebnis_referenz_anzahl = ergebnis_nach_status[0].length;
 
     $.each(
-        Util_WertBereinigtZurueck($auswertung.attr(VERKNUEPFUNGEN[auswertungen].verknuepfung + "_ids"), new Array()),
-        function (position, auswertung_id) {
-            ergebnis_nach_status[Liste_VerknuepfungWertRausZurueck("status", auswertung_id, auswertungen, undefined)].push(auswertung_id);
+        Util_WertBereinigtZurueck($auswertung.attr(VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids"), new Array()),
+        function (position, verknuepfung_id) {
+            ergebnis_nach_status[Liste_VerknuepfungWertRausZurueck("status", verknuepfung_id, verknuepfungen, undefined)].push(verknuepfung_id);
             ergebnis_nach_status[0] = ergebnis_nach_status[0].filter(
                 (element_id) =>
-                    element_id != Liste_VerknuepfungWertRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined),
+                    element_id != Liste_VerknuepfungWertRausZurueck(LISTEN[liste].element + "_id", verknuepfung_id, verknuepfungen, undefined),
             );
         },
     );
@@ -42,8 +42,8 @@ function Liste_$AuswertungAktualisieren($auswertung) {
         const $ergebnis = $(this);
 
         const filtern = { id: { inklusiv: new Array() } };
-        $.each(ergebnis_nach_status[Util_WertBereinigtZurueck($ergebnis.attr("status"), undefined)], function (position, auswertung_id) {
-            filtern.id.inklusiv.push(auswertung_id);
+        $.each(ergebnis_nach_status[Util_WertBereinigtZurueck($ergebnis.attr("status"), undefined)], function (position, verknuepfung_id) {
+            filtern.id.inklusiv.push(verknuepfung_id);
         });
         $ergebnis.attr("filtern", JsonStringifiedZurueck(filtern, new Object()));
     });

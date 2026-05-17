@@ -11,7 +11,7 @@ SERVERDATA_HOLEN_EVENTS.push(function (AJAX) {
         if ("verknuepfungen" in AJAX.antwort && isObject(AJAX.antwort.verknuepfungen))
             $.each(AJAX.antwort.verknuepfungen, function (verknuepfungen, serverdata) {
                 Localstorage_Rein(verknuepfungen + "_tabelle", serverdata.tabelle);
-                // Localstorage_Rein(verknuepfungen + "_verknuepfung_ids_nach_liste", serverdata.verknuepfung_ids_nach_liste);
+                Localstorage_Rein(verknuepfungen + "_verknuepfung_ids_nach_liste", serverdata.verknuepfung_ids_nach_liste);
             });
     }
 });
@@ -68,32 +68,28 @@ ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION = function ($zusatzsymbol, $el
 
     const verknuepfungen = Util_WertBereinigtZurueck($zusatzsymbol.attr("zusatzsymbol"), undefined);
     const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
-    const verknuepfte_element_ids = new Object();
+    const verknuepfte_element_id = new Object();
     $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
-        const verknuepfte_element_id = Util_WertBereinigtZurueck($element.attr(LISTEN[verknuepfte_liste].element + "_id"), undefined);
-        if (typeof verknuepfte_element_id !== "undefined")
-            verknuepfte_element_ids[LISTEN[verknuepfte_liste].element + "_id"] = verknuepfte_element_id;
+        const element_id = Util_WertBereinigtZurueck($element.attr(LISTEN[verknuepfte_liste].element + "_id"), undefined);
+        if (typeof element_id !== "undefined") verknuepfte_element_id[LISTEN[verknuepfte_liste].element + "_id"] = element_id;
     });
-    verknuepfte_element_ids[LISTEN[liste].element + "_id"] = Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
+    verknuepfte_element_id[LISTEN[liste].element + "_id"] = Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
 
     let verknuepfung_id = undefined;
     $.each(
-        Liste_ElementWertRausZurueck(
-            "zugeordnete_" + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids",
-            verknuepfte_element_ids[LISTEN[verknuepfte_listen[0]].element + "_id"],
-            verknuepfte_listen[0],
-            new Array(),
-        ),
-        function (position, zugeordnete_verknuepfung_id) {
+        VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[verknuepfte_listen[0]][
+            Number(verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"])
+        ],
+        function (position, verknuepfung_id_nach_liste) {
             if (
                 Liste_VerknuepfungWertRausZurueck(
                     LISTEN[verknuepfte_listen[1]].element + "_id",
-                    zugeordnete_verknuepfung_id,
+                    verknuepfung_id_nach_liste,
                     verknuepfungen,
                     undefined,
-                ) === verknuepfte_element_ids[LISTEN[verknuepfte_listen[1]].element + "_id"]
+                ) === verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"]
             )
-                verknuepfung_id = zugeordnete_verknuepfung_id;
+                verknuepfung_id = verknuepfung_id_nach_liste;
         },
     );
 

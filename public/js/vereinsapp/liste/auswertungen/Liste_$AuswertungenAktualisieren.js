@@ -3,7 +3,7 @@
  */
 
 function Liste_$AuswertungenAktualisieren($auswertungen) {
-    const auswertungen = Util_WertBereinigtZurueck($auswertungen.attr("auswertungen"), undefined);
+    const verknuepfungen = Util_WertBereinigtZurueck($auswertungen.attr("verknuepfungen"), undefined);
     const instanz = Util_WertBereinigtZurueck($auswertungen.attr("id"), undefined);
     const liste = Util_WertBereinigtZurueck($auswertungen.attr("liste"), undefined);
     const $auswertungen_auswertungen = $auswertungen.find(".auswertungen_auswertungen");
@@ -37,8 +37,8 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
     });
     const gruppieren_werte_sortiert = gruppieren_werte.sort();
 
-    // AUSWERTUNG_IDS DEFINIEREN
-    const verknuepfte_listen = VERKNUEPFUNGEN[auswertungen].verknuepfte_listen;
+    // VERKNUEPFUNG_IDS DEFINIEREN
+    const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
     let andere_verknuepfte_liste = liste;
     $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
         if (verknuepfte_liste !== liste) andere_verknuepfte_liste = verknuepfte_liste;
@@ -48,24 +48,24 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
     });
     const andere_verknuepfte_element_id = Util_WertBereinigtZurueck($auswertungen.attr(LISTEN[andere_verknuepfte_liste].element + "_id"), undefined);
 
-    const auswertung_ids = new Array();
-    const auswertung_ids_nach_wert = new Object();
+    const verknuepfung_ids = new Array();
+    const verknuepfung_ids_nach_wert = new Object();
     $.each(
-        Liste_VariableRausZurueck(
-            "zugeordnete_" + VERKNUEPFUNGEN[auswertungen].verknuepfung + "_ids",
-            andere_verknuepfte_element_id,
-            andere_verknuepfte_liste,
-            new Array(),
-        ),
-        function (position, auswertung_id) {
-            const element_id = Liste_VerknuepfungWertRausZurueck(LISTEN[liste].element + "_id", auswertung_id, auswertungen, undefined);
+        VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[andere_verknuepfte_liste][andere_verknuepfte_element_id],
+        function (position, verknuepfung_id_nach_liste) {
+            const element_id = Liste_VerknuepfungWertRausZurueck(
+                LISTEN[liste].element + "_id",
+                verknuepfung_id_nach_liste,
+                verknuepfungen,
+                undefined,
+            );
             const wert = Liste_ElementWertRausZurueck(gruppieren, element_id, liste, undefined);
             if (element_ids.includes(element_id)) {
-                if (!auswertung_ids.includes(auswertung_id)) auswertung_ids.push(auswertung_id);
-                if (!(wert in auswertung_ids_nach_wert)) auswertung_ids_nach_wert[wert] = [auswertung_id];
-                else auswertung_ids_nach_wert[wert].push(auswertung_id);
+                if (!verknuepfung_ids.includes(verknuepfung_id_nach_liste)) verknuepfung_ids.push(verknuepfung_id_nach_liste);
+                if (!(wert in verknuepfung_ids_nach_wert)) verknuepfung_ids_nach_wert[wert] = [verknuepfung_id_nach_liste];
+                else verknuepfung_ids_nach_wert[wert].push(verknuepfung_id_nach_liste);
             } else {
-                /* auswertung_id existiert zwar, aber zugehörige element_id wird garnicht berücksichtigt */
+                /* verknuepfung_id_nach_liste existiert zwar, aber zugehörige element_id wird garnicht berücksichtigt */
             }
         },
     );
@@ -82,14 +82,14 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
     $.each(gruppieren_werte_sortiert, function (position, wert) {
         let $auswertung = $auswertungen_auswertungen.find('.auswertung[wert="' + wert + '"]');
         if (!$auswertung.exists())
-            $auswertung = VERKNUEPFUNGEN[auswertungen].instanz[instanz].$blanko_auswertung.clone().removeClass("blanko invisible");
+            $auswertung = VERKNUEPFUNGEN[verknuepfungen].instanz[instanz].$blanko_auswertung.clone().removeClass("blanko invisible");
 
-        $auswertung.attr("auswertungen", auswertungen).attr("liste", liste);
+        $auswertung.attr("verknuepfungen", verknuepfungen).attr("liste", liste);
 
         if (wert !== null) {
             // Auswertung ist Standard
             $auswertung
-                .attr(VERKNUEPFUNGEN[auswertungen].verknuepfung + "_ids", JsonStringifiedZurueck(auswertung_ids_nach_wert[wert], new Array()))
+                .attr(VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids", JsonStringifiedZurueck(verknuepfung_ids_nach_wert[wert], new Array()))
                 .attr("wert", wert)
                 .attr(LISTEN[liste].element + "_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
                 .attr("beschriftung", Liste_WertNachEigenschaftFormatiertZurueck(wert, gruppieren, liste));
@@ -100,7 +100,7 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
         } else {
             // Auswertung ist Zusammenfassung
             $auswertung
-                .attr(VERKNUEPFUNGEN[auswertungen].verknuepfung + "_ids", JsonStringifiedZurueck(auswertung_ids, new Array()))
+                .attr(VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids", JsonStringifiedZurueck(verknuepfung_ids, new Array()))
                 // .attr("wert", wert)
                 // .attr(LISTEN[liste].element + "_ids", JsonStringifiedZurueck(element_ids, new Array()))
                 .attr("beschriftung", "Gesamt");

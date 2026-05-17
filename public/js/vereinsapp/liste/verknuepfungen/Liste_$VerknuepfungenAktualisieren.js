@@ -45,22 +45,19 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
 
         let verknuepfung_id = undefined;
         $.each(
-            Liste_ElementWertRausZurueck(
-                "zugeordnete_" + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids",
-                verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"],
-                verknuepfte_listen[0],
-                new Array(),
-            ),
-            function (position, zugeordnete_verknuepfung_id) {
+            VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[verknuepfte_listen[0]][
+                Number(verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"])
+            ],
+            function (position, verknuepfung_id_nach_liste) {
                 if (
                     Liste_VerknuepfungWertRausZurueck(
                         LISTEN[verknuepfte_listen[1]].element + "_id",
-                        zugeordnete_verknuepfung_id,
+                        verknuepfung_id_nach_liste,
                         verknuepfungen,
                         undefined,
                     ) === verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"]
                 )
-                    verknuepfung_id = zugeordnete_verknuepfung_id;
+                    verknuepfung_id = verknuepfung_id_nach_liste;
             },
         );
 

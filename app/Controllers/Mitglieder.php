@@ -112,7 +112,7 @@ class Mitglieder extends BaseController {
         $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'] = array();
 
         $this->viewdata['auswertungen']['rueckmeldungen_mitglied'] = array(
-            'auswertungen' => 'termine_rueckmeldungen',
+            'verknuepfungen' => 'termine_rueckmeldungen',
             'gruppieren' => 'kategorie',
             'liste' => 'termine',
             'filtern' => MITGLIEDER_AUSWERTUNGEN_FILTERN['termine_rueckmeldungen'],
@@ -123,7 +123,7 @@ class Mitglieder extends BaseController {
         );
 
         $this->viewdata['auswertungen']['anwesenheiten_mitglied'] = array(
-            'auswertungen' => 'termine_anwesenheiten',
+            'verknuepfungen' => 'termine_anwesenheiten',
             'gruppieren' => 'kategorie',
             'liste' => 'termine',
             'filtern' => MITGLIEDER_AUSWERTUNGEN_FILTERN['termine_anwesenheiten'],

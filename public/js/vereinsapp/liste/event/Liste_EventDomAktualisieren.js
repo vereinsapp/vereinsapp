@@ -17,12 +17,12 @@ function Liste_EventDomAktualisieren(liste) {
         // AUSWERTUNGEN AKTUALISIEREN
         $.each(VERKNUEPFUNGEN, function (verknuepfungen, eigenschaften) {
             if (eigenschaften.verknuepfte_listen.includes(liste)) {
-                $('.auswertungen[auswertungen="' + verknuepfungen + '"]').each(function () {
+                $('.auswertungen[verknuepfungen="' + verknuepfungen + '"]').each(function () {
                     Liste_$AuswertungenAktualisieren($(this));
                 });
 
                 // AUSWERTUNG AKTUALISIEREN
-                $('.auswertung[auswertungen="' + verknuepfungen + '"]').each(function () {
+                $('.auswertung[verknuepfungen="' + verknuepfungen + '"]').each(function () {
                     Liste_$AuswertungAktualisieren($(this));
                 });
             }

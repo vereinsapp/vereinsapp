@@ -57,7 +57,6 @@ auswertung-Views vereinheitlichen?
 liste aus link_data loswerden
 Lässt sich Liste_ElementWertErgaenzen in Liste_EventVariableListenAktualisieren integrieren?
     Dann muss Liste_EventVariableListenAktualisieren("termine") immer nach Liste_EventVariableListenAktualisieren("mitglieder") aufgerufen werden (siehe LISTEN.termine.element_ergaenzen_aktion)
-auswertung(en) umbenennen in verknuepfung(en)
 Alles außerhalb der _Init-Funktionen nach innen verschieben (außer Initialisierungen), dann die Reihenfolge der _Init-Funktionen optimieren
 Braucht es im Toast wirklich erweiterte Beschriftung?
 

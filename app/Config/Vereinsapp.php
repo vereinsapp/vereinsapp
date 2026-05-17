@@ -786,10 +786,6 @@ class Vereinsapp extends BaseConfig
             'passwort_alt' => array( 'beschriftung' => 'Altes Passwort', 'typ' => 'text' ),                 // PHP
             'passwort_neu' => array( 'beschriftung' => 'Neues Passwort', 'typ' => 'text' ),                 // PHP
             'passwort_neu2' => array( 'beschriftung' => 'Neues Passwort (Wiederholung)', 'typ' => 'text' ), // PHP
-            'zugeordnete_vergebenes_recht_ids' => array( 'beschriftung' => 'Zugeordnete vergebene Rechte', 'typ' => 'element_ids' ),            // JAVA
-            'zugeordnete_aufgaben_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Aufgaben-Rückmeldungen', 'typ' => 'element_ids' ), // JAVA
-            'zugeordnete_termine_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Termine-Rückmeldungen', 'typ' => 'element_ids' ),   // JAVA
-            'zugeordnete_termine_anwesenheit_ids' => array( 'beschriftung' => 'Zugeordnete Anwesenheiten', 'typ' => 'element_ids' ),            // JAVA
         ),
 
         'verfuegbare_rechte' => array(
@@ -814,8 +810,6 @@ class Vereinsapp extends BaseConfig
             'titel' => array( 'beschriftung' => 'Titel', 'typ' => 'text' ),
             'max_anzahl_mitglieder' => array( 'beschriftung' => 'Max. Anzahl an eingetragenen Mitgliedern', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'zugeordnete_aufgaben_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Rückmeldungen', 'typ' => 'element_ids' ),  // JAVA
-            'zugeordnete_aufgaben_zuordnung_termine_ids' => array( 'beschriftung' => 'Zugeordnete Termine', 'typ' => 'element_ids' ),   // JAVA
         ),
 
         'aufgaben_rueckmeldungen' => array(
@@ -856,10 +850,6 @@ class Vereinsapp extends BaseConfig
             'mitglied_ids_eingeladen' => array( 'beschriftung' => 'Eingeladene Mitglieder', 'typ' => 'element_ids' ),   // JAVA
             'ich_eingeladen_janein' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'janein' ),              // JAVA
             'ich_rueckgemeldet_janein' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'janein' ), // JAVA
-            'zugeordnete_aufgaben_zuordnung_termine_ids' => array( 'beschriftung' => 'Zugeordnete Aufgaben', 'typ' => 'element_ids' ),  // JAVA
-            'zugeordnete_termine_rueckmeldung_ids' => array( 'beschriftung' => 'Zugeordnete Rückmeldungen', 'typ' => 'element_ids' ),   // JAVA
-            'zugeordnete_termine_anwesenheit_ids' => array( 'beschriftung' => 'Zugeordnete Anwesenheiten', 'typ' => 'element_ids' ),    // JAVA
-            'zugeordnete_notenbank_setlisteneintrag_ids' => array( 'beschriftung' => 'Zugeordnete Setliste', 'typ' => 'element_ids' ),  // JAVA
         ),
 
         'termine_rueckmeldungen' => array(
@@ -918,7 +908,6 @@ class Vereinsapp extends BaseConfig
             'anzahl_noten' => array( 'beschriftung' => 'Anzahl Noten', 'typ' => 'zahl' ),               // JAVA
             'anzahl_audio' => array( 'beschriftung' => 'Anzahl Audio', 'typ' => 'zahl' ),               // JAVA
             'anzahl_verzeichnis' => array( 'beschriftung' => 'Anzahl Verzeichnisse', 'typ' => 'zahl' ), // JAVA
-            'zugeordnete_notenbank_setlisteneintrag_ids' => array( 'beschriftung' => 'Zugeordnete Setliste', 'typ' => 'element_ids' ),  // JAVA
         ),
 
         'notenbank_setliste' => array(
