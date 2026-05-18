@@ -78,7 +78,7 @@ ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION = function ($zusatzsymbol, $el
     let verknuepfung_id = undefined;
     $.each(
         VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[verknuepfte_listen[0]][
-            Number(verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"])
+            verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"]
         ],
         function (position, verknuepfung_id_nach_liste) {
             if (

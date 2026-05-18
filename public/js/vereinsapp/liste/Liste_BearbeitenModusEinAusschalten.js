@@ -9,7 +9,7 @@ function Liste_BearbeitenModusEinAusschalten(instanz, liste) {
     if (bearbeiten_modus !== false) LISTEN[liste].instanz[instanz].bearbeiten_modus = false;
     else LISTEN[liste].instanz[instanz].bearbeiten_modus = true;
 
-    Liste_EventLocalstorageAktualisieren(liste);
+    Liste_EventLocalstorageListenAktualisieren(liste);
     Liste_EventVariableListenAktualisieren(liste);
     Liste_ElementWertErgaenzen(liste);
     Liste_EventDomAktualisieren(liste);

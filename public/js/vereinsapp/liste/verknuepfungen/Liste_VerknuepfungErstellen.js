@@ -43,14 +43,18 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                 const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
                 const verknuepfte_element_id = new Object();
                 $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
-                    verknuepfte_element_id[LISTEN[verknuepfte_liste].element + "_id"] = AJAX.data[LISTEN[verknuepfte_liste].element + "_id"];
+                    verknuepfte_element_id[LISTEN[verknuepfte_liste].element + "_id"] = Util_WertBereinigtZurueck(
+                        AJAX.data[LISTEN[verknuepfte_liste].element + "_id"],
+                        undefined,
+                    );
                 });
 
-                // bereits vorhandene identische Verknüpfungen werden gelöscht
-                if (VERKNUEPFUNGEN[verknuepfungen].nur_eins_erlaubt_janein)
+                if (VERKNUEPFUNGEN[verknuepfungen].nur_eins_erlaubt_janein) {
+                    // bereits vorhandene identische Verknüpfungen werden identifiziert
+                    const bereits_vorhandene_identische_verknuepfungen = new Array();
                     $.each(
                         VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[verknuepfte_listen[0]][
-                            Number(verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"])
+                            verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"]
                         ],
                         function (position, verknuepfung_id_nach_liste) {
                             if (
@@ -61,9 +65,23 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                                     undefined,
                                 ) === verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"]
                             )
-                                Liste_VariableLoeschen(verknuepfung_id_nach_liste, verknuepfungen);
+                                bereits_vorhandene_identische_verknuepfungen.push(verknuepfung_id_nach_liste);
                         },
                     );
+
+                    // bereits vorhandene identische Verknüpfungen werden gelöscht
+                    $.each(bereits_vorhandene_identische_verknuepfungen, function (position, bereits_vorhandene_identische_verknuepfung_id) {
+                        VERKNUEPFUNGEN[verknuepfungen].tabelle[bereits_vorhandene_identische_verknuepfung_id] = undefined;
+
+                        $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
+                            VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[verknuepfte_liste][
+                                verknuepfte_element_id[LISTEN[verknuepfte_liste].element + "_id"]
+                            ] = VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[verknuepfte_liste][
+                                verknuepfte_element_id[LISTEN[verknuepfte_liste].element + "_id"]
+                            ].filter((verknuepfung_id_) => verknuepfung_id_ != bereits_vorhandene_identische_verknuepfung_id);
+                        });
+                    });
+                }
 
                 // eine neue Verknüpfung wird hinzugefügt
                 if (AJAX.data.status > 0) {
@@ -79,6 +97,12 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                     $.each(AJAX.data, function (eigenschaft, wert) {
                         Liste_VerknuepfungWertRein(wert, eigenschaft, verknuepfung_id, verknuepfungen);
                     });
+
+                    $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
+                        VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[verknuepfte_liste][
+                            verknuepfte_element_id[LISTEN[verknuepfte_liste].element + "_id"]
+                        ].push(verknuepfung_id);
+                    });
                 }
 
                 if ("dbdata" in AJAX.antwort && isArray(AJAX.antwort.dbdata))
@@ -89,7 +113,7 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                             });
                     });
 
-                Liste_EventLocalstorageAktualisieren(verknuepfungen);
+                Liste_EventLocalstorageVerknuepfungenAktualisieren(verknuepfungen);
                 Liste_EventVariableVerknuepfungenAktualisieren(verknuepfungen);
                 $.each(VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen, function (position, liste) {
                     Liste_EventDomAktualisieren(liste);

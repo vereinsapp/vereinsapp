@@ -22,19 +22,17 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
             const verknuepfung_id = AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"];
             delete AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"];
 
-            $.each(AJAX.data, function (eigenschaft, wert) {
-                Liste_VerknuepfungWertRausZurueck(wert, eigenschaft, verknuepfung_id, verknuepfungen);
-            });
+            Liste_VerknuepfungWertRein(AJAX.data.status, "status", verknuepfung_id, verknuepfungen);
 
             if ("dbdata" in AJAX.antwort && isArray(AJAX.antwort.dbdata))
                 $.each(AJAX.antwort.dbdata, function (position, element) {
                     if ("id" in element)
                         $.each(element, function (eigenschaft, wert) {
-                            Liste_VerknuepfungWertRausZurueck(wert, eigenschaft, Number(element.id), verknuepfungen);
+                            Liste_VerknuepfungWertRein(wert, eigenschaft, Number(element.id), verknuepfungen);
                         });
                 });
 
-            Liste_EventLocalstorageAktualisieren(verknuepfungen);
+            Liste_EventLocalstorageVerknuepfungenAktualisieren(verknuepfungen);
             Liste_EventVariableVerknuepfungenAktualisieren(verknuepfungen);
             $.each(VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen, function (position, liste) {
                 Liste_EventDomAktualisieren(liste);

@@ -44,7 +44,17 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
                     },
                 }); // Toast-Text zwischenspeichern, bevor Element gelöscht wird
 
-                Liste_VariableLoeschen(element_id, liste);
+                // eigentliches Element löschen
+                LISTEN[liste].tabelle[element_id] = undefined;
+
+                // Element in VERKNUEPFUNGEN löschen
+                $.each(VERKNUEPFUNGEN, function (verknuepfungen) {
+                    if (
+                        liste in VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste &&
+                        VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[liste][element_id]
+                    )
+                        VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[liste][element_id] = undefined;
+                });
 
                 if ("dbdata" in AJAX.antwort && isArray(AJAX.antwort.dbdata))
                     $.each(AJAX.antwort.dbdata, function (position, element) {
@@ -54,7 +64,7 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
                             });
                     });
 
-                Liste_EventLocalstorageAktualisieren(liste);
+                Liste_EventLocalstorageListenAktualisieren(liste);
                 Liste_EventVariableListenAktualisieren(liste);
                 Liste_ElementWertErgaenzen(liste);
                 Liste_EventDomAktualisieren(liste);

@@ -15,17 +15,13 @@ function Liste_EventDomAktualisieren(liste) {
         });
 
         // AUSWERTUNGEN AKTUALISIEREN
-        $.each(VERKNUEPFUNGEN, function (verknuepfungen, eigenschaften) {
-            if (eigenschaften.verknuepfte_listen.includes(liste)) {
-                $('.auswertungen[verknuepfungen="' + verknuepfungen + '"]').each(function () {
-                    Liste_$AuswertungenAktualisieren($(this));
-                });
+        $('.auswertungen[liste="' + liste + '"]').each(function () {
+            Liste_$AuswertungenAktualisieren($(this));
+        });
 
-                // AUSWERTUNG AKTUALISIEREN
-                $('.auswertung[verknuepfungen="' + verknuepfungen + '"]').each(function () {
-                    Liste_$AuswertungAktualisieren($(this));
-                });
-            }
+        // AUSWERTUNG AKTUALISIEREN
+        $('.auswertung[liste="' + liste + '"]').each(function () {
+            Liste_$AuswertungAktualisieren($(this));
         });
 
         // VERZEICHNIS AKTUALISIEREN

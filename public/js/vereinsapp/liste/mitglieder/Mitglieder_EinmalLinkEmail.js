@@ -25,7 +25,7 @@ function Mitglieder_EinmalLinkEmail(bestaetigt, dom, modal_title, mitglied_id) {
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                Liste_EventLocalstorageAktualisieren("mitglieder");
+                Liste_EventLocalstorageListenAktualisieren("mitglieder");
                 Liste_EventVariableListenAktualisieren("mitglieder");
                 Liste_ElementWertErgaenzen("mitglieder");
                 Liste_EventDomAktualisieren("mitglieder");

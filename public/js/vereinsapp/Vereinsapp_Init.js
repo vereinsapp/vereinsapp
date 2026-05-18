@@ -67,7 +67,8 @@ VERKNUEPFUNGEN komplett loslösen aus LISTEN -> zuordnung dann nach php verschie
     VARIABLE_AKTUALISIEREN_EVENTS in eigene Variable_Init verschieben (vorher variable-Ordnerstruktur anlegen)
     instanz[instanz].$blanko_auswertung umbauen zu $blanko_auswertung[instanz], dann instanz aus VERKNUEPFUNGEN/LISTEN[auswertungen/verknuepfungen] entfernen
     Braucht es die Einträge für Verkuepfungen in den Eigenschaften, Vorgegebene Werte, etc. noch?
-    Liste_VariableLoeschen "zugeordnete_" + LISTEN[liste].element + "_ids" umbauen zu verknuepfung_ids_nach_liste
+    Liste_VerknuepfungBemerkungAendern data reduzieren auf lediglich bemerkung (analog zu Liste_VerknuepfungStatusAendern)
+    VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste in den Localstorage schreiben
 
 ERLEDIGT
 

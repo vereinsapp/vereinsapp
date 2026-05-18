@@ -30,7 +30,7 @@ function Liste_$SortierenLocalStorageSpeichern($sortieren_localstorage) {
             );
     } else Log_InDieKonsole("Liste_$SortierenLocalStorageSpeichern: Eigenschaft " + eigenschaft + " existiert nicht in EIGENSCHAFTEN." + liste + "!");
 
-    Liste_EventLocalstorageAktualisieren(liste);
+    Liste_EventLocalstorageListenAktualisieren(liste);
     Liste_EventVariableListenAktualisieren(liste);
     Liste_ElementWertErgaenzen(liste);
     Liste_EventDomAktualisieren(liste);

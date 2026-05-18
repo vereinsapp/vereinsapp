@@ -59,9 +59,10 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
                 verknuepfungen,
                 undefined,
             );
-            const wert = Liste_ElementWertRausZurueck(gruppieren, element_id, liste, undefined);
             if (element_ids.includes(element_id)) {
                 if (!verknuepfung_ids.includes(verknuepfung_id_nach_liste)) verknuepfung_ids.push(verknuepfung_id_nach_liste);
+
+                const wert = Liste_ElementWertRausZurueck(gruppieren, element_id, liste, undefined);
                 if (!(wert in verknuepfung_ids_nach_wert)) verknuepfung_ids_nach_wert[wert] = [verknuepfung_id_nach_liste];
                 else verknuepfung_ids_nach_wert[wert].push(verknuepfung_id_nach_liste);
             } else {

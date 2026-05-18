@@ -109,10 +109,9 @@ class Vereinsapp_javascript extends BaseConfig
 
         'js/vereinsapp/liste/event/Liste_EventVariableListenAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/event/Liste_EventVariableVerknuepfungenAktualisieren.js?v='.VERSION,
-        'js/vereinsapp/liste/event/Liste_EventLocalstorageAktualisieren.js?v='.VERSION,
+        'js/vereinsapp/liste/event/Liste_EventLocalstorageListenAktualisieren.js?v='.VERSION,
+        'js/vereinsapp/liste/event/Liste_EventLocalstorageVerknuepfungenAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/event/Liste_EventDomAktualisieren.js?v='.VERSION,
-
-        'js/vereinsapp/liste/variable/Liste_VariableLoeschen.js?v='.VERSION,
 
         'js/vereinsapp/liste/filtern/Liste_$FilternModalOeffnen.js?v='.VERSION,
         'js/vereinsapp/liste/filtern/Liste_$FilternEigenschaftAktualisieren.js?v='.VERSION,

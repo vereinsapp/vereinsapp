@@ -38,11 +38,13 @@ function Liste_VerknuepfungBemerkungAendern(data_vollstaendig, dom, data, verknu
             ajax_dom,
             function (AJAX) {
                 const verknuepfungen = AJAX.data.verknuepfungen;
+                delete AJAX.data.verknuepfungen;
                 const verknuepfung_id = AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"];
+                delete AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"];
 
-                Liste_VerknuepfungWertRausZurueck(AJAX.data.bemerkung, "bemerkung", verknuepfung_id, verknuepfungen);
+                Liste_VerknuepfungWertRein(AJAX.data.bemerkung, "bemerkung", verknuepfung_id, verknuepfungen);
 
-                Liste_EventLocalstorageAktualisieren(verknuepfungen);
+                Liste_EventLocalstorageVerknuepfungenAktualisieren(verknuepfungen);
                 Liste_EventVariableVerknuepfungenAktualisieren(verknuepfungen);
                 $.each(VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen, function (position, liste) {
                     Liste_EventDomAktualisieren(liste);
