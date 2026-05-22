@@ -2,7 +2,7 @@
  * @param {string} verknuepfungen
  */
 
-function Liste_EventVariableVerknuepfungenAktualisieren(verknuepfungen) {
+function Liste_EventVerknuepfungenBereitstellen(verknuepfungen) {
     if (verknuepfungen in VERKNUEPFUNGEN) {
         VERKNUEPFUNGEN[verknuepfungen].tabelle = new Array();
         $.each(Localstorage_RausZurueck(verknuepfungen + "_tabelle", new Array()), function (position, verknuepfung) {

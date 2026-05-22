@@ -621,43 +621,10 @@ class Vereinsapp extends BaseConfig
             ),
         ),
 
-        'vergebene_rechte' => array(
-            'liste' => 'vergebene_rechte',
-            'filtern' => array(),
-            'sortieren' => array(),
-            'werkzeuge' => array(),
-            'listenstatistik' => array(),
-            'element' => array(
-                'werkzeuge' => array(),
-            ),
-        ),
-
         'aufgaben' => array(
             'liste' => 'aufgaben',
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
-            'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array(), ),
-            'element' => array(
-                'werkzeuge' => array(),
-            ),
-        ),
-
-        'aufgaben_rueckmeldungen' => array(
-            'liste' => 'aufgaben_rueckmeldungen',
-            'filtern' => array(),
-            'sortieren' => array(),
-            'werkzeuge' => array(),
-            'listenstatistik' => array(),
-            'element' => array(
-                'werkzeuge' => array(),
-            ),
-        ),
-
-        'aufgaben_zuordnungen_termine' => array(
-            'liste' => 'aufgaben_zuordnungen_termine',
-            'filtern' => array(),
-            'sortieren' => array( 'eigenschaft' => 'aufgabe_titel', 'richtung' => SORT_ASC, ),
             'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array( 'anzahl' => array(), ),
             'element' => array(
@@ -677,28 +644,6 @@ class Vereinsapp extends BaseConfig
             ),
         ),
 
-        'termine_rueckmeldungen' => array(
-            'liste' => 'termine_rueckmeldungen',
-            'filtern' => array(),
-            'sortieren' => array(),
-            'werkzeuge' => array(),
-            'listenstatistik' => array(),
-            'element' => array(
-                'werkzeuge' => array(),
-            ),
-        ),
-
-        'termine_anwesenheiten' => array(
-            'liste' => 'termine_anwesenheiten',
-            'filtern' => array(),
-            'sortieren' => array(),
-            'werkzeuge' => array(),
-            'listenstatistik' => array(),
-            'element' => array(
-                'werkzeuge' => array(),
-            ),
-        ),
-
         'strafkatalog' => array(
             'liste' => 'strafkatalog',
             'filtern' => array(),
@@ -710,32 +655,10 @@ class Vereinsapp extends BaseConfig
             ),
         ),
 
-        'strafkatalog_zugewiesene_strafen' => array(
-            'liste' => 'strafkatalog_zugewiesene_strafen',
-            'filtern' => array(),
-            'sortieren' => array(),
-            'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array(), 'summe' => array( 'eigenschaft' => 'strafe_wert', ), ),
-            'element' => array(
-                'werkzeuge' => array(),
-            ),
-        ),
-
         'notenbank' => array(
             'liste' => 'notenbank',
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
-            'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array(), ),
-            'element' => array(
-                'werkzeuge' => array(),
-            ),
-        ),
-
-        'notenbank_setliste' => array(
-            'liste' => 'notenbank_setliste',
-            'filtern' => array(),
-            'sortieren' => array( 'eigenschaft' => 'status', 'richtung' => SORT_ASC, ),
             'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
             'listenstatistik' => array( 'anzahl' => array(), ),
             'element' => array(
@@ -800,9 +723,6 @@ class Vereinsapp extends BaseConfig
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),                           // PHP
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),                                           // PHP
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),                                     // PHP
-            'verfuegbares_recht_titel' => array( 'beschriftung' => 'Titel des verfügbaren Rechts', 'typ' => 'text' ),   // JAVA
-            'mitglied_vorname' => array( 'beschriftung' => 'Vorname des Mitglieds', 'typ' => 'text' ),                  // JAVA
-            'mitglied_nachname' => array( 'beschriftung' => 'Nachname des Mitglieds', 'typ' => 'text' ),                // JAVA
         ),
 
         'aufgaben' => array(
@@ -818,9 +738,6 @@ class Vereinsapp extends BaseConfig
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'aufgabe_titel' => array( 'beschriftung' => 'Titel der Aufgabe', 'typ' => 'text' ),             // JAVA
-            'mitglied_vorname' => array( 'beschriftung' => 'Vorname des Mitglieds', 'typ' => 'text' ),      // JAVA
-            'mitglied_nachname' => array( 'beschriftung' => 'Nachname des Mitglieds', 'typ' => 'text' ),    // JAVA
         ),
 
         'aufgaben_zuordnungen_termine' => array(
@@ -829,12 +746,6 @@ class Vereinsapp extends BaseConfig
             'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'aufgabe_titel' => array( 'beschriftung' => 'Titel der Aufgabe', 'typ' => 'text' ),                 // JAVA
-            'aufgabe_max_anzahl_mitglieder' => array( 'beschriftung' => 'Max. Anzahl an eingetragenen Mitgliedern der Aufgabe', 'typ' => 'zahl' ), // JAVA
-            'termin_titel' => array( 'beschriftung' => 'Titel des Termins', 'typ' => 'text' ),                  // JAVA
-            'termin_start' => array( 'beschriftung' => 'Beginn des Termins', 'typ' => 'zeitpunkt' ),            // JAVA
-            'termin_ort' => array( 'beschriftung' => 'Ort des Termins', 'typ' => 'text' ),                      // JAVA
-            'termin_kategorie' => array( 'beschriftung' => 'Typ des Termins', 'typ' => 'vorgegebene_werte' ),   // JAVA
         ),
 
         'termine' => array(
@@ -848,6 +759,7 @@ class Vereinsapp extends BaseConfig
             'oeffentlich_janein' => array( 'beschriftung' => 'Öffentlich', 'typ' => 'janein' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
             'mitglied_ids_eingeladen' => array( 'beschriftung' => 'Eingeladene Mitglieder', 'typ' => 'element_ids' ),   // JAVA
+            'mitglied_ids_rueckgemeldet' => array( 'beschriftung' => 'Rückgemeldete Mitglieder', 'typ' => 'element_ids' ),   // JAVA
             'ich_eingeladen_janein' => array( 'beschriftung' => 'Ich bin eingeladen', 'typ' => 'janein' ),              // JAVA
             'ich_rueckgemeldet_janein' => array( 'beschriftung' => 'Ich habe Rückmeldung gegeben', 'typ' => 'janein' ), // JAVA
         ),
@@ -858,10 +770,6 @@ class Vereinsapp extends BaseConfig
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'termin_start' => array( 'beschriftung' => 'Beginn des Termins', 'typ' => 'zeitpunkt' ),        // JAVA
-            'termin_titel' => array( 'beschriftung' => 'Titel des Termins', 'typ' => 'text' ),              // JAVA
-            'mitglied_vorname' => array( 'beschriftung' => 'Vorname des Mitglieds', 'typ' => 'text' ),      // JAVA
-            'mitglied_nachname' => array( 'beschriftung' => 'Nachname des Mitglieds', 'typ' => 'text' ),    // JAVA
         ),
 
         'termine_anwesenheiten' => array(
@@ -870,10 +778,6 @@ class Vereinsapp extends BaseConfig
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'termin_start' => array( 'beschriftung' => 'Beginn des Termins', 'typ' => 'zeitpunkt' ),        // JAVA
-            'termin_titel' => array( 'beschriftung' => 'Titel des Termins', 'typ' => 'text' ),              // JAVA
-            'mitglied_vorname' => array( 'beschriftung' => 'Vorname des Mitglieds', 'typ' => 'text' ),      // JAVA
-            'mitglied_nachname' => array( 'beschriftung' => 'Nachname des Mitglieds', 'typ' => 'text' ),    // JAVA
         ),
 
         'strafkatalog' => array(
@@ -890,10 +794,6 @@ class Vereinsapp extends BaseConfig
             'mitglied_id' => array( 'beschriftung' => 'Mitglied-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Status', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'strafe_titel' => array( 'beschriftung' => 'Titel der Strafe', 'typ' => 'text' ),               // JAVA
-            'strafe_wert' => array( 'beschriftung' => 'Wert der Strafe', 'typ' => 'zahl' ),                 // JAVA
-            'mitglied_vorname' => array( 'beschriftung' => 'Vorname des Mitglieds', 'typ' => 'text' ),      // JAVA
-            'mitglied_nachname' => array( 'beschriftung' => 'Nachname des Mitglieds', 'typ' => 'text' ),    // JAVA
         ),
 
         'notenbank' => array(
@@ -916,15 +816,6 @@ class Vereinsapp extends BaseConfig
             'termin_id' => array( 'beschriftung' => 'Termin-ID', 'typ' => 'element_id' ),
             'status' => array( 'beschriftung' => 'Position', 'typ' => 'zahl' ),
             'bemerkung' => array( 'beschriftung' => 'Bemerkung', 'typ' => 'text' ),
-            'titel_titel' => array( 'beschriftung' => 'Titel des Titels', 'typ' => 'text' ),                                // JAVA
-            'titel_titel_nr' => array( 'beschriftung' => 'Titel-Nr. des Titels', 'typ' => 'zahl' ),                         // JAVA
-            'titel_kategorie' => array( 'beschriftung' => 'Genre des Titels', 'typ' => 'vorgegebene_werte' ),               // JAVA
-            'titel_komponist' => array( 'beschriftung' => 'Komponist des Titels', 'typ' => 'text' ),                        // JAVA
-            'titel_anzahl_noten' => array( 'beschriftung' => 'Anzahl Noten des Titels', 'typ' => 'zahl' ),                  // JAVA
-            'titel_anzahl_audio' => array( 'beschriftung' => 'Anzahl Audio des Titels', 'typ' => 'zahl' ),                  // JAVA
-            'titel_anzahl_verzeichnis' => array( 'beschriftung' => 'Anzahl Verzeichnisse des Titels', 'typ' => 'zahl' ),    // JAVA
-            'termin_start' => array( 'beschriftung' => 'Beginn des Termins', 'typ' => 'zeitpunkt' ),                        // JAVA
-            'termin_titel' => array( 'beschriftung' => 'Titel des Termins', 'typ' => 'text' ),                              // JAVA
         ),
 
     );
@@ -984,24 +875,10 @@ class Vereinsapp extends BaseConfig
 
         ),
 
-        'vergebene_rechte' => array(
+        'verfuegbare_rechte' => array(
         ),
 
         'aufgaben' => array(
-        ),
-
-        'aufgaben_rueckmeldungen' => array(
-        ),
-
-        'aufgaben_zuordnungen_termine' => array(
-
-            'termin_kategorie' => array (
-                'allgemein' => 'Allgemein',
-                'auftritt' => 'Auftritt',
-                'probe' => 'Musikprobe',
-                'vorstandschaftssitzung' => 'Vorstandschaftssitzung',
-            ),
-
         ),
 
         'termine' => array(
@@ -1015,12 +892,6 @@ class Vereinsapp extends BaseConfig
 
         ),
 
-        'termine_rueckmeldungen' => array(
-        ),
-
-        'termine_anwesenheiten' => array(
-        ),
-
         'strafkatalog' => array(
 
             'kategorie' => array (
@@ -1032,24 +903,9 @@ class Vereinsapp extends BaseConfig
 
         ),
 
-        'strafkatalog_zugewiesene_strafen' => array(
-        ),
-
         'notenbank' => array(
 
             'kategorie' => array (
-                'ohne' => 'Ohne Zuordnung',
-                'modern' => 'Modern',
-                'klassik' => 'Klassik',
-                'kirche' => 'Kirche',
-                'volkstuemlich' => 'Volkstümlich',
-            ),
-
-        ),
-
-        'notenbank_setliste' => array(
-
-            'titel_kategorie' => array (
                 'ohne' => 'Ohne Zuordnung',
                 'modern' => 'Modern',
                 'klassik' => 'Klassik',
@@ -1100,6 +956,9 @@ class Vereinsapp extends BaseConfig
             ),
         ),
 
+        'verfuegbare_rechte' => array(
+        ),
+
         'aufgaben' => array(
             'zuruecksetzen' => array(
                 'beschriftung' => 'Alle Filter zurücksetzen',
@@ -1136,6 +995,9 @@ class Vereinsapp extends BaseConfig
                 'beschriftung' => 'Alle Termine, zu denen ich keine Rückmeldung gegeben habe',
                 'filtern' => array( 'ich_rueckgemeldet_janein' => array( 'inklusiv' => array( FALSE ) ), 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ) ), ),
             ),
+        ),
+
+        'strafkatalog' => array(
         ),
 
         'notenbank' => array(
@@ -1185,13 +1047,6 @@ class Vereinsapp extends BaseConfig
             'max_anzahl_mitglieder',
         ),
 
-        'aufgaben_rueckmeldungen' => array(
-        ),
-
-        'aufgaben_zuordnungen_termine' => array(
-            'aufgabe_max_anzahl_mitglieder',
-        ),
-
         'termine' => array(
             'start',
             'kategorie',
@@ -1199,18 +1054,9 @@ class Vereinsapp extends BaseConfig
             'ich_rueckgemeldet_janein',
         ),
 
-        'termine_rueckmeldungen' => array(
-        ),
-
-        'termine_anwesenheiten' => array(
-        ),
-
         'strafkatalog' => array(
             'wert',
             'kategorie',
-        ),
-
-        'strafkatalog_zugewiesene_strafen' => array(
         ),
 
         'notenbank' => array(
@@ -1219,15 +1065,6 @@ class Vereinsapp extends BaseConfig
             'anzahl_noten',
             'anzahl_audio',
             'anzahl_verzeichnis',
-        ),
-
-        'notenbank_setliste' => array(
-            'status',
-            'titel_titel_nr',
-            'titel_kategorie',
-            'titel_anzahl_noten',
-            'titel_anzahl_audio',
-            'titel_anzahl_verzeichnis',
         ),
 
     );
@@ -1262,18 +1099,6 @@ class Vereinsapp extends BaseConfig
             'max_anzahl_mitglieder',
         ),
 
-        'aufgaben_rueckmeldungen' => array(
-        ),
-
-        'aufgaben_zuordnungen_termine' => array(
-            'aufgabe_titel',
-            'aufgabe_max_anzahl_mitglieder',
-            'termin_titel',
-            'termin_start',
-            'termin_ort',
-            'termin_kategorie',
-        ),
-
         'termine' => array(
             'titel',
             'start',
@@ -1281,19 +1106,10 @@ class Vereinsapp extends BaseConfig
             'kategorie',
         ),
 
-        'termine_rueckmeldungen' => array(
-        ),
-
-        'termine_anwesenheiten' => array(
-        ),
-
         'strafkatalog' => array(
             'titel',
             'wert',
             'kategorie',
-        ),
-
-        'strafkatalog_zugewiesene_strafen' => array(
         ),
 
         'notenbank' => array(
@@ -1304,17 +1120,6 @@ class Vereinsapp extends BaseConfig
             'anzahl_noten',
             'anzahl_audio',
             'anzahl_verzeichnis',
-        ),
-
-        'notenbank_setliste' => array(
-            'status',
-            'titel_titel',
-            'titel_titel_nr',
-            'titel_kategorie',
-            'titel_komponist',
-            'titel_anzahl_noten',
-            'titel_anzahl_audio',
-            'titel_anzahl_verzeichnis',
         ),
 
     );
@@ -1344,27 +1149,12 @@ class Vereinsapp extends BaseConfig
             'max_anzahl_mitglieder',
         ),
 
-        'aufgaben_rueckmeldungen' => array(
-        ),
-
-        'aufgaben_zuordnungen_termine' => array(
-        ),
-
         'termine' => array(
             'kategorie',
         ),
 
-        'termine_rueckmeldungen' => array(
-        ),
-
-        'termine_anwesenheiten' => array(
-        ),
-
         'strafkatalog' => array(
             'kategorie',
-        ),
-
-        'strafkatalog_zugewiesene_strafen' => array(
         ),
 
         'notenbank' => array(
@@ -1372,9 +1162,6 @@ class Vereinsapp extends BaseConfig
             'anzahl_noten',
             'anzahl_audio',
             'anzahl_verzeichnis',
-        ),
-
-        'notenbank_setliste' => array(
         ),
 
     );

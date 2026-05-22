@@ -12,7 +12,7 @@ function Serverdata_ServerdataHolen() {
                 if (typeof this === "function") this(AJAX);
             });
 
-            $.each(VARIABLE_AKTUALISIEREN_EVENTS, function () {
+            $.each(SERVERDATA_BEREITSTELLEN_EVENTS, function () {
                 if (typeof this === "function") this();
             });
 

@@ -34,8 +34,7 @@ Ausloggen, bevor Einmal-Link benutzt wird
 Select JANEIN als check umbauen
 Sass mixin für Integration der bootstrap-Farben in eigene Klassen?
 _basiseigenschaften_formular öffnen mit bestimmten eigenschaften vorausgefüllt
-weiches Löschen für abhängige Tabellen einführen
-Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details)
+Termin für Mitglied nur berücksichtigen, wenn Mitglied auch eingeladen ist (bspw. bei Auswertungen in Mitglied-Details) -> termin.mitglied_ids_eingeladen verwenden?
 Mit Github Copilot Datei-Upload implementieren
 Besseres Symbol für _eigenschaft_zuruecksetzen und _eigenschaft_zuruecksetzen-Button nur einblenden, wenn es auch tatsächlich was zu löschen gibt
 .werkzeug in .formular mit ENTER betätigbar machen
@@ -43,6 +42,7 @@ Neue bootstrap icons Version einführen (unlock2 statt lock)
 event einführen, dass Liste_Element$FormularInitialisieren ausgeführt wird, wenn ein modal geöffnet wurde (mittels Dom_$ModalOeffnen)
 Mit Github Copilot flex-nowrap, flex-grow, text-truncate und text-nowrap diskutieren
 Mit Github Copilot Agent die Anordnung in Details optimieren
+if (ICH_ID !== null) loswerden
 Liste_$AuswertungInitialisiertZurueck und Liste_$ElementInitialisiertZurueck einführen
 Aufgaben detaillieren
 Vereinsapp_env aufspalten in mehrere _env
@@ -54,21 +54,19 @@ Wie weiter mit Liste_$ListenstatistikAktualisieren?
 status_erlaubt enthält nur noch Symbole, kein html mehr
 texte zu inhalt_kopieren aus js in Vereinsapp-config verschieben
 auswertung-Views vereinheitlichen?
+dbdata vereinheitlichen zu serverdata und bei jedem ajax die aktualisierten Daten an den Client zurückschicken (statt im Client zu erahnen was der Server tut)
 liste aus link_data loswerden
-Lässt sich Liste_ElementWertErgaenzen in Liste_EventVariableListenAktualisieren integrieren?
-    Dann muss Liste_EventVariableListenAktualisieren("termine") immer nach Liste_EventVariableListenAktualisieren("mitglieder") aufgerufen werden (siehe LISTEN.termine.element_ergaenzen_aktion)
+Lässt sich Liste_ElementWertErgaenzen in Liste_EventListenBereitstellen integrieren?
+    Dann muss Liste_EventListenBereitstellen("termine") immer nach Liste_EventListenBereitstellen("mitglieder") aufgerufen werden (siehe LISTEN.termine.element_ergaenzen_aktion)
 Alles außerhalb der _Init-Funktionen nach innen verschieben (außer Initialisierungen), dann die Reihenfolge der _Init-Funktionen optimieren
 Braucht es im Toast wirklich erweiterte Beschriftung?
 Relevante Funktionen aus lib nach util/ajax verschieben (util in helferlein umbenennen? lib in extlib umbenennen?)
 instanz[instanz].$blanko_... umbauen zu $blanko_...[instanz], dann instanz aus VERKNUEPFUNGEN[auswertungen/verknuepfungen] entfernen (instanz aus LISTEN[liste] entfernen und filtern etc. nach FILTERN etc. verschieben?)
 
 VERKNUEPFUNGEN komplett loslösen aus LISTEN -> zuordnung dann nach php verschieben
+    weiches Löschen für abhängige Tabellen einführen
     zugeordnete_aufgaben, zugeordnete_setliste (beides in Termine-Controller) und auswertungen-Views korrekt darstellen (Bemerkung-Anzeigeproblematik und sortable-Event)
     alle Arten von Verknuepfungen testen
-    dbdata vereinheitlichen zu serverdata?
-    if (ICH_ID !== null) loswerden
-    VARIABLE_AKTUALISIEREN_EVENTS in eigene Variable_Init verschieben (vorher variable-Ordnerstruktur anlegen)
-    Braucht es die Einträge für Verkuepfungen in den Eigenschaften, Vorgegebene Werte, etc. noch?
 
 ERLEDIGT
 

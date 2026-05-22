@@ -2,7 +2,7 @@
  * @param {string} liste
  */
 
-function Liste_EventVariableListenAktualisieren(liste) {
+function Liste_EventListenBereitstellen(liste) {
     if (liste in LISTEN) {
         LISTEN[liste].tabelle = new Array();
         $.each(Localstorage_RausZurueck(liste + "_tabelle", new Array()), function (position, element) {

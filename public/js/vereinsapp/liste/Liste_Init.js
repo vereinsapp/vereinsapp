@@ -16,13 +16,13 @@ SERVERDATA_HOLEN_EVENTS.push(function (AJAX) {
     }
 });
 
-VARIABLE_AKTUALISIEREN_EVENTS.push(function () {
+SERVERDATA_BEREITSTELLEN_EVENTS.push(function () {
     $.each(VERKNUEPFUNGEN, function (verknuepfungen) {
-        Liste_EventVariableVerknuepfungenAktualisieren(verknuepfungen);
+        Liste_EventVerknuepfungenBereitstellen(verknuepfungen);
     });
 
     $.each(LISTEN, function (liste) {
-        Liste_EventVariableListenAktualisieren(liste);
+        Liste_EventListenBereitstellen(liste);
     });
 
     $.each(LISTEN, function (liste) {
@@ -165,11 +165,11 @@ function Liste_Init() {
 
     if (ICH_ID !== null) {
         $.each(VERKNUEPFUNGEN, function (verknuepfungen) {
-            Liste_EventVariableVerknuepfungenAktualisieren(verknuepfungen);
+            Liste_EventVerknuepfungenBereitstellen(verknuepfungen);
         });
 
         $.each(LISTEN, function (liste) {
-            Liste_EventVariableListenAktualisieren(liste);
+            Liste_EventListenBereitstellen(liste);
         });
 
         $.each(LISTEN, function (liste) {

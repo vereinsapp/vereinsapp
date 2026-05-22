@@ -64,8 +64,8 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
                             });
                     });
 
-                Liste_EventLocalstorageListenAktualisieren(liste);
-                Liste_EventVariableListenAktualisieren(liste);
+                Liste_EventListenLocalstorageSpeichern(liste);
+                Liste_EventListenBereitstellen(liste);
                 Liste_ElementWertErgaenzen(liste);
                 Liste_EventDomAktualisieren(liste);
 

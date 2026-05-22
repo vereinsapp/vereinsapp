@@ -119,8 +119,8 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                         }
                     });
 
-                Liste_EventLocalstorageVerknuepfungenAktualisieren(verknuepfungen);
-                Liste_EventVariableVerknuepfungenAktualisieren(verknuepfungen);
+                Liste_EventVerknuepfungenLocalstorageSpeichern(verknuepfungen);
+                Liste_EventVerknuepfungenBereitstellen(verknuepfungen);
                 $.each(VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen, function (position, liste) {
                     Liste_EventDomAktualisieren(liste);
                 });

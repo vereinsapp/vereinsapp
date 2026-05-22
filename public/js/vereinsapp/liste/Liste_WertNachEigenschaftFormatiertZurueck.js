@@ -38,11 +38,9 @@ function Liste_WertNachEigenschaftFormatiertZurueck(wert, eigenschaft, liste) {
                 else wert_formatiert = "nie";
                 break;
             case "start":
-            case "termin_start":
             case "ende":
                 wert_formatiert = WOCHENTAGE[wert.weekday] + ", " + wert.toFormat("dd.MM.yyyy HH:mm");
                 break;
-            case "titel_titel_nr":
             case "titel_nr":
                 wert_formatiert = "[" + wert + "]";
                 break;

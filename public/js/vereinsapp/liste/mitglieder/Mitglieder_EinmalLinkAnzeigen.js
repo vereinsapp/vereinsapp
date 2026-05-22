@@ -25,8 +25,8 @@ function Mitglieder_EinmalLinkAnzeigen(bestaetigt, dom, modal_title, mitglied_id
             ajax_data,
             ajax_dom,
             function (AJAX) {
-                Liste_EventLocalstorageListenAktualisieren("mitglieder");
-                Liste_EventVariableListenAktualisieren("mitglieder");
+                Liste_EventListenLocalstorageSpeichern("mitglieder");
+                Liste_EventListenBereitstellen("mitglieder");
                 Liste_ElementWertErgaenzen("mitglieder");
                 Liste_EventDomAktualisieren("mitglieder");
 

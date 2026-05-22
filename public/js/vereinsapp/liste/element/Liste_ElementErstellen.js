@@ -46,8 +46,8 @@ function Liste_ElementErstellen(data_vollstaendig, dom, data, modal_title, eleme
                     Liste_ElementWertRein(wert, eigenschaft, element_id, liste);
                 });
 
-                Liste_EventLocalstorageListenAktualisieren(liste);
-                Liste_EventVariableListenAktualisieren(liste);
+                Liste_EventListenLocalstorageSpeichern(liste);
+                Liste_EventListenBereitstellen(liste);
                 Liste_ElementWertErgaenzen(liste);
                 Liste_EventDomAktualisieren(liste);
 

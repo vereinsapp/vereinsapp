@@ -2,7 +2,7 @@
  * @param {string} verknuepfungen
  */
 
-function Liste_EventLocalstorageVerknuepfungenAktualisieren(verknuepfungen) {
+function Liste_EventVerknuepfungenLocalstorageSpeichern(verknuepfungen) {
     // tabelle_LocalStorage wird aus der Variable geholt
     const tabelle_LocalStorage = new Array();
     $.each(VERKNUEPFUNGEN[verknuepfungen].tabelle, function () {

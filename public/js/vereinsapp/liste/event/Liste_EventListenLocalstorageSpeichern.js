@@ -2,7 +2,7 @@
  * @param {string} liste
  */
 
-function Liste_EventLocalstorageListenAktualisieren(liste) {
+function Liste_EventListenLocalstorageSpeichern(liste) {
     // tabelle_LocalStorage wird aus der Variable geholt
     const tabelle_LocalStorage = new Array();
     $.each(LISTEN[liste].tabelle, function () {

@@ -43,8 +43,8 @@ function Liste_ElementAendern(data_vollstaendig, dom, data, modal_title, element
                     Liste_ElementWertRein(wert, eigenschaft, element_id, liste);
                 });
 
-                Liste_EventLocalstorageListenAktualisieren(liste);
-                Liste_EventVariableListenAktualisieren(liste);
+                Liste_EventListenLocalstorageSpeichern(liste);
+                Liste_EventListenBereitstellen(liste);
                 Liste_ElementWertErgaenzen(liste);
                 Liste_EventDomAktualisieren(liste);
 
