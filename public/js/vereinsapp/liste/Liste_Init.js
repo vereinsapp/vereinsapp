@@ -142,7 +142,7 @@ function Liste_Init() {
                 filtern: new Object(),
                 sortieren: undefined,
                 gruppieren: undefined,
-                bearbeiten_modus: undefined,
+                bearbeiten_modus: false,
             };
         LISTEN[liste].instanz[instanz].$blanko_element = $blanko;
     });

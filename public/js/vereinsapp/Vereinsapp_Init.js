@@ -59,16 +59,16 @@ Lässt sich Liste_ElementWertErgaenzen in Liste_EventVariableListenAktualisieren
     Dann muss Liste_EventVariableListenAktualisieren("termine") immer nach Liste_EventVariableListenAktualisieren("mitglieder") aufgerufen werden (siehe LISTEN.termine.element_ergaenzen_aktion)
 Alles außerhalb der _Init-Funktionen nach innen verschieben (außer Initialisierungen), dann die Reihenfolge der _Init-Funktionen optimieren
 Braucht es im Toast wirklich erweiterte Beschriftung?
+Relevante Funktionen aus lib nach util/ajax verschieben (util in helferlein umbenennen? lib in extlib umbenennen?)
+instanz[instanz].$blanko_... umbauen zu $blanko_...[instanz], dann instanz aus VERKNUEPFUNGEN[auswertungen/verknuepfungen] entfernen (instanz aus LISTEN[liste] entfernen und filtern etc. nach FILTERN etc. verschieben?)
 
 VERKNUEPFUNGEN komplett loslösen aus LISTEN -> zuordnung dann nach php verschieben
     zugeordnete_aufgaben, zugeordnete_setliste (beides in Termine-Controller) und auswertungen-Views korrekt darstellen (Bemerkung-Anzeigeproblematik und sortable-Event)
+    alle Arten von Verknuepfungen testen
     dbdata vereinheitlichen zu serverdata?
     if (ICH_ID !== null) loswerden
     VARIABLE_AKTUALISIEREN_EVENTS in eigene Variable_Init verschieben (vorher variable-Ordnerstruktur anlegen)
-    instanz[instanz].$blanko_auswertung umbauen zu $blanko_auswertung[instanz], dann instanz aus VERKNUEPFUNGEN/LISTEN[auswertungen/verknuepfungen] entfernen
     Braucht es die Einträge für Verkuepfungen in den Eigenschaften, Vorgegebene Werte, etc. noch?
-    Liste_VerknuepfungBemerkungAendern data reduzieren auf lediglich bemerkung (analog zu Liste_VerknuepfungStatusAendern)
-    VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste in den Localstorage schreiben
 
 ERLEDIGT
 

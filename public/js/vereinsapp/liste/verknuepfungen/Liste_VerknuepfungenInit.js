@@ -9,8 +9,8 @@ function Liste_VerknuepfungenInit() {
         Liste_VerknuepfungBemerkungAendern(
             $(this).hasClass("data_vollstaendig"),
             { $werkzeug: $(this), $modal: $modal },
-            { bemerkung: $modal.find(".verknuepfung_bemerkung_eingabe").val() },
-            Util_WertBereinigtZurueck($(this).attr(VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id")),
+            Util_WertBereinigtZurueck($modal.find(".verknuepfung_bemerkung_eingabe").val(), undefined),
+            Util_WertBereinigtZurueck($(this).attr(VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"), undefined),
             verknuepfungen,
         );
     });

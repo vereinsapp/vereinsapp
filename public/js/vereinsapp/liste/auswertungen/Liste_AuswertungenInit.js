@@ -10,13 +10,7 @@ function Liste_AuswertungenInit() {
         $blanko.removeAttr("verknuepfungen").removeAttr("instanz").removeAttr("liste");
 
         if (!("instanz" in VERKNUEPFUNGEN[verknuepfungen])) VERKNUEPFUNGEN[verknuepfungen].instanz = new Object();
-        if (!(instanz in VERKNUEPFUNGEN[verknuepfungen].instanz))
-            VERKNUEPFUNGEN[verknuepfungen].instanz[instanz] = {
-                filtern: new Object(),
-                sortieren: undefined,
-                gruppieren: undefined,
-                bearbeiten_modus: false,
-            };
+        if (!(instanz in VERKNUEPFUNGEN[verknuepfungen].instanz)) VERKNUEPFUNGEN[verknuepfungen].instanz[instanz] = new Object();
         VERKNUEPFUNGEN[verknuepfungen].instanz[instanz].$blanko_auswertung = $blanko;
 
         if (!("instanz" in LISTEN[liste])) LISTEN[liste].instanz = new Object();

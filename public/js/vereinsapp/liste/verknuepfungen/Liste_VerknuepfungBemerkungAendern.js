@@ -1,12 +1,12 @@
 /**
  * @param {boolean} data_vollstaendig
  * @param {Object} dom
- * @param {Object} data
+ * @param {string} bemerkung
  * @param {number} verknuepfung_id
  * @param {string} verknuepfungen
  */
 
-function Liste_VerknuepfungBemerkungAendern(data_vollstaendig, dom, data, verknuepfung_id, verknuepfungen) {
+function Liste_VerknuepfungBemerkungAendern(data_vollstaendig, dom, bemerkung, verknuepfung_id, verknuepfungen) {
     if (!data_vollstaendig) {
         const $modal = Dom_$ModalInitialisiertZurueck(undefined, "verknuepfung_bemerkung_aendern_modal");
         Dom_$ModalOeffnen($modal);
@@ -25,11 +25,10 @@ function Liste_VerknuepfungBemerkungAendern(data_vollstaendig, dom, data, verknu
         dom.$element = Dom_$ZielZu$QuelleZurueck(dom.$werkzeug);
         Dom_$Quelle$ZielEntknuepfen(dom.$werkzeug, dom.$element);
         const ajax_dom = dom;
-
-        if (!("bemerkung" in data)) data.bemerkung = Liste_VerknuepfungWertRausZurueck("bemerkung", verknuepfung_id, verknuepfungen, null);
-        const ajax_data = Util_WertBereinigtZurueck(data, new Object());
-        ajax_data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"] = verknuepfung_id;
+        const ajax_data = new Object();
         ajax_data.verknuepfungen = verknuepfungen;
+        ajax_data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"] = verknuepfung_id;
+        ajax_data.bemerkung = bemerkung;
         if (isEmptyString(ajax_data.bemerkung)) ajax_data.bemerkung = null;
 
         Ajax_InDieSchlange(
@@ -42,7 +41,19 @@ function Liste_VerknuepfungBemerkungAendern(data_vollstaendig, dom, data, verknu
                 const verknuepfung_id = AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"];
                 delete AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"];
 
-                Liste_VerknuepfungWertRein(AJAX.data.bemerkung, "bemerkung", verknuepfung_id, verknuepfungen);
+                VERKNUEPFUNGEN[verknuepfungen].tabelle[verknuepfung_id].bemerkung = Util_WertBereinigtZurueck(AJAX.data.bemerkung, undefined);
+
+                if ("dbdata" in AJAX.antwort && isArray(AJAX.antwort.dbdata))
+                    $.each(AJAX.antwort.dbdata, function (position, element) {
+                        if ("id" in element) {
+                            if (typeof VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(element.id)] === "undefined")
+                                VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(element.id)] = new Object();
+
+                            $.each(element, function (eigenschaft, wert) {
+                                VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(element.id)][eigenschaft] = Util_WertBereinigtZurueck(wert, undefined);
+                            });
+                        }
+                    });
 
                 Liste_EventLocalstorageVerknuepfungenAktualisieren(verknuepfungen);
                 Liste_EventVariableVerknuepfungenAktualisieren(verknuepfungen);

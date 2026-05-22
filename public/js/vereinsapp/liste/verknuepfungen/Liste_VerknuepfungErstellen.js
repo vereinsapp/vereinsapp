@@ -93,9 +93,11 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                     const verknuepfung_id = AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"];
                     delete AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"];
 
-                    Liste_VerknuepfungWertRein(verknuepfung_id, "id", verknuepfung_id, verknuepfungen);
+                    if (typeof VERKNUEPFUNGEN[verknuepfungen].tabelle[verknuepfung_id] === "undefined")
+                        VERKNUEPFUNGEN[verknuepfungen].tabelle[verknuepfung_id] = new Object();
+                    VERKNUEPFUNGEN[verknuepfungen].tabelle[verknuepfung_id].id = Util_WertBereinigtZurueck(verknuepfung_id, undefined);
                     $.each(AJAX.data, function (eigenschaft, wert) {
-                        Liste_VerknuepfungWertRein(wert, eigenschaft, verknuepfung_id, verknuepfungen);
+                        VERKNUEPFUNGEN[verknuepfungen].tabelle[verknuepfung_id][eigenschaft] = Util_WertBereinigtZurueck(wert, undefined);
                     });
 
                     $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
@@ -107,10 +109,14 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
 
                 if ("dbdata" in AJAX.antwort && isArray(AJAX.antwort.dbdata))
                     $.each(AJAX.antwort.dbdata, function (position, element) {
-                        if ("id" in element)
+                        if ("id" in element) {
+                            if (typeof VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(element.id)] === "undefined")
+                                VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(element.id)] = new Object();
+
                             $.each(element, function (eigenschaft, wert) {
-                                Liste_VerknuepfungWertRein(wert, eigenschaft, Number(element.id), verknuepfungen);
+                                VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(element.id)][eigenschaft] = Util_WertBereinigtZurueck(wert, undefined);
                             });
+                        }
                     });
 
                 Liste_EventLocalstorageVerknuepfungenAktualisieren(verknuepfungen);

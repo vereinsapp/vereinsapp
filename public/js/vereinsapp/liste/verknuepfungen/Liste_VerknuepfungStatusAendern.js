@@ -22,14 +22,18 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
             const verknuepfung_id = AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"];
             delete AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"];
 
-            Liste_VerknuepfungWertRein(AJAX.data.status, "status", verknuepfung_id, verknuepfungen);
+            VERKNUEPFUNGEN[verknuepfungen].tabelle[verknuepfung_id].status = Util_WertBereinigtZurueck(AJAX.data.status, undefined);
 
             if ("dbdata" in AJAX.antwort && isArray(AJAX.antwort.dbdata))
                 $.each(AJAX.antwort.dbdata, function (position, element) {
-                    if ("id" in element)
+                    if ("id" in element) {
+                        if (typeof VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(element.id)] === "undefined")
+                            VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(element.id)] = new Object();
+
                         $.each(element, function (eigenschaft, wert) {
-                            Liste_VerknuepfungWertRein(wert, eigenschaft, Number(element.id), verknuepfungen);
+                            VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(element.id)][eigenschaft] = Util_WertBereinigtZurueck(wert, undefined);
                         });
+                    }
                 });
 
             Liste_EventLocalstorageVerknuepfungenAktualisieren(verknuepfungen);
@@ -38,32 +42,14 @@ function Liste_VerknuepfungStatusAendern(dom, status, verknuepfung_id, verknuepf
                 Liste_EventDomAktualisieren(liste);
             });
 
+            if ("dom" in AJAX && "$element" in AJAX.dom && AJAX.dom.$element.exists()) Liste_$ElementAktualisieren(AJAX.dom.$element);
+
             if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists()) {
                 Dom_$ModalSchliessen(AJAX.dom.$modal);
-                Dom_ToastFeuern(
-                    Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.element_aendern.beschriftung.erfolg, {
-                        element1: {
-                            liste: verknuepfungen,
-                            [VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"]: AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"],
-                        },
-                    }),
-                );
             }
         },
         function (AJAX) {
             if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");
-            else if (isObject(AJAX.antwort.validation) && "dom" in AJAX && "$formular" in AJAX.dom && AJAX.dom.$formular.exists())
-                Liste_Element$FormularValidationAktualisieren(AJAX.dom.$formular, AJAX.antwort.validation);
-            Dom_ToastFeuern(
-                Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.element_aendern.beschriftung.fehler, {
-                    element1: {
-                        liste: AJAX.data.verknuepfungen,
-                        [VERKNUEPFUNGEN[AJAX.data.verknuepfungen].verknuepfung + "_id"]:
-                            AJAX.data[VERKNUEPFUNGEN[AJAX.data.verknuepfungen].verknuepfung + "_id"],
-                    },
-                }),
-                "danger",
-            );
         },
     );
 }
