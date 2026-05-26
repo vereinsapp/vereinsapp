@@ -45,7 +45,7 @@ function Aufgaben_Init() {
     $(document).on("click", '.werkzeug[werkzeug="aufgaben_rueckmeldung_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigt"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $element: $(this).closest(".element") },
             {
                 aufgabe_id: Util_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
                 mitglied_id: Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
@@ -74,7 +74,7 @@ function Aufgaben_Init() {
     $(document).on("change", '.werkzeug[werkzeug="aufgaben_zuordnung_termine_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigt"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $element: $(this).closest(".element") },
             {
                 aufgabe_id: Util_WertBereinigtZurueck($(this).attr("aufgabe_id"), undefined),
                 termin_id: Util_WertBereinigtZurueck($(this).attr("termin_id"), undefined),

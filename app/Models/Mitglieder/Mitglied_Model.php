@@ -92,8 +92,8 @@ class Mitglied_Model extends UserModel {
                 );
 
                 $tabelle[] = $this->eintrag_bereinigen( json_decode( json_encode( $eintrag, JSON_UNESCAPED_UNICODE ), TRUE ), 'vergebene_rechte' );
-                $verknuepfung_ids_nach_liste['mitglieder'][ (int) ($mitglied->id) ][] = $eintrag['id'];
-                $verknuepfung_ids_nach_liste['vergebene_rechte'][ (int) (VERFUEGBARE_RECHTE[ $permission ]['id']) ][] = $eintrag['id'];
+                // $verknuepfung_ids_nach_liste['mitglieder'][ (int) ($mitglied->id) ][] = $eintrag['id'];
+                // $verknuepfung_ids_nach_liste['verfuegbare_rechte'][ (int) (VERFUEGBARE_RECHTE[ $permission ]['id']) ][] = $eintrag['id'];
             }
 
         return array( 'tabelle' => $tabelle, 'verknuepfung_ids_nach_liste' => $verknuepfung_ids_nach_liste );

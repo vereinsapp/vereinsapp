@@ -71,11 +71,14 @@ LISTEN.termine.element_ergaenzen_aktion = function (termin) {
     termin.ich_eingeladen_janein = termin.mitglied_ids_eingeladen.includes(ICH_ID);
 
     termin.mitglied_ids_rueckgemeldet = new Array();
-    $.each(VERKNUEPFUNGEN.termine_rueckmeldungen.verknuepfung_ids_nach_liste.termine[Number(termin.id)], function (position, rueckmeldung_id) {
-        termin.mitglied_ids_rueckgemeldet.push(
-            Liste_VerknuepfungWertRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined),
-        );
-    });
+    $.each(
+        Liste_VerknuepfungIdsNachListeZurueck(Number(termin.id), "termine", "termine_rueckmeldungen", new Array()),
+        function (position, rueckmeldung_id) {
+            termin.mitglied_ids_rueckgemeldet.push(
+                Liste_VerknuepfungWertRausZurueck("mitglied_id", rueckmeldung_id, "termine_rueckmeldungen", undefined),
+            );
+        },
+    );
     termin.ich_rueckgemeldet_janein = termin.mitglied_ids_rueckgemeldet.includes(ICH_ID);
 };
 
@@ -116,7 +119,7 @@ function Termine_Init() {
     $(document).on("click", '.werkzeug[werkzeug="termine_rueckmeldung_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigt"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $element: $(this).closest(".element") },
             {
                 termin_id: Util_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
                 mitglied_id: Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
@@ -145,7 +148,7 @@ function Termine_Init() {
     $(document).on("change", '.werkzeug[werkzeug="termine_anwesenheit_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigt"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $element: $(this).closest(".element") },
             {
                 termin_id: Util_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
                 mitglied_id: Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),

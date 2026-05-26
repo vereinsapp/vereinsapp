@@ -51,7 +51,7 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
     const verknuepfung_ids = new Array();
     const verknuepfung_ids_nach_wert = new Object();
     $.each(
-        VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[andere_verknuepfte_liste][andere_verknuepfte_element_id],
+        Liste_VerknuepfungIdsNachListeZurueck(andere_verknuepfte_element_id, andere_verknuepfte_liste, verknuepfungen, new Array()),
         function (position, verknuepfung_id_nach_liste) {
             const element_id = Liste_VerknuepfungWertRausZurueck(
                 LISTEN[liste].element + "_id",

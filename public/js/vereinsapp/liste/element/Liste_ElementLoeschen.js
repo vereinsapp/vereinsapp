@@ -49,10 +49,7 @@ function Liste_ElementLoeschen(bestaetigt, weiterleiten, dom, modal_title, eleme
 
                 // Element in VERKNUEPFUNGEN löschen
                 $.each(VERKNUEPFUNGEN, function (verknuepfungen) {
-                    if (
-                        liste in VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste &&
-                        VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[liste][element_id]
-                    )
+                    if (typeof Liste_VerknuepfungIdsNachListeZurueck(element_id, liste, verknuepfungen, undefined) !== "undefined")
                         VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[liste][element_id] = undefined;
                 });
 

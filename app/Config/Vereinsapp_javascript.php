@@ -148,6 +148,7 @@ class Vereinsapp_javascript extends BaseConfig
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungStatusAendern.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungBemerkungAendern.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungWertRausZurueck.js?v='.VERSION,
+        'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungIdsNachListeZurueck.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_$VerknuepfungenAktualisieren.js?v='.VERSION,
         'js/vereinsapp/liste/verknuepfungen/Liste_VerknuepfungenInit.js?v='.VERSION,
 

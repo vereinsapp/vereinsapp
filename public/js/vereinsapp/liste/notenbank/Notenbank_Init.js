@@ -77,7 +77,7 @@ function Notenbank_Init() {
     $(document).on("click", '.werkzeug[werkzeug="notenbank_setlisteneintrag_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigt"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $element: $(this).closest(".element") },
             {
                 titel_id: Util_WertBereinigtZurueck($(this).closest(".element").attr("titel_id"), undefined),
                 termin_id: Util_WertBereinigtZurueck($(this).closest(".element").attr("termin_id"), undefined),

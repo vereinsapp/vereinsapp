@@ -11,7 +11,7 @@ SERVERDATA_HOLEN_EVENTS.push(function (AJAX) {
         if ("verknuepfungen" in AJAX.antwort && isObject(AJAX.antwort.verknuepfungen))
             $.each(AJAX.antwort.verknuepfungen, function (verknuepfungen, serverdata) {
                 Localstorage_Rein(verknuepfungen + "_tabelle", serverdata.tabelle);
-                Localstorage_Rein(verknuepfungen + "_verknuepfung_ids_nach_liste", serverdata.verknuepfung_ids_nach_liste);
+                // Localstorage_Rein(verknuepfungen + "_verknuepfung_ids_nach_liste", serverdata.verknuepfung_ids_nach_liste);
             });
     }
 });
@@ -77,9 +77,12 @@ ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION = function ($zusatzsymbol, $el
 
     let verknuepfung_id = undefined;
     $.each(
-        VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[verknuepfte_listen[0]][
-            verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"]
-        ],
+        Liste_VerknuepfungIdsNachListeZurueck(
+            verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"],
+            verknuepfte_listen[0],
+            verknuepfungen,
+            new Array(),
+        ),
         function (position, verknuepfung_id_nach_liste) {
             if (
                 Liste_VerknuepfungWertRausZurueck(

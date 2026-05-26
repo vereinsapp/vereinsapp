@@ -102,7 +102,7 @@ function Mitglieder_Init() {
     $(document).on("change", '.werkzeug[werkzeug="vergebenes_recht_erstellen"]', function () {
         Liste_VerknuepfungErstellen(
             $(this).hasClass("bestaetigt"),
-            { $werkzeug: $(this), $modal: $(this).closest(".modal") },
+            { $werkzeug: $(this), $modal: $(this).closest(".modal"), $element: $(this).closest(".element") },
             {
                 verfuegbares_recht_id: Util_WertBereinigtZurueck($(this).attr("verfuegbares_recht_id"), undefined),
                 mitglied_id: Util_WertBereinigtZurueck($(this).attr("mitglied_id"), undefined),
