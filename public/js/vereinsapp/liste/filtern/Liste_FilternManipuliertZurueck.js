@@ -20,9 +20,13 @@ function Liste_FilternManipuliertZurueck(filtern_basis, filtern_manip, liste) {
     else {
         const filtern_kombiniert = new Object();
 
-        $.each(Object.keys(filtern_basis).concat(Object.keys(filtern_manip)), function (schluessel, eigenschaft) {
+        $.each(Object.keys(filtern_basis).concat(Object.keys(filtern_manip)), function (position, eigenschaft) {
             filtern_kombiniert[eigenschaft] = new Object();
-            switch (EIGENSCHAFTEN[liste][eigenschaft].typ) {
+
+            let typ = undefined;
+            if (eigenschaft in VERKNUEPFUNGEN) typ = "verknuepfungen";
+            else typ = EIGENSCHAFTEN[liste][eigenschaft].typ;
+            switch (typ) {
                 case "text":
                     // (noch) nicht möglich
                     break;
@@ -39,6 +43,7 @@ function Liste_FilternManipuliertZurueck(filtern_basis, filtern_manip, liste) {
                 case "vorgegebene_werte":
                 case "element_id":
                 case "element_ids":
+                case "verknuepfungen":
                     $.each(["inklusiv", "exklusiv"], function (position, filtern_klasse) {
                         if (eigenschaft in filtern_manip) {
                             if (filtern_klasse in filtern_manip[eigenschaft])

@@ -19,8 +19,11 @@ function Liste_TabelleGefiltertZurueck(tabelle, filtern, liste) {
         if ("id" in element) {
             let filtern_ergebnis = true;
             $.each(filtern, function (eigenschaft) {
-                if (isObject(filtern[eigenschaft]))
-                    switch (EIGENSCHAFTEN[liste][eigenschaft].typ) {
+                if (isObject(filtern[eigenschaft])) {
+                    let typ = undefined;
+                    if (eigenschaft in VERKNUEPFUNGEN) typ = "verknuepfungen";
+                    else typ = EIGENSCHAFTEN[liste][eigenschaft].typ;
+                    switch (typ) {
                         case "text":
                             // (noch) nicht möglich
                             break;
@@ -79,7 +82,61 @@ function Liste_TabelleGefiltertZurueck(tabelle, filtern, liste) {
                                 filtern_ergebnis &= filtern_ergebnis_exklusiv;
                             }
                             break;
+                        case "verknuepfungen":
+                            const verknuepfungen = eigenschaft;
+                            const verknuepfte_liste = liste;
+                            const verknuepfte_element_id = element.id;
+                            const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
+                            let andere_verknuepfte_liste = liste;
+                            $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
+                                if (verknuepfte_liste !== liste) andere_verknuepfte_liste = verknuepfte_liste;
+                                else {
+                                    /* nächster Schleifendurchlauf */
+                                }
+                            });
+                            if ("inklusiv" in filtern[eigenschaft]) {
+                                filtern_ergebnis_inklusiv = false;
+                                $.each(
+                                    VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[verknuepfte_liste][verknuepfte_element_id],
+                                    function (position, verknuepfung_id) {
+                                        const andere_verknuepfte_element_id = Liste_VerknuepfungWertRausZurueck(
+                                            LISTEN[andere_verknuepfte_liste].element + "_id",
+                                            verknuepfung_id,
+                                            verknuepfungen,
+                                            undefined,
+                                        );
+                                        const wert = andere_verknuepfte_element_id;
+                                        if (isArray(filtern[eigenschaft].inklusiv) && filtern[eigenschaft].inklusiv.includes(wert)) {
+                                            filtern_ergebnis_inklusiv = true;
+                                            return false;
+                                        }
+                                    },
+                                );
+                                filtern_ergebnis &= filtern_ergebnis_inklusiv;
+                            }
+                            if ("exklusiv" in filtern[eigenschaft]) {
+                                filtern_ergebnis_exklusiv = false;
+                                $.each(
+                                    VERKNUEPFUNGEN[verknuepfungen].verknuepfung_ids_nach_liste[verknuepfte_liste][verknuepfte_element_id],
+                                    function (position, verknuepfung_id) {
+                                        const andere_verknuepfte_element_id = Liste_VerknuepfungWertRausZurueck(
+                                            LISTEN[andere_verknuepfte_liste].element + "_id",
+                                            verknuepfung_id,
+                                            verknuepfungen,
+                                            undefined,
+                                        );
+                                        const wert = andere_verknuepfte_element_id;
+                                        if (isArray(filtern[eigenschaft].exklusiv) && !filtern[eigenschaft].exklusiv.includes(wert)) {
+                                            filtern_ergebnis_exklusiv = true;
+                                            return false;
+                                        }
+                                    },
+                                );
+                                filtern_ergebnis &= filtern_ergebnis_exklusiv;
+                            }
+                            break;
                     }
+                }
             });
 
             if (filtern_ergebnis) tabelle_gefiltert.push(element);

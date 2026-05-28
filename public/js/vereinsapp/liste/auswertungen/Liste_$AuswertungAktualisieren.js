@@ -17,11 +17,10 @@ function Liste_$AuswertungAktualisieren($auswertung) {
     $.each(
         Util_WertBereinigtZurueck($auswertung.attr(VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids"), new Array()),
         function (position, verknuepfung_id) {
-            ergebnis_nach_status[Liste_VerknuepfungWertRausZurueck("status", verknuepfung_id, verknuepfungen, undefined)].push(verknuepfung_id);
-            ergebnis_nach_status[0] = ergebnis_nach_status[0].filter(
-                (element_id) =>
-                    element_id != Liste_VerknuepfungWertRausZurueck(LISTEN[liste].element + "_id", verknuepfung_id, verknuepfungen, undefined),
-            );
+            const status = Liste_VerknuepfungWertRausZurueck("status", verknuepfung_id, verknuepfungen, undefined);
+            const element_id = Liste_VerknuepfungWertRausZurueck(LISTEN[liste].element + "_id", verknuepfung_id, verknuepfungen, undefined);
+            ergebnis_nach_status[status].push(element_id);
+            ergebnis_nach_status[0] = ergebnis_nach_status[0].filter((element_id_) => element_id_ != element_id);
         },
     );
 
@@ -40,10 +39,11 @@ function Liste_$AuswertungAktualisieren($auswertung) {
     // ERGEBNIS AKTUALISIEREN
     $auswertung.find(".ergebnis").each(function () {
         const $ergebnis = $(this);
+        const status = Util_WertBereinigtZurueck($ergebnis.attr("status"), undefined);
 
         const filtern = { id: { inklusiv: new Array() } };
-        $.each(ergebnis_nach_status[Util_WertBereinigtZurueck($ergebnis.attr("status"), undefined)], function (position, verknuepfung_id) {
-            filtern.id.inklusiv.push(verknuepfung_id);
+        $.each(ergebnis_nach_status[status], function (position, element_id) {
+            filtern.id.inklusiv.push(element_id);
         });
         $ergebnis.attr("filtern", JsonStringifiedZurueck(filtern, new Object()));
     });

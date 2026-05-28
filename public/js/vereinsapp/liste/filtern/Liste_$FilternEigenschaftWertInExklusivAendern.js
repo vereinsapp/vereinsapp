@@ -72,6 +72,9 @@ function Liste_$FilternEigenschaftWertInExklusivAendern($filtern_eigenschaft, fi
                     }
 
                     break;
+                case "verknuepfungen":
+                    // (noch) nicht möglich
+                    break;
             }
 
             // Überschreiben des bisherigen filtern_manip mit geändertem filtern_manip

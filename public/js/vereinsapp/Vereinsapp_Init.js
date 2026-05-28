@@ -59,15 +59,14 @@ liste aus link_data loswerden
 Lässt sich Liste_ElementWertErgaenzen in Liste_EventListenBereitstellen integrieren?
     Dann muss Liste_EventListenBereitstellen("termine") immer nach Liste_EventListenBereitstellen("mitglieder") aufgerufen werden (siehe LISTEN.termine.element_ergaenzen_aktion)
 Alles außerhalb der _Init-Funktionen nach innen verschieben (außer Initialisierungen), dann die Reihenfolge der _Init-Funktionen optimieren
+Listen[liste].tabelle zum Object umbauen (statt Array)? Muss man dann in JavaScript nochmal jede Verknuepfung durchgehen?
 Braucht es im Toast wirklich erweiterte Beschriftung?
 Relevante Funktionen aus lib nach util/ajax verschieben (util in helferlein umbenennen? lib in extlib umbenennen?)
 instanz[instanz].$blanko_... umbauen zu $blanko_...[instanz], dann instanz aus VERKNUEPFUNGEN[auswertungen/verknuepfungen] entfernen (instanz aus LISTEN[liste] entfernen und filtern etc. nach FILTERN etc. verschieben?)
-Listen[liste].tabelle zum Object umbauen (statt Array)?
 Bugfix bearbeiten_modus immernoch aktiv trotz fehlendem Recht
 Lesendes .attr( immer in Kombination mit Util_WertBereinigtZurueck( ... , undefined) verwenden
 
-VERKNUEPFUNGEN komplett loslösen aus LISTEN -> zuordnung dann nach php verschieben
-    zugeordnete_aufgaben, zugeordnete_setliste (beides in Termine-Controller) und auswertungen-Views korrekt darstellen (Bemerkung-Anzeigeproblematik und sortable-Event)
+Bemerkung-Anzeigeproblematik, Status-Anzeigeproblematik und sortable-Event bei Elementen mit Verknuepfungen (Auswertungen-Views, Setliste)
 
 ERLEDIGT
 

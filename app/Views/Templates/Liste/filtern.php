@@ -89,5 +89,5 @@
             ?> werkzeug" werkzeug="filtern_eigenschaft_zuruecksetzen"><span class="beschriftung"><i class="bi bi-<?= SYMBOLE[ WERKZEUGE['filtern_eigenschaft_zuruecksetzen']['symbol'] ]; ?>"></i></span></button>
         </div>
     </div>
-<?php /* (noch) kein Filter setzen möglich für text, element_id, element_ids */ ?>
+<?php /* (noch) kein Filter setzen möglich für text, element_id, element_ids, verknuepfungen */ ?>
 </div>

@@ -75,6 +75,9 @@ function Liste_$FilternEigenschaftAendern($filtern_eigenschaft) {
                                 ") ist nicht größer 0!",
                         );
                     break;
+                case "verknuepfungen":
+                    // (noch) nicht möglich
+                    break;
             }
 
             // Überschreiben des bisherigen filtern_manip mit geändertem filtern_manip

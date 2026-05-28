@@ -65,7 +65,7 @@ class Termine extends BaseController {
         if( array_key_exists( 'aufgaben', CONTROLLERS ) ) {
 
             $this->viewdata['liste']['zugeordnete_aufgaben'] = VIEWDATA['aufgaben'];
-            $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( 'id' => array( 'inklusiv' => array( $termin_id ), ), );
+            $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( 'aufgaben_zuordnungen_termine' => array( 'inklusiv' => array( $termin_id ), ), );
             $this->viewdata['liste']['zugeordnete_aufgaben']['ueberschrift'] = 'Aufgaben';
 
             if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
@@ -89,9 +89,10 @@ class Termine extends BaseController {
         if( array_key_exists( 'notenbank', CONTROLLERS ) ) {
 
             $this->viewdata['liste']['zugeordnete_setliste'] = VIEWDATA['notenbank'];
-            $this->viewdata['liste']['zugeordnete_setliste']['filtern'] = array( 'id' => array( 'inklusiv' => array( $termin_id ), ), );
+            $this->viewdata['liste']['zugeordnete_setliste']['filtern'] = array( 'notenbank_setliste' => array( 'inklusiv' => array( $termin_id ), ), );
+            // $this->viewdata['liste']['zugeordnete_setliste']['sortieren'] = array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, );
             $this->viewdata['liste']['zugeordnete_setliste']['ueberschrift'] = 'Setliste';
-            $this->viewdata['liste']['zugeordnete_setliste']['element']['link'] = array( 'liste' => 'notenbank', 'eigenschaften' => array( 'titel_id', ), );
+            $this->viewdata['liste']['zugeordnete_setliste']['element']['link'] = array( 'liste' => 'notenbank', 'eigenschaften' => array( 'id', ), );
 
             if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 

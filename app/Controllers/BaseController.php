@@ -112,7 +112,10 @@ abstract class BaseController extends Controller
     
             foreach( array_merge( array_keys( $filtern_basis ), array_keys( $filtern_manip ) ) as $eigenschaft ) {
                 $filtern_manipuliert[$eigenschaft] = array();
-                switch( EIGENSCHAFTEN[$liste][$eigenschaft]['typ'] ) {
+
+                if ( array_key_exists( $eigenschaft, VERKNUEPFUNGEN ) ) $typ = 'verknuepfungen';
+                else $typ = EIGENSCHAFTEN[ $liste ][ $eigenschaft ]['typ'];
+                switch( $typ ) {
                     case 'text':
                         // (noch) nicht möglich
                         break;
@@ -129,6 +132,7 @@ abstract class BaseController extends Controller
                     case 'vorgegebene_werte':
                     case 'element_id':
                     case 'element_ids':
+                    case 'verknuepfungen':
                         foreach( array( 'inklusiv', 'exklusiv' ) as $filtern_klasse ) {
                             if( array_key_exists( $eigenschaft, $filtern_manip ) ) {
                                 if( array_key_exists( $filtern_klasse, $filtern_manip[$eigenschaft] ) )

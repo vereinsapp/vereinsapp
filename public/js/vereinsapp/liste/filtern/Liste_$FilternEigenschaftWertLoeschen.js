@@ -63,6 +63,9 @@ function Liste_$FilternEigenschaftWertLoeschen($filtern_eigenschaft, filtern_wer
                     }
 
                     break;
+                case "verknuepfungen":
+                    // (noch) nicht möglich
+                    break;
             }
 
             // Überschreiben des bisherigen filtern_manip mit geändertem filtern_manip

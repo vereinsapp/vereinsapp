@@ -412,8 +412,7 @@ class Vereinsapp extends BaseConfig
             'element' => 'verfuegbares_recht',
             'element_beschriftung' => 'Verfügbares Recht',
             'element_beschriftung_erweitert' => array(
-                array( 'freitext' => 'Verfügbares Recht ', ),
-                array( 'eigenschaft' => 'id', ),
+                array( 'eigenschaft' => 'titel', ),
             ),
         ),
 

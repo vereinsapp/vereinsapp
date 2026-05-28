@@ -90,6 +90,7 @@ function Liste_$FilternEigenschaftAktualisieren($filtern_eigenschaft) {
                     break;
                 case "element_id":
                 case "element_ids":
+                case "verknuepfungen":
                     // (noch) kein Filter setzen möglich
                     break;
             }
