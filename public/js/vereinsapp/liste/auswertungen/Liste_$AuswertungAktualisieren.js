@@ -6,6 +6,16 @@ function Liste_$AuswertungAktualisieren($auswertung) {
     const verknuepfungen = Util_WertBereinigtZurueck($auswertung.attr("verknuepfungen"), undefined);
     const liste = Util_WertBereinigtZurueck($auswertung.attr("liste"), undefined);
 
+    const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
+    let andere_verknuepfte_liste = liste;
+    $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
+        if (verknuepfte_liste !== liste) andere_verknuepfte_liste = verknuepfte_liste;
+        else {
+            /* nächster Schleifendurchlauf */
+        }
+    });
+    const andere_verknuepfte_element_id = Util_WertBereinigtZurueck($auswertung.attr(LISTEN[andere_verknuepfte_liste].element + "_id"), undefined);
+
     // ERGEBNIS NACH STATUS ERMITTELN
     const ergebnis_nach_status = new Array();
     $.each(Object.keys(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt), function (position, status) {
@@ -45,7 +55,9 @@ function Liste_$AuswertungAktualisieren($auswertung) {
         $.each(ergebnis_nach_status[status], function (position, element_id) {
             filtern.id.inklusiv.push(element_id);
         });
-        $ergebnis.attr("filtern", JsonStringifiedZurueck(filtern, new Object()));
+        $ergebnis
+            .attr("filtern", JsonStringifiedZurueck(filtern, new Object()))
+            .attr(LISTEN[andere_verknuepfte_liste].element + "_id", andere_verknuepfte_element_id);
     });
 
     // BESCHRIFTUNG AKTUALISIEREN

@@ -63,10 +63,7 @@ class Aufgaben extends BaseController {
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( $this->request->getPost()['mitglied_id'] != ICH_ID AND !( auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( $this->request->getPost()['status'] == 0 AND !( auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'aufgaben.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Ein Löschen der Rückmeldung ist nicht möglich!';
-        // else if( Time::parse( model(Termin_Model::class)->find(
-        //             $this->request->getPost()['termin_id']
-        //          )[ VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['eigenschaft'] ], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds( VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['frist'] ) ) )
-        //             $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
+        // else if( Time::parse( model(Aufgabe_Model::class)->find( $this->request->getPost()['aufgabe_id'] )['start'], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds( AUFGABEN_RUECKMELDUNGEN_FRIST ) ) ) $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
         else {
             $rueckmeldung_Model = model(Rueckmeldung_Model::class);
             $rueckmeldung = array(

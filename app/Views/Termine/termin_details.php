@@ -8,7 +8,7 @@
 
 <div class="row row-cols-1 row-cols-lg-2 gy-3 gx-0 gx-lg-3 w-100">
 
-    <div class="col"><div class="card element" liste="termine" termin_id="<?= $liste['bevorstehende_termine']['termin_id']; ?>" mitglied_id="<?= ICH_ID; ?>"><?php
+    <div class="col"><div class="card element" liste="termine" termin_id="<?= $liste['bevorstehende_termine']['termin_id']; ?>" mitglied_id="<?= $liste['bevorstehende_termine']['mitglied_id'];; ?>"><?php
         if( array_key_exists( 'werkzeuge', $liste['bevorstehende_termine']['element'] ) AND is_array( $liste['bevorstehende_termine']['element']['werkzeuge'] ) AND count( $liste['bevorstehende_termine']['element']['werkzeuge'] ) > 0 ) {
             ?><div class="werkzeuge card-header text-end invisible" werkzeuge='<?= json_encode( $liste['bevorstehende_termine']['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></div><?php } ?>
         <div class="card-body p-2">

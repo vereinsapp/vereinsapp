@@ -28,7 +28,7 @@
                     echo ' werkzeug';
                 ?>"<?php
                 if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'element_auswahl' ) {
-                    ?> werkzeug="<?= VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['verknuepfung'].'_erstellen' ?>" modal_title="<?= WERKZEUGE[ VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['verknuepfung'].'_erstellen' ]['beschriftung']['beschriftung'] ?>" verknuepfungen="<?= $liste['element']['verknuepfungen'] ?>"<?php }
+                    ?> werkzeug="<?= VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['verknuepfung'].'_erstellen' ?>" modal_title="<?= WERKZEUGE[ VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['verknuepfung'].'_erstellen' ]['beschriftung']['beschriftung'] ?>"<?php }
                 ?>><?php if( !array_key_exists( 'verknuepfungen', $liste['element'] ) OR VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] !== 'janein_auswahl' ) { ?><i class="bi bi-<?= SYMBOLE[ $liste['liste'] ] ?>"></i> <?php } ?><span class="element_beschriftung"></span></label><?php
                 if( array_key_exists( 'link', $liste['element'] ) AND is_array( $liste['element']['link'] ) ) {
                     ?><a class="stretched-link" link='<?= json_encode( $liste['element']['link'], JSON_UNESCAPED_UNICODE ); ?>'></a><?php }

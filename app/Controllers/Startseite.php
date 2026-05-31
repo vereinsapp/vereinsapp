@@ -34,7 +34,7 @@ class Startseite extends BaseController {
         if( array_key_exists( VERKNUEPFUNGEN['termine_rueckmeldungen']['controller'], CONTROLLERS ) ) {
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung'] = VIEWDATA['termine'];
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['mitglied_id'] = ICH_ID;
-            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['filtern']['start'] = array( VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['eigenschaft'] => Time::now( 'Europe/Berlin' )->addSeconds( VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['frist'] )->toDateTimeString(), );
+            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['filtern']['start'] = array( 'start' => Time::now( 'Europe/Berlin' )->addSeconds( TERMINE_RUECKMELDUNGEN_FRIST )->toDateTimeString(), );
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['filtern']['ich_rueckgemeldet_janein'] = array( 'inklusiv' => array( FALSE ), );
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['werkzeuge'] = array();
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['listenstatistik'] = array();

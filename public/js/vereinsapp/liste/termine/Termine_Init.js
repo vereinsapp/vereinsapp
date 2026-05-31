@@ -82,6 +82,22 @@ LISTEN.termine.element_ergaenzen_aktion = function (termin) {
     termin.ich_rueckgemeldet_janein = termin.mitglied_ids_rueckgemeldet.includes(ICH_ID);
 };
 
+VERKNUEPFUNGEN.termine_rueckmeldungen.verknuepfung_nicht_moeglich_eigenschaft = function ($verknuepfungen, $element) {
+    return !Liste_ElementWertRausZurueck(
+        "mitglied_ids_eingeladen",
+        Util_WertBereinigtZurueck($element.attr("termin_id"), undefined),
+        "termine",
+        new Array(),
+    ).includes(Util_WertBereinigtZurueck($element.attr("mitglied_id"), undefined));
+};
+
+VERKNUEPFUNGEN.termine_rueckmeldungen.verknuepfung_nicht_moeglich_frist = function ($verknuepfungen, $element) {
+    return (
+        Liste_ElementWertRausZurueck("start", Util_WertBereinigtZurueck($element.attr("termin_id"), undefined), "termine", undefined) <
+        DATETIME.now().plus({ seconds: TERMINE_RUECKMELDUNGEN_FRIST })
+    );
+};
+
 ZUSATZSYMBOLE.termine_rueckmeldungen = new Object();
 ZUSATZSYMBOLE.termine_rueckmeldungen.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
 

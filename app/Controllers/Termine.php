@@ -38,6 +38,7 @@ class Termine extends BaseController {
 
         $this->viewdata['liste']['bevorstehende_termine'] = VIEWDATA['termine'];
         $this->viewdata['liste']['bevorstehende_termine']['termin_id'] = $termin_id;
+        $this->viewdata['liste']['bevorstehende_termine']['mitglied_id'] = ICH_ID;
         $this->viewdata['liste']['bevorstehende_termine']['element']['werkzeuge'] = array();
 
         $this->viewdata['auswertungen']['rueckmeldungen_termin'] = array(
@@ -66,6 +67,7 @@ class Termine extends BaseController {
 
             $this->viewdata['liste']['zugeordnete_aufgaben'] = VIEWDATA['aufgaben'];
             $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( 'aufgaben_zuordnungen_termine' => array( 'inklusiv' => array( $termin_id ), ), );
+            $this->viewdata['liste']['zugeordnete_aufgaben']['termin_id'] = $termin_id;
             $this->viewdata['liste']['zugeordnete_aufgaben']['ueberschrift'] = 'Aufgaben';
 
             if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
@@ -91,6 +93,7 @@ class Termine extends BaseController {
             $this->viewdata['liste']['zugeordnete_setliste'] = VIEWDATA['notenbank'];
             $this->viewdata['liste']['zugeordnete_setliste']['filtern'] = array( 'notenbank_setliste' => array( 'inklusiv' => array( $termin_id ), ), );
             // $this->viewdata['liste']['zugeordnete_setliste']['sortieren'] = array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, );
+            $this->viewdata['liste']['zugeordnete_setliste']['termin_id'] = $termin_id;
             $this->viewdata['liste']['zugeordnete_setliste']['ueberschrift'] = 'Setliste';
             $this->viewdata['liste']['zugeordnete_setliste']['element']['link'] = array( 'liste' => 'notenbank', 'eigenschaften' => array( 'id', ), );
 
@@ -284,10 +287,7 @@ class Termine extends BaseController {
         ); if( !$this->validate( $validation_rules ) ) $ajax_antwort['validation'] = $this->validation->getErrors();
         else if( $this->request->getPost()['mitglied_id'] != ICH_ID AND !( auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Keine Berechtigung!';
         else if( $this->request->getPost()['status'] == 0 AND !( auth()->user()->can( 'mitglieder.verwaltung' ) AND auth()->user()->can( 'termine.verwaltung' ) ) ) $ajax_antwort['validation'] = 'Ein Löschen der Rückmeldung ist nicht möglich!';
-        else if( Time::parse( model(Termin_Model::class)->find(
-                    $this->request->getPost()['termin_id']
-                 )[ VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['eigenschaft'] ], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds( VERKNUEPFUNGEN['termine_rueckmeldungen']['verknuepfung_moeglich_frist']['frist'] ) ) )
-                    $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
+        else if( Time::parse( model(Termin_Model::class)->find( $this->request->getPost()['termin_id'] )['start'], 'Europe/Berlin' )->isBefore( Time::now('Europe/Berlin')->addSeconds( TERMINE_RUECKMELDUNGEN_FRIST ) ) ) $ajax_antwort['validation'] = 'Keine Rückmeldung mehr möglich!';
         else {
             $rueckmeldung_Model = model(Rueckmeldung_Model::class);
             $rueckmeldung = array(

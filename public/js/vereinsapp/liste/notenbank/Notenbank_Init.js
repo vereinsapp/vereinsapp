@@ -79,8 +79,8 @@ function Notenbank_Init() {
             $(this).hasClass("bestaetigt"),
             { $werkzeug: $(this), $modal: $(this).closest(".modal"), $element: $(this).closest(".element") },
             {
-                titel_id: Util_WertBereinigtZurueck($(this).closest(".element").attr("titel_id"), undefined),
-                termin_id: Util_WertBereinigtZurueck($(this).closest(".element").attr("termin_id"), undefined),
+                titel_id: Util_WertBereinigtZurueck($(this).attr("titel_id"), undefined),
+                termin_id: Util_WertBereinigtZurueck($(this).attr("termin_id"), undefined),
                 status: 1,
             },
             Util_WertBereinigtZurueck($(this).attr("modal_title"), undefined),

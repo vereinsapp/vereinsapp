@@ -477,6 +477,11 @@ class Vereinsapp extends BaseConfig
                 0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
             ),
+            'verknuepfung_nicht_moeglich' => array(
+                'keine_verknuepfung_moeglich' => 'Keine Rückmeldung möglich!',
+                'keine_verknuepfung_fuer_dich_moeglich' => '',
+                'keine_verknuepfung_fuer_mitglied_moeglich' => '',
+            ),
         ),
 
         'aufgaben_rueckmeldungen' => array(
@@ -494,6 +499,11 @@ class Vereinsapp extends BaseConfig
                 1 => array( 'farbe' => 'primary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['angenommen_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['angenommen_rueckmeldung'].'-fill"></i>' ),
                 2 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['erledigt'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['erledigt'].'"></i>' ),
             ),
+            'verknuepfung_nicht_moeglich' => array(
+                'keine_verknuepfung_moeglich' => 'Keine Rückmeldung möglich!',
+                'keine_verknuepfung_fuer_dich_moeglich' => '',
+                'keine_verknuepfung_fuer_mitglied_moeglich' => '',
+            ),
         ),
 
         'aufgaben_zuordnungen_termine' => array(
@@ -510,6 +520,11 @@ class Vereinsapp extends BaseConfig
                 0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
              ),
+            'verknuepfung_nicht_moeglich' => array(
+                'keine_verknuepfung_moeglich' => 'Keine Rückmeldung möglich!',
+                'keine_verknuepfung_fuer_dich_moeglich' => '',
+                'keine_verknuepfung_fuer_mitglied_moeglich' => '',
+            ),
         ),
 
         'termine_rueckmeldungen' => array(
@@ -527,12 +542,10 @@ class Vereinsapp extends BaseConfig
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung'].'-fill"></i>' ),
                 2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['neg_rueckmeldung'].'-fill"></i>' ),
             ),
-            'verknuepfung_moeglich_eingeladen' => array( 'eigenschaft' => 'mitglied_ids_eingeladen', 'liste' => 'termine' ),
-            'verknuepfung_moeglich_frist' => array( 'eigenschaft' => 'start', 'liste' => 'termine', 'frist' => 0 ),
             'verknuepfung_nicht_moeglich' => array(
                 'keine_verknuepfung_moeglich' => 'Keine Rückmeldung möglich!',
-                'keine_verknuepfung_fuer_dich_moeglich' => 'Du bist nicht eingeladen und kannst deshalb keine Rückmeldung geben.',
-                'keine_verknuepfung_fuer_mitglied_moeglich' => 'Das Mitglied ist nicht eingeladen und kann deshalb keine Rückmeldung geben.',
+                'keine_verknuepfung_fuer_dich_moeglich' => 'Du bist nicht zum Termin eingeladen und kannst deshalb keine Rückmeldung geben.',
+                'keine_verknuepfung_fuer_mitglied_moeglich' => 'Das Mitglied ist nicht zum Termin eingeladen und kann deshalb keine Rückmeldung geben.',
             ),
         ),
 
@@ -550,6 +563,11 @@ class Vereinsapp extends BaseConfig
                 0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>'),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
              ),
+            'verknuepfung_nicht_moeglich' => array(
+                'keine_verknuepfung_moeglich' => 'Keine Rückmeldung möglich!',
+                'keine_verknuepfung_fuer_dich_moeglich' => '',
+                'keine_verknuepfung_fuer_mitglied_moeglich' => '',
+            ),
         ),
 
         'strafkatalog_zugewiesene_strafen' => array(
@@ -567,6 +585,11 @@ class Vereinsapp extends BaseConfig
                 1 => array( 'farbe' => 'warning', 'aktiv' => '<i class="bi bi-'.SYMBOLE['offen'].'"></i>' ),
                 2 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
              ),
+            'verknuepfung_nicht_moeglich' => array(
+                'keine_verknuepfung_moeglich' => 'Keine Rückmeldung möglich!',
+                'keine_verknuepfung_fuer_dich_moeglich' => '',
+                'keine_verknuepfung_fuer_mitglied_moeglich' => '',
+            ),
         ),
 
         'notenbank_setliste' => array(
@@ -583,6 +606,11 @@ class Vereinsapp extends BaseConfig
                 0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>'),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
              ),
+            'verknuepfung_nicht_moeglich' => array(
+                'keine_verknuepfung_moeglich' => 'Keine Rückmeldung möglich!',
+                'keine_verknuepfung_fuer_dich_moeglich' => '',
+                'keine_verknuepfung_fuer_mitglied_moeglich' => '',
+            ),
         ),
     );
 
@@ -1213,6 +1241,11 @@ class Vereinsapp extends BaseConfig
         'probe' => '&#128218',
         'vorstandschaftssitzung' => '&#128186',
     );
+
+    /**
+     * Termin-Rückmeldungen Frist in Sekunden
+     */
+    public $termine_rueckmeldungen_frist = 0;
 
     /**
      * JSON-Export der öffentlichen Termine

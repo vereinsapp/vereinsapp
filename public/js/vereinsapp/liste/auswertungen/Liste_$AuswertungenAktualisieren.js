@@ -93,6 +93,7 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
                 .attr(VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids", JsonStringifiedZurueck(verknuepfung_ids_nach_wert[wert], new Array()))
                 .attr("wert", wert)
                 .attr(LISTEN[liste].element + "_ids", JsonStringifiedZurueck(element_ids_nach_wert[wert], new Array()))
+                .attr(LISTEN[andere_verknuepfte_liste].element + "_id", andere_verknuepfte_element_id)
                 .attr("beschriftung", Liste_WertNachEigenschaftFormatiertZurueck(wert, gruppieren, liste));
 
             $auswertung.find(".collapse").attr("id", zufaelligeZeichenketteZurueck(8));
@@ -104,6 +105,7 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
                 .attr(VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_ids", JsonStringifiedZurueck(verknuepfung_ids, new Array()))
                 // .attr("wert", wert)
                 // .attr(LISTEN[liste].element + "_ids", JsonStringifiedZurueck(element_ids, new Array()))
+                .attr(LISTEN[andere_verknuepfte_liste].element + "_id", andere_verknuepfte_element_id)
                 .attr("beschriftung", "Gesamt");
 
             $auswertung.find(".auswertung_progress").remove();
