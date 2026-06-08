@@ -82,18 +82,18 @@ LISTEN.termine.element_ergaenzen_aktion = function (termin) {
     termin.ich_rueckgemeldet_janein = termin.mitglied_ids_rueckgemeldet.includes(ICH_ID);
 };
 
-VERKNUEPFUNGEN.termine_rueckmeldungen.verknuepfung_nicht_moeglich_eigenschaft = function ($element) {
+VERKNUEPFUNGEN.termine_rueckmeldungen.verknuepfung_nicht_moeglich_eigenschaft = function ($verknuepfung_erstellen) {
     return !Liste_ElementWertRausZurueck(
         "mitglied_ids_eingeladen",
-        Util_WertBereinigtZurueck($element.attr("termin_id"), undefined),
+        Util_WertBereinigtZurueck($verknuepfung_erstellen.attr("termin_id"), undefined),
         "termine",
         new Array(),
-    ).includes(Util_WertBereinigtZurueck($element.attr("mitglied_id"), undefined));
+    ).includes(Util_WertBereinigtZurueck($verknuepfung_erstellen.attr("mitglied_id"), undefined));
 };
 
-VERKNUEPFUNGEN.termine_rueckmeldungen.verknuepfung_nicht_moeglich_frist = function ($element) {
+VERKNUEPFUNGEN.termine_rueckmeldungen.verknuepfung_nicht_moeglich_frist = function ($verknuepfung_erstellen) {
     return (
-        Liste_ElementWertRausZurueck("start", Util_WertBereinigtZurueck($element.attr("termin_id"), undefined), "termine", undefined) <
+        Liste_ElementWertRausZurueck("start", Util_WertBereinigtZurueck($verknuepfung_erstellen.attr("termin_id"), undefined), "termine", undefined) <
         DATETIME.now().plus({ seconds: TERMINE_RUECKMELDUNGEN_FRIST })
     );
 };

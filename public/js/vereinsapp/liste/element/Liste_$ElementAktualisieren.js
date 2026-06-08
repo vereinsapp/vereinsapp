@@ -76,8 +76,55 @@ function Liste_$ElementAktualisieren($element) {
     });
 
     // VERKNUEPFUNGEN AKTUALISIEREN
-    $element.find(".verknuepfung_erstellen").each(function () {
-        Liste_$VerknuepfungErstellenAktualisieren($(this), $element);
+    $.each(VERKNUEPFUNGEN, function (verknuepfungen) {
+        if (VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen.includes(liste)) {
+            // ANDERE_VERKNUEPFTE_LISTE DEFINIEREN
+            let andere_verknuepfte_liste = liste;
+            $.each(VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen, function (position, verknuepfte_liste) {
+                if (verknuepfte_liste !== liste) andere_verknuepfte_liste = verknuepfte_liste;
+                else {
+                    /* nächster Schleifendurchlauf */
+                }
+            });
+
+            // ANDERE_VERKNUEPFTE_ELEMENT_ID DEFINIEREN
+            const andere_verknuepfte_element_id = Util_WertBereinigtZurueck(
+                $element.attr(LISTEN[andere_verknuepfte_liste].element + "_id"),
+                undefined,
+            );
+
+            // VERKNUEPFUNG_ID DEFINIEREN
+            let verknuepfung_id = undefined;
+            $.each(
+                Liste_VerknuepfungIdsNachListeZurueck(element_id, liste, verknuepfungen, new Array()),
+                function (position, verknuepfung_id_nach_liste) {
+                    if (
+                        Liste_VerknuepfungWertRausZurueck(
+                            LISTEN[andere_verknuepfte_liste].element + "_id",
+                            verknuepfung_id_nach_liste,
+                            verknuepfungen,
+                            undefined,
+                        ) === andere_verknuepfte_element_id
+                    )
+                        verknuepfung_id = verknuepfung_id_nach_liste;
+                },
+            );
+
+            // VERKUEPFUNG_ERSTELLEN AKTUALISIEREN
+            $element.find(".verknuepfung_erstellen[verknuepfungen='" + verknuepfungen + "']").each(function () {
+                const $verknuepfung_erstellen = $(this);
+
+                $verknuepfung_erstellen
+                    .attr(LISTEN[liste].element + "_id", element_id)
+                    .attr(LISTEN[andere_verknuepfte_liste].element + "_id", andere_verknuepfte_element_id)
+                    .attr("verknuepfung_id", verknuepfung_id);
+
+                if ($element.hasClass("disabled")) $verknuepfung_erstellen.addClass("disabled");
+                else $verknuepfung_erstellen.removeClass("disabled");
+
+                Liste_$VerknuepfungErstellenAktualisieren($verknuepfung_erstellen);
+            });
+        }
     });
 
     // NAVIGATION AKTUALISIEREN

@@ -69,7 +69,8 @@ Lesendes .attr( immer in Kombination mit Util_WertBereinigtZurueck( ... , undefi
 verknuepfung_ids_nach_liste verschieben in element und Liste_EventVerknuepfungenBereitstellen dann nach Liste_EventListenBereitstellen aufrufen?
 VERKNUEPFUNGEN[ ... ]['typ'] element_auswahl, janein_auswahl und status_auswahl notwendig? 
 Bemerkung-Anzeigeproblematik, Status-Anzeigeproblematik und sortable-Event bei Elementen mit Verknuepfungen (Auswertungen-Views, Setliste)
-    $verknuepfung_status/.verknuepfung_status einführen 
+    Braucht es dann noch ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION?
+    $verknuepfung_status/.verknuepfung_status einführen
 
 ERLEDIGT
 
