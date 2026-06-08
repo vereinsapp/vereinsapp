@@ -67,8 +67,8 @@ Bugfix bearbeiten_modus immernoch aktiv trotz fehlendem Recht
 Lesendes .attr( immer in Kombination mit Util_WertBereinigtZurueck( ... , undefined) verwenden
 
 verknuepfung_ids_nach_liste verschieben in element und Liste_EventVerknuepfungenBereitstellen dann nach Liste_EventListenBereitstellen aufrufen?
+VERKNUEPFUNGEN[ ... ]['typ'] element_auswahl, janein_auswahl und status_auswahl notwendig? 
 Bemerkung-Anzeigeproblematik, Status-Anzeigeproblematik und sortable-Event bei Elementen mit Verknuepfungen (Auswertungen-Views, Setliste)
-    $verknuepfungen/.verknuepfungen umbennen in $verknuepfung_erstellen/.verknuepfung_erstellen o.ä.
     $verknuepfung_status/.verknuepfung_status einführen 
 
 ERLEDIGT

@@ -1,4 +1,4 @@
-<div class="verknuepfungen" verknuepfungen="<?= $verknuepfungen ?>">
+<div class="verknuepfung_erstellen" verknuepfungen="<?= $verknuepfungen ?>">
     <div class="verknuepfung_moeglich stretched-link-unwirksam invisible">
         <div class="btn-group btn-group-sm d-flex" role="group">
             <button type="button" class="btn btn-outline-<?= VERKNUEPFUNGEN[ $verknuepfungen ]['status_erlaubt'][1]['farbe']; ?> w-25 flex-fill werkzeug" werkzeug="<?= VERKNUEPFUNGEN[ $verknuepfungen ]['verknuepfung'].'_erstellen' ?>" status="1">

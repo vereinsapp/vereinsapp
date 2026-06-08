@@ -1,12 +1,12 @@
 /**
- * @param {JQuery} $verknuepfungen
+ * @param {JQuery} $verknuepfung_erstellen
  * @param {JQuery} $element
  */
 
-function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
-    const $verknuepfung_moeglich = $verknuepfungen.find(".verknuepfung_moeglich");
-    const $verknuepfung_nicht_moeglich = $verknuepfungen.find(".verknuepfung_nicht_moeglich");
-    const verknuepfungen = Util_WertBereinigtZurueck($verknuepfungen.attr("verknuepfungen"), undefined);
+function Liste_$VerknuepfungErstellenAktualisieren($verknuepfung_erstellen, $element) {
+    const $verknuepfung_moeglich = $verknuepfung_erstellen.find(".verknuepfung_moeglich");
+    const $verknuepfung_nicht_moeglich = $verknuepfung_erstellen.find(".verknuepfung_nicht_moeglich");
+    const verknuepfungen = Util_WertBereinigtZurueck($verknuepfung_erstellen.attr("verknuepfungen"), undefined);
 
     // VERKNUEPFTE LISTEN DEFINIEREN
     const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
@@ -46,11 +46,11 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
     const verknuepfung_status = Liste_VerknuepfungWertRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
 
     // ZUGEHÖRIGES LABEL BEARBEITEN
-    const $zugehoeriges_label = $verknuepfungen.siblings("label");
+    const $zugehoeriges_label = $verknuepfung_erstellen.siblings("label");
     $zugehoeriges_label.addClass("form-check-label").attr("for", zufaelligeZeichenketteZurueck(8));
 
     // ZUGEHÖRIGES WERKZEUG BEARBEITEN
-    $verknuepfungen.find('.werkzeug[werkzeug="' + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + '_erstellen"]').each(function () {
+    $verknuepfung_erstellen.find('.werkzeug[werkzeug="' + VERKNUEPFUNGEN[verknuepfungen].verknuepfung + '_erstellen"]').each(function () {
         const $werkzeug = $(this);
         let disabled_typspezifisch = false;
 
@@ -80,7 +80,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
         if (
             $element.hasClass("disabled") ||
             (typeof VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich_frist === "function" &&
-                VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich_frist($verknuepfungen, $element)) ||
+                VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich_frist($element)) ||
             disabled_typspezifisch
         )
             $werkzeug.prop("disabled", true);
@@ -88,7 +88,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
     });
 
     // ZUGEHÖRIGES BEMERKUNG-AENDERN-WERKZEUG BEARBEITEN
-    $verknuepfungen.find('.werkzeug[werkzeug="verknuepfung_bemerkung_aendern"]').each(function () {
+    $verknuepfung_erstellen.find('.werkzeug[werkzeug="verknuepfung_bemerkung_aendern"]').each(function () {
         const $werkzeug = $(this);
 
         $.each(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt, function (status) {
@@ -115,7 +115,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
         if (
             $element.hasClass("disabled") ||
             (typeof VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich_frist === "function" &&
-                VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich_frist($verknuepfungen, $element))
+                VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich_frist($element))
         )
             $werkzeug.prop("disabled", true);
         else $werkzeug.prop("disabled", false);
@@ -124,7 +124,7 @@ function Liste_$VerknuepfungenAktualisieren($verknuepfungen, $element) {
     // VERKNUEPFUNG NICHT MÖGLICH
     if (
         typeof VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich_eigenschaft === "function" &&
-        VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich_eigenschaft($verknuepfungen, $element)
+        VERKNUEPFUNGEN[verknuepfungen].verknuepfung_nicht_moeglich_eigenschaft($element)
     ) {
         /* Verknüpfung ist für das Element nicht möglich */
         $verknuepfung_moeglich.addClass("invisible");

@@ -30,7 +30,7 @@
             </div>
             <div class="card-text text-center fst-italic"><span class="eigenschaft" eigenschaft="bemerkung"></span></div>
             <div class="card-text mt-1">
-<?= view( 'Templates/Liste/verknuepfungen_status_auswahl', array( 'verknuepfungen' => 'termine_rueckmeldungen', ) ); ?>
+<?= view( 'Templates/Liste/verknuepfung_erstellen_status_auswahl', array( 'verknuepfungen' => 'termine_rueckmeldungen', ) ); ?>
             </div>
         </div>
     </div></div>

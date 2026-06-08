@@ -3,7 +3,7 @@ function Ajax_InDieSchlange(url, data, dom, rein_validation_pos_aktion, rein_val
         dom.$werkzeug.find(".spinner").remove();
         dom.$werkzeug.find(".beschriftung").addClass("invisible").after(Dom_$SpinnerInitialisiertZurueck());
 
-        const $label = dom.$werkzeug.closest(".verknuepfungen").siblings("label");
+        const $label = dom.$werkzeug.closest(".verknuepfung_erstellen").siblings("label");
         $label.find(".spinner").remove();
         $label.find(".beschriftung").addClass("invisible").after(Dom_$SpinnerInitialisiertZurueck());
 
@@ -46,7 +46,7 @@ function Ajax_InDieSchlange(url, data, dom, rein_validation_pos_aktion, rein_val
                     AJAX.dom.$werkzeug.find(".spinner").remove();
                     AJAX.dom.$werkzeug.find(".beschriftung").removeClass("invisible");
 
-                    const $label = AJAX.dom.$werkzeug.closest(".verknuepfungen").siblings("label");
+                    const $label = AJAX.dom.$werkzeug.closest(".verknuepfung_erstellen").siblings("label");
                     $label.find(".spinner").remove();
                     $label.find(".beschriftung").removeClass("invisible");
                 }

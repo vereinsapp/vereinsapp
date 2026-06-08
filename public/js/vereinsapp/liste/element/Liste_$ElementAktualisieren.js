@@ -76,8 +76,8 @@ function Liste_$ElementAktualisieren($element) {
     });
 
     // VERKNUEPFUNGEN AKTUALISIEREN
-    $element.find(".verknuepfungen").each(function () {
-        Liste_$VerknuepfungenAktualisieren($(this), $element);
+    $element.find(".verknuepfung_erstellen").each(function () {
+        Liste_$VerknuepfungErstellenAktualisieren($(this), $element);
     });
 
     // NAVIGATION AKTUALISIEREN
