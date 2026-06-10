@@ -1,0 +1,1 @@
+<span class="verknuepfung_bemerkung verknuepfung_zusatzsymbol_fuer_spaeter float-end stretched-link-unwirksam" verknuepfungen="<?= $verknuepfungen ?>"></span>

@@ -15,6 +15,7 @@ class Termine extends BaseController {
 
         $this->viewdata['liste']['bevorstehende_termine'] = VIEWDATA['termine'];
         $this->viewdata['liste']['bevorstehende_termine']['mitglied_id'] = ICH_ID;
+        $this->viewdata['liste']['bevorstehende_termine']['element']['zusatzsymbole'][] = 'bemerkung';
         $this->viewdata['liste']['bevorstehende_termine']['element']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
         $this->viewdata['liste']['bevorstehende_termine']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
         $this->viewdata['liste']['bevorstehende_termine']['element']['verknuepfungen'] = 'termine_rueckmeldungen';
@@ -69,6 +70,7 @@ class Termine extends BaseController {
             $this->viewdata['liste']['zugeordnete_aufgaben']['filtern'] = array( 'aufgaben_zuordnungen_termine' => array( 'inklusiv' => array( $termin_id ), ), );
             $this->viewdata['liste']['zugeordnete_aufgaben']['termin_id'] = $termin_id;
             $this->viewdata['liste']['zugeordnete_aufgaben']['ueberschrift'] = 'Aufgaben';
+            $this->viewdata['liste']['zugeordnete_aufgaben']['element']['verknuepfungen'] = 'aufgaben_zuordnungen_termine';
 
             if( auth()->user()->can( 'aufgaben.verwaltung' ) ) {
 
@@ -96,6 +98,7 @@ class Termine extends BaseController {
             $this->viewdata['liste']['zugeordnete_setliste']['termin_id'] = $termin_id;
             $this->viewdata['liste']['zugeordnete_setliste']['ueberschrift'] = 'Setliste';
             $this->viewdata['liste']['zugeordnete_setliste']['element']['link'] = array( 'liste' => 'notenbank', 'eigenschaften' => array( 'id', ), );
+            $this->viewdata['liste']['zugeordnete_setliste']['element']['verknuepfungen'] = 'notenbank_setliste';
 
             if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
 

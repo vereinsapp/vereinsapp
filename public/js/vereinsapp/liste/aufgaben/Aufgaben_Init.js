@@ -23,6 +23,9 @@ LISTEN.aufgaben.element_aendern_data_vervollstaendigen_aktion = function (data, 
 
 WERKZEUGE.termine_aufgaben_zuordnen.aktualisieren_aktion = WERKZEUGE.element_erstellen.aktualisieren_aktion;
 
+ZUSATZSYMBOLE.aufgaben_rueckmeldungen = new Object();
+ZUSATZSYMBOLE.aufgaben_rueckmeldungen.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
+
 ZUSATZSYMBOLE.aufgaben_zuordnungen_termine = new Object();
 ZUSATZSYMBOLE.aufgaben_zuordnungen_termine.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
 

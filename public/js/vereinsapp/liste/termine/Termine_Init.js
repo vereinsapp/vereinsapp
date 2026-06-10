@@ -105,7 +105,8 @@ ZUSATZSYMBOLE.termine_anwesenheiten = new Object();
 ZUSATZSYMBOLE.termine_anwesenheiten.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
 
 ZUSATZSYMBOLE.kategorie = new Object();
-ZUSATZSYMBOLE.kategorie.aktualisieren_aktion = function ($zusatzsymbol, $element) {
+ZUSATZSYMBOLE.kategorie.aktualisieren_aktion = function ($zusatzsymbol, $container) {
+    const $element = $container;
     const kategorie = Liste_ElementWertRausZurueck(
         "kategorie",
         Util_WertBereinigtZurueck($element.attr("termin_id"), undefined),

@@ -53,7 +53,8 @@ ZUSATZSYMBOLE.vergebene_rechte = new Object();
 ZUSATZSYMBOLE.vergebene_rechte.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
 
 ZUSATZSYMBOLE.geburtstag = new Object();
-ZUSATZSYMBOLE.geburtstag.aktualisieren_aktion = function ($zusatzsymbol, $element) {
+ZUSATZSYMBOLE.geburtstag.aktualisieren_aktion = function ($zusatzsymbol, $container) {
+    const $element = $container;
     const geburtstag = Liste_ElementWertRausZurueck(
         "geburtstag",
         Util_WertBereinigtZurueck($element.attr("mitglied_id"), undefined),

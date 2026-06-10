@@ -69,7 +69,7 @@ function Liste_$ElementAktualisieren($element) {
     $element.find(".zusatzsymbole").each(function () {
         const $zusatzsymbole = $(this);
 
-        Dom_$ZusatzsymboleAktualisieren($zusatzsymbole);
+        Dom_$ZusatzsymboleAktualisieren($zusatzsymbole, $element);
 
         if ($zusatzsymbole.find(".zusatzsymbol").length === 0) $zusatzsymbole.addClass("invisible");
         else $zusatzsymbole.removeClass("invisible");
@@ -123,6 +123,16 @@ function Liste_$ElementAktualisieren($element) {
                 else $verknuepfung_erstellen.removeClass("disabled");
 
                 Liste_$VerknuepfungErstellenAktualisieren($verknuepfung_erstellen);
+            });
+
+            // VERKUEPFUNG_BEMERKUNG AKTUALISIEREN
+            $element.find(".verknuepfung_bemerkung[verknuepfungen='" + verknuepfungen + "']").each(function () {
+                const $verknuepfung_bemerkung = $(this);
+
+                $verknuepfung_bemerkung
+                    .attr("verknuepfung_id", verknuepfung_id)
+                    .empty()
+                    .append(Dom_$ZusatzsymbolInitialisiertZurueck("bemerkung", $verknuepfung_bemerkung));
             });
         }
     });

@@ -65,51 +65,46 @@ WERKZEUGE.element_erstellen.aktualisieren_aktion = function ($werkzeug) {
 
 ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION = function ($zusatzsymbol, $element) {
     const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
-
+    const element_id = Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
     const verknuepfungen = Util_WertBereinigtZurueck($zusatzsymbol.attr("zusatzsymbol"), undefined);
-    const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
-    const verknuepfte_element_id = new Object();
-    $.each(verknuepfte_listen, function (position, verknuepfte_liste) {
-        const element_id = Util_WertBereinigtZurueck($element.attr(LISTEN[verknuepfte_liste].element + "_id"), undefined);
-        if (typeof element_id !== "undefined") verknuepfte_element_id[LISTEN[verknuepfte_liste].element + "_id"] = element_id;
+
+    // ANDERE_VERKNUEPFTE_LISTE DEFINIEREN
+    let andere_verknuepfte_liste = liste;
+    $.each(VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen, function (position, verknuepfte_liste) {
+        if (verknuepfte_liste !== liste) andere_verknuepfte_liste = verknuepfte_liste;
+        else {
+            /* nächster Schleifendurchlauf */
+        }
     });
-    verknuepfte_element_id[LISTEN[liste].element + "_id"] = Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
 
+    // ANDERE_VERKNUEPFTE_ELEMENT_ID DEFINIEREN
+    const andere_verknuepfte_element_id = Util_WertBereinigtZurueck($element.attr(LISTEN[andere_verknuepfte_liste].element + "_id"), undefined);
+
+    // VERKNUEPFUNG_ID DEFINIEREN
     let verknuepfung_id = undefined;
-    $.each(
-        Liste_VerknuepfungIdsNachListeZurueck(
-            verknuepfte_element_id[LISTEN[verknuepfte_listen[0]].element + "_id"],
-            verknuepfte_listen[0],
-            verknuepfungen,
-            new Array(),
-        ),
-        function (position, verknuepfung_id_nach_liste) {
-            if (
-                Liste_VerknuepfungWertRausZurueck(
-                    LISTEN[verknuepfte_listen[1]].element + "_id",
-                    verknuepfung_id_nach_liste,
-                    verknuepfungen,
-                    undefined,
-                ) === verknuepfte_element_id[LISTEN[verknuepfte_listen[1]].element + "_id"]
-            )
-                verknuepfung_id = verknuepfung_id_nach_liste;
-        },
-    );
+    $.each(Liste_VerknuepfungIdsNachListeZurueck(element_id, liste, verknuepfungen, new Array()), function (position, verknuepfung_id_nach_liste) {
+        if (
+            Liste_VerknuepfungWertRausZurueck(
+                LISTEN[andere_verknuepfte_liste].element + "_id",
+                verknuepfung_id_nach_liste,
+                verknuepfungen,
+                undefined,
+            ) === andere_verknuepfte_element_id
+        )
+            verknuepfung_id = verknuepfung_id_nach_liste;
+    });
 
-    let verknuepfung_status = Liste_VerknuepfungWertRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
-    if (verknuepfung_status > 0 && !(verknuepfung_status in VERKNUEPFUNGEN[verknuepfungen].status_erlaubt)) verknuepfung_status = 1;
+    let status = Liste_VerknuepfungWertRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
+    if (status > 0 && !(status in VERKNUEPFUNGEN[verknuepfungen].status_erlaubt)) status = 1;
 
-    if (typeof verknuepfung_status !== "undefined")
-        $zusatzsymbol
-            .removeClass("text-primary")
-            .addClass("text-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[verknuepfung_status].farbe)
-            .html(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[verknuepfung_status].aktiv);
+    $zusatzsymbol
+        .removeClass("text-primary")
+        .addClass("text-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
+        .html(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].aktiv);
 };
 
 ZUSATZSYMBOLE.bemerkung = new Object();
-ZUSATZSYMBOLE.bemerkung.aktualisieren_aktion = function ($zusatzsymbol, $element) {
-    const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
-
+ZUSATZSYMBOLE.bemerkung.aktualisieren_aktion = function ($zusatzsymbol, $container) {
     $zusatzsymbol
         .popover("dispose")
         .addClass("text-primary")
@@ -118,14 +113,30 @@ ZUSATZSYMBOLE.bemerkung.aktualisieren_aktion = function ($zusatzsymbol, $element
         .attr("data-bs-toggle", "popover")
         .attr("data-bs-trigger", "focus")
         .attr("tabindex", 0)
-        .attr("data-bs-placement", "right");
+        .attr("data-bs-placement", "left");
 
-    const bemerkung = Liste_ElementWertRausZurueck(
-        "bemerkung",
-        Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined),
-        liste,
-        null,
-    );
+    let bemerkung = "";
+    if ($container.hasClass("element")) {
+        const $element = $container;
+        const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
+
+        bemerkung = Liste_ElementWertRausZurueck(
+            "bemerkung",
+            Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined),
+            liste,
+            null,
+        );
+    } else if ($container.hasClass("verknuepfung_bemerkung")) {
+        const $verknuepfung_bemerkung = $container;
+        const verknuepfungen = Util_WertBereinigtZurueck($verknuepfung_bemerkung.attr("verknuepfungen"), undefined);
+
+        bemerkung = Liste_VerknuepfungWertRausZurueck(
+            "bemerkung",
+            Util_WertBereinigtZurueck($verknuepfung_bemerkung.attr("verknuepfung_id"), undefined),
+            verknuepfungen,
+            null,
+        );
+    }
     if (bemerkung !== null) $zusatzsymbol.removeClass("invisible").attr("data-bs-content", bemerkung);
     else $zusatzsymbol.addClass("invisible").removeAttr("data-bs-content");
 

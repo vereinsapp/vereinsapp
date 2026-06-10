@@ -65,10 +65,12 @@ Relevante Funktionen aus lib nach util/ajax verschieben (util in helferlein umbe
 instanz[instanz].$blanko_... umbauen zu $blanko_...[instanz], dann instanz aus VERKNUEPFUNGEN[auswertungen/verknuepfungen] entfernen (instanz aus LISTEN[liste] entfernen und filtern etc. nach FILTERN etc. verschieben?)
 Bugfix bearbeiten_modus immernoch aktiv trotz fehlendem Recht
 Lesendes .attr( immer in Kombination mit Util_WertBereinigtZurueck( ... , undefined) verwenden
+Bugfix Text-Ausrichtung Ergebnis Auswertung (wenn eine Liste leer ist, dann wird sie ausgeblendet) + Gesamt hat ein Toggle-Symbol
 
 verknuepfung_ids_nach_liste verschieben in element und Liste_EventVerknuepfungenBereitstellen dann nach Liste_EventListenBereitstellen aufrufen?
 VERKNUEPFUNGEN[ ... ]['typ'] element_auswahl, janein_auswahl und status_auswahl notwendig? 
 Bemerkung-Anzeigeproblematik, Status-Anzeigeproblematik und sortable-Event bei Elementen mit Verknuepfungen (Auswertungen-Views, Setliste)
+    Mehrere gleiche Titel in der Setliste anzeigen
     Braucht es dann noch ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION?
     $verknuepfung_status/.verknuepfung_status einführen
 

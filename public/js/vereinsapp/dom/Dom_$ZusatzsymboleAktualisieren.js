@@ -1,10 +1,10 @@
 /**
  * @param {JQuery} $zusatzsymbole
+ * @param {JQuery} $container
  */
 
-function Dom_$ZusatzsymboleAktualisieren($zusatzsymbole) {
+function Dom_$ZusatzsymboleAktualisieren($zusatzsymbole, $container) {
     const zusatzsymbole = Util_WertBereinigtZurueck($zusatzsymbole.attr("zusatzsymbole"), new Array());
-    const $element = $zusatzsymbole.closest(".element");
 
     // ZUSATZSYMBOLE IM DOM LÖSCHEN
     $zusatzsymbole.find(".zusatzsymbol").each(function () {
@@ -16,9 +16,9 @@ function Dom_$ZusatzsymboleAktualisieren($zusatzsymbole) {
     // ZUSATZSYMBOLE IM DOM ERGÄNZEN UND SORTIEREN
     $.each(zusatzsymbole, function (position, zusatzsymbol) {
         let $zusatzsymbol = $zusatzsymbole.find('.zusatzsymbol[zusatzsymbol="' + zusatzsymbol + '"]');
-        if (!$zusatzsymbol.exists()) $zusatzsymbol = Dom_$ZusatzsymbolInitialisiertZurueck(zusatzsymbol, $element);
+        if (!$zusatzsymbol.exists()) $zusatzsymbol = Dom_$ZusatzsymbolInitialisiertZurueck(zusatzsymbol, $container);
         else if (typeof ZUSATZSYMBOLE[zusatzsymbol].aktualisieren_aktion === "function")
-            ZUSATZSYMBOLE[zusatzsymbol].aktualisieren_aktion($zusatzsymbol, $element);
+            ZUSATZSYMBOLE[zusatzsymbol].aktualisieren_aktion($zusatzsymbol, $container);
 
         if (position === 0) $zusatzsymbol.appendTo($zusatzsymbole);
         else $zusatzsymbol.insertAfter($zusatzsymbole.find('.zusatzsymbol[zusatzsymbol="' + zusatzsymbole[position - 1] + '"]'));
