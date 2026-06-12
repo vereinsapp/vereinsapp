@@ -55,9 +55,6 @@ LISTEN.notenbank.element_ergaenzen_aktion = function (titel) {
 
 WERKZEUGE.setliste_verwalten.aktualisieren_aktion = WERKZEUGE.element_erstellen.aktualisieren_aktion;
 
-ZUSATZSYMBOLE.notenbank_setliste = new Object();
-ZUSATZSYMBOLE.notenbank_setliste.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
-
 function Notenbank_Init() {
     // SETLISTE VERWALTEN (MODAL) ÖFFNEN
     $(document).on("click", '.werkzeug[werkzeug="setliste_verwalten"]', function () {

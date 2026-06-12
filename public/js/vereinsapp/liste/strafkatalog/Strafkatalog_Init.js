@@ -18,9 +18,6 @@ LISTEN.strafkatalog.element_aendern_data_vervollstaendigen_aktion = function (da
     return data;
 };
 
-ZUSATZSYMBOLE.strafkatalog_zugewiesene_strafen = new Object();
-ZUSATZSYMBOLE.strafkatalog_zugewiesene_strafen.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
-
 function Strafkatalog_Init() {
     // STRAFEN ZUWEISEN (MODAL) ÖFFNEN
     $(document).on("click", '.werkzeug[werkzeug="strafen_zuweisen"]', function () {

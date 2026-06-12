@@ -55,7 +55,6 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = VIEWDATA['termine'];
             unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['ich_eingeladen_janein']);
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['start'] = array( 'start' => JAHRESBEGINN, 'ende' => MORGEN );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['zusatzsymbole'] = array( 'termine_rueckmeldungen' );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen'] = 'termine_anwesenheiten';
 
@@ -169,7 +168,6 @@ class Mitglieder extends BaseController {
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = VIEWDATA['termine'];
             unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['ich_eingeladen_janein']);
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['start'] = array( 'start' => JAHRESBEGINN, 'ende' => MORGEN );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['zusatzsymbole'] = array( 'termine_rueckmeldungen' );
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
             $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen'] = 'termine_anwesenheiten';
 

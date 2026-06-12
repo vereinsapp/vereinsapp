@@ -49,9 +49,6 @@ LISTEN.mitglieder.element_ergaenzen_aktion = function (mitglied) {
     }
 };
 
-ZUSATZSYMBOLE.vergebene_rechte = new Object();
-ZUSATZSYMBOLE.vergebene_rechte.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
-
 ZUSATZSYMBOLE.geburtstag = new Object();
 ZUSATZSYMBOLE.geburtstag.aktualisieren_aktion = function ($zusatzsymbol, $container) {
     const $element = $container;

@@ -50,7 +50,6 @@ Bugfix filtern_eigenschaft[filtern_klasse].toISODate is not a function (wenn Sta
 Zugewiesene Strafen anzeigen
 VIEWDATA in LISTEN integrieren
 Termin-Ende passt sich automatisch an Termin-Start an
-Wie weiter mit Liste_$ListenstatistikAktualisieren?
 status_erlaubt enthält nur noch Symbole, kein html mehr
 texte zu inhalt_kopieren aus js in Vereinsapp-config verschieben
 auswertung-Views vereinheitlichen?
@@ -68,11 +67,13 @@ Lesendes .attr( immer in Kombination mit Util_WertBereinigtZurueck( ... , undefi
 Bugfix Text-Ausrichtung Ergebnis Auswertung (wenn eine Liste leer ist, dann wird sie ausgeblendet) + Gesamt hat ein Toggle-Symbol
 
 verknuepfung_ids_nach_liste verschieben in element und Liste_EventVerknuepfungenBereitstellen dann nach Liste_EventListenBereitstellen aufrufen?
-VERKNUEPFUNGEN[ ... ]['typ'] element_auswahl, janein_auswahl und status_auswahl notwendig? 
-Bemerkung-Anzeigeproblematik, Status-Anzeigeproblematik und sortable-Event bei Elementen mit Verknuepfungen (Auswertungen-Views, Setliste)
-    Mehrere gleiche Titel in der Setliste anzeigen
-    Braucht es dann noch ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION?
-    $verknuepfung_status/.verknuepfung_status einführen
+VERKNUEPFUNGEN[ ... ]['typ'] element_auswahl, janein_auswahl und status_auswahl notwendig?
+    kacheln-View, liste-View, Liste_$VerknuepfungErstellenAktualisieren
+Wie weiter mit Liste_$ListenstatistikAktualisieren?
+    Liste_$ListeMetaAktualisieren einführen?
+    Wie umgehen mit Liste_$AuswertungenAktualisieren?
+Mehrere gleiche Titel in der Setliste anzeigen
+Verknuepfung-spezifische Werkzeuge (bspw. sortable)
 
 ERLEDIGT
 

@@ -63,46 +63,6 @@ WERKZEUGE.element_erstellen.aktualisieren_aktion = function ($werkzeug) {
         $werkzeug.addClass("position-relative").append(Dom_$HinweispunktInitialisiertZurueck("success"));
 };
 
-ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION = function ($zusatzsymbol, $element) {
-    const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
-    const element_id = Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
-    const verknuepfungen = Util_WertBereinigtZurueck($zusatzsymbol.attr("zusatzsymbol"), undefined);
-
-    // ANDERE_VERKNUEPFTE_LISTE DEFINIEREN
-    let andere_verknuepfte_liste = liste;
-    $.each(VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen, function (position, verknuepfte_liste) {
-        if (verknuepfte_liste !== liste) andere_verknuepfte_liste = verknuepfte_liste;
-        else {
-            /* nächster Schleifendurchlauf */
-        }
-    });
-
-    // ANDERE_VERKNUEPFTE_ELEMENT_ID DEFINIEREN
-    const andere_verknuepfte_element_id = Util_WertBereinigtZurueck($element.attr(LISTEN[andere_verknuepfte_liste].element + "_id"), undefined);
-
-    // VERKNUEPFUNG_ID DEFINIEREN
-    let verknuepfung_id = undefined;
-    $.each(Liste_VerknuepfungIdsNachListeZurueck(element_id, liste, verknuepfungen, new Array()), function (position, verknuepfung_id_nach_liste) {
-        if (
-            Liste_VerknuepfungWertRausZurueck(
-                LISTEN[andere_verknuepfte_liste].element + "_id",
-                verknuepfung_id_nach_liste,
-                verknuepfungen,
-                undefined,
-            ) === andere_verknuepfte_element_id
-        )
-            verknuepfung_id = verknuepfung_id_nach_liste;
-    });
-
-    let status = Liste_VerknuepfungWertRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
-    if (status > 0 && !(status in VERKNUEPFUNGEN[verknuepfungen].status_erlaubt)) status = 1;
-
-    $zusatzsymbol
-        .removeClass("text-primary")
-        .addClass("text-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
-        .html(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].aktiv);
-};
-
 ZUSATZSYMBOLE.bemerkung = new Object();
 ZUSATZSYMBOLE.bemerkung.aktualisieren_aktion = function ($zusatzsymbol, $container) {
     $zusatzsymbol
@@ -126,13 +86,13 @@ ZUSATZSYMBOLE.bemerkung.aktualisieren_aktion = function ($zusatzsymbol, $contain
             liste,
             null,
         );
-    } else if ($container.hasClass("verknuepfung_bemerkung")) {
-        const $verknuepfung_bemerkung = $container;
-        const verknuepfungen = Util_WertBereinigtZurueck($verknuepfung_bemerkung.attr("verknuepfungen"), undefined);
+    } else if ($container.hasClass("verknuepfung_bemerkung_symbol")) {
+        const $verknuepfung_bemerkung_symbol = $container;
+        const verknuepfungen = Util_WertBereinigtZurueck($verknuepfung_bemerkung_symbol.attr("verknuepfungen"), undefined);
 
         bemerkung = Liste_VerknuepfungWertRausZurueck(
             "bemerkung",
-            Util_WertBereinigtZurueck($verknuepfung_bemerkung.attr("verknuepfung_id"), undefined),
+            Util_WertBereinigtZurueck($verknuepfung_bemerkung_symbol.attr("verknuepfung_id"), undefined),
             verknuepfungen,
             null,
         );

@@ -14,10 +14,10 @@
     </div>
     <?php if( array_key_exists( 'collapse', $auswertung ) AND $auswertung['collapse'] ) { ?><div class="row g-0 collapse">
         <div id="<?= $auswertung['instanz']; ?>_ergebnis_1" class="ergebnis liste col-6 text-start text-<?= VERKNUEPFUNGEN['termine_rueckmeldungen']['status_erlaubt'][1]['farbe']; ?>" liste="mitglieder" status=1>
-            <div class="elemente"><div class="blanko invisible" blanko="element" liste="mitglieder" instanz="<?= $auswertung['instanz']; ?>_ergebnis_1"><span class="element_beschriftung"></span><?= view( 'Templates/Liste/verknuepfung_bemerkung', array( 'verknuepfungen' => "termine_rueckmeldungen", ) ); ?></div></div>
+            <div class="elemente"><div class="blanko invisible" blanko="element" liste="mitglieder" instanz="<?= $auswertung['instanz']; ?>_ergebnis_1"><span class="element_beschriftung"></span><?= view( 'Templates/Liste/verknuepfung_bemerkung_symbol', array( 'verknuepfungen' => "termine_rueckmeldungen", ) ); ?></div></div>
         </div>
         <div id="<?= $auswertung['instanz']; ?>_ergebnis_2" class="ergebnis liste col-6 text-end text-<?= VERKNUEPFUNGEN['termine_rueckmeldungen']['status_erlaubt'][2]['farbe']; ?>" liste="mitglieder" status=2>
-            <div class="elemente"><div class="blanko invisible" blanko="element" liste="mitglieder" instanz="<?= $auswertung['instanz']; ?>_ergebnis_2"><span class="element_beschriftung"></span><?= view( 'Templates/Liste/verknuepfung_bemerkung', array( 'verknuepfungen' => "termine_rueckmeldungen", ) ); ?></div></div>
+            <div class="elemente"><div class="blanko invisible" blanko="element" liste="mitglieder" instanz="<?= $auswertung['instanz']; ?>_ergebnis_2"><span class="element_beschriftung"></span><?= view( 'Templates/Liste/verknuepfung_bemerkung_symbol', array( 'verknuepfungen' => "termine_rueckmeldungen", ) ); ?></div></div>
         </div>
         <div id="<?= $auswertung['instanz']; ?>_ergebnis_0" class="ergebnis liste col-12 text-center text-<?= VERKNUEPFUNGEN['termine_rueckmeldungen']['status_erlaubt'][0]['farbe']; ?> small" liste="mitglieder" status=0>
             <div class="elemente"><span class="me-1 blanko invisible" blanko="element" liste="mitglieder" instanz="<?= $auswertung['instanz']; ?>_ergebnis_0"><span class="element_beschriftung"></span><?= VERKNUEPFUNGEN['termine_rueckmeldungen']['status_erlaubt'][0]['aktiv']; ?></span></div>

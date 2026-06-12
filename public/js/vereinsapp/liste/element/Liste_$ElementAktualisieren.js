@@ -125,14 +125,35 @@ function Liste_$ElementAktualisieren($element) {
                 Liste_$VerknuepfungErstellenAktualisieren($verknuepfung_erstellen);
             });
 
-            // VERKUEPFUNG_BEMERKUNG AKTUALISIEREN
-            $element.find(".verknuepfung_bemerkung[verknuepfungen='" + verknuepfungen + "']").each(function () {
-                const $verknuepfung_bemerkung = $(this);
+            // VERKNUEPFUNG_BEMERKUNG_SYMBOL AKTUALISIEREN
+            $element.find(".verknuepfung_bemerkung_symbol[verknuepfungen='" + verknuepfungen + "']").each(function () {
+                const $verknuepfung_bemerkung_symbol = $(this);
 
-                $verknuepfung_bemerkung
+                $verknuepfung_bemerkung_symbol
                     .attr("verknuepfung_id", verknuepfung_id)
                     .empty()
-                    .append(Dom_$ZusatzsymbolInitialisiertZurueck("bemerkung", $verknuepfung_bemerkung));
+                    .append(Dom_$ZusatzsymbolInitialisiertZurueck("bemerkung", $verknuepfung_bemerkung_symbol));
+            });
+
+            // VERKNUEPFUNG_STATUS_WERT AKTUALISIEREN
+            $element
+                .find(".verknuepfung_status_wert[verknuepfungen='" + verknuepfungen + "']")
+                .text(Liste_VerknuepfungWertRausZurueck("status", verknuepfung_id, verknuepfungen, 0));
+
+            // VERKNUEPFUNG_STATUS_SYMBOL AKTUALISIEREN
+            $element.find(".verknuepfung_status_symbol[verknuepfungen='" + verknuepfungen + "']").each(function () {
+                const $verknuepfung_status_symbol = $(this);
+
+                let status = Liste_VerknuepfungWertRausZurueck("status", verknuepfung_id, verknuepfungen, 0);
+                if (status > 0 && !(status in VERKNUEPFUNGEN[verknuepfungen].status_erlaubt)) status = 1;
+
+                $.each(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt, function (status) {
+                    $verknuepfung_status_symbol.removeClass("text-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe);
+                });
+
+                $verknuepfung_status_symbol
+                    .addClass("text-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
+                    .html(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].aktiv);
             });
         }
     });

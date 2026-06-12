@@ -30,7 +30,7 @@ class Einstellungen extends BaseController {
 
             $this->viewdata['liste']['rechte_vergeben']['disabled_ids'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
 
-        } else $this->viewdata['liste']['rechte_vergeben']['element']['zusatzsymbole'] = array( 'vergebene_rechte' );
+        }
 
         $this->viewdata_bereinigen(); echo view( 'Einstellungen/einstellungen', $this->viewdata );
     }

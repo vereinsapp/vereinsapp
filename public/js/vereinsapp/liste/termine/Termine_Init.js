@@ -98,12 +98,6 @@ VERKNUEPFUNGEN.termine_rueckmeldungen.verknuepfung_nicht_moeglich_frist = functi
     );
 };
 
-ZUSATZSYMBOLE.termine_rueckmeldungen = new Object();
-ZUSATZSYMBOLE.termine_rueckmeldungen.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
-
-ZUSATZSYMBOLE.termine_anwesenheiten = new Object();
-ZUSATZSYMBOLE.termine_anwesenheiten.aktualisieren_aktion = ZUSATZSYMBOLE_VERKNUEPFUNGEN_AKTUALISIEREN_AKTION;
-
 ZUSATZSYMBOLE.kategorie = new Object();
 ZUSATZSYMBOLE.kategorie.aktualisieren_aktion = function ($zusatzsymbol, $container) {
     const $element = $container;
