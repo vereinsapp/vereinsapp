@@ -14,13 +14,11 @@ class Notenbank extends BaseController {
         $this->viewdata['liste']['aktuelles_verzeichnis']['element']['vorschau'] = NOTENBANK_EIGENSCHAFTEN_VORSCHAU;
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
-
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
             $this->viewdata['liste']['aktuelles_verzeichnis']['werkzeuge'][] = 'element_erstellen';
             $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_aendern';
             $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_duplizieren';
             $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_loeschen';
-
         }
 
         $this->viewdata_bereinigen(); echo view( 'Notenbank/notenbank', $this->viewdata );
@@ -32,14 +30,11 @@ class Notenbank extends BaseController {
 
         $this->viewdata['liste']['aktuelles_verzeichnis'] = VIEWDATA['notenbank'];
         $this->viewdata['liste']['aktuelles_verzeichnis']['titel_id'] = $titel_id;
-        $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'] = array();
 
         if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
-
             $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_aendern';
             $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_duplizieren';
             $this->viewdata['liste']['aktuelles_verzeichnis']['element']['werkzeuge'][] = 'element_loeschen_weiterleiten';
-
         }
 
         $this->viewdata_bereinigen(); echo view( 'Notenbank/titel_details', $this->viewdata );

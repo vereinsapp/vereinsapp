@@ -13,28 +13,28 @@ class Strafkatalog extends BaseController {
         $this->viewdata['liste']['aktueller_strafkatalog']['element']['vorschau'] = STRAFKATALOG_EIGENSCHAFTEN_VORSCHAU;
 
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
-
             $this->viewdata['liste']['strafen_zuweisen'] = VIEWDATA['mitglieder'];
             unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
-            $this->viewdata['liste']['strafen_zuweisen']['element']['verknuepfungen'] = 'strafkatalog_zugewiesene_strafen';
-
-            if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
-
+            $this->viewdata['liste']['strafen_zuweisen']['element']['verknuepfungen'] = array(
+                'verknuepfungen' => 'strafkatalog_zugewiesene_strafen',
+                'verknuepfung_erstellen' => TRUE,
+            );
+            if( auth()->user()->can( 'mitglider.verwaltung' ) ) {
                 $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
                 $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'element_erstellen';
                 $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_aendern';
                 $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_duplizieren';
                 $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_loeschen';
-
             }
+            $this->viewdata['liste']['aktueller_strafkatalog']['element']['werkzeuge'][] = 'strafen_zuweisen';
+        }
 
+        if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
             $this->viewdata['liste']['aktueller_strafkatalog']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
             $this->viewdata['liste']['aktueller_strafkatalog']['werkzeuge'][] = 'element_erstellen';
-            $this->viewdata['liste']['aktueller_strafkatalog']['element']['werkzeuge'][] = 'strafen_zuweisen';
             $this->viewdata['liste']['aktueller_strafkatalog']['element']['werkzeuge'][] = 'element_aendern';
             $this->viewdata['liste']['aktueller_strafkatalog']['element']['werkzeuge'][] = 'element_duplizieren';
             $this->viewdata['liste']['aktueller_strafkatalog']['element']['werkzeuge'][] = 'element_loeschen';
-
         }
 
         $this->viewdata_bereinigen(); echo view( 'Strafkatalog/strafkatalog', $this->viewdata );

@@ -1,1 +1,1 @@
-<span class="text-secondary small ms-2 float-end">[<span class="verknuepfung_status_wert" verknuepfungen="<?= $verknuepfungen ?>"></span>]</span>
+<span class="text-secondary small ms-2 float-end"><span class="verknuepfung_status_wert" verknuepfungen="<?= $verknuepfungen ?>"></span></span>

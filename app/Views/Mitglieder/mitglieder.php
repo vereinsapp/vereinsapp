@@ -4,11 +4,12 @@
 
 <?= view( 'Templates/Liste/kacheln', array( 'liste' => $liste['alle_mitglieder'], ) ); ?>
 
-<?php if( auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
-    view( 'Templates/modal', array( 'modal_id' => 'termine_rueckmeldungen_verwalten_modal', 'modal' =>
+<?php if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) echo
+    view( 'Templates/modal', array( 'modal_id' => 'rechte_vergeben_modal', 'modal' =>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'], ) ) ) ); ?>
+<?= view( 'Templates/modal', array( 'modal_id' => 'termine_rueckmeldungen_verwalten_modal', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_rueckmeldungen_verwalten'], ) ) ) ); ?>
-<?php if( auth()->user()->can( 'termine.anwesenheiten' ) ) echo
-    view( 'Templates/modal', array( 'modal_id' => 'termine_anwesenheiten_dokumentieren_modal', 'modal' =>
+<?= view( 'Templates/modal', array( 'modal_id' => 'termine_anwesenheiten_dokumentieren_modal', 'modal' =>
     view( 'Templates/Liste/liste', array( 'liste' => $liste['termine_anwesenheiten_dokumentieren'], ) ) ) ); ?>
 <?php if( auth()->user()->can( 'termine.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'termin_basiseigenschaften', 'modal' =>
@@ -25,7 +26,4 @@
 <?php if( auth()->user()->can( 'mitglieder.verwaltung' ) ) echo
     view( 'Templates/modal', array( 'modal_id' => 'mitglied_einmal_link_anzeigen_modal', 'modal' =>
     view( 'Mitglieder/mitglied_einmal_link_anzeigen' ) ) ); ?>
-<?php if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) echo
-    view( 'Templates/modal', array( 'modal_id' => 'rechte_vergeben_modal', 'modal' =>
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['rechte_vergeben'], ) ) ) ); ?>
 <?= $this->endSection() ?>

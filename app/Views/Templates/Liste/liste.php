@@ -22,29 +22,48 @@
         <div class="list-group-item blanko invisible" blanko="element" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>">
 
             <div class="text-truncate d-flex flex-nowrap align-items-center">
-<?php if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'janein_auswahl' ) echo view( 'Templates/Liste/verknuepfung_erstellen_janein_auswahl', array( 'verknuepfungen' => $liste['element']['verknuepfungen'], ) ); ?>
+
+<?php if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfungen', $liste['element']['verknuepfungen'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen']['verknuepfungen'] ]['typ'] === 'janein_auswahl'
+      AND array_key_exists( 'verknuepfung_erstellen', $liste['element']['verknuepfungen'] ) AND $liste['element']['verknuepfungen']['verknuepfung_erstellen'] === TRUE )
+    echo view( 'Templates/Liste/verknuepfung_erstellen_janein_auswahl', array( 'verknuepfungen' => $liste['element']['verknuepfungen']['verknuepfungen'], ) ); ?>
+
                 <label class="flex-grow-1<?php
-                if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'element_auswahl' )
-                    echo ' werkzeug';
+                if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfungen', $liste['element']['verknuepfungen'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen']['verknuepfungen'] ]['typ'] === 'element_auswahl'
+                AND array_key_exists( 'verknuepfung_erstellen', $liste['element']['verknuepfungen'] ) AND $liste['element']['verknuepfungen']['verknuepfung_erstellen'] === TRUE ) {
+                    ?> werkzeug<?php }
                 ?>"<?php
-                if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'element_auswahl' ) {
-                    ?> werkzeug="<?= VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['verknuepfung'].'_erstellen' ?>" modal_title="<?= WERKZEUGE[ VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['verknuepfung'].'_erstellen' ]['beschriftung']['beschriftung'] ?>"<?php }
-                ?>><?php if( !array_key_exists( 'verknuepfungen', $liste['element'] ) OR VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] !== 'janein_auswahl' ) { ?><i class="bi bi-<?= SYMBOLE[ $liste['liste'] ] ?>"></i> <?php } ?><span class="element_beschriftung"></span></label><?php
+                if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfungen', $liste['element']['verknuepfungen'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen']['verknuepfungen'] ]['typ'] === 'element_auswahl'
+                AND array_key_exists( 'verknuepfung_erstellen', $liste['element']['verknuepfungen'] ) AND $liste['element']['verknuepfungen']['verknuepfung_erstellen'] === TRUE ) {
+                    ?> werkzeug="<?= VERKNUEPFUNGEN[ $liste['element']['verknuepfungen']['verknuepfungen'] ]['verknuepfung'].'_erstellen' ?>" modal_title="<?= WERKZEUGE[ VERKNUEPFUNGEN[ $liste['element']['verknuepfungen']['verknuepfungen'] ]['verknuepfung'].'_erstellen' ]['beschriftung']['beschriftung'] ?>"<?php }
+                ?>><i class="bi bi-<?= SYMBOLE[ $liste['liste'] ] ?>"></i> <span class="element_beschriftung"></span></label><?php
+
                 if( array_key_exists( 'link', $liste['element'] ) AND is_array( $liste['element']['link'] ) ) {
-                    ?><a class="stretched-link" link='<?= json_encode( $liste['element']['link'], JSON_UNESCAPED_UNICODE ); ?>'></a><?php }
-                if( array_key_exists( 'verknuepfungen', $liste['element'] ) ) {
-                    echo view( 'Templates/Liste/verknuepfung_bemerkung_symbol', array( 'verknuepfungen' => $liste['element']['verknuepfungen'], ) );
-                    echo view( 'Templates/Liste/verknuepfung_status_wert', array( 'verknuepfungen' => $liste['element']['verknuepfungen'], ) );
-                    echo view( 'Templates/Liste/verknuepfung_status_symbol', array( 'verknuepfungen' => $liste['element']['verknuepfungen'], ) ); }
+                    ?><a class="stretched-link" link='<?= json_encode( $liste['element']['link'], JSON_UNESCAPED_UNICODE ); ?>'></a><?php
+                }
+
                 if( array_key_exists( 'zusatzsymbole', $liste['element'] ) AND is_array( $liste['element']['zusatzsymbole'] ) AND count( $liste['element']['zusatzsymbole'] ) > 0 ) {
-                    ?><span class="zusatzsymbole float-end stretched-link-unwirksam invisible" zusatzsymbole='<?= json_encode( $liste['element']['zusatzsymbole'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php }
+                    ?><span class="zusatzsymbole float-end stretched-link-unwirksam invisible" zusatzsymbole='<?= json_encode( $liste['element']['zusatzsymbole'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php
+                }
+
+                if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfung_bemerkung_symbol', $liste['element']['verknuepfungen'] ) AND $liste['element']['verknuepfungen']['verknuepfung_bemerkung_symbol'] === TRUE )
+                    echo view( 'Templates/Liste/verknuepfung_bemerkung_symbol', array( 'verknuepfungen' => $liste['element']['verknuepfungen']['verknuepfungen'], ) );
+                if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfung_status_wert', $liste['element']['verknuepfungen'] ) AND $liste['element']['verknuepfungen']['verknuepfung_status_wert'] === TRUE )
+                    echo view( 'Templates/Liste/verknuepfung_status_wert', array( 'verknuepfungen' => $liste['element']['verknuepfungen']['verknuepfungen'], ) );
+                if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfung_status_symbol', $liste['element']['verknuepfungen'] ) AND $liste['element']['verknuepfungen']['verknuepfung_status_symbol'] === TRUE )
+                    echo view( 'Templates/Liste/verknuepfung_status_symbol', array( 'verknuepfungen' => $liste['element']['verknuepfungen']['verknuepfungen'], ) );
+
                 if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND count( $liste['element']['werkzeuge'] ) > 0 ) {
-                    ?><span class="werkzeuge float-end stretched-link-unwirksam invisible" werkzeuge='<?= json_encode( $liste['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php } ?>
+                    ?><span class="werkzeuge float-end stretched-link-unwirksam invisible" werkzeuge='<?= json_encode( $liste['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php
+                } ?>
+
             </div>
             <?php if( array_key_exists( 'vorschau', $liste['element'] ) AND is_array( $liste['element']['vorschau'] ) AND count( $liste['element']['vorschau'] ) > 0 ) {
                 ?><div class="vorschau text-truncate text-secondary small" vorschau='<?= json_encode( $liste['element']['vorschau'], JSON_UNESCAPED_UNICODE ); ?>'></div><?php } ?>
-<?php if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'status_auswahl' )
-    echo view( 'Templates/Liste/verknuepfung_erstellen_status_auswahl', array( 'verknuepfungen' => $liste['element']['verknuepfungen'], ) ); ?>
+
+<?php if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfungen', $liste['element']['verknuepfungen'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen']['verknuepfungen'] ]['typ'] === 'status_auswahl'
+      AND array_key_exists( 'verknuepfung_erstellen', $liste['element']['verknuepfungen'] ) AND $liste['element']['verknuepfungen']['verknuepfung_erstellen'] === TRUE )
+    echo view( 'Templates/Liste/verknuepfung_erstellen_status_auswahl', array( 'verknuepfungen' => $liste['element']['verknuepfungen']['verknuepfungen'], ) ); ?>
+
         </div>
 
     </div>

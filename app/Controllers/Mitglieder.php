@@ -20,83 +20,71 @@ class Mitglieder extends BaseController {
         $this->viewdata['liste']['alle_mitglieder']['element']['vorschau'] = MITGLIEDER_EIGENSCHAFTEN_VORSCHAU;
 
         if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {
-
             $this->viewdata['liste']['rechte_vergeben'] = VIEWDATA['verfuegbare_rechte'];
             $this->viewdata['liste']['rechte_vergeben']['disabled_ids'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
-            $this->viewdata['liste']['rechte_vergeben']['element']['verknuepfungen'] = 'vergebene_rechte';
-
+            $this->viewdata['liste']['rechte_vergeben']['element']['verknuepfungen'] = array( 'verknuepfungen' => 'vergebene_rechte', );
+            $this->viewdata['liste']['rechte_vergeben']['element']['verknuepfungen']['verknuepfung_erstellen'] = TRUE;
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'rechte_vergeben';
-
         }
 
+        $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = VIEWDATA['termine'];
+        unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
+        $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
+        $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['verknuepfungen'] = array( 'verknuepfungen' => 'termine_rueckmeldungen', );
         if( auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) {
-
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = VIEWDATA['termine'];
-            unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['verknuepfungen'] = 'termine_rueckmeldungen';
-
-            if( auth()->user()->can( 'termine.verwaltung' ) ) {
-
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['verknuepfungen']['verknuepfung_erstellen'] = TRUE;
+            // if( auth()->user()->can( 'termine.verwaltung' ) ) {
                 $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
                 $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['werkzeuge'][] = 'element_erstellen';
                 $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['werkzeuge'][] = 'element_aendern';
                 $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['werkzeuge'][] = 'element_duplizieren';
                 $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['werkzeuge'][] = 'element_loeschen';
+            // }
+        } else $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['verknuepfungen']['verknuepfung_status_symbol'] = TRUE;
+        $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'termine_rueckmeldungen_verwalten';
 
-            }
-
-            $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'termine_rueckmeldungen_verwalten';
-
-        }
-
+        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = VIEWDATA['termine'];
+        unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['ich_eingeladen_janein']);
+        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['start'] = array( 'start' => JAHRESBEGINN, 'ende' => MORGEN );
+        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
+        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen'] = array( 'verknuepfungen' => 'termine_anwesenheiten', );
         if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
-
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = VIEWDATA['termine'];
-            unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['ich_eingeladen_janein']);
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['start'] = array( 'start' => JAHRESBEGINN, 'ende' => MORGEN );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen'] = 'termine_anwesenheiten';
-
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen']['verknuepfung_erstellen'] = TRUE;
             if( auth()->user()->can( 'termine.verwaltung' ) ) {
-
                 $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
                 $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeuge'][] = 'element_erstellen';
                 $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['werkzeuge'][] = 'element_aendern';
                 $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['werkzeuge'][] = 'element_duplizieren';
                 $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['werkzeuge'][] = 'element_loeschen';
-
             }
-
-            $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'termine_anwesenheiten_dokumentieren';
-
-        }
+        } else $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen']['verknuepfung_status_symbol'] = TRUE;
+        $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'termine_anwesenheiten_dokumentieren';
 
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
-
             $this->viewdata['liste']['strafen_zuweisen'] = VIEWDATA['strafkatalog'];
             unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
-            $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
-            $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'element_erstellen';
-            $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_aendern';
-            $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_duplizieren';
-            $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_loeschen';
-            $this->viewdata['liste']['strafen_zuweisen']['element']['verknuepfungen'] = 'strafkatalog_zugewiesene_strafen';
-
+            $this->viewdata['liste']['strafen_zuweisen']['element']['verknuepfungen'] = array(
+                'verknuepfungen' => 'strafkatalog_zugewiesene_strafen',
+                'verknuepfung_erstellen' => TRUE,
+            );
+            // if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+                $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
+                $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'element_erstellen';
+                $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_aendern';
+                $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_duplizieren';
+                $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_loeschen';
+            // }
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'strafen_zuweisen';
-
         }
 
+        $this->viewdata['liste']['alle_mitglieder']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
-
-            $this->viewdata['liste']['alle_mitglieder']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
             $this->viewdata['liste']['alle_mitglieder']['werkzeuge'][] = 'element_erstellen';
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'einmal_link_anzeigen';
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'einmal_link_email';
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'element_aendern';
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'element_duplizieren';
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'element_loeschen';
-
         }
 
         $this->viewdata_bereinigen(); echo view( 'Mitglieder/mitglieder', $this->viewdata );
@@ -108,7 +96,6 @@ class Mitglieder extends BaseController {
 
         $this->viewdata['liste']['alle_mitglieder'] = VIEWDATA['mitglieder'];
         $this->viewdata['liste']['alle_mitglieder']['mitglied_id'] = $mitglied_id;
-        $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'] = array();
 
         $this->viewdata['auswertungen']['rueckmeldungen_mitglied'] = array(
             'verknuepfungen' => 'termine_rueckmeldungen',
@@ -133,81 +120,69 @@ class Mitglieder extends BaseController {
         );
 
         if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {
-
             $this->viewdata['liste']['rechte_vergeben'] = VIEWDATA['verfuegbare_rechte'];
             $this->viewdata['liste']['rechte_vergeben']['disabled_ids'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
-            $this->viewdata['liste']['rechte_vergeben']['element']['verknuepfungen'] = 'vergebene_rechte';
-
+            $this->viewdata['liste']['rechte_vergeben']['element']['verknuepfungen'] = array( 'verknuepfungen' => 'vergebene_rechte', );
+            $this->viewdata['liste']['rechte_vergeben']['element']['verknuepfungen']['verknuepfung_erstellen'] = TRUE;
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'rechte_vergeben';
-
         }
 
+        $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = VIEWDATA['termine'];
+        unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
+        $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
+        $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['verknuepfungen'] = array( 'verknuepfungen' => 'termine_rueckmeldungen', );
         if( auth()->user()->can( 'termine.verwaltung' ) AND auth()->user()->can( 'mitglieder.verwaltung' ) ) {
-
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten'] = VIEWDATA['termine'];
-            unset($this->viewdata['liste']['termine_rueckmeldungen_verwalten']['filtern']['ich_eingeladen_janein']);
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
-            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['verknuepfungen'] = 'termine_rueckmeldungen';
-
-            if( auth()->user()->can( 'termine.verwaltung' ) ) {
-
+            $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['verknuepfungen']['verknuepfung_erstellen'] = TRUE;
+            // if( auth()->user()->can( 'termine.verwaltung' ) ) {
                 $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
                 $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['werkzeuge'][] = 'element_erstellen';
                 $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['werkzeuge'][] = 'element_aendern';
                 $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['werkzeuge'][] = 'element_duplizieren';
                 $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['werkzeuge'][] = 'element_loeschen';
+            // }
+        } else $this->viewdata['liste']['termine_rueckmeldungen_verwalten']['element']['verknuepfungen']['verknuepfung_status_symbol'] = TRUE;
+        $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'termine_rueckmeldungen_verwalten';
 
-            }
-
-            $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'termine_rueckmeldungen_verwalten';
-
-        }
-
+        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = VIEWDATA['termine'];
+        unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['ich_eingeladen_janein']);
+        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['start'] = array( 'start' => JAHRESBEGINN, 'ende' => MORGEN );
+        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
+        $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen'] = array( 'verknuepfungen' => 'termine_anwesenheiten', );
         if( auth()->user()->can( 'termine.anwesenheiten' ) ) {
-
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren'] = VIEWDATA['termine'];
-            unset($this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['ich_eingeladen_janein']);
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['filtern']['start'] = array( 'start' => JAHRESBEGINN, 'ende' => MORGEN );
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
-            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen'] = 'termine_anwesenheiten';
-
+            $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen']['verknuepfung_erstellen'] = TRUE;
             if( auth()->user()->can( 'termine.verwaltung' ) ) {
-
                 $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
                 $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['werkzeuge'][] = 'element_erstellen';
                 $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['werkzeuge'][] = 'element_aendern';
                 $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['werkzeuge'][] = 'element_duplizieren';
                 $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['werkzeuge'][] = 'element_loeschen';
-
             }
-
-            $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'termine_anwesenheiten_dokumentieren';
-
-        }
+        } else $this->viewdata['liste']['termine_anwesenheiten_dokumentieren']['element']['verknuepfungen']['verknuepfung_status_symbol'] = TRUE;
+        $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'termine_anwesenheiten_dokumentieren';
 
         if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
-
             $this->viewdata['liste']['strafen_zuweisen'] = VIEWDATA['strafkatalog'];
             unset($this->viewdata['liste']['strafen_zuweisen']['filtern']);
-            $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
-            $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'element_erstellen';
-            $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_aendern';
-            $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_duplizieren';
-            $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_loeschen';
-            $this->viewdata['liste']['strafen_zuweisen']['element']['verknuepfungen'] = 'strafkatalog_zugewiesene_strafen';
-
+            $this->viewdata['liste']['strafen_zuweisen']['element']['verknuepfungen'] = array(
+                'verknuepfungen' => 'strafkatalog_zugewiesene_strafen',
+                'verknuepfung_erstellen' => TRUE,
+            );
+            // if( auth()->user()->can( 'strafkatalog.verwaltung' ) ) {
+                $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
+                $this->viewdata['liste']['strafen_zuweisen']['werkzeuge'][] = 'element_erstellen';
+                $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_aendern';
+                $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_duplizieren';
+                $this->viewdata['liste']['strafen_zuweisen']['element']['werkzeuge'][] = 'element_loeschen';
+            // }
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'strafen_zuweisen';
-
         }
 
         if( auth()->user()->can( 'mitglieder.verwaltung' ) ) {
-
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'einmal_link_anzeigen';
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'einmal_link_email';
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'element_aendern';
             $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'element_duplizieren';
-            $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'element_loeschen_weiterleiten';
-
+            $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'element_loeschen';
         } elseif( $mitglied_id == ICH_ID ) $this->viewdata['liste']['alle_mitglieder']['element']['werkzeuge'][] = 'meine_daten_aendern';
 
         $this->viewdata_bereinigen(); echo view( 'Mitglieder/mitglied_details', $this->viewdata );

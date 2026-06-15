@@ -65,6 +65,8 @@ instanz[instanz].$blanko_... umbauen zu $blanko_...[instanz], dann instanz aus V
 Bugfix bearbeiten_modus immernoch aktiv trotz fehlendem Recht
 Lesendes .attr( immer in Kombination mit Util_WertBereinigtZurueck( ... , undefined) verwenden
 Bugfix Text-Ausrichtung Ergebnis Auswertung (wenn eine Liste leer ist, dann wird sie ausgeblendet) + Gesamt hat ein Toggle-Symbol
+public function wartungsarbeiten() nach BaseController verschieben und Status-Controller entfernen
+Bei logout alle cookies entfernen?
 
 verknuepfung_ids_nach_liste verschieben in element und Liste_EventVerknuepfungenBereitstellen dann nach Liste_EventListenBereitstellen aufrufen?
 VERKNUEPFUNGEN[ ... ]['typ'] element_auswahl, janein_auswahl und status_auswahl notwendig?

@@ -41,7 +41,7 @@ class Startseite extends BaseController {
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['ueberschrift'] = 'Termine ohne Rückmeldung';
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['element']['link'] = array( 'liste' => 'termine', 'eigenschaften' => array( 'id', ), );
             $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['element']['vorschau'] = TERMINE_EIGENSCHAFTEN_VORSCHAU;
-            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['element']['verknuepfungen'] = 'termine_rueckmeldungen';
+            $this->viewdata['liste']['termine_ausstehende_rueckmeldung']['element']['verknuepfungen'] = array( 'verknuepfungen' => 'termine_rueckmeldungen', 'verknuepfung_erstellen' => TRUE, );
         }
 
         $this->viewdata_bereinigen(); echo view( 'Startseite/startseite', $this->viewdata );

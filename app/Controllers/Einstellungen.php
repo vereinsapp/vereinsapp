@@ -24,13 +24,11 @@ class Einstellungen extends BaseController {
         $this->viewdata['liste']['rechte_vergeben'] = VIEWDATA['verfuegbare_rechte'];
         $this->viewdata['liste']['rechte_vergeben']['mitglied_id'] = ICH_ID;
         $this->viewdata['liste']['rechte_vergeben']['ueberschrift'] = 'Meine Rechte';
-        $this->viewdata['liste']['rechte_vergeben']['element']['verknuepfungen'] = 'vergebene_rechte';
-
+        $this->viewdata['liste']['rechte_vergeben']['element']['verknuepfungen'] = array( 'verknuepfungen' => 'vergebene_rechte', );
         if( auth()->user()->can( 'global.einstellungen' ) OR auth()->user()->can( 'mitglieder.rechte' ) ) {
-
             $this->viewdata['liste']['rechte_vergeben']['disabled_ids'] = array( VERFUEGBARE_RECHTE['global.einstellungen']['id'] );
-
-        }
+            $this->viewdata['liste']['rechte_vergeben']['element']['verknuepfungen']['verknuepfung_erstellen'] = TRUE;
+        } else $this->viewdata['liste']['rechte_vergeben']['element']['verknuepfungen']['verknuepfung_status_symbol'] = TRUE;
 
         $this->viewdata_bereinigen(); echo view( 'Einstellungen/einstellungen', $this->viewdata );
     }

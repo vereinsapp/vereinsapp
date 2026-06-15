@@ -633,7 +633,13 @@ class Vereinsapp extends BaseConfig
                 'zusatzsymbole' => array('geburtstag'),
                 // 'link' => array( 'liste' => 'mitglieder', 'eigenschaften' => array( 'id', ), ),
                 // 'vorschau' => array( 'register', 'geburtstag', 'alter', 'wohnort', 'auto', 'funktion', ),
-                // 'verknuepfungen' => 'termine_rueckmeldungen',
+                // 'verknuepfungen' => array(
+                //     'verknuepfungen' => 'termine_rueckmeldungen',
+                //     'verknuepfung_erstellen' => TRUE,
+                //     'verknuepfung_bemerkung_symbol' => TRUE,
+                //     'verknuepfung_status_wert' => TRUE,
+                //     'verknuepfung_status_symbol' => TRUE,
+                // ),
             ),
         ),
 

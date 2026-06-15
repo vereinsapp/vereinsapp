@@ -21,10 +21,12 @@
     <div class="elemente row row-cols-1 row-cols-lg-2 row-cols-xxl-3 gy-3 gx-0 gx-lg-3 w-100">
 
         <div class="col blanko invisible" blanko="element" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>">
+
             <div class="card"><?php
             if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND count( $liste['element']['werkzeuge'] ) > 0 ) {
                 ?><div class="werkzeuge card-header text-end stretched-link-unwirksam invisible" werkzeuge='<?= json_encode( $liste['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></div><?php } ?>
                 <div class="card-body p-2">
+
                     <h5 class="card-title text-truncate text-nowrap">
                         <span class="element_beschriftung"></span><?php
                         if( array_key_exists( 'link', $liste['element'] ) AND is_array( $liste['element']['link'] ) ) {
@@ -34,13 +36,15 @@
                     </h5>
                     <?php if( array_key_exists( 'vorschau', $liste['element'] ) AND is_array( $liste['element']['vorschau'] ) AND count( $liste['element']['vorschau'] ) > 0 ) {
                         ?><div class="card-text mt-1 vorschau text-truncate text-secondary" vorschau='<?= json_encode( $liste['element']['vorschau'], JSON_UNESCAPED_UNICODE ); ?>'></div><?php } ?>
-                    <?php if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen'] ]['typ'] === 'status_auswahl' ) { ?><div class="card-text mt-1">
-<?= view( 'Templates/Liste/verknuepfung_erstellen_status_auswahl', array( 'verknuepfungen' => $liste['element']['verknuepfungen'], ) ); ?>
-                    </div><?php }?>
+
+<?php if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfungen', $liste['element']['verknuepfungen'] ) AND VERKNUEPFUNGEN[ $liste['element']['verknuepfungen']['verknuepfungen'] ]['typ'] === 'status_auswahl'
+        AND array_key_exists( 'verknuepfung_erstellen', $liste['element']['verknuepfungen'] ) AND $liste['element']['verknuepfungen']['verknuepfung_erstellen'] === TRUE ) {
+    ?><div class="card-text mt-1"><?= view( 'Templates/Liste/verknuepfung_erstellen_status_auswahl', array( 'verknuepfungen' => $liste['element']['verknuepfungen']['verknuepfungen'], ) ); ?></div><?php }?>
+
                 </div>
             </div>
+
         </div>
 
     </div>
-
 </div>
