@@ -123,8 +123,7 @@ class Termine extends BaseController {
             if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
                 $this->viewdata['liste']['zugeordnete_setliste']['werkzeuge'][] = 'bearbeiten_modus_ein_ausschalten';
                 $this->viewdata['liste']['zugeordnete_setliste']['werkzeuge'][] = 'setliste_verwalten';
-                $this->viewdata['liste']['zugeordnete_setliste']['element']['werkzeuge'][] = 'sortable';
-                $this->viewdata['liste']['zugeordnete_setliste']['element']['werkzeuge'][] = 'element_loeschen';
+                $this->viewdata['liste']['zugeordnete_setliste']['element']['verknuepfungen']['verknuepfung_werkzeuge'] = array( 'verknuepfung_status_aendern', 'verknuepfung_loeschen', );
             // }
             // if( auth()->user()->can( 'notenbank.verwaltung' ) ) {
                 $this->viewdata['liste']['setliste_verwalten'] = VIEWDATA['notenbank'];
@@ -134,7 +133,7 @@ class Termine extends BaseController {
                 $this->viewdata['liste']['setliste_verwalten']['element']['werkzeuge'][] = 'element_aendern';
                 $this->viewdata['liste']['setliste_verwalten']['element']['werkzeuge'][] = 'element_duplizieren';
                 $this->viewdata['liste']['setliste_verwalten']['element']['werkzeuge'][] = 'element_loeschen';
-                $this->viewdata['liste']['setliste_verwalten']['element']['verknuepfungen'] = array( 'verknuepfungen' => 'notenbank_setliste', 'verknuepfung_erstellen' => TRUE, );
+                $this->viewdata['liste']['setliste_verwalten']['element']['verknuepfungen'] = array( 'verknuepfungen' => 'notenbank_setliste', 'verknuepfung_erstellen' => TRUE, 'verknuepfung_status_symbol' => TRUE, );
             }
         }
 

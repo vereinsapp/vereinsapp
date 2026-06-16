@@ -6,6 +6,10 @@ function Liste_$ElementAktualisieren($element) {
     const liste = Util_WertBereinigtZurueck($element.attr("liste"), undefined);
     const element_id = Util_WertBereinigtZurueck($element.attr(LISTEN[liste].element + "_id"), undefined);
 
+    // BEARBEITEN_MODUS DEFINIEREN
+    const $liste = $element.closest('.liste[liste="' + liste + '"][id]');
+    const bearbeiten_modus = !$liste.exists() || LISTEN[liste].instanz[Util_WertBereinigtZurueck($liste.attr("id"), undefined)].bearbeiten_modus;
+
     // ELEMENT-BESCHRIFTUNG AKTUALISIEREN
     $element.find(".element_beschriftung").text(Liste_ElementBeschriftungErweitertZurueck(element_id, liste));
 
@@ -48,7 +52,6 @@ function Liste_$ElementAktualisieren($element) {
     });
 
     // WERKZEUGE AKTUALISIEREN
-    const $liste = $element.closest('.liste[liste="' + liste + '"][id]');
     $element.find(".werkzeuge").each(function () {
         const $werkzeuge = $(this);
 
@@ -57,11 +60,7 @@ function Liste_$ElementAktualisieren($element) {
             [LISTEN[liste].element + "_id"]: element_id,
         });
 
-        if (
-            $werkzeuge.find(".werkzeug").length === 0 ||
-            ($liste.exists() && LISTEN[liste].instanz[Util_WertBereinigtZurueck($liste.attr("id"), undefined)].bearbeiten_modus === false)
-        )
-            $werkzeuge.addClass("invisible");
+        if ($werkzeuge.find(".werkzeug").length === 0 || !bearbeiten_modus) $werkzeuge.addClass("invisible");
         else $werkzeuge.removeClass("invisible");
     });
 
@@ -117,7 +116,7 @@ function Liste_$ElementAktualisieren($element) {
                 $verknuepfung_erstellen
                     .attr(LISTEN[liste].element + "_id", element_id)
                     .attr(LISTEN[andere_verknuepfte_liste].element + "_id", andere_verknuepfte_element_id)
-                    .attr("verknuepfung_id", verknuepfung_id);
+                    .attr(VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id", verknuepfung_id);
 
                 if ($element.hasClass("disabled")) $verknuepfung_erstellen.addClass("disabled");
                 else $verknuepfung_erstellen.removeClass("disabled");
@@ -130,7 +129,7 @@ function Liste_$ElementAktualisieren($element) {
                 const $verknuepfung_bemerkung_symbol = $(this);
 
                 $verknuepfung_bemerkung_symbol
-                    .attr("verknuepfung_id", verknuepfung_id)
+                    .attr(VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id", verknuepfung_id)
                     .empty()
                     .append(Dom_$ZusatzsymbolInitialisiertZurueck("bemerkung", $verknuepfung_bemerkung_symbol));
             });
@@ -154,6 +153,19 @@ function Liste_$ElementAktualisieren($element) {
                 $verknuepfung_status_symbol
                     .addClass("text-" + VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].farbe)
                     .html(VERKNUEPFUNGEN[verknuepfungen].status_erlaubt[status].aktiv);
+            });
+
+            // VERKNUEPFUNG_WERKZEUGE AKTUALISIEREN
+            $element.find(".verknuepfung_werkzeuge[verknuepfungen='" + verknuepfungen + "']").each(function () {
+                const $verknuepfung_werkzeuge = $(this);
+
+                Dom_$WerkzeugeAktualisieren($verknuepfung_werkzeuge, {
+                    verknuepfungen: verknuepfungen,
+                    [VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"]: verknuepfung_id,
+                });
+
+                if ($verknuepfung_werkzeuge.find(".werkzeug").length === 0 || !bearbeiten_modus) $verknuepfung_werkzeuge.addClass("invisible");
+                else $verknuepfung_werkzeuge.removeClass("invisible");
             });
         }
     });

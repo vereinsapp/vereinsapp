@@ -92,7 +92,7 @@ ZUSATZSYMBOLE.bemerkung.aktualisieren_aktion = function ($zusatzsymbol, $contain
 
         bemerkung = Liste_VerknuepfungWertRausZurueck(
             "bemerkung",
-            Util_WertBereinigtZurueck($verknuepfung_bemerkung_symbol.attr("verknuepfung_id"), undefined),
+            Util_WertBereinigtZurueck($verknuepfung_bemerkung_symbol.attr(VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"), undefined),
             verknuepfungen,
             null,
         );
@@ -202,7 +202,7 @@ function Liste_Init() {
 
     // ELEMENT LÖSCHEN
     $(document).on("click", '.werkzeug[werkzeug="element_loeschen"], .werkzeug[werkzeug="element_loeschen_weiterleiten"]', function () {
-        const liste = Util_WertBereinigtZurueck($(this).attr("liste"));
+        const liste = Util_WertBereinigtZurueck($(this).attr("liste"), undefined);
         Liste_ElementLoeschen(
             $(this).hasClass("bestaetigt"),
             $(this).attr("werkzeug") === "element_loeschen_weiterleiten",
@@ -215,7 +215,7 @@ function Liste_Init() {
 
     // SORTABLE
     $(".sortable").sortable({
-        handle: '.werkzeug[werkzeug="sortable"]',
+        handle: '.werkzeug[werkzeug="verknuepfung_status_aendern"]',
         start: function (event, ui) {
             ui.item.addClass("border-top border-primary shadow");
         },

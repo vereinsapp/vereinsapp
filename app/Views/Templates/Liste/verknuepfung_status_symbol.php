@@ -1,1 +1,0 @@
-<span class="verknuepfung_status_symbol ms-2 float-end" verknuepfungen="<?= $verknuepfungen ?>"></span>

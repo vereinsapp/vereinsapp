@@ -15,7 +15,7 @@
         ?><span class="ueberschrift text-secondary"><?= $liste['ueberschrift']; ?></span><?php }
     ?></div>
     <div class="elemente list-group list-group-flush<?php
-    if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND in_array( 'sortable', $liste['element']['werkzeuge'] ) )
+    if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfung_werkzeuge', $liste['element']['verknuepfungen'] ) AND is_array( $liste['element']['verknuepfungen']['verknuepfung_werkzeuge'] ) AND in_array( 'verknuepfung_status_aendern', $liste['element']['verknuepfungen']['verknuepfung_werkzeuge'] ) )
         echo ' sortable';
     ?>" liste="<?= $liste['liste']; ?>">
 
@@ -47,10 +47,15 @@
 
                 if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfung_bemerkung_symbol', $liste['element']['verknuepfungen'] ) AND $liste['element']['verknuepfungen']['verknuepfung_bemerkung_symbol'] === TRUE )
                     echo view( 'Templates/Liste/verknuepfung_bemerkung_symbol', array( 'verknuepfungen' => $liste['element']['verknuepfungen']['verknuepfungen'], ) );
-                if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfung_status_wert', $liste['element']['verknuepfungen'] ) AND $liste['element']['verknuepfungen']['verknuepfung_status_wert'] === TRUE )
-                    echo view( 'Templates/Liste/verknuepfung_status_wert', array( 'verknuepfungen' => $liste['element']['verknuepfungen']['verknuepfungen'], ) );
-                if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfung_status_symbol', $liste['element']['verknuepfungen'] ) AND $liste['element']['verknuepfungen']['verknuepfung_status_symbol'] === TRUE )
-                    echo view( 'Templates/Liste/verknuepfung_status_symbol', array( 'verknuepfungen' => $liste['element']['verknuepfungen']['verknuepfungen'], ) );
+                if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfung_status_wert', $liste['element']['verknuepfungen'] ) AND $liste['element']['verknuepfungen']['verknuepfung_status_wert'] === TRUE ) {
+                    ?><span class="text-secondary small ms-2 float-end"><span class="verknuepfung_status_wert" verknuepfungen="<?= $liste['element']['verknuepfungen']['verknuepfungen'] ?>"></span></span><?php
+                }
+                if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfung_status_symbol', $liste['element']['verknuepfungen'] ) AND $liste['element']['verknuepfungen']['verknuepfung_status_symbol'] === TRUE ) {
+                    ?><span class="verknuepfung_status_symbol ms-2 float-end" verknuepfungen="<?= $liste['element']['verknuepfungen']['verknuepfungen'] ?>"></span><?php
+                }
+                if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfung_werkzeuge', $liste['element']['verknuepfungen'] ) AND is_array( $liste['element']['verknuepfungen']['verknuepfung_werkzeuge'] ) AND count( $liste['element']['verknuepfungen']['verknuepfung_werkzeuge'] ) > 0 ) {
+                    ?><span class="verknuepfung_werkzeuge float-end stretched-link-unwirksam invisible" werkzeuge='<?= json_encode( $liste['element']['verknuepfungen']['verknuepfung_werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>' verknuepfungen="<?= $liste['element']['verknuepfungen']['verknuepfungen'] ?>"></span><?php
+                }
 
                 if( array_key_exists( 'werkzeuge', $liste['element'] ) AND is_array( $liste['element']['werkzeuge'] ) AND count( $liste['element']['werkzeuge'] ) > 0 ) {
                     ?><span class="werkzeuge float-end stretched-link-unwirksam invisible" werkzeuge='<?= json_encode( $liste['element']['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php

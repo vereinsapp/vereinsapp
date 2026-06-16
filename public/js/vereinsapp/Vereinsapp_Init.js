@@ -67,15 +67,14 @@ Lesendes .attr( immer in Kombination mit Util_WertBereinigtZurueck( ... , undefi
 Bugfix Text-Ausrichtung Ergebnis Auswertung (wenn eine Liste leer ist, dann wird sie ausgeblendet) + Gesamt hat ein Toggle-Symbol
 public function wartungsarbeiten() nach BaseController verschieben und Status-Controller entfernen
 Bei logout alle cookies entfernen?
+werkzeug (bspw. in WERKZEUGE.[werkzeug].beschriftung) abhängig machen von $werkzeug
+bearbeiten_modus von $liste zu $element übertragen (damit $liste in $element nicht mehr gebraucht wird)
 
 verknuepfung_ids_nach_liste verschieben in element und Liste_EventVerknuepfungenBereitstellen dann nach Liste_EventListenBereitstellen aufrufen?
-VERKNUEPFUNGEN[ ... ]['typ'] element_auswahl, janein_auswahl und status_auswahl notwendig?
-    kacheln-View, liste-View, Liste_$VerknuepfungErstellenAktualisieren
 Wie weiter mit Liste_$ListenstatistikAktualisieren?
     Liste_$ListeMetaAktualisieren einführen?
     Wie umgehen mit Liste_$AuswertungenAktualisieren?
-Mehrere gleiche Titel in der Setliste anzeigen
-Verknuepfung-spezifische Werkzeuge (bspw. sortable)
+Mehrere gleiche Titel in der Setliste anzeigen und Setliste auch nach status sortierbar machen
 
 ERLEDIGT
 

@@ -4,7 +4,7 @@
 
 function Liste_$VerknuepfungErstellenAktualisieren($verknuepfung_erstellen) {
     const verknuepfungen = Util_WertBereinigtZurueck($verknuepfung_erstellen.attr("verknuepfungen"), undefined);
-    const verknuepfung_id = Util_WertBereinigtZurueck($verknuepfung_erstellen.attr("verknuepfung_id"), undefined);
+    const verknuepfung_id = Util_WertBereinigtZurueck($verknuepfung_erstellen.attr(VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"), undefined);
     const verknuepfte_listen = VERKNUEPFUNGEN[verknuepfungen].verknuepfte_listen;
 
     // VERKNUEPFTE ELEMENT_ID DEFINIEREN

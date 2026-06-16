@@ -121,15 +121,15 @@ class Notenbank extends BaseController {
                 $setlisteneintrag_Model->save( $setlisteneintrag );
                 $ajax_antwort['notenbank_setlisteneintrag_id'] = (int)$setlisteneintrag_Model->getInsertID();
                 $ajax_antwort['dbdata'] = array( array( 'id' => $ajax_antwort['notenbank_setlisteneintrag_id'], 'status' => $setlisteneintrag['status'] ) );
-            } else {
+            } else // {
                 $ajax_antwort['dbdata'] = array();
-                $neuer_status = 0;
-                foreach( $setlisteneintrag_Model->where( array( 'termin_id' => $setlisteneintrag['termin_id'] ) )->orderBy('status', 'ASC')->findAll() as $anderer_setlisteneintrag ) {
-                    $anderer_setlisteneintrag['status'] = ++$neuer_status;
-                    $setlisteneintrag_Model->update( $anderer_setlisteneintrag['id'], $anderer_setlisteneintrag );
-                    $ajax_antwort['dbdata'][] = array( 'id' => $anderer_setlisteneintrag['id'], 'status' => $anderer_setlisteneintrag['status'] );
-                }
-            }
+            //     $neuer_status = 0;
+            //     foreach( $setlisteneintrag_Model->where( array( 'termin_id' => $setlisteneintrag['termin_id'] ) )->orderBy('status', 'ASC')->findAll() as $anderer_setlisteneintrag ) {
+            //         $anderer_setlisteneintrag['status'] = ++$neuer_status;
+            //         $setlisteneintrag_Model->update( $anderer_setlisteneintrag['id'], $anderer_setlisteneintrag );
+            //         $ajax_antwort['dbdata'][] = array( 'id' => $anderer_setlisteneintrag['id'], 'status' => $anderer_setlisteneintrag['status'] );
+            //     }
+            // }
         }
 
         $ajax_antwort['ajax_id'] = (int) $this->request->getPost()['ajax_id'];

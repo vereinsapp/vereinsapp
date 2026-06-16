@@ -85,11 +85,14 @@ function Notenbank_Init() {
         );
     });
 
-    $('.sortable[verknuepfungen="notenbank_setliste"]').on("sortupdate update", function (event, ui) {
+    $('.sortable[liste="notenbank"]').on("sortupdate update", function (event, ui) {
         Liste_VerknuepfungStatusAendern(
             { $werkzeug: ui.item },
             ui.item.index() + 1,
-            ui.item.attr("notenbank_setlisteneintrag_id"),
+            Util_WertBereinigtZurueck(
+                ui.item.find('.werkzeug[werkzeug="verknuepfung_status_aendern"]').attr("notenbank_setlisteneintrag_id"),
+                undefined,
+            ),
             "notenbank_setliste",
         );
     });

@@ -231,11 +231,25 @@ class Vereinsapp extends BaseConfig
             ),
         ),
 
-        'sortable' => array(
+        'verknuepfung_status_aendern' => array(
             'symbol' => 'sortable',
             'beschriftung' => array(
-                'beschriftung' => '{liste1} sortieren',
+                'beschriftung' => 'Verknüpfung-Status ändern',
+                // 'bestaetigung' => 'Willst du wirklich den Verknüpfung-Status ändern?',
+                // 'erfolg' => 'Verknüpfung-Status wurde erfolgreich geändert.',
+                'fehler' => 'Verknüpfung-Status konnte nicht geändert werden!',
             ),
+        ),
+
+        'verknuepfung_loeschen' => array(
+            'symbol' => 'loeschen',
+            'beschriftung' => array(
+                'beschriftung' => 'Verknüpfung löschen',
+                // 'bestaetigung' => 'Willst du wirklich die Verknüpfung löschen?',
+                // 'erfolg' => 'Verknüpfung wurde erfolgreich gelöscht.',
+                'fehler' => 'Verknüpfung konnte nicht gelöscht werden!',
+            ),
+            'farbe' => 'danger',
         ),
 
         'verknuepfung_bemerkung_aendern' => array(
@@ -636,6 +650,7 @@ class Vereinsapp extends BaseConfig
                 // 'verknuepfungen' => array(
                 //     'verknuepfungen' => 'termine_rueckmeldungen',
                 //     'verknuepfung_erstellen' => TRUE,
+                //     'verknuepfung_werkzeuge' => array( 'verknuepfung_status_aendern', 'verknuepfung_loeschen', ),
                 //     'verknuepfung_bemerkung_symbol' => TRUE,
                 //     'verknuepfung_status_wert' => TRUE,
                 //     'verknuepfung_status_symbol' => TRUE,

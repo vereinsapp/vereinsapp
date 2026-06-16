@@ -14,4 +14,14 @@ function Liste_VerknuepfungenInit() {
             verknuepfungen,
         );
     });
+
+    // VERKNUEPFUNG LÖSCHEN
+    $(document).on("click", '.werkzeug[werkzeug="verknuepfung_loeschen"]', function () {
+        const verknuepfungen = Util_WertBereinigtZurueck($(this).attr("verknuepfungen"), undefined);
+        Liste_VerknuepfungLoeschen(
+            { $werkzeug: $(this) },
+            Util_WertBereinigtZurueck($(this).attr(VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"), undefined),
+            verknuepfungen,
+        );
+    });
 }

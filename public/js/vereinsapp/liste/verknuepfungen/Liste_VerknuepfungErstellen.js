@@ -143,13 +143,16 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                 }
 
                 if ("dbdata" in AJAX.antwort && isArray(AJAX.antwort.dbdata))
-                    $.each(AJAX.antwort.dbdata, function (position, element) {
-                        if ("id" in element) {
-                            if (typeof VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(element.id)] === "undefined")
-                                VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(element.id)] = new Object();
+                    $.each(AJAX.antwort.dbdata, function (position, verknuepfung) {
+                        if ("id" in verknuepfung) {
+                            if (typeof VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(verknuepfung.id)] === "undefined")
+                                VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(verknuepfung.id)] = new Object();
 
-                            $.each(element, function (eigenschaft, wert) {
-                                VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(element.id)][eigenschaft] = Util_WertBereinigtZurueck(wert, undefined);
+                            $.each(verknuepfung, function (eigenschaft, wert) {
+                                VERKNUEPFUNGEN[verknuepfungen].tabelle[Number(verknuepfung.id)][eigenschaft] = Util_WertBereinigtZurueck(
+                                    wert,
+                                    undefined,
+                                );
                             });
                         }
                     });
@@ -160,20 +163,14 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                     Liste_EventDomAktualisieren(liste);
                 });
 
+                if ("dom" in AJAX && "$element" in AJAX.dom && AJAX.dom.$element.exists()) Liste_$ElementAktualisieren(AJAX.dom.$element);
+
                 if ("dom" in AJAX && "$modal" in AJAX.dom && AJAX.dom.$modal.exists() && AJAX.dom.$modal.find(".bestaetigung").exists())
                     Dom_$ModalSchliessen(AJAX.dom.$modal);
             },
             function (AJAX) {
                 if (isString(AJAX.antwort.validation)) Dom_ToastFeuern(AJAX.antwort.validation, "danger");
-                Dom_ToastFeuern(
-                    Liste_ElementBeschriftungErsetztZurueck(WERKZEUGE.element_erstellen.beschriftung.fehler, {
-                        element1: {
-                            liste: AJAX.data.verknuepfungen,
-                            [VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"]: AJAX.data[VERKNUEPFUNGEN[verknuepfungen].verknuepfung + "_id"],
-                        },
-                    }),
-                    "danger",
-                );
+                Dom_ToastFeuern(WERKZEUGE.verknuepfung_erstellen.beschriftung.fehler, "danger");
             },
         );
     }
