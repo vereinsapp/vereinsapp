@@ -486,7 +486,7 @@ class Vereinsapp extends BaseConfig
             'verknuepfte_listen' => array( 'verfuegbare_rechte', 'mitglieder', ),
             'typ' => 'janein_auswahl',
             'bestaetigung_einfordern' => FALSE,
-            'nur_eins_erlaubt_janein' => TRUE,
+            'nur_eins_erlaubt' => TRUE,
             'status_erlaubt' => array(
                 0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
@@ -507,7 +507,7 @@ class Vereinsapp extends BaseConfig
             'verknuepfte_listen' => array( 'aufgaben', 'mitglieder', ),
             'typ' => 'status_auswahl',
             'bestaetigung_einfordern' => FALSE,
-            'nur_eins_erlaubt_janein' => TRUE,
+            'nur_eins_erlaubt' => TRUE,
             'status_erlaubt' => array(
                 0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>' ),
                 1 => array( 'farbe' => 'primary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['angenommen_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['angenommen_rueckmeldung'].'-fill"></i>' ),
@@ -529,7 +529,7 @@ class Vereinsapp extends BaseConfig
             'verknuepfte_listen' => array( 'aufgaben', 'termine', ),
             'typ' => 'janein_auswahl',
             'bestaetigung_einfordern' => FALSE,
-            'nur_eins_erlaubt_janein' => TRUE,
+            'nur_eins_erlaubt' => TRUE,
             'status_erlaubt' => array(
                 0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
@@ -550,7 +550,7 @@ class Vereinsapp extends BaseConfig
             'verknuepfte_listen' => array( 'termine', 'mitglieder', ),
             'typ' => 'status_auswahl',
             'bestaetigung_einfordern' => FALSE,
-            'nur_eins_erlaubt_janein' => TRUE,
+            'nur_eins_erlaubt' => TRUE,
             'status_erlaubt' => array(
                 0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung'].'"></i>', 'passiv' => '<i class="bi bi-'.SYMBOLE['pos_rueckmeldung'].'-fill"></i>' ),
@@ -572,9 +572,9 @@ class Vereinsapp extends BaseConfig
             'verknuepfte_listen' => array( 'termine', 'mitglieder', ),
             'typ' => 'janein_auswahl',
             'bestaetigung_einfordern' => FALSE,
-            'nur_eins_erlaubt_janein' => TRUE,
+            'nur_eins_erlaubt' => TRUE,
             'status_erlaubt' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>'),
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
              ),
             'verknuepfung_nicht_moeglich' => array(
@@ -593,7 +593,7 @@ class Vereinsapp extends BaseConfig
             'verknuepfte_listen' => array( 'strafkatalog', 'mitglieder', ),
             'typ' => 'element_auswahl',
             'bestaetigung_einfordern' => TRUE,
-            'nur_eins_erlaubt_janein' => FALSE,
+            'nur_eins_erlaubt' => FALSE,
             'status_erlaubt' => array(
                 0 => array( 'farbe' => 'secondary', 'aktiv' => '<i class="bi bi-'.SYMBOLE['ohne_rueckmeldung'].'"></i>' ),
                 1 => array( 'farbe' => 'warning', 'aktiv' => '<i class="bi bi-'.SYMBOLE['offen'].'"></i>' ),
@@ -615,9 +615,9 @@ class Vereinsapp extends BaseConfig
             'verknuepfte_listen' => array( 'notenbank', 'termine', ),
             'typ' => 'element_auswahl',
             'bestaetigung_einfordern' => FALSE,
-            'nur_eins_erlaubt_janein' => FALSE,
+            'nur_eins_erlaubt' => FALSE,
             'status_erlaubt' => array(
-                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>'),
+                0 => array( 'farbe' => 'danger', 'aktiv' => '<i class="bi bi-'.SYMBOLE['neg_zuordnung'].'"></i>' ),
                 1 => array( 'farbe' => 'success', 'aktiv' => '<i class="bi bi-'.SYMBOLE['pos_zuordnung'].'"></i>' ),
              ),
             'verknuepfung_nicht_moeglich' => array(

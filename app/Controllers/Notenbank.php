@@ -110,7 +110,7 @@ class Notenbank extends BaseController {
             );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $setlisteneintrag['bemerkung'] = $this->request->getpost()['bemerkung']; else $setlisteneintrag['bemerkung'] = NULL;
 
-            if ( VERKNUEPFUNGEN['notenbank_setliste']['nur_eins_erlaubt_janein'] )
+            if ( VERKNUEPFUNGEN['notenbank_setliste']['nur_eins_erlaubt'] )
                 $setlisteneintrag_Model->where( array( 'titel_id' => $setlisteneintrag['titel_id'], 'termin_id' => $setlisteneintrag['termin_id'] ) )->delete();
 
             if( (int)$setlisteneintrag['status'] > 0 ) {

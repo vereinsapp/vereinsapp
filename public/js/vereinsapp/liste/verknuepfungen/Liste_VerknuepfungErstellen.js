@@ -60,7 +60,7 @@ function Liste_VerknuepfungErstellen(bestaetigt, dom, data, modal_title, verknue
                     );
                 });
 
-                if (VERKNUEPFUNGEN[verknuepfungen].nur_eins_erlaubt_janein) {
+                if (VERKNUEPFUNGEN[verknuepfungen].nur_eins_erlaubt) {
                     // bereits vorhandene identische Verknüpfungen werden identifiziert
                     const bereits_vorhandene_identische_verknuepfungen = new Array();
                     $.each(

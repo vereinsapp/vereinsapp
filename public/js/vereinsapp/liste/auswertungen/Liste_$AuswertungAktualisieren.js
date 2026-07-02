@@ -39,7 +39,8 @@ function Liste_$AuswertungAktualisieren($auswertung) {
         const $ergebnis_anzahl = $(this);
         const status = Util_WertBereinigtZurueck($ergebnis_anzahl.attr("status"), undefined);
 
-        const ergebnis_anzahl = ergebnis_nach_status[status].length;
+        let ergebnis_anzahl = 0;
+        if (typeof ergebnis_nach_status[status] !== "undefined") ergebnis_anzahl = ergebnis_nach_status[status].length;
 
         if ($ergebnis_anzahl.hasClass("progress"))
             $ergebnis_anzahl.attr("style", "width: " + (ergebnis_anzahl / ergebnis_referenz_anzahl) * 100 + "%");

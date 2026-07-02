@@ -102,7 +102,7 @@ class Strafkatalog extends BaseController {
             );
             if( array_key_exists( 'bemerkung', $this->request->getpost() ) AND !empty( $this->request->getpost()['bemerkung'] ) ) $zugewiesene_strafe['bemerkung'] = $this->request->getpost()['bemerkung']; else $zugewiesene_strafe['bemerkung'] = NULL;
 
-            if ( VERKNUEPFUNGEN['strafkatalog_zugewiesene_strafen']['nur_eins_erlaubt_janein'] )
+            if ( VERKNUEPFUNGEN['strafkatalog_zugewiesene_strafen']['nur_eins_erlaubt'] )
                 $zugewiesene_strafe_Model->where( array( 'strafe_id' => $zugewiesene_strafe['strafe_id'], 'mitglied_id' => $zugewiesene_strafe['mitglied_id'] ) )->delete();
 
             if( (int)$zugewiesene_strafe['status'] > 0 ) {
