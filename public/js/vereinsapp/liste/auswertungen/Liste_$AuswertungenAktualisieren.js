@@ -120,52 +120,13 @@ function Liste_$AuswertungenAktualisieren($auswertungen) {
 
     // META AKTUALISIEREN
     $meta.each(function () {
-        const $meta = $(this);
-
-        // Überschrift aktualisieren
-        $meta.find(".ueberschrift").each(function () {
-            const $ueberschrift = $(this);
-
-            if (isEmptyString($ueberschrift.text())) $ueberschrift.addClass("invisible");
-            else $ueberschrift.removeClass("invisible");
-        });
-
-        // Werkzeuge aktualisieren
-        $meta.find(".werkzeuge").each(function () {
-            const $werkzeuge = $(this);
-
-            Dom_$WerkzeugeAktualisieren($werkzeuge, {
-                liste: liste,
-                instanz: instanz,
-            });
-
-            if ($werkzeuge.find(".werkzeug").length === 0) $werkzeuge.addClass("invisible");
-            else $werkzeuge.removeClass("invisible");
-        });
-
-        // Listenstatisik aktualisieren
-        $meta.find(".listenstatistik_todo").each(function () {
-            $(this)
-                .find(".listenstatistik")
-                .each(function () {
-                    Liste_$ListenstatistikAktualisieren($(this), $liste);
-                });
-        });
-
-        if (
-            ($meta.find(".ueberschrift").length === 0 || $meta.find(".ueberschrift").hasClass("invisible")) &&
-            ($meta.find(".werkzeuge").length === 0 || $meta.find(".werkzeuge").hasClass("invisible")) &&
-            ($meta.find(".listenstatistik_todo").length === 0 || $meta.find(".listenstatistik_todo").hasClass("invisible"))
-        )
-            $meta.addClass("invisible");
-        else $meta.removeClass("invisible");
+        Liste_$ListeMetaAktualisieren($(this), instanz, liste);
     });
 
-    // LISTE AUSBLENDEN
+    // AUSWERTUNGEN AUSBLENDEN
     if (
-        $auswertungen_auswertungen.find(".auswertung").length <= 1 &&
-        ($meta.find(".werkzeuge").length === 0 || $meta.find(".werkzeuge").hasClass("invisible")) &&
-        ($meta.find(".listenstatistik_todo").length === 0 || $meta.find(".listenstatistik_todo").hasClass("invisible"))
+        ($auswertungen_auswertungen.find(".auswertung").length === 0 || $auswertungen_auswertungen.find(".auswertung").length === 1) &&
+        ($meta.find(".werkzeuge").length === 0 || $meta.find(".werkzeuge").hasClass("invisible"))
     )
         $auswertungen.addClass("invisible");
     else $auswertungen.removeClass("invisible");

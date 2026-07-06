@@ -14,10 +14,13 @@
     if( array_key_exists( 'ueberschrift', $liste ) ) {
         ?><span class="ueberschrift text-secondary"><?= $liste['ueberschrift']; ?></span><?php }
     ?></div>
-    <div class="elemente list-group list-group-flush<?php
+    <div class="liste_elemente list-group list-group-flush<?php
     if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfung_werkzeuge', $liste['element']['verknuepfungen'] ) AND is_array( $liste['element']['verknuepfungen']['verknuepfung_werkzeuge'] ) AND in_array( 'verknuepfung_status_aendern', $liste['element']['verknuepfungen']['verknuepfung_werkzeuge'] ) )
         echo ' sortable';
-    ?>" liste="<?= $liste['liste']; ?>">
+    ?>"<?php
+    if( array_key_exists( 'verknuepfungen', $liste['element'] ) AND array_key_exists( 'verknuepfung_werkzeuge', $liste['element']['verknuepfungen'] ) AND is_array( $liste['element']['verknuepfungen']['verknuepfung_werkzeuge'] ) AND in_array( 'verknuepfung_status_aendern', $liste['element']['verknuepfungen']['verknuepfung_werkzeuge'] ) ) {
+        ?> liste="<?= $liste['liste']; ?>"<?php }
+    ?>>
 
         <div class="list-group-item blanko invisible" blanko="element" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>">
 

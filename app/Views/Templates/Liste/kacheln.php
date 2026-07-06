@@ -11,14 +11,14 @@
     <div class="meta w-100 text-center invisible"><?php
     if( array_key_exists( 'werkzeuge', $liste ) AND is_array( $liste['werkzeuge'] ) AND count( $liste['werkzeuge'] ) > 0 ) {
         ?><span class="werkzeuge float-end" werkzeuge='<?= json_encode( $liste['werkzeuge'], JSON_UNESCAPED_UNICODE ); ?>'></span><?php }
-    if( array_key_exists( 'listenstatistik', $liste ) AND is_array( $liste['listenstatistik'] ) AND count( $liste['listenstatistik'] ) > 0 ) {
-        ?><span class="listenstatistik_todo text-secondary float-end"><?php
-        if( array_key_exists( 'anzahl', $liste['listenstatistik'] ) ) { ?><span class="listenstatistik" listenstatistik="anzahl"></span> Element(e)<?php }
-        if( array_key_exists( 'anzahl', $liste['listenstatistik'] ) AND array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer'] ?> spacer"></i><?php }
-        if( array_key_exists( 'summe', $liste['listenstatistik'] ) ) { ?>Summe: <span class="listenstatistik" listenstatistik="summe" eigenschaft="<?= $liste['listenstatistik']['summe']; ?>"></span><?php }
+    if( array_key_exists( 'listenstatistiken', $liste ) AND is_array( $liste['listenstatistiken'] ) AND count( $liste['listenstatistiken'] ) > 0 ) {
+        ?><span class="listenstatistiken text-secondary float-end"><?php
+        if( array_key_exists( 'anzahl', $liste['listenstatistiken'] ) ) { ?><span class="listenstatistik" listenstatistik="anzahl"></span> Element(e)<?php }
+        if( array_key_exists( 'anzahl', $liste['listenstatistiken'] ) AND array_key_exists( 'summe', $liste['listenstatistiken'] ) ) { ?><i class="bi bi-<?= SYMBOLE['spacer'] ?> spacer"></i><?php }
+        if( array_key_exists( 'summe', $liste['listenstatistiken'] ) ) { ?>Summe: <span class="listenstatistik" listenstatistik="summe" eigenschaft="<?= $liste['listenstatistiken']['summe']; ?>"></span><?php }
         ?></span><?php }
     ?></div>
-    <div class="elemente row row-cols-1 row-cols-lg-2 row-cols-xxl-3 gy-3 gx-0 gx-lg-3 w-100">
+    <div class="liste_elemente row row-cols-1 row-cols-lg-2 row-cols-xxl-3 gy-3 gx-0 gx-lg-3 w-100">
 
         <div class="col blanko invisible" blanko="element" liste="<?= $liste['liste']; ?>" instanz="<?= $liste['instanz']; ?>">
 

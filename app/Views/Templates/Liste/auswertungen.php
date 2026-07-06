@@ -30,13 +30,13 @@
 
             <?php if( array_key_exists( 'collapse', $auswertungen ) AND $auswertungen['collapse'] ) { ?><div class="row g-0 collapse">
                 <div id="<?= $auswertungen['instanz']; ?>_ergebnis_1" class="ergebnis liste col-6 text-start text-<?= VERKNUEPFUNGEN[ $auswertungen['verknuepfungen'] ]['status_erlaubt'][1]['farbe']; ?>" liste="<?= $auswertungen['liste']; ?>" status=1>
-                    <div class="elemente"><div class="blanko invisible" blanko="element" liste="<?= $auswertungen['liste']; ?>" instanz="<?= $auswertungen['instanz']; ?>_ergebnis_1"><span class="element_beschriftung"></span><?= view( 'Templates/Liste/verknuepfung_bemerkung_symbol', array( 'verknuepfungen' => $auswertungen['verknuepfungen'], ) ); ?></div></div>
+                    <div class="liste_elemente"><div class="blanko invisible" blanko="element" liste="<?= $auswertungen['liste']; ?>" instanz="<?= $auswertungen['instanz']; ?>_ergebnis_1"><span class="element_beschriftung"></span><?= view( 'Templates/Liste/verknuepfung_bemerkung_symbol', array( 'verknuepfungen' => $auswertungen['verknuepfungen'], ) ); ?></div></div>
                 </div>
                 <?php if( array_key_exists( 2, VERKNUEPFUNGEN[ $auswertungen['verknuepfungen'] ]['status_erlaubt'] ) ) { ?><div id="<?= $auswertungen['instanz']; ?>_ergebnis_2" class="ergebnis liste col-6 text-end text-<?= VERKNUEPFUNGEN[ $auswertungen['verknuepfungen'] ]['status_erlaubt'][2]['farbe']; ?>" liste="<?= $auswertungen['liste']; ?>" status=2>
-                    <div class="elemente"><div class="blanko invisible" blanko="element" liste="<?= $auswertungen['liste']; ?>" instanz="<?= $auswertungen['instanz']; ?>_ergebnis_2"><span class="element_beschriftung"></span><?= view( 'Templates/Liste/verknuepfung_bemerkung_symbol', array( 'verknuepfungen' => $auswertungen['verknuepfungen'], ) ); ?></div></div>
+                    <div class="liste_elemente"><div class="blanko invisible" blanko="element" liste="<?= $auswertungen['liste']; ?>" instanz="<?= $auswertungen['instanz']; ?>_ergebnis_2"><span class="element_beschriftung"></span><?= view( 'Templates/Liste/verknuepfung_bemerkung_symbol', array( 'verknuepfungen' => $auswertungen['verknuepfungen'], ) ); ?></div></div>
                 </div><?php } ?>
                 <div id="<?= $auswertungen['instanz']; ?>_ergebnis_0" class="ergebnis liste col-10 text-center text-secondary small" liste="<?= $auswertungen['liste']; ?>" status=0>
-                    <div class="elemente"><span class="me-1 blanko invisible" blanko="element" liste="<?= $auswertungen['liste']; ?>" instanz="<?= $auswertungen['instanz']; ?>_ergebnis_0"><span class="element_beschriftung"></span><?= VERKNUEPFUNGEN[ $auswertungen['verknuepfungen'] ]['status_erlaubt'][0]['aktiv']; ?></span></div>
+                    <div class="liste_elemente"><span class="me-1 blanko invisible" blanko="element" liste="<?= $auswertungen['liste']; ?>" instanz="<?= $auswertungen['instanz']; ?>_ergebnis_0"><span class="element_beschriftung"></span><?= VERKNUEPFUNGEN[ $auswertungen['verknuepfungen'] ]['status_erlaubt'][0]['aktiv']; ?></span></div>
                 </div>
             </div><?php } ?>
 

@@ -71,12 +71,10 @@ bearbeiten_modus von $liste zu $element übertragen (damit $liste in $element ni
 Liste_$AuswertungInitialisiertZurueck und Liste_$ElementInitialisiertZurueck einführen
 instanz[instanz].$blanko_... umbauen zu $blanko_...[instanz], dann instanz aus VERKNUEPFUNGEN[auswertungen/verknuepfungen] entfernen (instanz aus LISTEN[liste] entfernen und filtern etc. nach FILTERN etc. verschieben?)
 Bugfix Text-Ausrichtung Ergebnis Auswertung (wenn eine Liste leer ist, dann wird sie ausgeblendet) + Gesamt hat ein Toggle-Symbol
-Wie weiter mit Liste_$ListenstatistikAktualisieren?
-    Liste_$ListeMetaAktualisieren einführen?
-    Wie umgehen mit Liste_$AuswertungenAktualisieren?
 verknuepfung_ids_nach_liste verschieben in element und Liste_EventVerknuepfungenBereitstellen dann nach Liste_EventListenBereitstellen aufrufen?
 verknuepfungen aus EIGENSCHAFTEN entfernen?
 Mehrere gleiche Titel in der Setliste anzeigen und Setliste auch nach status sortierbar machen
+verknuepfungen einführen
 
 ERLEDIGT
 

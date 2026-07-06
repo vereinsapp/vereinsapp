@@ -57,7 +57,7 @@ WERKZEUGE.element_erstellen.aktualisieren_aktion = function ($werkzeug) {
                 Util_WertBereinigtZurueck($werkzeug.attr("liste"), undefined) +
                 "]",
         )
-            .find(".elemente")
+            .find(".liste_elemente")
             .find(".element").length === 0
     )
         $werkzeug.addClass("position-relative").append(Dom_$HinweispunktInitialisiertZurueck("success"));

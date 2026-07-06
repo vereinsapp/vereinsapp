@@ -87,7 +87,7 @@ function Notenbank_Init() {
 
     $('.sortable[liste="notenbank"]').on("sortupdate update", function (event, ui) {
         Liste_VerknuepfungStatusAendern(
-            { $werkzeug: ui.item },
+            { $werkzeug: ui.item.find('.werkzeug[werkzeug="verknuepfung_status_aendern"]') },
             ui.item.index() + 1,
             Util_WertBereinigtZurueck(
                 ui.item.find('.werkzeug[werkzeug="verknuepfung_status_aendern"]').attr("notenbank_setlisteneintrag_id"),

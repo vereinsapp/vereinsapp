@@ -640,7 +640,7 @@ class Vereinsapp extends BaseConfig
             // '[element]_id' => 42,
             // 'disabled_ids' => array(),
             'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array(), ),
+            'listenstatistiken' => array( 'anzahl' => array(), ),
             // 'ueberschrift' => 'Alle Mitglider',
             'element' => array(
                 'werkzeuge' => array(),
@@ -663,7 +663,7 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array(),
             'werkzeuge' => array(),
-            'listenstatistik' => array(),
+            'listenstatistiken' => array(),
             'element' => array(
                 'werkzeuge' => array(),
             ),
@@ -674,7 +674,7 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'titel', 'richtung' => SORT_ASC, ),
             'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array(), ),
+            'listenstatistiken' => array( 'anzahl' => array(), ),
             'element' => array(
                 'werkzeuge' => array(),
             ),
@@ -685,7 +685,7 @@ class Vereinsapp extends BaseConfig
             'filtern' => array( 'start' => array( 'start' => HEUTE ), 'ich_eingeladen_janein' => array( 'inklusiv' => array( TRUE ), ), ),
             'sortieren' => array( 'eigenschaft'=> 'start', 'richtung'=> SORT_ASC, ),
             'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array(), ),
+            'listenstatistiken' => array( 'anzahl' => array(), ),
             'element' => array(
                 'werkzeuge' => array(),
                 'zusatzsymbole' => array('kategorie'),
@@ -697,7 +697,7 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'kategorie', 'richtung' => SORT_ASC, ),
             'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array(), ),
+            'listenstatistiken' => array( 'anzahl' => array(), ),
             'element' => array(
                 'werkzeuge' => array(),
             ),
@@ -708,7 +708,7 @@ class Vereinsapp extends BaseConfig
             'filtern' => array(),
             'sortieren' => array( 'eigenschaft' => 'titel_nr', 'richtung' => SORT_ASC, ),
             'werkzeuge' => array( 'sortieren_manip', 'filtern_manip', ),
-            'listenstatistik' => array( 'anzahl' => array(), ),
+            'listenstatistiken' => array( 'anzahl' => array(), ),
             'element' => array(
                 'werkzeuge' => array(),
             ),
