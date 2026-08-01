@@ -75,7 +75,10 @@ verknuepfung_ids_nach_liste verschieben in element und Liste_EventVerknuepfungen
 verknuepfungen aus EIGENSCHAFTEN entfernen?
 Mehrere gleiche Titel in der Setliste anzeigen und Setliste auch nach status sortierbar machen
 verknuepfungen einführen
+    verknuepfungen von .liste/.verknuepfungen über .element auf die Verknuepfungen-Bausteine übertragen
 
 ERLEDIGT
+Liste_$VerknuepfungenAktualisieren eingeführt (als Kopie von Liste_$ListeAktualisieren)
+.verknuepfungen und verknuepfungen-View eingeführt (als Kopie von .liste bzw. liste-View)
 
 */

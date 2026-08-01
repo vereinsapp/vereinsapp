@@ -68,6 +68,7 @@ function Liste_$AuswertungAktualisieren($auswertung) {
     // BEINHALTETE LISTE AKTUALISIEREN
     $auswertung.find('.liste[liste="' + liste + '"]').each(function () {
         Liste_$ListeAktualisieren($(this));
+        // Liste_$VerknuepfungenAktualisieren($(this));
     });
     $auswertung.find('.element[liste="' + liste + '"]').each(function () {
         Liste_$ElementAktualisieren($(this));

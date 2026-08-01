@@ -9,6 +9,11 @@ function Liste_EventDomAktualisieren(liste) {
             Liste_$ListeAktualisieren($(this));
         });
 
+        // VERKNUEPFUNGEN AKTUALISIEREN
+        $('.verknuepfungen[liste="' + liste + '"]').each(function () {
+            Liste_$VerknuepfungenAktualisieren($(this));
+        });
+
         // ELEMENT AKTUALISIEREN
         $('.element[liste="' + liste + '"]').each(function () {
             Liste_$ElementAktualisieren($(this));

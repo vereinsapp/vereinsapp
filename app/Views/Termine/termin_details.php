@@ -59,10 +59,11 @@
     </div></div>
 
 <?php if( array_key_exists( 'notenbank', CONTROLLERS ) ) echo
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['zugeordnete_setliste'] ) ); ?>
+    view( 'Templates/Liste/liste', array( 'liste' => $liste['zugeordnete_setliste'] ) );
+    // view( 'Templates/Liste/verknuepfungen', array( 'liste' => $liste['zugeordnete_setliste'] ) ); ?>
 
 <?php if( array_key_exists( 'aufgaben', CONTROLLERS ) ) echo
-    view( 'Templates/Liste/liste', array( 'liste' => $liste['zugeordnete_aufgaben'] ) ); ?>
+    view( 'Templates/Liste/verknuepfungen', array( 'liste' => $liste['zugeordnete_aufgaben'] ) ); ?>
 
 </div>
 

@@ -141,3 +141,5 @@ writable/json_export/*
 
 writable/ics_export/*
 !writable/ics_export/index.html
+
+.agent.*
